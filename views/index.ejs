@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PPC / AI Агентство</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="header">
+  <div class="header__content">
+    <div class="header__logo">
+      <img src="/logo.png" alt="PPCSet Logo" class="logo-img" />
+      <span>PPCSet</span>
+    </div>
+
+    <div class="burger" id="burger">&#9776;</div>
+
+    <nav class="header__nav" id="nav">
+      <a href="#about">Про нас</a>
+      <a href="#features">Можливості</a>
+      <a href="#contact">Контакти</a>
+    </nav>
+    <a href="https://www.linkedin.com/in/vitali-ppc%E2%9C%94-26b294b4/" class="linkedin-link" target="_blank" rel="noopener" title="LinkedIn">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADgAAAA4CAMAAACfWMssAAAAYFBMVEUAern////x8vIAc7YAebkAcbUAdrf29fT7+fawyN0XfrsAb7SavdrY4enO2ubf6vNooMtEjsPH2epxpc7Q3+0AbLP4+/3v9Pm80eKKs9WCr9M9isHj6u53p82lwtpXlMRITP3eAAACNklEQVRIiZ2X57qDIAyGo0xFW0dr1erx/u/yMBxxVHn8fgHlJZEESCE40jNqsjwGiPOsiZ6HU2A/VJRMEc4pBaCUc6JYWVyDVcIVh430UFKdgwkjdIsZUcKSE/AF5IhyIvD6Bbbv35jRuz0Eq++JudHot9qDH9jtyV4cPlvwww83ZSvKP2uwAi9Ok1CtwK+Hn6O3Xwy2075QRjg7X4S0C/ia4kDjOhRdy07J92sGl9U6EYahbC4cn8BkcpT3MjTqzk2SxIHVPI0nwoLiYo9ZZcHZIPDMy6I1qUEUepZqUsj+4hspN2Ch8MhfFz6yC4MAqtBgiZenRKmLOBrxUoOr5bkVnVvceMH2i7EAngoP9KVWP1Dgg2n2pV6grdO0buLVoVNPiNAAjaXQknqMPUxTCjaEuqE3TCTYAokAZ4kGbRgNWLuQDi5AJp8iRPIGsnOwC2dJtI08g5yegronphbKC5pDfAHKOokmkwNdZq42+QgcFGHgHBbJrwjvQdkY90hvO6LGITl3VTiXYtcp2DLzanOo/Zk4Vx8LmF+Fwx0dtgV1OC4S4BfYbFPOE9Qph5PcH9RJjo+VP8jWB9kbtAcZXR3eoL060GWFweIEdJcVuh59wfF6rNgGlDMoJtAerRkcL+TFJI271EifAhLZVuo+g7jOmOTTE4AeHaqszO/EtiZn2DxutH/mvISeueVh9RB+WO8/5feLh9vlyv0C6X5JFtwuAoP7ZWdwu9AN7pfWRveKeSePvw//cCciblanFS0AAAAASUVORK5CYII=" alt="LinkedIn" class="linkedin-img" />
+    </a>
+  </div>
+</header>
+
+<section class="dd-hero-block">
+  <div class="dd-hero-content">
+    <h1 class="dd-hero-title">Create campaigns that win customers for life</h1>
+    <p class="dd-hero-subtitle">Build customer connections with personalized campaigns that convert every time, on every channel.</p>
+    <div class="dd-hero-buttons">
+      <a href="#" class="dd-btn dd-btn-primary">Watch demo</a>
+      <a href="#" class="dd-btn dd-btn-secondary">Explore platform</a>
+    </div>
+  </div>
+</section>
+
+    <section class="hero">
+    <div class="container">
+      <h2>Максимум з вашого рекламного бюджету</h2>
+      <p>Автоматизоване PPC-рішення з підтримкою AI</p>
+      <a href="#contact" class="btn-book">Book a call</a>
+    </div>
+  </section>
+
+  <section id="about" class="section">
+    <div class="container">
+      <h3>Чому ми?</h3>
+      <ul>
+        <li>⚡ AI-підсилена оптимізація рекламних кампаній</li>
+        <li>📈 Прозора аналітика</li>
+        <li>🤖 Плани — створити AI-агента для самостійної роботи</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="contact" class="section contact">
+  <div class="container">
+    <h3>Зв'язатися з нами</h3>
+    <form action="/contact" method="POST">
+      <input type="text" name="name" placeholder="Ваше ім'я" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <textarea name="message" placeholder="Ваше повідомлення" required></textarea>
+      <button type="submit" class="btn">Надіслати</button>
+    </form>
+  </div>
+</section>
+
+
+  <footer>
+    <div class="container">
+      <p>&copy; <%= new Date().getFullYear() %> PPCSet. Всі права захищено.</p>
+    </div>
+  </footer>
+<script>
+  const burger = document.getElementById('burger');
+  const nav = document.getElementById('nav');
+
+  burger.addEventListener('click', () => {
+    nav.classList.toggle('active');
+  });
+</script>
+</body>
+</html>
