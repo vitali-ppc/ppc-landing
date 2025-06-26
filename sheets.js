@@ -5,7 +5,7 @@ const { OpenAI } = require('openai');
 require('dotenv').config();
 
 const auth = new google.auth.GoogleAuth({
-  keyFile: path.join(__dirname, 'google-key.json'),
+  credentials: JSON.parse(process.env.GOOGLE_KEY_JSON),
   scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'],
 });
 
