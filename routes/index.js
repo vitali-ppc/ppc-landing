@@ -19,14 +19,14 @@ router.post('/contact', async (req, res) => {
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: 'chornyi.vitali@gmail.com',
-      pass: 'bndxuipwwzzpeaqy'
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS
     }
   });
 
   const mailOptions = {
     from: email,
-    to: 'chornyi.vitali@gmail.com',
+    to: process.env.EMAIL_USER,
     subject: `Нове повідомлення з сайту PPCSet`,
     text: `
       Ім'я: ${name}
