@@ -2,9 +2,14 @@ const express = require('express');
 const router = express.Router(); // ← Цього рядка не вистачає
 const nodemailer = require('nodemailer'); // ← Імпортуємо nodemailer
 
-// Показ головної сторінки
-router.get('/', (req, res) => {
-  res.render('index', { title: 'PPC / AI Агентство' });
+// Головна сторінка — тепер professional
+router.get('/', function(req, res, next) {
+  res.render('professional');
+});
+
+// Сучасний PPC (старий дизайн)
+router.get('/modern-ppc', function(req, res, next) {
+  res.render('index');
 });
 
 // Обробка форми
@@ -24,7 +29,7 @@ router.post('/contact', async (req, res) => {
     to: 'chornyi.vitali@gmail.com',
     subject: `Нове повідомлення з сайту PPCSet`,
     text: `
-      Ім’я: ${name}
+      Ім'я: ${name}
       Email: ${email}
       Повідомлення: ${message}
     `

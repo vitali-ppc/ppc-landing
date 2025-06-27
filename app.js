@@ -18,6 +18,16 @@ app.use('/', indexRouter);
 app.use('/chat', chatRouter); // перед app.listen
 app.use('/generate', generateRouter);
 
+// Маршрут для сторінки аналітики
+app.get('/analytics', (req, res) => {
+  res.render('analytics');
+});
+
+// Маршрут для професійної сторінки
+app.get('/professional', (req, res) => {
+  res.render('professional');
+});
+
 // Запуск сервера
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

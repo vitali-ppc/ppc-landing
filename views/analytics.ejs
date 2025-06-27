@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Аналітика кампаній - PPC Експерт</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="header__content">
+            <a href="/" class="header__logo">
+                <img src="/logo.png" alt="Logo" class="logo-img">
+                <span>PPCSet</span>
+            </a>
+            <nav class="header__nav">
+                <a href="#problems">Problems</a>
+                <a href="#process">Process</a>
+                <a href="#results">Results</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <a href="https://www.linkedin.com/in/vitali-ppc%E2%9C%94-26b294b4/" class="linkedin-link" target="_blank" rel="noopener" title="Connect on LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+              <span class="linkedin-text">LinkedIn</span>
+            </a>
+        </div>
+        <div class="burger" id="burger">&#9776;</div>
+    </header>
+
+    <!-- Hero блок для аналітики -->
+    <section class="analytics-hero">
+        <div class="container">
+            <div class="analytics-hero-content">
+                <h1>Аналітика рекламних кампаній</h1>
+                <p>Прозорий дашборд для моніторингу ефективності ваших PPC кампаній</p>
+                <div class="analytics-connect">
+                    <button class="connect-btn" id="connectBtn">Підключити кабінет</button>
+                    <p class="connect-info">Безпечне підключення через API Google Ads</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Дашборд метрик -->
+    <section class="analytics-dashboard" id="dashboard" style="display: none;">
+        <div class="container">
+            <div class="dashboard-header">
+                <h2>Дашборд ефективності</h2>
+                <div class="dashboard-controls">
+                    <select id="dateRange" class="date-select">
+                        <option value="7">Останні 7 днів</option>
+                        <option value="30" selected>Останні 30 днів</option>
+                        <option value="90">Останні 90 днів</option>
+                    </select>
+                    <button class="refresh-btn" id="refreshBtn">🔄 Оновити</button>
+                </div>
+            </div>
+
+            <!-- Ключові метрики -->
+            <div class="metrics-overview">
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <h3>CPL (Вартість за лід)</h3>
+                        <div class="metric-trend positive">↓ -15%</div>
+                    </div>
+                    <div class="metric-value">₴245</div>
+                    <div class="metric-change">Зниження з ₴288</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <h3>ROI (Рентабельність)</h3>
+                        <div class="metric-trend positive">↑ +23%</div>
+                    </div>
+                    <div class="metric-value">4.2x</div>
+                    <div class="metric-change">Зростання з 3.4x</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <h3>Конверсії</h3>
+                        <div class="metric-trend positive">↑ +18%</div>
+                    </div>
+                    <div class="metric-value">156</div>
+                    <div class="metric-change">Зростання з 132</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <h3>Якість лідів</h3>
+                        <div class="metric-trend positive">↑ +12%</div>
+                    </div>
+                    <div class="metric-value">87%</div>
+                    <div class="metric-change">Зростання з 78%</div>
+                </div>
+            </div>
+
+            <!-- Графіки та аналітика -->
+            <div class="analytics-charts">
+                <div class="chart-container">
+                    <h3>Тренд CPL та ROI</h3>
+                    <div class="chart" id="trendChart">
+                        <div class="chart-placeholder">
+                            <div class="chart-line"></div>
+                            <div class="chart-line"></div>
+                            <div class="chart-line"></div>
+                            <div class="chart-line"></div>
+                            <div class="chart-line"></div>
+                        </div>
+                        <div class="chart-labels">
+                            <span>1 тиждень</span>
+                            <span>2 тиждень</span>
+                            <span>3 тиждень</span>
+                            <span>4 тиждень</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <h3>Розподіл бюджету по кампаніях</h3>
+                    <div class="chart" id="budgetChart">
+                        <div class="budget-slices">
+                            <div class="budget-slice" style="--percentage: 40%; --color: #1a365d;">
+                                <span>Пошукові кампанії</span>
+                                <span>40%</span>
+                            </div>
+                            <div class="budget-slice" style="--percentage: 30%; --color: #2c5282;">
+                                <span>Ремаркетинг</span>
+                                <span>30%</span>
+                            </div>
+                            <div class="budget-slice" style="--percentage: 20%; --color: #3182ce;">
+                                <span>Display</span>
+                                <span>20%</span>
+                            </div>
+                            <div class="budget-slice" style="--percentage: 10%; --color: #4299e1;">
+                                <span>YouTube</span>
+                                <span>10%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Рекомендації AI -->
+            <div class="ai-recommendations">
+                <h3>🤖 Рекомендації AI для оптимізації</h3>
+                <div class="recommendations-list">
+                    <div class="recommendation-item">
+                        <div class="recommendation-icon">📈</div>
+                        <div class="recommendation-content">
+                            <h4>Збільшити ставки на ключові слова</h4>
+                            <p>Ключові слова "B2B послуги" та "корпоративні рішення" показують високу конверсію. Рекомендую збільшити ставки на 15-20%.</p>
+                        </div>
+                    </div>
+                    <div class="recommendation-item">
+                        <div class="recommendation-icon">🎯</div>
+                        <div class="recommendation-content">
+                            <h4>Оптимізувати час показу реклами</h4>
+                            <p>Найвища конверсія спостерігається з 9:00 до 11:00 та з 14:00 до 16:00. Рекомендую збільшити ставки в ці години.</p>
+                        </div>
+                    </div>
+                    <div class="recommendation-item">
+                        <div class="recommendation-icon">💰</div>
+                        <div class="recommendation-content">
+                            <h4>Перерозподілити бюджет</h4>
+                            <p>Кампанія "Ремаркетинг" показує ROI 5.2x. Рекомендую збільшити бюджет на 25% за рахунок менш ефективних кампаній.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Форма підключення -->
+    <section class="connect-section" id="connectForm">
+        <div class="container">
+            <div class="connect-content">
+                <h2>Підключення до Google Ads</h2>
+                <p>Безпечно підключіть ваш рекламний кабінет для отримання детальної аналітики</p>
+                
+                <div class="connect-steps">
+                    <div class="connect-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Надайте доступ</h3>
+                            <p>Надайте доступ до вашого Google Ads акаунту через OAuth 2.0</p>
+                        </div>
+                    </div>
+                    <div class="connect-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Оберіть кампанії</h3>
+                            <p>Виберіть кампанії для аналізу та моніторингу</p>
+                        </div>
+                    </div>
+                    <div class="connect-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Отримайте аналітику</h3>
+                            <p>Отримайте детальну аналітику та рекомендації AI</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="connect-form">
+                    <form id="googleAdsForm">
+                        <div class="form-group">
+                            <label for="accountId">ID Google Ads акаунту</label>
+                            <input type="text" id="accountId" placeholder="123-456-7890" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="campaigns">Кампанії для аналізу</label>
+                            <select id="campaigns" multiple>
+                                <option value="all">Всі кампанії</option>
+                                <option value="search">Пошукові кампанії</option>
+                                <option value="display">Display кампанії</option>
+                                <option value="remarketing">Ремаркетинг</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="connect-submit-btn">Підключити та аналізувати</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Показуємо форму підключення при кліку на кнопку
+        document.getElementById('connectBtn').addEventListener('click', function() {
+            document.getElementById('connectForm').style.display = 'block';
+            document.getElementById('dashboard').style.display = 'none';
+        });
+
+        // Симуляція підключення
+        document.getElementById('googleAdsForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Показуємо дашборд
+            document.getElementById('dashboard').style.display = 'block';
+            document.getElementById('connectForm').style.display = 'none';
+            
+            // Симулюємо завантаження даних
+            setTimeout(() => {
+                alert('Кабінет успішно підключено! Дані оновлюються...');
+            }, 1000);
+        });
+
+        // Оновлення даних
+        document.getElementById('refreshBtn').addEventListener('click', function() {
+            this.textContent = '🔄 Оновлюється...';
+            setTimeout(() => {
+                this.textContent = '🔄 Оновити';
+                alert('Дані оновлено!');
+            }, 2000);
+        });
+    </script>
+</body>
+</html> 
