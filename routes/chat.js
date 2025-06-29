@@ -9,7 +9,10 @@ const openai = new OpenAI({
 });
 
 router.get('/', (req, res) => {
-  res.render('chat', { userMessage: null, botReply: null });
+  res.render('chat', { 
+    userMessage: null, 
+    botReply: null
+  });
 });
 
 router.post('/', async (req, res) => {
@@ -22,10 +25,16 @@ router.post('/', async (req, res) => {
     });
 
     const botReply = completion.choices[0].message.content;
-    res.render('chat', { userMessage, botReply });
+    res.render('chat', { 
+      userMessage, 
+      botReply
+    });
   } catch (error) {
     console.error('Помилка:', error.response?.data || error.message || error);
-    res.render('chat', { userMessage, botReply: 'Помилка. Спробуйте пізніше.' });
+    res.render('chat', { 
+      userMessage, 
+      botReply: 'Помилка. Спробуйте пізніше.'
+    });
   }
 });
 

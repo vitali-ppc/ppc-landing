@@ -26,7 +26,12 @@ router.get('/', async (req, res) => {
 
     const rows = response.data.values;
     if (!rows || !rows.length) {
-      return res.render('generate', { result: 'Немає даних у таблиці.' });
+      return res.render('generate', { 
+        result: 'Немає даних у таблиці.',
+        breadcrumbs: [
+          { title: 'Generate', url: '/generate' }
+        ]
+      });
     }
 
     const [url, h1, description, keyword, cta] = rows[0];
@@ -48,10 +53,20 @@ router.get('/', async (req, res) => {
     });
 
     const result = completion.choices[0].message.content;
-    res.render('generate', { result });
+    res.render('generate', { 
+      result,
+      breadcrumbs: [
+        { title: 'Generate', url: '/generate' }
+      ]
+    });
   } catch (error) {
     console.error('Помилка:', error.message);
-    res.render('generate', { result: 'Виникла помилка при обробці.' });
+    res.render('generate', { 
+      result: 'Виникла помилка при обробці.',
+      breadcrumbs: [
+        { title: 'Generate', url: '/generate' }
+      ]
+    });
   }
 });
 

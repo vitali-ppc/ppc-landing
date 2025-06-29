@@ -5324,3 +5324,55 @@ footer {
     display: none !important;
   }
 }
+
+/* ===== Coming Soon Badge Styles ===== */
+.coming-soon-badge-minimal {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.coming-soon-badge-minimal:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+.coming-soon-badge-minimal svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+.coming-soon-badge-minimal span {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+@media (max-width: 768px) {
+  .coming-soon-badge-minimal {
+    padding: 4px 10px;
+    font-size: 11px;
+    margin-bottom: 16px;
+  }
+  
+  .coming-soon-badge-minimal svg {
+    width: 12px;
+    height: 12px;
+  }
+  
+  .coming-soon-badge-minimal span {
+    font-size: 11px;
+  }
+}
