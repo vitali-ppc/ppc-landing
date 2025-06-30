@@ -2,9 +2,10 @@
 <% if (typeof breadcrumbs !== 'undefined' && breadcrumbs && breadcrumbs.length > 0) { %>
 <div class="container">
   <nav class="breadcrumbs-precisely breadcrumbs-color-1" aria-label="Breadcrumb">
-    <a href="/">Home</a>
     <% breadcrumbs.forEach(function(item, index) { %>
-      <span class="separator">/</span>
+      <% if (index > 0) { %>
+        <span class="separator">/</span>
+      <% } %>
       <% if (index === breadcrumbs.length - 1) { %>
         <span class="current"><%= item.title %></span>
       <% } else { %>

@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const path = require('path');
+const { breadcrumbsMiddleware } = require('./utils/breadcrumbs');
 const app = express();
 
 app.set('view engine', 'ejs');
@@ -8,6 +9,9 @@ app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
+
+// Автоматична система breadcrumbs
+app.use(breadcrumbsMiddleware);
 
 // Роутери
 const indexRouter = require('./routes/index');
@@ -21,11 +25,6 @@ app.use('/generate', generateRouter);
 // Маршрут для сторінки аналітики
 app.get('/analytics', (req, res) => {
   res.render('analytics');
-});
-
-// Маршрут для професійної сторінки
-app.get('/professional', (req, res) => {
-  res.render('professional');
 });
 
 // Запуск сервера

@@ -1,6 +1,7 @@
 const express = require('express');
-const router = express.Router(); // ← Цього рядка не вистачає
-const nodemailer = require('nodemailer'); // ← Імпортуємо nodemailer
+const router = express.Router();
+const nodemailer = require('nodemailer');
+const { generateBreadcrumbs } = require('../utils/breadcrumbs');
 
 // Telegram налаштування
 const TELEGRAM_BOT_TOKEN = '7832887667:AAEaIwR5X7Dqs4xr56heOE2PIjSagF3RB2U';
@@ -32,24 +33,34 @@ async function sendTelegramMessage(message) {
   }
 }
 
-// Головна сторінка — тепер professional
+// Головна сторінка — Professional дизайн
 router.get('/', function(req, res, next) {
+  // Для головної сторінки breadcrumbs не потрібні
   res.render('professional');
 });
 
-// Сучасний PPC (старий дизайн)
+// Альтернативна сторінка — Neomorphic дизайн  
 router.get('/modern-ppc', function(req, res, next) {
+  // Breadcrumbs генеруються автоматично через middleware
   res.render('index');
 });
 
 // Analytics сторінка (спрощена версія)
 router.get('/analytics', function(req, res, next) {
+  // Breadcrumbs генеруються автоматично через middleware
   res.render('analytics_new');
 });
 
 // Node.js Development сторінка
 router.get('/nodejs-development', function(req, res, next) {
+  // Breadcrumbs генеруються автоматично через middleware
   res.render('nodejs-development');
+});
+
+// Next.js Development сторінка
+router.get('/nextjs-development', function(req, res, next) {
+  // Breadcrumbs генеруються автоматично через middleware
+  res.render('nextjs-development');
 });
 
 // Обробка форми

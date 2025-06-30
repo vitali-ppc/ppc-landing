@@ -30,6 +30,9 @@
   </div>
 </header>
 
+<!-- Breadcrumbs -->
+<%- include('partials/breadcrumbs') %>
+
 <!-- Coming Soon Hero Section -->
 <section class="professional-hero">
   <div class="container">
@@ -206,27 +209,8 @@
     </svg>
   </button>
 
+  <script src="/scroll-to-top.js"></script>
   <script>
-    // Scroll to Top functionality
-    const scrollToTopBtn = document.getElementById('scrollToTop');
-    
-    // Show/hide button based on scroll position
-    window.addEventListener('scroll', () => {
-      if (window.pageYOffset > 300) {
-        scrollToTopBtn.classList.add('show');
-      } else {
-        scrollToTopBtn.classList.remove('show');
-      }
-    });
-    
-    // Smooth scroll to top when button is clicked
-    scrollToTopBtn.addEventListener('click', () => {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-    });
-
     // Smooth scroll to contact form
     window.scrollToContact = function() {
       const contactForm = document.getElementById('contact-form');

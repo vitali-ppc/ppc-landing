@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PPC / AI Agency</title>
-  <link rel="stylesheet" href="/styles.css?v=3" />
+  <link rel="stylesheet" href="/styles.css?v=17" />
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,7 +38,7 @@
         <h1 class="neo-hero-title">PPC Expert</h1>
         <p class="neo-hero-subtitle">Professional campaign management with AI</p>
         <div class="neo-btn-group">
-          <button class="neo-btn neo-btn-primary">Start Collaboration</button>
+          <a href="#contact" class="neo-btn neo-btn-primary">Start Collaboration</a>
         </div>
       </div>
       
@@ -322,18 +322,18 @@
       </div>
       <div class="contact-form">
         <h3>Send Inquiry</h3>
-        <form class="neo-contact-form">
+        <form class="neo-contact-form" id="contact-form" novalidate>
           <div class="neo-input-group">
-            <input type="text" class="neo-input" placeholder="Your Name" required>
+            <input type="text" class="neo-input" name="name" placeholder="Your Name *" title="Please fill in your name" autocomplete="off">
           </div>
           <div class="neo-input-group">
-            <input type="email" class="neo-input" placeholder="Email" required>
+            <input type="email" class="neo-input" name="email" placeholder="Email Address *" title="Please enter a valid email address" autocomplete="off">
           </div>
           <div class="neo-input-group">
-            <input type="text" class="neo-input" placeholder="Company">
+            <input type="text" class="neo-input" name="company" placeholder="Company">
           </div>
           <div class="neo-input-group">
-            <textarea class="neo-textarea" placeholder="Describe your needs" rows="4"></textarea>
+            <textarea class="neo-textarea" name="message" placeholder="Describe your needs" rows="4"></textarea>
           </div>
           <button type="submit" class="neo-submit">Send Inquiry</button>
         </form>
@@ -342,6 +342,158 @@
   </div>
 </section>
 
+  <!-- Кнопка Scroll to Top -->
+  <button class="scroll-to-top" id="scrollToTop" title="Прокрутити вгору">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18,15 12,9 6,15"></polyline>
+    </svg>
+  </button>
+
   <!-- Футер видалено -->
+  
+  <script src="/scroll-to-top.js"></script>
+  <script>
+    // Smooth scroll functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      // Smooth scroll for anchor links
+      const links = document.querySelectorAll('a[href^="#"]');
+      links.forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+          
+          if (targetElement) {
+            targetElement.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+    });
+
+    // Form validation for main page
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.querySelector('.neo-contact-form');
+      
+      if (form) {
+        const nameInput = form.querySelector('input[name="name"]');
+        const emailInput = form.querySelector('input[name="email"]');
+        
+        function validateEmail(email) {
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          return emailRegex.test(email);
+        }
+        
+        function validateName(name) {
+          return name.trim().length >= 2;
+        }
+        
+        function showError(input, message) {
+          let errorDiv = input.parentNode.querySelector('.error-message');
+          if (!errorDiv) {
+            errorDiv = document.createElement('div');
+            errorDiv.className = 'error-message';
+            errorDiv.style.cssText = 'color: #dc3545; font-size: 12px; margin-top: 4px; display: block;';
+            input.parentNode.appendChild(errorDiv);
+          }
+          errorDiv.textContent = message;
+          input.style.borderColor = '#dc3545';
+        }
+        
+        function hideError(input) {
+          const errorDiv = input.parentNode.querySelector('.error-message');
+          if (errorDiv) {
+            errorDiv.remove();
+          }
+          input.style.borderColor = '';
+        }
+        
+        // Real-time validation for Name
+        nameInput.addEventListener('input', function() {
+          const name = this.value.trim();
+          if (name === '') {
+            hideError(this);
+          } else if (!validateName(name)) {
+            showError(this, 'Please enter a valid name');
+          } else {
+            hideError(this);
+          }
+        });
+        
+        nameInput.addEventListener('blur', function() {
+          const name = this.value.trim();
+          if (name === '') {
+            showError(this, 'Please fill in your name');
+          } else if (!validateName(name)) {
+            showError(this, 'Please enter a valid name');
+          }
+        });
+        
+        // Real-time validation for Email
+        emailInput.addEventListener('input', function() {
+          const email = this.value.trim();
+          if (email === '') {
+            hideError(this);
+          } else if (!validateEmail(email)) {
+            showError(this, 'Please enter a valid email address');
+          } else {
+            hideError(this);
+          }
+        });
+        
+        emailInput.addEventListener('blur', function() {
+          const email = this.value.trim();
+          if (email === '') {
+            showError(this, 'Please enter a valid email address');
+          } else if (!validateEmail(email)) {
+            showError(this, 'Please enter a valid email address');
+          }
+        });
+        
+        // Form submission validation
+        form.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          let hasErrors = false;
+          
+          // Validate Name
+          const name = nameInput.value.trim();
+          if (name === '') {
+            showError(nameInput, 'Please fill in your name');
+            hasErrors = true;
+            nameInput.focus();
+          } else if (!validateName(name)) {
+            showError(nameInput, 'Please enter a valid name');
+            hasErrors = true;
+            nameInput.focus();
+          } else {
+            hideError(nameInput);
+          }
+          
+          // Validate Email
+          const email = emailInput.value.trim();
+          if (email === '') {
+            showError(emailInput, 'Please enter a valid email address');
+            hasErrors = true;
+            if (!nameInput.value.trim()) emailInput.focus();
+          } else if (!validateEmail(email)) {
+            showError(emailInput, 'Please enter a valid email address');
+            hasErrors = true;
+            if (!nameInput.value.trim()) emailInput.focus();
+          } else {
+            hideError(emailInput);
+          }
+          
+          if (!hasErrors) {
+            // Form is valid, you can submit it here
+            console.log('Form is valid, submitting...');
+            // form.submit(); // Uncomment to actually submit
+          }
+        });
+      }
+    });
+  </script>
 </body>
 </html>

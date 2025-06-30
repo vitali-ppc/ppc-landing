@@ -49,7 +49,7 @@
   <link rel="dns-prefetch" href="https://www.google-analytics.com">
   
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="/styles.css?v=1.1" />
+  <link rel="stylesheet" href="/styles.css?v=1.3" />
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   
@@ -126,8 +126,11 @@
       </a>
       <nav class="header__nav">
         <a href="/">Home</a>
-        <a href="/professional">Professional</a>
-        <a href="javascript:void(0)" onclick="scrollToContact()">Contact</a>
+        <a href="/analytics">Analytics</a>
+        <a href="#problems">Problems</a>
+        <a href="#process">Process</a>
+        <a href="#results">Results</a>
+        <a href="#contact">Contact</a>
       </nav>
     </div>
     <div class="header__right">
@@ -173,19 +176,16 @@
   </div>
   <ul class="mobile-menu-list">
     <li><a href="/">Home</a></li>
-    <li><a href="/professional">Professional</a></li>
-    <li><a href="javascript:void(0)" onclick="scrollToContact(); closeMobileMenu();">Contact</a></li>
+    <li><a href="/analytics">Analytics</a></li>
+    <li><a href="#problems">Problems</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
 
 <!-- Breadcrumbs -->
-<div class="container">
-  <nav class="breadcrumbs-precisely breadcrumbs-color-1" aria-label="Breadcrumb">
-    <a href="/">Home</a>
-    <span class="separator">/</span>
-    <span class="current">Analytics</span>
-  </nav>
-</div>
+<%- include('partials/breadcrumbs') %>
 
 <!-- Coming Soon Hero Section -->
 <section class="professional-hero">
@@ -342,6 +342,7 @@
     </div>
   </div>
 
+  <script src="/scroll-to-top.js"></script>
   <script>
     // Form validation functionality
     document.addEventListener('DOMContentLoaded', function() {
@@ -405,7 +406,7 @@
         console.log('Name input found:', nameInput);
         
         function validateName(name) {
-          return name.trim().length >= 2 && /^[a-zA-Zа-яА-Я\s'-]+$/.test(name);
+          return name.trim().length >= 2;
         }
         
         function showNameError(message) {
@@ -437,7 +438,7 @@
           }
           
           if (!validateName(name)) {
-            showNameError('Please enter a valid name (at least 2 characters, letters only)');
+            showNameError('Please enter a valid name (at least 2 characters)');
           } else {
             hideNameError();
           }
@@ -460,7 +461,7 @@
           // Validate Name
           const name = nameInput.value.trim();
           if (name === '') {
-            showNameError('Name is required');
+            showNameError('Please fill in your name');
             hasErrors = true;
             nameInput.focus();
           } else if (!validateName(name)) {
@@ -474,7 +475,7 @@
           // Validate Email
           const email = emailInput.value.trim();
           if (email === '') {
-            showEmailError('Email is required');
+            showEmailError('Please enter a valid email address');
             hasErrors = true;
             if (!nameInput.value.trim()) emailInput.focus();
           } else if (!validateEmail(email)) {
@@ -487,55 +488,15 @@
           
           console.log('Form validation result:', { hasErrors, name, email });
           
-          // Submit if no errors
           if (!hasErrors) {
+            // Form is valid, submit it
             console.log('Form is valid, submitting...');
-            const formData = new FormData(form);
-            
-            // Convert FormData to URL-encoded string
-            const urlEncodedData = new URLSearchParams(formData).toString();
-            
-            fetch(form.action, {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-              },
-              body: urlEncodedData
-            })
-            .then(response => response.text())
-            .then(html => {
-              document.body.innerHTML = html;
-            })
-            .catch(error => {
-              console.error('Form submission error:', error);
-            });
-          } else {
-            console.log('Form submission prevented due to errors');
+            form.submit();
           }
         });
       } else {
         console.log('Form not found!');
       }
-    });
-
-    // Scroll to Top functionality
-    const scrollToTopBtn = document.getElementById('scrollToTop');
-    
-    // Show/hide button based on scroll position
-    window.addEventListener('scroll', () => {
-      if (window.pageYOffset > 300) {
-        scrollToTopBtn.classList.add('show');
-      } else {
-        scrollToTopBtn.classList.remove('show');
-      }
-    });
-    
-    // Smooth scroll to top when button is clicked
-    scrollToTopBtn.addEventListener('click', () => {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
     });
 
     // Smooth scroll to contact form

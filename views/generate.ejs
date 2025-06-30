@@ -7,25 +7,20 @@
 </head>
 <body>
   <!-- Breadcrumbs -->
-  <% if (typeof breadcrumbs !== 'undefined' && breadcrumbs && breadcrumbs.length > 0) { %>
-  <div class="container">
-    <nav class="breadcrumbs-precisely breadcrumbs-color-1" aria-label="Breadcrumb">
-      <a href="/">Home</a>
-      <% breadcrumbs.forEach(function(item, index) { %>
-        <span class="separator">/</span>
-        <% if (index === breadcrumbs.length - 1) { %>
-          <span class="current"><%= item.title %></span>
-        <% } else { %>
-          <a href="<%= item.url %>"><%= item.title %></a>
-        <% } %>
-      <% }); %>
-    </nav>
-  </div>
-  <% } %>
+  <%- include('partials/breadcrumbs') %>
 
   <div class="container">
     <h2>Рекламний текст від GPT</h2>
     <pre><%= result %></pre>
   </div>
+
+  <!-- Кнопка Scroll to Top -->
+  <button class="scroll-to-top" id="scrollToTop" title="Прокрутити вгору">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18,15 12,9 6,15"></polyline>
+    </svg>
+  </button>
+
+  <script src="/scroll-to-top.js"></script>
 </body>
 </html>

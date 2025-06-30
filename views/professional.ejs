@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PPC Expert - Professional</title>
-  <link rel="stylesheet" href="/styles.css?v=1.2" />
+  <link rel="stylesheet" href="/styles.css?v=1.4" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -82,7 +82,7 @@
         <h1 class="professional-hero-title">PPC Expert</h1>
         <p class="professional-hero-subtitle">Strategic PPC campaign management for enterprise-level results</p>
         <div class="professional-btn-group">
-          <button class="professional-btn premium-gradient-btn">
+          <button class="professional-btn premium-gradient-btn" onclick="scrollToContactForm()">
             <svg class="btn-calendar-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;margin-right:10px;"><rect x="3" y="5" width="14" height="12" rx="3" fill="#23272f"/><path d="M3 8.5H17" stroke="#23272f" stroke-width="1.5" stroke-linecap="round"/><rect x="7" y="11" width="2" height="2" rx="1" fill="#fff"/><rect x="11" y="11" width="2" height="2" rx="1" fill="#fff"/></svg>
             Schedule Consultation
           </button>
@@ -489,18 +489,18 @@
       </div>
       <div class="professional-contact-form">
         <h3>Send Inquiry</h3>
-        <form class="professional-contact-form-inner">
+        <form class="professional-contact-form-inner" action="/contact" method="POST" novalidate>
           <div class="professional-input-group">
-            <input type="text" class="professional-input" placeholder="Your Name" required>
+            <input type="text" class="professional-input" name="name" placeholder="Your Name *">
           </div>
           <div class="professional-input-group">
-            <input type="email" class="professional-input" placeholder="Email Address" required>
+            <input type="email" class="professional-input" name="email" placeholder="Email Address *">
           </div>
           <div class="professional-input-group">
-            <input type="text" class="professional-input" placeholder="Company">
+            <input type="text" class="professional-input" name="company" placeholder="Company">
           </div>
           <div class="professional-input-group">
-            <textarea class="professional-textarea" placeholder="Describe your business needs" rows="4"></textarea>
+            <textarea class="professional-textarea" name="message" placeholder="Describe your business needs" rows="4"></textarea>
           </div>
           <button type="submit" class="professional-submit">Send Inquiry</button>
         </form>
@@ -510,6 +510,168 @@
 </section>
 
 <script>
+  // Розумний скрол до контактної форми
+  function scrollToContactForm() {
+    const contactForm = document.querySelector('.professional-contact-form');
+    const nameInput = document.querySelector('input[name="name"]');
+    
+    if (contactForm) {
+      // Простий плавний скрол до форми
+      contactForm.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+      
+      // Автофокус на поле Name після скролу
+      setTimeout(() => {
+        if (nameInput) {
+          nameInput.focus();
+        }
+      }, 800);
+    }
+  }
+
+  // Smooth scroll functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    // Smooth scroll for anchor links (крім кнопки Schedule Consultation)
+    const links = document.querySelectorAll('a[href^="#"]');
+    links.forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  });
+
+  // Form validation for professional page
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('.professional-contact-form-inner');
+    
+    if (form) {
+      const nameInput = form.querySelector('input[name="name"]');
+      const emailInput = form.querySelector('input[name="email"]');
+      
+      function validateEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+      }
+      
+      function validateName(name) {
+        return name.trim().length >= 2;
+      }
+      
+      function showError(input, message) {
+        let errorDiv = input.parentNode.querySelector('.error-message');
+        if (!errorDiv) {
+          errorDiv = document.createElement('div');
+          errorDiv.className = 'error-message';
+          errorDiv.style.cssText = 'color: #dc3545; font-size: 12px; margin-top: 4px; display: block;';
+          input.parentNode.appendChild(errorDiv);
+        }
+        errorDiv.textContent = message;
+        input.style.borderColor = '#dc3545';
+      }
+      
+      function hideError(input) {
+        const errorDiv = input.parentNode.querySelector('.error-message');
+        if (errorDiv) {
+          errorDiv.remove();
+        }
+        input.style.borderColor = '';
+      }
+      
+      // Real-time validation for Name
+      nameInput.addEventListener('input', function() {
+        const name = this.value.trim();
+        if (name === '') {
+          hideError(this);
+        } else if (!validateName(name)) {
+          showError(this, 'Please enter a valid name');
+        } else {
+          hideError(this);
+        }
+      });
+      
+      nameInput.addEventListener('blur', function() {
+        const name = this.value.trim();
+        if (name === '') {
+          showError(this, 'Please fill in your name');
+        } else if (!validateName(name)) {
+          showError(this, 'Please enter a valid name');
+        }
+      });
+      
+      // Real-time validation for Email
+      emailInput.addEventListener('input', function() {
+        const email = this.value.trim();
+        if (email === '') {
+          hideError(this);
+        } else if (!validateEmail(email)) {
+          showError(this, 'Please enter a valid email address');
+        } else {
+          hideError(this);
+        }
+      });
+      
+      emailInput.addEventListener('blur', function() {
+        const email = this.value.trim();
+        if (email === '') {
+          showError(this, 'Please enter a valid email address');
+        } else if (!validateEmail(email)) {
+          showError(this, 'Please enter a valid email address');
+        }
+      });
+      
+      // Form submission validation
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        let hasErrors = false;
+        
+        // Validate Name
+        const name = nameInput.value.trim();
+        if (name === '') {
+          showError(nameInput, 'Please fill in your name');
+          hasErrors = true;
+          nameInput.focus();
+        } else if (!validateName(name)) {
+          showError(nameInput, 'Please enter a valid name');
+          hasErrors = true;
+          nameInput.focus();
+        } else {
+          hideError(nameInput);
+        }
+        
+        // Validate Email
+        const email = emailInput.value.trim();
+        if (email === '') {
+          showError(emailInput, 'Please enter a valid email address');
+          hasErrors = true;
+          if (!nameInput.value.trim()) emailInput.focus();
+        } else if (!validateEmail(email)) {
+          showError(emailInput, 'Please enter a valid email address');
+          hasErrors = true;
+          if (!nameInput.value.trim()) emailInput.focus();
+        } else {
+          hideError(emailInput);
+        }
+        
+        if (!hasErrors) {
+          // Form is valid, submit it
+          form.submit();
+        }
+      });
+    }
+  });
+
   // Бургер-меню
   const burger = document.getElementById('burger');
   const mobileMenu = document.getElementById('mobileMenu');
@@ -559,5 +721,15 @@
   window.addEventListener('scroll', showOnScroll);
   showOnScroll();
 </script>
+
+<script src="/scroll-to-top.js"></script>
+
+<!-- Scroll to Top Button -->
+<button id="scrollToTop" class="scroll-to-top" title="Back to top" aria-label="Scroll to top">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z" fill="currentColor"/>
+  </svg>
+</button>
+
 </body>
 </html> 
