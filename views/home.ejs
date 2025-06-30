@@ -157,39 +157,7 @@
       transform: translateY(-2px) scale(1.03);
       box-shadow: 0 8px 24px rgba(0,0,0,0.12);
     }
-    .numbers-section {
-      padding: 40px 0 80px 0;
-      background: none;
-    }
-    .numbers-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 32px;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-    .number-card {
-      background: rgba(255,255,255,0.04);
-      border: 1.5px solid rgba(255,255,255,0.10);
-      border-radius: 16px;
-      padding: 36px 18px;
-      text-align: center;
-      font-size: 28px;
-      font-weight: 700;
-      color: #fff;
-      letter-spacing: -1px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-    .number-label {
-      font-size: 15px;
-      color: #a0a0a0;
-      font-weight: 400;
-      margin-top: 8px;
-    }
+
     .main-footer {
       text-align: center;
       color: #a0a0a0;
@@ -266,6 +234,19 @@
       opacity: 0.7;
       user-select: none;
     }
+    .rotating-ring { animation: rotate360 18s linear infinite; transform-origin: 50% 50%; }
+    @keyframes rotate360 { to { transform: rotate(360deg); } }
+    
+    /* Hide scrollbar for modern browsers */
+    .scroll-cards-container::-webkit-scrollbar {
+      display: none;
+    }
+    
+    /* Hide scrollbar for Firefox */
+    .scroll-cards-container {
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
   </style>
 </head>
 <body>
@@ -289,7 +270,26 @@
   </header>
 
   <!-- HERO BLOCK -->
-  <section class="main-hero">
+  <section class="main-hero" style="min-height:90vh;display:flex;align-items:center;justify-content:center;background:#1a1a1a;position:relative;overflow:hidden;">
+    <!-- Вращающееся tech-кольцо -->
+    <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:0;pointer-events:none;">
+      <svg width="420" height="420" viewBox="0 0 420 420" fill="none" style="opacity:0.18;">
+        <g class="rotating-ring">
+          <ellipse cx="210" cy="210" rx="170" ry="170" stroke="#7f9cf5" stroke-width="2.5" fill="none"/>
+          <ellipse cx="210" cy="210" rx="120" ry="120" stroke="#fff" stroke-width="1.2" fill="none" opacity="0.5"/>
+          <ellipse cx="210" cy="210" rx="80" ry="80" stroke="#23272f" stroke-width="1.2" fill="none" opacity="0.7"/>
+          <!-- Несколько digital-узлов -->
+          <circle cx="210" cy="50" r="6" fill="#7f9cf5" opacity="0.7"/>
+          <circle cx="340" cy="210" r="4" fill="#fff" opacity="0.7"/>
+          <circle cx="210" cy="370" r="5" fill="#7f9cf5" opacity="0.5"/>
+          <circle cx="80" cy="210" r="3.5" fill="#fff" opacity="0.5"/>
+        </g>
+      </svg>
+    </div>
+    <style>
+      .rotating-ring { animation: rotate360 18s linear infinite; transform-origin: 50% 50%; }
+      @keyframes rotate360 { to { transform: rotate(360deg); } }
+    </style>
     <div class="main-hero-bg">
       <svg width="100%" height="100%" viewBox="0 0 1440 400" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="200" cy="200" r="180" fill="#fff" fill-opacity="0.08"/>
@@ -297,81 +297,117 @@
         <ellipse cx="1200" cy="100" rx="80" ry="40" fill="#fff" fill-opacity="0.10"/>
       </svg>
     </div>
-    <div class="main-hero-content">
+    <div class="main-hero-content" style="position:relative;z-index:1;text-align:center;width:100%;max-width:700px;margin:0 auto;">
       <h1 class="main-hero-title">Digital. Performance. Results.</h1>
       <div class="main-hero-subtitle">Преміальна digital-екосистема для бізнесу, який хоче більше</div>
-      <a href="#directions" class="main-hero-btn">Дізнатись більше</a>
+      <a href="#wow-tabs" class="main-hero-btn">Дізнатись більше</a>
       <div class="main-hero-cta">Пірни глибше — відкрий для себе новий рівень digital</div>
     </div>
   </section>
 
   <!-- WOW TABS-SLIDER: Digital directions for those who want more -->
-  <section class="wow-tabs-section" style="background:#1a1a1a;padding:80px 0 40px 0;">
+  <section id="wow-tabs" class="wow-tabs-section" style="background:#1a1a1a;padding:40px 0 40px 0;">
     <div class="wow-tabs-container" style="max-width:900px;margin:0 auto;">
-      <div class="wow-tabs-bar" style="display:flex;gap:32px;justify-content:center;margin-bottom:40px;">
-        <button class="wow-tab-btn active" data-wowtab="all" style="background:none;border:none;color:#fff;font-size:22px;font-weight:700;padding:12px 32px;border-radius:32px;transition:background 0.2s;cursor:pointer;">All</button>
-        <button class="wow-tab-btn" data-wowtab="ppc" style="background:none;border:none;color:#fff;font-size:22px;font-weight:700;padding:12px 32px;border-radius:32px;transition:background 0.2s;cursor:pointer;">PPC</button>
-        <button class="wow-tab-btn" data-wowtab="analytics" style="background:none;border:none;color:#fff;font-size:22px;font-weight:700;padding:12px 32px;border-radius:32px;transition:background 0.2s;cursor:pointer;">Analytics</button>
-        <button class="wow-tab-btn" data-wowtab="nodejs" style="background:none;border:none;color:#fff;font-size:22px;font-weight:700;padding:12px 32px;border-radius:32px;transition:background 0.2s;cursor:pointer;">Node.js</button>
-        <button class="wow-tab-btn" data-wowtab="nextjs" style="background:none;border:none;color:#fff;font-size:22px;font-weight:700;padding:12px 32px;border-radius:32px;transition:background 0.2s;cursor:pointer;">Next.js</button>
+      <div class="wow-tabs-bar" style="display:flex;gap:16px;justify-content:center;margin-bottom:48px;flex-wrap:wrap;">
+        <button class="wow-tab-btn active" data-wowtab="all" style="background:#fff;border:1.5px solid #7f9cf5;color:#23272f;font-size:16px;font-weight:600;padding:16px 24px;border-radius:12px;transition:all 0.3s ease;cursor:pointer;min-width:80px;text-align:center;backdrop-filter:blur(10px);box-shadow:0 4px 20px rgba(127,156,245,0.2);">All</button>
+        <button class="wow-tab-btn" data-wowtab="ppc" style="background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.08);color:#a0a0a0;font-size:16px;font-weight:600;padding:16px 24px;border-radius:12px;transition:all 0.3s ease;cursor:pointer;min-width:80px;text-align:center;backdrop-filter:blur(10px);box-shadow:0 2px 12px rgba(0,0,0,0.1);">PPC</button>
+        <button class="wow-tab-btn" data-wowtab="analytics" style="background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.08);color:#a0a0a0;font-size:16px;font-weight:600;padding:16px 24px;border-radius:12px;transition:all 0.3s ease;cursor:pointer;min-width:80px;text-align:center;backdrop-filter:blur(10px);box-shadow:0 2px 12px rgba(0,0,0,0.1);">Analytics</button>
+        <button class="wow-tab-btn" data-wowtab="nodejs" style="background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.08);color:#a0a0a0;font-size:16px;font-weight:600;padding:16px 24px;border-radius:12px;transition:all 0.3s ease;cursor:pointer;min-width:80px;text-align:center;backdrop-filter:blur(10px);box-shadow:0 2px 12px rgba(0,0,0,0.1);">Node.js</button>
+        <button class="wow-tab-btn" data-wowtab="nextjs" style="background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.08);color:#a0a0a0;font-size:16px;font-weight:600;padding:16px 24px;border-radius:12px;transition:all 0.3s ease;cursor:pointer;min-width:80px;text-align:center;backdrop-filter:blur(10px);box-shadow:0 2px 12px rgba(0,0,0,0.1);">Next.js</button>
       </div>
       <div class="wow-tabs-content" style="position:relative;min-height:420px;">
         <!-- All (default) -->
         <div class="wow-tab-pane" id="wowtab-all" style="position:absolute;top:0;left:0;width:100%;transition:opacity 0.4s;opacity:1;z-index:2;display:block;">
-          <div class="scroll-cards-container" style="display:flex;overflow-x:auto;gap:40px;padding:0 32px 16px 32px;scroll-snap-type:x mandatory;scrollbar-width:thin;scroll-behavior:smooth;">
-            <div class="scroll-card" style="flex:0 0 48vw;max-width:520px;min-height:340px;scroll-snap-align:start;">
-              <h3>PPC & Performance</h3>
-              <p style="font-size:16px;">Тільки enterprise-рівень. Google, Meta, LinkedIn.</p>
-              <a href="/professional" class="main-hero-btn" style="margin-top:24px;font-size:15px;padding:10px 28px;">Детальніше</a>
+                      <div class="scroll-cards-container" style="display:flex;overflow-x:auto;gap:24px;padding:0 32px 16px 32px;scroll-snap-type:x mandatory;scrollbar-width:none;-ms-overflow-style:none;scroll-behavior:smooth;cursor:grab;user-select:none;" id="scrollContainer">
+              <div class="scroll-card" style="flex:0 0 380px;width:380px;height:380px;scroll-snap-align:start;border-radius:16px;padding:40px 32px;display:flex;flex-direction:column;justify-content:space-between;">
+                <div>
+                  <h3 style="font-size:24px;margin-bottom:16px;">PPC & Performance</h3>
+                  <p style="font-size:16px;color:#a0a0a0;line-height:1.5;">Тільки enterprise-рівень. Google, Meta, LinkedIn.</p>
+                </div>
+                <a href="/professional" class="main-hero-btn" style="align-self:flex-start;font-size:15px;padding:12px 28px;">Детальніше</a>
+              </div>
+              <div class="scroll-card" style="flex:0 0 380px;width:380px;height:380px;scroll-snap-align:start;border-radius:16px;padding:40px 32px;display:flex;flex-direction:column;justify-content:space-between;">
+                <div>
+                  <h3 style="font-size:24px;margin-bottom:16px;">Analytics</h3>
+                  <p style="font-size:16px;color:#a0a0a0;line-height:1.5;">Data, not guesswork. GA4, Looker Studio, Power BI.</p>
+                </div>
+                <a href="/analytics" class="main-hero-btn" style="align-self:flex-start;font-size:15px;padding:12px 28px;">Детальніше</a>
+              </div>
+              <div class="scroll-card" style="flex:0 0 380px;width:380px;height:380px;scroll-snap-align:start;border-radius:16px;padding:40px 32px;display:flex;flex-direction:column;justify-content:space-between;">
+                <div>
+                  <h3 style="font-size:24px;margin-bottom:16px;">Node.js Development</h3>
+                  <p style="font-size:16px;color:#a0a0a0;line-height:1.5;">Сучасна розробка для бізнесу та SEO.</p>
+                </div>
+                <a href="/nodejs-development" class="main-hero-btn" style="align-self:flex-start;font-size:15px;padding:12px 28px;">Детальніше</a>
+              </div>
+              <div class="scroll-card" style="flex:0 0 380px;width:380px;height:380px;scroll-snap-align:start;border-radius:16px;padding:40px 32px;display:flex;flex-direction:column;justify-content:space-between;">
+                <div>
+                  <h3 style="font-size:24px;margin-bottom:16px;">Next.js</h3>
+                  <p style="font-size:16px;color:#a0a0a0;line-height:1.5;">Modern web apps. Fast. SEO. Modern.</p>
+                </div>
+                <a href="/nextjs-development" class="main-hero-btn" style="align-self:flex-start;font-size:15px;padding:12px 28px;">Детальніше</a>
+              </div>
             </div>
-            <div class="scroll-card" style="flex:0 0 48vw;max-width:520px;min-height:340px;scroll-snap-align:start;">
-              <h3>Analytics</h3>
-              <p style="font-size:16px;">Data, not guesswork. GA4, Looker Studio, Power BI.</p>
-              <a href="/analytics" class="main-hero-btn" style="margin-top:24px;font-size:15px;padding:10px 28px;">Детальніше</a>
-            </div>
-            <div class="scroll-card" style="flex:0 0 48vw;max-width:520px;min-height:340px;scroll-snap-align:start;">
-              <h3>Node.js Development</h3>
-              <p style="font-size:16px;">Сучасна розробка для бізнесу та SEO.</p>
-              <a href="/nodejs-development" class="main-hero-btn" style="margin-top:24px;font-size:15px;padding:10px 28px;">Детальніше</a>
-            </div>
-            <div class="scroll-card" style="flex:0 0 48vw;max-width:520px;min-height:340px;scroll-snap-align:start;">
-              <h3>Next.js</h3>
-              <p style="font-size:16px;">Modern web apps. Fast. SEO. Modern.</p>
-              <a href="/nextjs-development" class="main-hero-btn" style="margin-top:24px;font-size:15px;padding:10px 28px;">Детальніше</a>
+
+          
+          <!-- Navigation dots with arrows - positioned like Red Antler -->
+          <div class="scroll-navigation" style="display:flex;justify-content:flex-end;gap:12px;margin-top:32px;padding-right:32px;">
+            <button class="nav-dot nav-left" style="width:20px;height:20px;border-radius:50%;background:rgba(255,255,255,0.3);border:none;cursor:pointer;transition:all 0.3s ease;position:relative;display:flex;align-items:center;justify-content:center;" disabled>
+              <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);">
+                <path d="M15 18l-6-6 6-6"/>
+              </svg>
+            </button>
+            <button class="nav-dot nav-right" style="width:20px;height:20px;border-radius:50%;background:rgba(255,255,255,0.3);border:none;cursor:pointer;transition:all 0.3s ease;position:relative;display:flex;align-items:center;justify-content:center;">
+              <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);">
+                <path d="M9 18l6-6-6-6"/>
+              </svg>
+            </button>
+          </div>
+          
+          <div class="scroll-progress-container" style="margin-top:24px;padding:0 32px;">
+            <div class="scroll-progress-bar" style="width:100%;height:2px;background:rgba(255,255,255,0.1);border-radius:1px;position:relative;">
+              <div class="scroll-progress-fill" style="width:25%;height:100%;background:#fff;border-radius:1px;transition:width 0.3s ease;position:absolute;left:0;top:0;"></div>
             </div>
           </div>
-          <div class="scroll-scroll-hint" style="text-align:right;padding-right:48px;margin-top:8px;opacity:0.7;user-select:none;">Гортайте вправо &rarr;</div>
         </div>
         <!-- PPC -->
         <div class="wow-tab-pane" id="wowtab-ppc" style="position:absolute;top:0;left:0;width:100%;transition:opacity 0.4s;opacity:0;z-index:1;pointer-events:none;">
-          <div class="scroll-card" style="margin:0 auto;max-width:520px;min-height:420px;">
-            <h3>PPC & Performance</h3>
-            <p style="font-size:18px;">Тільки enterprise-рівень. Google, Meta, LinkedIn. Максимум результату для бізнесу, який хоче більше.</p>
-            <a href="/professional" class="main-hero-btn" style="margin-top:32px;font-size:16px;padding:12px 36px;">Детальніше</a>
+          <div class="scroll-card" style="margin:0 auto;width:380px;height:380px;border-radius:16px;padding:40px 32px;display:flex;flex-direction:column;justify-content:space-between;">
+            <div>
+              <h3 style="font-size:24px;margin-bottom:16px;">PPC & Performance</h3>
+              <p style="font-size:16px;color:#a0a0a0;line-height:1.5;">Тільки enterprise-рівень. Google, Meta, LinkedIn. Максимум результату для бізнесу, який хоче більше.</p>
+            </div>
+            <a href="/professional" class="main-hero-btn" style="align-self:flex-start;font-size:15px;padding:12px 28px;">Детальніше</a>
           </div>
         </div>
         <!-- Analytics -->
         <div class="wow-tab-pane" id="wowtab-analytics" style="position:absolute;top:0;left:0;width:100%;transition:opacity 0.4s;opacity:0;z-index:1;pointer-events:none;">
-          <div class="scroll-card" style="margin:0 auto;max-width:520px;min-height:420px;">
-            <h3>Analytics</h3>
-            <p style="font-size:18px;">Data, not guesswork. GA4, Looker Studio, Power BI. Прозорість, контроль, зростання.</p>
-            <a href="/analytics" class="main-hero-btn" style="margin-top:32px;font-size:16px;padding:12px 36px;">Детальніше</a>
+          <div class="scroll-card" style="margin:0 auto;width:380px;height:380px;border-radius:16px;padding:40px 32px;display:flex;flex-direction:column;justify-content:space-between;">
+            <div>
+              <h3 style="font-size:24px;margin-bottom:16px;">Analytics</h3>
+              <p style="font-size:16px;color:#a0a0a0;line-height:1.5;">Data, not guesswork. GA4, Looker Studio, Power BI. Прозорість, контроль, зростання.</p>
+            </div>
+            <a href="/analytics" class="main-hero-btn" style="align-self:flex-start;font-size:15px;padding:12px 28px;">Детальніше</a>
           </div>
         </div>
         <!-- Node.js -->
         <div class="wow-tab-pane" id="wowtab-nodejs" style="position:absolute;top:0;left:0;width:100%;transition:opacity 0.4s;opacity:0;z-index:1;pointer-events:none;">
-          <div class="scroll-card" style="margin:0 auto;max-width:520px;min-height:420px;">
-            <h3>Node.js Development</h3>
-            <p style="font-size:18px;">Сучасна розробка для бізнесу та SEO. Надійність, масштабованість, швидкість.</p>
-            <a href="/nodejs-development" class="main-hero-btn" style="margin-top:32px;font-size:16px;padding:12px 36px;">Детальніше</a>
+          <div class="scroll-card" style="margin:0 auto;width:380px;height:380px;border-radius:16px;padding:40px 32px;display:flex;flex-direction:column;justify-content:space-between;">
+            <div>
+              <h3 style="font-size:24px;margin-bottom:16px;">Node.js Development</h3>
+              <p style="font-size:16px;color:#a0a0a0;line-height:1.5;">Сучасна розробка для бізнесу та SEO. Надійність, масштабованість, швидкість.</p>
+            </div>
+            <a href="/nodejs-development" class="main-hero-btn" style="align-self:flex-start;font-size:15px;padding:12px 28px;">Детальніше</a>
           </div>
         </div>
         <!-- Next.js -->
         <div class="wow-tab-pane" id="wowtab-nextjs" style="position:absolute;top:0;left:0;width:100%;transition:opacity 0.4s;opacity:0;z-index:1;pointer-events:none;">
-          <div class="scroll-card" style="margin:0 auto;max-width:520px;min-height:420px;">
-            <h3>Next.js</h3>
-            <p style="font-size:18px;">Modern web apps. Fast. SEO. Modern. Вражаючий UX для сучасного бізнесу.</p>
-            <a href="/nextjs-development" class="main-hero-btn" style="margin-top:32px;font-size:16px;padding:12px 36px;">Детальніше</a>
+          <div class="scroll-card" style="margin:0 auto;width:380px;height:380px;border-radius:16px;padding:40px 32px;display:flex;flex-direction:column;justify-content:space-between;">
+            <div>
+              <h3 style="font-size:24px;margin-bottom:16px;">Next.js</h3>
+              <p style="font-size:16px;color:#a0a0a0;line-height:1.5;">Modern web apps. Fast. SEO. Modern. Вражаючий UX для сучасного бізнесу.</p>
+            </div>
+            <a href="/nextjs-development" class="main-hero-btn" style="align-self:flex-start;font-size:15px;padding:12px 28px;">Детальніше</a>
           </div>
         </div>
       </div>
@@ -380,11 +416,47 @@
       // WOW Tabs logic with fade and All
       const wowTabBtns = document.querySelectorAll('.wow-tab-btn');
       const wowTabPanes = document.querySelectorAll('.wow-tab-pane');
+      
+      // Hover effects for buttons
       wowTabBtns.forEach((btn) => {
+        btn.addEventListener('mouseenter', function() {
+          if (!btn.classList.contains('active')) {
+            btn.style.background = 'rgba(127,156,245,0.15)';
+            btn.style.borderColor = 'rgba(127,156,245,0.4)';
+            btn.style.transform = 'translateY(-2px)';
+            btn.style.boxShadow = '0 8px 24px rgba(127,156,245,0.2)';
+          }
+        });
+        
+        btn.addEventListener('mouseleave', function() {
+          if (!btn.classList.contains('active')) {
+            btn.style.background = 'rgba(255,255,255,0.03)';
+            btn.style.borderColor = 'rgba(255,255,255,0.08)';
+            btn.style.transform = 'translateY(0)';
+            btn.style.boxShadow = '0 2px 12px rgba(0,0,0,0.1)';
+          }
+        });
+        
         btn.addEventListener('click', function() {
           if (btn.classList.contains('active')) return;
-          wowTabBtns.forEach(b => b.classList.remove('active'));
+          
+          // Update button styles
+          wowTabBtns.forEach(b => {
+            b.classList.remove('active');
+            b.style.background = 'rgba(255,255,255,0.03)';
+            b.style.borderColor = 'rgba(255,255,255,0.08)';
+            b.style.color = '#a0a0a0';
+            b.style.transform = 'translateY(0)';
+            b.style.boxShadow = '0 2px 12px rgba(0,0,0,0.1)';
+          });
+          
           btn.classList.add('active');
+          btn.style.background = '#fff';
+          btn.style.borderColor = '#7f9cf5';
+          btn.style.color = '#23272f';
+          btn.style.transform = 'translateY(-2px)';
+          btn.style.boxShadow = '0 4px 20px rgba(127,156,245,0.2)';
+          
           const tab = btn.getAttribute('data-wowtab');
           wowTabPanes.forEach(pane => {
             if (pane.id === 'wowtab-' + tab) {
@@ -399,6 +471,7 @@
               pane.classList.remove('active');
             }
           });
+          
           // Special for All: show all cards
           if(tab === 'all') {
             const allPane = document.getElementById('wowtab-all');
@@ -409,6 +482,7 @@
           }
         });
       });
+      
       // Set All as default
       wowTabPanes.forEach(pane => {
         if(pane.id === 'wowtab-all') {
@@ -423,67 +497,49 @@
           pane.classList.remove('active');
         }
       });
+
+      // Navigation dots functionality
+      function initNavigationDots() {
+        const container = document.getElementById('scrollContainer');
+        const leftDot = document.querySelector('.nav-left');
+        const rightDot = document.querySelector('.nav-right');
+
+        if (container && leftDot && rightDot) {
+          // Left dot click
+          leftDot.addEventListener('click', () => {
+            container.scrollBy({ left: -400, behavior: 'smooth' });
+          });
+
+          // Right dot click
+          rightDot.addEventListener('click', () => {
+            container.scrollBy({ left: 400, behavior: 'smooth' });
+          });
+
+          // Update dots state on scroll
+          container.addEventListener('scroll', () => {
+            const isAtStart = container.scrollLeft === 0;
+            const isAtEnd = container.scrollLeft >= container.scrollWidth - container.clientWidth - 1;
+            
+            leftDot.disabled = isAtStart;
+            leftDot.style.background = isAtStart ? 'rgba(255,255,255,0.1)' : 'rgba(255,255,255,0.3)';
+            leftDot.style.cursor = isAtStart ? 'default' : 'pointer';
+            
+            rightDot.disabled = isAtEnd;
+            rightDot.style.background = isAtEnd ? 'rgba(255,255,255,0.1)' : 'rgba(255,255,255,0.3)';
+            rightDot.style.cursor = isAtEnd ? 'default' : 'pointer';
+          });
+        }
+      }
+
+      // Initialize navigation dots
+      document.addEventListener('DOMContentLoaded', initNavigationDots);
     </script>
   </section>
 
-  <!-- НАПРЯМКИ -->
-  <section id="directions" class="directions-section">
-    <div class="directions-grid">
-      <div class="direction-card" onclick="location.href='/professional'" style="z-index:2; box-shadow: 0 8px 32px rgba(0,0,0,0.18);">
-        <div class="direction-icon">
-          <svg width="36" height="36" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><polyline points="12,6 12,12 16,14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <div class="direction-title">PPC & Performance</div>
-        <div class="direction-desc">Тільки enterprise-рівень. Google, Meta, LinkedIn.</div>
-        <a href="/professional" class="direction-btn">Детальніше</a>
-      </div>
-      <div class="direction-card" onclick="location.href='/analytics'" style="margin-top: 60px;">
-        <div class="direction-icon">
-          <svg width="36" height="36" viewBox="0 0 24 24" fill="none"><path d="M3 3V21H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 9L12 6L16 10L21 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <div class="direction-title">Analytics</div>
-        <div class="direction-desc">Data, not guesswork. GA4, Looker Studio, Power BI.</div>
-        <a href="/analytics" class="direction-btn">Детальніше</a>
-      </div>
-      <div class="direction-card" onclick="location.href='/nodejs-development'" style="margin-top: 30px;">
-        <div class="direction-icon">
-          <svg width="36" height="36" viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <div class="direction-title">Web Development</div>
-        <div class="direction-desc">Node.js, Next.js. Сучасна розробка для бізнесу та SEO.</div>
-        <a href="/nodejs-development" class="direction-btn">Node.js</a>
-      </div>
-      <div class="direction-card" onclick="location.href='/nextjs-development'" style="margin-top: 90px;">
-        <div class="direction-icon">
-          <svg width="36" height="36" viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="4" stroke="currentColor" stroke-width="2"/></svg>
-        </div>
-        <div class="direction-title">Next.js</div>
-        <div class="direction-desc">Modern web apps. Fast. SEO. Modern.</div>
-        <a href="/nextjs-development" class="direction-btn">Next.js</a>
-      </div>
-    </div>
-  </section>
 
-  <!-- ЧОМУ МИ / ЦИФРИ -->
-  <section class="numbers-section">
-    <div class="numbers-grid">
-      <div class="number-card">$10M+<span class="number-label">Ad Budget Managed</span></div>
-      <div class="number-card">100+<span class="number-label">Projects</span></div>
-      <div class="number-card">5+<span class="number-label">Years Experience</span></div>
-      <div class="number-card">Premium<span class="number-label">Approach</span></div>
-    </div>
-  </section>
 
-  <footer class="main-footer">
-    <div>
-      <img src="/logo.png" alt="PPCSet Logo" style="width:32px;height:32px;vertical-align:middle;margin-right:8px;opacity:0.7;" />
-      &copy; PPCSet Ecosystem <%= new Date().getFullYear() %> &mdash; <a href="https://www.linkedin.com/in/vitali-ppc%E2%9C%94-26b294b4/" target="_blank" style="color:#a0a0a0;text-decoration:underline;">LinkedIn</a>
-    </div>
-  </footer>
 
-  <!-- =============================
-    LIVE WIRE: Premium B2B Digital Ecosystem Homepage
-    ============================= -->
+
   <section style="background:#18191a;padding:80px 0 60px 0;">
     <div style="max-width:900px;margin:0 auto;text-align:center;">
       <h1 style="font-size:54px;font-weight:800;letter-spacing:-2px;color:#fff;margin-bottom:18px;line-height:1.08;">Digital Ecosystem<br>for Ambitious Business</h1>
@@ -570,29 +626,7 @@
     </div>
   </section>
 
-  <section style="background:#18191a;padding:56px 0 64px 0;">
-    <div style="max-width:900px;margin:0 auto;">
-      <h2 style="color:#fff;font-size:26px;text-align:center;margin-bottom:32px;font-weight:800;">Proof & Trust</h2>
-      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:32px;align-items:center;">
-        <div style="min-width:160px;max-width:200px;background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.08);border-radius:12px;padding:24px 8px;text-align:center;">
-          <div style="font-size:22px;font-weight:800;color:#fff;">$10M+</div>
-          <div style="color:#a0a0a0;font-size:14px;">Ad Budget Managed</div>
-        </div>
-        <div style="min-width:160px;max-width:200px;background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.08);border-radius:12px;padding:24px 8px;text-align:center;">
-          <div style="font-size:22px;font-weight:800;color:#fff;">100+</div>
-          <div style="color:#a0a0a0;font-size:14px;">Projects</div>
-        </div>
-        <div style="min-width:160px;max-width:200px;background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.08);border-radius:12px;padding:24px 8px;text-align:center;">
-          <div style="font-size:22px;font-weight:800;color:#fff;">5+ yrs</div>
-          <div style="color:#a0a0a0;font-size:14px;">Experience</div>
-        </div>
-        <div style="min-width:160px;max-width:200px;background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.08);border-radius:12px;padding:24px 8px;text-align:center;">
-          <div style="font-size:22px;font-weight:800;color:#fff;">Top 3%</div>
-          <div style="color:#a0a0a0;font-size:14px;">Talent</div>
-        </div>
-      </div>
-    </div>
-  </section>
+
 
   <section style="background:#1a1a1a;padding:64px 0 80px 0;">
     <div style="max-width:700px;margin:0 auto;text-align:center;">
@@ -600,53 +634,8 @@
       <a href="/professional" style="font-size:18px;padding:18px 48px;border-radius:32px;background:linear-gradient(90deg,#fff 60%,#ededed 100%);color:#23272f;font-weight:700;border:none;transition:background 0.2s,box-shadow 0.2s,transform 0.2s;box-shadow:0 2px 24px rgba(0,0,0,0.10);cursor:pointer;text-decoration:none;display:inline-block;letter-spacing:0.2px;">Get your custom audit</a>
     </div>
   </section>
-  <!-- ============================= -->
 
-  <!-- === ВАРИАНТ 1: Digital Cosmos (живые звёзды/нейросеть) === -->
-  <section style="background:#18191a;padding:64px 0 48px 0;overflow:hidden;position:relative;">
-    <canvas id="cosmosCanvas" width="900" height="160" style="display:block;margin:0 auto;width:900px;height:160px;background:transparent;"></canvas>
-    <script>
-      // Живые звёзды и соединения (нейросеть)
-      const canvas = document.getElementById('cosmosCanvas');
-      const ctx = canvas.getContext('2d');
-      const stars = Array.from({length:32},()=>({
-        x:Math.random()*900,
-        y:Math.random()*160,
-        r:2+Math.random()*2,
-        dx:(Math.random()-0.5)*0.2,
-        dy:(Math.random()-0.5)*0.2
-      }));
-      function drawCosmos(){
-        ctx.clearRect(0,0,900,160);
-        // Соединения
-        for(let i=0;i<stars.length;i++){
-          for(let j=i+1;j<stars.length;j++){
-            const dx=stars[i].x-stars[j].x,dy=stars[i].y-stars[j].y,dist=Math.sqrt(dx*dx+dy*dy);
-            if(dist<120){
-              ctx.strokeStyle='rgba(127,156,245,0.13)';ctx.lineWidth=1;
-              ctx.beginPath();ctx.moveTo(stars[i].x,stars[i].y);ctx.lineTo(stars[j].x,stars[j].y);ctx.stroke();
-            }
-          }
-        }
-        // Звёзды
-        for(const s of stars){
-          ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,2*Math.PI);
-          ctx.fillStyle='#7f9cf5';ctx.globalAlpha=0.7+0.3*Math.sin(Date.now()/700+s.x);
-          ctx.fill();ctx.globalAlpha=1;
-        }
-        // Движение
-        for(const s of stars){
-          s.x+=s.dx;s.y+=s.dy;
-          if(s.x<0||s.x>900) s.dx*=-1;
-          if(s.y<0||s.y>160) s.dy*=-1;
-        }
-        requestAnimationFrame(drawCosmos);
-      }
-      drawCosmos();
-    </script>
-  </section>
-
-  <!-- === ВАРИАНТ 2: Digital Cosmos (градиент + glow) === -->
+  <!-- === Digital Cosmos (градиент + glow) === -->
   <section style="background:#18191a;padding:64px 0 48px 0;overflow:hidden;position:relative;">
     <canvas id="cosmosCanvasGlow" width="900" height="160" style="display:block;margin:0 auto;width:900px;height:160px;background:transparent;"></canvas>
     <script>
@@ -705,61 +694,75 @@
     </script>
   </section>
 
-  <!-- === ВАРИАНТ 3: Digital Cosmos (строгие светло-серые звёзды) === -->
+  <footer class="main-footer">
+    <div>
+      <img src="/logo.png" alt="PPCSet Logo" style="width:32px;height:32px;vertical-align:middle;margin-right:8px;opacity:0.7;" />
+      &copy; PPCSet Ecosystem <%= new Date().getFullYear() %> &mdash; <a href="https://www.linkedin.com/in/vitali-ppc%E2%9C%94-26b294b4/" target="_blank" style="color:#a0a0a0;text-decoration:underline;">LinkedIn</a>
+    </div>
+  </footer>
+
+
+
+  <!-- Digital Cosmos: эффектный digital network/cosmos в самом низу -->
   <section style="background:#18191a;padding:64px 0 48px 0;overflow:hidden;position:relative;">
-    <canvas id="cosmosCanvasGray" width="900" height="160" style="display:block;margin:0 auto;width:900px;height:160px;background:transparent;"></canvas>
+    <canvas id="cosmosCanvasGlowBottom" width="900" height="160" style="display:block;margin:0 auto;width:900px;height:160px;background:transparent;"></canvas>
     <script>
-      // Живые звёзды строгого светло-серого цвета
-      const canvasGray = document.getElementById('cosmosCanvasGray');
-      const ctxGray = canvasGray.getContext('2d');
-      const starsGray = Array.from({length:32},()=>({
+      // Живые звёзды с градиентом и glow (Digital Cosmos внизу)
+      const canvasGlowBottom = document.getElementById('cosmosCanvasGlowBottom');
+      const ctxGlowBottom = canvasGlowBottom.getContext('2d');
+      const starsGlowBottom = Array.from({length:32},()=>({
         x:Math.random()*900,
         y:Math.random()*160,
         r:2+Math.random()*2,
         dx:(Math.random()-0.5)*0.2,
         dy:(Math.random()-0.5)*0.2
       }));
-      function drawCosmosGray(){
-        ctxGray.clearRect(0,0,900,160);
+      function drawCosmosGlowBottom(){
+        ctxGlowBottom.clearRect(0,0,900,160);
         // Соединения
-        for(let i=0;i<starsGray.length;i++){
-          for(let j=i+1;j<starsGray.length;j++){
-            const dx=starsGray[i].x-starsGray[j].x,dy=starsGray[i].y-starsGray[j].y,dist=Math.sqrt(dx*dx+dy*dy);
+        for(let i=0;i<starsGlowBottom.length;i++){
+          for(let j=i+1;j<starsGlowBottom.length;j++){
+            const dx=starsGlowBottom[i].x-starsGlowBottom[j].x,dy=starsGlowBottom[i].y-starsGlowBottom[j].y,dist=Math.sqrt(dx*dx+dy*dy);
             if(dist<120){
-              ctxGray.strokeStyle='rgba(160,160,160,0.10)';ctxGray.lineWidth=1;
-              ctxGray.beginPath();ctxGray.moveTo(starsGray[i].x,starsGray[i].y);ctxGray.lineTo(starsGray[j].x,starsGray[j].y);ctxGray.stroke();
+              ctxGlowBottom.save();
+              const grad=ctxGlowBottom.createLinearGradient(starsGlowBottom[i].x,starsGlowBottom[i].y,starsGlowBottom[j].x,starsGlowBottom[j].y);
+              grad.addColorStop(0,'#7f9cf5');
+              grad.addColorStop(1,'#00ffe7');
+              ctxGlowBottom.strokeStyle=grad;ctxGlowBottom.globalAlpha=0.13;
+              ctxGlowBottom.lineWidth=1;
+              ctxGlowBottom.beginPath();ctxGlowBottom.moveTo(starsGlowBottom[i].x,starsGlowBottom[i].y);ctxGlowBottom.lineTo(starsGlowBottom[j].x,starsGlowBottom[j].y);ctxGlowBottom.stroke();
+              ctxGlowBottom.restore();
             }
           }
         }
         // Звёзды
-        for(const s of starsGray){
-          ctxGray.beginPath();ctxGray.arc(s.x,s.y,s.r,0,2*Math.PI);
-          ctxGray.fillStyle='#bfc2c7';ctxGray.globalAlpha=0.7+0.3*Math.sin(Date.now()/700+s.x);
-          ctxGray.fill();ctxGray.globalAlpha=1;
+        for(const s of starsGlowBottom){
+          ctxGlowBottom.save();
+          const grad=ctxGlowBottom.createRadialGradient(s.x,s.y,0,s.x,s.y,s.r*3.5);
+          grad.addColorStop(0,'#00ffe7');
+          grad.addColorStop(0.5,'#7f9cf5');
+          grad.addColorStop(1,'rgba(0,255,231,0)');
+          ctxGlowBottom.beginPath();ctxGlowBottom.arc(s.x,s.y,s.r*3.5,0,2*Math.PI);
+          ctxGlowBottom.globalAlpha=0.25;
+          ctxGlowBottom.fillStyle=grad;ctxGlowBottom.fill();ctxGlowBottom.restore();
+          ctxGlowBottom.beginPath();ctxGlowBottom.arc(s.x,s.y,s.r,0,2*Math.PI);
+          ctxGlowBottom.globalAlpha=0.9;
+          ctxGlowBottom.fillStyle='#7f9cf5';ctxGlowBottom.shadowColor='#00ffe7';ctxGlowBottom.shadowBlur=8;
+          ctxGlowBottom.fill();ctxGlowBottom.shadowBlur=0;ctxGlowBottom.globalAlpha=1;
         }
         // Движение
-        for(const s of starsGray){
+        for(const s of starsGlowBottom){
           s.x+=s.dx;s.y+=s.dy;
           if(s.x<0||s.x>900) s.dx*=-1;
           if(s.y<0||s.y>160) s.dy*=-1;
         }
-        requestAnimationFrame(drawCosmosGray);
+        requestAnimationFrame(drawCosmosGlowBottom);
       }
-      drawCosmosGray();
+      drawCosmosGlowBottom();
     </script>
   </section>
 
-  <!-- === ВАРИАНТ 4: Digital Rain (цифровой дождь/матрица) === -->
-  <!-- Удалено по просьбе пользователя -->
 
-  <!-- === ВАРИАНТ 5: Light Grid (светящиеся линии-сетка) === -->
-  <!-- Удалено по просьбе пользователя -->
-
-  <!-- === ВАРИАНТ 6: Floating Polygons (плавающие многоугольники) === -->
-  <!-- Удалено по просьбе пользователя -->
-
-  <!-- === ВАРИАНТ 7: Flowing Waves (несколько плавных волн) === -->
-  <!-- Удалено по просьбе пользователя -->
 
 </body>
 </html> 
