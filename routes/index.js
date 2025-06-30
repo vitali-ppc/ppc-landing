@@ -104,4 +104,8 @@ router.post('/contact', async (req, res) => {
   }
 });
 
+router.get('/home', (req, res) => {
+  res.render('home');
+});
+
 module.exports = router;
