@@ -63,6 +63,11 @@ router.get('/nextjs-development', function(req, res, next) {
   res.render('nextjs-development');
 });
 
+// Blog сторінка
+router.get('/blog', function(req, res, next) {
+  res.render('blog');
+});
+
 // Обробка форми
 router.post('/contact', async (req, res) => {
   const { name, email, company, message } = req.body;

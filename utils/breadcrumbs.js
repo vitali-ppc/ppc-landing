@@ -12,7 +12,8 @@ const pagesConfig = {
   '/professional': { title: 'Professional', showInBreadcrumbs: true },
   '/modern-ppc': { title: 'Modern PPC', showInBreadcrumbs: true },
   '/nodejs-development': { title: 'Node.js Development', showInBreadcrumbs: true },
-  '/nextjs-development': { title: 'Next.js Development', showInBreadcrumbs: true }
+  '/nextjs-development': { title: 'Next.js Development', showInBreadcrumbs: true },
+  '/blog': { title: 'Blog', showInBreadcrumbs: true }
 };
 
 /**
