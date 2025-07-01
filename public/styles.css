@@ -149,7 +149,7 @@ a {
   min-width: 120px;
   height: 40px;
   background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-  border: 1px solid #d1d5db;
+  border: 2px solid #7f9cf5 !important;
   border-radius: 12px;
   color: #23272f !important;
   text-decoration: none;
@@ -281,9 +281,11 @@ a {
 
 /* ===== Футер ===== */
 footer {
-  background: #0f172a;
-  color: white;
-  padding: 40px 0 20px 0;
+  background: #18191a;
+  color: #a0a0a0;
+  padding: 48px 0 24px 0;
+  font-size: 15px;
+  letter-spacing: 0.2px;
 }
 
 .footer-content {
@@ -297,7 +299,7 @@ footer {
   font-size: 18px;
   font-weight: 600;
   margin-bottom: 15px;
-  color: #ffffff;
+  color: #fff;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
@@ -312,26 +314,28 @@ footer {
 }
 
 .footer-section ul li a {
-  color: #94a3b8;
+  color: #fff;
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, text-shadow 0.3s;
   font-size: 14px;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  text-shadow: 0 1px 8px rgba(127,156,245,0.08);
 }
 
 .footer-section ul li a:hover {
-  color: #ffffff;
+  color: #7f9cf5;
+  text-shadow: 0 2px 16px #7f9cf5;
   text-decoration: underline;
 }
 
 .footer-bottom {
-  border-top: 1px solid #334155;
+  border-top: 1px solid rgba(255,255,255,0.08);
   padding-top: 20px;
   text-align: center;
 }
 
 .footer-bottom p {
-  color: #64748b;
+  color: #a0a0a0;
   font-size: 14px;
   margin: 0;
 }
@@ -6508,4 +6512,9 @@ html {
   .breadcrumbs-precisely .separator {
     transform: translateY(-12px);
   }
+}
+
+.analytics-highlight {
+  color: #7f9cf5 !important;
+  font-weight: normal;
 }
