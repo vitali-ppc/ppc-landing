@@ -36,13 +36,13 @@ async function sendTelegramMessage(message) {
 // Головна сторінка — Professional дизайн
 router.get('/', function(req, res, next) {
   // Для головної сторінки breadcrumbs не потрібні
-  res.render('professional');
+  res.render('home');
 });
 
 // Альтернативна сторінка — Neomorphic дизайн  
 router.get('/modern-ppc', function(req, res, next) {
   // Breadcrumbs генеруються автоматично через middleware
-  res.render('index');
+  res.render('modern-ppc');
 });
 
 // Analytics сторінка (спрощена версія)
@@ -66,6 +66,11 @@ router.get('/nextjs-development', function(req, res, next) {
 // Blog сторінка
 router.get('/blog', function(req, res, next) {
   res.render('blog');
+});
+
+// Страница профессиональных услуг
+router.get('/professional', function(req, res, next) {
+  res.render('professional');
 });
 
 // Обробка форми
@@ -102,10 +107,6 @@ router.post('/contact', async (req, res) => {
     console.error('Telegram sending error:', error);
     res.send('<h2>An error occurred while sending. Please try again later.</h2><a href="/">Back to Home</a>');
   }
-});
-
-router.get('/home', (req, res) => {
-  res.render('home');
 });
 
 module.exports = router;
