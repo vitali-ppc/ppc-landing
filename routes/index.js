@@ -36,7 +36,7 @@ async function sendTelegramMessage(message) {
 // Головна сторінка — Professional дизайн
 router.get('/', function(req, res, next) {
   // Для головної сторінки breadcrumbs не потрібні
-  res.render('home');
+  res.render('index');
 });
 
 // Альтернативна сторінка — Neomorphic дизайн  
