@@ -4,7 +4,8 @@ const nodemailer = require('nodemailer');
 const { generateBreadcrumbs } = require('../utils/breadcrumbs');
 
 // Telegram налаштування
-const TELEGRAM_BOT_TOKEN = '7832887667:AAEaIwR5X7Dqs4xr56heOE2PIjSagF3RB2U';
+// const TELEGRAM_BOT_TOKEN = '7832887667:AAEaIwR5X7Dqs4xr56heOE2PIjSagF3RB2U'; // УДАЛЕНО: Никогда не храните токены в открытом коде!
+// TODO: Используйте process.env.TELEGRAM_BOT_TOKEN или другой безопасный способ хранения токена.
 const TELEGRAM_CHAT_ID = '323593893';
 
 // Функція для відправки повідомлення в Telegram
