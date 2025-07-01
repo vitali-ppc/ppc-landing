@@ -6518,3 +6518,28 @@ html {
   color: #7f9cf5 !important;
   font-weight: normal;
 }
+
+.card-view-link {
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.18);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-end;
+  transition: color 0.2s;
+}
+.card-view-link:hover {
+  color: #00ffe7;
+  text-decoration: underline;
+}
+.card-view-link .arrow-icon {
+  transition: transform 0.2s, stroke 0.2s;
+  filter: drop-shadow(0 1px 6px rgba(0,0,0,0.18));
+}
+.card-view-link:hover .arrow-icon {
+  transform: translateX(5px);
+  stroke: #00ffe7;
+}
