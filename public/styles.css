@@ -6548,7 +6548,7 @@ html {
 .analytics-link-desc {
   font-size: 1.08rem;
   color: #23272f;
-  margin: 0 auto 0 auto;
+  margin: 12px auto 0 auto;
   text-align: center;
 }
 .accent-link {
@@ -6561,4 +6561,8 @@ html {
   text-decoration: underline;
   color: #aabfff;
   text-shadow: 0 2px 12px rgba(127,156,245,0.18);
+}
+
+.internal-link-analytics {
+  padding-top: 16px;
 }

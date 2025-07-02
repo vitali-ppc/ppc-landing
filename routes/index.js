@@ -70,8 +70,14 @@ router.get('/blog', function(req, res, next) {
 });
 
 // Страница профессиональных услуг
-router.get('/professional', function(req, res, next) {
-  res.render('professional');
+// router.get('/professional', function(req, res, next) {
+//   res.render('professional');
+// });
+
+// Сторінка PPC & Performance
+router.get('/ppc-performance', function(req, res, next) {
+  const breadcrumbs = generateBreadcrumbs('/ppc-performance');
+  res.render('ppc-performance', { breadcrumbs });
 });
 
 // Обробка форми
