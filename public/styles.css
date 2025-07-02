@@ -6543,3 +6543,22 @@ html {
   transform: translateX(5px);
   stroke: #00ffe7;
 }
+
+/* Accent Analytics link styles */
+.analytics-link-desc {
+  font-size: 1.08rem;
+  color: #23272f;
+  margin: 0 auto 0 auto;
+  text-align: center;
+}
+.accent-link {
+  color: #7f9cf5;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.18s, text-shadow 0.18s;
+}
+.accent-link:hover, .accent-link:focus {
+  text-decoration: underline;
+  color: #aabfff;
+  text-shadow: 0 2px 12px rgba(127,156,245,0.18);
+}
