@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -77,7 +77,6 @@
             <nav class="header__nav">
                 <a href="#problems">Problems</a>
                 <a href="#process">Process</a>
-                <a href="#results">Results</a>
                 <a href="#contact">Contact</a>
             </nav>
             <a href="https://www.linkedin.com/in/vitali-ppc%E2%9C%94-26b294b4/" class="linkedin-link" target="_blank" rel="noopener" title="Connect on LinkedIn">
@@ -97,11 +96,11 @@
     <section class="analytics-hero">
         <div class="container">
             <div class="analytics-hero-content">
-                <h1>Аналітика рекламних кампаній</h1>
-                <p>Прозорий дашборд для моніторингу ефективності ваших PPC кампаній</p>
+                <h1>Advertising Campaign Analytics</h1>
+                <p>Transparent dashboard for monitoring the effectiveness of your PPC campaigns</p>
                 <div class="analytics-connect">
-                    <button class="connect-btn" id="connectBtn">Підключити кабінет</button>
-                    <p class="connect-info">Безпечне підключення через API Google Ads</p>
+                    <button class="connect-btn" id="connectBtn">Connect Account</button>
+                    <p class="connect-info">Secure connection via Google Ads API</p>
                 </div>
             </div>
         </div>
@@ -111,14 +110,14 @@
     <section class="analytics-dashboard" id="dashboard" style="display: none;">
         <div class="container">
             <div class="dashboard-header">
-                <h2>Дашборд ефективності</h2>
+                <h2>Connect to Google Ads</h2>
                 <div class="dashboard-controls">
                     <select id="dateRange" class="date-select">
-                        <option value="7">Останні 7 днів</option>
-                        <option value="30" selected>Останні 30 днів</option>
-                        <option value="90">Останні 90 днів</option>
+                        <option value="7">Last 7 days</option>
+                        <option value="30" selected>Last 30 days</option>
+                        <option value="90">Last 90 days</option>
                     </select>
-                    <button class="refresh-btn" id="refreshBtn">🔄 Оновити</button>
+                    <button class="refresh-btn" id="refreshBtn">🔄 Refresh</button>
                 </div>
             </div>
 
@@ -126,45 +125,45 @@
             <div class="metrics-overview">
                 <div class="metric-card">
                     <div class="metric-header">
-                        <h3>CPL (Вартість за лід)</h3>
+                        <h3>CPL (Cost per Lead)</h3>
                         <div class="metric-trend positive">↓ -15%</div>
                     </div>
                     <div class="metric-value">₴245</div>
-                    <div class="metric-change">Зниження з ₴288</div>
+                    <div class="metric-change">Down from ₴288</div>
                 </div>
 
                 <div class="metric-card">
                     <div class="metric-header">
-                        <h3>ROI (Рентабельність)</h3>
+                        <h3>ROI (Return on Investment)</h3>
                         <div class="metric-trend positive">↑ +23%</div>
                     </div>
                     <div class="metric-value">4.2x</div>
-                    <div class="metric-change">Зростання з 3.4x</div>
+                    <div class="metric-change">Up from 3.4x</div>
                 </div>
 
                 <div class="metric-card">
                     <div class="metric-header">
-                        <h3>Конверсії</h3>
+                        <h3>Conversions</h3>
                         <div class="metric-trend positive">↑ +18%</div>
                     </div>
                     <div class="metric-value">156</div>
-                    <div class="metric-change">Зростання з 132</div>
+                    <div class="metric-change">Up from 132</div>
                 </div>
 
                 <div class="metric-card">
                     <div class="metric-header">
-                        <h3>Якість лідів</h3>
+                        <h3>Lead Quality</h3>
                         <div class="metric-trend positive">↑ +12%</div>
                     </div>
                     <div class="metric-value">87%</div>
-                    <div class="metric-change">Зростання з 78%</div>
+                    <div class="metric-change">Up from 78%</div>
                 </div>
             </div>
 
             <!-- Графіки та аналітика -->
             <div class="analytics-charts">
                 <div class="chart-container">
-                    <h3>Тренд CPL та ROI</h3>
+                    <h3>CPL & ROI Trend</h3>
                     <div class="chart" id="trendChart">
                         <div class="chart-placeholder">
                             <div class="chart-line"></div>
@@ -174,24 +173,24 @@
                             <div class="chart-line"></div>
                         </div>
                         <div class="chart-labels">
-                            <span>1 тиждень</span>
-                            <span>2 тиждень</span>
-                            <span>3 тиждень</span>
-                            <span>4 тиждень</span>
+                            <span>Week 1</span>
+                            <span>Week 2</span>
+                            <span>Week 3</span>
+                            <span>Week 4</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="chart-container">
-                    <h3>Розподіл бюджету по кампаніях</h3>
+                    <h3>Budget Distribution by Campaign</h3>
                     <div class="chart" id="budgetChart">
                         <div class="budget-slices">
                             <div class="budget-slice" style="--percentage: 40%; --color: #1a365d;">
-                                <span>Пошукові кампанії</span>
+                                <span>Search Campaigns</span>
                                 <span>40%</span>
                             </div>
                             <div class="budget-slice" style="--percentage: 30%; --color: #2c5282;">
-                                <span>Ремаркетинг</span>
+                                <span>Remarketing</span>
                                 <span>30%</span>
                             </div>
                             <div class="budget-slice" style="--percentage: 20%; --color: #3182ce;">
@@ -209,27 +208,27 @@
 
             <!-- Рекомендації AI -->
             <div class="ai-recommendations">
-                <h3>🤖 Рекомендації AI для оптимізації</h3>
+                <h3>🤖 AI Recommendations for Optimization</h3>
                 <div class="recommendations-list">
                     <div class="recommendation-item">
                         <div class="recommendation-icon">📈</div>
                         <div class="recommendation-content">
-                            <h4>Збільшити ставки на ключові слова</h4>
-                            <p>Ключові слова "B2B послуги" та "корпоративні рішення" показують високу конверсію. Рекомендую збільшити ставки на 15-20%.</p>
+                            <h4>Increase Bids on Keywords</h4>
+                            <p>Keywords "B2B services" and "corporate solutions" show high conversion rates. Recommend increasing bids by 15-20%.</p>
                         </div>
                     </div>
                     <div class="recommendation-item">
                         <div class="recommendation-icon">🎯</div>
                         <div class="recommendation-content">
-                            <h4>Оптимізувати час показу реклами</h4>
-                            <p>Найвища конверсія спостерігається з 9:00 до 11:00 та з 14:00 до 16:00. Рекомендую збільшити ставки в ці години.</p>
+                            <h4>Optimize Ad Scheduling</h4>
+                            <p>Highest conversion rates are observed from 9:00 to 11:00 and from 14:00 to 16:00. Recommend increasing bids during these hours.</p>
                         </div>
                     </div>
                     <div class="recommendation-item">
                         <div class="recommendation-icon">💰</div>
                         <div class="recommendation-content">
-                            <h4>Перерозподілити бюджет</h4>
-                            <p>Кампанія "Ремаркетинг" показує ROI 5.2x. Рекомендую збільшити бюджет на 25% за рахунок менш ефективних кампаній.</p>
+                            <h4>Redistribute Budget</h4>
+                            <p>The "Remarketing" campaign shows an ROI of 5.2x. Recommend increasing the budget by 25% at the expense of less effective campaigns.</p>
                         </div>
                     </div>
                 </div>
@@ -241,29 +240,29 @@
     <section class="connect-section" id="connectForm">
         <div class="container">
             <div class="connect-content">
-                <h2>Підключення до Google Ads</h2>
-                <p>Безпечно підключіть ваш рекламний кабінет для отримання детальної аналітики</p>
+                <h2>Connect to Google Ads</h2>
+                <p>Securely connect your ad account to get detailed analytics</p>
                 
                 <div class="connect-steps">
                     <div class="connect-step">
                         <div class="step-number">1</div>
                         <div class="step-content">
-                            <h3>Надайте доступ</h3>
-                            <p>Надайте доступ до вашого Google Ads акаунту через OAuth 2.0</p>
+                            <h3>Grant Access</h3>
+                            <p>Grant access to your Google Ads account via OAuth 2.0</p>
                         </div>
                     </div>
                     <div class="connect-step">
                         <div class="step-number">2</div>
                         <div class="step-content">
-                            <h3>Оберіть кампанії</h3>
-                            <p>Виберіть кампанії для аналізу та моніторингу</p>
+                            <h3>Select Campaigns</h3>
+                            <p>Select campaigns for analysis and monitoring</p>
                         </div>
                     </div>
                     <div class="connect-step">
                         <div class="step-number">3</div>
                         <div class="step-content">
-                            <h3>Отримайте аналітику</h3>
-                            <p>Отримайте детальну аналітику та рекомендації AI</p>
+                            <h3>Get Analytics</h3>
+                            <p>Receive detailed analytics and AI recommendations</p>
                         </div>
                     </div>
                 </div>
@@ -271,19 +270,19 @@
                 <div class="connect-form">
                     <form id="googleAdsForm">
                         <div class="form-group">
-                            <label for="accountId">ID Google Ads акаунту</label>
+                            <label for="accountId">Google Ads Account ID</label>
                             <input type="text" id="accountId" placeholder="123-456-7890" required>
                         </div>
                         <div class="form-group">
-                            <label for="campaigns">Кампанії для аналізу</label>
+                            <label for="campaigns">Campaigns for Analysis</label>
                             <select id="campaigns" multiple>
-                                <option value="all">Всі кампанії</option>
-                                <option value="search">Пошукові кампанії</option>
-                                <option value="display">Display кампанії</option>
-                                <option value="remarketing">Ремаркетинг</option>
+                                <option value="all">All Campaigns</option>
+                                <option value="search">Search Campaigns</option>
+                                <option value="display">Display Campaigns</option>
+                                <option value="remarketing">Remarketing</option>
                             </select>
                         </div>
-                        <button type="submit" class="connect-submit-btn">Підключити та аналізувати</button>
+                        <button type="submit" class="connect-submit-btn">Connect & Analyze</button>
                     </form>
                 </div>
             </div>
@@ -291,7 +290,7 @@
     </section>
 
     <!-- Кнопка Scroll to Top -->
-    <button class="scroll-to-top" id="scrollToTop" title="Прокрутити вгору">
+    <button class="scroll-to-top" id="scrollToTop" title="Scroll to Top">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="18,15 12,9 6,15"></polyline>
         </svg>
@@ -315,16 +314,16 @@
             
             // Симулюємо завантаження даних
             setTimeout(() => {
-                alert('Кабінет успішно підключено! Дані оновлюються...');
+                alert('Account successfully connected! Data is updating...');
             }, 1000);
         });
 
         // Оновлення даних
         document.getElementById('refreshBtn').addEventListener('click', function() {
-            this.textContent = '🔄 Оновлюється...';
+            this.textContent = '🔄 Updating...';
             setTimeout(() => {
-                this.textContent = '🔄 Оновити';
-                alert('Дані оновлено!');
+                this.textContent = '🔄 Refresh';
+                alert('Data updated!');
             }, 2000);
         });
     </script>
