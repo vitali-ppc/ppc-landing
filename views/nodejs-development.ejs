@@ -194,7 +194,7 @@
   </div>
 </section>
 
-<!-- Блок послуг -->
+<!-- Services Block -->
 <section id="services" class="professional-problems-section">
   <div class="container">
     <div class="professional-section-header">
@@ -543,7 +543,7 @@
   </div>
 </section>
 
-<!-- Блок контактів -->
+<!-- Contact Block -->
 <section id="contact" class="professional-contact-section">
   <div class="container">
     <div class="professional-section-header">
@@ -616,8 +616,8 @@
   </div>
 </footer>
 
-<!-- Кнопка Scroll to Top -->
-<button class="scroll-to-top" id="scrollToTop" title="Прокрутити вгору">
+<!-- Scroll to Top Button -->
+<button class="scroll-to-top" id="scrollToTop" title="Scroll to Top">
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <polyline points="18,15 12,9 6,15"></polyline>
   </svg>
@@ -625,19 +625,19 @@
 
 <script src="/scroll-to-top.js"></script>
 <script>
-  // Розумний скрол до контактної форми
+      // Smart scroll to contact form
   function scrollToContactForm() {
     const contactForm = document.querySelector('.professional-contact-form');
     const nameInput = document.querySelector('input[name="name"]');
     
     if (contactForm) {
-      // Простий плавний скрол до форми
+      // Simple smooth scroll to form
       contactForm.scrollIntoView({
         behavior: 'smooth',
         block: 'start'
       });
       
-      // Автофокус на поле Name після скролу
+      // Auto-focus on Name field after scroll
       setTimeout(() => {
         if (nameInput) {
           nameInput.focus();
@@ -648,7 +648,7 @@
 
   // Smooth scroll functionality
   document.addEventListener('DOMContentLoaded', function() {
-    // Smooth scroll for anchor links (крім кнопки Schedule Consultation)
+    // Smooth scroll for anchor links (except Schedule Consultation button)
     const links = document.querySelectorAll('a[href^="#"]');
     links.forEach(link => {
       link.addEventListener('click', function(e) {
