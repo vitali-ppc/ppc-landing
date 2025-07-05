@@ -2,13 +2,17 @@ import React from 'react'
 import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import ScrollToTop from '../components/ScrollToTop'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'PPCSet - Professional PPC & Analytics Services',
-  description: 'Expert PPC management, analytics, and Node.js development services. Drive growth with data-driven strategies and scalable solutions.',
-  keywords: 'PPC, Google Ads, analytics, Node.js development, digital marketing, SEO',
+  title: {
+    default: 'PPCSet - Digital Ecosystem',
+    template: '%s | PPCSet'
+  },
+  description: 'Premium digital ecosystem: advertising, analytics, web development. For businesses that want more.',
+  keywords: 'PPC, Google Ads, analytics, Node.js development, digital marketing, SEO, web development',
   authors: [{ name: 'PPCSet' }],
   creator: 'PPCSet',
   publisher: 'PPCSet',
@@ -18,8 +22,8 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://ppcset.com',
     siteName: 'PPCSet',
-    title: 'PPCSet - Professional PPC & Analytics Services',
-    description: 'Expert PPC management, analytics, and Node.js development services.',
+    title: 'PPCSet - Digital Ecosystem',
+    description: 'Premium digital ecosystem: advertising, analytics, web development. For businesses that want more.',
     images: [
       {
         url: 'https://ppcset.com/logo.png',
@@ -31,16 +35,22 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'PPCSet - Professional PPC & Analytics Services',
-    description: 'Expert PPC management, analytics, and Node.js development services.',
+    title: 'PPCSet - Digital Ecosystem',
+    description: 'Premium digital ecosystem: advertising, analytics, web development. For businesses that want more.',
     images: ['https://ppcset.com/logo.png'],
   },
   icons: {
-    icon: '/logo.png',
+    icon: [
+      { url: '/logo.png', sizes: '32x32', type: 'image/png' },
+      { url: '/logo.png', sizes: '16x16', type: 'image/png' }
+    ],
     apple: '/logo.png',
   },
   verification: {
     google: 'your-google-verification-code',
+  },
+  alternates: {
+    canonical: 'https://ppcset.com',
   },
 }
 
@@ -62,9 +72,18 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="/styles.css" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/logo.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/logo.png" />
+        <link rel="apple-touch-icon" href="/logo.png" />
+        <meta name="theme-color" content="#23272f" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="msapplication-TileColor" content="#23272f" />
+        <meta name="msapplication-TileImage" content="/logo.png" />
       </head>
       <body className={inter.className}>
         {children}
+        <ScrollToTop />
       </body>
     </html>
   )

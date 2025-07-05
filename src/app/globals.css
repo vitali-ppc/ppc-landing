@@ -385,25 +385,35 @@ body {
 .header__logo {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
   text-decoration: none;
-  color: #23272f;
+  color: #221c35;
   font-weight: 700;
-  font-size: 18px;
-  background: rgba(255, 255, 255, 0.9);
-  padding: 4px 12px;
-  border-radius: 6px;
-  transition: all 0.3s ease;
+  font-size: 22px;
+  font-family: 'Roboto', sans-serif;
+  background: none;
+  padding: 0;
 }
 
-.header__logo:hover {
-  background: rgba(255, 255, 255, 1);
-  transform: translateY(-1px);
+.header__logo:active {
+  color: #1a202c;
+  background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  transform: scale(0.95);
 }
 
 .logo-img {
-  width: 24px;
-  height: 24px;
+  height: 64px;
+  margin-right: 10px;
+  vertical-align: middle;
+  background: rgba(30, 30, 30, 0.07);
+  border-radius: 6px;
+  padding: 4px;
+}
+
+.header__logo span {
+  color: #222;
+  font-weight: 600;
 }
 
 .header__nav {
@@ -473,6 +483,14 @@ body {
 }
 
 @media (max-width: 768px) {
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+  }
+  
   .burger {
     display: block;
   }
@@ -633,8 +651,7 @@ body {
 /* Footer */
 .footer {
   background: #1a1a1a;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 32px 0;
+  padding: 32px 0 16px 0;
   text-align: center;
   color: #a0a0a0;
   font-size: 14px;

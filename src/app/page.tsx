@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useRef, useEffect } from 'react'
+import Head from 'next/head'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import Breadcrumbs from '../components/Breadcrumbs'
@@ -13,6 +14,7 @@ export default function Home() {
   const [startX, setStartX] = useState(0)
   const [scrollLeft, setScrollLeft] = useState(0)
   const [progress, setProgress] = useState(25)
+  const canvasRef = useRef<HTMLCanvasElement>(null)
 
   const handleTabClick = (tab: string) => {
     setActiveTab(tab)
@@ -66,6 +68,90 @@ export default function Home() {
     }
   }, [])
 
+  // Digital Cosmos animation
+  useEffect(() => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
+
+    const stars = Array.from({ length: 32 }, () => ({
+      x: Math.random() * 900,
+      y: Math.random() * 160,
+      r: 2 + Math.random() * 2,
+      dx: (Math.random() - 0.5) * 0.2,
+      dy: (Math.random() - 0.5) * 0.2
+    }))
+
+    function drawCosmos() {
+      if (!ctx) return
+      
+      ctx.clearRect(0, 0, 900, 160)
+      
+      // Connections
+      for (let i = 0; i < stars.length; i++) {
+        for (let j = i + 1; j < stars.length; j++) {
+          const dx = stars[i].x - stars[j].x
+          const dy = stars[i].y - stars[j].y
+          const dist = Math.sqrt(dx * dx + dy * dy)
+          
+          if (dist < 120) {
+            ctx.save()
+            const grad = ctx.createLinearGradient(stars[i].x, stars[i].y, stars[j].x, stars[j].y)
+            grad.addColorStop(0, '#7f9cf5')
+            grad.addColorStop(1, '#00ffe7')
+            ctx.strokeStyle = grad
+            ctx.globalAlpha = 0.13
+            ctx.lineWidth = 1
+            ctx.beginPath()
+            ctx.moveTo(stars[i].x, stars[i].y)
+            ctx.lineTo(stars[j].x, stars[j].y)
+            ctx.stroke()
+            ctx.restore()
+          }
+        }
+      }
+      
+      // Stars
+      for (const s of stars) {
+        ctx.save()
+        const grad = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, s.r * 3.5)
+        grad.addColorStop(0, '#00ffe7')
+        grad.addColorStop(0.5, '#7f9cf5')
+        grad.addColorStop(1, 'rgba(0,255,231,0)')
+        ctx.beginPath()
+        ctx.arc(s.x, s.y, s.r * 3.5, 0, 2 * Math.PI)
+        ctx.globalAlpha = 0.25
+        ctx.fillStyle = grad
+        ctx.fill()
+        ctx.restore()
+        
+        ctx.beginPath()
+        ctx.arc(s.x, s.y, s.r, 0, 2 * Math.PI)
+        ctx.globalAlpha = 0.9
+        ctx.fillStyle = '#7f9cf5'
+        ctx.shadowColor = '#00ffe7'
+        ctx.shadowBlur = 8
+        ctx.fill()
+        ctx.shadowBlur = 0
+        ctx.globalAlpha = 1
+      }
+      
+      // Movement
+      for (const s of stars) {
+        s.x += s.dx
+        s.y += s.dy
+        if (s.x < 0 || s.x > 900) s.dx *= -1
+        if (s.y < 0 || s.y > 160) s.dy *= -1
+      }
+      
+      requestAnimationFrame(drawCosmos)
+    }
+
+    drawCosmos()
+  }, [])
+
   const getTabStyle = (tab: string) => {
     const isActive = activeTab === tab
     const isHovered = hoveredTab === tab && !isActive
@@ -81,7 +167,7 @@ export default function Home() {
       transition:'all 0.3s ease',
       cursor:'pointer',
       minWidth:'80px',
-      textAlign:'center',
+      textAlign:'center' as const,
       backdropFilter:'blur(10px)',
       boxShadow: isActive ? '0 4px 20px rgba(127,156,245,0.2)' : isHovered ? '0 8px 24px rgba(127,156,245,0.2)' : '0 2px 12px rgba(0,0,0,0.1)',
       outline:'none',
@@ -91,7 +177,56 @@ export default function Home() {
 
   return (
     <>
-      <Header />
+      <Head>
+        <title>Digital. Performance. Results. | PPCSet Ecosystem</title>
+        <meta name="description" content="Premium digital ecosystem: advertising, analytics, web development. For businesses that want more." />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://ppcset.com/" />
+        
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://ppcset.com/" />
+        <meta property="og:title" content="Digital. Performance. Results. | PPCSet Ecosystem" />
+        <meta property="og:description" content="Premium digital ecosystem: advertising, analytics, web development. For businesses that want more." />
+        <meta property="og:image" content="https://ppcset.com/logo.png" />
+        <meta property="og:site_name" content="PPCSet" />
+        <meta property="og:locale" content="en_US" />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://ppcset.com/" />
+        <meta name="twitter:title" content="Digital. Performance. Results. | PPCSet Ecosystem" />
+        <meta name="twitter:description" content="Premium digital ecosystem: advertising, analytics, web development. For businesses that want more." />
+        <meta name="twitter:image" content="https://ppcset.com/logo.png" />
+        
+        {/* Schema.org Organization */}
+        <script type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "PPCSet",
+              "url": "https://ppcset.com/",
+              "logo": "https://ppcset.com/logo.png",
+              "sameAs": [
+                "https://www.linkedin.com/company/ppcset/"
+              ],
+              "description": "Premium digital ecosystem: advertising, analytics, web development. For businesses that want more."
+            }
+          `}
+        </script>
+        <script type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "url": "https://ppcset.com",
+              "name": "PPCSet"
+            }
+          `}
+        </script>
+      </Head>
+      <Header variant="home" />
       <Breadcrumbs />
 
       {/* HERO BLOCK */}
@@ -104,10 +239,10 @@ export default function Home() {
           </svg>
         </div>
         <div style={{position:'relative',zIndex:1,textAlign:'center',width:'100%',maxWidth:'700px',margin:'0 auto'}}>
-          <h1 style={{fontSize:'54px',fontWeight:800,marginBottom:'18px',letterSpacing:'-1.5px',background:'linear-gradient(90deg, #fff 80%, #a0a0a0 100%)',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent',backgroundClip:'text'}}>
+          <h1 className="main-hero-title">
             Digital Ecosystem. Performance. Growth.
           </h1>
-          <div style={{fontSize:'22px',color:'#a0a0a0',marginBottom:'38px',fontWeight:400}}>
+          <div className="main-hero-subtitle">
             All-in-one: advertising, analytics, web development, automation.
           </div>
         </div>
@@ -475,6 +610,22 @@ export default function Home() {
             </div>
           </div>
         </div>
+      </section>
+
+      {/* Digital Cosmos: анімований digital network/cosmos */}
+      <section style={{background:'#1a1a1a',padding:'120px 0 48px 0',overflow:'hidden',position:'relative'}}>
+        <canvas 
+          ref={canvasRef}
+          width="900" 
+          height="160" 
+          style={{
+            display:'block',
+            margin:'0 auto',
+            width:'900px',
+            height:'160px',
+            background:'transparent'
+          }}
+        />
       </section>
 
       <Footer />

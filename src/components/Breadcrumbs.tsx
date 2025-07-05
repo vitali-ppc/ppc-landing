@@ -8,14 +8,14 @@ export default function Breadcrumbs() {
   const pathname = usePathname()
   
   // Функція для генерації breadcrumbs на основі поточного шляху
-  const generateBreadcrumbs = () => {
+  const generateBreadcrumbs = (): Array<{title: string, path: string, isLast: boolean}> => {
     const segments = pathname.split('/').filter(segment => segment !== '')
     
     if (segments.length === 0) {
       return []
     }
     
-    const breadcrumbs = []
+    const breadcrumbs: Array<{title: string, path: string, isLast: boolean}> = []
     let currentPath = ''
     
     segments.forEach((segment, index) => {
@@ -70,31 +70,21 @@ export default function Breadcrumbs() {
   
   return (
     <>
-      <nav className="breadcrumbs-precisely" aria-label="Breadcrumb">
-        <div className="container">
-          <ol className="breadcrumbs-list">
-            <li className="breadcrumbs-item">
-              <Link href="/" className="breadcrumbs-link">
-                Home
-              </Link>
-            </li>
-            {breadcrumbs.map((breadcrumb, index) => (
-              <li key={breadcrumb.path} className="breadcrumbs-item">
-                <span className="breadcrumbs-separator">/</span>
-                {breadcrumb.isLast ? (
-                  <span className="breadcrumbs-current" aria-current="page">
-                    {breadcrumb.title}
-                  </span>
-                ) : (
-                  <Link href={breadcrumb.path} className="breadcrumbs-link">
-                    {breadcrumb.title}
-                  </Link>
-                )}
-              </li>
-            ))}
-          </ol>
-        </div>
-      </nav>
+      <div className="container">
+        <nav className="breadcrumbs-precisely breadcrumbs-color-1" aria-label="Breadcrumb">
+          <Link href="/">Home</Link>
+          {breadcrumbs.map((breadcrumb, index) => (
+            <React.Fragment key={breadcrumb.path}>
+              <span className="separator">/</span>
+              {breadcrumb.isLast ? (
+                <span className="current">{breadcrumb.title}</span>
+              ) : (
+                <Link href={breadcrumb.path}>{breadcrumb.title}</Link>
+              )}
+            </React.Fragment>
+          ))}
+        </nav>
+      </div>
       
       {/* Schema.org BreadcrumbList */}
       <script
