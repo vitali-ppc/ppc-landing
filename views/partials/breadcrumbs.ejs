@@ -1,17 +1,33 @@
 <!-- Dynamic Breadcrumbs -->
 <% if (typeof breadcrumbs !== 'undefined' && breadcrumbs && breadcrumbs.length > 0) { %>
-<div class="container">
-  <nav class="breadcrumbs-precisely breadcrumbs-color-1" aria-label="Breadcrumb">
-    <% breadcrumbs.forEach(function(item, index) { %>
-      <% if (index > 0) { %>
-        <span class="separator">/</span>
-      <% } %>
-      <% if (index === breadcrumbs.length - 1) { %>
-        <span class="current"><%= item.title %></span>
-      <% } else { %>
-        <a href="<%= item.url %>"><%= item.title %></a>
-      <% } %>
-    <% }); %>
-  </nav>
-</div>
+  <!-- Breadcrumbs Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      <% breadcrumbs.forEach(function(item, index) { %>{
+        "@type": "ListItem",
+        "position": <%= index + 1 %>,
+        "name": "<%= item.title %>",
+        "item": "<%= item.url.startsWith('http') ? item.url : 'https://ppcset.com' + item.url %>"
+      }<%= index < breadcrumbs.length - 1 ? ',' : '' %>
+      <% }); %>
+    ]
+  }
+  </script>
+  <div class="container">
+    <nav class="breadcrumbs-precisely breadcrumbs-color-1" aria-label="Breadcrumb">
+      <% breadcrumbs.forEach(function(item, index) { %>
+        <% if (index > 0) { %>
+          <span class="separator">/</span>
+        <% } %>
+        <% if (index === breadcrumbs.length - 1) { %>
+          <span class="current"><%= item.title %></span>
+        <% } else { %>
+          <a href="<%= item.url %>"><%= item.title %></a>
+        <% } %>
+      <% }); %>
+    </nav>
+  </div>
 <% } %> 
