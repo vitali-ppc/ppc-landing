@@ -18,5 +18,6 @@ This is the Next.js version of the PPC landing page, migrated from the original 
 - Ready for Vercel deployment
 - All pages tested locally
 - Build successful
+- Framework Preset: Next.js ✅
 
 Last updated: 2025-01-27 
