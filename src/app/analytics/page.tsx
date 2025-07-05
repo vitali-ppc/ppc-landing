@@ -1028,51 +1028,35 @@ export default function AnalyticsPage() {
 
       <Footer />
 
-      {/* Schema.org Service */}
+      {/* Schema.org Organization & Service */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "PPCSet",
+            "url": "https://ppcset.com",
+            "logo": "https://ppcset.com/logo.png",
+            "sameAs": [
+              "https://www.linkedin.com/company/ppcset/"
+            ]
+          })
+        }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Service",
-            "name": "Analytics Services by PPCSet",
-            "description": "Professional analytics and reporting services. Get data-driven insights, automated reporting, and performance optimization for your business growth.",
-            "url": "https://ppcset.com/analytics",
+            "serviceType": "PPC Analytics & Conversion Tracking",
             "provider": {
               "@type": "Organization",
-              "name": "PPCSet",
-              "url": "https://ppcset.com",
-              "logo": "https://ppcset.com/logo.png"
+              "name": "PPCSet"
             },
-            "serviceType": "Analytics and Reporting",
             "areaServed": "Worldwide",
-            "hasOfferCatalog": {
-              "@type": "OfferCatalog",
-              "name": "Analytics Services",
-              "itemListElement": [
-                {
-                  "@type": "Offer",
-                  "itemOffered": {
-                    "@type": "Service",
-                    "name": "Performance Analytics"
-                  }
-                },
-                {
-                  "@type": "Offer",
-                  "itemOffered": {
-                    "@type": "Service",
-                    "name": "Automated Reporting"
-                  }
-                },
-                {
-                  "@type": "Offer",
-                  "itemOffered": {
-                    "@type": "Service",
-                    "name": "Data Optimization"
-                  }
-                }
-              ]
-            }
+            "description": "Advanced analytics and conversion tracking for PPC campaigns. Google Analytics 4 setup and actionable insights."
           })
         }}
       />
