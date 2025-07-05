@@ -22,13 +22,82 @@ export default function AnalyticsPage() {
     setShowDashboard(false)
   }
 
+  const [formErrors, setFormErrors] = useState<{[key: string]: string}>({})
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    company: '',
+    message: ''
+  })
+
+  const validateEmail = (email: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    return emailRegex.test(email)
+  }
+
+  const validateName = (name: string) => {
+    return name.trim().length >= 2
+  }
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
+    setFormData(prev => ({ ...prev, [name]: value }))
+    
+    // Real-time validation
+    if (name === 'name' && value.trim() !== '') {
+      if (!validateName(value)) {
+        setFormErrors(prev => ({ ...prev, name: 'Please enter a valid name' }))
+      } else {
+        setFormErrors(prev => ({ ...prev, name: '' }))
+      }
+    }
+    
+    if (name === 'email' && value.trim() !== '') {
+      if (!validateEmail(value)) {
+        setFormErrors(prev => ({ ...prev, email: 'Please enter a valid email address' }))
+      } else {
+        setFormErrors(prev => ({ ...prev, email: '' }))
+      }
+    }
+  }
+
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    setShowDashboard(true)
-    setShowConnectForm(false)
-    setTimeout(() => {
-      alert('Account successfully connected! Data is updating...')
-    }, 1000)
+    
+    let hasErrors = false
+    const newErrors: {[key: string]: string} = {}
+    
+    // Validate Name
+    if (!formData.name.trim()) {
+      newErrors.name = 'Please fill in your name'
+      hasErrors = true
+    } else if (!validateName(formData.name)) {
+      newErrors.name = 'Please enter a valid name'
+      hasErrors = true
+    }
+    
+    // Validate Email
+    if (!formData.email.trim()) {
+      newErrors.email = 'Please enter a valid email address'
+      hasErrors = true
+    } else if (!validateEmail(formData.email)) {
+      newErrors.email = 'Please enter a valid email address'
+      hasErrors = true
+    }
+    
+    setFormErrors(newErrors)
+    
+    if (!hasErrors) {
+      // Here you would typically send the data to your server
+      console.log('Early access form submitted:', formData)
+      
+      // Show success message
+      alert('Thank you for joining our waitlist! We will contact you soon.')
+      
+      // Reset form
+      setFormData({ name: '', email: '', company: '', message: '' })
+      setFormErrors({})
+    }
   }
 
   const handleRefresh = () => {
@@ -801,6 +870,12 @@ export default function AnalyticsPage() {
               <p className="professional-hero-subtitle">Advanced campaign analytics and AI-powered insights for data-driven PPC optimization</p>
               <div className="professional-btn-group">
                 <button className="professional-btn" onClick={scrollToContact}>
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ verticalAlign: 'top', marginRight: '10px', marginTop: '-2px' }}>
+                    <rect x="3" y="5" width="14" height="12" rx="3" fill="#23272f"/>
+                    <path d="M3 8.5H17" stroke="#23272f" strokeWidth="1.5" strokeLinecap="round"/>
+                    <rect x="7" y="11" width="2" height="2" rx="1" fill="#fff"/>
+                    <rect x="11" y="11" width="2" height="2" rx="1" fill="#fff"/>
+                  </svg>
                   Get Early Access
                 </button>
               </div>
@@ -842,65 +917,110 @@ export default function AnalyticsPage() {
         </div>
       </section>
 
-      {/* Services Block */}
-      <section id="services" className="professional-problems-section">
+
+
+      {/* Get Early Access Section */}
+      <section id="contact" className="professional-contact-section">
         <div className="container">
           <div className="professional-section-header">
-            <h2>Analytics Services for Business Growth</h2>
-            <p>Transform your data into actionable insights and automated reporting solutions</p>
+            <h2>Get Early Access</h2>
+            <p>Be among the first to experience our advanced analytics platform</p>
           </div>
-          <div className="professional-problems-grid">
-            <div className="professional-problem-card">
-              <div className="professional-problem-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M3 3V21H21" />
-                  <path d="M9 9L12 6L16 10L21 5" />
-                </svg>
+          <div className="professional-contact-content">
+            <div className="professional-contact-info">
+              <div className="professional-contact-item">
+                <div className="professional-contact-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <polyline points="22,6 12,13 2,6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </div>
+                <div>
+                  <h3>Email</h3>
+                  <p>info@ppcset.com</p>
+                </div>
               </div>
-              <h3>Performance Analytics</h3>
-              <p>Track and analyze your business performance with comprehensive reporting</p>
+              <div className="professional-contact-item">
+                <div className="professional-contact-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488" fill="currentColor"/>
+                  </svg>
+                </div>
+                <div>
+                  <h3>WhatsApp</h3>
+                  <p>Available upon request</p>
+                </div>
+              </div>
+              <div className="professional-contact-item">
+                <a href="https://www.linkedin.com/in/vitali-ppc%E2%9C%94-26b294b4/" target="_blank" rel="noopener" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <div className="professional-contact-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" fill="currentColor"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h3>LinkedIn</h3>
+                    <p>linkedin.com/in/ppcset</p>
+                  </div>
+                </a>
+              </div>
             </div>
-            <div className="professional-problem-card">
-              <div className="professional-problem-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" />
-                </svg>
-              </div>
-              <h3>Automated Reporting</h3>
-              <p>Save time with automated reports that deliver insights when you need them</p>
-            </div>
-            <div className="professional-problem-card">
-              <div className="professional-problem-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="12" cy="12" r="3"/>
-                  <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-1.82-.33l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h.09a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51h.09a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82 1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-                </svg>
-              </div>
-              <h3>Data Optimization</h3>
-              <p>Optimize your campaigns and strategies based on comprehensive data analysis</p>
-            </div>
-            <div className="professional-problem-card">
-              <div className="professional-problem-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <ellipse cx="12" cy="5" rx="9" ry="3"/>
-                  <path d="M3 5v14a9 3 0 0 0 18 0V5"/>
-                  <path d="M3 12a9 3 0 0 0 18 0"/>
-                </svg>
-              </div>
-              <h3>Data Integration</h3>
-              <p>Connect and unify data from multiple sources for comprehensive insights</p>
-            </div>
-            <div className="professional-problem-card">
-              <div className="professional-problem-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="6" cy="6" r="3"/>
-                  <circle cx="6" cy="18" r="3"/>
-                  <circle cx="18" cy="12" r="3"/>
-                  <path d="M6 9v6a6 6 0 0 0 6 6h0a6 6 0 0 0 6-6V9"/>
-                </svg>
-              </div>
-              <h3>Custom Dashboards</h3>
-              <p>Get personalized dashboards that show exactly what matters to your business</p>
+            <div className="professional-contact-form">
+              <h3>Join Waitlist</h3>
+              <form className="professional-contact-form-inner" onSubmit={handleFormSubmit}>
+                <div className="professional-input-group">
+                  <input 
+                    type="text" 
+                    className={`professional-input ${formErrors.name ? 'error' : ''}`}
+                    name="name" 
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    placeholder="Your Name *" 
+                  />
+                  {formErrors.name && (
+                    <div className="email-error" style={{ color: '#dc3545', fontSize: '12px', marginTop: '4px' }}>
+                      {formErrors.name}
+                    </div>
+                  )}
+                </div>
+                <div className="professional-input-group">
+                  <input 
+                    type="email" 
+                    className={`professional-input ${formErrors.email ? 'error' : ''}`}
+                    name="email" 
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    placeholder="Email Address *" 
+                  />
+                  {formErrors.email && (
+                    <div className="email-error" style={{ color: '#dc3545', fontSize: '12px', marginTop: '4px' }}>
+                      {formErrors.email}
+                    </div>
+                  )}
+                </div>
+                <div className="professional-input-group">
+                  <input 
+                    type="text" 
+                    className="professional-input"
+                    name="company" 
+                    value={formData.company}
+                    onChange={handleInputChange}
+                    placeholder="Company"
+                  />
+                </div>
+                <div className="professional-input-group">
+                  <textarea 
+                    className="professional-textarea" 
+                    name="message" 
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    placeholder="Tell us about your analytics needs" 
+                    rows={4}
+                  />
+                </div>
+
+                <button type="submit" className="professional-submit">Join Waitlist</button>
+              </form>
             </div>
           </div>
         </div>
