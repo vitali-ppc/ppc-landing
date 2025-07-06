@@ -72,14 +72,14 @@ export default function Breadcrumbs() {
     <>
       <div className="container">
         <nav className="breadcrumbs-precisely breadcrumbs-color-1" aria-label="Breadcrumb">
-          <Link href="/">Home</Link>
+          <Link href="/" aria-label="Go to home page">Home</Link>
           {breadcrumbs.map((breadcrumb, index) => (
             <React.Fragment key={breadcrumb.path}>
-              <span className="separator">/</span>
+              <span className="separator" aria-label="Breadcrumb separator">/</span>
               {breadcrumb.isLast ? (
-                <span className="current">{breadcrumb.title}</span>
+                <span className="current" aria-current="page">{breadcrumb.title}</span>
               ) : (
-                <Link href={breadcrumb.path}>{breadcrumb.title}</Link>
+                <Link href={breadcrumb.path} aria-label={`Go to ${breadcrumb.title} page`}>{breadcrumb.title}</Link>
               )}
             </React.Fragment>
           ))}

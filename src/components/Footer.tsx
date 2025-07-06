@@ -15,7 +15,7 @@ export default function Footer({ showTitle = false }: FooterProps) {
         )}
         <p style={{ textAlign: 'center', margin: 0, padding: '0 0 16px 0', color: '#a0a0a0', fontSize: '15px', letterSpacing: '0.2px' }}>
           &copy; PPCSet, 2025. All rights reserved |{' '}
-          <a href="mailto:info@ppcset.com" style={{ color: 'inherit', textDecoration: 'none' }}>
+          <a href="mailto:info@ppcset.com" style={{ color: 'inherit', textDecoration: 'none' }} aria-label="Send email to info@ppcset.com">
             info@ppcset.com
           </a>
         </p>
