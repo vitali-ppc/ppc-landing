@@ -265,7 +265,6 @@ export default function Home() {
       {/* WOW TABS-SLIDER */}
       <section style={{background:'#1a1a1a',padding:'40px 0 40px 0'}}>
         <div style={{maxWidth:'900px',margin:'0 auto'}}>
-          <h2 style={{textAlign:'center',fontSize:'32px',fontWeight:'700',color:'#fff',marginBottom:'48px',marginTop:0}}>Our Services</h2>
           <div style={{display:'flex',gap:'16px',justifyContent:'center',marginBottom:'48px',flexWrap:'wrap'}}>
             <button 
               onClick={() => handleTabClick('all')}

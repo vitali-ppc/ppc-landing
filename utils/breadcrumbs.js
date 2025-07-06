@@ -9,7 +9,7 @@ const pagesConfig = {
   '/analytics': { title: 'Analytics', showInBreadcrumbs: true },
   '/chat': { title: 'Chat', showInBreadcrumbs: true },
   '/generate': { title: 'Generate', showInBreadcrumbs: true },
-  '/professional': { title: 'Professional', showInBreadcrumbs: true },
+
   '/modern-ppc': { title: 'Modern PPC', showInBreadcrumbs: true },
   '/nodejs-development': { title: 'Node.js Development', showInBreadcrumbs: true },
   '/nextjs-development': { title: 'Next.js Development', showInBreadcrumbs: true },

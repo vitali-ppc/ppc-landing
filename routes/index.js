@@ -69,10 +69,7 @@ router.get('/blog', function(req, res, next) {
   res.render('blog');
 });
 
-// Страница профессиональных услуг
-// router.get('/professional', function(req, res, next) {
-//   res.render('professional');
-// });
+
 
 // Сторінка PPC & Performance
 router.get('/ppc-performance', function(req, res, next) {

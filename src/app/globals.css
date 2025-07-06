@@ -929,4 +929,14 @@ body {
   .professional-contact-form {
     padding: 24px;
   }
+}
+
+/* 404 Page Styles */
+.not-found-page header {
+  display: none !important;
+}
+
+.not-found-page body {
+  margin: 0 !important;
+  padding: 0 !important;
 } 
