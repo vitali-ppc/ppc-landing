@@ -10,12 +10,7 @@ export default function AnalyticsPage() {
   const [showConnectForm, setShowConnectForm] = useState(false)
   const [isRefreshing, setIsRefreshing] = useState(false)
 
-  const scrollToContact = () => {
-    const contactSection = document.getElementById('contact')
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' })
-    }
-  }
+
 
   const handleConnectClick = () => {
     setShowConnectForm(true)
@@ -869,7 +864,7 @@ export default function AnalyticsPage() {
               <h1 className="professional-hero-title">Analytics Dashboard</h1>
               <p className="professional-hero-subtitle">Advanced campaign analytics and AI-powered insights for data-driven PPC optimization</p>
               <div className="professional-btn-group">
-                <button className="professional-btn" onClick={scrollToContact}>
+                <a href="#contact" className="professional-btn">
                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ verticalAlign: 'top', marginRight: '10px', marginTop: '-2px' }}>
                     <rect x="3" y="5" width="14" height="12" rx="3" fill="#23272f"/>
                     <path d="M3 8.5H17" stroke="#23272f" strokeWidth="1.5" strokeLinecap="round"/>
@@ -877,7 +872,7 @@ export default function AnalyticsPage() {
                     <rect x="11" y="11" width="2" height="2" rx="1" fill="#fff"/>
                   </svg>
                   Get Early Access
-                </button>
+                </a>
               </div>
             </div>
             

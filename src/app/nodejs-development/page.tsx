@@ -111,12 +111,7 @@ export default function NodeJsDevelopmentPage() {
     }
   }
 
-  const scrollToContact = () => {
-    const contactSection = document.getElementById('contact')
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' })
-    }
-  }
+
 
   return (
     <>
@@ -130,7 +125,7 @@ export default function NodeJsDevelopmentPage() {
               <h1 className="professional-hero-title">Business-Driven Node.js Solutions</h1>
               <p className="professional-hero-subtitle">Build fast, scalable, and future-ready products with Node.js</p>
               <div className="professional-btn-group">
-                <button className="professional-btn premium-gradient-btn" onClick={scrollToContact} aria-label="Get started with Node.js development">
+                <a href="#contact" className="professional-btn premium-gradient-btn" aria-label="Get started with Node.js development">
                   <svg className="btn-calendar-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" style={{ verticalAlign: 'middle', marginRight: '10px' }}>
                     <rect x="3" y="5" width="14" height="12" rx="3" fill="#23272f"/>
                     <path d="M3 8.5H17" stroke="#23272f" strokeWidth="1.5" strokeLinecap="round"/>
@@ -138,7 +133,7 @@ export default function NodeJsDevelopmentPage() {
                     <rect x="11" y="11" width="2" height="2" rx="1" fill="#fff"/>
                   </svg>
                   Get Started
-                </button>
+                </a>
               </div>
             </div>
             
