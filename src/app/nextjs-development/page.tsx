@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-import ContactForm from '@/components/ContactForm'
+import ProfessionalContactSection from '@/components/ProfessionalContactSection'
+import Breadcrumbs from '@/components/Breadcrumbs'
 
 export const metadata: Metadata = {
   title: 'Next.js Development Services | PPCSet',
@@ -62,6 +63,7 @@ export default function NextJsDevelopmentPage() {
       />
       
       <Header />
+      <Breadcrumbs />
       
       {/* Hero Section */}
       <section className="professional-hero">
@@ -84,7 +86,7 @@ export default function NextJsDevelopmentPage() {
             </div>
             
             <div className="professional-hero-cards">
-              <div className="professional-mini-card">
+              <div className="professional-mini-card" style={{ padding: '20px 16px', height: 'fit-content' }}>
                 <div className="professional-icon">
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
                     <polygon points="13 2 2 14 12 14 11 22 22 10 12 10 13 2"/>
@@ -93,7 +95,7 @@ export default function NextJsDevelopmentPage() {
                 <h3>Blazing Performance</h3>
                 <p>Deliver instant load times and smooth user experiences for every device</p>
               </div>
-              <div className="professional-mini-card">
+              <div className="professional-mini-card" style={{ padding: '20px 16px', height: 'fit-content' }}>
                 <div className="professional-icon">
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
                     <path d="M3 17L9 11 13 15 21 7"/>
@@ -103,7 +105,7 @@ export default function NextJsDevelopmentPage() {
                 <h3>SEO & Visibility</h3>
                 <p>Outrank competitors with server-side rendering and advanced SEO features</p>
               </div>
-              <div className="professional-mini-card">
+              <div className="professional-mini-card" style={{ padding: '20px 16px', height: 'fit-content' }}>
                 <div className="professional-icon">
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
                     <circle cx="12" cy="12" r="3"/>
@@ -224,15 +226,9 @@ export default function NextJsDevelopmentPage() {
       </section>
 
       {/* Contact Section */}
-      <ContactForm 
+      <ProfessionalContactSection 
         title="Ready to Start Your Next.js Project?"
         description="Let's discuss your project requirements and create a custom solution that drives results."
-        features={[
-          { text: "Free consultation and project estimation" },
-          { text: "Modern Next.js architecture and best practices" },
-          { text: "Performance optimization and SEO focus" },
-          { text: "Ongoing support and maintenance" }
-        ]}
       />
 
       <Footer />
