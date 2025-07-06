@@ -736,4 +736,39 @@ body {
     width: 44px;
     height: 44px;
   }
+}
+
+/* Form validation styles */
+.error-message {
+  color: #ef4444;
+  font-size: 14px;
+  margin-top: 4px;
+  display: block;
+  min-height: 20px;
+}
+
+.form-group input.error,
+.form-group textarea.error,
+.form-group select.error {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 1px #ef4444;
+}
+
+.form-group input:focus.error,
+.form-group textarea:focus.error,
+.form-group select:focus.error {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
+}
+
+.success-message {
+  color: #10b981;
+  font-size: 14px;
+  margin-top: 8px;
+  display: block;
+  text-align: center;
+  padding: 12px;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 8px;
 } 

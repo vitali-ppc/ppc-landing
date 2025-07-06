@@ -265,6 +265,7 @@ export default function Home() {
       {/* WOW TABS-SLIDER */}
       <section style={{background:'#1a1a1a',padding:'40px 0 40px 0'}}>
         <div style={{maxWidth:'900px',margin:'0 auto'}}>
+          <h2 style={{textAlign:'center',fontSize:'32px',fontWeight:'700',color:'#fff',marginBottom:'48px',marginTop:0}}>Our Services</h2>
           <div style={{display:'flex',gap:'16px',justifyContent:'center',marginBottom:'48px',flexWrap:'wrap'}}>
             <button 
               onClick={() => handleTabClick('all')}
@@ -578,6 +579,7 @@ export default function Home() {
           </svg>
         </div>
         <div style={{position:'relative',zIndex:1,maxWidth:'1200px',margin:'0 auto',textAlign:'center'}}>
+          <h2 style={{fontSize:'32px',fontWeight:'700',color:'#fff',marginBottom:'48px',marginTop:0}}>Industries We Serve</h2>
           <div style={{display:'flex',flexWrap:'wrap',justifyContent:'center',gap:'64px',alignItems:'flex-start'}}>
             <div style={{display:'flex',flexDirection:'column',alignItems:'center',minWidth:'180px',maxWidth:'240px'}}>
               <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{marginBottom:'18px'}}>
@@ -614,6 +616,10 @@ export default function Home() {
 
       {/* Digital Cosmos: анімований digital network/cosmos */}
       <section style={{background:'#1a1a1a',padding:'120px 0 48px 0',overflow:'hidden',position:'relative'}}>
+        <div style={{textAlign:'center',marginBottom:'48px'}}>
+          <h2 style={{fontSize:'32px',fontWeight:'700',color:'#fff',marginBottom:'16px',marginTop:0}}>Digital Network</h2>
+          <p style={{fontSize:'18px',color:'#a0a0a0',margin:0}}>Connecting businesses through technology</p>
+        </div>
         <canvas 
           ref={canvasRef}
           width="900" 

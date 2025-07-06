@@ -130,8 +130,8 @@ export default function NodeJsDevelopmentPage() {
               <h1 className="professional-hero-title">Business-Driven Node.js Solutions</h1>
               <p className="professional-hero-subtitle">Build fast, scalable, and future-ready products with Node.js</p>
               <div className="professional-btn-group">
-                <button className="professional-btn premium-gradient-btn" onClick={scrollToContact}>
-                  <svg className="btn-calendar-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ verticalAlign: 'middle', marginRight: '10px' }}>
+                <button className="professional-btn premium-gradient-btn" onClick={scrollToContact} aria-label="Get started with Node.js development">
+                  <svg className="btn-calendar-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" style={{ verticalAlign: 'middle', marginRight: '10px' }}>
                     <rect x="3" y="5" width="14" height="12" rx="3" fill="#23272f"/>
                     <path d="M3 8.5H17" stroke="#23272f" strokeWidth="1.5" strokeLinecap="round"/>
                     <rect x="7" y="11" width="2" height="2" rx="1" fill="#fff"/>
@@ -145,7 +145,7 @@ export default function NodeJsDevelopmentPage() {
             <div className="professional-hero-cards">
               <div className="professional-mini-card" style={{ padding: '24px 20px', height: 'fit-content' }}>
                 <div className="professional-icon">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
                     <path d="M3 17V21H21" />
                     <rect x="7" y="13" width="3" height="5" />
                     <rect x="12" y="9" width="3" height="9" />
@@ -157,7 +157,7 @@ export default function NodeJsDevelopmentPage() {
               </div>
               <div className="professional-mini-card" style={{ padding: '24px 20px', height: 'fit-content' }}>
                 <div className="professional-icon">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
                     <circle cx="12" cy="12" r="4"/>
                     <line x1="12" y1="2" x2="12" y2="8"/>
                     <line x1="12" y1="16" x2="12" y2="22"/>
@@ -174,7 +174,7 @@ export default function NodeJsDevelopmentPage() {
               </div>
               <div className="professional-mini-card" style={{ padding: '24px 20px', height: 'fit-content' }}>
                 <div className="professional-icon">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
                     <path d="M10 13a5 5 0 0 1 7 7l-3 3a5 5 0 0 1-7-7"/>
                     <path d="M14 11a5 5 0 0 0-7-7l-3 3a5 5 0 0 0 7 7"/>
                   </svg>
@@ -197,7 +197,7 @@ export default function NodeJsDevelopmentPage() {
           <div className="professional-problems-grid">
             <div className="professional-problem-card" style={{ padding: '32px 24px', height: 'fit-content' }}>
               <div className="professional-problem-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
                   <path d="M9 18h6"/>
                   <path d="M10 22h4"/>
                   <path d="M12 2a7 7 0 0 1 7 7c0 3.5-2.5 6-4 7.5a2 2 0 0 1-6 0C7.5 15 5 12.5 5 9a7 7 0 0 1 7-7z"/>
@@ -208,7 +208,7 @@ export default function NodeJsDevelopmentPage() {
             </div>
             <div className="professional-problem-card" style={{ padding: '32px 24px', height: 'fit-content' }}>
               <div className="professional-problem-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
                   <polyline points="13 2 13 13 17 13 7 22 11 11 7 11 13 2"/>
                 </svg>
               </div>
@@ -217,7 +217,7 @@ export default function NodeJsDevelopmentPage() {
             </div>
             <div className="professional-problem-card" style={{ padding: '32px 24px', height: 'fit-content' }}>
               <div className="professional-problem-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
                   <circle cx="12" cy="12" r="3"/>
                   <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-1.82-.33l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h.09a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51h.09a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82 1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
                 </svg>
@@ -227,7 +227,7 @@ export default function NodeJsDevelopmentPage() {
             </div>
             <div className="professional-problem-card" style={{ padding: '32px 24px', height: 'fit-content' }}>
               <div className="professional-problem-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
                   <ellipse cx="12" cy="5" rx="9" ry="3"/>
                   <path d="M3 5v14a9 3 0 0 0 18 0V5"/>
                   <path d="M3 12a9 3 0 0 0 18 0"/>
@@ -238,7 +238,7 @@ export default function NodeJsDevelopmentPage() {
             </div>
             <div className="professional-problem-card" style={{ padding: '32px 24px', height: 'fit-content' }}>
               <div className="professional-problem-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
                   <circle cx="6" cy="6" r="3"/>
                   <circle cx="6" cy="18" r="3"/>
                   <circle cx="18" cy="12" r="3"/>
@@ -264,35 +264,35 @@ export default function NodeJsDevelopmentPage() {
           <div className="nodejs-powered-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(220px,1fr))', gap: 32, maxWidth: 980, margin: '0 auto' }}>
             <div className="nodejs-powered-card material-card">
               <div className="material-icon">
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#7f9cf5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="13 2 13 13 17 13 7 22 11 11 7 11 13 2"/></svg>
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#7f9cf5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false"><polyline points="13 2 13 13 17 13 7 22 11 11 7 11 13 2"/></svg>
               </div>
               <h3>Fast & Real-Time</h3>
               <p>Lightning-fast loading and real-time updates for a seamless user experience</p>
             </div>
             <div className="nodejs-powered-card material-card">
               <div className="material-icon">
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#7f9cf5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10 13a5 5 0 0 1 7 7l-3 3a5 5 0 0 1-7-7"/><path d="M14 11a5 5 0 0 0-7-7l-3 3a5 5 0 0 0 7 7"/></svg>
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#7f9cf5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false"><path d="M10 13a5 5 0 0 1 7 7l-3 3a5 5 0 0 1-7-7"/><path d="M14 11a5 5 0 0 0-7-7l-3 3a5 5 0 0 0 7 7"/></svg>
               </div>
               <h3>Seamless Integration</h3>
               <p>Effortless integration with analytics, cloud and business tools</p>
             </div>
             <div className="nodejs-powered-card material-card">
               <div className="material-icon">
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#7f9cf5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 17V21H21"/><rect x="7" y="13" width="3" height="5"/><rect x="12" y="9" width="3" height="9"/><rect x="17" y="5" width="3" height="13"/></svg>
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#7f9cf5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false"><path d="M3 17V21H21"/><rect x="7" y="13" width="3" height="5"/><rect x="12" y="9" width="3" height="9"/><rect x="17" y="5" width="3" height="13"/></svg>
               </div>
               <h3>Scalable Architecture</h3>
               <p>Ready for any traffic — from startups to enterprise-level loads</p>
             </div>
             <div className="nodejs-powered-card material-card">
               <div className="material-icon">
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#7f9cf5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#7f9cf5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
               </div>
               <h3>Secure & Reliable</h3>
               <p>Enterprise-grade security and reliability for your business data</p>
             </div>
             <div className="nodejs-powered-card material-card">
               <div className="material-icon">
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#7f9cf5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 0 20"/><path d="M12 2a15.3 15.3 0 0 0 0 20"/></svg>
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#7f9cf5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 0 20"/><path d="M12 2a15.3 15.3 0 0 0 0 20"/></svg>
               </div>
               <h3>SEO & Mobile-Ready</h3>
               <p>Optimized for search engines and mobile devices from day one</p>
@@ -405,7 +405,7 @@ export default function NodeJsDevelopmentPage() {
           <div className="startup-ideas-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(280px,1fr))', gap: 32, maxWidth: 1000, margin: '0 auto' }}>
             <div className="startup-idea-card material-card" style={{ background: '#fff', border: '1px solid #e5e5e5', borderRadius: 16, padding: '40px 32px', transition: 'all 0.3s ease', boxShadow: '0 2px 16px rgba(0,0,0,0.08)' }}>
               <div className="startup-idea-icon" style={{ marginBottom: 24 }}>
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: '#7f9cf5' }}>
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: '#7f9cf5' }} aria-hidden="true" focusable="false">
                   <path d="M3 3V21H21"/>
                   <path d="M9 9L12 6L16 10L21 5"/>
                   <circle cx="12" cy="12" r="3"/>
@@ -423,7 +423,7 @@ export default function NodeJsDevelopmentPage() {
 
             <div className="startup-idea-card material-card" style={{ background: '#fff', border: '1px solid #e5e5e5', borderRadius: 16, padding: '40px 32px', transition: 'all 0.3s ease', boxShadow: '0 2px 16px rgba(0,0,0,0.08)' }}>
               <div className="startup-idea-icon" style={{ marginBottom: 24 }}>
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: '#7f9cf5' }}>
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: '#7f9cf5' }} aria-hidden="true" focusable="false">
                   <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
                   <circle cx="9" cy="7" r="4"/>
                   <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
@@ -442,7 +442,7 @@ export default function NodeJsDevelopmentPage() {
 
             <div className="startup-idea-card material-card" style={{ background: '#fff', border: '1px solid #e5e5e5', borderRadius: 16, padding: '40px 32px', transition: 'all 0.3s ease', boxShadow: '0 2px 16px rgba(0,0,0,0.08)' }}>
               <div className="startup-idea-icon" style={{ marginBottom: 24 }}>
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: '#7f9cf5' }}>
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: '#7f9cf5' }} aria-hidden="true" focusable="false">
                   <path d="M6 6h15l-1.5 9h-13z"/>
                   <circle cx="9" cy="20" r="1.5"/>
                   <circle cx="18" cy="20" r="1.5"/>
@@ -461,7 +461,7 @@ export default function NodeJsDevelopmentPage() {
 
             <div className="startup-idea-card material-card" style={{ background: '#fff', border: '1px solid #e5e5e5', borderRadius: 16, padding: '40px 32px', transition: 'all 0.3s ease', boxShadow: '0 2px 16px rgba(0,0,0,0.08)' }}>
               <div className="startup-idea-icon" style={{ marginBottom: 24 }}>
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: '#7f9cf5' }}>
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: '#7f9cf5' }} aria-hidden="true" focusable="false">
                   <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
                   <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
                 </svg>
@@ -478,7 +478,7 @@ export default function NodeJsDevelopmentPage() {
 
             <div className="startup-idea-card material-card" style={{ background: '#fff', border: '1px solid #e5e5e5', borderRadius: 16, padding: '40px 32px', transition: 'all 0.3s ease', boxShadow: '0 2px 16px rgba(0,0,0,0.08)' }}>
               <div className="startup-idea-icon" style={{ marginBottom: 24 }}>
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: '#7f9cf5' }}>
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: '#7f9cf5' }} aria-hidden="true" focusable="false">
                   <path d="M12 2L2 7L12 12L22 7L12 2Z"/>
                   <path d="M2 17L12 22L22 17"/>
                   <path d="M2 12L12 17L22 12"/>
@@ -497,7 +497,7 @@ export default function NodeJsDevelopmentPage() {
 
             <div className="startup-idea-card material-card" style={{ background: '#fff', border: '1px solid #e5e5e5', borderRadius: 16, padding: '40px 32px', transition: 'all 0.3s ease', boxShadow: '0 2px 16px rgba(0,0,0,0.08)' }}>
               <div className="startup-idea-icon" style={{ marginBottom: 24 }}>
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: '#7f9cf5' }}>
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: '#7f9cf5' }} aria-hidden="true" focusable="false">
                   <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z"/>
                   <path d="M12 2L2 7L12 12L22 7L12 2Z"/>
                   <path d="M2 17L12 22L22 17"/>
@@ -528,7 +528,7 @@ export default function NodeJsDevelopmentPage() {
             <div className="professional-contact-info">
               <div className="professional-contact-item">
                 <div className="professional-contact-icon">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
                     <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                     <polyline points="22,6 12,13 2,6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
@@ -540,7 +540,7 @@ export default function NodeJsDevelopmentPage() {
               </div>
               <div className="professional-contact-item">
                 <div className="professional-contact-icon">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
                     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.031-.967-.273-.099-.472-.148-.67.15-.198.297-.767.967-.94 1.164-.173.198-.347.223-.644.075-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.075-.149-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51-.173-.008-.372-.01-.571-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.099 3.205 5.077 4.366.711.306 1.263.489 1.695.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.288.173-1.413-.074-.124-.272-.198-.57-.347z" fill="currentColor"/>
                     <path d="M12.004 2.003c-5.523 0-9.997 4.474-9.997 9.997 0 1.762.464 3.484 1.345 4.997L2 22l5.09-1.333c1.47.803 3.13 1.236 4.914 1.236 5.523 0 9.997-4.474 9.997-9.997 0-5.523-4.474-9.997-9.997-9.997zm0 17.995c-1.627 0-3.217-.438-4.59-1.267l-.328-.195-3.018.791.805-2.942-.213-.302c-.822-1.166-1.257-2.537-1.257-3.98 0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z" fill="currentColor"/>
                   </svg>
@@ -552,7 +552,7 @@ export default function NodeJsDevelopmentPage() {
               </div>
               <div className="professional-contact-item">
                 <div className="professional-contact-icon">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
                     <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" fill="currentColor"/>
                   </svg>
                 </div>
@@ -572,7 +572,8 @@ export default function NodeJsDevelopmentPage() {
                     name="name" 
                     placeholder="Your Name *" 
                     value={formData.name} 
-                    onChange={handleInputChange} 
+                    onChange={handleInputChange}
+                    required
                   />
                   {errors.name && <span className="error">{errors.name}</span>}
                 </div>
@@ -583,7 +584,8 @@ export default function NodeJsDevelopmentPage() {
                     name="email" 
                     placeholder="Email Address *" 
                     value={formData.email} 
-                    onChange={handleInputChange} 
+                    onChange={handleInputChange}
+                    required
                   />
                   {errors.email && <span className="error">{errors.email}</span>}
                 </div>
