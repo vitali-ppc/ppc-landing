@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
 
@@ -9,31 +9,30 @@ interface Message {
 
 const AI_AVATAR = (
   <div style={{
-    width: 36,
-    height: 36,
+    width: 38,
+    height: 38,
     borderRadius: '50%',
-    background: 'linear-gradient(135deg, #e6f7ff 0%, #cbd5e1 100%)',
+    background: 'linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%)',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     fontWeight: 700,
     color: '#23272f',
-    fontSize: 18,
-    boxShadow: '0 2px 8px rgba(0,0,0,0.04)'
+    fontSize: 20,
+    boxShadow: '0 2px 12px rgba(0,0,0,0.07)'
   }}>
-    AI
+    <span role="img" aria-label="AI">⚡</span>
   </div>
 );
 
 function getUserInitials() {
-  // Можна замінити на реальні ініціали користувача
   return 'В';
 }
 
 const USER_AVATAR = (
   <div style={{
-    width: 36,
-    height: 36,
+    width: 38,
+    height: 38,
     borderRadius: '50%',
     background: '#23272f',
     display: 'flex',
@@ -41,14 +40,14 @@ const USER_AVATAR = (
     justifyContent: 'center',
     fontWeight: 700,
     color: '#fff',
-    fontSize: 18,
-    boxShadow: '0 2px 8px rgba(0,0,0,0.04)'
+    fontSize: 20,
+    boxShadow: '0 2px 12px rgba(0,0,0,0.07)'
   }}>
     {getUserInitials()}
   </div>
 );
 
-const ChatForm: React.FC = () => {
+const ChatFormCard: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
@@ -89,16 +88,16 @@ const ChatForm: React.FC = () => {
   };
 
   return (
-    <div className="chat-ui" style={{
-      maxWidth: 520,
+    <div className="chat-ui-card" style={{
+      maxWidth: 540,
       margin: '0 auto',
       padding: 32,
-      background: '#fff',
-      borderRadius: 18,
-      boxShadow: '0 4px 32px rgba(0,0,0,0.07)',
+      background: '#f9fafc',
+      borderRadius: 22,
+      boxShadow: '0 6px 32px rgba(0,0,0,0.10)',
       fontFamily: 'Inter, SF Pro Display, Segoe UI, Arial, sans-serif',
-      border: '1px solid #f0f1f3',
-      minHeight: 420
+      border: '1px solid #e2e8f0',
+      minHeight: 440
     }}>
       <h2 style={{
         fontWeight: 700,
@@ -106,16 +105,16 @@ const ChatForm: React.FC = () => {
         color: '#23272f',
         marginBottom: 18,
         letterSpacing: '-0.5px'
-      }}>AI Chat</h2>
+      }}>AI Chat (Card Style)</h2>
       <div className="chat-history" style={{
         minHeight: 220,
-        maxHeight: 320,
+        maxHeight: 340,
         overflowY: 'auto',
         border: 'none',
         borderRadius: 12,
         padding: 0,
         marginBottom: 18,
-        background: '#f9fafc',
+        background: 'transparent',
         transition: 'background 0.2s'
       }}>
         {messages.length === 0 && <div style={{ color: '#888', padding: 24, textAlign: 'center' }}>Почніть діалог…</div>}
@@ -125,28 +124,28 @@ const ChatForm: React.FC = () => {
             flexDirection: msg.role === 'user' ? 'row-reverse' : 'row',
             alignItems: 'flex-end',
             gap: 12,
-            margin: '14px 0',
+            margin: '18px 0',
             opacity: 0.98,
             animation: 'fadeIn 0.5s',
           }}>
             <div style={{ flexShrink: 0 }}>
               {msg.role === 'user' ? USER_AVATAR : AI_AVATAR}
             </div>
-            <span style={{
-              display: 'inline-block',
-              background: msg.role === 'user' ? '#e6f7ff' : '#f5f5f5',
-              color: '#23272f',
-              borderRadius: 16,
-              padding: '10px 18px',
+            <div style={{
+              background: '#fff',
+              borderRadius: 18,
+              boxShadow: '0 2px 16px rgba(0,0,0,0.07)',
+              border: msg.role === 'user' ? '1.5px solid #e6f7ff' : '1.5px solid #e2e8f0',
+              padding: '14px 22px',
               maxWidth: 340,
               wordBreak: 'break-word',
               fontSize: 16,
-              boxShadow: msg.role === 'user' ? '0 2px 8px rgba(30, 144, 255, 0.04)' : '0 2px 8px rgba(0,0,0,0.03)',
-              border: msg.role === 'user' ? '1px solid #e2e8f0' : '1px solid #f0f1f3',
-              transition: 'background 0.2s',
+              color: '#23272f',
+              fontWeight: 500,
+              transition: 'box-shadow 0.2s',
             }}>
               {msg.text}
-            </span>
+            </div>
           </div>
         ))}
         <div ref={chatEndRef} />
@@ -163,10 +162,10 @@ const ChatForm: React.FC = () => {
             flex: 1,
             padding: 14,
             borderRadius: 10,
-            border: '1px solid #ccc',
+            border: '1.5px solid #cbd5e1',
             fontSize: 16,
             fontFamily: 'inherit',
-            background: '#f9fafc',
+            background: '#fff',
             color: '#23272f',
             outline: 'none',
             boxShadow: '0 1px 2px rgba(0,0,0,0.01)'
@@ -199,4 +198,4 @@ const ChatForm: React.FC = () => {
   );
 };
 
-export default ChatForm; 
+export default ChatFormCard; 

@@ -3,7 +3,7 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import ScrollToTop from '@/components/ScrollToTop'
-import ChatForm from '@/components/ChatForm'
+import ChatFormGPT from '@/components/ChatFormGPT';
 
 export const metadata: Metadata = {
   title: 'Чат з GPT | PPCSet',
@@ -13,11 +13,8 @@ export const metadata: Metadata = {
 
 export default function ChatPage() {
   return (
-    <>
-      <Header />
-      <Breadcrumbs />
-      <ChatForm />
-      <ScrollToTop />
-    </>
-  )
+    <main>
+      <ChatFormGPT />
+    </main>
+  );
 } 

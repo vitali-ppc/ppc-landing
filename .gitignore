@@ -9,3 +9,5 @@ yarn-error.log
 *.log
 sheets.js
 tokens.txt
+ai-server/.env
+.env.local
