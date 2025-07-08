@@ -16,6 +16,10 @@ interface Strategy {
   expectedResults: string
 }
 
+export const metadata = {
+  robots: 'noindex, nofollow'
+}
+
 export default function StrategyGeneratorPage() {
   const [formData, setFormData] = useState({
     businessType: '',

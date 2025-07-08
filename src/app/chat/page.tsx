@@ -8,7 +8,7 @@ import ChatForm from '@/components/ChatForm'
 export const metadata: Metadata = {
   title: 'Чат з GPT | PPCSet',
   description: 'Запитай щось у GPT - інтерактивний чат з штучним інтелектом',
-  robots: 'noindex, follow'
+  robots: 'noindex, nofollow'
 }
 
 export default function ChatPage() {

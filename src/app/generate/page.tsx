@@ -7,7 +7,7 @@ import ScrollToTop from '@/components/ScrollToTop'
 export const metadata: Metadata = {
   title: 'Результат генерації | PPCSet',
   description: 'Рекламний текст від GPT - результат генерації',
-  robots: 'noindex, follow'
+  robots: 'noindex, nofollow'
 }
 
 export default function GeneratePage() {
