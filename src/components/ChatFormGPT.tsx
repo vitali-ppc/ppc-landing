@@ -60,19 +60,67 @@ const ChatFormGPT: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const chatEndRef = useRef<HTMLDivElement>(null);
-  // Додаю стейт для typing-ефекту
-  const [typingText, setTypingText] = useState<string | null>(null);
-  const typingTimeout = useRef<NodeJS.Timeout | null>(null);
-  // Додаю стейт для даних Google Ads
   const [adsData, setAdsData] = useState<any>(null);
   const [useAdsData, setUseAdsData] = useState(false);
   const [realAdsData, setRealAdsData] = useState<any>(null);
-  // Додаю стейт для копіювання
   const [copied, setCopied] = useState(false);
-  // Додаю стейт для OAuth2 підключення акаунта
   const [accountConnected, setAccountConnected] = useState(false);
   const [showAccountModal, setShowAccountModal] = useState(false);
   const [accessToken, setAccessToken] = useState<string | null>(null);
+  const [openExportDropdownIdx, setOpenExportDropdownIdx] = useState<number | null>(null);
+  const [theme, setTheme] = useState<'light' | 'dark'>(typeof window !== 'undefined' && window.localStorage.getItem('chatTheme') === 'dark' ? 'dark' : 'light');
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      document.body.dataset.chatTheme = theme;
+      window.localStorage.setItem('chatTheme', theme);
+    }
+  }, [theme]);
+
+  // typing-ефект через ref
+  const typingTextRef = useRef<string | null>(null);
+  const typingInterrupted = useRef(false);
+  const typingTimeout = useRef<NodeJS.Timeout | null>(null);
+  const typingIndex = useRef(0);
+  const [typingText, setTypingText] = useState<string | null>(null);
+
+  const startTypingEffect = (fullText: string) => {
+    typingInterrupted.current = false;
+    typingIndex.current = 0;
+    typingTextRef.current = '';
+    setTypingText('');
+    if (typingTimeout.current) clearTimeout(typingTimeout.current);
+    const type = () => {
+      if (typingInterrupted.current) {
+        setTypingText(null);
+        typingTextRef.current = null;
+        return;
+      }
+      typingTextRef.current = fullText.slice(0, typingIndex.current + 1);
+      setTypingText(typingTextRef.current);
+      if (typingIndex.current < fullText.length - 1) {
+        typingIndex.current++;
+        typingTimeout.current = setTimeout(type, 12 + Math.random() * 30);
+      } else {
+        setTypingText(null);
+        typingTextRef.current = null;
+      }
+    };
+    type();
+  };
+
+  // Закривати dropdown при кліку поза меню та кнопкою
+  useEffect(() => {
+    const handleClick = (e: MouseEvent) => {
+      setOpenExportDropdownIdx(null);
+    };
+    if (openExportDropdownIdx !== null) {
+      document.addEventListener('mousedown', handleClick);
+    } else {
+      document.removeEventListener('mousedown', handleClick);
+    }
+    return () => document.removeEventListener('mousedown', handleClick);
+  }, [openExportDropdownIdx]);
 
   // Підвантаження mock-даних при першому рендері
   useEffect(() => {
@@ -137,33 +185,29 @@ const ChatFormGPT: React.FC = () => {
     }
   }, [messages]);
 
-  // Модифікую додавання AI-відповіді для typing-ефекту
+  // Запуск typing-ефекту при новій AI-відповіді
   useEffect(() => {
     if (!loading && messages.length > 0 && messages[messages.length - 1].role === 'ai') {
       const lastAiMsg = messages[messages.length - 1].text;
       if (typingText === null && lastAiMsg && lastAiMsg.length > 0) {
-        setTypingText('');
-        let i = 0;
-        if (typingTimeout.current) clearTimeout(typingTimeout.current);
-        const type = () => {
-          setTypingText(lastAiMsg.slice(0, i + 1));
-          if (i < lastAiMsg.length - 1) {
-            i++;
-            typingTimeout.current = setTimeout(type, 12 + Math.random() * 30);
-          } else {
-            setTypingText(null);
-          }
-        };
-        type();
+        startTypingEffect(lastAiMsg);
       }
     }
-    // Очищення при новому питанні
     if (loading) {
       setTypingText(null);
+      typingTextRef.current = null;
       if (typingTimeout.current) clearTimeout(typingTimeout.current);
+      typingInterrupted.current = false;
     }
     // eslint-disable-next-line
   }, [messages, loading]);
+
+  // Очищення таймера при анмаунті
+  useEffect(() => {
+    return () => {
+      if (typingTimeout.current) clearTimeout(typingTimeout.current);
+    };
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -242,18 +286,50 @@ const ChatFormGPT: React.FC = () => {
     }
   };
 
+  // Додаю функції для експорту
+  const exportTxt = async (text: string) => {
+    const res = await fetch('/api/export-txt', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text }),
+    });
+    const blob = await res.blob();
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'report.txt';
+    a.click();
+    window.URL.revokeObjectURL(url);
+  };
+
+  const exportCsv = async (rows: string[][]) => {
+    const res = await fetch('/api/export-csv', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ rows }),
+    });
+    const blob = await res.blob();
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'report.csv';
+    a.click();
+    window.URL.revokeObjectURL(url);
+  };
+
   return (
-    <div style={{
+    <div className="chat-root" style={{
       maxWidth: 900,
       margin: '0 auto',
-      background: '#fff',
+      background: theme === 'dark' ? '#23272f' : '#fff',
       borderRadius: 18,
       boxShadow: '0 4px 32px rgba(0,0,0,0.07)',
-      border: '1px solid #f0f1f3',
+      border: theme === 'dark' ? '1px solid #23272f' : '1px solid #f0f1f3',
       minHeight: 480,
       display: 'flex',
       flexDirection: 'column',
       fontFamily: 'Inter, SF Pro Display, Segoe UI, Arial, sans-serif',
+      transition: 'background 0.3s, border 0.3s',
     }}>
       {/* Top bar */}
       <div style={{
@@ -269,7 +345,10 @@ const ChatFormGPT: React.FC = () => {
         <span style={{ fontWeight: 700, fontSize: 20, color: '#23272f', letterSpacing: '-0.5px' }}>
           PPCSet AI
         </span>
-        <div style={{ display: 'flex', gap: 10 }}>
+        {/* У top bar видаляю кнопку перемикача теми (іконка ☀️/🌙) */}
+        <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
+          {/* Theme toggle */}
+          
           <button
             onClick={() => setShowAccountModal(true)}
             style={{
@@ -288,13 +367,13 @@ const ChatFormGPT: React.FC = () => {
               alignItems: 'center',
               gap: 8
             }}
-            title={accountConnected ? 'Google Ads акаунт підключено' : 'Підключити Google Ads акаунт'}
+            title={accountConnected ? 'Google Ads account connected' : 'Connect Google Ads account'}
           >
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style={{ marginRight: 4 }}>
               <circle cx="10" cy="10" r="9" stroke="#0ea5e9" strokeWidth="2" fill={accountConnected ? '#0ea5e9' : 'none'} />
               <path d="M6 10l2.5 2.5L14 7" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: accountConnected ? 1 : 0 }} />
             </svg>
-            {accountConnected ? 'Google Ads акаунт підключено' : 'Підключити Google Ads акаунт'}
+            {accountConnected ? 'Google Ads account connected' : 'Connect Google Ads account'}
           </button>
           {(adsData || realAdsData) && (
             <button
@@ -312,9 +391,9 @@ const ChatFormGPT: React.FC = () => {
                 marginRight: 8,
                 transition: 'background 0.2s',
               }}
-              title={realAdsData ? "Додати реальні дані Google Ads у питання" : "Додати тестові дані Google Ads у питання"}
+              title={realAdsData ? "Add real Google Ads data to question" : "Add test Google Ads data to question"}
             >
-              {useAdsData ? (realAdsData ? 'Реальні дані Google Ads додано' : 'Дані Google Ads додано') : (realAdsData ? 'Використати реальні дані Google Ads' : 'Використати дані Google Ads')}
+              {useAdsData ? (realAdsData ? 'Real Google Ads data added' : 'Google Ads data added') : (realAdsData ? 'Use real Google Ads data' : 'Use Google Ads data')}
             </button>
           )}
           <button onClick={handleClear} style={{
@@ -326,8 +405,8 @@ const ChatFormGPT: React.FC = () => {
             padding: '4px 10px',
             borderRadius: 8,
             transition: 'background 0.2s',
-          }} title="Очистити чат">
-            Очистити
+          }} title="Clear chat">
+            Clear chat
           </button>
         </div>
       </div>
@@ -347,11 +426,11 @@ const ChatFormGPT: React.FC = () => {
           gap: 18,
         }}>
           <span style={{ fontWeight: 600, color: realAdsData ? '#0ea5e9' : '#856404' }}>
-            {realAdsData ? 'Реальні дані Google Ads підключені' : 'Тестові дані Google Ads підключені'}
+            {realAdsData ? 'Real Google Ads data connected' : 'Test Google Ads data connected'}
           </span>
           <details style={{ flex: 1 }}>
             <summary style={{ cursor: 'pointer', color: realAdsData ? '#0ea5e9' : '#856404', fontWeight: 400, fontSize: 15 }}>
-              Переглянути {realAdsData ? 'реальні' : 'тестові'} дані
+              {realAdsData ? 'View real data' : 'View test data'}
             </summary>
             <pre style={{ fontSize: 13, background: '#f9fafc', borderRadius: 8, padding: 12, marginTop: 8, overflowX: 'auto' }}>
               {JSON.stringify(realAdsData || adsData, null, 2)}
@@ -490,28 +569,103 @@ const ChatFormGPT: React.FC = () => {
                           >
                             {copied ? 'Скопійовано!' : 'Скопіювати відповідь'}
                           </button>
-                          <button
-                            onClick={() => {
-                              // Експортувати у Markdown (копіювати сирий markdown)
-                              navigator.clipboard.writeText(msg.text);
-                              setCopied(true);
-                              setTimeout(() => setCopied(false), 1200);
-                            }}
-                            style={{
-                              background: '#fff',
-                              color: '#0ea5e9',
-                              border: '1.2px solid #0ea5e9',
-                              borderRadius: 8,
-                              padding: '4px 14px',
-                              fontSize: 14,
-                              fontWeight: 600,
-                              cursor: 'pointer',
-                              transition: 'background 0.2s',
-                            }}
-                            title="Експортувати у Markdown"
-                          >
-                            {copied ? 'Markdown скопійовано!' : 'Експортувати у Markdown'}
-                          </button>
+                          {/* Кнопка експорту з іконкою та dropdown */}
+                          <div style={{ position: 'relative', display: 'inline-block' }}>
+                            <button
+                              onClick={() => setOpenExportDropdownIdx(openExportDropdownIdx === idx ? null : idx)}
+                              style={{
+                                background: '#f5f5f5',
+                                color: '#23272f',
+                                border: '1.2px solid #bdbdbd',
+                                borderRadius: 8,
+                                padding: '4px 14px 4px 10px',
+                                fontSize: 14,
+                                fontWeight: 600,
+                                cursor: 'pointer',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: 8,
+                                transition: 'background 0.2s',
+                                minWidth: 44,
+                              }}
+                              title="Скачати звіт"
+                            >
+                              <span style={{display:'inline-flex',alignItems:'center',gap:6}}>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#23272f" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{marginRight:2}}>
+                                  <path d="M12 5v12"/>
+                                  <path d="M6 13l6 6 6-6"/>
+                                  <rect x="4" y="19" width="16" height="2" rx="1" fill="#23272f" stroke="none"/>
+                                </svg>
+                                <span>Скачати</span>
+                              </span>
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#23272f" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{marginLeft:4}}>
+                                <path d="M6 9l6 6 6-6"/>
+                              </svg>
+                            </button>
+                            {openExportDropdownIdx === idx && (
+                              <div style={{
+                                position: 'absolute',
+                                top: '110%',
+                                left: 0,
+                                background: '#fff',
+                                border: '1.2px solid #e2e8f0',
+                                borderRadius: 8,
+                                boxShadow: '0 4px 16px rgba(30,40,90,0.10)',
+                                minWidth: 140,
+                                zIndex: 100,
+                                padding: '6px 0',
+                              }}>
+                                <button
+                                  onClick={() => { exportCsv([["AI-відповідь"], [msg.text]]); setOpenExportDropdownIdx(null); }}
+                                  style={{
+                                    width: '100%',
+                                    background: 'none',
+                                    border: 'none',
+                                    color: '#23272f',
+                                    fontSize: 15,
+                                    padding: '10px 18px',
+                                    textAlign: 'left',
+                                    cursor: 'pointer',
+                                    transition: 'background 0.18s',
+                                  }}
+                                >
+                                  Excel (CSV)
+                                </button>
+                                <button
+                                  onClick={() => { exportCsv([["AI-відповідь"], [msg.text]]); setOpenExportDropdownIdx(null); }}
+                                  style={{
+                                    width: '100%',
+                                    background: 'none',
+                                    border: 'none',
+                                    color: '#23272f',
+                                    fontSize: 15,
+                                    padding: '10px 18px',
+                                    textAlign: 'left',
+                                    cursor: 'pointer',
+                                    transition: 'background 0.18s',
+                                  }}
+                                >
+                                  CSV
+                                </button>
+                                <button
+                                  onClick={() => { exportTxt(msg.text); setOpenExportDropdownIdx(null); }}
+                                  style={{
+                                    width: '100%',
+                                    background: 'none',
+                                    border: 'none',
+                                    color: '#23272f',
+                                    fontSize: 15,
+                                    padding: '10px 18px',
+                                    textAlign: 'left',
+                                    cursor: 'pointer',
+                                    transition: 'background 0.18s',
+                                  }}
+                                >
+                                  TXT
+                                </button>
+                              </div>
+                            )}
+                          </div>
                         </div>
                       )}
                     </>
@@ -519,6 +673,140 @@ const ChatFormGPT: React.FC = () => {
                   : msg.text
               }
             </span>
+            {msg.role === 'ai' && (
+  // Показуємо кнопки тільки якщо це не останнє AI-повідомлення з typingText, або якщо typingText === null
+  ((idx !== messages.length - 1) || typingText === null) && (
+    <div style={{ display: 'flex', alignItems: 'center', gap: 4, marginTop: 8 }}>
+      {/* Мінімалістична кнопка копіювання */}
+      <button
+        onClick={() => {
+          navigator.clipboard.writeText(msg.text);
+          setCopied(true);
+          setTimeout(() => setCopied(false), 1200);
+        }}
+        style={{
+          background: 'none',
+          border: 'none',
+          padding: 2,
+          margin: 0,
+          cursor: 'pointer',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          outline: 'none',
+          boxShadow: 'none',
+          minWidth: 0,
+          minHeight: 0,
+        }}
+        title="Скопіювати"
+      >
+        {copied ? (
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="20 6 9 17 4 12" />
+          </svg>
+        ) : (
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#23272f" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+          </svg>
+        )}
+      </button>
+      {/* Мінімалістична кнопка експорту */}
+      <div style={{ position: 'relative', display: 'inline-block' }}>
+        <button
+          onClick={e => {
+            e.stopPropagation();
+            setOpenExportDropdownIdx(openExportDropdownIdx === idx ? null : idx);
+          }}
+          style={{
+            background: 'none',
+            border: 'none',
+            padding: 2,
+            margin: 0,
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            outline: 'none',
+            boxShadow: 'none',
+            minWidth: 0,
+            minHeight: 0,
+          }}
+          title="Скачати відповідь"
+        >
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#23272f" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M12 5v12"/>
+            <path d="M6 13l6 6 6-6"/>
+            <rect x="4" y="19" width="16" height="2" rx="1" fill="#23272f" stroke="none"/>
+          </svg>
+        </button>
+        {openExportDropdownIdx === idx && (
+          <div style={{
+            position: 'absolute',
+            top: '110%',
+            left: 0,
+            background: '#fff',
+            border: '1.2px solid #e2e8f0',
+            borderRadius: 8,
+            boxShadow: '0 4px 16px rgba(30,40,90,0.10)',
+            minWidth: 120,
+            zIndex: 100,
+            padding: '4px 0',
+          }}>
+            <button
+              onClick={() => { exportCsv([["AI-відповідь", msg.text]]); setOpenExportDropdownIdx(null); }}
+              style={{
+                width: '100%',
+                background: 'none',
+                border: 'none',
+                color: '#23272f',
+                fontSize: 15,
+                padding: '8px 16px',
+                textAlign: 'left',
+                cursor: 'pointer',
+                transition: 'background 0.18s',
+              }}
+            >
+              Excel (CSV)
+            </button>
+            <button
+              onClick={() => { exportCsv([["AI-відповідь", msg.text]]); setOpenExportDropdownIdx(null); }}
+              style={{
+                width: '100%',
+                background: 'none',
+                border: 'none',
+                color: '#23272f',
+                fontSize: 15,
+                padding: '8px 16px',
+                textAlign: 'left',
+                cursor: 'pointer',
+                transition: 'background 0.18s',
+              }}
+            >
+              CSV
+            </button>
+            <button
+              onClick={() => { exportTxt(msg.text); setOpenExportDropdownIdx(null); }}
+              style={{
+                width: '100%',
+                background: 'none',
+                border: 'none',
+                color: '#23272f',
+                fontSize: 15,
+                padding: '8px 16px',
+                textAlign: 'left',
+                cursor: 'pointer',
+                transition: 'background 0.18s',
+              }}
+            >
+              TXT
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
+  )
+)}
           </div>
         ))}
         {loading && (
@@ -543,7 +831,8 @@ const ChatFormGPT: React.FC = () => {
           </div>
         )}
         {/* Кнопка "Продовжити відповідь" */}
-        {!loading && messages.length > 0 && messages[messages.length-1].role === 'ai' && (
+        {/* Видаляю блок: */}
+        {/* {!loading && messages.length > 0 && messages[messages.length-1].role === 'ai' && (
           <div style={{ textAlign: 'center', margin: '12px 0' }}>
             <button onClick={handleContinue} style={{
               background: '#e6f7ff',
@@ -559,7 +848,7 @@ const ChatFormGPT: React.FC = () => {
               transition: 'background 0.2s',
             }}>Продовжити відповідь</button>
           </div>
-        )}
+        )} */}
         <div ref={chatEndRef} />
       </div>
       {/* Input */}
@@ -581,7 +870,16 @@ const ChatFormGPT: React.FC = () => {
             e.target.style.height = '40px';
             e.target.style.height = e.target.scrollHeight + 'px';
           }}
-          placeholder="Введіть питання…"
+          onKeyDown={e => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+              e.preventDefault();
+              if (!loading && input.trim()) {
+                // Викликаємо submit форми
+                (e.target as HTMLTextAreaElement).form?.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
+              }
+            }
+          }}
+          placeholder="Type your question..."
           disabled={loading}
           rows={1}
           style={{
@@ -609,30 +907,43 @@ const ChatFormGPT: React.FC = () => {
         <button
           type="submit"
           disabled={loading || !input.trim()}
-          aria-label="Відправити"
+          aria-label={loading || typingText !== null ? 'Зупинити друк відповіді' : 'Відправити'}
           style={{
             width: 40,
             height: 40,
             borderRadius: '50%',
-            background: loading ? '#e2e8f0' : '#23272f',
-            color: loading ? '#888' : '#fff',
+            background: loading || typingText !== null ? '#e2e8f0' : '#23272f',
+            color: loading || typingText !== null ? '#888' : '#fff',
             border: 'none',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             fontSize: 20,
-            cursor: loading ? 'not-allowed' : 'pointer',
+            cursor: loading || typingText !== null ? 'pointer' : 'pointer',
             transition: 'background 0.2s',
             boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
             marginLeft: 8
           }}
+          onClick={e => {
+            if (typingText !== null && typingTextRef.current !== null) {
+              typingInterrupted.current = true;
+              setTypingText(null);
+              typingTextRef.current = null;
+              if (typingTimeout.current) clearTimeout(typingTimeout.current);
+              // Показати одразу повний текст
+              const lastAiMsg = messages[messages.length - 1]?.text;
+              if (lastAiMsg) setMessages(prev => prev.map((m, i) => i === prev.length - 1 ? { ...m, text: lastAiMsg } : m));
+              e.preventDefault();
+            }
+          }}
         >
-          {loading ? (
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" style={{ animation: 'spin 1s linear infinite' }}>
-              <circle cx="11" cy="11" r="9" stroke="currentColor" strokeWidth="3" opacity="0.2" />
-              <path d="M11 2a9 9 0 0 1 9 9" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+          {(loading || typingText !== null) ? (
+            // Квадратик (як у цьому чаті)
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+              <rect x="5" y="5" width="12" height="12" rx="3" fill="#888" />
             </svg>
           ) : (
+            // Стрілочка
             <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
               <path d="M3 11L19 3L11 19L10 13L3 11Z" fill="currentColor"/>
             </svg>
@@ -640,8 +951,8 @@ const ChatFormGPT: React.FC = () => {
         </button>
       </form>
       {/* Підказка під textarea */}
-      <div style={{ color: '#888', fontSize: 14, margin: '0 48px 12px 48px', textAlign: 'left' }}>
-        Щоб отримати персоналізовану відповідь, натисніть <b>“Використати дані Google Ads”</b> перед відправкою питання.
+      <div style={{ color: '#888', fontSize: 14, margin: '0 48px 12px 48px', textAlign: 'center' }}>
+        For a personalized answer, click <b>“Use Google Ads data”</b> before submitting your question.
       </div>
       {error && <div style={{ color: 'red', margin: '0 48px 10px 48px' }}>{error}</div>}
       {/* Модалка-заглушка для підключення акаунта */}
@@ -674,12 +985,12 @@ const ChatFormGPT: React.FC = () => {
               <path d="M16 24l6 6L36 16" stroke="#0ea5e9" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: accountConnected ? 1 : 0 }} />
             </svg>
             <div style={{ fontWeight: 700, fontSize: 20, color: '#23272f', marginBottom: 10 }}>
-              {accountConnected ? 'Google Ads акаунт підключено!' : 'Підключення Google Ads акаунта'}
+              {accountConnected ? 'Google Ads account connected!' : 'Connect Google Ads account'}
             </div>
             <div style={{ color: '#555', fontSize: 16, marginBottom: 24 }}>
               {accountConnected
-                ? 'Ви успішно підключили Google Ads акаунт через OAuth2. Тепер AI може аналізувати ваші реальні дані.'
-                : 'Підключіть ваш Google Ads акаунт для отримання персоналізованих рекомендацій на основі реальних даних.'}
+                ? 'You have successfully connected your Google Ads account. Now AI can analyze your real data.'
+                : 'Connect your Google Ads account to receive personalized recommendations based on real data.'}
             </div>
             {accountConnected ? (
               <button
@@ -701,7 +1012,7 @@ const ChatFormGPT: React.FC = () => {
                   marginTop: 8,
                   transition: 'background 0.2s',
                 }}
-              >Відключити акаунт</button>
+              >Disconnect account</button>
             ) : (
               <button
                 onClick={() => window.location.href = '/api/auth/login'}
@@ -718,7 +1029,7 @@ const ChatFormGPT: React.FC = () => {
                   marginTop: 8,
                   transition: 'background 0.2s',
                 }}
-              >Підключити Google Ads акаунт</button>
+              >Connect Google Ads account</button>
             )}
           </div>
         </div>
@@ -731,6 +1042,62 @@ const ChatFormGPT: React.FC = () => {
         @keyframes spin {
           from { transform: rotate(0deg); }
           to { transform: rotate(360deg); }
+        }
+        [data-chat-theme="dark"] .chat-root {
+          background: #23272f !important;
+          color: #fff !important;
+          border-color: #23272f !important;
+          transition: background 0.3s, border 0.3s;
+        }
+        [data-chat-theme="dark"] .chat-root * {
+          color: #fff !important;
+          border-color: #23272f !important;
+          transition: background 0.3s, color 0.3s, border 0.3s;
+        }
+        [data-chat-theme="dark"] .chat-root .description, [data-chat-theme="dark"] .chat-root .subtitle {
+          color: #a0a0a0 !important;
+        }
+        [data-chat-theme="dark"] .chat-root textarea {
+          background: #23272f !important;
+          color: #fff !important;
+          border-color: #7f9cf5 !important;
+        }
+        [data-chat-theme="dark"] .chat-root textarea::placeholder {
+          color: #a0a0a0 !important;
+        }
+        [data-chat-theme="dark"] .chat-root button {
+          background: #23272f !important;
+          color: #7f9cf5 !important;
+          border: 1.5px solid #7f9cf5 !important;
+          box-shadow: none !important;
+          transition: background 0.2s, color 0.2s, border 0.2s, box-shadow 0.2s;
+        }
+        [data-chat-theme="dark"] .chat-root button:hover, [data-chat-theme="dark"] .chat-root button:focus {
+          color: #00ffe7 !important;
+          border-color: #00ffe7 !important;
+          box-shadow: 0 0 8px #00ffe755 !important;
+        }
+        [data-chat-theme="dark"] .chat-root svg {
+          color: #7f9cf5 !important;
+          stroke: #7f9cf5 !important;
+          transition: color 0.2s, stroke 0.2s;
+        }
+        [data-chat-theme="dark"] .chat-root button:hover svg, [data-chat-theme="dark"] .chat-root button:focus svg {
+          color: #00ffe7 !important;
+          stroke: #00ffe7 !important;
+        }
+        [data-chat-theme="dark"] .chat-root .ai-bubble {
+          background: #23272f !important;
+          border: 1.5px solid #23272f !important;
+          color: #fff !important;
+        }
+        [data-chat-theme="dark"] .chat-root .user-bubble {
+          background: #18191a !important;
+          border: 1.5px solid #23272f !important;
+          color: #fff !important;
+        }
+        [data-chat-theme="dark"] .chat-root .avatar {
+          background: #1a1a1a !important;
         }
       `}</style>
     </div>
