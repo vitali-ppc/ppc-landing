@@ -9,6 +9,14 @@ interface Message {
   text: string;
 }
 
+interface Chat {
+  id: string;
+  title: string;
+  messages: Message[];
+  createdAt: Date;
+  updatedAt: Date;
+}
+
 const AI_AVATAR = (
   <div style={{
     width: 36,
@@ -69,6 +77,14 @@ const ChatFormGPT: React.FC = () => {
   const [accessToken, setAccessToken] = useState<string | null>(null);
   const [openExportDropdownIdx, setOpenExportDropdownIdx] = useState<number | null>(null);
   const [theme, setTheme] = useState<'light' | 'dark'>(typeof window !== 'undefined' && window.localStorage.getItem('chatTheme') === 'dark' ? 'dark' : 'light');
+  const [placeholderIndex, setPlaceholderIndex] = useState(0);
+  const [chats, setChats] = useState<Chat[]>([]);
+  const [currentChatId, setCurrentChatId] = useState<string | null>(null);
+  const [showSidebar, setShowSidebar] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [openMenuId, setOpenMenuId] = useState<string | null>(null);
+  const [editingChatId, setEditingChatId] = useState<string | null>(null);
+  const [editingTitle, setEditingTitle] = useState('');
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -209,6 +225,129 @@ const ChatFormGPT: React.FC = () => {
     };
   }, []);
 
+  // Динамічний placeholder для textarea
+  const placeholders = [
+    "How can I improve my Google Ads campaign?",
+    "Why is my CPA so high?",
+    "Show me insights for my last 30 days",
+    "What's wrong with my ad performance?",
+    "How to optimize my budget allocation?"
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setPlaceholderIndex((prev) => (prev + 1) % placeholders.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
+
+  // Завантаження історії чатів з localStorage
+  useEffect(() => {
+    const savedChats = localStorage.getItem('ppcset-chats');
+    if (savedChats) {
+      const parsedChats = JSON.parse(savedChats).map((chat: any) => ({
+        ...chat,
+        createdAt: new Date(chat.createdAt),
+        updatedAt: new Date(chat.updatedAt)
+      }));
+      setChats(parsedChats);
+      
+      // Відновлюємо останній активний чат
+      const lastChatId = localStorage.getItem('ppcset-current-chat');
+      if (lastChatId && parsedChats.find((c: Chat) => c.id === lastChatId)) {
+        setCurrentChatId(lastChatId);
+        const lastChat = parsedChats.find((c: Chat) => c.id === lastChatId);
+        if (lastChat) setMessages(lastChat.messages);
+      } else if (parsedChats.length > 0) {
+        // Якщо останній чат не знайдено, беремо найновіший
+        const newestChat = parsedChats[parsedChats.length - 1];
+        setCurrentChatId(newestChat.id);
+        setMessages(newestChat.messages);
+      }
+    } else {
+      // Створюємо перший чат
+      createNewChat();
+    }
+  }, []);
+
+  // Збереження чатів у localStorage
+  useEffect(() => {
+    if (chats.length > 0) {
+      localStorage.setItem('ppcset-chats', JSON.stringify(chats));
+    }
+  }, [chats]);
+
+  // Збереження поточного чату
+  useEffect(() => {
+    if (currentChatId) {
+      localStorage.setItem('ppcset-current-chat', currentChatId);
+    }
+  }, [currentChatId]);
+
+  const createNewChat = () => {
+    const newChat: Chat = {
+      id: Date.now().toString(),
+      title: 'New chat',
+      messages: [],
+      createdAt: new Date(),
+      updatedAt: new Date()
+    };
+    setChats(prev => [...prev, newChat]);
+    setCurrentChatId(newChat.id);
+    setMessages([]);
+    setInput('');
+    setError(null);
+  };
+
+  const selectChat = (chatId: string) => {
+    const chat = chats.find(c => c.id === chatId);
+    if (chat) {
+      setCurrentChatId(chatId);
+      setMessages(chat.messages);
+      setInput('');
+      setError(null);
+      setShowSidebar(false); // Закриваємо sidebar на мобільних
+    }
+  };
+
+  const deleteChat = (chatId: string) => {
+    setChats(prev => prev.filter(c => c.id !== chatId));
+    if (currentChatId === chatId) {
+      if (chats.length > 1) {
+        const remainingChats = chats.filter(c => c.id !== chatId);
+        const lastChat = remainingChats[remainingChats.length - 1];
+        setCurrentChatId(lastChat.id);
+        setMessages(lastChat.messages);
+      } else {
+        createNewChat();
+      }
+    }
+  };
+
+  const updateChatTitle = (chatId: string, title: string) => {
+    setChats(prev => prev.map(c => 
+      c.id === chatId ? { ...c, title, updatedAt: new Date() } : c
+    ));
+    setEditingChatId(null);
+    setEditingTitle('');
+  };
+
+  // Фільтрація чатів по пошуковому запиту
+  const filteredChats = chats.filter(chat => 
+    chat.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  // Закрити меню при кліку поза ним
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (openMenuId && !(e.target as Element).closest('.chat-menu')) {
+        setOpenMenuId(null);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [openMenuId]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!input.trim()) return;
@@ -233,6 +372,22 @@ const ChatFormGPT: React.FC = () => {
     }
     const userMessage: Message = { role: 'user', text: input };
     setMessages((prev) => [...prev, userMessage]);
+    
+    // Оновлюємо поточний чат
+    if (currentChatId) {
+      const updatedMessages = [...messages, userMessage];
+      setChats(prev => prev.map(c => 
+        c.id === currentChatId 
+          ? { 
+              ...c, 
+              messages: updatedMessages,
+              title: c.title === 'New chat' ? input.slice(0, 30) + (input.length > 30 ? '...' : '') : c.title,
+              updatedAt: new Date()
+            }
+          : c
+      ));
+    }
+    
     setInput(''); // Очищаю поле одразу після submit
     if (inputRef.current) {
       inputRef.current.style.height = '40px';
@@ -245,7 +400,18 @@ const ChatFormGPT: React.FC = () => {
       });
       if (!res.ok) throw new Error('Помилка відповіді від AI');
       const data = await res.json();
-      setMessages((prev) => [...prev, { role: 'ai', text: data.answer }]);
+      const aiMessage: Message = { role: 'ai', text: data.answer };
+      setMessages((prev) => [...prev, aiMessage]);
+      
+      // Оновлюємо поточний чат з AI відповіддю
+      if (currentChatId) {
+        const updatedMessages: Message[] = [...messages, userMessage, aiMessage];
+        setChats(prev => prev.map(c => 
+          c.id === currentChatId 
+            ? { ...c, messages: updatedMessages, updatedAt: new Date() }
+            : c
+        ));
+      }
     } catch (err: any) {
       setError(err.message || 'Сталася помилка');
     } finally {
@@ -257,6 +423,14 @@ const ChatFormGPT: React.FC = () => {
     setMessages([]);
     setError(null);
     setInput('');
+    // Очищаємо поточний чат
+    if (currentChatId) {
+      setChats(prev => prev.map(c => 
+        c.id === currentChatId 
+          ? { ...c, messages: [], updatedAt: new Date() }
+          : c
+      ));
+    }
     inputRef.current?.focus();
   };
 
@@ -318,33 +492,337 @@ const ChatFormGPT: React.FC = () => {
   };
 
   return (
-    <div className="chat-root" style={{
-      maxWidth: 900,
-      margin: '0 auto',
-      background: theme === 'dark' ? '#23272f' : '#fff',
-      borderRadius: 18,
-      boxShadow: '0 4px 32px rgba(0,0,0,0.07)',
-      border: theme === 'dark' ? '1px solid #23272f' : '1px solid #f0f1f3',
-      minHeight: 480,
+    <div style={{
       display: 'flex',
-      flexDirection: 'column',
+      height: '100vh',
+      maxWidth: '100vw',
       fontFamily: 'Inter, SF Pro Display, Segoe UI, Arial, sans-serif',
-      transition: 'background 0.3s, border 0.3s',
     }}>
+      {/* Sidebar */}
+      <div style={{
+        width: showSidebar ? 280 : 0,
+        background: '#23272f',
+        borderRight: '1px solid #1a1a1a',
+        transition: 'width 0.3s ease',
+        overflow: 'hidden',
+        display: 'flex',
+        flexDirection: 'column',
+      }}>
+        <div style={{
+          padding: '20px 16px',
+          borderBottom: '1px solid #1a1a1a',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+        }}>
+          <span style={{ fontWeight: 700, fontSize: 18, color: '#fff' }}>
+            Chat History
+          </span>
+          <button
+            onClick={createNewChat}
+            style={{
+              background: '#7f9cf5',
+              color: '#fff',
+              border: 'none',
+              borderRadius: 6,
+              padding: '6px 12px',
+              fontSize: 14,
+              fontWeight: 600,
+              cursor: 'pointer',
+              transition: 'all 0.2s',
+              boxShadow: '0 2px 8px rgba(127, 156, 245, 0.3)',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = '#00ffe7';
+              e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 255, 231, 0.4)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = '#7f9cf5';
+              e.currentTarget.style.boxShadow = '0 2px 8px rgba(127, 156, 245, 0.3)';
+            }}
+          >
+            New Chat
+          </button>
+        </div>
+        <div style={{
+          padding: '12px 16px',
+          borderBottom: '1px solid #1a1a1a',
+        }}>
+          <input
+            type="text"
+            placeholder="Search chats..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            style={{
+              width: '100%',
+              padding: '8px 12px',
+              border: '1px solid #1a1a1a',
+              borderRadius: 6,
+              fontSize: 14,
+              background: '#1a1a1a',
+              color: '#fff',
+              outline: 'none',
+            }}
+            onFocus={(e) => {
+              e.target.style.border = '1px solid #7f9cf5';
+              e.target.style.boxShadow = '0 0 0 2px rgba(127, 156, 245, 0.2)';
+            }}
+            onBlur={(e) => {
+              e.target.style.border = '1px solid #1a1a1a';
+              e.target.style.boxShadow = 'none';
+            }}
+          />
+        </div>
+        <div style={{
+          flex: 1,
+          overflowY: 'auto',
+          padding: '8px',
+        }}>
+          {filteredChats.map((chat) => (
+            <div
+              key={chat.id}
+              style={{
+                padding: '12px 16px',
+                margin: '4px 0',
+                borderRadius: 8,
+                background: currentChatId === chat.id ? '#1a1a1a' : 'transparent',
+                border: currentChatId === chat.id ? '1px solid #7f9cf5' : '1px solid transparent',
+                cursor: 'pointer',
+                transition: 'all 0.2s',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+              }}
+              onClick={() => selectChat(chat.id)}
+              onMouseEnter={(e) => {
+                if (currentChatId !== chat.id) {
+                  e.currentTarget.style.background = '#1a1a1a';
+                  e.currentTarget.style.border = '1px solid #00ffe7';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (currentChatId !== chat.id) {
+                  e.currentTarget.style.background = 'transparent';
+                  e.currentTarget.style.border = '1px solid transparent';
+                }
+              }}
+            >
+              <div style={{ flex: 1, minWidth: 0 }}>
+                {editingChatId === chat.id ? (
+                  <input
+                    type="text"
+                    value={editingTitle}
+                    onChange={(e) => setEditingTitle(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        updateChatTitle(chat.id, editingTitle);
+                      } else if (e.key === 'Escape') {
+                        setEditingChatId(null);
+                        setEditingTitle('');
+                      }
+                    }}
+                    onBlur={() => {
+                      if (editingTitle.trim()) {
+                        updateChatTitle(chat.id, editingTitle);
+                      } else {
+                        setEditingChatId(null);
+                        setEditingTitle('');
+                      }
+                    }}
+                    style={{
+                      width: '100%',
+                      padding: '4px 8px',
+                      border: '1px solid #0ea5e9',
+                      borderRadius: 4,
+                      fontSize: 14,
+                      fontWeight: 600,
+                      background: '#fff',
+                      outline: 'none',
+                    }}
+                    autoFocus
+                  />
+                ) : (
+                  <div style={{
+                    fontWeight: 600,
+                    fontSize: 14,
+                    color: '#fff',
+                    marginBottom: 4,
+                    whiteSpace: 'nowrap',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                  }}>
+                    {chat.title}
+                  </div>
+                )}
+                <div style={{
+                  fontSize: 12,
+                  color: '#a0a0a0',
+                  whiteSpace: 'nowrap',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                }}>
+                  {chat.messages.length} messages
+                </div>
+              </div>
+              <div style={{ position: 'relative' }} className="chat-menu">
+                                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setOpenMenuId(openMenuId === chat.id ? null : chat.id);
+                    }}
+                    style={{
+                      background: 'none',
+                      border: 'none',
+                      color: '#a0a0a0',
+                      fontSize: 16,
+                      cursor: 'pointer',
+                      padding: '4px 8px',
+                      borderRadius: 4,
+                      transition: 'all 0.2s',
+                      marginLeft: 8,
+                    }}
+                    title="More options"
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.color = '#00ffe7';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.color = '#a0a0a0';
+                    }}
+                  >
+                    ⋯
+                  </button>
+                {openMenuId === chat.id && (
+                  <div style={{
+                    position: 'absolute',
+                    top: '100%',
+                    right: 0,
+                    background: '#1a1a1a',
+                    border: '1px solid #7f9cf5',
+                    borderRadius: 6,
+                    boxShadow: '0 4px 12px rgba(127, 156, 245, 0.3)',
+                    zIndex: 1000,
+                    minWidth: 120,
+                    marginTop: 4,
+                  }}>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setEditingChatId(chat.id);
+                        setEditingTitle(chat.title);
+                        setOpenMenuId(null);
+                      }}
+                      style={{
+                        width: '100%',
+                        padding: '8px 12px',
+                        background: 'none',
+                        border: 'none',
+                        textAlign: 'left',
+                        fontSize: 14,
+                        color: '#fff',
+                        cursor: 'pointer',
+                        transition: 'all 0.2s',
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.background = '#7f9cf5';
+                        e.currentTarget.style.color = '#fff';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.background = 'none';
+                        e.currentTarget.style.color = '#fff';
+                      }}
+                    >
+                      Rename
+                    </button>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        deleteChat(chat.id);
+                        setOpenMenuId(null);
+                      }}
+                      style={{
+                        width: '100%',
+                        padding: '8px 12px',
+                        background: 'none',
+                        border: 'none',
+                        textAlign: 'left',
+                        fontSize: 14,
+                        color: '#ff6b6b',
+                        cursor: 'pointer',
+                        transition: 'all 0.2s',
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.background = '#ff6b6b';
+                        e.currentTarget.style.color = '#fff';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.background = 'none';
+                        e.currentTarget.style.color = '#ff6b6b';
+                      }}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Main chat area */}
+      <div className="chat-root" style={{
+        flex: 1,
+        maxWidth: showSidebar ? 'calc(100vw - 280px)' : '100vw',
+        margin: '0 auto',
+        background: '#1a1a1a',
+        borderRadius: showSidebar ? 0 : 18,
+        boxShadow: showSidebar ? 'none' : '0 4px 32px rgba(0,0,0,0.3)',
+        border: '1px solid #23272f',
+        minHeight: 480,
+        display: 'flex',
+        flexDirection: 'column',
+        transition: 'max-width 0.3s ease',
+      }}>
       {/* Top bar */}
       <div style={{
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
         padding: '22px 48px 12px 48px',
-        borderBottom: '1px solid #f0f1f3',
-        background: 'rgba(255,255,255,0.95)',
+        borderBottom: '1px solid #23272f',
+        background: '#23272f',
         borderTopLeftRadius: 18,
         borderTopRightRadius: 18,
       }}>
-        <span style={{ fontWeight: 700, fontSize: 20, color: '#23272f', letterSpacing: '-0.5px' }}>
-          PPCSet AI
-        </span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+          <button
+            onClick={() => setShowSidebar(!showSidebar)}
+            style={{
+              background: 'none',
+              border: 'none',
+              color: '#fff',
+              fontSize: 20,
+              cursor: 'pointer',
+              padding: '8px',
+              borderRadius: 6,
+              transition: 'all 0.2s',
+            }}
+            title={showSidebar ? 'Hide chat history' : 'Show chat history'}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.color = '#00ffe7';
+              e.currentTarget.style.background = '#1a1a1a';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.color = '#fff';
+              e.currentTarget.style.background = 'none';
+            }}
+          >
+            ☰
+          </button>
+          <span style={{ fontWeight: 700, fontSize: 20, color: '#fff', letterSpacing: '-0.5px' }}>
+            PPCSet AI
+          </span>
+        </div>
         {/* У top bar видаляю кнопку перемикача теми (іконка ☀️/🌙) */}
         <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
           {/* Theme toggle */}
@@ -879,7 +1357,7 @@ const ChatFormGPT: React.FC = () => {
               }
             }
           }}
-          placeholder="Type your question..."
+          placeholder={placeholders[placeholderIndex]}
           disabled={loading}
           rows={1}
           style={{
@@ -950,6 +1428,45 @@ const ChatFormGPT: React.FC = () => {
           )}
         </button>
       </form>
+      {/* Example prompt suggestions under textarea */}
+      <div style={{
+        display: 'flex',
+        gap: 10,
+        justifyContent: 'center',
+        margin: '0 48px 10px 48px',
+        flexWrap: 'wrap',
+      }}>
+        {[
+          "How can I improve my Google Ads campaign?",
+          "Why is my CPA so high?",
+          "Show me insights for my last 30 days."
+        ].map((example, i) => (
+          <button
+            key={i}
+            type="button"
+            onClick={() => setInput(example)}
+            style={{
+              background: '#f5f5f5',
+              color: '#23272f',
+              border: '1.2px solid #e2e8f0',
+              borderRadius: 8,
+              padding: '7px 16px',
+              fontSize: 15,
+              fontWeight: 500,
+              cursor: 'pointer',
+              transition: 'background 0.18s, border 0.18s',
+              marginBottom: 2,
+              boxShadow: '0 1px 4px rgba(0,0,0,0.03)',
+              outline: 'none',
+              whiteSpace: 'nowrap',
+            }}
+            tabIndex={0}
+            aria-label={`Insert example: ${example}`}
+          >
+            {example}
+          </button>
+        ))}
+      </div>
       {/* Підказка під textarea */}
       <div style={{ color: '#888', fontSize: 14, margin: '0 48px 12px 48px', textAlign: 'center' }}>
         For a personalized answer, click <b>“Use Google Ads data”</b> before submitting your question.
@@ -1100,6 +1617,7 @@ const ChatFormGPT: React.FC = () => {
           background: #1a1a1a !important;
         }
       `}</style>
+      </div>
     </div>
   );
 };
