@@ -7,6 +7,7 @@ import { ReactNode } from 'react';
 interface Message {
   role: 'user' | 'ai';
   text: string;
+  image?: string; // base64 або URL зображення
 }
 
 interface Chat {
@@ -85,6 +86,8 @@ const ChatFormGPT: React.FC = () => {
   const [openMenuId, setOpenMenuId] = useState<string | null>(null);
   const [editingChatId, setEditingChatId] = useState<string | null>(null);
   const [editingTitle, setEditingTitle] = useState('');
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -370,7 +373,11 @@ const ChatFormGPT: React.FC = () => {
         question = `${summary}\n${input}\nВикористовуй дані вище для аналізу. У кожному кроці посилайся на конкретні кампанії, цифри, метрики з цих даних. Дай рекомендації з опорою на фактичні показники. На завершення дай короткий summary і рекомендації для покращення результатів.`;
       }
     }
-    const userMessage: Message = { role: 'user', text: input };
+    const userMessage: Message = { 
+      role: 'user', 
+      text: input,
+      image: imagePreview || undefined
+    };
     setMessages((prev) => [...prev, userMessage]);
     
     // Оновлюємо поточний чат
@@ -389,6 +396,8 @@ const ChatFormGPT: React.FC = () => {
     }
     
     setInput(''); // Очищаю поле одразу після submit
+    setSelectedImage(null); // Очищаю зображення
+    setImagePreview(null); // Очищаю preview
     if (inputRef.current) {
       inputRef.current.style.height = '40px';
     }
@@ -396,7 +405,10 @@ const ChatFormGPT: React.FC = () => {
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ question }),
+        body: JSON.stringify({ 
+          question,
+          image: imagePreview // Додаємо зображення до запиту
+        }),
       });
       if (!res.ok) throw new Error('Помилка відповіді від AI');
       const data = await res.json();
@@ -491,13 +503,131 @@ const ChatFormGPT: React.FC = () => {
     window.URL.revokeObjectURL(url);
   };
 
+  // Функція для завантаження зображень
+  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      // Перевіряємо тип файлу
+      if (!file.type.startsWith('image/')) {
+        alert('Please select an image file');
+        return;
+      }
+      
+      // Перевіряємо розмір файлу (максимум 5MB)
+      if (file.size > 5 * 1024 * 1024) {
+        alert('Image size should be less than 5MB');
+        return;
+      }
+
+      setSelectedImage(file);
+      
+      // Створюємо preview
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setImagePreview(e.target?.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  // Функція для видалення зображення
+  const removeImage = () => {
+    setSelectedImage(null);
+    setImagePreview(null);
+  };
+
   return (
     <div style={{
       display: 'flex',
       height: '100vh',
-      maxWidth: '100vw',
+      width: '100vw',
       fontFamily: 'Inter, SF Pro Display, Segoe UI, Arial, sans-serif',
     }}>
+      {/* Narrow sidebar background - visible only when sidebar is closed */}
+      {!showSidebar && (
+        <div style={{
+          position: 'fixed',
+          left: 0,
+          top: 0,
+          width: '70px',
+          height: '100vh',
+          background: '#23272f',
+          borderRight: '1px solid #1a1a1a',
+          zIndex: 150,
+        }} />
+      )}
+
+      {/* Fixed hamburger button - always visible */}
+      <button
+        onClick={() => setShowSidebar(!showSidebar)}
+        style={{
+          position: 'fixed',
+          left: '16px',
+          top: '16px',
+          background: '#23272f',
+          border: '1px solid #1a1a1a',
+          color: '#fff',
+          fontSize: 20,
+          cursor: 'pointer',
+          padding: '8px',
+          borderRadius: 6,
+          transition: 'all 0.2s',
+          zIndex: 200,
+          boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+        }}
+        title={showSidebar ? 'Hide chat history' : 'Show chat history'}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.color = '#00ffe7';
+          e.currentTarget.style.background = '#1a1a1a';
+          e.currentTarget.style.border = '1px solid #00ffe7';
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.color = '#fff';
+          e.currentTarget.style.background = '#23272f';
+          e.currentTarget.style.border = '1px solid #1a1a1a';
+        }}
+      >
+        ☰
+      </button>
+
+      {/* New chat button (pencil) - visible only when sidebar is closed */}
+      {!showSidebar && (
+        <button
+          onClick={createNewChat}
+          style={{
+            position: 'fixed',
+            left: '16px',
+            top: '60px',
+            background: '#23272f',
+            border: '1px solid #1a1a1a',
+            color: '#fff',
+            fontSize: 16,
+            cursor: 'pointer',
+            padding: '8px',
+            borderRadius: 6,
+            transition: 'all 0.2s',
+            zIndex: 200,
+            boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+          title="New chat"
+          onMouseEnter={(e) => {
+            e.currentTarget.style.color = '#00ffe7';
+            e.currentTarget.style.background = '#1a1a1a';
+            e.currentTarget.style.border = '1px solid #00ffe7';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.color = '#fff';
+            e.currentTarget.style.background = '#23272f';
+            e.currentTarget.style.border = '1px solid #1a1a1a';
+          }}
+        >
+          ✏️
+        </button>
+      )}
+
       {/* Sidebar */}
       <div style={{
         width: showSidebar ? 280 : 0,
@@ -507,38 +637,44 @@ const ChatFormGPT: React.FC = () => {
         overflow: 'hidden',
         display: 'flex',
         flexDirection: 'column',
+        position: 'fixed',
+        left: 0,
+        top: 0,
+        height: '100vh',
+        zIndex: 100,
       }}>
         <div style={{
-          padding: '20px 16px',
+          padding: '12px 16px 20px 16px',
           borderBottom: '1px solid #1a1a1a',
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'space-between',
+          justifyContent: 'flex-end',
         }}>
-          <span style={{ fontWeight: 700, fontSize: 18, color: '#fff' }}>
-            Chat History
-          </span>
           <button
             onClick={createNewChat}
             style={{
-              background: '#7f9cf5',
+              background: 'rgba(255,255,255,0.03)',
               color: '#fff',
-              border: 'none',
-              borderRadius: 6,
-              padding: '6px 12px',
+              border: '1.5px solid rgba(255,255,255,0.08)',
+              borderRadius: 12,
+              padding: '16px 24px',
               fontSize: 14,
               fontWeight: 600,
               cursor: 'pointer',
-              transition: 'all 0.2s',
-              boxShadow: '0 2px 8px rgba(127, 156, 245, 0.3)',
+              transition: 'all 0.3s ease',
+              boxShadow: 'none',
             }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = '#00ffe7';
-              e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 255, 231, 0.4)';
+            onMouseEnter={e => {
+              e.currentTarget.style.background = 'rgba(255,255,255,0.1)';
+              e.currentTarget.style.color = '#fff';
+              e.currentTarget.style.border = '1.5px solid rgba(255,255,255,0.2)';
+              e.currentTarget.style.boxShadow = '0 4px 12px rgba(255,255,255,0.1)';
             }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = '#7f9cf5';
-              e.currentTarget.style.boxShadow = '0 2px 8px rgba(127, 156, 245, 0.3)';
+            onMouseLeave={e => {
+              e.currentTarget.style.background = 'rgba(255,255,255,0.03)';
+              e.currentTarget.style.color = '#fff';
+              e.currentTarget.style.border = '1.5px solid rgba(255,255,255,0.08)';
+              e.currentTarget.style.boxShadow = 'none';
             }}
           >
             New Chat
@@ -563,11 +699,11 @@ const ChatFormGPT: React.FC = () => {
               color: '#fff',
               outline: 'none',
             }}
-            onFocus={(e) => {
+            onFocus={e => {
               e.target.style.border = '1px solid #7f9cf5';
               e.target.style.boxShadow = '0 0 0 2px rgba(127, 156, 245, 0.2)';
             }}
-            onBlur={(e) => {
+            onBlur={e => {
               e.target.style.border = '1px solid #1a1a1a';
               e.target.style.boxShadow = 'none';
             }}
@@ -594,13 +730,13 @@ const ChatFormGPT: React.FC = () => {
                 justifyContent: 'space-between',
               }}
               onClick={() => selectChat(chat.id)}
-              onMouseEnter={(e) => {
+              onMouseEnter={e => {
                 if (currentChatId !== chat.id) {
                   e.currentTarget.style.background = '#1a1a1a';
                   e.currentTarget.style.border = '1px solid #00ffe7';
                 }
               }}
-              onMouseLeave={(e) => {
+              onMouseLeave={e => {
                 if (currentChatId !== chat.id) {
                   e.currentTarget.style.background = 'transparent';
                   e.currentTarget.style.border = '1px solid transparent';
@@ -632,11 +768,12 @@ const ChatFormGPT: React.FC = () => {
                     style={{
                       width: '100%',
                       padding: '4px 8px',
-                      border: '1px solid #0ea5e9',
+                      border: '1px solid #7f9cf5',
                       borderRadius: 4,
                       fontSize: 14,
                       fontWeight: 600,
                       background: '#fff',
+                      color: '#23272f',
                       outline: 'none',
                     }}
                     autoFocus
@@ -661,36 +798,36 @@ const ChatFormGPT: React.FC = () => {
                   overflow: 'hidden',
                   textOverflow: 'ellipsis',
                 }}>
-                  {chat.messages.length} messages
+  
                 </div>
               </div>
               <div style={{ position: 'relative' }} className="chat-menu">
-                                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setOpenMenuId(openMenuId === chat.id ? null : chat.id);
-                    }}
-                    style={{
-                      background: 'none',
-                      border: 'none',
-                      color: '#a0a0a0',
-                      fontSize: 16,
-                      cursor: 'pointer',
-                      padding: '4px 8px',
-                      borderRadius: 4,
-                      transition: 'all 0.2s',
-                      marginLeft: 8,
-                    }}
-                    title="More options"
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.color = '#00ffe7';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.color = '#a0a0a0';
-                    }}
-                  >
-                    ⋯
-                  </button>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setOpenMenuId(openMenuId === chat.id ? null : chat.id);
+                  }}
+                  style={{
+                    background: 'none',
+                    border: 'none',
+                    color: '#a0a0a0',
+                    fontSize: 16,
+                    cursor: 'pointer',
+                    padding: '4px 8px',
+                    borderRadius: 4,
+                    transition: 'all 0.2s',
+                    marginLeft: 8,
+                  }}
+                  title="More options"
+                  onMouseEnter={e => {
+                    e.currentTarget.style.color = '#00ffe7';
+                  }}
+                  onMouseLeave={e => {
+                    e.currentTarget.style.color = '#a0a0a0';
+                  }}
+                >
+                  ⋯
+                </button>
                 {openMenuId === chat.id && (
                   <div style={{
                     position: 'absolute',
@@ -722,11 +859,11 @@ const ChatFormGPT: React.FC = () => {
                         cursor: 'pointer',
                         transition: 'all 0.2s',
                       }}
-                      onMouseEnter={(e) => {
+                      onMouseEnter={e => {
                         e.currentTarget.style.background = '#7f9cf5';
                         e.currentTarget.style.color = '#fff';
                       }}
-                      onMouseLeave={(e) => {
+                      onMouseLeave={e => {
                         e.currentTarget.style.background = 'none';
                         e.currentTarget.style.color = '#fff';
                       }}
@@ -750,11 +887,11 @@ const ChatFormGPT: React.FC = () => {
                         cursor: 'pointer',
                         transition: 'all 0.2s',
                       }}
-                      onMouseEnter={(e) => {
+                      onMouseEnter={e => {
                         e.currentTarget.style.background = '#ff6b6b';
                         e.currentTarget.style.color = '#fff';
                       }}
-                      onMouseLeave={(e) => {
+                      onMouseLeave={e => {
                         e.currentTarget.style.background = 'none';
                         e.currentTarget.style.color = '#ff6b6b';
                       }}
@@ -770,19 +907,27 @@ const ChatFormGPT: React.FC = () => {
       </div>
 
       {/* Main chat area */}
-      <div className="chat-root" style={{
+      <div style={{
         flex: 1,
-        maxWidth: showSidebar ? 'calc(100vw - 280px)' : '100vw',
-        margin: '0 auto',
-        background: '#1a1a1a',
-        borderRadius: showSidebar ? 0 : 18,
-        boxShadow: showSidebar ? 'none' : '0 4px 32px rgba(0,0,0,0.3)',
-        border: '1px solid #23272f',
-        minHeight: 480,
         display: 'flex',
-        flexDirection: 'column',
-        transition: 'max-width 0.3s ease',
+        justifyContent: 'center',
+        paddingLeft: showSidebar ? '280px' : '0',
+        transition: 'padding-left 0.3s ease',
       }}>
+        <div className="chat-root" style={{
+          maxWidth: '900px',
+          width: '100%',
+          background: '#1a1a1a',
+          borderRadius: 0,
+          boxShadow: showSidebar ? 'none' : '0 4px 32px rgba(0,0,0,0.3)',
+          border: '1px solid #23272f',
+          minHeight: 480,
+          display: 'flex',
+          flexDirection: 'column',
+          transition: 'all 0.3s ease',
+          padding: '0 16px',
+          boxSizing: 'border-box',
+        }}>
       {/* Top bar */}
       <div style={{
         display: 'flex',
@@ -791,34 +936,10 @@ const ChatFormGPT: React.FC = () => {
         padding: '22px 48px 12px 48px',
         borderBottom: '1px solid #23272f',
         background: '#23272f',
-        borderTopLeftRadius: 18,
-        borderTopRightRadius: 18,
+        borderTopLeftRadius: 0,
+        borderTopRightRadius: 0,
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-          <button
-            onClick={() => setShowSidebar(!showSidebar)}
-            style={{
-              background: 'none',
-              border: 'none',
-              color: '#fff',
-              fontSize: 20,
-              cursor: 'pointer',
-              padding: '8px',
-              borderRadius: 6,
-              transition: 'all 0.2s',
-            }}
-            title={showSidebar ? 'Hide chat history' : 'Show chat history'}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.color = '#00ffe7';
-              e.currentTarget.style.background = '#1a1a1a';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.color = '#fff';
-              e.currentTarget.style.background = 'none';
-            }}
-          >
-            ☰
-          </button>
           <span style={{ fontWeight: 700, fontSize: 20, color: '#fff', letterSpacing: '-0.5px' }}>
             PPCSet AI
           </span>
@@ -924,11 +1045,30 @@ const ChatFormGPT: React.FC = () => {
         overflowY: 'auto',
         padding: '24px 0',
         background: '#f9fafc',
-        borderBottomLeftRadius: 18,
-        borderBottomRightRadius: 18,
+        borderBottomLeftRadius: 0,
+        borderBottomRightRadius: 0,
         transition: 'background 0.2s',
       }}>
-        {messages.length === 0 && <div style={{ color: '#888', padding: 24, textAlign: 'center' }}>Почніть діалог…</div>}
+        {messages.length === 0 && (
+          <div style={{ 
+            color: '#23272f', 
+            padding: '48px 24px', 
+            textAlign: 'center',
+            fontSize: '18px',
+            fontWeight: '500',
+            lineHeight: '1.5',
+            maxWidth: '600px',
+            margin: '0 auto',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            minHeight: '60vh',
+          }}>
+            <div style={{ fontSize: '28px', fontWeight: '600', color: '#7f9cf5' }}>
+              Ready to boost your Google Ads performance?
+            </div>
+          </div>
+        )}
         {messages.map((msg, idx) => (
           <div key={idx} style={{
             display: 'flex',
@@ -1150,6 +1290,20 @@ const ChatFormGPT: React.FC = () => {
                   )
                   : msg.text
               }
+              {msg.image && (
+                <div style={{ marginTop: '12px' }}>
+                  <img
+                    src={msg.image}
+                    alt="Uploaded image"
+                    style={{
+                      maxWidth: '100%',
+                      maxHeight: '300px',
+                      borderRadius: '8px',
+                      border: '1px solid #e2e8f0',
+                    }}
+                  />
+                </div>
+              )}
             </span>
             {msg.role === 'ai' && (
   // Показуємо кнопки тільки якщо це не останнє AI-повідомлення з typingText, або якщо typingText === null
@@ -1336,52 +1490,95 @@ const ChatFormGPT: React.FC = () => {
         padding: '18px 24px 32px 24px', // більше місця знизу
         borderTop: '1px solid #e2e8f0',
         background: '#fff',
-        borderBottomLeftRadius: 18,
-        borderBottomRightRadius: 18,
+        borderBottomLeftRadius: 0,
+        borderBottomRightRadius: 0,
         alignItems: 'flex-end',
       }}>
-        <textarea
-          ref={inputRef}
-          value={input}
-          onChange={e => {
-            setInput(e.target.value);
-            e.target.style.height = '40px';
-            e.target.style.height = e.target.scrollHeight + 'px';
-          }}
-          onKeyDown={e => {
-            if (e.key === 'Enter' && !e.shiftKey) {
-              e.preventDefault();
-              if (!loading && input.trim()) {
-                // Викликаємо submit форми
-                (e.target as HTMLTextAreaElement).form?.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
+        <div style={{ position: 'relative', flex: 1 }}>
+          <textarea
+            ref={inputRef}
+            value={input}
+            onChange={e => {
+              setInput(e.target.value);
+              e.target.style.height = '40px';
+              e.target.style.height = e.target.scrollHeight + 'px';
+            }}
+            onKeyDown={e => {
+              if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                if (!loading && input.trim()) {
+                  // Викликаємо submit форми
+                  (e.target as HTMLTextAreaElement).form?.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
+                }
               }
-            }
-          }}
-          placeholder={placeholders[placeholderIndex]}
-          disabled={loading}
-          rows={1}
-          style={{
-            flex: 1,
-            minHeight: 40,
-            maxHeight: 260,
-            resize: 'none',
-            overflowY: 'auto',
-            padding: '8px 10px',
-            borderRadius: '0 0 8px 8px',
-            border: '1.2px solid #cbd5e1',
-            fontSize: 15,
-            fontFamily: 'Inter, Segoe UI, Arial, sans-serif',
-            lineHeight: 1.3,
-            background: '#f9fafc',
-            color: '#23272f',
-            outline: 'none',
-            boxShadow: '0 1px 2px rgba(0,0,0,0.01)',
-            transition: 'height 0.2s',
-            boxSizing: 'border-box',
-            maxWidth: 'none',
-          }}
-          autoFocus
-        />
+            }}
+            placeholder={placeholders[placeholderIndex]}
+            disabled={loading}
+            rows={1}
+            style={{
+              width: '100%',
+              minHeight: 40,
+              maxHeight: 260,
+              resize: 'none',
+              overflowY: 'auto',
+              padding: '8px 10px 8px 32px',
+              borderRadius: '0 0 8px 8px',
+              border: '1.2px solid #cbd5e1',
+              fontSize: 15,
+              fontFamily: 'Inter, Segoe UI, Arial, sans-serif',
+              lineHeight: 1.3,
+              background: '#f9fafc',
+              color: '#23272f',
+              outline: 'none',
+              boxShadow: '0 1px 2px rgba(0,0,0,0.01)',
+              transition: 'height 0.2s',
+              boxSizing: 'border-box',
+            }}
+            autoFocus
+          />
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleImageUpload}
+            style={{ display: 'none' }}
+            id="image-upload"
+          />
+          <button
+            type="button"
+            onClick={() => {
+              document.getElementById('image-upload')?.click();
+            }}
+            style={{
+              position: 'absolute',
+              left: '6px',
+              top: '50%',
+              transform: 'translateY(-50%)',
+              background: 'none',
+              border: 'none',
+              color: '#9ca3af',
+              cursor: 'pointer',
+              padding: '4px',
+              borderRadius: '4px',
+              transition: 'color 0.2s',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+            title="Upload image"
+            onMouseEnter={(e) => {
+              e.currentTarget.style.color = '#7f9cf5';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.color = '#9ca3af';
+            }}
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+              <circle cx="8.5" cy="8.5" r="1.5"/>
+              <polyline points="21,15 16,10 5,21"/>
+            </svg>
+          </button>
+        </div>
         <button
           type="submit"
           disabled={loading || !input.trim()}
@@ -1428,6 +1625,55 @@ const ChatFormGPT: React.FC = () => {
           )}
         </button>
       </form>
+      
+      {/* Image preview */}
+      {imagePreview && (
+        <div style={{
+          padding: '0 24px 16px 24px',
+          background: '#fff',
+        }}>
+          <div style={{
+            position: 'relative',
+            display: 'inline-block',
+            maxWidth: '200px',
+            borderRadius: '8px',
+            overflow: 'hidden',
+            border: '1px solid #e2e8f0',
+          }}>
+            <img
+              src={imagePreview}
+              alt="Preview"
+              style={{
+                width: '100%',
+                height: 'auto',
+                display: 'block',
+              }}
+            />
+            <button
+              onClick={removeImage}
+              style={{
+                position: 'absolute',
+                top: '4px',
+                right: '4px',
+                background: 'rgba(0,0,0,0.7)',
+                color: '#fff',
+                border: 'none',
+                borderRadius: '50%',
+                width: '24px',
+                height: '24px',
+                fontSize: '14px',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+              title="Remove image"
+            >
+              ×
+            </button>
+          </div>
+        </div>
+      )}
       {/* Example prompt suggestions under textarea */}
       <div style={{
         display: 'flex',
@@ -1617,6 +1863,7 @@ const ChatFormGPT: React.FC = () => {
           background: #1a1a1a !important;
         }
       `}</style>
+        </div>
       </div>
     </div>
   );
