@@ -1,18 +1,93 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+// Простий кеш для Next.js
+const cache = new Map<string, { data: any; timestamp: number }>();
+const CACHE_TTL = 24 * 60 * 60 * 1000; // 24 години
+
 export async function POST(req: NextRequest) {
-  const body = await req.json();
+  try {
+    const body = await req.json();
+    const { question, image } = body;
 
-  // Адреса вашого Python AI-сервера
-  const aiServerUrl = 'http://127.0.0.1:8000/chat';
+    if (!question) {
+      return NextResponse.json(
+        { error: 'Question is required' },
+        { status: 400 }
+      );
+    }
 
-  const aiRes = await fetch(aiServerUrl, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(body),
-  });
+    // Перевіряємо кеш
+    const cacheKey = `${question}${image || ''}`;
+    const cached = cache.get(cacheKey);
+    if (cached && Date.now() - cached.timestamp < CACHE_TTL) {
+      return NextResponse.json(cached.data);
+    }
 
-  const aiData = await aiRes.json();
+    // Адреса Python AI-сервера (можна налаштувати через env)
+    const aiServerUrl = process.env.AI_SERVER_URL || 'http://127.0.0.1:8002/chat';
 
-  return NextResponse.json(aiData);
+    // Формуємо запит до AI-сервера
+    const requestBody = {
+      question,
+      image: image || null, // Додаємо підтримку зображень
+      timestamp: new Date().toISOString()
+    };
+
+    const aiRes = await fetch(aiServerUrl, {
+      method: 'POST',
+      headers: { 
+        'Content-Type': 'application/json',
+        'User-Agent': 'PPCSet-AI-Client/1.0'
+      },
+      body: JSON.stringify(requestBody),
+      // Timeout 30 секунд
+      signal: AbortSignal.timeout(30000)
+    });
+
+    if (!aiRes.ok) {
+      throw new Error(`AI server responded with status: ${aiRes.status}`);
+    }
+
+    const aiData = await aiRes.json();
+    
+    // Перевіряємо структуру відповіді
+    if (!aiData.answer) {
+      throw new Error('Invalid response format from AI server');
+    }
+
+    // Зберігаємо в кеш
+    cache.set(cacheKey, { data: aiData, timestamp: Date.now() });
+
+    return NextResponse.json(aiData);
+
+  } catch (error: any) {
+    console.error('Chat API error:', error);
+
+    // Fallback відповідь якщо AI-сервер недоступний
+    if (error.name === 'AbortError' || error.message.includes('fetch')) {
+      return NextResponse.json({
+        answer: `🔧 **AI-сервер тимчасово недоступний**
+
+Наразі я не можу обробити ваш запит через технічні причини. Спробуйте:
+
+1. **Перевірити підключення** до інтернету
+2. **Повторити запит** через кілька хвилин
+3. **Звернутися до підтримки** якщо проблема повторюється
+
+*Помилка: ${error.message}*`
+      });
+    }
+
+    return NextResponse.json({
+      answer: `❌ **Помилка обробки запиту**
+
+Виникла неочікувана помилка при обробці вашого запиту. Спробуйте:
+
+1. **Переформулювати питання**
+2. **Перевірити підключення**
+3. **Повторити спробу**
+
+*Деталі: ${error.message}*`
+    }, { status: 500 });
+  }
 } 
