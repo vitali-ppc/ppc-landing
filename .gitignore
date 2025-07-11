@@ -10,4 +10,4 @@ yarn-error.log
 sheets.js
 tokens.txt
 ai-server/.env
-.env.local
+.env.local.next/
