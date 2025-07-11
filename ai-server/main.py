@@ -1,6 +1,7 @@
 import os
 import json
 import hashlib
+from fastapi.responses import StreamingResponse
 from typing import Dict, Any
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
@@ -9,6 +10,10 @@ from dotenv import load_dotenv
 import openai
 from datetime import datetime
 import logging
+import io
+import csv
+from openpyxl import Workbook
+from openpyxl.styles import Font, Alignment
 
 # Налаштування логування
 logging.basicConfig(level=logging.INFO)
@@ -295,7 +300,6 @@ def get_ads_data():
             }
         ]
     }
-
 @app.get("/health")
 async def health_check():
     """Детальна перевірка здоров'я сервера"""
@@ -346,7 +350,177 @@ async def cache_stats():
         "cache_keys": list(response_cache.keys())[:10],
         "timestamp": datetime.now().isoformat()
     }
+# Функції експорту
+def parse_text_to_rows(text: str) -> list:
+    """Парсинг тексту в рядки для експорту"""
+    lines = text.split('\n')
+    rows = []
+    for line in lines:
+        if line.strip():
+            # Розбиваємо на клітинки по табуляції або подвійним пробілам
+            cells = [cell.strip() for cell in line.split('\t') if cell.strip()]
+            if not cells:
+                cells = [line.strip()]
+            rows.append(cells)
+    return rows if rows else [["AI Response", text]]
 
+@app.post("/export-txt")
+async def export_txt(request: Request):
+    """Експорт в TXT формат"""
+    try:
+        body = await request.json()
+        text = body.get("text", "")
+        
+        if not text:
+            return JSONResponse({"error": "Text is required"}, status_code=400)
+        
+        # Створюємо буфер з текстом
+        buffer = io.BytesIO()
+        buffer.write(text.encode('utf-8'))
+        buffer.seek(0)
+        
+        # Генеруємо ім'я файлу
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        filename = f"chat_export_{timestamp}.txt"
+        
+        return StreamingResponse(
+            buffer,
+            media_type="text/plain; charset=utf-8",
+            headers={"Content-Disposition": f"attachment; filename={filename}"}
+        )
+    except Exception as e:
+        logger.error(f"TXT export error: {e}")
+        return JSONResponse({"error": str(e)}, status_code=500)
+
+@app.post("/export-csv")
+async def export_csv(request: Request):
+    """Експорт в CSV формат"""
+    try:
+        body = await request.json()
+        rows = body.get("rows", [])
+        
+        if not rows:
+            return JSONResponse({"error": "Rows data is required"}, status_code=400)
+        
+        # Створюємо CSV буфер
+        buffer = io.StringIO()
+        writer = csv.writer(buffer)
+        writer.writerows(rows)
+        
+        # Конвертуємо в bytes
+        csv_data = buffer.getvalue().encode('utf-8')
+        buffer.close()
+        
+        # Створюємо bytes буфер
+        bytes_buffer = io.BytesIO(csv_data)
+        bytes_buffer.seek(0)
+        
+        # Генеруємо ім'я файлу
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        filename = f"chat_export_{timestamp}.csv"
+        
+        return StreamingResponse(
+            bytes_buffer,
+            media_type="text/csv; charset=utf-8",
+            headers={"Content-Disposition": f"attachment; filename={filename}"}
+        )
+    except Exception as e:
+        logger.error(f"CSV export error: {e}")
+        return JSONResponse({"error": str(e)}, status_code=500)
+
+@app.post("/export-xlsx")
+async def export_xlsx(request: Request):
+    """Експорт в XLSX формат"""
+    try:
+        body = await request.json()
+        rows = body.get("rows", [])
+        
+        if not rows:
+            return JSONResponse({"error": "Rows data is required"}, status_code=400)
+        
+        # Створюємо Excel файл
+        workbook = Workbook()
+        worksheet = workbook.active
+        if worksheet:
+            worksheet.title = "Chat Export"
+            
+            # Додаємо дані
+            for i, row in enumerate(rows, 1):
+                for j, cell_value in enumerate(row, 1):
+                    cell = worksheet.cell(row=i, column=j, value=cell_value)
+            
+            # Стилізуємо заголовок
+            if rows and worksheet[1]:
+                for cell in worksheet[1]:
+                    if cell:
+                        cell.font = Font(bold=True)
+                        cell.alignment = Alignment(horizontal='center')
+        
+        # Зберігаємо в буфер
+        buffer = io.BytesIO()
+        workbook.save(buffer)
+        buffer.seek(0)
+        
+        # Генеруємо ім'я файлу
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        filename = f"chat_export_{timestamp}.xlsx"
+        
+        return StreamingResponse(
+            buffer,
+            media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            headers={"Content-Disposition": f"attachment; filename={filename}"}
+        )
+    except Exception as e:
+        logger.error(f"XLSX export error: {e}")
+        return JSONResponse({"error": str(e)}, status_code=500)
+
+@app.post("/export-pdf")
+async def export_pdf(request: Request):
+    """Експорт в PDF формат (спрощена версія)"""
+    try:
+        body = await request.json()
+        text = body.get("text", "")
+        
+        if not text:
+            return JSONResponse({"error": "Text is required"}, status_code=400)
+        
+        # Створюємо простий HTML для PDF
+        html_content = f"""
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="utf-8">
+            <title>Chat Export</title>
+            <style>
+                body {{ font-family: Arial, sans-serif; margin: 40px; line-height: 1.6; }}
+                h1 {{ color: #333; border-bottom: 2px solid #eee; padding-bottom: 10px; }}
+                pre {{ background: #f5f5f5; padding: 15px; border-radius: 5px; overflow-x: auto; }}
+                code {{ background: #f0f0f0; padding: 2px 4px; border-radius: 3px; }}
+            </style>
+        </head>
+        <body>
+            <h1>Chat Export</h1>
+            <div>{text.replace(chr(10), '<br>')}</div>
+        </body>
+        </html>
+        """ 
+        # Конвертуємо в bytes
+        buffer = io.BytesIO()
+        buffer.write(html_content.encode('utf-8'))
+        buffer.seek(0)
+        
+        # Генеруємо ім'я файлу
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        filename = f"chat_export_{timestamp}.html"
+        
+        return StreamingResponse(
+            buffer,
+            media_type="text/html; charset=utf-8",
+            headers={"Content-Disposition": f"attachment; filename={filename}"}
+        )
+    except Exception as e:
+        logger.error(f"PDF export error: {e}")
+        return JSONResponse({"error": str(e)}, status_code=500)
 if __name__ == "__main__":
     try:
         import uvicorn
