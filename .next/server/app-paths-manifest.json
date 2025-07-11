@@ -1,5 +1,4 @@
 {
   "/api/ads-data/route": "app/api/ads-data/route.js",
-  "/chat/page": "app/chat/page.js",
-  "/_not-found/page": "app/_not-found/page.js"
+  "/chat/page": "app/chat/page.js"
 }

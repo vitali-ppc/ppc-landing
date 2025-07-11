@@ -29,6 +29,10 @@ export async function POST(request: NextRequest) {
       csvContent = String(data);
     }
 
+    // Додаємо BOM для коректного відкриття в Excel
+    const bom = '\uFEFF';
+    const csvWithBom = bom + csvContent;
+
     // Create filename with timestamp
     const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
     const finalFilename = `${filename}-${timestamp}.csv`;
@@ -38,7 +42,7 @@ export async function POST(request: NextRequest) {
     headers.set('Content-Type', 'text/csv; charset=utf-8');
     headers.set('Content-Disposition', `attachment; filename="${finalFilename}"`);
 
-    return new NextResponse(csvContent, {
+    return new NextResponse(csvWithBom, {
       status: 200,
       headers
     });

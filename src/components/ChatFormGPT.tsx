@@ -18,6 +18,229 @@ interface Chat {
   updatedAt: Date;
 }
 
+// Інтерфейси для шаблонів звітів
+interface ReportTemplate {
+  id: string;
+  name: string;
+  description: string;
+  icon: string;
+  prompt: string;
+}
+
+type ReportType = 'campaign-analysis' | 'keyword-analysis' | 'monthly-report' | 'quick-analysis' | 'performance-review' | 'budget-analysis';
+
+// Типи для системи підключення даних
+type ConnectionState = 'disconnected' | 'connecting' | 'connected_test' | 'connected_real' | 'error';
+
+interface DataStatus {
+  hasData: boolean;
+  dataType: 'real' | 'test' | 'none';
+  dataSource: 'OAuth2' | 'mock' | null;
+  connectionState: ConnectionState;
+}
+
+// Константи шаблонів звітів
+const REPORT_TEMPLATES: Record<ReportType, ReportTemplate> = {
+  'campaign-analysis': {
+    id: 'campaign-analysis',
+    name: 'Аналіз кампаній',
+    description: 'Детальний аналіз ефективності Google Ads кампаній',
+    icon: '📊',
+    prompt: `Створи структурований звіт аналізу Google Ads кампаній.
+
+ВАЖЛИВО: Використовуй ТІЛЬКИ надані дані Google Ads. Не вигадуй цифри.
+
+Включи наступні розділи:
+
+📊 ЗАГАЛЬНІ ПОКАЗНИКИ
+• Загальні витрати, кліки, покази, CTR, CPC, конверсії, CR, ROAS, ROI з наданих даних
+• Аналіз ефективності на основі реальних метрик
+
+🏆 ТОП КАМПАНІЇ
+• 3-5 найкращих кампаній з реальними метриками (включаючи ROAS)
+• Що робить їх успішними (на основі даних)
+
+👥 ДЕМОГРАФІЧНИЙ АНАЛІЗ
+• Аналіз аудиторії за віком та статтю (якщо доступно)
+• Ефективність різних демографічних сегментів
+
+⚠️ ПРОБЛЕМНІ КАМПАНІЇ
+• Кампанії з низькими показниками (з реальних даних)
+• Конкретні проблеми та причини
+
+💡 РЕКОМЕНДАЦІЇ
+• Конкретні дії для покращення на основі аналізу
+• Пріоритетні завдання
+• Очікувані результати
+
+Використай емодзі та структуроване форматування. Посилайся на конкретні кампанії та цифри з наданих даних.`
+  },
+  'keyword-analysis': {
+    id: 'keyword-analysis',
+    name: 'Аналіз ключових слів',
+    description: 'Аналіз ефективності ключових слів та фраз',
+    icon: '🔍',
+    prompt: `Створи звіт аналізу ключових слів Google Ads.
+
+ВАЖЛИВО: Використовуй ТІЛЬКИ надані дані Google Ads. Не вигадуй цифри.
+
+Включи наступні розділи:
+
+🔍 ВИСОКОЕФЕКТИВНІ КЛЮЧОВІ СЛОВА
+• Ключові слова з високими конверсіями та Quality Score (з реальних даних)
+• Їх характеристики та особливості
+
+❌ ПРОБЛЕМНІ КЛЮЧОВІ СЛОВА
+• Ключові слова з низькими показниками та Quality Score (з реальних даних)
+• Причини неефективності
+
+📈 СТАТИСТИКА ПО КАТЕГОРІЯМ
+• Брендові, інформаційні, транзакційні ключові слова
+• CTR, CPC, конверсії, Quality Score по категоріях
+
+🎯 ОПТИМІЗАЦІЯ
+• Ключові слова для підвищення ставок (високий Quality Score)
+• Ключові слова для призупинення (низький Quality Score)
+• Нові ключові слова для тестування
+
+Використай емодзі та структуроване форматування. Посилайся на конкретні ключові слова та цифри з наданих даних.`
+  },
+  'monthly-report': {
+    id: 'monthly-report',
+    name: 'Місячний звіт',
+    description: 'Комплексний місячний звіт з порівнянням',
+    icon: '📅',
+    prompt: `Створи комплексний місячний звіт Google Ads.
+
+ВАЖЛИВО: Використовуй ТІЛЬКИ надані дані Google Ads. Не вигадуй цифри.
+
+Включи наступні розділи:
+
+📅 ЗАГАЛЬНИЙ ОГЛЯД МІСЯЦЯ
+• Основні досягнення та ROAS, ROI
+• Ключові метрики місяця
+
+📈 ПОРІВНЯННЯ З ПОПЕРЕДНІМ МІСЯЦЕМ
+• Зміни в витратах, кліках, конверсіях, ROAS
+• Покращення або погіршення показників
+
+👥 ДЕМОГРАФІЧНІ ТРЕНДИ
+• Зміни в аудиторії за віком та статтю
+• Ефективність різних сегментів
+
+🎯 ДОСТИГНЕНІ ЦІЛІ
+• Що було досягнуто
+• Відсоток виконання планів
+
+📊 ТРЕНДИ ТА АНАЛІЗ
+• Зміни в поведінці аудиторії
+• Сезонні тенденції
+• Нові можливості
+
+💡 ПЛАН НА НАСТУПНИЙ МІСЯЦЬ
+• Конкретні цілі
+• Стратегії досягнення
+• Очікувані результати
+
+Використай емодзі та професійне форматування. Посилайся на конкретні цифри з наданих даних.`
+  },
+  'quick-analysis': {
+    id: 'quick-analysis',
+    name: 'Швидкий аналіз',
+    description: 'Швидкий огляд ключових проблем та рішень',
+    icon: '⚡',
+    prompt: `Створи швидкий аналіз Google Ads акаунту.
+
+ВАЖЛИВО: Використовуй ТІЛЬКИ надані дані Google Ads. Не вигадуй цифри.
+
+Включи наступні розділи:
+
+⚡ КЛЮЧОВІ МЕТРИКИ
+• ROI, ROAS, CPA, CPL з наданих даних
+• Основні показники ефективності
+
+🚨 КРИТИЧНІ ПРОБЛЕМИ
+• Найважливіші проблеми для вирішення (з реальних даних)
+• Їх вплив на результати
+
+✅ ШВИДКІ ПЕРЕМОГИ
+• Що працює добре (на основі даних)
+• Що можна покращити легко
+
+🎯 ШВИДКІ ДІЇ
+• 3-5 конкретних дій на цей тиждень
+• Очікувані результати
+
+Використай емодзі та лаконічне форматування. Посилайся на конкретні цифри з наданих даних.`
+  },
+  'performance-review': {
+    id: 'performance-review',
+    name: 'Огляд продуктивності',
+    description: 'Детальний аналіз продуктивності кампаній',
+    icon: '📈',
+    prompt: `Створи детальний огляд продуктивності Google Ads.
+
+ВАЖЛИВО: Використовуй ТІЛЬКИ надані дані Google Ads. Не вигадуй цифри.
+
+Включи наступні розділи:
+
+📈 ПРОДУКТИВНІСТЬ КАМПАНІЙ
+• Рейтинг кампаній за ефективністю (ROAS, ROI)
+• ROI та ROAS по кампаніях з наданих даних
+
+🎯 ЦІЛЬОВІ АУДИТОРІЇ
+• Аналіз аудиторій за демографією (вік, стать)
+• Ефективність різних сегментів
+
+💰 БЮДЖЕТНА ЕФЕКТИВНІСТЬ
+• Розподіл бюджету
+• Ефективність витрат (ROI, ROAS)
+
+📊 КОНВЕРСІЙНА ВИШКА
+• Аналіз воронки конверсій
+• Втрати на кожному етапі
+
+💡 ОПТИМІЗАЦІЯ ПРОДУКТИВНОСТІ
+• Конкретні рекомендації
+• Пріоритетні завдання
+
+Використай емодзі та детальне форматування. Посилайся на конкретні цифри з наданих даних.`
+  },
+  'budget-analysis': {
+    id: 'budget-analysis',
+    name: 'Аналіз бюджету',
+    description: 'Аналіз розподілу та ефективності бюджету',
+    icon: '💰',
+    prompt: `Створи аналіз бюджету Google Ads.
+
+ВАЖЛИВО: Використовуй ТІЛЬКИ надані дані Google Ads. Не вигадуй цифри.
+
+Включи наступні розділи:
+
+💰 РОЗПОДІЛ БЮДЖЕТУ
+• Як розподілений бюджет по кампаніях
+• Відсотки витрат
+
+📊 ЕФЕКТИВНІСТЬ ВИТРАТ
+• ROI та ROAS по кампаніях з наданих даних
+• Найбільш ефективні витрати
+
+🎯 БЮДЖЕТНІ РЕКОМЕНДАЦІЇ
+• Куди збільшити бюджет (високий ROAS)
+• Куди зменшити витрати (низький ROAS)
+
+⚠️ ПРОБЛЕМИ БЮДЖЕТУ
+• Неефективні витрати (з реальних даних)
+• Перевитрати або недотрати
+
+💡 ОПТИМІЗАЦІЯ БЮДЖЕТУ
+• Конкретні зміни в розподілі
+• Очікувані результати
+
+Використай емодзі та структуроване форматування. Посилайся на конкретні цифри з наданих даних.`
+  }
+};
+
 const AI_AVATAR = (
   <div style={{
     width: 36,
@@ -88,6 +311,56 @@ const ChatFormGPT: React.FC = () => {
   const [editingTitle, setEditingTitle] = useState('');
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [showReportTemplates, setShowReportTemplates] = useState(false);
+
+  // Універсальна функція перевірки стану даних
+  const getDataStatus = (): DataStatus => {
+    const hasData = useAdsData && (realAdsData || adsData);
+    let dataType: 'real' | 'test' | 'none' = 'none';
+    let dataSource: 'OAuth2' | 'mock' | null = null;
+    let connectionState: ConnectionState = 'disconnected';
+
+    if (hasData) {
+      if (realAdsData) {
+        dataType = 'real';
+        dataSource = 'OAuth2';
+        connectionState = 'connected_real';
+      } else if (adsData) {
+        dataType = 'test';
+        dataSource = 'mock';
+        connectionState = 'connected_test';
+      }
+    }
+
+    return {
+      hasData,
+      dataType,
+      dataSource,
+      connectionState
+    };
+  };
+
+  // Функція для майбутнього автоматичного підключення
+  const autoConnectToGoogleAds = async (): Promise<boolean> => {
+    try {
+      // В майбутньому тут буде логіка автоматичного підключення
+      // Наприклад: перевірка збережених токенів, автоматичний OAuth2 flow
+      console.log('=== AUTO CONNECT TO GOOGLE ADS ===');
+      
+      // Поки що просто активуємо тестові дані
+      if (!useAdsData) {
+        setUseAdsData(true);
+        // Чекаємо трохи щоб стан оновився
+        await new Promise(resolve => setTimeout(resolve, 100));
+        return true;
+      }
+      
+      return false;
+    } catch (error) {
+      console.error('Auto connect failed:', error);
+      return false;
+    }
+  };
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -102,8 +375,19 @@ const ChatFormGPT: React.FC = () => {
   const typingTimeout = useRef<NodeJS.Timeout | null>(null);
   const typingIndex = useRef(0);
   const [typingText, setTypingText] = useState<string | null>(null);
+  const [shownMessages, setShownMessages] = useState<Set<string>>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = window.localStorage.getItem('chatTypedMessages');
+      return saved ? new Set(JSON.parse(saved)) : new Set();
+    }
+    return new Set();
+  });
 
   const startTypingEffect = (fullText: string) => {
+    console.log('=== START TYPING EFFECT ===');
+    console.log('Text length:', fullText.length);
+    console.log('Current chat ID:', currentChatId);
+    
     typingInterrupted.current = false;
     typingIndex.current = 0;
     typingTextRef.current = '';
@@ -111,6 +395,7 @@ const ChatFormGPT: React.FC = () => {
     if (typingTimeout.current) clearTimeout(typingTimeout.current);
     const type = () => {
       if (typingInterrupted.current) {
+        console.log('=== TYPING INTERRUPTED ===');
         setTypingText(null);
         typingTextRef.current = null;
         return;
@@ -121,6 +406,7 @@ const ChatFormGPT: React.FC = () => {
         typingIndex.current++;
         typingTimeout.current = setTimeout(type, 12 + Math.random() * 30);
       } else {
+        console.log('=== TYPING COMPLETED ===');
         setTypingText(null);
         typingTextRef.current = null;
       }
@@ -131,14 +417,27 @@ const ChatFormGPT: React.FC = () => {
   // Закривати dropdown при кліку поза меню та кнопкою
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
-      setOpenExportDropdownIdx(null);
+      console.log('=== GLOBAL CLICK HANDLER ===');
+      console.log('Target:', e.target);
+      console.log('Current target:', e.currentTarget);
+      
+      // Перевіряємо, чи клік був всередині dropdown меню
+      const target = e.target as Element;
+      const isInsideDropdown = target.closest('[data-export-dropdown]');
+      
+      if (!isInsideDropdown) {
+        console.log('Click outside dropdown - closing');
+        setOpenExportDropdownIdx(null);
+      } else {
+        console.log('Click inside dropdown - keeping open');
+      }
     };
     if (openExportDropdownIdx !== null) {
-      document.addEventListener('mousedown', handleClick);
+      document.addEventListener('click', handleClick);
     } else {
-      document.removeEventListener('mousedown', handleClick);
+      document.removeEventListener('click', handleClick);
     }
-    return () => document.removeEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('click', handleClick);
   }, [openExportDropdownIdx]);
 
   // Підвантаження mock-даних при першому рендері
@@ -206,10 +505,43 @@ const ChatFormGPT: React.FC = () => {
 
   // Запуск typing-ефекту при новій AI-відповіді
   useEffect(() => {
+    // Зупиняємо попередній typing effect при зміні чату
+    if (typingTimeout.current) {
+      clearTimeout(typingTimeout.current);
+      typingInterrupted.current = true;
+      setTypingText(null);
+      typingTextRef.current = null;
+    }
+    
+    // Запускаємо typing effect тільки для нових AI повідомлень
     if (!loading && messages.length > 0 && messages[messages.length - 1].role === 'ai') {
       const lastAiMsg = messages[messages.length - 1].text;
+      // Перевіряємо, чи це нове повідомлення (не було показано раніше)
       if (typingText === null && lastAiMsg && lastAiMsg.length > 0) {
-        startTypingEffect(lastAiMsg);
+        // Перевіряємо, чи це дійсно нове повідомлення
+        const lastMessageId = `${currentChatId}-${messages.length}-${lastAiMsg.slice(0, 50)}`;
+        const isNewMessage = !shownMessages.has(lastMessageId) && 
+          messages.length > 1 && 
+          messages[messages.length - 2]?.role === 'user' && 
+          messages[messages.length - 1]?.role === 'ai';
+        
+        if (isNewMessage) {
+          console.log('=== NEW AI MESSAGE DETECTED ===');
+          console.log('Message ID:', lastMessageId);
+          setShownMessages(prev => {
+            const newSet = new Set(Array.from(prev).concat(lastMessageId));
+            // Зберігаємо в localStorage
+            if (typeof window !== 'undefined') {
+              window.localStorage.setItem('chatTypedMessages', JSON.stringify(Array.from(newSet)));
+            }
+            return newSet;
+          });
+          startTypingEffect(lastAiMsg);
+        } else {
+          console.log('=== EXISTING AI MESSAGE - NO TYPING EFFECT ===');
+          console.log('Message ID:', lastMessageId);
+          console.log('Already shown:', shownMessages.has(lastMessageId));
+        }
       }
     }
     if (loading) {
@@ -219,7 +551,7 @@ const ChatFormGPT: React.FC = () => {
       typingInterrupted.current = false;
     }
     // eslint-disable-next-line
-  }, [messages, loading]);
+  }, [messages, loading, currentChatId]);
 
   // Очищення таймера при анмаунті
   useEffect(() => {
@@ -246,6 +578,7 @@ const ChatFormGPT: React.FC = () => {
 
   // Завантаження історії чатів з localStorage
   useEffect(() => {
+    console.log('=== LOADING CHATS FROM LOCALSTORAGE ===');
     const savedChats = localStorage.getItem('ppcset-chats');
     if (savedChats) {
       const parsedChats = JSON.parse(savedChats).map((chat: any) => ({
@@ -253,6 +586,7 @@ const ChatFormGPT: React.FC = () => {
         createdAt: new Date(chat.createdAt),
         updatedAt: new Date(chat.updatedAt)
       }));
+      console.log('Loaded chats:', parsedChats.length);
       setChats(parsedChats);
       
       // Відновлюємо останній активний чат
@@ -260,15 +594,23 @@ const ChatFormGPT: React.FC = () => {
       if (lastChatId && parsedChats.find((c: Chat) => c.id === lastChatId)) {
         setCurrentChatId(lastChatId);
         const lastChat = parsedChats.find((c: Chat) => c.id === lastChatId);
-        if (lastChat) setMessages(lastChat.messages);
+        if (lastChat) {
+          console.log('Restoring last chat with messages:', lastChat.messages.length);
+          console.log('Last message role:', lastChat.messages[lastChat.messages.length - 1]?.role);
+          console.log('All messages:', lastChat.messages.map((m: Message) => ({ role: m.role, text: m.text.slice(0, 50) + '...' })));
+          console.log('Full messages:', JSON.stringify(lastChat.messages, null, 2));
+          setMessages(lastChat.messages);
+        }
       } else if (parsedChats.length > 0) {
         // Якщо останній чат не знайдено, беремо найновіший
         const newestChat = parsedChats[parsedChats.length - 1];
         setCurrentChatId(newestChat.id);
+        console.log('Restoring newest chat with messages:', newestChat.messages.length);
         setMessages(newestChat.messages);
       }
     } else {
       // Створюємо перший чат
+      console.log('Creating new chat');
       createNewChat();
     }
   }, []);
@@ -300,11 +642,31 @@ const ChatFormGPT: React.FC = () => {
     setMessages([]);
     setInput('');
     setError(null);
+    
+    // Очищаємо shownMessages при створенні нового чату
+    setShownMessages(new Set());
+    if (typeof window !== 'undefined') {
+      window.localStorage.setItem('chatTypedMessages', JSON.stringify([]));
+    }
   };
 
   const selectChat = (chatId: string) => {
+    console.log('=== SELECT CHAT CALLED ===');
+    console.log('Chat ID:', chatId);
+    
+    // Зупиняємо typing effect при зміні чату
+    if (typingTimeout.current) {
+      console.log('=== STOPPING TYPING EFFECT ON CHAT SWITCH ===');
+      clearTimeout(typingTimeout.current);
+      typingInterrupted.current = true;
+      setTypingText(null);
+      typingTextRef.current = null;
+    }
+    
     const chat = chats.find(c => c.id === chatId);
     if (chat) {
+      console.log('Chat messages:', chat.messages.length);
+      console.log('Last message role:', chat.messages[chat.messages.length - 1]?.role);
       setCurrentChatId(chatId);
       setMessages(chat.messages);
       setInput('');
@@ -315,6 +677,16 @@ const ChatFormGPT: React.FC = () => {
 
   const deleteChat = (chatId: string) => {
     setChats(prev => prev.filter(c => c.id !== chatId));
+    
+    // Очищаємо застарілі записи з shownMessages для видаленого чату
+    setShownMessages(prev => {
+      const newSet = new Set(Array.from(prev).filter(id => !id.startsWith(chatId + '-')));
+      if (typeof window !== 'undefined') {
+        window.localStorage.setItem('chatTypedMessages', JSON.stringify(Array.from(newSet)));
+      }
+      return newSet;
+    });
+    
     if (currentChatId === chatId) {
       if (chats.length > 1) {
         const remainingChats = chats.filter(c => c.id !== chatId);
@@ -346,12 +718,23 @@ const ChatFormGPT: React.FC = () => {
       if (openMenuId && !(e.target as Element).closest('.chat-menu')) {
         setOpenMenuId(null);
       }
+      if (showReportTemplates && !(e.target as Element).closest('[data-report-templates]')) {
+        setShowReportTemplates(false);
+      }
     };
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [openMenuId]);
+  }, [openMenuId, showReportTemplates]);
 
   const handleSubmit = async (e: React.FormEvent) => {
+    console.log('=== HANDLE SUBMIT CALLED ===');
+    console.log('Event type:', e.type);
+    console.log('Input value:', input);
+    console.log('Input length:', input.length);
+    console.log('Loading state:', loading);
+    console.log('Messages count:', messages.length);
+    console.log('Stack trace:', new Error().stack);
+    
     e.preventDefault();
     if (!input.trim()) return;
     setError(null);
@@ -448,6 +831,7 @@ const ChatFormGPT: React.FC = () => {
 
   // Додаємо функцію для продовження відповіді
   const handleContinue = async () => {
+    console.log('=== HANDLE CONTINUE CALLED ===');
     setError(null);
     setLoading(true);
     // Знаходимо оригінальне питання (перший user)
@@ -472,6 +856,142 @@ const ChatFormGPT: React.FC = () => {
     }
   };
 
+  // Функція для створення звіту за шаблоном
+  const createReportFromTemplate = async (reportType: ReportType, autoConnect: boolean = false) => {
+    console.log('=== CREATE REPORT FROM TEMPLATE ===');
+    console.log('Report type:', reportType);
+    console.log('Auto connect:', autoConnect);
+    
+    const template = REPORT_TEMPLATES[reportType];
+    if (!template) {
+      setError('Шаблон звіту не знайдено');
+      return;
+    }
+
+    setError(null);
+    setLoading(true);
+    setShowReportTemplates(false);
+
+    // Отримуємо статус даних через універсальну функцію
+    let dataStatus = getDataStatus();
+    
+    // Якщо немає даних і включено автоматичне підключення
+    if (!dataStatus.hasData && autoConnect) {
+      console.log('Attempting auto connect...');
+      const connected = await autoConnectToGoogleAds();
+      if (connected) {
+        // Чекаємо трохи більше для оновлення стану
+        await new Promise(resolve => setTimeout(resolve, 200));
+        // Оновлюємо статус після підключення
+        dataStatus = getDataStatus();
+        console.log('Auto connect successful, data status:', dataStatus);
+      }
+    }
+    
+    let question: string;
+    
+    if (!dataStatus.hasData) {
+      // Якщо немає даних - створюємо інструкцію
+      question = `Користувач хоче створити звіт "${template.name}", але не надав дані Google Ads.
+
+Створи дружню інструкцію українською мовою:
+
+📊 ${template.name.toUpperCase()} - ПІДГОТОВКА
+
+Для створення детального звіту "${template.name}" мені потрібні дані з вашого Google Ads акаунту.
+
+🔗 ЩО РОБИТИ:
+1. Натисніть кнопку "Use Google Ads data" вище
+2. Я отримаю тестові дані для демонстрації
+3. Потім натисніть "${template.name}" знову
+
+💡 АЛЬТЕРНАТИВА:
+Якщо у вас є реальний Google Ads акаунт:
+- Підключіть його через OAuth2
+- Я отримаю справжні дані з вашого кабінету
+
+🚀 В МАЙБУТНЬОМУ:
+Система буде автоматично підключатися до вашого Google Ads акаунту при виборі шаблону звіту.
+
+Після підключення даних я створю детальний звіт з:
+• Реальними показниками ваших кампаній
+• Конкретними рекомендаціями
+• ${template.description}
+
+Використай емодзі та дружній тон.`;
+    } else {
+      // Якщо є дані - створюємо звіт
+      const dataToUse = realAdsData || adsData;
+      const total = dataToUse.total;
+      const campaigns = dataToUse.campaigns.map((c: any) =>
+        `- ${c.name} (${c.status}): витрати $${c.cost}, кліки ${c.clicks}, покази ${c.impressions}, конверсії ${c.conversions}, CTR ${c.ctr}%, CPC $${c.cpc}, CR ${c.conversion_rate}%`
+      ).join('\n');
+      const dataSource = realAdsData ? 'реальними даними з вашого Google Ads акаунту' : 'тестовими даними';
+      const summary = `У моєму акаунті Google Ads за ${dataToUse.date_range} (${dataSource}):
+Всього витрати: $${total.cost}, кліки: ${total.clicks}, покази: ${total.impressions}, конверсії: ${total.conversions}, CTR: ${total.ctr}%, CPC: $${total.cpc}, CR: ${total.conversion_rate}%.
+Кампанії:\n${campaigns}`;
+      question = `${summary}\n\n${template.prompt}\n\nВАЖЛИВО: Використовуй ТІЛЬКИ надані дані вище. Не вигадуй цифри. У кожному розділі посилайся на конкретні кампанії, цифри, метрики з цих даних. Дай конкретні рекомендації з опорою на фактичні показники.`;
+    }
+
+    const userMessage: Message = { 
+      role: 'user', 
+      text: `Створи звіт: ${template.name}`,
+      image: imagePreview || undefined
+    };
+    setMessages((prev) => [...prev, userMessage]);
+    
+    // Оновлюємо поточний чат
+    if (currentChatId) {
+      const updatedMessages = [...messages, userMessage];
+      setChats(prev => prev.map(c => 
+        c.id === currentChatId 
+          ? { 
+              ...c, 
+              messages: updatedMessages,
+              title: c.title === 'New chat' ? template.name : c.title,
+              updatedAt: new Date()
+            }
+          : c
+      ));
+    }
+    
+    setInput('');
+    setSelectedImage(null);
+    setImagePreview(null);
+    if (inputRef.current) {
+      inputRef.current.style.height = '40px';
+    }
+
+    try {
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          question,
+          image: imagePreview
+        }),
+      });
+      if (!res.ok) throw new Error('Помилка відповіді від AI');
+      const data = await res.json();
+      const aiMessage: Message = { role: 'ai', text: data.answer };
+      setMessages((prev) => [...prev, aiMessage]);
+      
+      // Оновлюємо поточний чат з AI відповіддю
+      if (currentChatId) {
+        const updatedMessages: Message[] = [...messages, userMessage, aiMessage];
+        setChats(prev => prev.map(c => 
+          c.id === currentChatId 
+            ? { ...c, messages: updatedMessages, updatedAt: new Date() }
+            : c
+        ));
+      }
+    } catch (err: any) {
+      setError(err.message || 'Сталася помилка');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   // Додаю функції для експорту
   const testClick = () => {
     console.log('=== TEST CLICK FUNCTION CALLED ===');
@@ -481,6 +1001,7 @@ const ChatFormGPT: React.FC = () => {
   const exportTxt = async (text: string) => {
     console.log('=== EXPORT TXT FUNCTION CALLED ===');
     console.log('Text to export:', text);
+    console.log('Text length:', text.length);
     try {
       console.log('Starting TXT export...');
       const res = await fetch('/api/export-txt', {
@@ -528,6 +1049,7 @@ const ChatFormGPT: React.FC = () => {
   const exportCsv = async (rows: string[][]) => {
     console.log('=== EXPORT CSV FUNCTION CALLED ===');
     console.log('Rows to export:', rows);
+    console.log('Rows count:', rows.length);
     try {
       // Convert rows array to data format expected by API
       const data = rows.map(row => {
@@ -538,7 +1060,158 @@ const ChatFormGPT: React.FC = () => {
         return obj;
       });
       
+      console.log('Converted data:', data);
+      
       const res = await fetch('/api/export-csv', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ data, filename: 'chat-export' }),
+      });
+      
+      console.log('CSV Response status:', res.status);
+      console.log('CSV Response headers:', res.headers);
+      
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+      
+      const blob = await res.blob();
+      console.log('CSV Blob size:', blob.size);
+      console.log('CSV Blob type:', blob.type);
+      
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `chat-export-${new Date().toISOString().replace(/[:.]/g, '-')}.csv`;
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+      
+      console.log('CSV export completed successfully');
+    } catch (error) {
+      console.error('Export CSV error:', error);
+      alert('Помилка при експорті файлу');
+    }
+  };
+
+  const exportPdf = async (text: string) => {
+    console.log('=== EXPORT PDF FUNCTION CALLED ===');
+    console.log('Text to export:', text);
+    console.log('Text length:', text.length);
+    try {
+      console.log('Starting PDF export...');
+      const res = await fetch('/api/export-pdf', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text, title: 'AI Chat Export' }),
+      });
+      
+      console.log('PDF Response status:', res.status);
+      console.log('PDF Response headers:', res.headers);
+      
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+      
+      const blob = await res.blob();
+      console.log('PDF Blob size:', blob.size);
+      console.log('PDF Blob type:', blob.type);
+      
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `chat-export-${new Date().toISOString().replace(/[:.]/g, '-')}.pdf`;
+      a.style.display = 'none';
+      
+      console.log('Adding link to DOM...');
+      document.body.appendChild(a);
+      
+      console.log('Clicking link...');
+      a.click();
+      
+      console.log('Cleaning up...');
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+      
+      console.log('PDF export completed successfully');
+      return true;
+    } catch (error) {
+      console.error('Export PDF error:', error);
+      alert('Помилка при експорті файлу: ' + (error instanceof Error ? error.message : String(error)));
+      return false;
+    }
+  };
+
+  const exportJson = async (text: string) => {
+    console.log('=== EXPORT JSON FUNCTION CALLED ===');
+    console.log('Text to export:', text);
+    console.log('Text length:', text.length);
+    try {
+      console.log('Starting JSON export...');
+      const res = await fetch('/api/export-json', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          text, 
+          title: 'AI Chat Export',
+          metadata: {
+            source: 'PPCSet Chat',
+            exportType: 'AI Response'
+          }
+        }),
+      });
+      
+      console.log('JSON Response status:', res.status);
+      console.log('JSON Response headers:', res.headers);
+      
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+      
+      const blob = await res.blob();
+      console.log('JSON Blob size:', blob.size);
+      console.log('JSON Blob type:', blob.type);
+      
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `chat-export-${new Date().toISOString().replace(/[:.]/g, '-')}.json`;
+      a.style.display = 'none';
+      
+      console.log('Adding link to DOM...');
+      document.body.appendChild(a);
+      
+      console.log('Clicking link...');
+      a.click();
+      
+      console.log('Cleaning up...');
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+      
+      console.log('JSON export completed successfully');
+      return true;
+    } catch (error) {
+      console.error('Export JSON error:', error);
+      alert('Помилка при експорті файлу: ' + (error instanceof Error ? error.message : String(error)));
+      return false;
+    }
+  };
+
+  const exportXlsx = async (rows: string[][]) => {
+    console.log('=== EXPORT XLSX FUNCTION CALLED ===');
+    console.log('Rows to export:', rows);
+    try {
+      // Convert rows array to data format expected by API
+      const data = rows.map(row => {
+        const obj: any = {};
+        row.forEach((value, index) => {
+          obj[`Column${index + 1}`] = value;
+        });
+        return obj;
+      });
+      
+      const res = await fetch('/api/export-xlsx', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ data, filename: 'chat-export' }),
@@ -552,14 +1225,16 @@ const ChatFormGPT: React.FC = () => {
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `chat-export-${new Date().toISOString().replace(/[:.]/g, '-')}.csv`;
+      a.download = `chat-export-${new Date().toISOString().replace(/[:.]/g, '-')}.xlsx`;
       document.body.appendChild(a);
       a.click();
       window.URL.revokeObjectURL(url);
       document.body.removeChild(a);
+      
+      console.log('XLSX export completed successfully');
     } catch (error) {
-      console.error('Export CSV error:', error);
-      alert('Помилка при експорті файлу');
+      console.error('Export XLSX error:', error);
+      alert('Помилка при експорті Excel-файлу');
     }
   };
 
@@ -1067,7 +1742,154 @@ const ChatFormGPT: React.FC = () => {
           }} title="Clear chat">
             Clear chat
           </button>
+          <button data-report-templates onClick={() => setShowReportTemplates(!showReportTemplates)} style={{
+            background: 'none',
+            border: 'none',
+            color: '#888',
+            fontSize: 15,
+            cursor: 'pointer',
+            padding: '4px 10px',
+            borderRadius: 8,
+            transition: 'background 0.2s',
+          }} title="Report templates">
+            📊 Templates
+          </button>
         </div>
+        
+        {/* Dropdown меню шаблонів звітів */}
+        {showReportTemplates && (
+          <div data-report-templates style={{
+            position: 'absolute',
+            top: '100%',
+            left: '48px',
+            right: '48px',
+            background: '#fff',
+            border: '1px solid #e2e8f0',
+            borderRadius: 12,
+            boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
+            zIndex: 1000,
+            padding: '16px',
+            marginTop: '8px',
+          }}>
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+              gap: '12px',
+            }}>
+              {Object.values(REPORT_TEMPLATES).map((template) => (
+                                  <button
+                    key={template.id}
+                    onClick={() => createReportFromTemplate(template.id as ReportType, false)}
+                    disabled={loading}
+                  style={{
+                    background: '#f8fafc',
+                    border: '1px solid #e2e8f0',
+                    borderRadius: 10,
+                    padding: '16px',
+                    cursor: loading ? 'not-allowed' : 'pointer',
+                    transition: 'all 0.2s',
+                    textAlign: 'left',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '8px',
+                    opacity: loading ? 0.6 : 1,
+                  }}
+                  onMouseEnter={(e) => {
+                    if (!loading) {
+                      e.currentTarget.style.background = '#e6f7ff';
+                      e.currentTarget.style.border = '1px solid #0ea5e9';
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    if (!loading) {
+                      e.currentTarget.style.background = '#f8fafc';
+                      e.currentTarget.style.border = '1px solid #e2e8f0';
+                    }
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <span style={{ fontSize: '20px' }}>{template.icon}</span>
+                    <span style={{ 
+                      fontSize: '16px', 
+                      fontWeight: '600', 
+                      color: '#23272f' 
+                    }}>
+                      {template.name}
+                    </span>
+                  </div>
+                  <span style={{ 
+                    fontSize: '14px', 
+                    color: '#64748b', 
+                    lineHeight: '1.4' 
+                  }}>
+                    {template.description}
+                  </span>
+                </button>
+              ))}
+            </div>
+            <div style={{
+              textAlign: 'center',
+              marginTop: '12px',
+              paddingTop: '12px',
+              borderTop: '1px solid #e2e8f0',
+              display: 'flex',
+              gap: '8px',
+              justifyContent: 'center',
+            }}>
+              <button
+                onClick={() => createReportFromTemplate('campaign-analysis', true)}
+                disabled={loading}
+                style={{
+                  background: '#e6f7ff',
+                  border: '1px solid #0ea5e9',
+                  color: '#0ea5e9',
+                  fontSize: '14px',
+                  cursor: loading ? 'not-allowed' : 'pointer',
+                  padding: '6px 12px',
+                  borderRadius: '6px',
+                  transition: 'background 0.2s',
+                  opacity: loading ? 0.6 : 1,
+                }}
+                onMouseEnter={(e) => {
+                  if (!loading) {
+                    e.currentTarget.style.background = '#0ea5e9';
+                    e.currentTarget.style.color = '#fff';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (!loading) {
+                    e.currentTarget.style.background = '#e6f7ff';
+                    e.currentTarget.style.color = '#0ea5e9';
+                  }
+                }}
+                title="Тест автоматичного підключення"
+              >
+                🚀 Auto Connect Test
+              </button>
+              <button
+                onClick={() => setShowReportTemplates(false)}
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  color: '#64748b',
+                  fontSize: '14px',
+                  cursor: 'pointer',
+                  padding: '4px 8px',
+                  borderRadius: '6px',
+                  transition: 'background 0.2s',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = '#f1f5f9';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = 'none';
+                }}
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        )}
       </div>
       {/* Блок "Дані Google Ads підключені" */}
       {useAdsData && (adsData || realAdsData) && (
@@ -1281,20 +2103,29 @@ const ChatFormGPT: React.FC = () => {
                               </svg>
                             </button>
                             {openExportDropdownIdx === idx && (
-                              <div style={{
-                                position: 'absolute',
-                                top: '110%',
-                                left: 0,
-                                background: '#fff',
-                                border: '1.2px solid #e2e8f0',
-                                borderRadius: 8,
-                                boxShadow: '0 4px 16px rgba(30,40,90,0.10)',
-                                minWidth: 140,
-                                zIndex: 100,
-                                padding: '6px 0',
-                              }}>
+                              <div 
+                                data-export-dropdown="true"
+                                onClick={(e) => e.stopPropagation()}
+                                style={{
+                                  position: 'absolute',
+                                  top: '110%',
+                                  left: 0,
+                                  background: '#fff',
+                                  border: '1.2px solid #e2e8f0',
+                                  borderRadius: 8,
+                                  boxShadow: '0 4px 16px rgba(30,40,90,0.10)',
+                                  minWidth: 140,
+                                  zIndex: 100,
+                                  padding: '6px 0',
+                                }}
+                              >
+                               
                                 <button
-                                  onClick={() => { exportCsv([["AI-відповідь"], [msg.text]]); setOpenExportDropdownIdx(null); }}
+                                  onClick={(e) => { 
+                                    e.stopPropagation(); 
+                                    exportXlsx([["AI-відповідь"], [msg.text]]); 
+                                    setOpenExportDropdownIdx(null); 
+                                  }}
                                   style={{
                                     width: '100%',
                                     background: 'none',
@@ -1304,13 +2135,25 @@ const ChatFormGPT: React.FC = () => {
                                     padding: '10px 18px',
                                     textAlign: 'left',
                                     cursor: 'pointer',
-                                    transition: 'background 0.18s',
+                                    transition: 'all 0.18s ease',
+                                  }}
+                                  onMouseEnter={(e) => {
+                                    e.currentTarget.style.background = '#1a1a1a';
+                                    e.currentTarget.style.color = '#00ffe7';
+                                  }}
+                                  onMouseLeave={(e) => {
+                                    e.currentTarget.style.background = 'none';
+                                    e.currentTarget.style.color = '#23272f';
                                   }}
                                 >
-                                  Excel (CSV)
+                                  Excel
                                 </button>
                                 <button
-                                  onClick={() => { exportCsv([["AI-відповідь"], [msg.text]]); setOpenExportDropdownIdx(null); }}
+                                  onClick={(e) => { 
+                                    e.stopPropagation(); 
+                                    exportCsv([["AI-відповідь"], [msg.text]]); 
+                                    setOpenExportDropdownIdx(null); 
+                                  }}
                                   style={{
                                     width: '100%',
                                     background: 'none',
@@ -1320,13 +2163,28 @@ const ChatFormGPT: React.FC = () => {
                                     padding: '10px 18px',
                                     textAlign: 'left',
                                     cursor: 'pointer',
-                                    transition: 'background 0.18s',
+                                    transition: 'all 0.18s ease',
+                                  }}
+                                  onMouseEnter={(e) => {
+                                    e.currentTarget.style.background = '#1a1a1a';
+                                    e.currentTarget.style.color = '#00ffe7';
+                                  }}
+                                  onMouseLeave={(e) => {
+                                    e.currentTarget.style.background = 'none';
+                                    e.currentTarget.style.color = '#23272f';
                                   }}
                                 >
                                   CSV
                                 </button>
                                 <button
-                                  onClick={() => { console.log('TXT export button clicked!'); exportTxt(msg.text); setOpenExportDropdownIdx(null); }}
+                                  onClick={(e) => { 
+                                    console.log('=== TXT BUTTON CLICKED ===');
+                                    e.stopPropagation(); 
+                                    console.log('stopPropagation called');
+                                    console.log('TXT export button clicked!'); 
+                                    exportTxt(msg.text); 
+                                    setOpenExportDropdownIdx(null); 
+                                  }}
                                   style={{
                                     width: '100%',
                                     background: 'none',
@@ -1336,10 +2194,74 @@ const ChatFormGPT: React.FC = () => {
                                     padding: '10px 18px',
                                     textAlign: 'left',
                                     cursor: 'pointer',
-                                    transition: 'background 0.18s',
+                                    transition: 'all 0.18s ease',
+                                  }}
+                                  onMouseEnter={(e) => {
+                                    e.currentTarget.style.background = '#1a1a1a';
+                                    e.currentTarget.style.color = '#00ffe7';
+                                  }}
+                                  onMouseLeave={(e) => {
+                                    e.currentTarget.style.background = 'none';
+                                    e.currentTarget.style.color = '#23272f';
                                   }}
                                 >
                                   TXT
+                                </button>
+                                <button
+                                  onClick={(e) => { 
+                                    e.stopPropagation(); 
+                                    exportPdf(msg.text); 
+                                    setOpenExportDropdownIdx(null); 
+                                  }}
+                                  style={{
+                                    width: '100%',
+                                    background: 'none',
+                                    border: 'none',
+                                    color: '#23272f',
+                                    fontSize: 15,
+                                    padding: '10px 18px',
+                                    textAlign: 'left',
+                                    cursor: 'pointer',
+                                    transition: 'all 0.18s ease',
+                                  }}
+                                  onMouseEnter={(e) => {
+                                    e.currentTarget.style.background = '#1a1a1a';
+                                    e.currentTarget.style.color = '#00ffe7';
+                                  }}
+                                  onMouseLeave={(e) => {
+                                    e.currentTarget.style.background = 'none';
+                                    e.currentTarget.style.color = '#23272f';
+                                  }}
+                                >
+                                  PDF
+                                </button>
+                                <button
+                                  onClick={(e) => { 
+                                    e.stopPropagation(); 
+                                    exportJson(msg.text); 
+                                    setOpenExportDropdownIdx(null); 
+                                  }}
+                                  style={{
+                                    width: '100%',
+                                    background: 'none',
+                                    border: 'none',
+                                    color: '#23272f',
+                                    fontSize: 15,
+                                    padding: '10px 18px',
+                                    textAlign: 'left',
+                                    cursor: 'pointer',
+                                    transition: 'all 0.18s ease',
+                                  }}
+                                  onMouseEnter={(e) => {
+                                    e.currentTarget.style.background = '#1a1a1a';
+                                    e.currentTarget.style.color = '#00ffe7';
+                                  }}
+                                  onMouseLeave={(e) => {
+                                    e.currentTarget.style.background = 'none';
+                                    e.currentTarget.style.color = '#23272f';
+                                  }}
+                                >
+                                  JSON
                                 </button>
                               </div>
                             )}
@@ -1433,20 +2355,25 @@ const ChatFormGPT: React.FC = () => {
           </svg>
         </button>
         {openExportDropdownIdx === idx && (
-          <div style={{
-            position: 'absolute',
-            top: '110%',
-            left: 0,
-            background: '#fff',
-            border: '1.2px solid #e2e8f0',
-            borderRadius: 8,
-            boxShadow: '0 4px 16px rgba(30,40,90,0.10)',
-            minWidth: 120,
-            zIndex: 100,
-            padding: '4px 0',
-          }}>
+          <div 
+            data-export-dropdown="true"
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              position: 'absolute',
+              top: '110%',
+              left: 0,
+              background: '#fff',
+              border: '1.2px solid #e2e8f0',
+              borderRadius: 8,
+              boxShadow: '0 4px 16px rgba(30,40,90,0.10)',
+              minWidth: 120,
+              zIndex: 100,
+              padding: '4px 0',
+            }}
+          >
+            
             <button
-              onClick={() => { exportCsv([["AI-відповідь", msg.text]]); setOpenExportDropdownIdx(null); }}
+              onClick={(e) => { e.stopPropagation(); exportXlsx([["AI-відповідь"], [msg.text]]); setOpenExportDropdownIdx(null); }}
               style={{
                 width: '100%',
                 background: 'none',
@@ -1456,13 +2383,21 @@ const ChatFormGPT: React.FC = () => {
                 padding: '8px 16px',
                 textAlign: 'left',
                 cursor: 'pointer',
-                transition: 'background 0.18s',
+                transition: 'all 0.18s ease',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = '#1a1a1a';
+                e.currentTarget.style.color = '#00ffe7';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'none';
+                e.currentTarget.style.color = '#23272f';
               }}
             >
-              Excel (CSV)
+              Excel
             </button>
             <button
-              onClick={() => { exportCsv([["AI-відповідь", msg.text]]); setOpenExportDropdownIdx(null); }}
+              onClick={(e) => { e.stopPropagation(); exportCsv([["AI-відповідь", msg.text]]); setOpenExportDropdownIdx(null); }}
               style={{
                 width: '100%',
                 background: 'none',
@@ -1472,13 +2407,21 @@ const ChatFormGPT: React.FC = () => {
                 padding: '8px 16px',
                 textAlign: 'left',
                 cursor: 'pointer',
-                transition: 'background 0.18s',
+                transition: 'all 0.18s ease',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = '#1a1a1a';
+                e.currentTarget.style.color = '#00ffe7';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'none';
+                e.currentTarget.style.color = '#23272f';
               }}
             >
               CSV
             </button>
             <button
-                                  onClick={() => { console.log('TXT export button clicked!'); exportTxt(msg.text); setOpenExportDropdownIdx(null); }}
+              onClick={(e) => { e.stopPropagation(); console.log('TXT export button clicked!'); exportTxt(msg.text); setOpenExportDropdownIdx(null); }}
               style={{
                 width: '100%',
                 background: 'none',
@@ -1488,10 +2431,66 @@ const ChatFormGPT: React.FC = () => {
                 padding: '8px 16px',
                 textAlign: 'left',
                 cursor: 'pointer',
-                transition: 'background 0.18s',
+                transition: 'all 0.18s ease',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = '#1a1a1a';
+                e.currentTarget.style.color = '#00ffe7';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'none';
+                e.currentTarget.style.color = '#23272f';
               }}
             >
               TXT
+            </button>
+            <button
+              onClick={(e) => { e.stopPropagation(); exportPdf(msg.text); setOpenExportDropdownIdx(null); }}
+              style={{
+                width: '100%',
+                background: 'none',
+                border: 'none',
+                color: '#23272f',
+                fontSize: 15,
+                padding: '8px 16px',
+                textAlign: 'left',
+                cursor: 'pointer',
+                transition: 'all 0.18s ease',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = '#1a1a1a';
+                e.currentTarget.style.color = '#00ffe7';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'none';
+                e.currentTarget.style.color = '#23272f';
+              }}
+            >
+              PDF
+            </button>
+            <button
+              onClick={(e) => { e.stopPropagation(); exportJson(msg.text); setOpenExportDropdownIdx(null); }}
+              style={{
+                width: '100%',
+                background: 'none',
+                border: 'none',
+                color: '#23272f',
+                fontSize: 15,
+                padding: '8px 16px',
+                textAlign: 'left',
+                cursor: 'pointer',
+                transition: 'all 0.18s ease',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = '#1a1a1a';
+                e.currentTarget.style.color = '#00ffe7';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'none';
+                e.currentTarget.style.color = '#23272f';
+              }}
+            >
+              JSON
             </button>
           </div>
         )}
@@ -1775,7 +2774,7 @@ const ChatFormGPT: React.FC = () => {
       </div>
       {/* Підказка під textarea */}
       <div style={{ color: '#888', fontSize: 14, margin: '0 48px 12px 48px', textAlign: 'center' }}>
-        For a personalized answer, click <b>“Use Google Ads data”</b> before submitting your question.
+        For a personalized answer, click <b>"Use Google Ads data"</b> before submitting your question.
       </div>
       {error && <div style={{ color: 'red', margin: '0 48px 10px 48px' }}>{error}</div>}
       {/* Модалка-заглушка для підключення акаунта */}
