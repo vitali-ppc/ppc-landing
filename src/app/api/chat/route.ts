@@ -24,7 +24,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Адреса Python AI-сервера (можна налаштувати через env)
-    const aiServerUrl = process.env.AI_SERVER_URL || 'http://127.0.0.1:8002/chat';
+    const aiServerUrl = process.env.AI_SERVER_URL || 'http://91.99.225.211:8000/chat';
 
     // Формуємо запит до AI-сервера
     const requestBody = {
@@ -41,7 +41,7 @@ export async function POST(req: NextRequest) {
       },
       body: JSON.stringify(requestBody),
       // Timeout 30 секунд
-      signal: AbortSignal.timeout(30000)
+      signal: AbortSignal.timeout(120000) // 2 хвилини замість 30 секунд
     });
 
     if (!aiRes.ok) {
