@@ -158,7 +158,18 @@ def get_ads_data():
                 "conversions": 40,
                 "ctr": 3.6,
                 "cpc": 0.39,
-                "conversion_rate": 4.4
+                "conversion_rate": 4.4,
+                "revenue": 2800.0,
+                "roas": 8.0,
+                "demographics": {
+                    "age_18_24": 15,
+                    "age_25_34": 35,
+                    "age_35_44": 30,
+                    "age_45_54": 15,
+                    "age_55_plus": 5,
+                    "male": 45,
+                    "female": 55
+                }
             },
             {
                 "name": "Competitor Bidding",
@@ -169,7 +180,18 @@ def get_ads_data():
                 "conversions": 35,
                 "ctr": 3.0,
                 "cpc": 0.35,
-                "conversion_rate": 2.9
+                "conversion_rate": 2.9,
+                "revenue": 2100.0,
+                "roas": 5.0,
+                "demographics": {
+                    "age_18_24": 20,
+                    "age_25_34": 40,
+                    "age_35_44": 25,
+                    "age_45_54": 10,
+                    "age_55_plus": 5,
+                    "male": 60,
+                    "female": 40
+                }
             },
             {
                 "name": "Display Remarketing",
@@ -180,7 +202,18 @@ def get_ads_data():
                 "conversions": 12,
                 "ctr": 1.1,
                 "cpc": 0.45,
-                "conversion_rate": 3.0
+                "conversion_rate": 3.0,
+                "revenue": 720.0,
+                "roas": 4.0,
+                "demographics": {
+                    "age_18_24": 10,
+                    "age_25_34": 30,
+                    "age_35_44": 35,
+                    "age_45_54": 20,
+                    "age_55_plus": 5,
+                    "male": 35,
+                    "female": 65
+                }
             }
         ],
         "total": {
@@ -190,8 +223,77 @@ def get_ads_data():
             "conversions": 87,
             "ctr": 2.5,
             "cpc": 0.38,
-            "conversion_rate": 3.5
-        }
+            "conversion_rate": 3.5,
+            "revenue": 5620.0,
+            "roas": 5.9,
+            "roi": 491.6
+        },
+        "demographics": {
+            "age_18_24": 16,
+            "age_25_34": 36,
+            "age_35_44": 29,
+            "age_45_54": 14,
+            "age_55_plus": 5,
+            "male": 48,
+            "female": 52
+        },
+        "keywords": [
+            {
+                "keyword": "brand name",
+                "clicks": 450,
+                "impressions": 12000,
+                "cost": 175.0,
+                "conversions": 20,
+                "ctr": 3.75,
+                "cpc": 0.39,
+                "conversion_rate": 4.4,
+                "quality_score": 8
+            },
+            {
+                "keyword": "competitor name",
+                "clicks": 600,
+                "impressions": 20000,
+                "cost": 210.0,
+                "conversions": 18,
+                "ctr": 3.0,
+                "cpc": 0.35,
+                "conversion_rate": 3.0,
+                "quality_score": 6
+            },
+            {
+                "keyword": "generic product",
+                "clicks": 800,
+                "impressions": 35000,
+                "cost": 280.0,
+                "conversions": 24,
+                "ctr": 2.3,
+                "cpc": 0.35,
+                "conversion_rate": 3.0,
+                "quality_score": 7
+            },
+            {
+                "keyword": "long tail phrase",
+                "clicks": 200,
+                "impressions": 8000,
+                "cost": 70.0,
+                "conversions": 8,
+                "ctr": 2.5,
+                "cpc": 0.35,
+                "conversion_rate": 4.0,
+                "quality_score": 9
+            },
+            {
+                "keyword": "low performing",
+                "clicks": 450,
+                "impressions": 25000,
+                "cost": 215.0,
+                "conversions": 17,
+                "ctr": 1.8,
+                "cpc": 0.48,
+                "conversion_rate": 3.8,
+                "quality_score": 4
+            }
+        ]
     }
 
 @app.get("/health")
