@@ -1363,9 +1363,95 @@ const ChatFormGPT: React.FC = () => {
           }} title="Clear chat">
             Clear chat
           </button>
+          <button
+            onClick={() => setShowReportTemplates(!showReportTemplates)}
+            style={{
+              background: showReportTemplates ? '#0ea5e9' : '#e6f7ff',
+              color: showReportTemplates ? '#fff' : '#23272f',
+              border: '1.5px solid #0ea5e9',
+              borderRadius: 8,
+              padding: '6px 18px',
+              fontSize: 15,
+              fontWeight: 600,
+              cursor: 'pointer',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
+              marginRight: 8,
+              transition: 'background 0.2s',
+            }}
+            title="Показати шаблони звітів"
+          >
+            Шаблони
+          </button>
         </div>
       </div>
 
+      {/* Dropdown з шаблонами звітів */}
+      {showReportTemplates && (
+        <div style={{
+          background: '#fff',
+          border: '1.5px solid #e2e8f0',
+          borderRadius: 12,
+          margin: '0 48px 8px 48px',
+          padding: '16px 20px',
+          boxShadow: '0 4px 16px rgba(0,0,0,0.1)',
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
+            <h3 style={{ fontSize: 16, fontWeight: 600, color: '#23272f', margin: 0 }}>
+              Шаблони звітів
+            </h3>
+            <button
+              onClick={() => setShowAccountModal(true)}
+              style={{
+                background: accountConnected ? '#e6f7ff' : '#fff',
+                color: accountConnected ? '#0ea5e9' : '#23272f',
+                border: '1.5px solid #0ea5e9',
+                borderRadius: 6,
+                padding: '4px 12px',
+                fontSize: 13,
+                fontWeight: 500,
+                cursor: 'pointer',
+                transition: 'background 0.2s',
+              }}
+              title="Автоматичне підключення Google Ads"
+            >
+              {accountConnected ? 'Підключено' : 'Auto-connect'}
+            </button>
+          </div>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+            gap: 8,
+          }}>
+            {Object.entries(REPORT_TEMPLATES).map(([key, template]) => (
+              <button
+                key={key}
+                type="button"
+                onClick={() => generateReport(key)}
+                disabled={loading}
+                style={{
+                  background: '#f8fafc',
+                  color: '#23272f',
+                  border: '1.5px solid #e2e8f0',
+                  borderRadius: 8,
+                  padding: '10px 16px',
+                  fontSize: 14,
+                  fontWeight: 500,
+                  cursor: loading ? 'not-allowed' : 'pointer',
+                  transition: 'all 0.2s',
+                  boxShadow: '0 1px 4px rgba(0,0,0,0.03)',
+                  outline: 'none',
+                  textAlign: 'left',
+                  opacity: loading ? 0.6 : 1,
+                }}
+                title={template.description}
+              >
+                <div style={{ fontWeight: 600, marginBottom: 4 }}>{template.name}</div>
+                <div style={{ fontSize: 12, color: '#666', lineHeight: 1.3 }}>{template.description}</div>
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Блок "Дані Google Ads підключені" */}
       {useAdsData && (adsData || realAdsData) && (
@@ -2092,43 +2178,7 @@ const ChatFormGPT: React.FC = () => {
         For a personalized answer, click <b>"Use Google Ads data"</b> before submitting your question.
       </div>
 
-      {/* Кнопки шаблонів звітів */}
-      {useAdsData && (adsData || realAdsData) && (
-        <div style={{
-          display: 'flex',
-          gap: 8,
-          justifyContent: 'center',
-          margin: '0 48px 12px 48px',
-          flexWrap: 'wrap',
-        }}>
-          {Object.entries(REPORT_TEMPLATES).map(([key, template]) => (
-            <button
-              key={key}
-              type="button"
-              onClick={() => generateReport(key)}
-              disabled={loading}
-              style={{
-                background: '#f8fafc',
-                color: '#23272f',
-                border: '1.5px solid #e2e8f0',
-                borderRadius: 8,
-                padding: '8px 16px',
-                fontSize: 14,
-                fontWeight: 500,
-                cursor: loading ? 'not-allowed' : 'pointer',
-                transition: 'all 0.2s',
-                boxShadow: '0 1px 4px rgba(0,0,0,0.03)',
-                outline: 'none',
-                whiteSpace: 'nowrap',
-                opacity: loading ? 0.6 : 1,
-              }}
-              title={template.description}
-            >
-              {template.name}
-            </button>
-          ))}
-        </div>
-      )}
+
       {error && <div style={{ color: 'red', margin: '0 48px 10px 48px' }}>{error}</div>}
       {/* Модалка-заглушка для підключення акаунта */}
       {showAccountModal && (
