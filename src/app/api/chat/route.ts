@@ -26,9 +26,9 @@ export async function POST(req: NextRequest) {
     // Адреса Python AI-сервера (можна налаштувати через env)
     const aiServerUrl = process.env.AI_SERVER_URL || 'http://91.99.225.211:8000/chat';
 
-    // Формуємо запит до AI-сервера
+    // Формуємо запит до AI-сервера з інструкцією про мову
     const requestBody = {
-      question,
+      question: `${question}\n\nIMPORTANT: Respond in the same language as the user's question. If the user writes in Russian, respond in Russian. If the user writes in English, respond in English.`,
       image: image || null, // Додаємо підтримку зображень
       timestamp: new Date().toISOString()
     };

@@ -619,7 +619,7 @@ const ChatFormGPT: React.FC = () => {
     console.log('Text to export:', text);
     try {
       console.log('Starting TXT export...');
-      const res = await fetch('/api/export-txt', {
+      const res = await fetch('http://91.99.225.211:8000/export-txt', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ text }),
@@ -665,19 +665,10 @@ const ChatFormGPT: React.FC = () => {
     console.log('=== EXPORT CSV FUNCTION CALLED ===');
     console.log('Rows to export:', rows);
     try {
-      // Convert rows array to data format expected by API
-      const data = rows.map(row => {
-        const obj: any = {};
-        row.forEach((value, index) => {
-          obj[`Column${index + 1}`] = value;
-        });
-        return obj;
-      });
-      
-      const res = await fetch('/api/export-csv', {
+      const res = await fetch('http://91.99.225.211:8000/export-csv', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ data, filename: 'chat-export' }),
+        body: JSON.stringify({ rows }),
       });
       
       if (!res.ok) {
@@ -701,7 +692,7 @@ const ChatFormGPT: React.FC = () => {
 
   const exportPdf = async (text: string) => {
     try {
-      const res = await fetch('/api/export-pdf', {
+      const res = await fetch('http://91.99.225.211:8000/export-pdf', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ text }),
@@ -715,31 +706,23 @@ const ChatFormGPT: React.FC = () => {
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `chat-export-${new Date().toISOString().replace(/[:.]/g, '-')}.pdf`;
+      a.download = `chat-export-${new Date().toISOString().replace(/[:.]/g, '-')}.html`;
       document.body.appendChild(a);
       a.click();
       window.URL.revokeObjectURL(url);
       document.body.removeChild(a);
     } catch (error) {
       console.error('Export PDF error:', error);
-      alert('Помилка при експорті PDF файлу');
+      alert('Помилка при експорті файлу');
     }
   };
 
   const exportXlsx = async (rows: string[][]) => {
     try {
-      const data = rows.map(row => {
-        const obj: any = {};
-        row.forEach((value, index) => {
-          obj[`Column${index + 1}`] = value;
-        });
-        return obj;
-      });
-      
-      const res = await fetch('/api/export-xlsx', {
+      const res = await fetch('http://91.99.225.211:8000/export-xlsx', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ data, filename: 'chat-export' }),
+        body: JSON.stringify({ rows }),
       });
       
       if (!res.ok) {
@@ -1413,12 +1396,16 @@ const ChatFormGPT: React.FC = () => {
             <button
               onClick={() => {
                 if (!accountConnected) {
+                  // Auto-connect: включаємо тестові дані та показуємо модалку для реального підключення
                   setUseAdsData(true);
                   setAccountConnected(true);
                   fetch('/api/ads-data')
                     .then(res => res.json())
                     .then(data => setAdsData(data))
                     .catch(() => setAdsData(null));
+                  
+                  // Показуємо модалку для підключення реального акаунту
+                  setTimeout(() => setShowAccountModal(true), 500);
                 }
               }}
               style={{
