@@ -11,20 +11,20 @@
       "static/chunks/main-app.js",
       "static/chunks/app/not-found.js"
     ],
-    "/page": [
+    "/chat/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/page.js"
+      "static/chunks/app/chat/page.js"
     ],
-    "/ppc-performance/page": [
+    "/_not-found/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/ppc-performance/page.js"
+      "static/chunks/app/_not-found/page.js"
     ],
-    "/api/strategy/route": [
+    "/api/ads-data/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/api/strategy/route.js"
+      "static/chunks/app/api/ads-data/route.js"
     ]
   }
 }

@@ -473,34 +473,94 @@ const ChatFormGPT: React.FC = () => {
   };
 
   // Додаю функції для експорту
+  const testClick = () => {
+    console.log('=== TEST CLICK FUNCTION CALLED ===');
+    alert('Test click works!');
+  };
+
   const exportTxt = async (text: string) => {
-    const res = await fetch('/api/export-txt', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ text }),
-    });
-    const blob = await res.blob();
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'report.txt';
-    a.click();
-    window.URL.revokeObjectURL(url);
+    console.log('=== EXPORT TXT FUNCTION CALLED ===');
+    console.log('Text to export:', text);
+    try {
+      console.log('Starting TXT export...');
+      const res = await fetch('/api/export-txt', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text }),
+      });
+      
+      console.log('Response status:', res.status);
+      console.log('Response headers:', res.headers);
+      
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+      
+      const blob = await res.blob();
+      console.log('Blob size:', blob.size);
+      console.log('Blob type:', blob.type);
+      
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `chat-export-${new Date().toISOString().replace(/[:.]/g, '-')}.txt`;
+      a.style.display = 'none';
+      
+      console.log('Adding link to DOM...');
+      document.body.appendChild(a);
+      
+      console.log('Clicking link...');
+      a.click();
+      
+      console.log('Cleaning up...');
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+      
+      console.log('TXT export completed successfully');
+      return true; // Успешное завершение
+    } catch (error) {
+      console.error('Export TXT error:', error);
+      alert('Помилка при експорті файлу: ' + (error instanceof Error ? error.message : String(error)));
+      return false; // Ошибка
+    }
   };
 
   const exportCsv = async (rows: string[][]) => {
-    const res = await fetch('/api/export-csv', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ rows }),
-    });
-    const blob = await res.blob();
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'report.csv';
-    a.click();
-    window.URL.revokeObjectURL(url);
+    console.log('=== EXPORT CSV FUNCTION CALLED ===');
+    console.log('Rows to export:', rows);
+    try {
+      // Convert rows array to data format expected by API
+      const data = rows.map(row => {
+        const obj: any = {};
+        row.forEach((value, index) => {
+          obj[`Column${index + 1}`] = value;
+        });
+        return obj;
+      });
+      
+      const res = await fetch('/api/export-csv', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ data, filename: 'chat-export' }),
+      });
+      
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+      
+      const blob = await res.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `chat-export-${new Date().toISOString().replace(/[:.]/g, '-')}.csv`;
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+    } catch (error) {
+      console.error('Export CSV error:', error);
+      alert('Помилка при експорті файлу');
+    }
   };
 
   // Функція для завантаження зображень
@@ -1266,7 +1326,7 @@ const ChatFormGPT: React.FC = () => {
                                   CSV
                                 </button>
                                 <button
-                                  onClick={() => { exportTxt(msg.text); setOpenExportDropdownIdx(null); }}
+                                  onClick={() => { console.log('TXT export button clicked!'); exportTxt(msg.text); setOpenExportDropdownIdx(null); }}
                                   style={{
                                     width: '100%',
                                     background: 'none',
@@ -1418,7 +1478,7 @@ const ChatFormGPT: React.FC = () => {
               CSV
             </button>
             <button
-              onClick={() => { exportTxt(msg.text); setOpenExportDropdownIdx(null); }}
+                                  onClick={() => { console.log('TXT export button clicked!'); exportTxt(msg.text); setOpenExportDropdownIdx(null); }}
               style={{
                 width: '100%',
                 background: 'none',
