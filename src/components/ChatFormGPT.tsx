@@ -312,6 +312,17 @@ const ChatFormGPT: React.FC = () => {
       // Створюємо перший чат
       createNewChat();
     }
+
+    // Завантажуємо показані повідомлення з localStorage
+    const savedShownMessages = localStorage.getItem('ppcset-shown-messages');
+    if (savedShownMessages) {
+      try {
+        const parsed = JSON.parse(savedShownMessages);
+        setShownMessages(new Set(parsed));
+      } catch (e) {
+        console.error('Error parsing shown messages:', e);
+      }
+    }
   }, []);
 
   // Збереження чатів у localStorage
@@ -327,6 +338,13 @@ const ChatFormGPT: React.FC = () => {
       localStorage.setItem('ppcset-current-chat', currentChatId);
     }
   }, [currentChatId]);
+
+  // Збереження показаних повідомлень
+  useEffect(() => {
+    if (shownMessages.size > 0) {
+      localStorage.setItem('ppcset-shown-messages', JSON.stringify(Array.from(shownMessages)));
+    }
+  }, [shownMessages]);
 
   const createNewChat = () => {
     const newChat: Chat = {
@@ -667,6 +685,68 @@ const ChatFormGPT: React.FC = () => {
     } catch (error) {
       console.error('Export CSV error:', error);
       alert('Помилка при експорті файлу');
+    }
+  };
+
+  const exportPdf = async (text: string) => {
+    try {
+      const res = await fetch('/api/export-pdf', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text }),
+      });
+      
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+      
+      const blob = await res.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `chat-export-${new Date().toISOString().replace(/[:.]/g, '-')}.pdf`;
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+    } catch (error) {
+      console.error('Export PDF error:', error);
+      alert('Помилка при експорті PDF файлу');
+    }
+  };
+
+  const exportXlsx = async (rows: string[][]) => {
+    try {
+      const data = rows.map(row => {
+        const obj: any = {};
+        row.forEach((value, index) => {
+          obj[`Column${index + 1}`] = value;
+        });
+        return obj;
+      });
+      
+      const res = await fetch('/api/export-xlsx', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ data, filename: 'chat-export' }),
+      });
+      
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+      
+      const blob = await res.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `chat-export-${new Date().toISOString().replace(/[:.]/g, '-')}.xlsx`;
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+    } catch (error) {
+      console.error('Export XLSX error:', error);
+      alert('Помилка при експорті Excel файлу');
     }
   };
 
@@ -1286,43 +1366,7 @@ const ChatFormGPT: React.FC = () => {
         </div>
       </div>
 
-      {/* Кнопки шаблонів звітів */}
-      {useAdsData && (adsData || realAdsData) && (
-        <div style={{
-          display: 'flex',
-          gap: 8,
-          justifyContent: 'center',
-          margin: '0 48px 12px 48px',
-          flexWrap: 'wrap',
-        }}>
-          {Object.entries(REPORT_TEMPLATES).map(([key, template]) => (
-            <button
-              key={key}
-              type="button"
-              onClick={() => generateReport(key)}
-              disabled={loading}
-              style={{
-                background: '#f8fafc',
-                color: '#23272f',
-                border: '1.5px solid #e2e8f0',
-                borderRadius: 8,
-                padding: '8px 16px',
-                fontSize: 14,
-                fontWeight: 500,
-                cursor: loading ? 'not-allowed' : 'pointer',
-                transition: 'all 0.2s',
-                boxShadow: '0 1px 4px rgba(0,0,0,0.03)',
-                outline: 'none',
-                whiteSpace: 'nowrap',
-                opacity: loading ? 0.6 : 1,
-              }}
-              title={template.description}
-            >
-              {template.name}
-            </button>
-          ))}
-        </div>
-      )}
+
       {/* Блок "Дані Google Ads підключені" */}
       {useAdsData && (adsData || realAdsData) && (
         <div style={{
@@ -1700,7 +1744,7 @@ const ChatFormGPT: React.FC = () => {
             padding: '4px 0',
           }}>
             <button
-              onClick={() => { exportCsv([["AI-відповідь", msg.text]]); setOpenExportDropdownIdx(null); }}
+              onClick={() => { exportPdf(msg.text); setOpenExportDropdownIdx(null); }}
               style={{
                 width: '100%',
                 background: 'none',
@@ -1713,7 +1757,23 @@ const ChatFormGPT: React.FC = () => {
                 transition: 'background 0.18s',
               }}
             >
-              Excel (CSV)
+              PDF
+            </button>
+            <button
+              onClick={() => { exportXlsx([["AI-відповідь", msg.text]]); setOpenExportDropdownIdx(null); }}
+              style={{
+                width: '100%',
+                background: 'none',
+                border: 'none',
+                color: '#23272f',
+                fontSize: 15,
+                padding: '8px 16px',
+                textAlign: 'left',
+                cursor: 'pointer',
+                transition: 'background 0.18s',
+              }}
+            >
+              Excel (XLSX)
             </button>
             <button
               onClick={() => { exportCsv([["AI-відповідь", msg.text]]); setOpenExportDropdownIdx(null); }}
@@ -1732,7 +1792,7 @@ const ChatFormGPT: React.FC = () => {
               CSV
             </button>
             <button
-                                  onClick={() => { console.log('TXT export button clicked!'); exportTxt(msg.text); setOpenExportDropdownIdx(null); }}
+              onClick={() => { console.log('TXT export button clicked!'); exportTxt(msg.text); setOpenExportDropdownIdx(null); }}
               style={{
                 width: '100%',
                 background: 'none',
@@ -2029,8 +2089,46 @@ const ChatFormGPT: React.FC = () => {
       </div>
       {/* Підказка під textarea */}
       <div style={{ color: '#888', fontSize: 14, margin: '0 48px 12px 48px', textAlign: 'center' }}>
-        For a personalized answer, click <b>“Use Google Ads data”</b> before submitting your question.
+        For a personalized answer, click <b>"Use Google Ads data"</b> before submitting your question.
       </div>
+
+      {/* Кнопки шаблонів звітів */}
+      {useAdsData && (adsData || realAdsData) && (
+        <div style={{
+          display: 'flex',
+          gap: 8,
+          justifyContent: 'center',
+          margin: '0 48px 12px 48px',
+          flexWrap: 'wrap',
+        }}>
+          {Object.entries(REPORT_TEMPLATES).map(([key, template]) => (
+            <button
+              key={key}
+              type="button"
+              onClick={() => generateReport(key)}
+              disabled={loading}
+              style={{
+                background: '#f8fafc',
+                color: '#23272f',
+                border: '1.5px solid #e2e8f0',
+                borderRadius: 8,
+                padding: '8px 16px',
+                fontSize: 14,
+                fontWeight: 500,
+                cursor: loading ? 'not-allowed' : 'pointer',
+                transition: 'all 0.2s',
+                boxShadow: '0 1px 4px rgba(0,0,0,0.03)',
+                outline: 'none',
+                whiteSpace: 'nowrap',
+                opacity: loading ? 0.6 : 1,
+              }}
+              title={template.description}
+            >
+              {template.name}
+            </button>
+          ))}
+        </div>
+      )}
       {error && <div style={{ color: 'red', margin: '0 48px 10px 48px' }}>{error}</div>}
       {/* Модалка-заглушка для підключення акаунта */}
       {showAccountModal && (
