@@ -18,37 +18,37 @@ interface Chat {
   updatedAt: Date;
 }
 
-// Шаблони звітів
+// Report Templates
 const REPORT_TEMPLATES = {
   campaign_analysis: {
-    name: 'Аналіз кампанії',
-    description: 'Детальний аналіз ефективності кампанії',
-    prompt: 'Проведи детальний аналіз кампанії Google Ads. Включи аналіз показників, проблеми та рекомендації для покращення.'
+    name: 'Campaign Analysis',
+    description: 'Detailed campaign performance analysis',
+    prompt: 'Conduct a detailed analysis of Google Ads campaign. Include performance metrics analysis, issues identification and improvement recommendations.'
   },
   keyword_analysis: {
-    name: 'Аналіз ключових слів',
-    description: 'Аналіз ефективності ключових слів',
-    prompt: 'Проаналізуй ефективність ключових слів. Покажи найкращі та найгірші ключові слова з рекомендаціями.'
+    name: 'Keyword Analysis',
+    description: 'Keyword performance analysis',
+    prompt: 'Analyze keyword effectiveness. Show best and worst performing keywords with recommendations.'
   },
   monthly_report: {
-    name: 'Місячний звіт',
-    description: 'Комплексний місячний звіт',
-    prompt: 'Створи комплексний місячний звіт по Google Ads кампанії з основними метриками та трендами.'
+    name: 'Monthly Report',
+    description: 'Comprehensive monthly report',
+    prompt: 'Create a comprehensive monthly report for Google Ads campaign with key metrics and trends.'
   },
   quick_analysis: {
-    name: 'Швидкий аналіз',
-    description: 'Швидкий огляд основних показників',
-    prompt: 'Проведи швидкий аналіз основних показників кампанії та виділи ключові проблеми.'
+    name: 'Quick Analysis',
+    description: 'Quick overview of key metrics',
+    prompt: 'Conduct a quick analysis of key campaign metrics and highlight main issues.'
   },
   performance_review: {
-    name: 'Огляд продуктивності',
-    description: 'Детальний огляд продуктивності',
-    prompt: 'Проведи детальний огляд продуктивності кампанії з фокусом на ROI та ефективність витрат.'
+    name: 'Performance Review',
+    description: 'Detailed performance review',
+    prompt: 'Conduct a detailed performance review of the campaign focusing on ROI and cost efficiency.'
   },
   budget_analysis: {
-    name: 'Аналіз бюджету',
-    description: 'Аналіз розподілу та ефективності бюджету',
-    prompt: 'Проаналізуй розподіл бюджету по кампаніях та дай рекомендації для оптимізації витрат.'
+    name: 'Budget Analysis',
+    description: 'Budget allocation and efficiency analysis',
+    prompt: 'Analyze budget distribution across campaigns and provide recommendations for cost optimization.'
   }
 };
 
@@ -455,11 +455,22 @@ const ChatFormGPT: React.FC = () => {
       return;
     }
 
-    // Auto-connect логіка
+    // Auto-connect logic
     if (!hasData && useAdsData && !accountConnected) {
-      // Автоматично підключаємо акаунт
-      setShowAccountModal(true);
-      setLoading(false);
+      // Automatically connect account and enable test data
+      setUseAdsData(true);
+      setAccountConnected(true);
+      // Fetch test data
+      fetch('/api/ads-data')
+        .then(res => res.json())
+        .then(data => {
+          setAdsData(data);
+          setLoading(false);
+        })
+        .catch(() => {
+          setAdsData(null);
+          setLoading(false);
+        });
       return;
     }
 
@@ -791,25 +802,25 @@ const ChatFormGPT: React.FC = () => {
     setError(null);
     setLoading(true);
     
-    // Перевіряємо чи є дані
+    // Check if we have data
     const dataToUse = realAdsData || adsData;
     const hasData = dataToUse && dataToUse.campaigns && dataToUse.campaigns.length > 0;
 
     if (!hasData) {
-      const instructionMessage = `Для генерації звіту "${template.name}" потрібно активувати дані Google Ads. 
+      const instructionMessage = `To generate "${template.name}" report, you need to activate Google Ads data. 
 
-**Як активувати дані:**
-1. Натисніть кнопку "Підключити Google Ads" внизу
-2. Авторизуйтесь у вашому Google акаунті
-3. Дозвольте доступ до Google Ads API
-4. Після підключення ви зможете генерувати звіти на основі реальних даних
+**How to activate data:**
+1. Click "Connect Google Ads" button below
+2. Authorize in your Google account
+3. Allow access to Google Ads API
+4. After connection, you can generate reports based on real data
 
-**Або використайте тестові дані:**
-- Включіть перемикач "Використовувати дані Google Ads" внизу
-- Система використає тестові дані для демонстрації`;
+**Or use test data:**
+- Enable "Use Google Ads data" toggle below
+- System will use test data for demonstration`;
 
       const instructionMsg: Message = { role: 'ai', text: instructionMessage };
-      setMessages((prev) => [...prev, { role: 'user', text: `Згенеруй ${template.name.toLowerCase()}` }, instructionMsg]);
+      setMessages((prev) => [...prev, { role: 'user', text: `Generate ${template.name.toLowerCase()}` }, instructionMsg]);
       setLoading(false);
       return;
     }
@@ -1378,9 +1389,9 @@ const ChatFormGPT: React.FC = () => {
               marginRight: 8,
               transition: 'background 0.2s',
             }}
-            title="Показати шаблони звітів"
+            title="Show report templates"
           >
-            Шаблони
+            Templates
           </button>
         </div>
       </div>
@@ -1397,10 +1408,19 @@ const ChatFormGPT: React.FC = () => {
         }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
             <h3 style={{ fontSize: 16, fontWeight: 600, color: '#23272f', margin: 0 }}>
-              Шаблони звітів
+              Report Templates
             </h3>
             <button
-              onClick={() => setShowAccountModal(true)}
+              onClick={() => {
+                if (!accountConnected) {
+                  setUseAdsData(true);
+                  setAccountConnected(true);
+                  fetch('/api/ads-data')
+                    .then(res => res.json())
+                    .then(data => setAdsData(data))
+                    .catch(() => setAdsData(null));
+                }
+              }}
               style={{
                 background: accountConnected ? '#e6f7ff' : '#fff',
                 color: accountConnected ? '#0ea5e9' : '#23272f',
@@ -1412,9 +1432,9 @@ const ChatFormGPT: React.FC = () => {
                 cursor: 'pointer',
                 transition: 'background 0.2s',
               }}
-              title="Автоматичне підключення Google Ads"
+              title="Automatic Google Ads connection"
             >
-              {accountConnected ? 'Підключено' : 'Auto-connect'}
+              {accountConnected ? 'Google Ads data added' : 'Auto-connect'}
             </button>
           </div>
           <div style={{
