@@ -6,5 +6,5 @@ python-multipart==0.0.6
 pydantic>=2.6.0
 requests==2.31.0
 aiofiles==23.2.1
-httpx>=0.25.0 
-python-dotenv
+httpx>=0.25.0
+openpyxl>=3.1.0
