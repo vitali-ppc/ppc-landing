@@ -2,28 +2,39 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(request: NextRequest) {
   try {
-    const { text } = await request.json();
+    const body = await request.json();
     
-    if (!text) {
-      return NextResponse.json({ error: 'Text is required' }, { status: 400 });
-    }
-
-    // Create filename with timestamp
-    const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
-    const filename = `chat-export-${timestamp}.txt`;
-
-    // Set headers for file download
-    const headers = new Headers();
-    headers.set('Content-Type', 'text/plain; charset=utf-8');
-    headers.set('Content-Disposition', `attachment; filename="${filename}"`);
-
-    return new NextResponse(text, {
-      status: 200,
-      headers
+    const response = await fetch('http://91.99.225.211:8000/export-txt', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
     });
 
+    if (!response.ok) {
+      throw new Error(`Backend error: ${response.status}`);
+    }
+
+    const blob = await response.blob();
+    const headers = new Headers();
+    
+    // Копіюємо заголовки від бекенду
+    response.headers.forEach((value, key) => {
+      if (key.toLowerCase() !== 'content-length') {
+        headers.set(key, value);
+      }
+    });
+
+    return new NextResponse(blob, {
+      status: 200,
+      headers,
+    });
   } catch (error) {
     console.error('Export TXT error:', error);
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+    return NextResponse.json(
+      { error: 'Export failed' },
+      { status: 500 }
+    );
   }
 } 
