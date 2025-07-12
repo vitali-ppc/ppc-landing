@@ -231,7 +231,7 @@ export default function NextJsDevelopmentPage() {
         description="Let's discuss your project requirements and create a custom solution that drives results."
       />
 
-      <Footer />
+      <Footer compact={true} />
     </>
   )
 }
