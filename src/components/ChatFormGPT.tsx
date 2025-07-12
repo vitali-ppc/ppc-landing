@@ -1,13 +1,12 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import ReactMarkdown from 'react-markdown';
-import { ReactNode } from 'react';
 
 interface Message {
   role: 'user' | 'ai';
   text: string;
-  image?: string; // base64 або URL зображення
+  image?: string;
 }
 
 interface Chat {
@@ -18,40 +17,187 @@ interface Chat {
   updatedAt: Date;
 }
 
-// Шаблони звітів
+interface GoogleAdsData {
+  total: {
+    cost: number;
+    clicks: number;
+    impressions: number;
+    conversions: number;
+    ctr: number;
+    cpc: number;
+    conversion_rate: number;
+    revenue?: number;
+    roas?: number;
+    roi?: number;
+  };
+  campaigns: Array<{
+    name: string;
+    status: string;
+    cost: number;
+    clicks: number;
+    impressions: number;
+    conversions: number;
+    ctr: number;
+    cpc: number;
+    conversion_rate: number;
+    revenue?: number;
+    roas?: number;
+    roi?: number;
+  }>;
+  date_range: string;
+  demographics?: Array<{
+    age_group: string;
+    gender: string;
+    clicks: number;
+    cost: number;
+    conversions: number;
+  }>;
+}
+
+// Report Templates
 const REPORT_TEMPLATES = {
   campaign_analysis: {
-    name: 'Аналіз кампанії',
-    description: 'Детальний аналіз ефективності кампанії',
-    prompt: 'Проведи детальний аналіз кампанії Google Ads. Включи аналіз показників, проблеми та рекомендації для покращення.'
+    name: 'Campaign Analysis',
+    description: 'Detailed campaign performance analysis',
+    prompt: 'Conduct a detailed analysis of Google Ads campaign. Include performance metrics analysis, issues identification and improvement recommendations.'
   },
   keyword_analysis: {
-    name: 'Аналіз ключових слів',
-    description: 'Аналіз ефективності ключових слів',
-    prompt: 'Проаналізуй ефективність ключових слів. Покажи найкращі та найгірші ключові слова з рекомендаціями.'
+    name: 'Keyword Analysis',
+    description: 'Keyword performance analysis',
+    prompt: 'Analyze keyword effectiveness. Show best and worst performing keywords with recommendations.'
   },
   monthly_report: {
-    name: 'Місячний звіт',
-    description: 'Комплексний місячний звіт',
-    prompt: 'Створи комплексний місячний звіт по Google Ads кампанії з основними метриками та трендами.'
+    name: 'Monthly Report',
+    description: 'Comprehensive monthly report',
+    prompt: 'Create a comprehensive monthly report for Google Ads campaign with key metrics and trends.'
   },
   quick_analysis: {
-    name: 'Швидкий аналіз',
-    description: 'Швидкий огляд основних показників',
-    prompt: 'Проведи швидкий аналіз основних показників кампанії та виділи ключові проблеми.'
+    name: 'Quick Analysis',
+    description: 'Quick overview of key metrics',
+    prompt: 'Conduct a quick analysis of key campaign metrics and highlight main issues.'
   },
   performance_review: {
-    name: 'Огляд продуктивності',
-    description: 'Детальний огляд продуктивності',
-    prompt: 'Проведи детальний огляд продуктивності кампанії з фокусом на ROI та ефективність витрат.'
+    name: 'Performance Review',
+    description: 'Detailed performance review',
+    prompt: 'Conduct a detailed performance review of the campaign focusing on ROI and cost efficiency.'
   },
   budget_analysis: {
-    name: 'Аналіз бюджету',
-    description: 'Аналіз розподілу та ефективності бюджету',
-    prompt: 'Проаналізуй розподіл бюджету по кампаніях та дай рекомендації для оптимізації витрат.'
+    name: 'Budget Analysis',
+    description: 'Budget allocation and efficiency analysis',
+    prompt: 'Analyze budget distribution across campaigns and provide recommendations for cost optimization.'
+  }
+} as const;
+
+// Утилиты для экспорта
+const EXPORT_ENDPOINTS = {
+  txt: '/api/export-txt',
+  csv: '/api/export-csv',
+  pdf: '/api/export-pdf',
+  xlsx: '/api/export-xlsx'
+} as const;
+
+type ExportFormat = keyof typeof EXPORT_ENDPOINTS;
+
+// Универсальная функция экспорта
+const exportData = async (format: ExportFormat, data: any, filename?: string): Promise<boolean> => {
+  try {
+    const endpoint = EXPORT_ENDPOINTS[format];
+    const body = format === 'txt' || format === 'pdf' 
+      ? { text: data } 
+      : { rows: data };
+
+    const res = await fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    });
+
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
+    }
+
+    const blob = await res.blob();
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename || `chat-export-${new Date().toISOString().replace(/[:.]/g, '-')}.${format}`;
+    a.style.display = 'none';
+    
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(url);
+    document.body.removeChild(a);
+    
+    return true;
+  } catch (error) {
+    console.error(`Export ${format.toUpperCase()} error:`, error);
+    alert(`Помилка при експорті ${format.toUpperCase()} файлу: ${error instanceof Error ? error.message : String(error)}`);
+    return false;
   }
 };
 
+// Утилиты для работы с Google Ads данными
+const formatGoogleAdsData = (data: GoogleAdsData, isRealData: boolean): string => {
+  const total = data.total;
+  const campaigns = data.campaigns.map((c) => {
+    let campaignInfo = `- ${c.name} (${c.status}): витрати $${c.cost}, кліки ${c.clicks}, покази ${c.impressions}, конверсії ${c.conversions}, CTR ${c.ctr}%, CPC $${c.cpc}, CR ${c.conversion_rate}%`;
+    
+    if (c.revenue) campaignInfo += `, дохід $${c.revenue}`;
+    if (c.roas) campaignInfo += `, ROAS ${c.roas}`;
+    if (c.roi) campaignInfo += `, ROI ${c.roi}%`;
+    
+    return campaignInfo;
+  }).join('\n');
+
+  const dataSource = isRealData ? 'реальними даними з вашого Google Ads акаунту' : 'тестовими даними';
+  let summary = `У моєму акаунті Google Ads за ${data.date_range} (${dataSource}):
+Всього витрати: $${total.cost}, кліки: ${total.clicks}, покази: ${total.impressions}, конверсії: ${total.conversions}, CTR: ${total.ctr}%, CPC: $${total.cpc}, CR: ${total.conversion_rate}%`;
+
+  if (total.revenue) summary += `, загальний дохід: $${total.revenue}`;
+  if (total.roas) summary += `, загальний ROAS: ${total.roas}`;
+  if (total.roi) summary += `, загальний ROI: ${total.roi}%`;
+
+  summary += `\nКампанії:\n${campaigns}`;
+
+  if (data.demographics && data.demographics.length > 0) {
+    summary += `\n\nДемографічні дані:\n${data.demographics.map((d) => 
+      `- ${d.age_group} (${d.gender}): кліки ${d.clicks}, витрати $${d.cost}, конверсії ${d.conversions}`
+    ).join('\n')}`;
+  }
+
+  return summary;
+};
+
+// Хук для работы с localStorage
+const useLocalStorage = <T,>(key: string, initialValue: T) => {
+  const [storedValue, setStoredValue] = useState<T>(() => {
+    if (typeof window === 'undefined') return initialValue;
+    
+    try {
+      const item = window.localStorage.getItem(key);
+      return item ? JSON.parse(item) : initialValue;
+    } catch (error) {
+      console.error(error);
+      return initialValue;
+    }
+  });
+
+  const setValue = useCallback((value: T | ((val: T) => T)) => {
+    try {
+      const valueToStore = value instanceof Function ? value(storedValue) : value;
+      setStoredValue(valueToStore);
+      if (typeof window !== 'undefined') {
+        window.localStorage.setItem(key, JSON.stringify(valueToStore));
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }, [storedValue, key]);
+
+  return [storedValue, setValue] as const;
+};
+
+// Компоненты аватаров
 const AI_AVATAR = (
   <div style={{
     width: 36,
@@ -74,10 +220,6 @@ const AI_AVATAR = (
   </div>
 );
 
-function getUserInitials() {
-  return 'В';
-}
-
 const USER_AVATAR = (
   <div style={{
     width: 36,
@@ -92,27 +234,34 @@ const USER_AVATAR = (
     fontSize: 18,
     boxShadow: '0 2px 8px rgba(0,0,0,0.04)'
   }}>
-    {getUserInitials()}
+    В
   </div>
 );
 
 const ChatFormGPT: React.FC = () => {
+  // Основные состояния
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const inputRef = useRef<HTMLTextAreaElement>(null);
-  const chatEndRef = useRef<HTMLDivElement>(null);
-  const [adsData, setAdsData] = useState<any>(null);
+  
+  // Google Ads данные
+  const [adsData, setAdsData] = useState<GoogleAdsData | null>(null);
   const [useAdsData, setUseAdsData] = useState(false);
-  const [realAdsData, setRealAdsData] = useState<any>(null);
-  const [copied, setCopied] = useState(false);
+  const [realAdsData, setRealAdsData] = useState<GoogleAdsData | null>(null);
   const [accountConnected, setAccountConnected] = useState(false);
-  const [showAccountModal, setShowAccountModal] = useState(false);
   const [accessToken, setAccessToken] = useState<string | null>(null);
+  
+  // UI состояния
+  const [showAccountModal, setShowAccountModal] = useState(false);
   const [openExportDropdownIdx, setOpenExportDropdownIdx] = useState<number | null>(null);
-  const [theme, setTheme] = useState<'light' | 'dark'>(typeof window !== 'undefined' && window.localStorage.getItem('chatTheme') === 'dark' ? 'dark' : 'light');
+  const [theme, setTheme] = useState<'light' | 'dark'>(
+    typeof window !== 'undefined' && window.localStorage.getItem('chatTheme') === 'dark' ? 'dark' : 'light'
+  );
   const [placeholderIndex, setPlaceholderIndex] = useState(0);
+  const [showReportTemplates, setShowReportTemplates] = useState(false);
+  
+  // Чат состояния
   const [chats, setChats] = useState<Chat[]>([]);
   const [currentChatId, setCurrentChatId] = useState<string | null>(null);
   const [showSidebar, setShowSidebar] = useState(false);
@@ -120,233 +269,42 @@ const ChatFormGPT: React.FC = () => {
   const [openMenuId, setOpenMenuId] = useState<string | null>(null);
   const [editingChatId, setEditingChatId] = useState<string | null>(null);
   const [editingTitle, setEditingTitle] = useState('');
+  
+  // Изображения
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
+  
+  // Typing эффект
+  const [typingText, setTypingText] = useState<string | null>(null);
   const [shownMessages, setShownMessages] = useState<Set<string>>(new Set());
-  const [reportTemplates, setReportTemplates] = useState<string>('');
-  const [showReportTemplates, setShowReportTemplates] = useState(false);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      document.body.dataset.chatTheme = theme;
-      window.localStorage.setItem('chatTheme', theme);
-    }
-  }, [theme]);
-
-  // typing-ефект через ref
-  const typingTextRef = useRef<string | null>(null);
-  const typingInterrupted = useRef(false);
+  const [copied, setCopied] = useState(false);
+  
+  // Refs
+  const inputRef = useRef<HTMLTextAreaElement>(null);
+  const chatEndRef = useRef<HTMLDivElement>(null);
   const typingTimeout = useRef<NodeJS.Timeout | null>(null);
   const typingIndex = useRef(0);
-  const [typingText, setTypingText] = useState<string | null>(null);
+  const typingInterrupted = useRef(false);
 
-  const startTypingEffect = (fullText: string) => {
-    typingInterrupted.current = false;
-    typingIndex.current = 0;
-    typingTextRef.current = '';
-    setTypingText('');
-    if (typingTimeout.current) clearTimeout(typingTimeout.current);
-    const type = () => {
-      if (typingInterrupted.current) {
-        setTypingText(null);
-        typingTextRef.current = null;
-        return;
-      }
-      typingTextRef.current = fullText.slice(0, typingIndex.current + 1);
-      setTypingText(typingTextRef.current);
-      if (typingIndex.current < fullText.length - 1) {
-        typingIndex.current++;
-        typingTimeout.current = setTimeout(type, 12 + Math.random() * 30);
-      } else {
-        setTypingText(null);
-        typingTextRef.current = null;
-      }
-    };
-    type();
-  };
+  // Мемоизированные значения
+  const dataToUse = useMemo(() => realAdsData || adsData, [realAdsData, adsData]);
+  const hasData = useMemo(() => dataToUse && dataToUse.campaigns && dataToUse.campaigns.length > 0, [dataToUse]);
+  const filteredChats = useMemo(() => 
+    chats.filter(chat => chat.title.toLowerCase().includes(searchQuery.toLowerCase())),
+    [chats, searchQuery]
+  );
 
-  // Закривати dropdown при кліку поза меню та кнопкою
-  useEffect(() => {
-    const handleClick = (e: MouseEvent) => {
-      setOpenExportDropdownIdx(null);
-    };
-    if (openExportDropdownIdx !== null) {
-      document.addEventListener('mousedown', handleClick);
-    } else {
-      document.removeEventListener('mousedown', handleClick);
-    }
-    return () => document.removeEventListener('mousedown', handleClick);
-  }, [openExportDropdownIdx]);
-
-  // Підвантаження mock-даних при першому рендері
-  useEffect(() => {
-    fetch('/api/ads-data')
-      .then(res => res.json())
-      .then(data => setAdsData(data))
-      .catch(() => setAdsData(null));
-  }, []);
-
-  // Обробка OAuth2 callback
-  useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const authStatus = urlParams.get('auth');
-    const token = urlParams.get('access_token');
-    const error = urlParams.get('error');
-
-    if (authStatus === 'success' && token) {
-      setAccessToken(token);
-      setAccountConnected(true);
-      setShowAccountModal(false);
-      // Отримуємо реальні дані Google Ads
-      fetchRealAdsData(token);
-      // Очищаємо URL
-      window.history.replaceState({}, document.title, window.location.pathname);
-    } else if (error) {
-      setError(`Помилка авторизації: ${error}`);
-      // Очищаємо URL
-      window.history.replaceState({}, document.title, window.location.pathname);
-    }
-  }, []);
-
-  // Функція для отримання реальних даних Google Ads
-  const fetchRealAdsData = async (token: string) => {
-    try {
-      const response = await fetch('/api/ads-data-real', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ accessToken: token }),
-      });
-      
-      if (response.ok) {
-        const data = await response.json();
-        setRealAdsData(data);
-      } else {
-        console.error('Failed to fetch real Google Ads data');
-      }
-    } catch (error) {
-      console.error('Error fetching real Google Ads data:', error);
-    }
-  };
-
-  useEffect(() => {
-    inputRef.current?.focus();
-  }, []);
-
-  useEffect(() => {
-    const chatDiv = chatEndRef.current?.parentElement;
-    if (!chatDiv) return;
-    const isAtBottom = chatDiv.scrollHeight - chatDiv.scrollTop - chatDiv.clientHeight < 50;
-    if (isAtBottom) {
-      chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-    }
-  }, [messages]);
-
-  // Запуск typing-ефекту при новій AI-відповіді
-  useEffect(() => {
-    if (!loading && messages.length > 0 && messages[messages.length - 1].role === 'ai') {
-      const lastAiMsg = messages[messages.length - 1].text;
-      const messageId = `${messages.length - 1}-${lastAiMsg.slice(0, 50)}`; // Унікальний ID повідомлення
-      
-      // Перевіряємо чи це повідомлення вже показувалося
-      if (!shownMessages.has(messageId) && typingText === null && lastAiMsg && lastAiMsg.length > 0) {
-        startTypingEffect(lastAiMsg);
-        setShownMessages(prev => new Set(Array.from(prev).concat([messageId])));
-      }
-    }
-    if (loading) {
-      setTypingText(null);
-      typingTextRef.current = null;
-      if (typingTimeout.current) clearTimeout(typingTimeout.current);
-      typingInterrupted.current = false;
-    }
-    // eslint-disable-next-line
-  }, [messages, loading, shownMessages]);
-
-  // Очищення таймера при анмаунті
-  useEffect(() => {
-    return () => {
-      if (typingTimeout.current) clearTimeout(typingTimeout.current);
-    };
-  }, []);
-
-  // Динамічний placeholder для textarea
-  const placeholders = [
+  // Placeholders
+  const placeholders = useMemo(() => [
     "How can I improve my Google Ads campaign?",
     "Why is my CPA so high?",
     "Show me insights for my last 30 days",
     "What's wrong with my ad performance?",
     "How to optimize my budget allocation?"
-  ];
+  ], []);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setPlaceholderIndex((prev) => (prev + 1) % placeholders.length);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, []);
-
-  // Завантаження історії чатів з localStorage
-  useEffect(() => {
-    const savedChats = localStorage.getItem('ppcset-chats');
-    if (savedChats) {
-      const parsedChats = JSON.parse(savedChats).map((chat: any) => ({
-        ...chat,
-        createdAt: new Date(chat.createdAt),
-        updatedAt: new Date(chat.updatedAt)
-      }));
-      setChats(parsedChats);
-      
-      // Відновлюємо останній активний чат
-      const lastChatId = localStorage.getItem('ppcset-current-chat');
-      if (lastChatId && parsedChats.find((c: Chat) => c.id === lastChatId)) {
-        setCurrentChatId(lastChatId);
-        const lastChat = parsedChats.find((c: Chat) => c.id === lastChatId);
-        if (lastChat) setMessages(lastChat.messages);
-      } else if (parsedChats.length > 0) {
-        // Якщо останній чат не знайдено, беремо найновіший
-        const newestChat = parsedChats[parsedChats.length - 1];
-        setCurrentChatId(newestChat.id);
-        setMessages(newestChat.messages);
-      }
-    } else {
-      // Створюємо перший чат
-      createNewChat();
-    }
-
-    // Завантажуємо показані повідомлення з localStorage
-    const savedShownMessages = localStorage.getItem('ppcset-shown-messages');
-    if (savedShownMessages) {
-      try {
-        const parsed = JSON.parse(savedShownMessages);
-        setShownMessages(new Set(parsed));
-      } catch (e) {
-        console.error('Error parsing shown messages:', e);
-      }
-    }
-  }, []);
-
-  // Збереження чатів у localStorage
-  useEffect(() => {
-    if (chats.length > 0) {
-      localStorage.setItem('ppcset-chats', JSON.stringify(chats));
-    }
-  }, [chats]);
-
-  // Збереження поточного чату
-  useEffect(() => {
-    if (currentChatId) {
-      localStorage.setItem('ppcset-current-chat', currentChatId);
-    }
-  }, [currentChatId]);
-
-  // Збереження показаних повідомлень
-  useEffect(() => {
-    if (shownMessages.size > 0) {
-      localStorage.setItem('ppcset-shown-messages', JSON.stringify(Array.from(shownMessages)));
-    }
-  }, [shownMessages]);
-
-  const createNewChat = () => {
+  // Утилиты для работы с чатами
+  const createNewChat = useCallback(() => {
     const newChat: Chat = {
       id: Date.now().toString(),
       title: 'New chat',
@@ -359,20 +317,20 @@ const ChatFormGPT: React.FC = () => {
     setMessages([]);
     setInput('');
     setError(null);
-  };
+  }, []);
 
-  const selectChat = (chatId: string) => {
+  const selectChat = useCallback((chatId: string) => {
     const chat = chats.find(c => c.id === chatId);
     if (chat) {
       setCurrentChatId(chatId);
       setMessages(chat.messages);
       setInput('');
       setError(null);
-      setShowSidebar(false); // Закриваємо sidebar на мобільних
+      setShowSidebar(false);
     }
-  };
+  }, [chats]);
 
-  const deleteChat = (chatId: string) => {
+  const deleteChat = useCallback((chatId: string) => {
     setChats(prev => prev.filter(c => c.id !== chatId));
     if (currentChatId === chatId) {
       if (chats.length > 1) {
@@ -384,44 +342,106 @@ const ChatFormGPT: React.FC = () => {
         createNewChat();
       }
     }
-  };
+  }, [currentChatId, chats.length, createNewChat]);
 
-  const updateChatTitle = (chatId: string, title: string) => {
+  const updateChatTitle = useCallback((chatId: string, title: string) => {
     setChats(prev => prev.map(c => 
       c.id === chatId ? { ...c, title, updatedAt: new Date() } : c
     ));
     setEditingChatId(null);
     setEditingTitle('');
-  };
+  }, []);
 
-  // Фільтрація чатів по пошуковому запиту
-  const filteredChats = chats.filter(chat => 
-    chat.title.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-
-  // Закрити меню при кліку поза ним
-  useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (openMenuId && !(e.target as Element).closest('.chat-menu')) {
-        setOpenMenuId(null);
+  // Typing эффект
+  const startTypingEffect = useCallback((fullText: string) => {
+    typingInterrupted.current = false;
+    typingIndex.current = 0;
+    setTypingText('');
+    
+    if (typingTimeout.current) clearTimeout(typingTimeout.current);
+    
+    const type = () => {
+      if (typingInterrupted.current) {
+        setTypingText(null);
+        return;
+      }
+      
+      const currentText = fullText.slice(0, typingIndex.current + 1);
+      setTypingText(currentText);
+      
+      if (typingIndex.current < fullText.length - 1) {
+        typingIndex.current++;
+        typingTimeout.current = setTimeout(type, 12 + Math.random() * 30);
+      } else {
+        setTypingText(null);
       }
     };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [openMenuId]);
+    
+    type();
+  }, []);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  // Функции экспорта
+  const handleExport = useCallback(async (format: ExportFormat, data: any) => {
+    const success = await exportData(format, data);
+    if (success) {
+      setOpenExportDropdownIdx(null);
+    }
+  }, []);
+
+  // Обработка изображений
+  const handleImageUpload = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    if (!file.type.startsWith('image/')) {
+      alert('Please select an image file');
+      return;
+    }
+    
+    if (file.size > 5 * 1024 * 1024) {
+      alert('Image size should be less than 5MB');
+      return;
+    }
+
+    setSelectedImage(file);
+    
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      setImagePreview(e.target?.result as string);
+    };
+    reader.readAsDataURL(file);
+  }, []);
+
+  const removeImage = useCallback(() => {
+    setSelectedImage(null);
+    setImagePreview(null);
+  }, []);
+
+  // Очистка чата
+  const handleClear = useCallback(() => {
+    setMessages([]);
+    setError(null);
+    setInput('');
+    if (currentChatId) {
+      setChats(prev => prev.map(c => 
+        c.id === currentChatId 
+          ? { ...c, messages: [], updatedAt: new Date() }
+          : c
+      ));
+    }
+    inputRef.current?.focus();
+  }, [currentChatId]);
+
+  // Основная функция отправки
+  const handleSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
     if (!input.trim()) return;
+    
     setError(null);
     setLoading(true);
     let question = input;
 
-    // Перевіряємо чи є дані для аналізу
-    const dataToUse = realAdsData || adsData;
-    const hasData = dataToUse && dataToUse.campaigns && dataToUse.campaigns.length > 0;
-
-    // Якщо немає даних і це запит на звіт - показуємо інструкції
+    // Проверка данных для анализа
     if (!hasData && (input.toLowerCase().includes('звіт') || input.toLowerCase().includes('аналіз') || input.toLowerCase().includes('report'))) {
       const instructionMessage = `Для генерації звітів потрібно активувати дані Google Ads. 
 
@@ -433,15 +453,7 @@ const ChatFormGPT: React.FC = () => {
 
 **Або використайте тестові дані:**
 - Включіть перемикач "Використовувати дані Google Ads" внизу
-- Система використає тестові дані для демонстрації
-
-Після активації даних ви зможете генерувати різні типи звітів:
-- Аналіз кампанії
-- Аналіз ключових слів  
-- Місячний звіт
-- Швидкий аналіз
-- Огляд продуктивності
-- Аналіз бюджету`;
+- Система використає тестові дані для демонстрації`;
 
       const instructionMsg: Message = { role: 'ai', text: instructionMessage };
       setMessages((prev) => [...prev, { role: 'user', text: input }, instructionMsg]);
@@ -455,49 +467,29 @@ const ChatFormGPT: React.FC = () => {
       return;
     }
 
-    // Auto-connect логіка
+    // Auto-connect logic
     if (!hasData && useAdsData && !accountConnected) {
-      // Автоматично підключаємо акаунт
-      setShowAccountModal(true);
-      setLoading(false);
+      setUseAdsData(true);
+      setAccountConnected(true);
+      fetch('/api/ads-data')
+        .then(res => res.json())
+        .then(data => {
+          setAdsData(data);
+          setLoading(false);
+        })
+        .catch(() => {
+          setAdsData(null);
+          setLoading(false);
+        });
       return;
     }
 
-    // Якщо обрано використати дані Google Ads — додаємо їх у prompt
-    if (useAdsData && hasData) {
-      // Формуємо людяний summary для prompt з розширеними даними
-      const total = dataToUse.total;
-      const campaigns = dataToUse.campaigns.map((c: any) => {
-        let campaignInfo = `- ${c.name} (${c.status}): витрати $${c.cost}, кліки ${c.clicks}, покази ${c.impressions}, конверсії ${c.conversions}, CTR ${c.ctr}%, CPC $${c.cpc}, CR ${c.conversion_rate}%`;
-        
-        // Додаємо revenue, ROAS, ROI якщо є
-        if (c.revenue) campaignInfo += `, дохід $${c.revenue}`;
-        if (c.roas) campaignInfo += `, ROAS ${c.roas}`;
-        if (c.roi) campaignInfo += `, ROI ${c.roi}%`;
-        
-        return campaignInfo;
-      }).join('\n');
-
-      const dataSource = realAdsData ? 'реальними даними з вашого Google Ads акаунту' : 'тестовими даними';
-      let summary = `У моєму акаунті Google Ads за ${dataToUse.date_range} (${dataSource}):
-Всього витрати: $${total.cost}, кліки: ${total.clicks}, покази: ${total.impressions}, конверсії: ${total.conversions}, CTR: ${total.ctr}%, CPC: $${total.cpc}, CR: ${total.conversion_rate}%`;
-
-      // Додаємо загальні метрики revenue, ROAS, ROI якщо є
-      if (total.revenue) summary += `, загальний дохід: $${total.revenue}`;
-      if (total.roas) summary += `, загальний ROAS: ${total.roas}`;
-      if (total.roi) summary += `, загальний ROI: ${total.roi}%`;
-
-      summary += `\nКампанії:\n${campaigns}`;
-
-      // Додаємо демографічні дані якщо є
-      if (dataToUse.demographics && dataToUse.demographics.length > 0) {
-        summary += `\n\nДемографічні дані:\n${dataToUse.demographics.map((d: any) => 
-          `- ${d.age_group} (${d.gender}): кліки ${d.clicks}, витрати $${d.cost}, конверсії ${d.conversions}`
-        ).join('\n')}`;
-      }
-
+    // Формирование запроса с данными Google Ads
+    if (useAdsData && hasData && dataToUse) {
+      const summary = formatGoogleAdsData(dataToUse, !!realAdsData);
       question = `${summary}\n\n${input}\n\nВикористовуй ТІЛЬКИ надані вище дані для аналізу. У кожному кроці посилайся на конкретні кампанії, цифри, метрики з цих даних. Дай рекомендації з опорою на фактичні показники. На завершення дай короткий summary і рекомендації для покращення результатів.`;
     }
+
     const userMessage: Message = { 
       role: 'user', 
       text: input,
@@ -505,7 +497,7 @@ const ChatFormGPT: React.FC = () => {
     };
     setMessages((prev) => [...prev, userMessage]);
     
-    // Оновлюємо поточний чат
+    // Обновление текущего чата
     if (currentChatId) {
       const updatedMessages = [...messages, userMessage];
       setChats(prev => prev.map(c => 
@@ -520,27 +512,30 @@ const ChatFormGPT: React.FC = () => {
       ));
     }
     
-    setInput(''); // Очищаю поле одразу після submit
-    setSelectedImage(null); // Очищаю зображення
-    setImagePreview(null); // Очищаю preview
+    setInput('');
+    setSelectedImage(null);
+    setImagePreview(null);
     if (inputRef.current) {
       inputRef.current.style.height = '40px';
     }
+
     try {
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
           question,
-          image: imagePreview // Додаємо зображення до запиту
+          image: imagePreview
         }),
       });
+      
       if (!res.ok) throw new Error('Помилка відповіді від AI');
+      
       const data = await res.json();
       const aiMessage: Message = { role: 'ai', text: data.answer };
       setMessages((prev) => [...prev, aiMessage]);
       
-      // Оновлюємо поточний чат з AI відповіддю
+      // Обновление чата с AI ответом
       if (currentChatId) {
         const updatedMessages: Message[] = [...messages, userMessage, aiMessage];
         setChats(prev => prev.map(c => 
@@ -554,294 +549,38 @@ const ChatFormGPT: React.FC = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [input, hasData, useAdsData, accountConnected, dataToUse, realAdsData, currentChatId, messages, imagePreview]);
 
-  const handleClear = () => {
-    setMessages([]);
-    setError(null);
-    setInput('');
-    // Очищаємо поточний чат
-    if (currentChatId) {
-      setChats(prev => prev.map(c => 
-        c.id === currentChatId 
-          ? { ...c, messages: [], updatedAt: new Date() }
-          : c
-      ));
-    }
-    inputRef.current?.focus();
-  };
-
-  // Додаємо функцію для продовження відповіді
-  const handleContinue = async () => {
-    setError(null);
-    setLoading(true);
-    // Знаходимо оригінальне питання (перший user)
-    const originalUserMsg = messages.find(m => m.role === 'user')?.text || '';
-    // Беремо останню відповідь AI
-    const lastAiMsg = messages.filter(m => m.role === 'ai').slice(-1)[0]?.text || '';
-    try {
-      const res = await fetch('/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          question: `Ось оригінальне питання: ${originalUserMsg}\nОсь попередня частина відповіді:\n${lastAiMsg}\nПродовжуй з того місця, де зупинився, не повторюй попередній текст.`
-        }),
-      });
-      if (!res.ok) throw new Error('Помилка відповіді від AI');
-      const data = await res.json();
-      setMessages((prev) => [...prev, { role: 'ai', text: data.answer }]);
-    } catch (err: any) {
-      setError(err.message || 'Сталася помилка');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  // Додаю функції для експорту
-  const testClick = () => {
-    console.log('=== TEST CLICK FUNCTION CALLED ===');
-    alert('Test click works!');
-  };
-
-  const exportTxt = async (text: string) => {
-    console.log('=== EXPORT TXT FUNCTION CALLED ===');
-    console.log('Text to export:', text);
-    try {
-      console.log('Starting TXT export...');
-      const res = await fetch('/api/export-txt', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text }),
-      });
-      
-      console.log('Response status:', res.status);
-      console.log('Response headers:', res.headers);
-      
-      if (!res.ok) {
-        throw new Error(`HTTP error! status: ${res.status}`);
-      }
-      
-      const blob = await res.blob();
-      console.log('Blob size:', blob.size);
-      console.log('Blob type:', blob.type);
-      
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `chat-export-${new Date().toISOString().replace(/[:.]/g, '-')}.txt`;
-      a.style.display = 'none';
-      
-      console.log('Adding link to DOM...');
-      document.body.appendChild(a);
-      
-      console.log('Clicking link...');
-      a.click();
-      
-      console.log('Cleaning up...');
-      window.URL.revokeObjectURL(url);
-      document.body.removeChild(a);
-      
-      console.log('TXT export completed successfully');
-      return true; // Успешное завершение
-    } catch (error) {
-      console.error('Export TXT error:', error);
-      alert('Помилка при експорті файлу: ' + (error instanceof Error ? error.message : String(error)));
-      return false; // Ошибка
-    }
-  };
-
-  const exportCsv = async (rows: string[][]) => {
-    console.log('=== EXPORT CSV FUNCTION CALLED ===');
-    console.log('Rows to export:', rows);
-    try {
-      // Convert rows array to data format expected by API
-      const data = rows.map(row => {
-        const obj: any = {};
-        row.forEach((value, index) => {
-          obj[`Column${index + 1}`] = value;
-        });
-        return obj;
-      });
-      
-      const res = await fetch('/api/export-csv', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ data, filename: 'chat-export' }),
-      });
-      
-      if (!res.ok) {
-        throw new Error(`HTTP error! status: ${res.status}`);
-      }
-      
-      const blob = await res.blob();
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `chat-export-${new Date().toISOString().replace(/[:.]/g, '-')}.csv`;
-      document.body.appendChild(a);
-      a.click();
-      window.URL.revokeObjectURL(url);
-      document.body.removeChild(a);
-    } catch (error) {
-      console.error('Export CSV error:', error);
-      alert('Помилка при експорті файлу');
-    }
-  };
-
-  const exportPdf = async (text: string) => {
-    try {
-      const res = await fetch('/api/export-pdf', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text }),
-      });
-      
-      if (!res.ok) {
-        throw new Error(`HTTP error! status: ${res.status}`);
-      }
-      
-      const blob = await res.blob();
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `chat-export-${new Date().toISOString().replace(/[:.]/g, '-')}.pdf`;
-      document.body.appendChild(a);
-      a.click();
-      window.URL.revokeObjectURL(url);
-      document.body.removeChild(a);
-    } catch (error) {
-      console.error('Export PDF error:', error);
-      alert('Помилка при експорті PDF файлу');
-    }
-  };
-
-  const exportXlsx = async (rows: string[][]) => {
-    try {
-      const data = rows.map(row => {
-        const obj: any = {};
-        row.forEach((value, index) => {
-          obj[`Column${index + 1}`] = value;
-        });
-        return obj;
-      });
-      
-      const res = await fetch('/api/export-xlsx', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ data, filename: 'chat-export' }),
-      });
-      
-      if (!res.ok) {
-        throw new Error(`HTTP error! status: ${res.status}`);
-      }
-      
-      const blob = await res.blob();
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `chat-export-${new Date().toISOString().replace(/[:.]/g, '-')}.xlsx`;
-      document.body.appendChild(a);
-      a.click();
-      window.URL.revokeObjectURL(url);
-      document.body.removeChild(a);
-    } catch (error) {
-      console.error('Export XLSX error:', error);
-      alert('Помилка при експорті Excel файлу');
-    }
-  };
-
-  // Функція для завантаження зображень
-  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      // Перевіряємо тип файлу
-      if (!file.type.startsWith('image/')) {
-        alert('Please select an image file');
-        return;
-      }
-      
-      // Перевіряємо розмір файлу (максимум 5MB)
-      if (file.size > 5 * 1024 * 1024) {
-        alert('Image size should be less than 5MB');
-        return;
-      }
-
-      setSelectedImage(file);
-      
-      // Створюємо preview
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        setImagePreview(e.target?.result as string);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
-  // Функція для видалення зображення
-  const removeImage = () => {
-    setSelectedImage(null);
-    setImagePreview(null);
-  };
-
-  // Функція для генерації звіту по шаблону
-  const generateReport = async (templateKey: string) => {
+  // Функция генерации отчета по шаблону
+  const generateReport = useCallback(async (templateKey: string) => {
     const template = REPORT_TEMPLATES[templateKey as keyof typeof REPORT_TEMPLATES];
     if (!template) return;
 
     setError(null);
     setLoading(true);
     
-    // Перевіряємо чи є дані
-    const dataToUse = realAdsData || adsData;
-    const hasData = dataToUse && dataToUse.campaigns && dataToUse.campaigns.length > 0;
-
     if (!hasData) {
-      const instructionMessage = `Для генерації звіту "${template.name}" потрібно активувати дані Google Ads. 
+      const instructionMessage = `To generate "${template.name}" report, you need to activate Google Ads data. 
 
-**Як активувати дані:**
-1. Натисніть кнопку "Підключити Google Ads" внизу
-2. Авторизуйтесь у вашому Google акаунті
-3. Дозвольте доступ до Google Ads API
-4. Після підключення ви зможете генерувати звіти на основі реальних даних
+**How to activate data:**
+1. Click "Connect Google Ads" button below
+2. Authorize in your Google account
+3. Allow access to Google Ads API
+4. After connection, you can generate reports based on real data
 
-**Або використайте тестові дані:**
-- Включіть перемикач "Використовувати дані Google Ads" внизу
-- Система використає тестові дані для демонстрації`;
+**Or use test data:**
+- Enable "Use Google Ads data" toggle below
+- System will use test data for demonstration`;
 
       const instructionMsg: Message = { role: 'ai', text: instructionMessage };
-      setMessages((prev) => [...prev, { role: 'user', text: `Згенеруй ${template.name.toLowerCase()}` }, instructionMsg]);
+      setMessages((prev) => [...prev, { role: 'user', text: `Generate ${template.name.toLowerCase()}` }, instructionMsg]);
       setLoading(false);
       return;
     }
 
-    // Формуємо запит з даними
-    const total = dataToUse.total;
-    const campaigns = dataToUse.campaigns.map((c: any) => {
-      let campaignInfo = `- ${c.name} (${c.status}): витрати $${c.cost}, кліки ${c.clicks}, покази ${c.impressions}, конверсії ${c.conversions}, CTR ${c.ctr}%, CPC $${c.cpc}, CR ${c.conversion_rate}%`;
-      
-      if (c.revenue) campaignInfo += `, дохід $${c.revenue}`;
-      if (c.roas) campaignInfo += `, ROAS ${c.roas}`;
-      if (c.roi) campaignInfo += `, ROI ${c.roi}%`;
-      
-      return campaignInfo;
-    }).join('\n');
+    if (!dataToUse) return;
 
-    const dataSource = realAdsData ? 'реальними даними з вашого Google Ads акаунту' : 'тестовими даними';
-    let summary = `У моєму акаунті Google Ads за ${dataToUse.date_range} (${dataSource}):
-Всього витрати: $${total.cost}, кліки: ${total.clicks}, покази: ${total.impressions}, конверсії: ${total.conversions}, CTR: ${total.ctr}%, CPC: $${total.cpc}, CR: ${total.conversion_rate}%`;
-
-    if (total.revenue) summary += `, загальний дохід: $${total.revenue}`;
-    if (total.roas) summary += `, загальний ROAS: ${total.roas}`;
-    if (total.roi) summary += `, загальний ROI: ${total.roi}%`;
-
-    summary += `\nКампанії:\n${campaigns}`;
-
-    if (dataToUse.demographics && dataToUse.demographics.length > 0) {
-      summary += `\n\nДемографічні дані:\n${dataToUse.demographics.map((d: any) => 
-        `- ${d.age_group} (${d.gender}): кліки ${d.clicks}, витрати $${d.cost}, конверсії ${d.conversions}`
-      ).join('\n')}`;
-    }
-
+    const summary = formatGoogleAdsData(dataToUse, !!realAdsData);
     const question = `${summary}\n\n${template.prompt}\n\nВикористовуй ТІЛЬКИ надані вище дані для аналізу. Створи структурований звіт з розділами та рекомендаціями.`;
 
     const userMessage: Message = { 
@@ -850,7 +589,7 @@ const ChatFormGPT: React.FC = () => {
     };
     setMessages((prev) => [...prev, userMessage]);
     
-    // Оновлюємо поточний чат
+    // Обновление чата
     if (currentChatId) {
       const updatedMessages = [...messages, userMessage];
       setChats(prev => prev.map(c => 
@@ -871,12 +610,14 @@ const ChatFormGPT: React.FC = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ question }),
       });
+      
       if (!res.ok) throw new Error('Помилка відповіді від AI');
+      
       const data = await res.json();
       const aiMessage: Message = { role: 'ai', text: data.answer };
       setMessages((prev) => [...prev, aiMessage]);
       
-      // Оновлюємо поточний чат з AI відповіддю
+      // Обновление чата с AI ответом
       if (currentChatId) {
         const updatedMessages: Message[] = [...messages, userMessage, aiMessage];
         setChats(prev => prev.map(c => 
@@ -890,7 +631,184 @@ const ChatFormGPT: React.FC = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [hasData, dataToUse, realAdsData, currentChatId, messages]);
+
+  // Effects
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      document.body.dataset.chatTheme = theme;
+      window.localStorage.setItem('chatTheme', theme);
+    }
+  }, [theme]);
+
+  // Загрузка данных Google Ads
+  useEffect(() => {
+    fetch('/api/ads-data')
+      .then(res => res.json())
+      .then(data => setAdsData(data))
+      .catch(() => setAdsData(null));
+  }, []);
+
+  // OAuth2 callback обработка
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const authStatus = urlParams.get('auth');
+    const token = urlParams.get('access_token');
+    const error = urlParams.get('error');
+
+    if (authStatus === 'success' && token) {
+      setAccessToken(token);
+      setAccountConnected(true);
+      setShowAccountModal(false);
+      
+      // Получение реальных данных Google Ads
+      fetch('/api/ads-data-real', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ accessToken: token }),
+      })
+      .then(res => res.json())
+      .then(data => setRealAdsData(data))
+      .catch(error => console.error('Error fetching real Google Ads data:', error));
+      
+      window.history.replaceState({}, document.title, window.location.pathname);
+    } else if (error) {
+      setError(`Помилка авторизації: ${error}`);
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
+  }, []);
+
+  // Focus на input
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
+
+  // Auto-scroll
+  useEffect(() => {
+    const chatDiv = chatEndRef.current?.parentElement;
+    if (!chatDiv) return;
+    const isAtBottom = chatDiv.scrollHeight - chatDiv.scrollTop - chatDiv.clientHeight < 50;
+    if (isAtBottom) {
+      chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [messages]);
+
+  // Typing эффект
+  useEffect(() => {
+    if (!loading && messages.length > 0 && messages[messages.length - 1].role === 'ai') {
+      const lastAiMsg = messages[messages.length - 1].text;
+      const messageId = `${currentChatId}-${messages.length}-${lastAiMsg.slice(0, 50)}`;
+      
+      if (!shownMessages.has(messageId) && typingText === null && lastAiMsg && lastAiMsg.length > 0) {
+        startTypingEffect(lastAiMsg);
+        setShownMessages(prev => new Set(Array.from(prev).concat([messageId])));
+      }
+    }
+    if (loading) {
+      setTypingText(null);
+      if (typingTimeout.current) clearTimeout(typingTimeout.current);
+      typingInterrupted.current = false;
+    }
+  }, [messages, loading, shownMessages, currentChatId, typingText, startTypingEffect]);
+
+  // Очистка таймера
+  useEffect(() => {
+    return () => {
+      if (typingTimeout.current) clearTimeout(typingTimeout.current);
+    };
+  }, []);
+
+  // Placeholder rotation
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setPlaceholderIndex((prev) => (prev + 1) % placeholders.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [placeholders.length]);
+
+  // Загрузка чатов из localStorage
+  useEffect(() => {
+    const savedChats = localStorage.getItem('ppcset-chats');
+    if (savedChats) {
+      const parsedChats = JSON.parse(savedChats).map((chat: any) => ({
+        ...chat,
+        createdAt: new Date(chat.createdAt),
+        updatedAt: new Date(chat.updatedAt)
+      }));
+      setChats(parsedChats);
+      
+      const lastChatId = localStorage.getItem('ppcset-current-chat');
+      if (lastChatId && parsedChats.find((c: Chat) => c.id === lastChatId)) {
+        setCurrentChatId(lastChatId);
+        const lastChat = parsedChats.find((c: Chat) => c.id === lastChatId);
+        if (lastChat) setMessages(lastChat.messages);
+      } else if (parsedChats.length > 0) {
+        const newestChat = parsedChats[parsedChats.length - 1];
+        setCurrentChatId(newestChat.id);
+        setMessages(newestChat.messages);
+      }
+    } else {
+      createNewChat();
+    }
+
+    const savedShownMessages = localStorage.getItem('ppcset-shown-messages');
+    if (savedShownMessages) {
+      try {
+        const parsed = JSON.parse(savedShownMessages);
+        setShownMessages(new Set(parsed));
+      } catch (e) {
+        console.error('Error parsing shown messages:', e);
+      }
+    }
+  }, [createNewChat]);
+
+  // Сохранение в localStorage
+  useEffect(() => {
+    if (chats.length > 0) {
+      localStorage.setItem('ppcset-chats', JSON.stringify(chats));
+    }
+  }, [chats]);
+
+  useEffect(() => {
+    if (currentChatId) {
+      localStorage.setItem('ppcset-current-chat', currentChatId);
+    }
+  }, [currentChatId]);
+
+  useEffect(() => {
+    if (shownMessages.size > 0) {
+      localStorage.setItem('ppcset-shown-messages', JSON.stringify(Array.from(shownMessages)));
+    }
+  }, [shownMessages]);
+
+  // Закрытие dropdown при клике вне
+  useEffect(() => {
+    const handleClick = (e: MouseEvent) => {
+      const target = e.target as Element;
+      if (target && !target.closest('.export-dropdown') && !target.closest('button')) {
+        setOpenExportDropdownIdx(null);
+      }
+    };
+    
+    if (openExportDropdownIdx !== null) {
+      document.addEventListener('mousedown', handleClick);
+    } else {
+      document.removeEventListener('mousedown', handleClick);
+    }
+    
+    return () => document.removeEventListener('mousedown', handleClick);
+  }, [openExportDropdownIdx]);
+
+  // Закрытие меню при клике вне
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (openMenuId && !(e.target as Element).closest('.chat-menu')) {
+        setOpenMenuId(null);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [openMenuId]);
 
   return (
     <div style={{
@@ -1378,9 +1296,9 @@ const ChatFormGPT: React.FC = () => {
               marginRight: 8,
               transition: 'background 0.2s',
             }}
-            title="Показати шаблони звітів"
+            title="Show report templates"
           >
-            Шаблони
+            Templates
           </button>
         </div>
       </div>
@@ -1397,10 +1315,23 @@ const ChatFormGPT: React.FC = () => {
         }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
             <h3 style={{ fontSize: 16, fontWeight: 600, color: '#23272f', margin: 0 }}>
-              Шаблони звітів
+              Report Templates
             </h3>
             <button
-              onClick={() => setShowAccountModal(true)}
+              onClick={() => {
+                if (!accountConnected) {
+                  // Auto-connect: включаємо тестові дані та показуємо модалку для реального підключення
+                  setUseAdsData(true);
+                  setAccountConnected(true);
+                  fetch('/api/ads-data')
+                    .then(res => res.json())
+                    .then(data => setAdsData(data))
+                    .catch(() => setAdsData(null));
+                  
+                  // Показуємо модалку для підключення реального акаунту
+                  setTimeout(() => setShowAccountModal(true), 500);
+                }
+              }}
               style={{
                 background: accountConnected ? '#e6f7ff' : '#fff',
                 color: accountConnected ? '#0ea5e9' : '#23272f',
@@ -1412,9 +1343,9 @@ const ChatFormGPT: React.FC = () => {
                 cursor: 'pointer',
                 transition: 'background 0.2s',
               }}
-              title="Автоматичне підключення Google Ads"
+              title="Automatic Google Ads connection"
             >
-              {accountConnected ? 'Підключено' : 'Auto-connect'}
+              {accountConnected ? 'Google Ads data added' : 'Auto-connect'}
             </button>
           </div>
           <div style={{
@@ -1665,7 +1596,7 @@ const ChatFormGPT: React.FC = () => {
                               </svg>
                             </button>
                             {openExportDropdownIdx === idx && (
-                              <div style={{
+                              <div className="export-dropdown" style={{
                                 position: 'absolute',
                                 top: '110%',
                                 left: 0,
@@ -1678,7 +1609,7 @@ const ChatFormGPT: React.FC = () => {
                                 padding: '6px 0',
                               }}>
                                 <button
-                                  onClick={() => { exportCsv([["AI-відповідь"], [msg.text]]); setOpenExportDropdownIdx(null); }}
+                                  onClick={(e) => { e.stopPropagation(); handleExport('xlsx', [["AI-відповідь"], [msg.text]]); setOpenExportDropdownIdx(null); }}
                                   style={{
                                     width: '100%',
                                     background: 'none',
@@ -1691,10 +1622,10 @@ const ChatFormGPT: React.FC = () => {
                                     transition: 'background 0.18s',
                                   }}
                                 >
-                                  Excel (CSV)
+                                  Excel (XLSX)
                                 </button>
                                 <button
-                                  onClick={() => { exportCsv([["AI-відповідь"], [msg.text]]); setOpenExportDropdownIdx(null); }}
+                                  onClick={(e) => { e.stopPropagation(); handleExport('csv', [["AI-відповідь"], [msg.text]]); setOpenExportDropdownIdx(null); }}
                                   style={{
                                     width: '100%',
                                     background: 'none',
@@ -1710,7 +1641,7 @@ const ChatFormGPT: React.FC = () => {
                                   CSV
                                 </button>
                                 <button
-                                  onClick={() => { console.log('TXT export button clicked!'); exportTxt(msg.text); setOpenExportDropdownIdx(null); }}
+                                  onClick={(e) => { e.stopPropagation(); console.log('TXT export button clicked!'); handleExport('txt', msg.text); setOpenExportDropdownIdx(null); }}
                                   style={{
                                     width: '100%',
                                     background: 'none',
@@ -1725,6 +1656,7 @@ const ChatFormGPT: React.FC = () => {
                                 >
                                   TXT
                                 </button>
+
                               </div>
                             )}
                           </div>
@@ -1817,7 +1749,7 @@ const ChatFormGPT: React.FC = () => {
           </svg>
         </button>
         {openExportDropdownIdx === idx && (
-          <div style={{
+          <div className="export-dropdown" style={{
             position: 'absolute',
             top: '110%',
             left: 0,
@@ -1830,7 +1762,7 @@ const ChatFormGPT: React.FC = () => {
             padding: '4px 0',
           }}>
             <button
-              onClick={() => { exportPdf(msg.text); setOpenExportDropdownIdx(null); }}
+              onClick={(e) => { e.stopPropagation(); handleExport('pdf', msg.text); setOpenExportDropdownIdx(null); }}
               style={{
                 width: '100%',
                 background: 'none',
@@ -1846,7 +1778,7 @@ const ChatFormGPT: React.FC = () => {
               PDF
             </button>
             <button
-              onClick={() => { exportXlsx([["AI-відповідь", msg.text]]); setOpenExportDropdownIdx(null); }}
+              onClick={(e) => { e.stopPropagation(); handleExport('xlsx', [["AI-відповідь", msg.text]]); setOpenExportDropdownIdx(null); }}
               style={{
                 width: '100%',
                 background: 'none',
@@ -1862,7 +1794,7 @@ const ChatFormGPT: React.FC = () => {
               Excel (XLSX)
             </button>
             <button
-              onClick={() => { exportCsv([["AI-відповідь", msg.text]]); setOpenExportDropdownIdx(null); }}
+              onClick={(e) => { e.stopPropagation(); handleExport('csv', [["AI-відповідь", msg.text]]); setOpenExportDropdownIdx(null); }}
               style={{
                 width: '100%',
                 background: 'none',
@@ -1878,7 +1810,7 @@ const ChatFormGPT: React.FC = () => {
               CSV
             </button>
             <button
-              onClick={() => { console.log('TXT export button clicked!'); exportTxt(msg.text); setOpenExportDropdownIdx(null); }}
+              onClick={(e) => { e.stopPropagation(); console.log('TXT export button clicked!'); handleExport('txt', msg.text); setOpenExportDropdownIdx(null); }}
               style={{
                 width: '100%',
                 background: 'none',
@@ -1893,6 +1825,7 @@ const ChatFormGPT: React.FC = () => {
             >
               TXT
             </button>
+
           </div>
         )}
       </div>
@@ -2060,10 +1993,9 @@ const ChatFormGPT: React.FC = () => {
             marginLeft: 8
           }}
           onClick={e => {
-            if (typingText !== null && typingTextRef.current !== null) {
+            if (typingText !== null) {
               typingInterrupted.current = true;
               setTypingText(null);
-              typingTextRef.current = null;
               if (typingTimeout.current) clearTimeout(typingTimeout.current);
               // Показати одразу повний текст
               const lastAiMsg = messages[messages.length - 1]?.text;

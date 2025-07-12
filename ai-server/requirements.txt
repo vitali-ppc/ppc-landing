@@ -6,6 +6,12 @@ python-multipart==0.0.6
 pydantic>=2.6.0
 requests==2.31.0
 aiofiles==23.2.1
+HEAD
 httpx>=0.25.0 
 
 openpyxl
+
+httpx>=0.25.0
+openpyxl>=3.1.0
+pyppeteer>=1.0.2
+ 9a47379ce6179ce3ac19ddf447ba9f9abf1f69d0
