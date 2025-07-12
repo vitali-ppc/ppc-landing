@@ -1,4 +1,8 @@
 {
+  "/api/auth/login/route": "app/api/auth/login/route.js",
+  "/api/ads-data/route": "app/api/ads-data/route.js",
+  "/api/auth/callback/route": "app/api/auth/callback/route.js",
+  "/api/ads-data-real/route": "app/api/ads-data-real/route.js",
   "/chat/page": "app/chat/page.js",
-  "/nodejs-development/page": "app/nodejs-development/page.js"
+  "/_not-found/page": "app/_not-found/page.js"
 }
