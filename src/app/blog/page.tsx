@@ -70,7 +70,7 @@ export default function BlogPage() {
         <p>Тут буде контент блогу...</p>
       </div>
       
-      <Footer />
+      <Footer compact={true} />
     </>
   )
 } 

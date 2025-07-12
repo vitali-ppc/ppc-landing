@@ -603,7 +603,7 @@ export default function NodeJsDevelopmentPage() {
         </div>
       )}
 
-      <Footer />
+      <Footer compact={true} />
 
       {/* Structured Data */}
       <script
