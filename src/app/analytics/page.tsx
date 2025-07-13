@@ -180,6 +180,8 @@ export default function AnalyticsPage() {
         description="Be among the first to experience our advanced analytics platform"
       />
       
+      <Footer compact={true} />
+      
       <ScrollToTop />
     </>
   )

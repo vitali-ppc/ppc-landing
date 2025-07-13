@@ -1,0 +1,11 @@
+{
+  "/terms-of-service/page": "app/terms-of-service/page.js",
+  "/privacy-policy/page": "app/privacy-policy/page.js",
+  "/chat/page": "app/chat/page.js",
+  "/generate/page": "app/generate/page.js",
+  "/page": "app/page.js",
+  "/ppc-performance/page": "app/ppc-performance/page.js",
+  "/nextjs-development/page": "app/nextjs-development/page.js",
+  "/analytics/page": "app/analytics/page.js",
+  "/nodejs-development/page": "app/nodejs-development/page.js"
+}

@@ -459,7 +459,7 @@ export default function PpcPerformancePage() {
         description="Contact me to discuss your business needs and strategic objectives"
       />
 
-      <Footer />
+      <Footer compact={true} />
     </>
   )
 } 
