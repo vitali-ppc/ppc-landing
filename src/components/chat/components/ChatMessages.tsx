@@ -16,7 +16,7 @@ interface ChatMessagesProps {
   setOpenExportDropdownIdx: (index: number | null) => void;
 }
 
-export const ChatMessages: React.FC<ChatMessagesProps> = ({
+export const ChatMessages: React.FC<ChatMessagesProps> = React.memo(({
   messages,
   typingText,
   useAdsData,
@@ -106,4 +106,4 @@ export const ChatMessages: React.FC<ChatMessagesProps> = ({
       )}
     </div>
   );
-}; 
+}); 
