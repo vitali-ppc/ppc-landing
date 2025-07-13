@@ -2,10 +2,241 @@
 
 import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import ReactMarkdown from 'react-markdown';
-import { Message, Chat, GoogleAdsData, REPORT_TEMPLATES, EXPORT_ENDPOINTS, ExportFormat } from './chat/types';
-import { exportData, formatGoogleAdsData } from './chat/utils';
-import { useLocalStorage } from './chat/hooks/useLocalStorage';
-import { AI_AVATAR, USER_AVATAR } from './chat/components/Avatars';
+
+interface Message {
+  role: 'user' | 'ai';
+  text: string;
+  image?: string;
+}
+
+interface Chat {
+  id: string;
+  title: string;
+  messages: Message[];
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+interface GoogleAdsData {
+  total: {
+    cost: number;
+    clicks: number;
+    impressions: number;
+    conversions: number;
+    ctr: number;
+    cpc: number;
+    conversion_rate: number;
+    revenue?: number;
+    roas?: number;
+    roi?: number;
+  };
+  campaigns: Array<{
+    name: string;
+    status: string;
+    cost: number;
+    clicks: number;
+    impressions: number;
+    conversions: number;
+    ctr: number;
+    cpc: number;
+    conversion_rate: number;
+    revenue?: number;
+    roas?: number;
+    roi?: number;
+  }>;
+  date_range: string;
+  demographics?: Array<{
+    age_group: string;
+    gender: string;
+    clicks: number;
+    cost: number;
+    conversions: number;
+  }>;
+}
+
+// Report Templates
+const REPORT_TEMPLATES = {
+  campaign_analysis: {
+    name: 'Campaign Analysis',
+    description: 'Detailed campaign performance analysis',
+    prompt: 'Conduct a detailed analysis of Google Ads campaign. Include performance metrics analysis, issues identification and improvement recommendations.'
+  },
+  keyword_analysis: {
+    name: 'Keyword Analysis',
+    description: 'Keyword performance analysis',
+    prompt: 'Analyze keyword effectiveness. Show best and worst performing keywords with recommendations.'
+  },
+  monthly_report: {
+    name: 'Monthly Report',
+    description: 'Comprehensive monthly report',
+    prompt: 'Create a comprehensive monthly report for Google Ads campaign with key metrics and trends.'
+  },
+  quick_analysis: {
+    name: 'Quick Analysis',
+    description: 'Quick overview of key metrics',
+    prompt: 'Conduct a quick analysis of key campaign metrics and highlight main issues.'
+  },
+  performance_review: {
+    name: 'Performance Review',
+    description: 'Detailed performance review',
+    prompt: 'Conduct a detailed performance review of the campaign focusing on ROI and cost efficiency.'
+  },
+  budget_analysis: {
+    name: 'Budget Analysis',
+    description: 'Budget allocation and efficiency analysis',
+    prompt: 'Analyze budget distribution across campaigns and provide recommendations for cost optimization.'
+  }
+} as const;
+
+// Утилиты для экспорта
+const EXPORT_ENDPOINTS = {
+  txt: '/api/export-txt',
+  csv: '/api/export-csv',
+  pdf: '/api/export-pdf',
+  xlsx: '/api/export-xlsx'
+} as const;
+
+type ExportFormat = keyof typeof EXPORT_ENDPOINTS;
+
+// Универсальная функция экспорта
+const exportData = async (format: ExportFormat, data: any, filename?: string): Promise<boolean> => {
+  try {
+    const endpoint = EXPORT_ENDPOINTS[format];
+    const body = format === 'txt' || format === 'pdf' 
+      ? { text: data } 
+      : { rows: data };
+
+    const res = await fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    });
+
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
+    }
+
+    const blob = await res.blob();
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename || `chat-export-${new Date().toISOString().replace(/[:.]/g, '-')}.${format}`;
+    a.style.display = 'none';
+    
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(url);
+    document.body.removeChild(a);
+    
+    return true;
+  } catch (error) {
+    console.error(`Export ${format.toUpperCase()} error:`, error);
+    alert(`Помилка при експорті ${format.toUpperCase()} файлу: ${error instanceof Error ? error.message : String(error)}`);
+    return false;
+  }
+};
+
+// Утилиты для работы с Google Ads данными
+const formatGoogleAdsData = (data: GoogleAdsData, isRealData: boolean): string => {
+  const total = data.total;
+  const campaigns = data.campaigns.map((c) => {
+    let campaignInfo = `- ${c.name} (${c.status}): витрати $${c.cost}, кліки ${c.clicks}, покази ${c.impressions}, конверсії ${c.conversions}, CTR ${c.ctr}%, CPC $${c.cpc}, CR ${c.conversion_rate}%`;
+    
+    if (c.revenue) campaignInfo += `, дохід $${c.revenue}`;
+    if (c.roas) campaignInfo += `, ROAS ${c.roas}`;
+    if (c.roi) campaignInfo += `, ROI ${c.roi}%`;
+    
+    return campaignInfo;
+  }).join('\n');
+
+  const dataSource = isRealData ? 'реальними даними з вашого Google Ads акаунту' : 'тестовими даними';
+  let summary = `У моєму акаунті Google Ads за ${data.date_range} (${dataSource}):
+Всього витрати: $${total.cost}, кліки: ${total.clicks}, покази: ${total.impressions}, конверсії: ${total.conversions}, CTR: ${total.ctr}%, CPC: $${total.cpc}, CR: ${total.conversion_rate}%`;
+
+  if (total.revenue) summary += `, загальний дохід: $${total.revenue}`;
+  if (total.roas) summary += `, загальний ROAS: ${total.roas}`;
+  if (total.roi) summary += `, загальний ROI: ${total.roi}%`;
+
+  summary += `\nКампанії:\n${campaigns}`;
+
+  if (data.demographics && data.demographics.length > 0) {
+    summary += `\n\nДемографічні дані:\n${data.demographics.map((d) => 
+      `- ${d.age_group} (${d.gender}): кліки ${d.clicks}, витрати $${d.cost}, конверсії ${d.conversions}`
+    ).join('\n')}`;
+  }
+
+  return summary;
+};
+
+// Хук для работы с localStorage
+const useLocalStorage = <T,>(key: string, initialValue: T) => {
+  const [storedValue, setStoredValue] = useState<T>(() => {
+    if (typeof window === 'undefined') return initialValue;
+    
+    try {
+      const item = window.localStorage.getItem(key);
+      return item ? JSON.parse(item) : initialValue;
+    } catch (error) {
+      console.error(error);
+      return initialValue;
+    }
+  });
+
+  const setValue = useCallback((value: T | ((val: T) => T)) => {
+    try {
+      const valueToStore = value instanceof Function ? value(storedValue) : value;
+      setStoredValue(valueToStore);
+      if (typeof window !== 'undefined') {
+        window.localStorage.setItem(key, JSON.stringify(valueToStore));
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }, [storedValue, key]);
+
+  return [storedValue, setValue] as const;
+};
+
+// Компоненты аватаров
+const AI_AVATAR = (
+  <div style={{
+    width: 36,
+    height: 36,
+    borderRadius: '50%',
+    background: 'linear-gradient(135deg, #e6f7ff 0%, #cbd5e1 100%)',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontWeight: 700,
+    color: '#23272f',
+    fontSize: 18,
+    boxShadow: '0 2px 8px rgba(0,0,0,0.04)'
+  }}>
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="3" y="10" width="3" height="7" rx="1.2" fill="#38bdf8" />
+      <rect x="9" y="6" width="3" height="11" rx="1.2" fill="#0ea5e9" />
+      <rect x="15" y="3" width="3" height="14" rx="1.2" fill="#23272f" />
+    </svg>
+  </div>
+);
+
+const USER_AVATAR = (
+  <div style={{
+    width: 36,
+    height: 36,
+    borderRadius: '50%',
+    background: '#23272f',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontWeight: 700,
+    color: '#fff',
+    fontSize: 18,
+    boxShadow: '0 2px 8px rgba(0,0,0,0.04)'
+  }}>
+    В
+  </div>
+);
 
 const ChatFormGPT: React.FC = () => {
   // Основные состояния
