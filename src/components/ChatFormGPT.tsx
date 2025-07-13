@@ -8,6 +8,7 @@ import { useLocalStorage } from './chat/hooks/useLocalStorage';
 import { useTypingEffect } from './chat/hooks/useTypingEffect';
 import { useGoogleAdsData } from './chat/hooks/useGoogleAdsData';
 import { AI_AVATAR, USER_AVATAR } from './chat/components/Avatars';
+import { ChatSidebar } from './chat/components/ChatSidebar';
 
 const ChatFormGPT: React.FC = () => {
   // Основные состояния
@@ -639,282 +640,25 @@ const ChatFormGPT: React.FC = () => {
       )}
 
       {/* Sidebar */}
-      <div style={{
-        width: showSidebar ? 280 : 0,
-        background: '#23272f',
-        borderRight: '1px solid #1a1a1a',
-        transition: 'width 0.3s ease',
-        overflow: 'hidden',
-        display: 'flex',
-        flexDirection: 'column',
-        position: 'fixed',
-        left: 0,
-        top: 0,
-        height: '100vh',
-        zIndex: 100,
-      }}>
-        <div style={{
-          padding: '12px 16px 20px 16px',
-          borderBottom: '1px solid #1a1a1a',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'flex-end',
-        }}>
-          <button
-            onClick={createNewChat}
-            style={{
-              background: 'rgba(255,255,255,0.03)',
-              color: '#fff',
-              border: '1.5px solid rgba(255,255,255,0.08)',
-              borderRadius: 12,
-              padding: '16px 24px',
-              fontSize: 14,
-              fontWeight: 600,
-              cursor: 'pointer',
-              transition: 'all 0.3s ease',
-              boxShadow: 'none',
-            }}
-            onMouseEnter={e => {
-              e.currentTarget.style.background = 'rgba(255,255,255,0.1)';
-              e.currentTarget.style.color = '#fff';
-              e.currentTarget.style.border = '1.5px solid rgba(255,255,255,0.2)';
-              e.currentTarget.style.boxShadow = '0 4px 12px rgba(255,255,255,0.1)';
-            }}
-            onMouseLeave={e => {
-              e.currentTarget.style.background = 'rgba(255,255,255,0.03)';
-              e.currentTarget.style.color = '#fff';
-              e.currentTarget.style.border = '1.5px solid rgba(255,255,255,0.08)';
-              e.currentTarget.style.boxShadow = 'none';
-            }}
-          >
-            New Chat
-          </button>
-        </div>
-        <div style={{
-          padding: '12px 16px',
-          borderBottom: '1px solid #1a1a1a',
-        }}>
-          <input
-            type="text"
-            placeholder="Search chats..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            style={{
-              width: '100%',
-              padding: '8px 12px',
-              border: '1px solid #1a1a1a',
-              borderRadius: 6,
-              fontSize: 14,
-              background: '#1a1a1a',
-              color: '#fff',
-              outline: 'none',
-            }}
-            onFocus={e => {
-              e.target.style.border = '1px solid #7f9cf5';
-              e.target.style.boxShadow = '0 0 0 2px rgba(127, 156, 245, 0.2)';
-            }}
-            onBlur={e => {
-              e.target.style.border = '1px solid #1a1a1a';
-              e.target.style.boxShadow = 'none';
-            }}
-          />
-        </div>
-        <div style={{
-          flex: 1,
-          overflowY: 'auto',
-          padding: '8px',
-        }}>
-          {filteredChats.map((chat) => (
-            <div
-              key={chat.id}
-              style={{
-                padding: '12px 16px',
-                margin: '4px 0',
-                borderRadius: 8,
-                background: currentChatId === chat.id ? '#1a1a1a' : 'transparent',
-                border: currentChatId === chat.id ? '1px solid #7f9cf5' : '1px solid transparent',
-                cursor: 'pointer',
-                transition: 'all 0.2s',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-              }}
-              onClick={() => selectChat(chat.id)}
-              onMouseEnter={e => {
-                if (currentChatId !== chat.id) {
-                  e.currentTarget.style.background = '#1a1a1a';
-                  e.currentTarget.style.border = '1px solid #00ffe7';
-                }
-              }}
-              onMouseLeave={e => {
-                if (currentChatId !== chat.id) {
-                  e.currentTarget.style.background = 'transparent';
-                  e.currentTarget.style.border = '1px solid transparent';
-                }
-              }}
-            >
-              <div style={{ flex: 1, minWidth: 0 }}>
-                {editingChatId === chat.id ? (
-                  <input
-                    type="text"
-                    value={editingTitle}
-                    onChange={(e) => setEditingTitle(e.target.value)}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter') {
-                        updateChatTitle(chat.id, editingTitle);
-                      } else if (e.key === 'Escape') {
-                        setEditingChatId(null);
-                        setEditingTitle('');
-                      }
-                    }}
-                    onBlur={() => {
-                      if (editingTitle.trim()) {
-                        updateChatTitle(chat.id, editingTitle);
-                      } else {
-                        setEditingChatId(null);
-                        setEditingTitle('');
-                      }
-                    }}
-                    style={{
-                      width: '100%',
-                      padding: '4px 8px',
-                      border: '1px solid #7f9cf5',
-                      borderRadius: 4,
-                      fontSize: 14,
-                      fontWeight: 600,
-                      background: '#fff',
-                      color: '#23272f',
-                      outline: 'none',
-                    }}
-                    autoFocus
-                  />
-                ) : (
-                  <div style={{
-                    fontWeight: 600,
-                    fontSize: 14,
-                    color: '#fff',
-                    marginBottom: 4,
-                    whiteSpace: 'nowrap',
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis',
-                  }}>
-                    {chat.title}
-                  </div>
-                )}
-                <div style={{
-                  fontSize: 12,
-                  color: '#a0a0a0',
-                  whiteSpace: 'nowrap',
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis',
-                }}>
-  
-                </div>
-              </div>
-              <div style={{ position: 'relative' }} className="chat-menu">
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setOpenMenuId(openMenuId === chat.id ? null : chat.id);
-                  }}
-                  style={{
-                    background: 'none',
-                    border: 'none',
-                    color: '#a0a0a0',
-                    fontSize: 16,
-                    cursor: 'pointer',
-                    padding: '4px 8px',
-                    borderRadius: 4,
-                    transition: 'all 0.2s',
-                    marginLeft: 8,
-                  }}
-                  title="More options"
-                  onMouseEnter={e => {
-                    e.currentTarget.style.color = '#00ffe7';
-                  }}
-                  onMouseLeave={e => {
-                    e.currentTarget.style.color = '#a0a0a0';
-                  }}
-                >
-                  ⋯
-                </button>
-                {openMenuId === chat.id && (
-                  <div style={{
-                    position: 'absolute',
-                    top: '100%',
-                    right: 0,
-                    background: '#1a1a1a',
-                    border: '1px solid #7f9cf5',
-                    borderRadius: 6,
-                    boxShadow: '0 4px 12px rgba(127, 156, 245, 0.3)',
-                    zIndex: 1000,
-                    minWidth: 120,
-                    marginTop: 4,
-                  }}>
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setEditingChatId(chat.id);
-                        setEditingTitle(chat.title);
-                        setOpenMenuId(null);
-                      }}
-                      style={{
-                        width: '100%',
-                        padding: '8px 12px',
-                        background: 'none',
-                        border: 'none',
-                        textAlign: 'left',
-                        fontSize: 14,
-                        color: '#fff',
-                        cursor: 'pointer',
-                        transition: 'all 0.2s',
-                      }}
-                      onMouseEnter={e => {
-                        e.currentTarget.style.background = '#7f9cf5';
-                        e.currentTarget.style.color = '#fff';
-                      }}
-                      onMouseLeave={e => {
-                        e.currentTarget.style.background = 'none';
-                        e.currentTarget.style.color = '#fff';
-                      }}
-                    >
-                      Rename
-                    </button>
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        deleteChat(chat.id);
-                        setOpenMenuId(null);
-                      }}
-                      style={{
-                        width: '100%',
-                        padding: '8px 12px',
-                        background: 'none',
-                        border: 'none',
-                        textAlign: 'left',
-                        fontSize: 14,
-                        color: '#ff6b6b',
-                        cursor: 'pointer',
-                        transition: 'all 0.2s',
-                      }}
-                      onMouseEnter={e => {
-                        e.currentTarget.style.background = '#ff6b6b';
-                        e.currentTarget.style.color = '#fff';
-                      }}
-                      onMouseLeave={e => {
-                        e.currentTarget.style.background = 'none';
-                        e.currentTarget.style.color = '#ff6b6b';
-                      }}
-                    >
-                      Delete
-                    </button>
-                  </div>
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+      <ChatSidebar
+        showSidebar={showSidebar}
+        chats={chats}
+        currentChatId={currentChatId}
+        searchQuery={searchQuery}
+        openMenuId={openMenuId}
+        editingChatId={editingChatId}
+        editingTitle={editingTitle}
+        filteredChats={filteredChats}
+        onToggleSidebar={() => setShowSidebar(!showSidebar)}
+        onCreateNewChat={createNewChat}
+        onSelectChat={selectChat}
+        onDeleteChat={deleteChat}
+        onUpdateChatTitle={updateChatTitle}
+        onSetOpenMenuId={setOpenMenuId}
+        onSetEditingChatId={setEditingChatId}
+        onSetEditingTitle={setEditingTitle}
+        onSetSearchQuery={setSearchQuery}
+      />
 
       {/* Main chat area */}
       <div style={{
