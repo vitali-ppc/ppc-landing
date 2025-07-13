@@ -42,48 +42,64 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
 }) => {
   return (
     <div style={{
+      width: showSidebar ? 280 : 0,
+      background: '#23272f',
+      borderRight: '1px solid #1a1a1a',
+      transition: 'width 0.3s ease',
+      overflow: 'hidden',
+      display: 'flex',
+      flexDirection: 'column',
       position: 'fixed',
       left: 0,
       top: 0,
       height: '100vh',
-      width: '280px',
-      background: '#23272f',
-      borderRight: '1px solid #23272f',
-      transform: showSidebar ? 'translateX(0)' : 'translateX(-100%)',
-      transition: 'transform 0.3s ease',
-      zIndex: 1000,
-      display: 'flex',
-      flexDirection: 'column',
+      zIndex: 100,
     }}>
-      {/* Header */}
+
+      {/* New chat button */}
       <div style={{
-        padding: '20px 16px',
-        borderBottom: '1px solid #23272f',
+        padding: '12px 16px 20px 16px',
+        borderBottom: '1px solid #1a1a1a',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'space-between',
+        justifyContent: 'flex-end',
       }}>
-        <span style={{ fontWeight: 700, fontSize: 18, color: '#fff' }}>
-          Chats
-        </span>
         <button
-          onClick={onToggleSidebar}
+          onClick={onCreateNewChat}
           style={{
-            background: 'none',
-            border: 'none',
-            color: '#888',
-            fontSize: 20,
+            background: 'rgba(255,255,255,0.03)',
+            color: '#fff',
+            border: '1.5px solid rgba(255,255,255,0.08)',
+            borderRadius: 12,
+            padding: '16px 24px',
+            fontSize: 14,
+            fontWeight: 600,
             cursor: 'pointer',
-            padding: '4px',
-            borderRadius: 4,
+            transition: 'all 0.3s ease',
+            boxShadow: 'none',
+          }}
+          onMouseEnter={e => {
+            e.currentTarget.style.background = 'rgba(255,255,255,0.1)';
+            e.currentTarget.style.color = '#fff';
+            e.currentTarget.style.border = '1.5px solid rgba(255,255,255,0.2)';
+            e.currentTarget.style.boxShadow = '0 4px 12px rgba(255,255,255,0.1)';
+          }}
+          onMouseLeave={e => {
+            e.currentTarget.style.background = 'rgba(255,255,255,0.03)';
+            e.currentTarget.style.color = '#fff';
+            e.currentTarget.style.border = '1.5px solid rgba(255,255,255,0.08)';
+            e.currentTarget.style.boxShadow = 'none';
           }}
         >
-          ×
+          New Chat
         </button>
       </div>
 
       {/* Search */}
-      <div style={{ padding: '16px' }}>
+      <div style={{
+        padding: '12px 16px',
+        borderBottom: '1px solid #1a1a1a',
+      }}>
         <input
           type="text"
           placeholder="Search chats..."
@@ -92,57 +108,57 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
           style={{
             width: '100%',
             padding: '8px 12px',
-            border: '1px solid #23272f',
+            border: '1px solid #1a1a1a',
             borderRadius: 6,
+            fontSize: 14,
             background: '#1a1a1a',
             color: '#fff',
-            fontSize: 14,
             outline: 'none',
           }}
-        />
-      </div>
-
-      {/* New chat button */}
-      <div style={{ padding: '0 16px 16px' }}>
-        <button
-          onClick={onCreateNewChat}
-          style={{
-            width: '100%',
-            padding: '10px 16px',
-            background: '#7f9cf5',
-            color: '#fff',
-            border: 'none',
-            borderRadius: 8,
-            fontSize: 14,
-            fontWeight: 600,
-            cursor: 'pointer',
-            transition: 'background 0.2s',
+          onFocus={e => {
+            e.target.style.border = '1px solid #7f9cf5';
+            e.target.style.boxShadow = '0 0 0 2px rgba(127, 156, 245, 0.2)';
           }}
-        >
-          New Chat
-        </button>
+          onBlur={e => {
+            e.target.style.border = '1px solid #1a1a1a';
+            e.target.style.boxShadow = 'none';
+          }}
+        />
       </div>
 
       {/* Chat list */}
       <div style={{
         flex: 1,
         overflowY: 'auto',
-        padding: '0 16px',
+        padding: '8px',
       }}>
         {filteredChats.map((chat) => (
           <div
             key={chat.id}
-            onClick={() => onSelectChat(chat.id)}
             style={{
               padding: '12px 16px',
-              marginBottom: 8,
-              background: currentChatId === chat.id ? '#7f9cf5' : 'transparent',
+              margin: '4px 0',
               borderRadius: 8,
+              background: currentChatId === chat.id ? '#1a1a1a' : 'transparent',
+              border: currentChatId === chat.id ? '1px solid #7f9cf5' : '1px solid transparent',
               cursor: 'pointer',
-              transition: 'background 0.2s',
+              transition: 'all 0.2s',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
+            }}
+            onClick={() => onSelectChat(chat.id)}
+            onMouseEnter={e => {
+              if (currentChatId !== chat.id) {
+                e.currentTarget.style.background = '#1a1a1a';
+                e.currentTarget.style.border = '1px solid #00ffe7';
+              }
+            }}
+            onMouseLeave={e => {
+              if (currentChatId !== chat.id) {
+                e.currentTarget.style.background = 'transparent';
+                e.currentTarget.style.border = '1px solid transparent';
+              }
             }}
           >
             <div style={{ flex: 1, minWidth: 0 }}>
@@ -198,15 +214,7 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = ({
                   {chat.title}
                 </div>
               )}
-              <div style={{
-                fontSize: 12,
-                color: '#a0a0a0',
-                whiteSpace: 'nowrap',
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-              }}>
-                {chat.messages.length} messages
-              </div>
+
             </div>
             <div style={{ position: 'relative' }} className="chat-menu">
               <button
