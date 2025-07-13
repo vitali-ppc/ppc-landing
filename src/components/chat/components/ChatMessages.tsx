@@ -1,6 +1,7 @@
 import React from 'react';
-import { Message } from '../types';
+import { Message, ExportFormat } from '../types';
 import { MessageBubble } from './MessageBubble';
+import { AI_AVATAR } from './Avatars';
 
 interface ChatMessagesProps {
   messages: Message[];
@@ -9,8 +10,9 @@ interface ChatMessagesProps {
   adsData: any;
   copied: boolean;
   openExportDropdownIdx: number | null;
+  loading: boolean;
   onCopy: () => void;
-  onExport: (format: string, data: any) => void;
+  onExport: (format: ExportFormat, data: any) => void;
   setOpenExportDropdownIdx: (index: number | null) => void;
 }
 
@@ -21,6 +23,7 @@ export const ChatMessages: React.FC<ChatMessagesProps> = ({
   adsData,
   copied,
   openExportDropdownIdx,
+  loading,
   onCopy,
   onExport,
   setOpenExportDropdownIdx,
@@ -68,11 +71,39 @@ export const ChatMessages: React.FC<ChatMessagesProps> = ({
           adsData={adsData}
           copied={copied}
           openExportDropdownIdx={openExportDropdownIdx}
-          onCopy={onCopy}
+          onCopy={() => {
+            navigator.clipboard.writeText(message.text);
+            // Здесь нужно вызвать функцию для установки copied состояния
+            // Но у нас нет доступа к setCopied, поэтому передадим через onCopy
+            onCopy();
+          }}
           onExport={onExport}
           setOpenExportDropdownIdx={setOpenExportDropdownIdx}
         />
       ))}
+      {loading && (
+        <div style={{ display: 'flex', alignItems: 'center', gap: 16, margin: '18px 0 0 0', opacity: 0.85, animation: 'fadeIn 0.5s' }}>
+          <div style={{ flexShrink: 0 }}>
+            {AI_AVATAR}
+          </div>
+          <span style={{
+            display: 'inline-block',
+            background: '#e6f7ff',
+            color: '#23272f',
+            borderRadius: 16,
+            padding: '14px 32px',
+            maxWidth: 520,
+            wordBreak: 'break-word',
+            fontSize: 18,
+            boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
+            border: '1.5px solid #e6f7ff',
+            fontStyle: 'italic',
+            letterSpacing: '0.5px',
+          }}>
+            AI thinking...
+          </span>
+        </div>
+      )}
     </div>
   );
 }; 

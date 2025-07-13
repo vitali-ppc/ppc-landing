@@ -16,4 +16,7 @@ export { useGoogleAdsData } from './hooks/useGoogleAdsData';
 export { AI_AVATAR, USER_AVATAR } from './components/Avatars';
 export { MessageBubble } from './components/MessageBubble';
 export { ChatSidebar } from './components/ChatSidebar';
-export { ChatMessages } from './components/ChatMessages'; 
+export { ChatMessages } from './components/ChatMessages';
+
+// Main component
+export { default as ChatFormGPT } from './index'; 
