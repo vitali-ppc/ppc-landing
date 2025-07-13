@@ -5,6 +5,8 @@ import ReactMarkdown from 'react-markdown';
 import { Message, Chat, GoogleAdsData, REPORT_TEMPLATES, EXPORT_ENDPOINTS, ExportFormat } from './chat/types';
 import { exportData, formatGoogleAdsData } from './chat/utils';
 import { useLocalStorage } from './chat/hooks/useLocalStorage';
+import { useTypingEffect } from './chat/hooks/useTypingEffect';
+import { useGoogleAdsData } from './chat/hooks/useGoogleAdsData';
 import { AI_AVATAR, USER_AVATAR } from './chat/components/Avatars';
 
 const ChatFormGPT: React.FC = () => {
@@ -15,11 +17,14 @@ const ChatFormGPT: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   
   // Google Ads данные
-  const [adsData, setAdsData] = useState<GoogleAdsData | null>(null);
-  const [useAdsData, setUseAdsData] = useState(false);
-  const [realAdsData, setRealAdsData] = useState<GoogleAdsData | null>(null);
-  const [accountConnected, setAccountConnected] = useState(false);
-  const [accessToken, setAccessToken] = useState<string | null>(null);
+  const {
+    adsData, setAdsData,
+    useAdsData, setUseAdsData,
+    realAdsData, setRealAdsData,
+    accountConnected, setAccountConnected,
+    accessToken, setAccessToken,
+    dataToUse, hasData
+  } = useGoogleAdsData();
   
   // UI состояния
   const [showAccountModal, setShowAccountModal] = useState(false);
@@ -44,20 +49,15 @@ const ChatFormGPT: React.FC = () => {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   
   // Typing эффект
-  const [typingText, setTypingText] = useState<string | null>(null);
+  const { typingText, startTypingEffect, stopTypingEffect } = useTypingEffect();
   const [shownMessages, setShownMessages] = useState<Set<string>>(new Set());
   const [copied, setCopied] = useState(false);
   
   // Refs
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const chatEndRef = useRef<HTMLDivElement>(null);
-  const typingTimeout = useRef<NodeJS.Timeout | null>(null);
-  const typingIndex = useRef(0);
-  const typingInterrupted = useRef(false);
 
-  // Мемоизированные значения
-  const dataToUse = useMemo(() => realAdsData || adsData, [realAdsData, adsData]);
-  const hasData = useMemo(() => dataToUse && dataToUse.campaigns && dataToUse.campaigns.length > 0, [dataToUse]);
+
   const filteredChats = useMemo(() => 
     chats.filter(chat => chat.title.toLowerCase().includes(searchQuery.toLowerCase())),
     [chats, searchQuery]
@@ -121,33 +121,7 @@ const ChatFormGPT: React.FC = () => {
     setEditingTitle('');
   }, []);
 
-  // Typing эффект
-  const startTypingEffect = useCallback((fullText: string) => {
-    typingInterrupted.current = false;
-    typingIndex.current = 0;
-    setTypingText('');
-    
-    if (typingTimeout.current) clearTimeout(typingTimeout.current);
-    
-    const type = () => {
-      if (typingInterrupted.current) {
-        setTypingText(null);
-        return;
-      }
-      
-      const currentText = fullText.slice(0, typingIndex.current + 1);
-      setTypingText(currentText);
-      
-      if (typingIndex.current < fullText.length - 1) {
-        typingIndex.current++;
-        typingTimeout.current = setTimeout(type, 12 + Math.random() * 30);
-      } else {
-        setTypingText(null);
-      }
-    };
-    
-    type();
-  }, []);
+
 
   // Функции экспорта
   const handleExport = useCallback(async (format: ExportFormat, data: any) => {
@@ -474,18 +448,11 @@ const ChatFormGPT: React.FC = () => {
       }
     }
     if (loading) {
-      setTypingText(null);
-      if (typingTimeout.current) clearTimeout(typingTimeout.current);
-      typingInterrupted.current = false;
+      stopTypingEffect();
     }
   }, [messages, loading, shownMessages, currentChatId, typingText, startTypingEffect]);
 
-  // Очистка таймера
-  useEffect(() => {
-    return () => {
-      if (typingTimeout.current) clearTimeout(typingTimeout.current);
-    };
-  }, []);
+
 
   // Placeholder rotation
   useEffect(() => {
@@ -1763,9 +1730,7 @@ const ChatFormGPT: React.FC = () => {
           }}
           onClick={e => {
             if (typingText !== null) {
-              typingInterrupted.current = true;
-              setTypingText(null);
-              if (typingTimeout.current) clearTimeout(typingTimeout.current);
+              stopTypingEffect();
               // Показати одразу повний текст
               const lastAiMsg = messages[messages.length - 1]?.text;
               if (lastAiMsg) setMessages(prev => prev.map((m, i) => i === prev.length - 1 ? { ...m, text: lastAiMsg } : m));

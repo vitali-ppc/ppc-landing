@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
-import { Message } from '../types';
+import { Message, ExportFormat } from '../types';
 import { AI_AVATAR, USER_AVATAR } from './Avatars';
 
 interface MessageBubbleProps {
@@ -13,7 +13,7 @@ interface MessageBubbleProps {
   copied: boolean;
   openExportDropdownIdx: number | null;
   onCopy: () => void;
-  onExport: (format: string, data: any) => void;
+  onExport: (format: ExportFormat, data: any) => void;
   setOpenExportDropdownIdx: (index: number | null) => void;
 }
 
@@ -121,142 +121,12 @@ export const MessageBubble: React.FC<MessageBubbleProps> = ({
                 >
                   {message.text}
                 </ReactMarkdown>
-                {/* Summary + Copy для останньої AI-відповіді, якщо були дані Google Ads */}
-                {isLastMessage && useAdsData && adsData && (
+                {/* Summary + Copy для AI-відповіді */}
+                {message.role === 'ai' && useAdsData && adsData && (
                   <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginTop: 10 }}>
                     <span style={{ color: '#0ea5e9', fontSize: 14, fontWeight: 500 }}>
                       Відповідь сформовано на основі ваших даних Google Ads
                     </span>
-                    <button
-                      onClick={onCopy}
-                      style={{
-                        background: '#e6f7ff',
-                        color: '#0ea5e9',
-                        border: '1.2px solid #0ea5e9',
-                        borderRadius: 8,
-                        padding: '4px 14px',
-                        fontSize: 14,
-                        fontWeight: 600,
-                        cursor: 'pointer',
-                        transition: 'background 0.2s',
-                      }}
-                      title="Скопіювати відповідь"
-                    >
-                      {copied ? 'Скопійовано!' : 'Скопіювати відповідь'}
-                    </button>
-                    {/* Кнопка експорту з іконкою та dropdown */}
-                    <div style={{ position: 'relative', display: 'inline-block' }}>
-                      <button
-                        onClick={() => setOpenExportDropdownIdx(openExportDropdownIdx === index ? null : index)}
-                        style={{
-                          background: '#f5f5f5',
-                          color: '#23272f',
-                          border: '1.2px solid #bdbdbd',
-                          borderRadius: 8,
-                          padding: '4px 14px 4px 10px',
-                          fontSize: 14,
-                          fontWeight: 600,
-                          cursor: 'pointer',
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: 8,
-                          transition: 'background 0.2s',
-                          minWidth: 44,
-                        }}
-                        title="Скачати звіт"
-                      >
-                        <span style={{display:'inline-flex',alignItems:'center',gap:6}}>
-                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#23272f" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{marginRight:2}}>
-                            <path d="M12 5v12"/>
-                            <path d="M6 13l6 6 6-6"/>
-                            <rect x="4" y="19" width="16" height="2" rx="1" fill="#23272f" stroke="none"/>
-                          </svg>
-                          <span>Скачати</span>
-                        </span>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#23272f" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{marginLeft:4}}>
-                          <path d="M6 9l6 6 6-6"/>
-                        </svg>
-                      </button>
-                      {openExportDropdownIdx === index && (
-                        <div className="export-dropdown" style={{
-                          position: 'absolute',
-                          top: '110%',
-                          left: 0,
-                          background: '#fff',
-                          border: '1.2px solid #e2e8f0',
-                          borderRadius: 8,
-                          boxShadow: '0 4px 16px rgba(30,40,90,0.10)',
-                          minWidth: 140,
-                          zIndex: 100,
-                          padding: '6px 0',
-                        }}>
-                          <button
-                            onClick={(e) => { e.stopPropagation(); onExport('xlsx', [["AI-відповідь"], [message.text]]); setOpenExportDropdownIdx(null); }}
-                            style={{
-                              width: '100%',
-                              background: 'none',
-                              border: 'none',
-                              color: '#23272f',
-                              fontSize: 15,
-                              padding: '10px 18px',
-                              textAlign: 'left',
-                              cursor: 'pointer',
-                              transition: 'background 0.18s',
-                            }}
-                          >
-                            Excel (XLSX)
-                          </button>
-                          <button
-                            onClick={(e) => { e.stopPropagation(); onExport('csv', [["AI-відповідь"], [message.text]]); setOpenExportDropdownIdx(null); }}
-                            style={{
-                              width: '100%',
-                              background: 'none',
-                              border: 'none',
-                              color: '#23272f',
-                              fontSize: 15,
-                              padding: '10px 18px',
-                              textAlign: 'left',
-                              cursor: 'pointer',
-                              transition: 'background 0.18s',
-                            }}
-                          >
-                            CSV
-                          </button>
-                          <button
-                            onClick={(e) => { e.stopPropagation(); onExport('txt', message.text); setOpenExportDropdownIdx(null); }}
-                            style={{
-                              width: '100%',
-                              background: 'none',
-                              border: 'none',
-                              color: '#23272f',
-                              fontSize: 15,
-                              padding: '10px 18px',
-                              textAlign: 'left',
-                              cursor: 'pointer',
-                              transition: 'background 0.18s',
-                            }}
-                          >
-                            TXT
-                          </button>
-                          <button
-                            onClick={(e) => { e.stopPropagation(); onExport('pdf', message.text); setOpenExportDropdownIdx(null); }}
-                            style={{
-                              width: '100%',
-                              background: 'none',
-                              border: 'none',
-                              color: '#23272f',
-                              fontSize: 15,
-                              padding: '10px 18px',
-                              textAlign: 'left',
-                              cursor: 'pointer',
-                              transition: 'background 0.18s',
-                            }}
-                          >
-                            PDF
-                          </button>
-                        </div>
-                      )}
-                    </div>
                   </div>
                 )}
               </>
@@ -265,6 +135,153 @@ export const MessageBubble: React.FC<MessageBubbleProps> = ({
               <span>{message.text}</span>
             )}
       </span>
+      {/* Маленькі іконки копіювання та експорту для AI повідомлень */}
+      {message.role === 'ai' && (
+        // Показуємо кнопки тільки якщо це не останнє AI-повідомлення з typingText, або якщо typingText === null
+        (typingText === null) && (
+          <div style={{ display: 'flex', alignItems: 'center', gap: 4, marginTop: 8 }}>
+            {/* Мінімалістична кнопка копіювання */}
+            <button
+              onClick={onCopy}
+              style={{
+                background: 'none',
+                border: 'none',
+                padding: 2,
+                margin: 0,
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                outline: 'none',
+                boxShadow: 'none',
+                minWidth: 0,
+                minHeight: 0,
+              }}
+              title="Copy"
+            >
+              {copied ? (
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              ) : (
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#23272f" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                </svg>
+              )}
+            </button>
+            {/* Мінімалістична кнопка експорту */}
+            <div style={{ position: 'relative', display: 'inline-block' }}>
+              <button
+                onClick={e => {
+                  e.stopPropagation();
+                  setOpenExportDropdownIdx(openExportDropdownIdx === index ? null : index);
+                }}
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  padding: 2,
+                  margin: 0,
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  outline: 'none',
+                  boxShadow: 'none',
+                  minWidth: 0,
+                  minHeight: 0,
+                }}
+                title="Download"
+              >
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#23272f" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 5v12"/>
+                  <path d="M6 13l6 6 6-6"/>
+                  <rect x="4" y="19" width="16" height="2" rx="1" fill="#23272f" stroke="none"/>
+                </svg>
+              </button>
+              {openExportDropdownIdx === index && (
+                <div className="export-dropdown" style={{
+                  position: 'absolute',
+                  top: '110%',
+                  left: 0,
+                  background: '#fff',
+                  border: '1.2px solid #e2e8f0',
+                  borderRadius: 8,
+                  boxShadow: '0 4px 16px rgba(30,40,90,0.10)',
+                  minWidth: 120,
+                  zIndex: 100,
+                  padding: '4px 0',
+                }}>
+                  <button
+                    onClick={(e) => { e.stopPropagation(); onExport('pdf', message.text); setOpenExportDropdownIdx(null); }}
+                    style={{
+                      width: '100%',
+                      background: 'none',
+                      border: 'none',
+                      color: '#23272f',
+                      fontSize: 15,
+                      padding: '8px 16px',
+                      textAlign: 'left',
+                      cursor: 'pointer',
+                      transition: 'background 0.18s',
+                    }}
+                  >
+                    PDF
+                  </button>
+                  <button
+                    onClick={(e) => { e.stopPropagation(); onExport('xlsx', [["AI-відповідь", message.text]]); setOpenExportDropdownIdx(null); }}
+                    style={{
+                      width: '100%',
+                      background: 'none',
+                      border: 'none',
+                      color: '#23272f',
+                      fontSize: 15,
+                      padding: '8px 16px',
+                      textAlign: 'left',
+                      cursor: 'pointer',
+                      transition: 'background 0.18s',
+                    }}
+                  >
+                    Excel (XLSX)
+                  </button>
+                  <button
+                    onClick={(e) => { e.stopPropagation(); onExport('csv', [["AI-відповідь", message.text]]); setOpenExportDropdownIdx(null); }}
+                    style={{
+                      width: '100%',
+                      background: 'none',
+                      border: 'none',
+                      color: '#23272f',
+                      fontSize: 15,
+                      padding: '8px 16px',
+                      textAlign: 'left',
+                      cursor: 'pointer',
+                      transition: 'background 0.18s',
+                    }}
+                  >
+                    CSV
+                  </button>
+                  <button
+                    onClick={(e) => { e.stopPropagation(); onExport('txt', message.text); setOpenExportDropdownIdx(null); }}
+                    style={{
+                      width: '100%',
+                      background: 'none',
+                      border: 'none',
+                      color: '#23272f',
+                      fontSize: 15,
+                      padding: '8px 16px',
+                      textAlign: 'left',
+                      cursor: 'pointer',
+                      transition: 'background 0.18s',
+                    }}
+                  >
+                    TXT
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+        )
+      )}
     </div>
   );
 }; 

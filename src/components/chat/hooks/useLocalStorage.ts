@@ -8,7 +8,15 @@ export const useLocalStorage = <T,>(key: string, initialValue: T) => {
     
     try {
       const item = window.localStorage.getItem(key);
-      return item ? JSON.parse(item) : initialValue;
+      if (!item) return initialValue;
+      
+      // Пробуем распарсить как JSON, если не получается - возвращаем как есть
+      try {
+        return JSON.parse(item);
+      } catch {
+        // Если не JSON, возвращаем как строку (для theme)
+        return item as T;
+      }
     } catch (error) {
       console.error(error);
       return initialValue;
@@ -20,7 +28,9 @@ export const useLocalStorage = <T,>(key: string, initialValue: T) => {
       const valueToStore = value instanceof Function ? value(storedValue) : value;
       setStoredValue(valueToStore);
       if (typeof window !== 'undefined') {
-        window.localStorage.setItem(key, JSON.stringify(valueToStore));
+        // Для строк сохраняем как есть, для объектов - как JSON
+        const valueToSave = typeof valueToStore === 'string' ? valueToStore : JSON.stringify(valueToStore);
+        window.localStorage.setItem(key, valueToSave);
       }
     } catch (error) {
       console.error(error);
