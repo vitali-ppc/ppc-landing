@@ -8,6 +8,150 @@ body {
   color: #333;
 }
 
+/* ===== Стилі для юридичних сторінок ===== */
+.privacy-policy-page,
+.terms-of-service-page {
+  padding: 40px 0;
+}
+
+.privacy-policy-page .content-wrapper,
+.terms-of-service-page .content-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.privacy-policy-page h1,
+.terms-of-service-page h1 {
+  color: #1a1f36;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.privacy-policy-page .last-updated,
+.terms-of-service-page .last-updated {
+  color: #6b7280;
+  font-size: 0.9rem;
+  text-align: center;
+  margin-bottom: 40px;
+  font-style: italic;
+}
+
+.privacy-policy-page section,
+.terms-of-service-page section {
+  margin-bottom: 32px;
+}
+
+.privacy-policy-page h2,
+.terms-of-service-page h2 {
+  color: #1a1f36;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  margin-top: 32px;
+}
+
+.privacy-policy-page h3,
+.terms-of-service-page h3 {
+  color: #374151;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  margin-top: 24px;
+}
+
+.privacy-policy-page p,
+.terms-of-service-page p {
+  color: #4b5563;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.privacy-policy-page ul,
+.terms-of-service-page ul {
+  color: #4b5563;
+  line-height: 1.6;
+  margin-bottom: 16px;
+  padding-left: 24px;
+}
+
+.privacy-policy-page li,
+.terms-of-service-page li {
+  margin-bottom: 8px;
+}
+
+.privacy-policy-page .contact-info,
+.terms-of-service-page .contact-info {
+  background: #f8fafc;
+  padding: 20px;
+  border-radius: 8px;
+  border-left: 4px solid #3b82f6;
+  margin-top: 16px;
+}
+
+.privacy-policy-page .contact-info p,
+.terms-of-service-page .contact-info p {
+  margin-bottom: 8px;
+}
+
+.privacy-policy-page .contact-info a,
+.terms-of-service-page .contact-info a {
+  color: #3b82f6;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.privacy-policy-page .contact-info a:hover,
+.terms-of-service-page .contact-info a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .privacy-policy-page,
+  .terms-of-service-page {
+    padding: 20px 0;
+  }
+  
+  .privacy-policy-page .content-wrapper,
+  .terms-of-service-page .content-wrapper {
+    padding: 24px;
+    margin: 0 16px;
+  }
+  
+  .privacy-policy-page h1,
+  .terms-of-service-page h1 {
+    font-size: 2rem;
+  }
+  
+  .privacy-policy-page h2,
+  .terms-of-service-page h2 {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .privacy-policy-page .content-wrapper,
+  .terms-of-service-page .content-wrapper {
+    padding: 20px;
+    margin: 0 12px;
+  }
+  
+  .privacy-policy-page h1,
+  .terms-of-service-page h1 {
+    font-size: 1.8rem;
+  }
+  
+  .privacy-policy-page h2,
+  .terms-of-service-page h2 {
+    font-size: 1.2rem;
+  }
+}
+
 /* Приховуємо мобільне меню на десктопі */
 @media (min-width: 769px) {
   .mobile-menu,
