@@ -9,6 +9,8 @@ import { useTypingEffect } from './chat/hooks/useTypingEffect';
 import { useGoogleAdsData } from './chat/hooks/useGoogleAdsData';
 import { AI_AVATAR, USER_AVATAR } from './chat/components/Avatars';
 import { ChatSidebar } from './chat/components/ChatSidebar';
+import { MessageBubble } from './chat/components/MessageBubble';
+import { ChatMessages } from './chat/components/ChatMessages';
 
 const ChatFormGPT: React.FC = () => {
   // Основные состояния
@@ -376,6 +378,23 @@ const ChatFormGPT: React.FC = () => {
       setLoading(false);
     }
   }, [hasData, dataToUse, realAdsData, currentChatId, messages]);
+
+  // Оптимізовані callback функції для повідомлень
+  const handleCopyMessage = useCallback(() => {
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1200);
+  }, []);
+
+  const handleExportMessage = useCallback(async (format: ExportFormat, data: any) => {
+    const success = await exportData(format, data);
+    if (success) {
+      setOpenExportDropdownIdx(null);
+    }
+  }, []);
+
+  const handleSetOpenExportDropdown = useCallback((index: number | null) => {
+    setOpenExportDropdownIdx(index);
+  }, []);
 
   // Effects
   useEffect(() => {
@@ -893,427 +912,18 @@ const ChatFormGPT: React.FC = () => {
         </div>
       )}
       {/* Chat history */}
-      <div style={{
-        flex: 1,
-        minHeight: '60vh',
-        maxHeight: '70vh',
-        overflowY: 'auto',
-        padding: '24px 0',
-        background: '#f9fafc',
-        borderBottomLeftRadius: 0,
-        borderBottomRightRadius: 0,
-        transition: 'background 0.2s',
-      }}>
-        {messages.length === 0 && (
-          <div style={{ 
-            color: '#23272f', 
-            padding: '48px 24px', 
-            textAlign: 'center',
-            fontSize: '18px',
-            fontWeight: '500',
-            lineHeight: '1.5',
-            maxWidth: '600px',
-            margin: '0 auto',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            minHeight: '60vh',
-          }}>
-            <div style={{ fontSize: '28px', fontWeight: '600', color: '#7f9cf5' }}>
-              Ready to boost your Google Ads performance?
-            </div>
-          </div>
-        )}
-        {messages.map((msg, idx) => (
-          <div key={idx} style={{
-            display: 'flex',
-            flexDirection: msg.role === 'user' ? 'row-reverse' : 'row',
-            alignItems: 'flex-end',
-            gap: 16,
-            margin: '18px 0',
-            opacity: 0.98,
-            animation: 'fadeIn 0.5s',
-          }}>
-            <div style={{ flexShrink: 0 }}>
-              {msg.role === 'user' ? USER_AVATAR : AI_AVATAR}
-            </div>
-            <span style={{
-              display: 'inline-block',
-              background: msg.role === 'user' ? '#fff' : '#e6f7ff',
-              color: '#23272f',
-              borderRadius: 12,
-              padding: '10px 18px',
-              maxWidth: 600,
-              wordBreak: 'break-word',
-              fontSize: 15,
-              lineHeight: 1.4,
-              boxShadow: msg.role === 'user' ? '0 2px 8px rgba(30, 144, 255, 0.04)' : '0 2px 8px rgba(0,0,0,0.03)',
-              border: msg.role === 'user' ? '1.5px solid #e2e8f0' : '1.5px solid #e6f7ff',
-              transition: 'background 0.2s',
-              position: 'relative',
-            }}>
-              {msg.role === 'ai' && idx === messages.length - 1 && typingText !== null
-                ? (
-                  <span>
-                    <ReactMarkdown
-                      components={{
-                        code: (props: any) =>
-                          props.inline ? (
-                            <code style={{
-                              background: '#f5f5f5',
-                              borderRadius: 6,
-                              padding: '2px 6px',
-                              fontSize: 16,
-                              color: '#0ea5e9',
-                            }}>{props.children}</code>
-                          ) : (
-                            <pre style={{
-                              background: '#23272f',
-                              color: '#fff',
-                              borderRadius: 10,
-                              padding: 16,
-                              overflowX: 'auto',
-                              margin: '12px 0',
-                            }}><code>{props.children}</code></pre>
-                          ),
-                        a: ({node, ...props}) => <a style={{ color: '#0ea5e9', textDecoration: 'underline' }} {...props} />,
-                        li: ({node, ...props}) => <li style={{ marginLeft: 18, marginBottom: 4 }} {...props} />,
-                      }}
-                    >
-                      {typingText}
-                    </ReactMarkdown>
-                    <span style={{ opacity: 0.5 }}>|</span>
-                  </span>
-                )
-                : msg.role === 'ai'
-                  ? (
-                    <>
-                      <ReactMarkdown
-                        components={{
-                          code: (props: any) =>
-                            props.inline ? (
-                              <code style={{
-                                background: '#f5f5f5',
-                                borderRadius: 6,
-                                padding: '2px 6px',
-                                fontSize: 16,
-                                color: '#0ea5e9',
-                              }}>{props.children}</code>
-                            ) : (
-                              <pre style={{
-                                background: '#23272f',
-                                color: '#fff',
-                                borderRadius: 10,
-                                padding: 16,
-                                overflowX: 'auto',
-                                margin: '12px 0',
-                              }}><code>{props.children}</code></pre>
-                            ),
-                          a: ({node, ...props}) => <a style={{ color: '#0ea5e9', textDecoration: 'underline' }} {...props} />,
-                          li: ({node, ...props}) => <li style={{ marginLeft: 18, marginBottom: 4 }} {...props} />,
-                        }}
-                      >
-                        {msg.text}
-                      </ReactMarkdown>
-                      {/* Summary + Copy для останньої AI-відповіді, якщо були дані Google Ads */}
-                      {idx === messages.length - 1 && useAdsData && adsData && (
-                        <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginTop: 10 }}>
-                          <span style={{ color: '#0ea5e9', fontSize: 14, fontWeight: 500 }}>
-                            Відповідь сформовано на основі ваших даних Google Ads
-                          </span>
-                          <button
-                            onClick={() => {
-                              navigator.clipboard.writeText(msg.text);
-                              setCopied(true);
-                              setTimeout(() => setCopied(false), 1200);
-                            }}
-                            style={{
-                              background: '#e6f7ff',
-                              color: '#0ea5e9',
-                              border: '1.2px solid #0ea5e9',
-                              borderRadius: 8,
-                              padding: '4px 14px',
-                              fontSize: 14,
-                              fontWeight: 600,
-                              cursor: 'pointer',
-                              transition: 'background 0.2s',
-                            }}
-                            title="Скопіювати відповідь"
-                          >
-                            {copied ? 'Скопійовано!' : 'Скопіювати відповідь'}
-                          </button>
-                          {/* Кнопка експорту з іконкою та dropdown */}
-                          <div style={{ position: 'relative', display: 'inline-block' }}>
-                            <button
-                              onClick={() => setOpenExportDropdownIdx(openExportDropdownIdx === idx ? null : idx)}
-                              style={{
-                                background: '#f5f5f5',
-                                color: '#23272f',
-                                border: '1.2px solid #bdbdbd',
-                                borderRadius: 8,
-                                padding: '4px 14px 4px 10px',
-                                fontSize: 14,
-                                fontWeight: 600,
-                                cursor: 'pointer',
-                                display: 'flex',
-                                alignItems: 'center',
-                                gap: 8,
-                                transition: 'background 0.2s',
-                                minWidth: 44,
-                              }}
-                              title="Скачати звіт"
-                            >
-                              <span style={{display:'inline-flex',alignItems:'center',gap:6}}>
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#23272f" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{marginRight:2}}>
-                                  <path d="M12 5v12"/>
-                                  <path d="M6 13l6 6 6-6"/>
-                                  <rect x="4" y="19" width="16" height="2" rx="1" fill="#23272f" stroke="none"/>
-                                </svg>
-                                <span>Скачати</span>
-                              </span>
-                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#23272f" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{marginLeft:4}}>
-                                <path d="M6 9l6 6 6-6"/>
-                              </svg>
-                            </button>
-                            {openExportDropdownIdx === idx && (
-                              <div className="export-dropdown" style={{
-                                position: 'absolute',
-                                top: '110%',
-                                left: 0,
-                                background: '#fff',
-                                border: '1.2px solid #e2e8f0',
-                                borderRadius: 8,
-                                boxShadow: '0 4px 16px rgba(30,40,90,0.10)',
-                                minWidth: 140,
-                                zIndex: 100,
-                                padding: '6px 0',
-                              }}>
-                                <button
-                                  onClick={(e) => { e.stopPropagation(); handleExport('xlsx', [["AI-відповідь"], [msg.text]]); setOpenExportDropdownIdx(null); }}
-                                  style={{
-                                    width: '100%',
-                                    background: 'none',
-                                    border: 'none',
-                                    color: '#23272f',
-                                    fontSize: 15,
-                                    padding: '10px 18px',
-                                    textAlign: 'left',
-                                    cursor: 'pointer',
-                                    transition: 'background 0.18s',
-                                  }}
-                                >
-                                  Excel (XLSX)
-                                </button>
-                                <button
-                                  onClick={(e) => { e.stopPropagation(); handleExport('csv', [["AI-відповідь"], [msg.text]]); setOpenExportDropdownIdx(null); }}
-                                  style={{
-                                    width: '100%',
-                                    background: 'none',
-                                    border: 'none',
-                                    color: '#23272f',
-                                    fontSize: 15,
-                                    padding: '10px 18px',
-                                    textAlign: 'left',
-                                    cursor: 'pointer',
-                                    transition: 'background 0.18s',
-                                  }}
-                                >
-                                  CSV
-                                </button>
-                                <button
-                                  onClick={(e) => { e.stopPropagation(); console.log('TXT export button clicked!'); handleExport('txt', msg.text); setOpenExportDropdownIdx(null); }}
-                                  style={{
-                                    width: '100%',
-                                    background: 'none',
-                                    border: 'none',
-                                    color: '#23272f',
-                                    fontSize: 15,
-                                    padding: '10px 18px',
-                                    textAlign: 'left',
-                                    cursor: 'pointer',
-                                    transition: 'background 0.18s',
-                                  }}
-                                >
-                                  TXT
-                                </button>
-
-                              </div>
-                            )}
-                          </div>
-                        </div>
-                      )}
-                    </>
-                  )
-                  : msg.text
-              }
-              {msg.image && (
-                <div style={{ marginTop: '12px' }}>
-                  <img
-                    src={msg.image}
-                    alt="Uploaded image"
-                    style={{
-                      maxWidth: '100%',
-                      maxHeight: '300px',
-                      borderRadius: '8px',
-                      border: '1px solid #e2e8f0',
-                    }}
-                  />
-                </div>
-              )}
-            </span>
-            {msg.role === 'ai' && (
-  // Показуємо кнопки тільки якщо це не останнє AI-повідомлення з typingText, або якщо typingText === null
-  ((idx !== messages.length - 1) || typingText === null) && (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 4, marginTop: 8 }}>
-      {/* Мінімалістична кнопка копіювання */}
-      <button
-        onClick={() => {
-          navigator.clipboard.writeText(msg.text);
-          setCopied(true);
-          setTimeout(() => setCopied(false), 1200);
-        }}
-        style={{
-          background: 'none',
-          border: 'none',
-          padding: 2,
-          margin: 0,
-          cursor: 'pointer',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          outline: 'none',
-          boxShadow: 'none',
-          minWidth: 0,
-          minHeight: 0,
-        }}
-        title="Скопіювати"
-      >
-        {copied ? (
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-            <polyline points="20 6 9 17 4 12" />
-          </svg>
-        ) : (
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#23272f" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-            <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
-            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-          </svg>
-        )}
-      </button>
-      {/* Мінімалістична кнопка експорту */}
-      <div style={{ position: 'relative', display: 'inline-block' }}>
-        <button
-          onClick={e => {
-            e.stopPropagation();
-            setOpenExportDropdownIdx(openExportDropdownIdx === idx ? null : idx);
-          }}
-          style={{
-            background: 'none',
-            border: 'none',
-            padding: 2,
-            margin: 0,
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            outline: 'none',
-            boxShadow: 'none',
-            minWidth: 0,
-            minHeight: 0,
-          }}
-          title="Скачати відповідь"
-        >
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#23272f" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M12 5v12"/>
-            <path d="M6 13l6 6 6-6"/>
-            <rect x="4" y="19" width="16" height="2" rx="1" fill="#23272f" stroke="none"/>
-          </svg>
-        </button>
-        {openExportDropdownIdx === idx && (
-          <div className="export-dropdown" style={{
-            position: 'absolute',
-            top: '110%',
-            left: 0,
-            background: '#fff',
-            border: '1.2px solid #e2e8f0',
-            borderRadius: 8,
-            boxShadow: '0 4px 16px rgba(30,40,90,0.10)',
-            minWidth: 120,
-            zIndex: 100,
-            padding: '4px 0',
-          }}>
-            <button
-              onClick={(e) => { e.stopPropagation(); handleExport('pdf', msg.text); setOpenExportDropdownIdx(null); }}
-              style={{
-                width: '100%',
-                background: 'none',
-                border: 'none',
-                color: '#23272f',
-                fontSize: 15,
-                padding: '8px 16px',
-                textAlign: 'left',
-                cursor: 'pointer',
-                transition: 'background 0.18s',
-              }}
-            >
-              PDF
-            </button>
-            <button
-              onClick={(e) => { e.stopPropagation(); handleExport('xlsx', [["AI-відповідь", msg.text]]); setOpenExportDropdownIdx(null); }}
-              style={{
-                width: '100%',
-                background: 'none',
-                border: 'none',
-                color: '#23272f',
-                fontSize: 15,
-                padding: '8px 16px',
-                textAlign: 'left',
-                cursor: 'pointer',
-                transition: 'background 0.18s',
-              }}
-            >
-              Excel (XLSX)
-            </button>
-            <button
-              onClick={(e) => { e.stopPropagation(); handleExport('csv', [["AI-відповідь", msg.text]]); setOpenExportDropdownIdx(null); }}
-              style={{
-                width: '100%',
-                background: 'none',
-                border: 'none',
-                color: '#23272f',
-                fontSize: 15,
-                padding: '8px 16px',
-                textAlign: 'left',
-                cursor: 'pointer',
-                transition: 'background 0.18s',
-              }}
-            >
-              CSV
-            </button>
-            <button
-              onClick={(e) => { e.stopPropagation(); console.log('TXT export button clicked!'); handleExport('txt', msg.text); setOpenExportDropdownIdx(null); }}
-              style={{
-                width: '100%',
-                background: 'none',
-                border: 'none',
-                color: '#23272f',
-                fontSize: 15,
-                padding: '8px 16px',
-                textAlign: 'left',
-                cursor: 'pointer',
-                transition: 'background 0.18s',
-              }}
-            >
-              TXT
-            </button>
-
-          </div>
-        )}
-      </div>
-    </div>
-  )
-)}
-          </div>
-        ))}
+      <ChatMessages
+        messages={messages}
+        typingText={typingText}
+        useAdsData={useAdsData}
+        adsData={adsData}
+        copied={copied}
+        openExportDropdownIdx={openExportDropdownIdx}
+        loading={loading}
+        onCopy={handleCopyMessage}
+        onExport={handleExportMessage}
+        setOpenExportDropdownIdx={handleSetOpenExportDropdown}
+      />
         {loading && (
           <div style={{ display: 'flex', alignItems: 'center', gap: 16, margin: '18px 0 0 0', opacity: 0.85, animation: 'fadeIn 0.5s' }}>
             <div style={{ flexShrink: 0 }}>{AI_AVATAR}</div>

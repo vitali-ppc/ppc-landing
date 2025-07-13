@@ -17,7 +17,7 @@ interface MessageBubbleProps {
   setOpenExportDropdownIdx: (index: number | null) => void;
 }
 
-export const MessageBubble: React.FC<MessageBubbleProps> = ({
+export const MessageBubble: React.FC<MessageBubbleProps> = React.memo(({
   message,
   index,
   isLastMessage,
@@ -284,4 +284,4 @@ export const MessageBubble: React.FC<MessageBubbleProps> = ({
       )}
     </div>
   );
-}; 
+}); 
