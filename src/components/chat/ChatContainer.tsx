@@ -25,7 +25,7 @@ const ChatContainer: React.FC = () => {
     setError: chatState.setError,
     messages: chatState.messages,
     setMessages: chatState.setMessages,
-    hasData: chatState.hasData,
+    hasData: chatState.hasData || false,
     useAdsData: chatState.useAdsData,
     accountConnected: chatState.accountConnected || false,
     dataToUse: chatState.dataToUse,
