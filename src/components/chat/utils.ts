@@ -5,7 +5,7 @@ import { EXPORT_ENDPOINTS } from './types';
 export const exportData = async (format: ExportFormat, data: any, filename?: string): Promise<boolean> => {
   try {
     const endpoint = EXPORT_ENDPOINTS[format];
-    const body = format === 'txt' || format === 'pdf' 
+    const body = format === 'txt' || format === 'pdf' || format === 'json'
       ? { text: data } 
       : { rows: data };
 

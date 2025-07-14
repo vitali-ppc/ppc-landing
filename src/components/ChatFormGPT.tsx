@@ -587,35 +587,52 @@ const ChatFormGPT: React.FC = () => {
         }} />
       )}
 
+      <style jsx>{`
+        .hamburger-button {
+          background: #23272f !important;
+          border: 1px solid #1a1a1a !important;
+          color: #fff !important;
+          transition: none !important;
+          outline: none !important;
+        }
+        .hamburger-button:hover,
+        .hamburger-button:focus,
+        .hamburger-button:active {
+          background: #23272f !important;
+          border: 1px solid #1a1a1a !important;
+          color: #fff !important;
+          outline: none !important;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
+        }
+      `}</style>
       {/* Fixed hamburger button - always visible */}
       <button
+        className="hamburger-button"
         onClick={() => setShowSidebar(!showSidebar)}
         style={{
           position: 'fixed',
           left: '16px',
           top: '16px',
-          background: '#23272f',
-          border: '1px solid #1a1a1a',
-          color: '#fff',
+          background: '#23272f !important',
+          border: '1px solid #1a1a1a !important',
+          color: '#fff !important',
           fontSize: 20,
           cursor: 'pointer',
           padding: '8px',
           borderRadius: 6,
-          transition: 'all 0.2s',
+          transition: 'none !important',
           zIndex: 200,
           boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+          outline: 'none !important',
+          userSelect: 'none',
+          WebkitUserSelect: 'none',
+          MozUserSelect: 'none',
+          msUserSelect: 'none',
         }}
         title={showSidebar ? 'Hide chat history' : 'Show chat history'}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.color = '#00ffe7';
-          e.currentTarget.style.background = '#1a1a1a';
-          e.currentTarget.style.border = '1px solid #00ffe7';
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.color = '#fff';
-          e.currentTarget.style.background = '#23272f';
-          e.currentTarget.style.border = '1px solid #1a1a1a';
-        }}
+        onFocus={(e) => e.target.blur()}
+        onMouseDown={(e) => e.preventDefault()}
+        onMouseUp={(e) => e.preventDefault()}
       >
         ☰
       </button>
@@ -644,12 +661,10 @@ const ChatFormGPT: React.FC = () => {
           }}
           title="New chat"
           onMouseEnter={(e) => {
-            e.currentTarget.style.color = '#00ffe7';
-            e.currentTarget.style.background = '#1a1a1a';
-            e.currentTarget.style.border = '1px solid #00ffe7';
+            e.currentTarget.style.background = '#2a2f3a';
+            e.currentTarget.style.border = '1px solid #3a3f4a';
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.color = '#fff';
             e.currentTarget.style.background = '#23272f';
             e.currentTarget.style.border = '1px solid #1a1a1a';
           }}

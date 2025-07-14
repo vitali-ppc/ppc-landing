@@ -2,49 +2,39 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(request: NextRequest) {
   try {
-    const { text, title = 'Chat Export', metadata = {} } = await request.json();
+    const body = await request.json();
     
-    if (!text) {
-      return NextResponse.json({ error: 'Text is required' }, { status: 400 });
-    }
-
-    // Створюємо структурований JSON об'єкт
-    const exportData = {
-      metadata: {
-        title: title,
-        generatedAt: new Date().toISOString(),
-        source: 'PPCSet AI Assistant',
-        version: '1.0',
-        ...metadata
+    // Добавляем логирование для отладки
+    console.log('Export JSON request body:', body);
+    
+    const response = await fetch('http://91.99.225.211:8000/export-json', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
       },
-      content: {
-        text: text,
-        length: text.length,
-        wordCount: text.split(/\s+/).length,
-        characterCount: text.length
-      },
-      export: {
-        format: 'JSON',
-        timestamp: new Date().toISOString()
-      }
-    };
-
-    // Create filename with timestamp
-    const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
-    const filename = `chat-export-${timestamp}.json`;
-
-    // Set headers for file download
-    const headers = new Headers();
-    headers.set('Content-Type', 'application/json; charset=utf-8');
-    headers.set('Content-Disposition', `attachment; filename="${filename}"`);
-
-    return new NextResponse(JSON.stringify(exportData, null, 2), {
-      status: 200,
-      headers
+      body: JSON.stringify(body)
     });
 
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error('AI server response:', response.status, errorText);
+      throw new Error(`HTTP error! status: ${response.status}: ${errorText}`);
+    }
+
+    const data = await response.blob();
+    
+    return new NextResponse(data, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Content-Disposition': response.headers.get('Content-Disposition') || 'attachment; filename=chat_export.json'
+      }
+    });
   } catch (error) {
     console.error('Export JSON error:', error);
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+    return NextResponse.json({
+      error: 'Export failed'
+    }, {
+      status: 500
+    });
   }
 } 
