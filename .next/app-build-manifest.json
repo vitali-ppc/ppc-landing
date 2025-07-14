@@ -1,5 +1,10 @@
 {
   "pages": {
+    "/api/export-pdf/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/api/export-pdf/route.js"
+    ],
     "/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -21,30 +26,10 @@
       "static/chunks/main-app.js",
       "static/chunks/app/api/ads-data/route.js"
     ],
-    "/api/export-pdf/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/export-pdf/route.js"
-    ],
     "/api/export-json/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/api/export-json/route.js"
-    ],
-    "/api/export-xlsx/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/export-xlsx/route.js"
-    ],
-    "/api/export-csv/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/export-csv/route.js"
-    ],
-    "/api/export-txt/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/export-txt/route.js"
     ]
   }
 }

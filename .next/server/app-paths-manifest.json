@@ -1,9 +1,6 @@
 {
   "/api/export-pdf/route": "app/api/export-pdf/route.js",
   "/api/ads-data/route": "app/api/ads-data/route.js",
-  "/api/export-xlsx/route": "app/api/export-xlsx/route.js",
-  "/api/export-csv/route": "app/api/export-csv/route.js",
-  "/api/export-txt/route": "app/api/export-txt/route.js",
   "/api/export-json/route": "app/api/export-json/route.js",
   "/chat/page": "app/chat/page.js"
 }

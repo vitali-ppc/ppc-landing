@@ -1,0 +1,5 @@
+PDF generation failed: No module named 'reportlab'
+Traceback (most recent call last):
+  File "/app/main.py", line 691, in generate_font_test_pdf
+    from reportlab.lib.pagesizes import A4
+ModuleNotFoundError: No module named 'reportlab'
