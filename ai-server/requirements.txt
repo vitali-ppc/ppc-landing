@@ -8,8 +8,4 @@ requests==2.31.0
 aiofiles==23.2.1
 httpx>=0.25.0
 openpyxl>=3.1.0
-<<<<<<< HEAD
 reportlab>=4.0.0
-=======
-pyppeteer>=1.0.2
->>>>>>> fe258266a429bf608a4ddd8abc5a33c520a31ace
