@@ -1,14 +1,13 @@
 'use client';
 
-import { useState, useRef, useCallback } from 'react';
+import { useCallback, useRef } from 'react';
 
 export const useTypingEffect = () => {
-  const [typingText, setTypingText] = useState<string | null>(null);
   const typingTimeout = useRef<NodeJS.Timeout | null>(null);
   const typingIndex = useRef(0);
   const typingInterrupted = useRef(false);
 
-  const startTypingEffect = useCallback((fullText: string) => {
+  const startTypingEffect = useCallback((fullText: string, setTypingText: (text: string | null) => void) => {
     typingInterrupted.current = false;
     typingIndex.current = 0;
     setTypingText('');
@@ -35,17 +34,19 @@ export const useTypingEffect = () => {
     type();
   }, []);
 
-  const stopTypingEffect = useCallback(() => {
-    typingInterrupted.current = true;
-    if (typingTimeout.current) {
-      clearTimeout(typingTimeout.current);
-    }
+  const stopTypingEffect = useCallback((setTypingText: (text: string | null) => void) => {
     setTypingText(null);
+    if (typingTimeout.current) clearTimeout(typingTimeout.current);
+    typingInterrupted.current = false;
+  }, []);
+
+  const cleanup = useCallback(() => {
+    if (typingTimeout.current) clearTimeout(typingTimeout.current);
   }, []);
 
   return {
-    typingText,
     startTypingEffect,
     stopTypingEffect,
+    cleanup,
   };
 }; 

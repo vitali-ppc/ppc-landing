@@ -242,7 +242,7 @@ export const MessageBubble: React.FC<MessageBubbleProps> = React.memo(({
                       transition: 'background 0.18s',
                     }}
                   >
-                    Excel (XLSX)
+                    Excel
                   </button>
                   <button
                     onClick={(e) => { e.stopPropagation(); onExport('csv', [["AI-відповідь", message.text]]); setOpenExportDropdownIdx(null); }}
@@ -275,6 +275,22 @@ export const MessageBubble: React.FC<MessageBubbleProps> = React.memo(({
                     }}
                   >
                     TXT
+                  </button>
+                  <button
+                    onClick={(e) => { e.stopPropagation(); onExport('json', message.text); setOpenExportDropdownIdx(null); }}
+                    style={{
+                      width: '100%',
+                      background: 'none',
+                      border: 'none',
+                      color: '#23272f',
+                      fontSize: 15,
+                      padding: '8px 16px',
+                      textAlign: 'left',
+                      cursor: 'pointer',
+                      transition: 'background 0.18s',
+                    }}
+                  >
+                    JSON
                   </button>
                 </div>
               )}

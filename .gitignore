@@ -11,3 +11,4 @@ sheets.js
 tokens.txt
 ai-server/.env
 .env.local
+  .next/
