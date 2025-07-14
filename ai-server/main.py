@@ -1,11 +1,9 @@
 import os
 import json
 import hashlib
-HEAD
 from fastapi.responses import StreamingResponse
 
 import io
-9a47379ce6179ce3ac19ddf447ba9f9abf1f69d0
 from typing import Dict, Any
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
@@ -14,10 +12,8 @@ from dotenv import load_dotenv
 import openai
 from datetime import datetime
 import logging
-HEAD
 import io
 
- 9a47379ce6179ce3ac19ddf447ba9f9abf1f69d0
 import csv
 from openpyxl import Workbook
 from openpyxl.styles import Font, Alignment
@@ -371,7 +367,6 @@ def parse_text_to_rows(text: str) -> list:
             rows.append(cells)
     return rows if rows else [["AI Response", text]]
 
-HEAD
 
 # Функції експорту
 def generate_pdf_html(text: str) -> str:
@@ -489,7 +484,6 @@ def parse_text_to_rows(text: str) -> list:
             rows.append(cells)
     return rows if rows else [["AI Response", text]]
 
- 9a47379ce6179ce3ac19ddf447ba9f9abf1f69d0
 @app.post("/export-txt")
 async def export_txt(request: Request):
     """Експорт в TXT формат"""
@@ -600,7 +594,6 @@ async def export_xlsx(request: Request):
         logger.error(f"XLSX export error: {e}")
         return JSONResponse({"error": str(e)}, status_code=500)
 
-HEAD
 @app.post("/export-pdf")
 async def export_pdf(request: Request):
     """Експорт в PDF формат (спрощена версія)"""
@@ -608,7 +601,6 @@ async def export_pdf(request: Request):
 @app.post("/export-json")
 async def export_json(request: Request):
     """Експорт в JSON формат"""
- 9a47379ce6179ce3ac19ddf447ba9f9abf1f69d0
     try:
         body = await request.json()
         text = body.get("text", "")
@@ -616,7 +608,6 @@ async def export_json(request: Request):
         if not text:
             return JSONResponse({"error": "Text is required"}, status_code=400)
         
-HEAD
         # Створюємо простий HTML для PDF
         html_content = f"""
         <!DOCTYPE html>
@@ -662,17 +653,17 @@ HEAD
         # Створюємо буфер
         buffer = io.BytesIO()
         buffer.write(json_data.encode('utf-8'))
- 9a47379ce6179ce3ac19ddf447ba9f9abf1f69d0
         buffer.seek(0)
         
         # Генеруємо ім'я файлу
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-HEAD
         filename = f"chat_export_{timestamp}.html"
         
         return StreamingResponse(
             buffer,
             media_type="text/html; charset=utf-8",
+            headers={"Content-Disposition": f"attachment; filename={filename}"}
+        )
 
         filename = f"chat_export_{timestamp}.json"
         
@@ -712,16 +703,13 @@ async def export_pdf(request: Request):
         return StreamingResponse(
             buffer,
             media_type="application/pdf",
- 9a47379ce6179ce3ac19ddf447ba9f9abf1f69d0
             headers={"Content-Disposition": f"attachment; filename={filename}"}
         )
     except Exception as e:
         logger.error(f"PDF export error: {e}")
         return JSONResponse({"error": str(e)}, status_code=500)
-HEAD
 
 
- 9a47379ce6179ce3ac19ddf447ba9f9abf1f69d0
 if __name__ == "__main__":
     try:
         import uvicorn
