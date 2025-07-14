@@ -178,26 +178,26 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Digital. Performance. Results. | PPCSet Ecosystem</title>
-        <meta name="description" content="Premium digital ecosystem: advertising, analytics, web development. For businesses that want more." />
+        <title>AI-Powered Google Ads Assistant | Kampaio</title>
+        <meta name="description" content="Intelligent AI assistant for Google Ads analytics, strategy generation, and campaign optimization. Boost your PPC performance with AI." />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://ppcset.com/" />
+        <link rel="canonical" href="https://kampaio.com/" />
         
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://ppcset.com/" />
-        <meta property="og:title" content="Digital. Performance. Results. | PPCSet Ecosystem" />
-        <meta property="og:description" content="Premium digital ecosystem: advertising, analytics, web development. For businesses that want more." />
-        <meta property="og:image" content="https://ppcset.com/logo.png" />
-        <meta property="og:site_name" content="PPCSet" />
+        <meta property="og:url" content="https://kampaio.com/" />
+        <meta property="og:title" content="AI-Powered Google Ads Assistant | Kampaio" />
+        <meta property="og:description" content="Intelligent AI assistant for Google Ads analytics, strategy generation, and campaign optimization. Boost your PPC performance with AI." />
+        <meta property="og:image" content="https://kampaio.com/logo.png" />
+        <meta property="og:site_name" content="Kampaio" />
         <meta property="og:locale" content="en_US" />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:url" content="https://ppcset.com/" />
-        <meta name="twitter:title" content="Digital. Performance. Results. | PPCSet Ecosystem" />
-        <meta name="twitter:description" content="Premium digital ecosystem: advertising, analytics, web development. For businesses that want more." />
-        <meta name="twitter:image" content="https://ppcset.com/logo.png" />
+        <meta name="twitter:url" content="https://kampaio.com/" />
+        <meta name="twitter:title" content="AI-Powered Google Ads Assistant | Kampaio" />
+        <meta name="twitter:description" content="Intelligent AI assistant for Google Ads analytics, strategy generation, and campaign optimization. Boost your PPC performance with AI." />
+        <meta name="twitter:image" content="https://kampaio.com/logo.png" />
         
         {/* Schema.org Organization */}
         <script type="application/ld+json">

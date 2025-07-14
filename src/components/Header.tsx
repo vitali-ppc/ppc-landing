@@ -63,8 +63,8 @@ export default function Header({ variant = 'full' }: HeaderProps) {
       <header className="next-header home-header">
         <div className="header__content">
           <Link href="/" className="header__logo">
-            <img src="/logo.png" alt="PPCSet Logo" className="logo-img" />
-            <span>PPCSet</span>
+            <img src="/logo.png" alt="Kampaio Logo" className="logo-img" />
+            <span>Kampaio</span>
           </Link>
           <a href="https://www.linkedin.com/in/vitali-ppc%E2%9C%94-26b294b4/" className="linkedin-link" target="_blank" rel="noopener noreferrer" title="Connect on LinkedIn">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
@@ -83,8 +83,8 @@ export default function Header({ variant = 'full' }: HeaderProps) {
         <div className="header__content">
           <div className="header__left">
             <Link href="/" className="header__logo">
-              <img src="/logo.png" alt="PPCSet Logo" className="logo-img" />
-              <span>PPCSet</span>
+              <img src="/logo.png" alt="Kampaio Logo" className="logo-img" />
+              <span>Kampaio</span>
             </Link>
             <nav className="header__nav">
               <a href="/" aria-current={isActivePage('/') ? 'page' : undefined}>Home</a>
