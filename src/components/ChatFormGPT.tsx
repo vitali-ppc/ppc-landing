@@ -1345,7 +1345,6 @@ const ChatFormGPT: React.FC = () => {
           background: #1a1a1a !important;
         }
       `}</style>
-        </div>
       </div>
     </div>
   );

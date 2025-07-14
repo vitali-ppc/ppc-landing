@@ -1,4 +1,26 @@
 {
   "/api/ads-data/route": "app/api/ads-data/route.js",
-  "/chat/page": "app/chat/page.js"
+  "/api/ads-data-real/route": "app/api/ads-data-real/route.js",
+  "/api/chat/route": "app/api/chat/route.js",
+  "/api/auth/callback/route": "app/api/auth/callback/route.js",
+  "/api/export-json/route": "app/api/export-json/route.js",
+  "/api/auth/login/route": "app/api/auth/login/route.js",
+  "/api/export-csv/route": "app/api/export-csv/route.js",
+  "/api/export-txt/route": "app/api/export-txt/route.js",
+  "/api/export-pdf/route": "app/api/export-pdf/route.js",
+  "/api/strategy/route": "app/api/strategy/route.js",
+  "/api/export-xlsx/route": "app/api/export-xlsx/route.js",
+  "/page": "app/page.js",
+  "/generate/page": "app/generate/page.js",
+  "/blog/page": "app/blog/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/chat/page": "app/chat/page.js",
+  "/nextjs-development/page": "app/nextjs-development/page.js",
+  "/modern-ppc/page": "app/modern-ppc/page.js",
+  "/strategy-generator/page": "app/strategy-generator/page.js",
+  "/terms-of-service/page": "app/terms-of-service/page.js",
+  "/ppc-performance/page": "app/ppc-performance/page.js",
+  "/privacy-policy/page": "app/privacy-policy/page.js",
+  "/nodejs-development/page": "app/nodejs-development/page.js",
+  "/analytics/page": "app/analytics/page.js"
 }
