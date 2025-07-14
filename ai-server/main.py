@@ -1,6 +1,8 @@
 import os
 import json
 import hashlib
+from fastapi.responses import StreamingResponse
+
 import io
 from typing import Dict, Any
 from fastapi import FastAPI, Request
@@ -10,6 +12,8 @@ from dotenv import load_dotenv
 import openai
 from datetime import datetime
 import logging
+import io
+
 import csv
 from openpyxl import Workbook
 from openpyxl.styles import Font, Alignment
@@ -299,7 +303,6 @@ def get_ads_data():
             }
         ]
     }
-
 @app.get("/health")
 async def health_check():
     """Детальна перевірка здоров'я сервера"""
@@ -350,6 +353,20 @@ async def cache_stats():
         "cache_keys": list(response_cache.keys())[:10],
         "timestamp": datetime.now().isoformat()
     }
+# Функції експорту
+def parse_text_to_rows(text: str) -> list:
+    """Парсинг тексту в рядки для експорту"""
+    lines = text.split('\n')
+    rows = []
+    for line in lines:
+        if line.strip():
+            # Розбиваємо на клітинки по табуляції або подвійним пробілам
+            cells = [cell.strip() for cell in line.split('\t') if cell.strip()]
+            if not cells:
+                cells = [line.strip()]
+            rows.append(cells)
+    return rows if rows else [["AI Response", text]]
+
 
 # Функції експорту
 def generate_pdf_html(text: str) -> str:
@@ -555,6 +572,10 @@ async def export_xlsx(request: Request):
         logger.error(f"XLSX export error: {e}")
         return JSONResponse({"error": str(e)}, status_code=500)
 
+@app.post("/export-pdf")
+async def export_pdf(request: Request):
+    """Експорт в PDF формат (спрощена версія)"""
+
 @app.post("/export-json")
 async def export_json(request: Request):
     """Експорт в JSON формат"""
@@ -565,6 +586,30 @@ async def export_json(request: Request):
         if not text:
             return JSONResponse({"error": "Text is required"}, status_code=400)
         
+        # Створюємо простий HTML для PDF
+        html_content = f"""
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="utf-8">
+            <title>Chat Export</title>
+            <style>
+                body {{ font-family: Arial, sans-serif; margin: 40px; line-height: 1.6; }}
+                h1 {{ color: #333; border-bottom: 2px solid #eee; padding-bottom: 10px; }}
+                pre {{ background: #f5f5f5; padding: 15px; border-radius: 5px; overflow-x: auto; }}
+                code {{ background: #f0f0f0; padding: 2px 4px; border-radius: 3px; }}
+            </style>
+        </head>
+        <body>
+            <h1>Chat Export</h1>
+            <div>{text.replace(chr(10), '<br>')}</div>
+        </body>
+        </html>
+        """ 
+        # Конвертуємо в bytes
+        buffer = io.BytesIO()
+        buffer.write(html_content.encode('utf-8'))
+
         # Створюємо JSON структуру
         export_data = {
             "export_info": {
@@ -590,6 +635,14 @@ async def export_json(request: Request):
         
         # Генеруємо ім'я файлу
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        filename = f"chat_export_{timestamp}.html"
+        
+        return StreamingResponse(
+            buffer,
+            media_type="text/html; charset=utf-8",
+            headers={"Content-Disposition": f"attachment; filename={filename}"}
+        )
+
         filename = f"chat_export_{timestamp}.json"
         
         return StreamingResponse(
@@ -631,10 +684,15 @@ async def export_pdf(request: Request):
         logger.error(f"PDF export error: {e}")
         return JSONResponse({"error": str(e)}, status_code=500)
 
+
 if __name__ == "__main__":
     try:
         import uvicorn
         uvicorn.run(app, host="0.0.0.0", port=8000)  # Порт 8000
     except ImportError:
         print("Uvicorn not installed. Install with: pip install uvicorn")
+<<<<<<< HEAD
         print("Or run with: python -m uvicorn main:app --host 0.0.0.0 --port 8000")
+=======
+        print("Or run with: python -m uvicorn main:app --host 0.0.0.0 --port 8002")
+>>>>>>> fe258266a429bf608a4ddd8abc5a33c520a31ace
