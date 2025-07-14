@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import ChatFormGPT from '@/components/ChatFormGPT';
+import ChatFormGPT from '@/components/chat/index';
 
 export const metadata: Metadata = {
   title: 'Чат з GPT | PPCSet',
