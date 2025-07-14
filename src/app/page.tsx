@@ -240,10 +240,10 @@ export default function Home() {
         </div>
         <div style={{position:'relative',zIndex:1,textAlign:'center',width:'100%',maxWidth:'700px',margin:'0 auto'}}>
           <h1 className="main-hero-title">
-            Digital Ecosystem. Performance. Growth.
+            AI-Powered Google Ads Assistant
           </h1>
           <div className="main-hero-subtitle">
-            All-in-one: advertising, analytics, web development, automation.
+            Intelligent analytics, strategy generation, and campaign optimization powered by AI.
           </div>
         </div>
         {/* Вращающееся tech-кольцо */}
@@ -272,15 +272,15 @@ export default function Home() {
               onMouseLeave={() => setHoveredTab(null)}
               style={getTabStyle('all')}
             >
-              All
+              All Features
             </button>
             <button 
-              onClick={() => handleTabClick('ppc')}
-              onMouseEnter={() => setHoveredTab('ppc')}
+              onClick={() => handleTabClick('chat')}
+              onMouseEnter={() => setHoveredTab('chat')}
               onMouseLeave={() => setHoveredTab(null)}
-              style={getTabStyle('ppc')}
+              style={getTabStyle('chat')}
             >
-              PPC
+              AI Chat
             </button>
             <button 
               onClick={() => handleTabClick('analytics')}
@@ -291,20 +291,20 @@ export default function Home() {
               Analytics
             </button>
             <button 
-              onClick={() => handleTabClick('nodejs')}
-              onMouseEnter={() => setHoveredTab('nodejs')}
+              onClick={() => handleTabClick('strategy')}
+              onMouseEnter={() => setHoveredTab('strategy')}
               onMouseLeave={() => setHoveredTab(null)}
-              style={getTabStyle('nodejs')}
+              style={getTabStyle('strategy')}
             >
-              Node.js
+              Strategy Generator
             </button>
             <button 
-              onClick={() => handleTabClick('nextjs')}
-              onMouseEnter={() => setHoveredTab('nextjs')}
+              onClick={() => handleTabClick('export')}
+              onMouseEnter={() => setHoveredTab('export')}
               onMouseLeave={() => setHoveredTab(null)}
-              style={getTabStyle('nextjs')}
+              style={getTabStyle('export')}
             >
-              Next.js
+              Export Tools
             </button>
           </div>
           
@@ -341,12 +341,12 @@ export default function Home() {
               >
                 <div style={{flex:'0 0 380px',width:'380px',height:'380px',scrollSnapAlign:'start',borderRadius:'16px',padding:'40px 32px',background:'linear-gradient(135deg,#23272f 60%,#7f9cf5 100%)',boxShadow:'0 2px 24px rgba(127,156,245,0.10)',display:'flex',flexDirection:'column',justifyContent:'space-between'}}>
                   <div>
-                    <p style={{fontSize:'17px',color:'#e0e6f7',fontWeight:'500',marginBottom:0,lineHeight:'1.3'}}>Enterprise-level PPC. Google, Meta, LinkedIn</p>
+                    <p style={{fontSize:'17px',color:'#e0e6f7',fontWeight:'500',marginBottom:0,lineHeight:'1.3'}}>Intelligent AI chat for Google Ads analysis and optimization</p>
                   </div>
                   <div style={{display:'flex',justifyContent:'space-between',alignItems:'flex-end',width:'100%',marginTop:'32px'}}>
-                    <h3 style={{fontSize:'18px',fontWeight:'700',color:'#fff',letterSpacing:'0.2px',margin:0}}>PPC & Performance</h3>
-                    <a href="/ppc-performance" style={{display:'flex',alignItems:'center',gap:'8px',fontSize:'16px',fontWeight:'600',color:'#fff',textShadow:'0 1px 6px rgba(0,0,0,0.18)',textDecoration:'none',transition:'color 0.2s'}}>
-                      View
+                    <h3 style={{fontSize:'18px',fontWeight:'700',color:'#fff',letterSpacing:'0.2px',margin:0}}>AI Chat Assistant</h3>
+                    <a href="/chat" style={{display:'flex',alignItems:'center',gap:'8px',fontSize:'16px',fontWeight:'600',color:'#fff',textShadow:'0 1px 6px rgba(0,0,0,0.18)',textDecoration:'none',transition:'color 0.2s'}}>
+                      Try Now
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{transition:'transform 0.2s',filter:'drop-shadow(0 1px 6px rgba(0,0,0,0.18))'}}>
                         <path d="M5 12h14M13 6l6 6-6 6"/>
                       </svg>
@@ -355,12 +355,12 @@ export default function Home() {
                 </div>
                 <div style={{flex:'0 0 380px',width:'380px',height:'380px',scrollSnapAlign:'start',borderRadius:'16px',padding:'40px 32px',background:'linear-gradient(135deg,#23272f 60%,#7f9cf5 100%)',boxShadow:'0 2px 24px rgba(127,156,245,0.10)',display:'flex',flexDirection:'column',justifyContent:'space-between'}}>
                   <div>
-                    <p style={{fontSize:'17px',color:'#e0e6f7',fontWeight:'500',marginBottom:0,lineHeight:'1.3'}}>Data, not guesswork — all your analytics in one place</p>
+                    <p style={{fontSize:'17px',color:'#e0e6f7',fontWeight:'500',marginBottom:0,lineHeight:'1.3'}}>Advanced Google Ads analytics with AI-powered insights</p>
                   </div>
                   <div style={{display:'flex',justifyContent:'space-between',alignItems:'flex-end',width:'100%',marginTop:'32px'}}>
-                    <h3 style={{fontSize:'18px',fontWeight:'700',color:'#fff',letterSpacing:'0.2px',margin:0}}>Analytics</h3>
+                    <h3 style={{fontSize:'18px',fontWeight:'700',color:'#fff',letterSpacing:'0.2px',margin:0}}>AI Analytics</h3>
                     <a href="/analytics" style={{display:'flex',alignItems:'center',gap:'8px',fontSize:'16px',fontWeight:'600',color:'#fff',textShadow:'0 1px 6px rgba(0,0,0,0.18)',textDecoration:'none',transition:'color 0.2s'}}>
-                      View
+                      Explore
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{transition:'transform 0.2s',filter:'drop-shadow(0 1px 6px rgba(0,0,0,0.18))'}}>
                         <path d="M5 12h14M13 6l6 6-6 6"/>
                       </svg>
@@ -369,12 +369,12 @@ export default function Home() {
                 </div>
                 <div style={{flex:'0 0 380px',width:'380px',height:'380px',scrollSnapAlign:'start',borderRadius:'16px',padding:'40px 32px',background:'linear-gradient(135deg,#23272f 60%,#7f9cf5 100%)',boxShadow:'0 2px 24px rgba(127,156,245,0.10)',display:'flex',flexDirection:'column',justifyContent:'space-between'}}>
                   <div>
-                    <p style={{fontSize:'17px',color:'#e0e6f7',fontWeight:'500',marginBottom:0,lineHeight:'1.3'}}>Business-ready Node.js for modern web and SEO</p>
+                    <p style={{fontSize:'17px',color:'#e0e6f7',fontWeight:'500',marginBottom:0,lineHeight:'1.3'}}>AI-powered strategy generation for Google Ads campaigns</p>
                   </div>
                   <div style={{display:'flex',justifyContent:'space-between',alignItems:'flex-end',width:'100%',marginTop:'32px'}}>
-                    <h3 style={{fontSize:'18px',fontWeight:'700',color:'#fff',letterSpacing:'0.2px',margin:0}}>Node.js Development</h3>
-                    <a href="/nodejs-development" style={{display:'flex',alignItems:'center',gap:'8px',fontSize:'16px',fontWeight:'600',color:'#fff',textShadow:'0 1px 6px rgba(0,0,0,0.18)',textDecoration:'none',transition:'color 0.2s'}}>
-                      View
+                    <h3 style={{fontSize:'18px',fontWeight:'700',color:'#fff',letterSpacing:'0.2px',margin:0}}>Strategy Generator</h3>
+                    <a href="/generate" style={{display:'flex',alignItems:'center',gap:'8px',fontSize:'16px',fontWeight:'600',color:'#fff',textShadow:'0 1px 6px rgba(0,0,0,0.18)',textDecoration:'none',transition:'color 0.2s'}}>
+                      Generate
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{transition:'transform 0.2s',filter:'drop-shadow(0 1px 6px rgba(0,0,0,0.18))'}}>
                         <path d="M5 12h14M13 6l6 6-6 6"/>
                       </svg>
@@ -383,12 +383,12 @@ export default function Home() {
                 </div>
                 <div style={{flex:'0 0 380px',width:'380px',height:'380px',scrollSnapAlign:'start',borderRadius:'16px',padding:'40px 32px',background:'linear-gradient(135deg,#23272f 60%,#7f9cf5 100%)',boxShadow:'0 2px 24px rgba(127,156,245,0.10)',display:'flex',flexDirection:'column',justifyContent:'space-between'}}>
                   <div>
-                    <p style={{fontSize:'17px',color:'#e0e6f7',fontWeight:'500',marginBottom:0,lineHeight:'1.3'}}>Modern, fast & scalable web solutions</p>
+                    <p style={{fontSize:'17px',color:'#e0e6f7',fontWeight:'500',marginBottom:0,lineHeight:'1.3'}}>Export your AI conversations in PDF, Excel, CSV formats</p>
                   </div>
                   <div style={{display:'flex',justifyContent:'space-between',alignItems:'flex-end',width:'100%',marginTop:'32px'}}>
-                    <h3 style={{fontSize:'18px',fontWeight:'700',color:'#fff',letterSpacing:'0.2px',margin:0}}>Next.js Development</h3>
-                    <a href="/nextjs-development" style={{display:'flex',alignItems:'center',gap:'8px',fontSize:'16px',fontWeight:'600',color:'#fff',textShadow:'0 1px 6px rgba(0,0,0,0.18)',textDecoration:'none',transition:'color 0.2s'}}>
-                      View
+                    <h3 style={{fontSize:'18px',fontWeight:'700',color:'#fff',letterSpacing:'0.2px',margin:0}}>Export Tools</h3>
+                    <a href="/chat" style={{display:'flex',alignItems:'center',gap:'8px',fontSize:'16px',fontWeight:'600',color:'#fff',textShadow:'0 1px 6px rgba(0,0,0,0.18)',textDecoration:'none',transition:'color 0.2s'}}>
+                      Export
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{transition:'transform 0.2s',filter:'drop-shadow(0 1px 6px rgba(0,0,0,0.18))'}}>
                         <path d="M5 12h14M13 6l6 6-6 6"/>
                       </svg>
