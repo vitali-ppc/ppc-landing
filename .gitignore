@@ -10,5 +10,9 @@ yarn-error.log
 sheets.js
 tokens.txt
 ai-server/.env
+<<<<<<< HEAD
 .env.local
   .next/
+=======
+.env.local.next/
+>>>>>>> fe258266a429bf608a4ddd8abc5a33c520a31ace

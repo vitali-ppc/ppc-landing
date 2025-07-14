@@ -52,7 +52,8 @@ const ChatFormGPT: React.FC = () => {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   
   // Typing эффект
-  const { typingText, startTypingEffect, stopTypingEffect } = useTypingEffect();
+  const { startTypingEffect, stopTypingEffect } = useTypingEffect();
+  const [typingText, setTypingText] = useState<string | null>(null);
   const [shownMessages, setShownMessages] = useState<Set<string>>(new Set());
   const [copied, setCopied] = useState(false);
   
@@ -463,12 +464,12 @@ const ChatFormGPT: React.FC = () => {
       const messageId = `${currentChatId}-${messages.length}-${lastAiMsg.slice(0, 50)}`;
       
       if (!shownMessages.has(messageId) && typingText === null && lastAiMsg && lastAiMsg.length > 0) {
-        startTypingEffect(lastAiMsg);
+        startTypingEffect(lastAiMsg, setTypingText);
         setShownMessages(prev => new Set(Array.from(prev).concat([messageId])));
       }
     }
     if (loading) {
-      stopTypingEffect();
+      stopTypingEffect(setTypingText);
     }
   }, [messages, loading, shownMessages, currentChatId, typingText, startTypingEffect]);
 
@@ -1099,7 +1100,7 @@ const ChatFormGPT: React.FC = () => {
           }}
           onClick={e => {
             if (typingText !== null) {
-              stopTypingEffect();
+              stopTypingEffect(setTypingText);
               // Показати одразу повний текст
               const lastAiMsg = messages[messages.length - 1]?.text;
               if (lastAiMsg) setMessages(prev => prev.map((m, i) => i === prev.length - 1 ? { ...m, text: lastAiMsg } : m));
