@@ -633,6 +633,330 @@ export default function Home() {
         />
       </section>
 
+      {/* AI-Powered Google Ads Assistant Section */}
+      <section style={{background:'#1a1a1a',padding:'120px 0',overflow:'hidden',position:'relative'}}>
+        {/* Background gradient */}
+        <div style={{position:'absolute',top:0,left:0,right:0,bottom:0,background:'radial-gradient(circle at 30% 20%, rgba(127,156,245,0.1) 0%, transparent 50%), radial-gradient(circle at 70% 80%, rgba(0,255,231,0.08) 0%, transparent 50%)',pointerEvents:'none'}}></div>
+        
+        <div style={{position:'relative',zIndex:1,maxWidth:'1200px',margin:'0 auto',padding:'0 24px'}}>
+          {/* Hero Section */}
+          <div style={{textAlign:'center',marginBottom:'80px'}}>
+            <div style={{display:'inline-flex',alignItems:'center',gap:'12px',background:'rgba(127,156,245,0.1)',border:'1px solid rgba(127,156,245,0.2)',borderRadius:'50px',padding:'8px 20px',marginBottom:'24px'}}>
+              <div style={{width:'8px',height:'8px',background:'#00ffe7',borderRadius:'50%',animation:'pulse 2s infinite'}}></div>
+              <span style={{fontSize:'14px',fontWeight:'600',color:'#00ffe7',textTransform:'uppercase',letterSpacing:'1px'}}>AI Assistant</span>
+            </div>
+            <h2 style={{fontSize:'48px',fontWeight:'700',color:'#fff',marginBottom:'24px',marginTop:0,lineHeight:'1.1'}}>
+              AI-Powered Google Ads Assistant
+            </h2>
+            <p style={{fontSize:'20px',color:'#a0a0a0',marginBottom:'40px',maxWidth:'600px',marginLeft:'auto',marginRight:'auto',lineHeight:'1.6'}}>
+              Intelligent analytics, strategy generation, and campaign optimization powered by AI. 
+              Your smart partner for Google Ads success.
+            </p>
+            
+            {/* Interactive Demo Button */}
+            <button style={{
+              background:'linear-gradient(135deg, #00ffe7 0%, #7f9cf5 100%)',
+              border:'none',
+              borderRadius:'12px',
+              padding:'16px 32px',
+              fontSize:'16px',
+              fontWeight:'600',
+              color:'#1a1a1a',
+              cursor:'pointer',
+              transition:'all 0.3s ease',
+              boxShadow:'0 8px 32px rgba(0,255,231,0.3)',
+              marginBottom:'60px'
+            }} onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-2px)'
+              e.currentTarget.style.boxShadow = '0 12px 40px rgba(0,255,231,0.4)'
+            }} onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)'
+              e.currentTarget.style.boxShadow = '0 8px 32px rgba(0,255,231,0.3)'
+            }}>
+              Try Interactive Demo
+            </button>
+          </div>
+
+          {/* Live Chat Demo */}
+          <div style={{background:'linear-gradient(135deg, #23272f 0%, #1a1a1a 100%)',borderRadius:'20px',padding:'40px',marginBottom:'80px',border:'1px solid rgba(255,255,255,0.1)',boxShadow:'0 20px 60px rgba(0,0,0,0.3)'}}>
+            <div style={{display:'flex',alignItems:'center',gap:'12px',marginBottom:'32px'}}>
+              <div style={{width:'12px',height:'12px',background:'#00ffe7',borderRadius:'50%'}}></div>
+              <span style={{fontSize:'18px',fontWeight:'600',color:'#fff'}}>Live Demo</span>
+            </div>
+            
+            {/* Chat Interface Mockup */}
+            <div style={{background:'#1a1a1a',borderRadius:'16px',padding:'24px',border:'1px solid rgba(255,255,255,0.1)'}}>
+              <div style={{display:'flex',alignItems:'center',gap:'12px',marginBottom:'20px'}}>
+                <div style={{width:'32px',height:'32px',background:'linear-gradient(135deg, #00ffe7, #7f9cf5)',borderRadius:'50%',display:'flex',alignItems:'center',justifyContent:'center'}}>
+                  <span style={{fontSize:'14px',fontWeight:'700',color:'#1a1a1a'}}>AI</span>
+                </div>
+                <span style={{fontSize:'14px',color:'#00ffe7',fontWeight:'600'}}>Kampaio Assistant</span>
+              </div>
+              
+              <div style={{marginBottom:'16px'}}>
+                <div style={{background:'rgba(127,156,245,0.1)',borderRadius:'12px',padding:'16px',border:'1px solid rgba(127,156,245,0.2)'}}>
+                  <p style={{fontSize:'14px',color:'#fff',margin:0,lineHeight:'1.5'}}>
+                    I've analyzed your Google Ads campaign. Your CTR is 2.3% which is below industry average. 
+                    I recommend optimizing your ad copy and testing new keywords. Would you like me to generate 
+                    some suggestions?
+                  </p>
+                </div>
+              </div>
+              
+              <div style={{display:'flex',gap:'8px'}}>
+                <button style={{
+                  background:'rgba(0,255,231,0.1)',
+                  border:'1px solid rgba(0,255,231,0.3)',
+                  borderRadius:'8px',
+                  padding:'8px 16px',
+                  fontSize:'12px',
+                  color:'#00ffe7',
+                  cursor:'pointer',
+                  transition:'all 0.2s ease'
+                }} onMouseEnter={(e) => {
+                  e.currentTarget.style.background = 'rgba(0,255,231,0.2)'
+                }} onMouseLeave={(e) => {
+                  e.currentTarget.style.background = 'rgba(0,255,231,0.1)'
+                }}>
+                  Generate Suggestions
+                </button>
+                <button style={{
+                  background:'rgba(255,255,255,0.05)',
+                  border:'1px solid rgba(255,255,255,0.1)',
+                  borderRadius:'8px',
+                  padding:'8px 16px',
+                  fontSize:'12px',
+                  color:'#a0a0a0',
+                  cursor:'pointer',
+                  transition:'all 0.2s ease'
+                }} onMouseEnter={(e) => {
+                  e.currentTarget.style.background = 'rgba(255,255,255,0.1)'
+                }} onMouseLeave={(e) => {
+                  e.currentTarget.style.background = 'rgba(255,255,255,0.05)'
+                }}>
+                  View Analytics
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* 4 Key Capabilities */}
+          <div style={{marginBottom:'80px'}}>
+            <h3 style={{fontSize:'32px',fontWeight:'700',color:'#fff',textAlign:'center',marginBottom:'48px',marginTop:0}}>
+              Key Capabilities
+            </h3>
+            <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit, minmax(280px, 1fr))',gap:'32px'}}>
+              {/* Analytics */}
+              <div style={{
+                background:'linear-gradient(135deg, rgba(127,156,245,0.1) 0%, rgba(0,255,231,0.05) 100%)',
+                borderRadius:'16px',
+                padding:'32px',
+                border:'1px solid rgba(127,156,245,0.2)',
+                transition:'all 0.3s ease',
+                cursor:'pointer'
+              }} onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-4px)'
+                e.currentTarget.style.boxShadow = '0 20px 40px rgba(127,156,245,0.2)'
+              }} onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)'
+                e.currentTarget.style.boxShadow = 'none'
+              }}>
+                <div style={{width:'48px',height:'48px',background:'linear-gradient(135deg, #00ffe7, #7f9cf5)',borderRadius:'12px',display:'flex',alignItems:'center',justifyContent:'center',marginBottom:'24px'}}>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M3 3v18h18"/>
+                    <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"/>
+                  </svg>
+                </div>
+                <h4 style={{fontSize:'20px',fontWeight:'700',color:'#fff',marginBottom:'12px',marginTop:0}}>Smart Analytics</h4>
+                <p style={{fontSize:'16px',color:'#a0a0a0',margin:0,lineHeight:'1.6'}}>
+                  AI-powered insights that identify opportunities and threats in your campaigns. 
+                  Get actionable recommendations based on real data.
+                </p>
+              </div>
+
+              {/* Strategy Generation */}
+              <div style={{
+                background:'linear-gradient(135deg, rgba(127,156,245,0.1) 0%, rgba(0,255,231,0.05) 100%)',
+                borderRadius:'16px',
+                padding:'32px',
+                border:'1px solid rgba(127,156,245,0.2)',
+                transition:'all 0.3s ease',
+                cursor:'pointer'
+              }} onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-4px)'
+                e.currentTarget.style.boxShadow = '0 20px 40px rgba(127,156,245,0.2)'
+              }} onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)'
+                e.currentTarget.style.boxShadow = 'none'
+              }}>
+                <div style={{width:'48px',height:'48px',background:'linear-gradient(135deg, #00ffe7, #7f9cf5)',borderRadius:'12px',display:'flex',alignItems:'center',justifyContent:'center',marginBottom:'24px'}}>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M9 11H1l8-8 8 8h-8v8z"/>
+                    <path d="M5 15h14"/>
+                  </svg>
+                </div>
+                <h4 style={{fontSize:'20px',fontWeight:'700',color:'#fff',marginBottom:'12px',marginTop:0}}>Strategy Generation</h4>
+                <p style={{fontSize:'16px',color:'#a0a0a0',margin:0,lineHeight:'1.6'}}>
+                  Generate complete campaign strategies tailored to your industry and goals. 
+                  From keyword research to ad copy optimization.
+                </p>
+              </div>
+
+              {/* Automation */}
+              <div style={{
+                background:'linear-gradient(135deg, rgba(127,156,245,0.1) 0%, rgba(0,255,231,0.05) 100%)',
+                borderRadius:'16px',
+                padding:'32px',
+                border:'1px solid rgba(127,156,245,0.2)',
+                transition:'all 0.3s ease',
+                cursor:'pointer'
+              }} onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-4px)'
+                e.currentTarget.style.boxShadow = '0 20px 40px rgba(127,156,245,0.2)'
+              }} onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)'
+                e.currentTarget.style.boxShadow = 'none'
+              }}>
+                <div style={{width:'48px',height:'48px',background:'linear-gradient(135deg, #00ffe7, #7f9cf5)',borderRadius:'12px',display:'flex',alignItems:'center',justifyContent:'center',marginBottom:'24px'}}>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+                  </svg>
+                </div>
+                <h4 style={{fontSize:'20px',fontWeight:'700',color:'#fff',marginBottom:'12px',marginTop:0}}>Smart Automation</h4>
+                <p style={{fontSize:'16px',color:'#a0a0a0',margin:0,lineHeight:'1.6'}}>
+                  Automate routine tasks like bid adjustments, budget optimization, and 
+                  performance monitoring. Focus on strategy, not administration.
+                </p>
+              </div>
+
+              {/* Performance Optimization */}
+              <div style={{
+                background:'linear-gradient(135deg, rgba(127,156,245,0.1) 0%, rgba(0,255,231,0.05) 100%)',
+                borderRadius:'16px',
+                padding:'32px',
+                border:'1px solid rgba(127,156,245,0.2)',
+                transition:'all 0.3s ease',
+                cursor:'pointer'
+              }} onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-4px)'
+                e.currentTarget.style.boxShadow = '0 20px 40px rgba(127,156,245,0.2)'
+              }} onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)'
+                e.currentTarget.style.boxShadow = 'none'
+              }}>
+                <div style={{width:'48px',height:'48px',background:'linear-gradient(135deg, #00ffe7, #7f9cf5)',borderRadius:'12px',display:'flex',alignItems:'center',justifyContent:'center',marginBottom:'24px'}}>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                  </svg>
+                </div>
+                <h4 style={{fontSize:'20px',fontWeight:'700',color:'#fff',marginBottom:'12px',marginTop:0}}>Performance Boost</h4>
+                <p style={{fontSize:'16px',color:'#a0a0a0',margin:0,lineHeight:'1.6'}}>
+                  Continuously optimize your campaigns for better ROI. AI learns from your 
+                  performance data to suggest improvements in real-time.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Template Gallery */}
+          <div style={{marginBottom:'80px'}}>
+            <h3 style={{fontSize:'32px',fontWeight:'700',color:'#fff',textAlign:'center',marginBottom:'48px',marginTop:0}}>
+              Ready-to-Use Templates
+            </h3>
+            <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit, minmax(300px, 1fr))',gap:'24px'}}>
+              {[
+                {name: 'E-commerce', icon: '🛒', desc: 'Product campaigns, shopping ads, retargeting'},
+                {name: 'B2B SaaS', icon: '💼', desc: 'Lead generation, account-based marketing'},
+                {name: 'Local Business', icon: '📍', desc: 'Local SEO, location-based targeting'},
+                {name: 'Agency', icon: '🎯', desc: 'Client management, multi-account optimization'}
+              ].map((template, index) => (
+                <div key={index} style={{
+                  background:'rgba(255,255,255,0.03)',
+                  borderRadius:'16px',
+                  padding:'24px',
+                  border:'1px solid rgba(255,255,255,0.1)',
+                  transition:'all 0.3s ease',
+                  cursor:'pointer'
+                }} onMouseEnter={(e) => {
+                  e.currentTarget.style.background = 'rgba(127,156,245,0.1)'
+                  e.currentTarget.style.border = '1px solid rgba(127,156,245,0.3)'
+                  e.currentTarget.style.transform = 'translateY(-2px)'
+                }} onMouseLeave={(e) => {
+                  e.currentTarget.style.background = 'rgba(255,255,255,0.03)'
+                  e.currentTarget.style.border = '1px solid rgba(255,255,255,0.1)'
+                  e.currentTarget.style.transform = 'translateY(0)'
+                }}>
+                  <div style={{fontSize:'32px',marginBottom:'16px'}}>{template.icon}</div>
+                  <h4 style={{fontSize:'18px',fontWeight:'700',color:'#fff',marginBottom:'8px',marginTop:0}}>{template.name}</h4>
+                  <p style={{fontSize:'14px',color:'#a0a0a0',margin:0,lineHeight:'1.5'}}>{template.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Early Access CTA */}
+          <div style={{
+            background:'linear-gradient(135deg, rgba(127,156,245,0.1) 0%, rgba(0,255,231,0.05) 100%)',
+            borderRadius:'20px',
+            padding:'48px',
+            textAlign:'center',
+            border:'1px solid rgba(127,156,245,0.2)',
+            position:'relative',
+            overflow:'hidden'
+          }}>
+            <div style={{position:'absolute',top:'-50%',right:'-50%',width:'200px',height:'200px',background:'radial-gradient(circle, rgba(0,255,231,0.1) 0%, transparent 70%)',borderRadius:'50%'}}></div>
+            <div style={{position:'absolute',bottom:'-30%',left:'-30%',width:'150px',height:'150px',background:'radial-gradient(circle, rgba(127,156,245,0.1) 0%, transparent 70%)',borderRadius:'50%'}}></div>
+            
+            <div style={{position:'relative',zIndex:1}}>
+              <h3 style={{fontSize:'32px',fontWeight:'700',color:'#fff',marginBottom:'16px',marginTop:0}}>
+                Get Early Access
+              </h3>
+              <p style={{fontSize:'18px',color:'#a0a0a0',marginBottom:'32px',maxWidth:'500px',marginLeft:'auto',marginRight:'auto',lineHeight:'1.6'}}>
+                Be among the first to experience the future of Google Ads management. 
+                Join our beta program and get exclusive access to advanced features.
+              </p>
+              
+              <div style={{display:'flex',gap:'16px',justifyContent:'center',flexWrap:'wrap'}}>
+                <input 
+                  type="email" 
+                  placeholder="Enter your email"
+                  style={{
+                    background:'rgba(255,255,255,0.05)',
+                    border:'1px solid rgba(255,255,255,0.1)',
+                    borderRadius:'12px',
+                    padding:'16px 20px',
+                    fontSize:'16px',
+                    color:'#fff',
+                    minWidth:'300px',
+                    outline:'none'
+                  }}
+                />
+                <button style={{
+                  background:'linear-gradient(135deg, #00ffe7 0%, #7f9cf5 100%)',
+                  border:'none',
+                  borderRadius:'12px',
+                  padding:'16px 32px',
+                  fontSize:'16px',
+                  fontWeight:'600',
+                  color:'#1a1a1a',
+                  cursor:'pointer',
+                  transition:'all 0.3s ease',
+                  boxShadow:'0 8px 32px rgba(0,255,231,0.3)'
+                }} onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-2px)'
+                  e.currentTarget.style.boxShadow = '0 12px 40px rgba(0,255,231,0.4)'
+                }} onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)'
+                  e.currentTarget.style.boxShadow = '0 8px 32px rgba(0,255,231,0.3)'
+                }}>
+                  Join Beta
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <Footer showTitle={true} />
     </>
   )

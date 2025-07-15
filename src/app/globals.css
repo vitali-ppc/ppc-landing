@@ -940,3 +940,19 @@ body {
   margin: 0 !important;
   padding: 0 !important;
 } 
+
+/* Pulse animation for AI Assistant badge */
+@keyframes pulse {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
