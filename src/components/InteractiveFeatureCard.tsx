@@ -27,7 +27,10 @@ const FeatureCard = ({ title, description, icon, color, gradient }: FeatureCardP
         boxShadow: isHovered 
           ? `0 30px 60px ${color}15, 0 4px 16px rgba(0,0,0,0.08)` 
           : '0 8px 32px rgba(0,0,0,0.12), 0 4px 16px rgba(0,0,0,0.08)',
-        borderColor: isHovered ? `${color}30` : `${color}20`
+        borderColor: isHovered ? `${color}30` : `${color}20`,
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100%'
       }}
       onMouseEnter={() => {
         console.log('Hover on:', title);
@@ -59,7 +62,8 @@ const FeatureCard = ({ title, description, icon, color, gradient }: FeatureCardP
         fontSize: '24px',
         fontWeight: '700',
         color: '#1a1a1a',
-        marginBottom: '16px'
+        marginBottom: '16px',
+        whiteSpace: 'nowrap'
       }}>
         {title}
       </h3>
@@ -68,7 +72,8 @@ const FeatureCard = ({ title, description, icon, color, gradient }: FeatureCardP
         fontSize: '16px',
         color: '#666',
         lineHeight: '1.6',
-        marginBottom: '20px'
+        marginBottom: '20px',
+        minHeight: '140px'
       }}>
         {description}
       </p>
@@ -79,7 +84,8 @@ const FeatureCard = ({ title, description, icon, color, gradient }: FeatureCardP
         gap: '8px',
         fontSize: '14px',
         color: color,
-        fontWeight: '600'
+        fontWeight: '600',
+        marginTop: 'auto'
       }}>
         <span>Learn more</span>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

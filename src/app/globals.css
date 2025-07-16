@@ -6,10 +6,82 @@
 @import url('/styles.css');
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  /* Основная палитра */
+  --color-background: #1A1A1A;
+  --color-surface: #23272F;
+  --color-primary: #00FFE7;
+  --color-primary-saturated: #00BFAE;
+  --color-secondary: #7F9CF5;
+  --color-accent: #FF6B6B;
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #A0A0A0;
+  --color-text-light: #E0E6F7;
+
+  /* Темные варианты для светлого фона */
+  --color-text-dark: #23272F;
+  --color-text-secondary-dark: #A0A0A0;
+  --color-background-light: #F8FAFC;
+
+  /* Дополнительные акценты */
+  --color-error: #FF6B6B;
+  --color-success: #4ECDC4;
+  --color-info: #45B7D1;
+  --color-warning: #FFA726;
+
+  /* Градиенты */
+  --gradient-primary: linear-gradient(135deg, #00FFE7, #00BFAE);
+  --gradient-secondary: linear-gradient(135deg, #7F9CF5, #4A5BB8);
+  --gradient-accent: linear-gradient(135deg, #FF6B6B, #FF8E8E);
+  --gradient-dark: linear-gradient(135deg, #1A1A1A, #23272F);
+  --gradient-surface: linear-gradient(135deg, #23272F, #2D3748);
+
+  /* Тени */
+  --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-medium: 0 8px 32px rgba(0, 0, 0, 0.12);
+  --shadow-heavy: 0 20px 60px rgba(0, 0, 0, 0.15);
+  --shadow-primary: 0 8px 24px rgba(0, 255, 231, 0.2);
+  --shadow-secondary: 0 8px 24px rgba(127, 156, 245, 0.2);
+
+  /* Радиусы */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+
+  /* Переходы */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
 }
+
+/* Светлая тема (для будущего использования) */
+[data-theme="light"] {
+  --color-background: #FFFFFF;
+  --color-surface: #F8FAFC;
+  --color-text-primary: #2D3748;
+  --color-text-secondary: #4A5568;
+  --color-text-light: #718096;
+}
+
+/* Утилитарные классы для цветов */
+.text-primary { color: var(--color-primary); }
+.text-primary-saturated { color: var(--color-primary-saturated); }
+.text-secondary { color: var(--color-secondary); }
+.text-accent { color: var(--color-accent); }
+.text-error { color: var(--color-error); }
+.text-success { color: var(--color-success); }
+.text-info { color: var(--color-info); }
+
+.bg-primary { background-color: var(--color-primary); }
+.bg-primary-saturated { background-color: var(--color-primary-saturated); }
+.bg-secondary { background-color: var(--color-secondary); }
+.bg-accent { background-color: var(--color-accent); }
+.bg-surface { background-color: var(--color-surface); }
+
+.gradient-primary { background: var(--gradient-primary); }
+.gradient-secondary { background: var(--gradient-secondary); }
+.gradient-accent { background: var(--gradient-accent); }
+.gradient-dark { background: var(--gradient-dark); }
 
 @media (prefers-color-scheme: dark) {
   :root {

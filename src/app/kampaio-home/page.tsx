@@ -52,7 +52,7 @@ function AnimatedCounter({
     <span style={{
       fontSize: '28px',
       fontWeight: '700',
-      color: '#7f9cf5',
+      color: 'white',
       animation: 'countUp 1s ease-out',
       animationDelay: `${delay}ms`
     }}>
@@ -104,7 +104,7 @@ function AnimatedCurrencyCounter({
     <span style={{
       fontSize: '28px',
       fontWeight: '700',
-      color: '#00ffe7',
+      color: 'white',
       animation: 'countUp 1s ease-out',
       animationDelay: `${delay}ms`
     }}>
@@ -112,6 +112,8 @@ function AnimatedCurrencyCounter({
     </span>
   );
 }
+
+
 
 export default function KampaioHome() {
   return (
@@ -148,6 +150,22 @@ export default function KampaioHome() {
           from { transform: translateY(20px); opacity: 0; }
           to { transform: translateY(0); opacity: 1; }
         }
+        
+        @keyframes dataFlow {
+          0% { transform: translateX(-100%); }
+          100% { transform: translateX(100%); }
+        }
+        
+        @keyframes fadeInUp {
+          from { 
+            transform: translateY(30px); 
+            opacity: 0; 
+          }
+          to { 
+            transform: translateY(0); 
+            opacity: 1; 
+          }
+        }
       `}</style>
   return (
     <div style={{
@@ -165,7 +183,7 @@ export default function KampaioHome() {
       {/* How Kampaio Helps You Run Smarter Ads */}
       <section style={{
         padding: '120px 0',
-        background: 'linear-gradient(180deg, #fafbfc 0%, #ffffff 100%)',
+        background: 'linear-gradient(180deg, #f8fafc 0%, #ffffff 100%)',
         position: 'relative',
         overflow: 'hidden'
       }}>
@@ -336,7 +354,7 @@ export default function KampaioHome() {
                   </div>
                 </div>
                 
-                {/* ARROW 1 - АНИМИРОВАННАЯ */}
+                {/* ARROW 1 - УЛУЧШЕННАЯ АНИМАЦИЯ */}
                 <div style={{
                   margin: '0 32px',
                   position: 'relative'
@@ -346,69 +364,51 @@ export default function KampaioHome() {
                     alignItems: 'center'
                   }}>
                     <div style={{
-                      width: '48px',
-                      height: '3px',
-                      background: '#7f9cf5',
+                      width: '60px',
+                      height: '2px',
+                      background: 'linear-gradient(90deg, #7f9cf5, rgba(127,156,245,0.3))',
                       position: 'relative',
-                      overflow: 'hidden'
+                      overflow: 'hidden',
+                      borderRadius: '1px'
                     }}>
                       <div style={{
                         position: 'absolute',
                         inset: 0,
-                        background: 'linear-gradient(90deg, transparent, white, transparent)',
-                        width: '16px',
-                        animation: 'dataFlow 2s ease-in-out infinite'
+                        background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent)',
+                        width: '20px',
+                        animation: 'dataFlow 3s ease-in-out infinite'
                       }}></div>
                     </div>
                     <div style={{
                       width: '0',
                       height: '0',
-                      borderLeft: '6px solid #7f9cf5',
-                      borderTop: '4px solid transparent',
-                      borderBottom: '4px solid transparent',
-                      animation: 'pulse 2s infinite'
+                      borderLeft: '8px solid #7f9cf5',
+                      borderTop: '5px solid transparent',
+                      borderBottom: '5px solid transparent',
+                      marginLeft: '2px',
+                      animation: 'pulse 3s infinite'
                     }}></div>
                   </div>
                   <div style={{
-                    fontSize: '12px',
+                    fontSize: '11px',
                     color: '#7f9cf5',
-                    marginTop: '4px',
-                    animation: 'pulse 2s infinite'
+                    marginTop: '6px',
+                    fontWeight: '500',
+                    opacity: 0.8
                   }}>
-                    Processing...
+                    Analyzing...
                   </div>
-                  {/* Движущиеся точки данных */}
+                  {/* Одна движущаяся точка данных */}
                   <div style={{
                     position: 'absolute',
                     top: '50%',
                     left: '0',
-                    width: '4px',
-                    height: '4px',
+                    width: '6px',
+                    height: '6px',
                     background: '#7f9cf5',
                     borderRadius: '50%',
-                    animation: 'dataFlow 2s ease-in-out infinite'
-                  }}></div>
-                  <div style={{
-                    position: 'absolute',
-                    top: '50%',
-                    left: '8px',
-                    width: '3px',
-                    height: '3px',
-                    background: '#7f9cf5',
-                    borderRadius: '50%',
-                    animation: 'dataFlow 2s ease-in-out infinite',
-                    animationDelay: '0.5s'
-                  }}></div>
-                  <div style={{
-                    position: 'absolute',
-                    top: '50%',
-                    left: '16px',
-                    width: '3px',
-                    height: '3px',
-                    background: '#7f9cf5',
-                    borderRadius: '50%',
-                    animation: 'dataFlow 2s ease-in-out infinite',
-                    animationDelay: '1s'
+                    animation: 'dataFlow 3s ease-in-out infinite',
+                    boxShadow: '0 0 8px rgba(127,156,245,0.4)'
                   }}></div>
                 </div>
                 
@@ -455,7 +455,7 @@ export default function KampaioHome() {
                   </div>
                 </div>
                 
-                {/* ARROW 2 - АНИМИРОВАННАЯ */}
+                {/* ARROW 2 - УЛУЧШЕННАЯ АНИМАЦИЯ */}
                 <div style={{
                   margin: '0 32px',
                   position: 'relative'
@@ -465,69 +465,51 @@ export default function KampaioHome() {
                     alignItems: 'center'
                   }}>
                     <div style={{
-                      width: '48px',
-                      height: '3px',
-                      background: '#00ffe7',
+                      width: '60px',
+                      height: '2px',
+                      background: 'linear-gradient(90deg, #00ffe7, rgba(0,255,231,0.3))',
                       position: 'relative',
-                      overflow: 'hidden'
+                      overflow: 'hidden',
+                      borderRadius: '1px'
                     }}>
                       <div style={{
                         position: 'absolute',
                         inset: 0,
-                        background: 'linear-gradient(90deg, transparent, white, transparent)',
-                        width: '16px',
-                        animation: 'dataFlow 2s ease-in-out infinite'
+                        background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent)',
+                        width: '20px',
+                        animation: 'dataFlow 3s ease-in-out infinite'
                       }}></div>
                     </div>
                     <div style={{
                       width: '0',
                       height: '0',
-                      borderLeft: '6px solid #00ffe7',
-                      borderTop: '4px solid transparent',
-                      borderBottom: '4px solid transparent',
-                      animation: 'pulse 2s infinite'
+                      borderLeft: '8px solid #00ffe7',
+                      borderTop: '5px solid transparent',
+                      borderBottom: '5px solid transparent',
+                      marginLeft: '2px',
+                      animation: 'pulse 3s infinite'
                     }}></div>
                   </div>
                   <div style={{
-                    fontSize: '12px',
+                    fontSize: '11px',
                     color: '#00ffe7',
-                    marginTop: '4px',
-                    animation: 'pulse 2s infinite'
+                    marginTop: '6px',
+                    fontWeight: '500',
+                    opacity: 0.8
                   }}>
-                    Results!
+                    Optimizing...
                   </div>
-                  {/* Движущиеся точки данных */}
+                  {/* Одна движущаяся точка данных */}
                   <div style={{
                     position: 'absolute',
                     top: '50%',
                     left: '0',
-                    width: '4px',
-                    height: '4px',
+                    width: '6px',
+                    height: '6px',
                     background: '#00ffe7',
                     borderRadius: '50%',
-                    animation: 'dataFlow 2s ease-in-out infinite'
-                  }}></div>
-                  <div style={{
-                    position: 'absolute',
-                    top: '50%',
-                    left: '8px',
-                    width: '3px',
-                    height: '3px',
-                    background: '#00ffe7',
-                    borderRadius: '50%',
-                    animation: 'dataFlow 2s ease-in-out infinite',
-                    animationDelay: '0.5s'
-                  }}></div>
-                  <div style={{
-                    position: 'absolute',
-                    top: '50%',
-                    left: '16px',
-                    width: '3px',
-                    height: '3px',
-                    background: '#00ffe7',
-                    borderRadius: '50%',
-                    animation: 'dataFlow 2s ease-in-out infinite',
-                    animationDelay: '1s'
+                    animation: 'dataFlow 3s ease-in-out infinite',
+                    boxShadow: '0 0 8px rgba(0,255,231,0.4)'
                   }}></div>
                 </div>
                 
@@ -575,70 +557,160 @@ export default function KampaioHome() {
                 </div>
               </div>
               
-              {/* METRICS BAR - АНИМИРОВАННЫЕ СЧЕТЧИКИ */}
+              {/* METRICS BAR - УЛУЧШЕННЫЕ АНИМИРОВАННЫЕ СЧЕТЧИКИ */}
               <div style={{
-                background: 'white',
-                borderRadius: '12px',
-                padding: '24px',
-                boxShadow: '0 2px 8px rgba(0,0,0,0.05)'
+                background: '#1a1a1a',
+                borderRadius: '16px',
+                padding: '32px 24px',
+                boxShadow: '0 8px 32px rgba(0,0,0,0.15), 0 4px 16px rgba(127,156,245,0.1)',
+                border: '1px solid rgba(127,156,245,0.2)'
               }}>
                 <div style={{
                   display: 'flex',
                   justifyContent: 'space-between',
                   alignItems: 'center',
-                  textAlign: 'center'
+                  textAlign: 'center',
+                  gap: '20px'
                 }}>
                   <div style={{
-                    animation: 'fadeInUp 0.8s ease-out'
+                    flex: 1,
+                    animation: 'fadeInUp 1s ease-out'
                   }}>
                     <div style={{
-                      animation: 'countUp 1s ease-out'
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '8px',
+                      marginBottom: '8px'
                     }}>
-                      <AnimatedCounter endValue={85} suffix="%" delay={500} />
+                      <div style={{
+                        width: '24px',
+                        height: '24px',
+                        background: 'linear-gradient(135deg, #7F9CF5, #667eea)',
+                        borderRadius: '6px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                      }}>
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                          <circle cx="12" cy="12" r="10"/>
+                          <polyline points="12,6 12,12 16,14"/>
+                        </svg>
+                      </div>
+                      <div style={{
+                        animation: 'countUp 1.5s ease-out'
+                      }}>
+                        <AnimatedCounter endValue={85} suffix="%" delay={800} />
+                      </div>
                     </div>
                     <div style={{
-                      fontSize: '14px',
-                      color: '#23272f',
-                      fontWeight: '500'
+                      fontSize: '15px',
+                      color: 'white',
+                      fontWeight: '600',
+                      marginBottom: '4px'
                     }}>
                       Faster Detection
                     </div>
+
                   </div>
+                  
                   <div style={{
-                    animation: 'fadeInUp 0.8s ease-out',
+                    width: '1px',
+                    height: '60px',
+                    background: 'linear-gradient(180deg, transparent, rgba(127,156,245,0.2), transparent)'
+                  }}></div>
+                  
+                  <div style={{
+                    flex: 1,
+                    animation: 'fadeInUp 1s ease-out',
                     animationDelay: '0.2s'
                   }}>
                     <div style={{
-                      animation: 'countUp 1s ease-out',
-                      animationDelay: '0.2s'
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '8px',
+                      marginBottom: '8px'
                     }}>
-                      <AnimatedCurrencyCounter endValue={1.30} delay={700} />
+                      <div style={{
+                        width: '24px',
+                        height: '24px',
+                        background: 'linear-gradient(135deg, #00FFE7, #00d4aa)',
+                        borderRadius: '6px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                      }}>
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                          <path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                        </svg>
+                      </div>
+                      <div style={{
+                        animation: 'countUp 1.5s ease-out',
+                        animationDelay: '0.2s'
+                      }}>
+                        <AnimatedCurrencyCounter endValue={1.30} delay={1000} />
+                      </div>
                     </div>
                     <div style={{
-                      fontSize: '14px',
-                      color: '#374151',
-                      fontWeight: '500'
+                      fontSize: '15px',
+                      color: 'white',
+                      fontWeight: '600',
+                      marginBottom: '4px'
                     }}>
                       Saved Per Click
                     </div>
+
                   </div>
+                  
                   <div style={{
-                    animation: 'fadeInUp 0.8s ease-out',
+                    width: '1px',
+                    height: '60px',
+                    background: 'linear-gradient(180deg, transparent, rgba(0,255,231,0.2), transparent)'
+                  }}></div>
+                  
+                  <div style={{
+                    flex: 1,
+                    animation: 'fadeInUp 1s ease-out',
                     animationDelay: '0.4s'
                   }}>
                     <div style={{
-                      animation: 'countUp 1s ease-out',
-                      animationDelay: '0.4s'
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '8px',
+                      marginBottom: '8px'
                     }}>
-                      <AnimatedCounter endValue={87} suffix="%" delay={900} />
+                      <div style={{
+                        width: '24px',
+                        height: '24px',
+                        background: 'linear-gradient(135deg, #00BFAE, #00A896)',
+                        borderRadius: '6px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                      }}>
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                          <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.23 3 3 0 0 1-.34-5.58l.34-.03a2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"/>
+                          <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.23 3 3 0 0 0 .34-5.58l-.34-.03a2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"/>
+                        </svg>
+                      </div>
+                      <div style={{
+                        animation: 'countUp 1.5s ease-out',
+                        animationDelay: '0.4s'
+                      }}>
+                        <AnimatedCounter endValue={87} suffix="%" delay={1200} />
+                      </div>
                     </div>
                     <div style={{
-                      fontSize: '14px',
-                      color: '#374151',
-                      fontWeight: '500'
+                      fontSize: '15px',
+                      color: 'white',
+                      fontWeight: '600',
+                      marginBottom: '4px'
                     }}>
                       Prediction Accuracy
                     </div>
+
                   </div>
                 </div>
               </div>
@@ -650,7 +722,8 @@ export default function KampaioHome() {
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
             gap: '40px',
-            marginBottom: '80px'
+            marginBottom: '80px',
+            alignItems: 'stretch'
           }}>
             {/* Feature 1: AI-Powered Analysis */}
             <div style={{
@@ -658,33 +731,50 @@ export default function KampaioHome() {
               borderRadius: '20px',
               padding: '40px',
               border: '1px solid rgba(127,156,245,0.1)',
-              boxShadow: '0 8px 32px rgba(0,0,0,0.12), 0 4px 16px rgba(127,156,245,0.08)',
-              transition: 'all 0.4s ease',
+              boxShadow: '0 8px 32px rgba(0,0,0,0.08), 0 4px 16px rgba(127,156,245,0.05)',
+              transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
               position: 'relative',
-              overflow: 'hidden'
+              overflow: 'hidden',
+              cursor: 'pointer',
+              display: 'flex',
+              flexDirection: 'column'
             }}
             onMouseEnter={(e) => {
               const target = e.target as HTMLElement;
-              target.style.transform = 'translateY(-8px)';
-              target.style.boxShadow = '0 30px 60px rgba(127,156,245,0.15)';
-              target.style.borderColor = 'rgba(127,156,245,0.3)';
+              target.style.transform = 'translateY(-4px) scale(1.02)';
+              target.style.boxShadow = '0 20px 40px rgba(127,156,245,0.12), 0 8px 24px rgba(0,0,0,0.1)';
+              target.style.borderColor = 'rgba(127,156,245,0.2)';
             }}
             onMouseLeave={(e) => {
               const target = e.target as HTMLElement;
-              target.style.transform = 'translateY(0)';
-              target.style.boxShadow = '0 20px 40px rgba(0,0,0,0.08)';
+              target.style.transform = 'translateY(0) scale(1)';
+              target.style.boxShadow = '0 8px 32px rgba(0,0,0,0.08), 0 4px 16px rgba(127,156,245,0.05)';
               target.style.borderColor = 'rgba(127,156,245,0.1)';
             }}>
+              {/* Subtle background pattern */}
+              <div style={{
+                position: 'absolute',
+                top: 0,
+                right: 0,
+                width: '100px',
+                height: '100px',
+                background: 'radial-gradient(circle, rgba(127,156,245,0.03) 0%, transparent 70%)',
+                borderRadius: '50%',
+                transform: 'translate(30px, -30px)',
+                pointerEvents: 'none'
+              }}></div>
+              
               <div style={{
                 width: '60px',
                 height: '60px',
-                background: 'linear-gradient(135deg, #7f9cf5, #667eea)',
+                background: 'linear-gradient(135deg, #00BFAE, #00A896)',
                 borderRadius: '16px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 marginBottom: '24px',
-                boxShadow: '0 8px 24px rgba(127,156,245,0.3)'
+                boxShadow: '0 8px 24px rgba(0,191,174,0.2)',
+                transition: 'all 0.3s ease'
               }}>
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
                   <path d="M9 11H1l8-8 8 8h-8v8z"/>
@@ -696,7 +786,8 @@ export default function KampaioHome() {
                 fontSize: '24px',
                 fontWeight: '700',
                 color: '#1a1a1a',
-                marginBottom: '16px'
+                marginBottom: '16px',
+                whiteSpace: 'nowrap'
               }}>
                 AI-Powered Analysis
               </h3>
@@ -704,76 +795,103 @@ export default function KampaioHome() {
                 fontSize: '16px',
                 color: '#666',
                 lineHeight: '1.6',
-                marginBottom: '20px'
+                marginBottom: '24px',
+                minHeight: '140px'
               }}>
-                Our advanced AI analyzes your campaigns in real-time, identifying performance patterns, 
-                detecting anomalies, and uncovering hidden opportunities that traditional analysis might miss.
+                Our advanced AI analyzes your campaigns in real-time, identifying performance patterns, detecting anomalies, and uncovering hidden opportunities that traditional analysis might miss.
               </p>
               <div style={{
-                marginBottom: '20px'
+                marginBottom: '24px'
               }}>
                 <div style={{
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '8px',
-                  marginBottom: '8px',
-                  fontSize: '14px',
-                  color: '#1a1a1a'
+                  gap: '12px',
+                  marginBottom: '12px',
+                  fontSize: '15px',
+                  color: '#1a1a1a',
+                  fontWeight: '500'
                 }}>
                   <div style={{
-                    width: '6px',
-                    height: '6px',
-                    background: '#7f9cf5',
-                    borderRadius: '50%'
+                    width: '8px',
+                    height: '8px',
+                    background: '#00BFAE',
+                    borderRadius: '50%',
+                    flexShrink: 0
                   }}></div>
                   <span>Real-time performance monitoring & alerts</span>
                 </div>
                 <div style={{
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '8px',
-                  marginBottom: '8px',
-                  fontSize: '14px',
-                  color: '#1a1a1a'
+                  gap: '12px',
+                  marginBottom: '12px',
+                  fontSize: '15px',
+                  color: '#1a1a1a',
+                  fontWeight: '500'
                 }}>
                   <div style={{
-                    width: '6px',
-                    height: '6px',
-                    background: '#7f9cf5',
-                    borderRadius: '50%'
+                    width: '8px',
+                    height: '8px',
+                    background: '#00BFAE',
+                    borderRadius: '50%',
+                    flexShrink: 0
                   }}></div>
                   <span>Anomaly detection & alerts</span>
                 </div>
                 <div style={{
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '8px',
-                  fontSize: '14px',
-                  color: '#1a1a1a'
+                  gap: '12px',
+                  fontSize: '15px',
+                  color: '#1a1a1a',
+                  fontWeight: '500'
                 }}>
                   <div style={{
-                    width: '6px',
-                    height: '6px',
-                    background: '#7f9cf5',
-                    borderRadius: '50%'
+                    width: '8px',
+                    height: '8px',
+                    background: '#00BFAE',
+                    borderRadius: '50%',
+                    flexShrink: 0
                   }}></div>
                   <span>Hidden opportunity identification</span>
                 </div>
               </div>
-              <div style={{
+              <button style={{
                 display: 'flex',
                 alignItems: 'center',
                 gap: '8px',
-                fontSize: '14px',
-                color: '#7f9cf5',
-                fontWeight: '600'
+                fontSize: '15px',
+                color: '#00BFAE',
+                fontWeight: '600',
+                background: 'transparent',
+                cursor: 'pointer',
+                padding: '12px 20px',
+                borderRadius: '10px',
+                transition: 'all 0.3s ease',
+                border: '1px solid rgba(0,191,174,0.2)',
+                marginTop: 'auto'
+              }}
+              onMouseEnter={(e) => {
+                const target = e.target as HTMLElement;
+                target.style.background = 'rgba(0,191,174,0.05)';
+                target.style.borderColor = 'rgba(0,191,174,0.3)';
+                target.style.transform = 'translateX(4px)';
+              }}
+              onMouseLeave={(e) => {
+                const target = e.target as HTMLElement;
+                target.style.background = 'transparent';
+                target.style.borderColor = 'rgba(0,191,174,0.2)';
+                target.style.transform = 'translateX(0)';
               }}>
                 <span>Learn more</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{
+                  transition: 'transform 0.3s ease'
+                }}>
                   <line x1="5" y1="12" x2="19" y2="12"></line>
                   <polyline points="12,5 19,12 12,19"></polyline>
                 </svg>
-              </div>
+              </button>
             </div>
 
             {/* Feature 2: Automated Optimization */}
@@ -781,34 +899,51 @@ export default function KampaioHome() {
               background: 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)',
               borderRadius: '20px',
               padding: '40px',
-              border: '1px solid rgba(0,255,231,0.1)',
-              boxShadow: '0 8px 32px rgba(0,0,0,0.12), 0 4px 16px rgba(0,255,231,0.08)',
-              transition: 'all 0.4s ease',
+              border: '1px solid rgba(255,107,107,0.1)',
+              boxShadow: '0 8px 32px rgba(0,0,0,0.08), 0 4px 16px rgba(255,107,107,0.05)',
+              transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
               position: 'relative',
-              overflow: 'hidden'
+              overflow: 'hidden',
+              cursor: 'pointer',
+              display: 'flex',
+              flexDirection: 'column'
             }}
             onMouseEnter={(e) => {
               const target = e.target as HTMLElement;
-              target.style.transform = 'translateY(-8px)';
-              target.style.boxShadow = '0 30px 60px rgba(0,255,231,0.15)';
-              target.style.borderColor = 'rgba(0,255,231,0.3)';
+              target.style.transform = 'translateY(-4px) scale(1.02)';
+              target.style.boxShadow = '0 20px 40px rgba(255,107,107,0.12), 0 8px 24px rgba(0,0,0,0.1)';
+              target.style.borderColor = 'rgba(255,107,107,0.2)';
             }}
             onMouseLeave={(e) => {
               const target = e.target as HTMLElement;
-              target.style.transform = 'translateY(0)';
-              target.style.boxShadow = '0 20px 40px rgba(0,0,0,0.08)';
-              target.style.borderColor = 'rgba(0,255,231,0.1)';
+              target.style.transform = 'translateY(0) scale(1)';
+              target.style.boxShadow = '0 8px 32px rgba(0,0,0,0.08), 0 4px 16px rgba(255,107,107,0.05)';
+              target.style.borderColor = 'rgba(255,107,107,0.1)';
             }}>
+              {/* Subtle background pattern */}
+              <div style={{
+                position: 'absolute',
+                top: 0,
+                right: 0,
+                width: '100px',
+                height: '100px',
+                background: 'radial-gradient(circle, rgba(255,107,107,0.03) 0%, transparent 70%)',
+                borderRadius: '50%',
+                transform: 'translate(30px, -30px)',
+                pointerEvents: 'none'
+              }}></div>
+              
               <div style={{
                 width: '60px',
                 height: '60px',
-                background: 'linear-gradient(135deg, #00ffe7, #00d4aa)',
+                background: 'linear-gradient(135deg, #FF6B6B, #FF8E8E)',
                 borderRadius: '16px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 marginBottom: '24px',
-                boxShadow: '0 8px 24px rgba(0,255,231,0.3)'
+                boxShadow: '0 8px 24px rgba(255,107,107,0.2)',
+                transition: 'all 0.3s ease'
               }}>
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
                   <circle cx="12" cy="12" r="3"></circle>
@@ -821,7 +956,8 @@ export default function KampaioHome() {
                 fontSize: '24px',
                 fontWeight: '700',
                 color: '#1a1a1a',
-                marginBottom: '16px'
+                marginBottom: '16px',
+                whiteSpace: 'nowrap'
               }}>
                 Automated Optimization
               </h3>
@@ -829,76 +965,103 @@ export default function KampaioHome() {
                 fontSize: '16px',
                 color: '#666',
                 lineHeight: '1.6',
-                marginBottom: '20px'
+                marginBottom: '24px',
+                minHeight: '140px'
               }}>
-                Set your goals and watch our AI work 24/7. Automatically adjust bids, 
-                pause underperforming keywords, and optimize ad copy - all based on real-time performance data.
+                Set your goals and watch our AI work 24/7. Automatically adjust bids, pause underperforming keywords, and optimize ad copy - all based on real-time performance data.
               </p>
               <div style={{
-                marginBottom: '20px'
+                marginBottom: '24px'
               }}>
                 <div style={{
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '8px',
-                  marginBottom: '8px',
-                  fontSize: '14px',
-                  color: '#1a1a1a'
+                  gap: '12px',
+                  marginBottom: '12px',
+                  fontSize: '15px',
+                  color: '#1a1a1a',
+                  fontWeight: '500'
                 }}>
                   <div style={{
-                    width: '6px',
-                    height: '6px',
-                    background: '#00ffe7',
-                    borderRadius: '50%'
+                    width: '8px',
+                    height: '8px',
+                    background: '#FF6B6B',
+                    borderRadius: '50%',
+                    flexShrink: 0
                   }}></div>
                   <span>Smart bid adjustments for maximum ROI</span>
                 </div>
                 <div style={{
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '8px',
-                  marginBottom: '8px',
-                  fontSize: '14px',
-                  color: '#1a1a1a'
+                  gap: '12px',
+                  marginBottom: '12px',
+                  fontSize: '15px',
+                  color: '#1a1a1a',
+                  fontWeight: '500'
                 }}>
                   <div style={{
-                    width: '6px',
-                    height: '6px',
-                    background: '#00ffe7',
-                    borderRadius: '50%'
+                    width: '8px',
+                    height: '8px',
+                    background: '#FF6B6B',
+                    borderRadius: '50%',
+                    flexShrink: 0
                   }}></div>
                   <span>Keyword performance management</span>
                 </div>
                 <div style={{
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '8px',
-                  fontSize: '14px',
-                  color: '#1a1a1a'
+                  gap: '12px',
+                  fontSize: '15px',
+                  color: '#1a1a1a',
+                  fontWeight: '500'
                 }}>
                   <div style={{
-                    width: '6px',
-                    height: '6px',
-                    background: '#00ffe7',
-                    borderRadius: '50%'
+                    width: '8px',
+                    height: '8px',
+                    background: '#FF6B6B',
+                    borderRadius: '50%',
+                    flexShrink: 0
                   }}></div>
                   <span>Ad copy optimization</span>
                 </div>
               </div>
-              <div style={{
+              <button style={{
                 display: 'flex',
                 alignItems: 'center',
                 gap: '8px',
-                fontSize: '14px',
-                color: '#00ffe7',
-                fontWeight: '600'
+                fontSize: '15px',
+                color: '#FF6B6B',
+                fontWeight: '600',
+                background: 'transparent',
+                cursor: 'pointer',
+                padding: '12px 20px',
+                borderRadius: '10px',
+                transition: 'all 0.3s ease',
+                border: '1px solid rgba(255,107,107,0.2)',
+                marginTop: 'auto'
+              }}
+              onMouseEnter={(e) => {
+                const target = e.target as HTMLElement;
+                target.style.background = 'rgba(255,107,107,0.05)';
+                target.style.borderColor = 'rgba(255,107,107,0.3)';
+                target.style.transform = 'translateX(4px)';
+              }}
+              onMouseLeave={(e) => {
+                const target = e.target as HTMLElement;
+                target.style.background = 'transparent';
+                target.style.borderColor = 'rgba(255,107,107,0.2)';
+                target.style.transform = 'translateX(0)';
               }}>
                 <span>Learn more</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{
+                  transition: 'transform 0.3s ease'
+                }}>
                   <line x1="5" y1="12" x2="19" y2="12"></line>
                   <polyline points="12,5 19,12 12,19"></polyline>
                 </svg>
-              </div>
+              </button>
             </div>
 
             {/* Feature 3: Predictive Insights */}
@@ -907,33 +1070,50 @@ export default function KampaioHome() {
               borderRadius: '20px',
               padding: '40px',
               border: '1px solid rgba(139,92,246,0.1)',
-              boxShadow: '0 8px 32px rgba(0,0,0,0.12), 0 4px 16px rgba(139,92,246,0.08)',
-              transition: 'all 0.4s ease',
+              boxShadow: '0 8px 32px rgba(0,0,0,0.08), 0 4px 16px rgba(139,92,246,0.05)',
+              transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
               position: 'relative',
-              overflow: 'hidden'
+              overflow: 'hidden',
+              cursor: 'pointer',
+              display: 'flex',
+              flexDirection: 'column'
             }}
             onMouseEnter={(e) => {
               const target = e.target as HTMLElement;
-              target.style.transform = 'translateY(-8px)';
-              target.style.boxShadow = '0 30px 60px rgba(139,92,246,0.15)';
-              target.style.borderColor = 'rgba(139,92,246,0.3)';
+              target.style.transform = 'translateY(-4px) scale(1.02)';
+              target.style.boxShadow = '0 20px 40px rgba(139,92,246,0.12), 0 8px 24px rgba(0,0,0,0.1)';
+              target.style.borderColor = 'rgba(139,92,246,0.2)';
             }}
             onMouseLeave={(e) => {
               const target = e.target as HTMLElement;
-              target.style.transform = 'translateY(0)';
-              target.style.boxShadow = '0 20px 40px rgba(0,0,0,0.08)';
+              target.style.transform = 'translateY(0) scale(1)';
+              target.style.boxShadow = '0 8px 32px rgba(0,0,0,0.08), 0 4px 16px rgba(139,92,246,0.05)';
               target.style.borderColor = 'rgba(139,92,246,0.1)';
             }}>
+              {/* Subtle background pattern */}
+              <div style={{
+                position: 'absolute',
+                top: 0,
+                right: 0,
+                width: '100px',
+                height: '100px',
+                background: 'radial-gradient(circle, rgba(139,92,246,0.03) 0%, transparent 70%)',
+                borderRadius: '50%',
+                transform: 'translate(30px, -30px)',
+                pointerEvents: 'none'
+              }}></div>
+              
               <div style={{
                 width: '60px',
                 height: '60px',
-                background: 'linear-gradient(135deg, #8b5cf6, #a855f7)',
+                background: 'linear-gradient(135deg, #00BFAE, #00D4AA)',
                 borderRadius: '16px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 marginBottom: '24px',
-                boxShadow: '0 8px 24px rgba(139,92,246,0.3)'
+                boxShadow: '0 8px 24px rgba(0,191,174,0.2)',
+                transition: 'all 0.3s ease'
               }}>
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
                   <path d="M12 2v4m0 12v4"/>
@@ -946,7 +1126,8 @@ export default function KampaioHome() {
                 fontSize: '24px',
                 fontWeight: '700',
                 color: '#1a1a1a',
-                marginBottom: '16px'
+                marginBottom: '16px',
+                whiteSpace: 'nowrap'
               }}>
                 Predictive Insights
               </h3>
@@ -954,76 +1135,103 @@ export default function KampaioHome() {
                 fontSize: '16px',
                 color: '#666',
                 lineHeight: '1.6',
-                marginBottom: '20px'
+                marginBottom: '24px',
+                minHeight: '140px'
               }}>
-                Stay ahead of the competition with predictive analytics. Our AI forecasts campaign performance up to 30 days ahead, 
-                identifies seasonal trends, and recommends proactive strategies before your competitors catch on.
+                Stay ahead of the competition with predictive analytics. Our AI forecasts campaign performance up to 30 days ahead, identifies seasonal trends, and recommends proactive strategies before your competitors catch on.
               </p>
               <div style={{
-                marginBottom: '20px'
+                marginBottom: '24px'
               }}>
                 <div style={{
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '8px',
-                  marginBottom: '8px',
-                  fontSize: '14px',
-                  color: '#1a1a1a'
+                  gap: '12px',
+                  marginBottom: '12px',
+                  fontSize: '15px',
+                  color: '#1a1a1a',
+                  fontWeight: '500'
                 }}>
                   <div style={{
-                    width: '6px',
-                    height: '6px',
-                    background: '#8b5cf6',
-                    borderRadius: '50%'
+                    width: '8px',
+                    height: '8px',
+                    background: '#00BFAE',
+                    borderRadius: '50%',
+                    flexShrink: 0
                   }}></div>
                   <span>Performance forecasting</span>
                 </div>
                 <div style={{
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '8px',
-                  marginBottom: '8px',
-                  fontSize: '14px',
-                  color: '#1a1a1a'
+                  gap: '12px',
+                  marginBottom: '12px',
+                  fontSize: '15px',
+                  color: '#1a1a1a',
+                  fontWeight: '500'
                 }}>
                   <div style={{
-                    width: '6px',
-                    height: '6px',
-                    background: '#8b5cf6',
-                    borderRadius: '50%'
+                    width: '8px',
+                    height: '8px',
+                    background: '#00BFAE',
+                    borderRadius: '50%',
+                    flexShrink: 0
                   }}></div>
                   <span>Seasonal trend analysis</span>
                 </div>
                 <div style={{
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '8px',
-                  fontSize: '14px',
-                  color: '#1a1a1a'
+                  gap: '12px',
+                  fontSize: '15px',
+                  color: '#1a1a1a',
+                  fontWeight: '500'
                 }}>
                   <div style={{
-                    width: '6px',
-                    height: '6px',
-                    background: '#8b5cf6',
-                    borderRadius: '50%'
+                    width: '8px',
+                    height: '8px',
+                    background: '#00BFAE',
+                    borderRadius: '50%',
+                    flexShrink: 0
                   }}></div>
                   <span>Proactive strategy recommendations</span>
                 </div>
               </div>
-              <div style={{
+              <button style={{
                 display: 'flex',
                 alignItems: 'center',
                 gap: '8px',
-                fontSize: '14px',
-                color: '#8b5cf6',
-                fontWeight: '600'
+                fontSize: '15px',
+                color: '#00BFAE',
+                fontWeight: '600',
+                background: 'transparent',
+                cursor: 'pointer',
+                padding: '12px 20px',
+                borderRadius: '10px',
+                transition: 'all 0.3s ease',
+                border: '1px solid rgba(0,191,174,0.2)',
+                marginTop: 'auto'
+              }}
+              onMouseEnter={(e) => {
+                const target = e.target as HTMLElement;
+                target.style.background = 'rgba(0,191,174,0.05)';
+                target.style.borderColor = 'rgba(0,191,174,0.3)';
+                target.style.transform = 'translateX(4px)';
+              }}
+              onMouseLeave={(e) => {
+                const target = e.target as HTMLElement;
+                target.style.background = 'transparent';
+                target.style.borderColor = 'rgba(0,191,174,0.2)';
+                target.style.transform = 'translateX(0)';
               }}>
                 <span>Learn more</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{
+                  transition: 'transform 0.3s ease'
+                }}>
                   <line x1="5" y1="12" x2="19" y2="12"></line>
                   <polyline points="12,5 19,12 12,19"></polyline>
                 </svg>
-              </div>
+              </button>
             </div>
           </div>
 
@@ -1031,113 +1239,7 @@ export default function KampaioHome() {
         </div>
       </section>
 
-      {/* How Kampaio Helps You Run Smarter Ads - DUPLICATE */}
-      <section style={{
-        padding: '120px 0',
-        background: 'linear-gradient(180deg, #fafbfc 0%, #ffffff 100%)',
-        position: 'relative',
-        overflow: 'hidden'
-      }}>
-        {/* Gradient Transition from Previous Section */}
-        <div style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          height: '100px',
-          background: 'linear-gradient(180deg, rgba(26,26,26,0.1) 0%, transparent 100%)',
-          pointerEvents: 'none'
-        }}></div>
 
-        <div style={{
-          maxWidth: '1200px',
-          margin: '0 auto',
-          padding: '0 24px',
-          position: 'relative',
-          zIndex: 1
-        }}>
-          {/* Section Header */}
-          <div style={{
-            textAlign: 'center',
-            marginBottom: '80px'
-          }}>
-            <h2 style={{
-              fontSize: 'clamp(36px, 4vw, 48px)',
-              fontWeight: '800',
-              color: '#1a1a1a',
-              marginBottom: '24px',
-              lineHeight: '1.2'
-            }}>
-              How Kampaio Helps You Run Smarter Ads
-            </h2>
-            <p style={{
-              fontSize: 'clamp(18px, 2vw, 20px)',
-              color: '#666',
-              maxWidth: '600px',
-              margin: '0 auto',
-              lineHeight: '1.6'
-            }}>
-              From AI-powered insights to automated optimizations — discover how our platform transforms your Google Ads management
-            </p>
-          </div>
-
-          {/* Features Grid */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
-            gap: '40px',
-            marginBottom: '80px'
-          }}>
-            {/* Feature 1: AI-Powered Analysis */}
-            <FeatureCard
-              title="AI-Powered Analysis"
-              description="Our advanced AI analyzes your campaigns in real-time, identifying performance patterns, detecting anomalies, and uncovering hidden opportunities that traditional analysis might miss."
-              icon={
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                  <path d="M9 11H1l8-8 8 8h-8v8z"/>
-                  <path d="M3 15h6"/>
-                  <path d="M3 19h6"/>
-                </svg>
-              }
-              color="#7f9cf5"
-              gradient="linear-gradient(135deg, #7f9cf5, #667eea)"
-            />
-
-            {/* Feature 2: Automated Optimization */}
-            <FeatureCard
-              title="Automated Optimization"
-              description="Set your goals and watch our AI work 24/7. Automatically adjust bids, pause underperforming keywords, and optimize ad copy - all based on real-time performance data."
-              icon={
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                  <circle cx="12" cy="12" r="3"></circle>
-                  <path d="M12 1v6m0 6v6"/>
-                  <path d="M15.5 4.5l-3 3m3 3l-3-3"/>
-                  <path d="M8.5 4.5l3 3m-3 3l3-3"/>
-                </svg>
-              }
-              color="#00ffe7"
-              gradient="linear-gradient(135deg, #00ffe7, #00d4aa)"
-            />
-
-            {/* Feature 3: Predictive Insights */}
-            <FeatureCard
-              title="Predictive Insights"
-              description="Stay ahead of the competition with predictive analytics. Our AI forecasts campaign performance up to 30 days ahead, identifies seasonal trends, and recommends proactive strategies before your competitors catch on."
-              icon={
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                  <path d="M12 2v4m0 12v4"/>
-                  <path d="M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83"/>
-                  <path d="M19.07 4.93l-2.83 2.83m-8.48 8.48l-2.83 2.83"/>
-                  <circle cx="12" cy="12" r="3"/>
-                </svg>
-              }
-              color="#8b5cf6"
-              gradient="linear-gradient(135deg, #8b5cf6, #a855f7)"
-            />
-          </div>
-
-        </div>
-      </section>
 
       {/* Industries We Serve */}
       <section style={{
