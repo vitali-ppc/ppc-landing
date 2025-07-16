@@ -1,8 +1,117 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Header from '../../components/Header';
 import AnimatedHero from '../../components/AnimatedHero';
+import FeatureCard from '../../components/InteractiveFeatureCard';
+
+// Компонент для анимированных счетчиков
+function AnimatedCounter({ 
+  endValue, 
+  duration = 2000, 
+  delay = 0,
+  suffix = '',
+  prefix = ''
+}: { 
+  endValue: number; 
+  duration?: number; 
+  delay?: number;
+  suffix?: string;
+  prefix?: string;
+}) {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const startTime = Date.now();
+      const startValue = 0;
+      
+      const updateCounter = () => {
+        const currentTime = Date.now();
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        // Easing function for smooth animation
+        const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+        const currentValue = Math.floor(startValue + (endValue - startValue) * easeOutQuart);
+        
+        setCount(currentValue);
+        
+        if (progress < 1) {
+          requestAnimationFrame(updateCounter);
+        }
+      };
+      
+      updateCounter();
+    }, delay);
+
+    return () => clearTimeout(timer);
+  }, [endValue, duration, delay]);
+
+  return (
+    <span style={{
+      fontSize: '28px',
+      fontWeight: '700',
+      color: '#7f9cf5',
+      animation: 'countUp 1s ease-out',
+      animationDelay: `${delay}ms`
+    }}>
+      {prefix}{count}{suffix}
+    </span>
+  );
+}
+
+// Компонент для анимированного счетчика с валютой
+function AnimatedCurrencyCounter({ 
+  endValue, 
+  duration = 2000, 
+  delay = 0
+}: { 
+  endValue: number; 
+  duration?: number; 
+  delay?: number;
+}) {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const startTime = Date.now();
+      const startValue = 0;
+      
+      const updateCounter = () => {
+        const currentTime = Date.now();
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        // Easing function for smooth animation
+        const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+        const currentValue = startValue + (endValue - startValue) * easeOutQuart;
+        
+        setCount(currentValue);
+        
+        if (progress < 1) {
+          requestAnimationFrame(updateCounter);
+        }
+      };
+      
+      updateCounter();
+    }, delay);
+
+    return () => clearTimeout(timer);
+  }, [endValue, duration, delay]);
+
+  return (
+    <span style={{
+      fontSize: '28px',
+      fontWeight: '700',
+      color: '#00ffe7',
+      animation: 'countUp 1s ease-out',
+      animationDelay: `${delay}ms`
+    }}>
+      ${count.toFixed(2)}
+    </span>
+  );
+}
 
 export default function KampaioHome() {
   return (
@@ -50,490 +159,7 @@ export default function KampaioHome() {
       {/* Header */}
       <Header variant="full" />
 
-      {/* Main Hero Block 1 */}
-      <section style={{
-        padding: '120px 0',
-        background: '#1a1a1a',
-        position: 'relative',
-        overflow: 'hidden'
-      }}>
-        {/* Background gradient */}
-        <div style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          background: 'radial-gradient(circle at 20% 30%, rgba(127,156,245,0.15) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(0,255,231,0.1) 0%, transparent 50%)',
-          pointerEvents: 'none'
-        }}></div>
-        
-        <div style={{
-          position: 'relative',
-          zIndex: 1,
-          maxWidth: '1200px',
-          margin: '0 auto',
-          padding: '0 24px'
-        }}>
-          {/* Hero Section - Two Column Layout */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: '80px',
-            alignItems: 'center'
-          }}>
-            {/* Left side - Text content */}
-            <div style={{ textAlign: 'left' }}>
-              <h1 style={{
-                fontSize: 'clamp(40px, 5vw, 56px)',
-                fontWeight: '800',
-                color: '#fff',
-                marginBottom: '24px',
-                marginTop: 0,
-                lineHeight: '1.1'
-              }}>
-                AI Assistant for Smarter Google Ads Management
-              </h1>
-              <p style={{
-                fontSize: 'clamp(18px, 2vw, 22px)',
-                color: '#a0a0a0',
-                marginBottom: '40px',
-                lineHeight: '1.6',
-                fontWeight: '400'
-              }}>
-                Analyze your Google Ads campaigns, discover growth opportunities, and automate optimizations — all with one AI-powered platform
-              </p>
-              
-              {/* CTA Button */}
-              <button style={{
-                background: 'white',
-                border: 'none',
-                borderRadius: '12px',
-                padding: '18px 36px',
-                fontSize: '18px',
-                fontWeight: '700',
-                color: '#1a1a1a',
-                cursor: 'pointer',
-                transition: 'all 0.3s ease',
-                boxShadow: '0 8px 32px rgba(255,255,255,0.2)',
-                letterSpacing: '0.5px'
-              }} onMouseEnter={(e) => {
-                const target = e.target as HTMLElement;
-                target.style.transform = 'translateY(-3px)';
-                target.style.boxShadow = '0 12px 40px rgba(255,255,255,0.3)';
-              }} onMouseLeave={(e) => {
-                const target = e.target as HTMLElement;
-                target.style.transform = 'translateY(0)';
-                target.style.boxShadow = '0 8px 32px rgba(255,255,255,0.2)';
-              }}>
-                Start Your Free Trial
-              </button>
-              
-              {/* No credit card required */}
-              <div style={{
-                marginTop: '12px',
-                textAlign: 'left'
-              }}>
-                <span style={{
-                  fontSize: '12px',
-                  color: '#a0a0a0',
-                  fontWeight: '400'
-                }}>
-                  No credit card required
-                </span>
-              </div>
-            </div>
-
-            {/* Right side - Claude-style Chat Interface */}
-            <div style={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              position: 'relative'
-            }}>
-              {/* Main interface container */}
-              <div style={{
-                width: '550px',
-                height: '400px',
-                background: '#fafafa',
-                borderRadius: '12px',
-                border: '1px solid #e5e5e5',
-                position: 'relative',
-                overflow: 'hidden',
-                boxShadow: '0 20px 60px rgba(0,0,0,0.1)',
-                display: 'flex'
-              }}>
-                {/* Left Sidebar */}
-                <div style={{
-                  width: '200px',
-                  background: '#f5f5f5',
-                  borderRight: '1px solid #e5e5e5',
-                  padding: '20px 0',
-                  display: 'flex',
-                  flexDirection: 'column'
-                }}>
-                  {/* Logo */}
-                  <div style={{
-                    padding: '0 20px 20px 20px',
-                    borderBottom: '1px solid #e5e5e5',
-                    marginBottom: '20px'
-                  }}>
-                    <div style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '8px'
-                    }}>
-                      <div style={{
-                        width: '24px',
-                        height: '24px',
-                        background: 'linear-gradient(135deg, #00ffe7, #7f9cf5)',
-                        borderRadius: '6px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center'
-                      }}>
-                        <span style={{ fontSize: '12px', fontWeight: 'bold', color: '#1a1a1a' }}>K</span>
-                      </div>
-                      <span style={{ color: '#1a1a1a', fontWeight: '600', fontSize: '16px' }}>Kampaio</span>
-                    </div>
-                  </div>
-
-                  {/* Navigation */}
-                  <div style={{
-                    padding: '0 20px',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '8px'
-                  }}>
-                    <div style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '12px',
-                      padding: '8px 12px',
-                      borderRadius: '6px',
-                      cursor: 'pointer',
-                      color: '#1a1a1a',
-                      fontSize: '14px'
-                    }}>
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <line x1="12" y1="5" x2="12" y2="19"></line>
-                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                      </svg>
-                      New chat
-                    </div>
-                    <div style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '12px',
-                      padding: '8px 12px',
-                      borderRadius: '6px',
-                      cursor: 'pointer',
-                      color: '#666',
-                      fontSize: '14px'
-                    }}>
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                      </svg>
-                      Chats
-                    </div>
-                    <div style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '12px',
-                      padding: '8px 12px',
-                      borderRadius: '6px',
-                      cursor: 'pointer',
-                      color: '#666',
-                      fontSize: '14px'
-                    }}>
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <rect x="3" y="3" width="7" height="7"></rect>
-                        <rect x="14" y="3" width="7" height="7"></rect>
-                        <rect x="14" y="14" width="7" height="7"></rect>
-                        <rect x="3" y="14" width="7" height="7"></rect>
-                      </svg>
-                      Analytics
-                    </div>
-                  </div>
-
-                  {/* Recent Chats */}
-                  <div style={{
-                    marginTop: '20px',
-                    padding: '0 20px',
-                    flex: 1,
-                    overflow: 'hidden'
-                  }}>
-                    <div style={{
-                      fontSize: '12px',
-                      color: '#666',
-                      fontWeight: '500',
-                      marginBottom: '12px',
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.5px'
-                    }}>
-                      Recent
-                    </div>
-                    <div style={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      gap: '4px',
-                      maxHeight: '200px',
-                      overflow: 'auto'
-                    }}>
-                      {['Campaign Analysis', 'ROI Optimization', 'Keyword Research', 'Budget Planning', 'Performance Review'].map((chat, index) => (
-                        <div key={index} style={{
-                          padding: '6px 8px',
-                          borderRadius: '4px',
-                          fontSize: '13px',
-                          color: '#666',
-                          cursor: 'pointer',
-                          whiteSpace: 'nowrap',
-                          overflow: 'hidden',
-                          textOverflow: 'ellipsis'
-                        }}>
-                          {chat}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Main Chat Area */}
-                <div style={{
-                  flex: 1,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  background: '#fafafa'
-                }}>
-                  {/* Top Bar */}
-                  <div style={{
-                    padding: '16px 24px',
-                    borderBottom: '1px solid #e5e5e5',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between'
-                  }}>
-                    <div style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '12px'
-                    }}>
-                      <div style={{
-                        width: '8px',
-                        height: '8px',
-                        background: '#00ffe7',
-                        borderRadius: '50%'
-                      }}></div>
-                      <span style={{ color: '#1a1a1a', fontWeight: '500', fontSize: '14px' }}>Welcome, user</span>
-                    </div>
-                    <div style={{
-                      padding: '4px 12px',
-                      background: '#f0f0f0',
-                      borderRadius: '6px',
-                      fontSize: '12px',
-                      color: '#666'
-                    }}>
-                      Free plan
-                    </div>
-                  </div>
-
-                  {/* Chat Messages */}
-                  <div style={{
-                    flex: 1,
-                    padding: '24px',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '16px',
-                    overflow: 'auto'
-                  }}>
-                    {/* AI Message */}
-                    <div style={{
-                      display: 'flex',
-                      gap: '12px',
-                      alignItems: 'flex-start'
-                    }}>
-                      <div style={{
-                        width: '28px',
-                        height: '28px',
-                        background: 'linear-gradient(135deg, #00ffe7, #7f9cf5)',
-                        borderRadius: '6px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        flexShrink: 0
-                      }}>
-                        <span style={{ fontSize: '12px', fontWeight: 'bold', color: '#1a1a1a' }}>K</span>
-                      </div>
-                      <div style={{
-                        background: 'white',
-                        padding: '12px 16px',
-                        borderRadius: '8px',
-                        border: '1px solid #e5e5e5',
-                        fontSize: '14px',
-                        color: '#1a1a1a',
-                        lineHeight: '1.5',
-                        maxWidth: '80%'
-                      }}>
-                        Hello! I'm your AI assistant for Google Ads optimization. I can help you analyze campaigns, find growth opportunities, and automate optimizations. What would you like to work on today?
-                      </div>
-                    </div>
-
-                    {/* User Message */}
-                    <div style={{
-                      display: 'flex',
-                      gap: '12px',
-                      alignItems: 'flex-start',
-                      justifyContent: 'flex-end'
-                    }}>
-                      <div style={{
-                        background: '#f5f5f5',
-                        padding: '12px 16px',
-                        borderRadius: '8px',
-                        fontSize: '14px',
-                        color: '#1a1a1a',
-                        lineHeight: '1.5',
-                        maxWidth: '80%',
-                        border: '1px solid #e5e5e5'
-                      }}>
-                        Can you analyze my recent campaign performance?
-                      </div>
-                      <div style={{
-                        width: '28px',
-                        height: '28px',
-                        background: '#f0f0f0',
-                        borderRadius: '50%',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        flexShrink: 0
-                      }}>
-                        <span style={{ fontSize: '12px', fontWeight: '500', color: '#666' }}>U</span>
-                      </div>
-                    </div>
-
-                    {/* AI Response */}
-                    <div style={{
-                      display: 'flex',
-                      gap: '12px',
-                      alignItems: 'flex-start'
-                    }}>
-                      <div style={{
-                        width: '28px',
-                        height: '28px',
-                        background: 'linear-gradient(135deg, #00ffe7, #7f9cf5)',
-                        borderRadius: '6px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        flexShrink: 0
-                      }}>
-                        <span style={{ fontSize: '12px', fontWeight: 'bold', color: '#1a1a1a' }}>K</span>
-                      </div>
-                      <div style={{
-                        background: 'white',
-                        padding: '12px 16px',
-                        borderRadius: '8px',
-                        border: '1px solid #e5e5e5',
-                        fontSize: '14px',
-                        color: '#1a1a1a',
-                        lineHeight: '1.5',
-                        maxWidth: '80%'
-                      }}>
-                        I've analyzed your recent campaigns and found several optimization opportunities:
-                        <br/><br/>
-                        • <strong>CTR improvement:</strong> 23% potential increase<br/>
-                        • <strong>Cost reduction:</strong> 15% savings possible<br/>
-                        • <strong>Conversion boost:</strong> 8% improvement expected
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Input Area */}
-                  <div style={{
-                    padding: '16px 24px',
-                    borderTop: '1px solid #e5e5e5',
-                    background: 'white'
-                  }}>
-                    <div style={{
-                      display: 'flex',
-                      gap: '12px',
-                      alignItems: 'center',
-                      background: '#f5f5f5',
-                      borderRadius: '8px',
-                      padding: '8px 12px',
-                      border: '1px solid #e5e5e5',
-                      height: '40px',
-                      maxWidth: '400px',
-                      margin: '0 auto'
-                    }}>
-                      <div style={{
-                        display: 'flex',
-                        gap: '8px'
-                      }}>
-                        <div style={{
-                          width: '16px',
-                          height: '16px',
-                          background: '#f0f0f0',
-                          borderRadius: '3px',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          cursor: 'pointer'
-                        }}>
-                          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                            <line x1="12" y1="5" x2="12" y2="19"></line>
-                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                          </svg>
-                        </div>
-                        <div style={{
-                          width: '16px',
-                          height: '16px',
-                          background: '#f0f0f0',
-                          borderRadius: '3px',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          cursor: 'pointer'
-                        }}>
-                          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                            <line x1="18" y1="6" x2="6" y2="18"></line>
-                            <line x1="6" y1="6" x2="18" y2="18"></line>
-                          </svg>
-                        </div>
-                      </div>
-                      <div style={{
-                        flex: 1,
-                        fontSize: '13px',
-                        color: '#666'
-                      }}>
-                        How can I help you today?
-                      </div>
-
-                      <div style={{
-                        width: '28px',
-                        height: '28px',
-                        background: '#1a1a1a',
-                        borderRadius: '6px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        cursor: 'pointer'
-                      }}>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                          <line x1="22" y1="2" x2="11" y2="13"></line>
-                          <polygon points="22,2 15,22 11,13 2,9 22,2"></polygon>
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Main Hero Block 2 - Interactive AI Hero */}
+      {/* Interactive AI Hero */}
       <AnimatedHero />
 
       {/* How Kampaio Helps You Run Smarter Ads */}
@@ -584,6 +210,439 @@ export default function KampaioHome() {
             }}>
               From AI-powered insights to automated optimizations — discover how our platform transforms your Google Ads management
             </p>
+          </div>
+
+          {/* AI ENGINE VISUALIZATION */}
+          <div style={{
+            maxWidth: '1200px',
+            margin: '0 auto 80px auto'
+          }}>
+            <div style={{
+              position: 'relative',
+              background: 'linear-gradient(90deg, #eff6ff 0%, #ecfeff 50%, #faf5ff 100%)',
+              borderRadius: '24px',
+              padding: '48px',
+              boxShadow: '0 8px 32px rgba(0,0,0,0.08)',
+              overflow: 'hidden'
+            }}>
+              {/* BACKGROUND PARTICLES */}
+              <div style={{
+                position: 'absolute',
+                inset: 0,
+                overflow: 'hidden',
+                pointerEvents: 'none'
+              }}>
+                <div style={{
+                  position: 'absolute',
+                  width: '4px',
+                  height: '4px',
+                  background: '#7f9cf5',
+                  borderRadius: '50%',
+                  top: '20%',
+                  left: '15%',
+                  animation: 'float 6s ease-in-out infinite'
+                }}></div>
+                <div style={{
+                  position: 'absolute',
+                  width: '3px',
+                  height: '3px',
+                  background: '#00ffe7',
+                  borderRadius: '50%',
+                  top: '60%',
+                  left: '80%',
+                  animation: 'float 6s ease-in-out infinite',
+                  animationDelay: '2s'
+                }}></div>
+                <div style={{
+                  position: 'absolute',
+                  width: '4px',
+                  height: '4px',
+                  background: '#7f9cf5',
+                  borderRadius: '50%',
+                  top: '80%',
+                  left: '30%',
+                  animation: 'float 6s ease-in-out infinite',
+                  animationDelay: '4s'
+                }}></div>
+              </div>
+
+              <div style={{
+                textAlign: 'center',
+                marginBottom: '24px'
+              }}>
+                <h3 style={{
+                  fontSize: '32px',
+                  fontWeight: '700',
+                  color: '#1a1a1a',
+                  marginBottom: '12px'
+                }}>
+                  AI Engine Under the Hood
+                </h3>
+                <p style={{
+                  fontSize: '18px',
+                  color: '#666'
+                }}>
+                  See how your data transforms into intelligent insights
+                </p>
+              </div>
+              
+              {/* PROCESS FLOW */}
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                marginBottom: '32px'
+              }}>
+                
+                {/* INPUT */}
+                <div style={{
+                  textAlign: 'center',
+                  flex: 1
+                }}>
+                  <div style={{
+                    width: '80px',
+                    height: '80px',
+                    background: 'white',
+                    borderRadius: '16px',
+                    boxShadow: '0 4px 16px rgba(0,0,0,0.1)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    margin: '0 auto 16px auto',
+                    animation: 'pulse 2s infinite'
+                  }}>
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#666" strokeWidth="2" style={{
+                      animation: 'pulse 2s infinite'
+                    }}>
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                    </svg>
+                  </div>
+                  <h4 style={{
+                    fontSize: '20px',
+                    fontWeight: '700',
+                    color: '#1a1a1a',
+                    marginBottom: '6px'
+                  }}>
+                    Your Data
+                  </h4>
+                  <div style={{
+                    fontSize: '15px',
+                    color: '#666',
+                    lineHeight: '1.5'
+                  }}>
+                    <div>• Campaign metrics</div>
+                    <div>• Keywords performance</div>
+                    <div>• Historical data</div>
+                  </div>
+                </div>
+                
+                {/* ARROW 1 - АНИМИРОВАННАЯ */}
+                <div style={{
+                  margin: '0 32px',
+                  position: 'relative'
+                }}>
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center'
+                  }}>
+                    <div style={{
+                      width: '48px',
+                      height: '3px',
+                      background: '#7f9cf5',
+                      position: 'relative',
+                      overflow: 'hidden'
+                    }}>
+                      <div style={{
+                        position: 'absolute',
+                        inset: 0,
+                        background: 'linear-gradient(90deg, transparent, white, transparent)',
+                        width: '16px',
+                        animation: 'dataFlow 2s ease-in-out infinite'
+                      }}></div>
+                    </div>
+                    <div style={{
+                      width: '0',
+                      height: '0',
+                      borderLeft: '6px solid #7f9cf5',
+                      borderTop: '4px solid transparent',
+                      borderBottom: '4px solid transparent',
+                      animation: 'pulse 2s infinite'
+                    }}></div>
+                  </div>
+                  <div style={{
+                    fontSize: '12px',
+                    color: '#7f9cf5',
+                    marginTop: '4px',
+                    animation: 'pulse 2s infinite'
+                  }}>
+                    Processing...
+                  </div>
+                  {/* Движущиеся точки данных */}
+                  <div style={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: '0',
+                    width: '4px',
+                    height: '4px',
+                    background: '#7f9cf5',
+                    borderRadius: '50%',
+                    animation: 'dataFlow 2s ease-in-out infinite'
+                  }}></div>
+                  <div style={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: '8px',
+                    width: '3px',
+                    height: '3px',
+                    background: '#7f9cf5',
+                    borderRadius: '50%',
+                    animation: 'dataFlow 2s ease-in-out infinite',
+                    animationDelay: '0.5s'
+                  }}></div>
+                  <div style={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: '16px',
+                    width: '3px',
+                    height: '3px',
+                    background: '#7f9cf5',
+                    borderRadius: '50%',
+                    animation: 'dataFlow 2s ease-in-out infinite',
+                    animationDelay: '1s'
+                  }}></div>
+                </div>
+                
+                {/* AI BRAIN - УСИЛЕННАЯ АНИМАЦИЯ */}
+                <div style={{
+                  textAlign: 'center',
+                  flex: 1
+                }}>
+                  <div style={{
+                    width: '100px',
+                    height: '100px',
+                    background: 'linear-gradient(135deg, #7f9cf5 0%, #00ffe7 100%)',
+                    borderRadius: '16px',
+                    boxShadow: '0 8px 24px rgba(127,156,245,0.3)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    margin: '0 auto 16px auto',
+                    animation: 'aiEnginePulse 3s ease-in-out infinite, spin-slow 8s linear infinite'
+                  }}>
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" style={{
+                      animation: 'aiEngineGlow 2s ease-in-out infinite alternate'
+                    }}>
+                      <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.23 3 3 0 0 1-.34-5.58l.34-.03a2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"/>
+                      <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.23 3 3 0 0 0 .34-5.58l-.34-.03a2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"/>
+                    </svg>
+                  </div>
+                  <h4 style={{
+                    fontSize: '20px',
+                    fontWeight: '700',
+                    color: '#1a1a1a',
+                    marginBottom: '6px'
+                  }}>
+                    AI Engine
+                  </h4>
+                  <div style={{
+                    fontSize: '15px',
+                    color: '#666',
+                    lineHeight: '1.5'
+                  }}>
+                    <div>🧠 Analysis</div>
+                    <div>⚙️ Optimization</div>
+                    <div>🔮 Predictions</div>
+                  </div>
+                </div>
+                
+                {/* ARROW 2 - АНИМИРОВАННАЯ */}
+                <div style={{
+                  margin: '0 32px',
+                  position: 'relative'
+                }}>
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center'
+                  }}>
+                    <div style={{
+                      width: '48px',
+                      height: '3px',
+                      background: '#00ffe7',
+                      position: 'relative',
+                      overflow: 'hidden'
+                    }}>
+                      <div style={{
+                        position: 'absolute',
+                        inset: 0,
+                        background: 'linear-gradient(90deg, transparent, white, transparent)',
+                        width: '16px',
+                        animation: 'dataFlow 2s ease-in-out infinite'
+                      }}></div>
+                    </div>
+                    <div style={{
+                      width: '0',
+                      height: '0',
+                      borderLeft: '6px solid #00ffe7',
+                      borderTop: '4px solid transparent',
+                      borderBottom: '4px solid transparent',
+                      animation: 'pulse 2s infinite'
+                    }}></div>
+                  </div>
+                  <div style={{
+                    fontSize: '12px',
+                    color: '#00ffe7',
+                    marginTop: '4px',
+                    animation: 'pulse 2s infinite'
+                  }}>
+                    Results!
+                  </div>
+                  {/* Движущиеся точки данных */}
+                  <div style={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: '0',
+                    width: '4px',
+                    height: '4px',
+                    background: '#00ffe7',
+                    borderRadius: '50%',
+                    animation: 'dataFlow 2s ease-in-out infinite'
+                  }}></div>
+                  <div style={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: '8px',
+                    width: '3px',
+                    height: '3px',
+                    background: '#00ffe7',
+                    borderRadius: '50%',
+                    animation: 'dataFlow 2s ease-in-out infinite',
+                    animationDelay: '0.5s'
+                  }}></div>
+                  <div style={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: '16px',
+                    width: '3px',
+                    height: '3px',
+                    background: '#00ffe7',
+                    borderRadius: '50%',
+                    animation: 'dataFlow 2s ease-in-out infinite',
+                    animationDelay: '1s'
+                  }}></div>
+                </div>
+                
+                {/* OUTPUT */}
+                <div style={{
+                  textAlign: 'center',
+                  flex: 1
+                }}>
+                  <div style={{
+                    width: '80px',
+                    height: '80px',
+                    background: 'white',
+                    borderRadius: '16px',
+                    boxShadow: '0 4px 16px rgba(0,0,0,0.1)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    margin: '0 auto 16px auto',
+                    animation: 'pulse 2s infinite'
+                  }}>
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#00ffe7" strokeWidth="2" style={{
+                      animation: 'pulse 2s infinite'
+                    }}>
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                      <polyline points="22,4 12,14.01 9,11.01"/>
+                    </svg>
+                  </div>
+                  <h4 style={{
+                    fontSize: '20px',
+                    fontWeight: '700',
+                    color: '#1a1a1a',
+                    marginBottom: '6px'
+                  }}>
+                    Smart Results
+                  </h4>
+                  <div style={{
+                    fontSize: '15px',
+                    color: '#666',
+                    lineHeight: '1.5'
+                  }}>
+                    <div>• Issues detected</div>
+                    <div>• Costs optimized</div>
+                    <div>• Future predicted</div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* METRICS BAR - АНИМИРОВАННЫЕ СЧЕТЧИКИ */}
+              <div style={{
+                background: 'white',
+                borderRadius: '12px',
+                padding: '24px',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.05)'
+              }}>
+                <div style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  textAlign: 'center'
+                }}>
+                  <div style={{
+                    animation: 'fadeInUp 0.8s ease-out'
+                  }}>
+                    <div style={{
+                      animation: 'countUp 1s ease-out'
+                    }}>
+                      <AnimatedCounter endValue={85} suffix="%" delay={500} />
+                    </div>
+                    <div style={{
+                      fontSize: '14px',
+                      color: '#23272f',
+                      fontWeight: '500'
+                    }}>
+                      Faster Detection
+                    </div>
+                  </div>
+                  <div style={{
+                    animation: 'fadeInUp 0.8s ease-out',
+                    animationDelay: '0.2s'
+                  }}>
+                    <div style={{
+                      animation: 'countUp 1s ease-out',
+                      animationDelay: '0.2s'
+                    }}>
+                      <AnimatedCurrencyCounter endValue={1.30} delay={700} />
+                    </div>
+                    <div style={{
+                      fontSize: '14px',
+                      color: '#374151',
+                      fontWeight: '500'
+                    }}>
+                      Saved Per Click
+                    </div>
+                  </div>
+                  <div style={{
+                    animation: 'fadeInUp 0.8s ease-out',
+                    animationDelay: '0.4s'
+                  }}>
+                    <div style={{
+                      animation: 'countUp 1s ease-out',
+                      animationDelay: '0.4s'
+                    }}>
+                      <AnimatedCounter endValue={87} suffix="%" delay={900} />
+                    </div>
+                    <div style={{
+                      fontSize: '14px',
+                      color: '#374151',
+                      fontWeight: '500'
+                    }}>
+                      Prediction Accuracy
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* Features Grid */}
@@ -968,6 +1027,114 @@ export default function KampaioHome() {
             </div>
           </div>
 
+
+        </div>
+      </section>
+
+      {/* How Kampaio Helps You Run Smarter Ads - DUPLICATE */}
+      <section style={{
+        padding: '120px 0',
+        background: 'linear-gradient(180deg, #fafbfc 0%, #ffffff 100%)',
+        position: 'relative',
+        overflow: 'hidden'
+      }}>
+        {/* Gradient Transition from Previous Section */}
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '100px',
+          background: 'linear-gradient(180deg, rgba(26,26,26,0.1) 0%, transparent 100%)',
+          pointerEvents: 'none'
+        }}></div>
+
+        <div style={{
+          maxWidth: '1200px',
+          margin: '0 auto',
+          padding: '0 24px',
+          position: 'relative',
+          zIndex: 1
+        }}>
+          {/* Section Header */}
+          <div style={{
+            textAlign: 'center',
+            marginBottom: '80px'
+          }}>
+            <h2 style={{
+              fontSize: 'clamp(36px, 4vw, 48px)',
+              fontWeight: '800',
+              color: '#1a1a1a',
+              marginBottom: '24px',
+              lineHeight: '1.2'
+            }}>
+              How Kampaio Helps You Run Smarter Ads
+            </h2>
+            <p style={{
+              fontSize: 'clamp(18px, 2vw, 20px)',
+              color: '#666',
+              maxWidth: '600px',
+              margin: '0 auto',
+              lineHeight: '1.6'
+            }}>
+              From AI-powered insights to automated optimizations — discover how our platform transforms your Google Ads management
+            </p>
+          </div>
+
+          {/* Features Grid */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
+            gap: '40px',
+            marginBottom: '80px'
+          }}>
+            {/* Feature 1: AI-Powered Analysis */}
+            <FeatureCard
+              title="AI-Powered Analysis"
+              description="Our advanced AI analyzes your campaigns in real-time, identifying performance patterns, detecting anomalies, and uncovering hidden opportunities that traditional analysis might miss."
+              icon={
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                  <path d="M9 11H1l8-8 8 8h-8v8z"/>
+                  <path d="M3 15h6"/>
+                  <path d="M3 19h6"/>
+                </svg>
+              }
+              color="#7f9cf5"
+              gradient="linear-gradient(135deg, #7f9cf5, #667eea)"
+            />
+
+            {/* Feature 2: Automated Optimization */}
+            <FeatureCard
+              title="Automated Optimization"
+              description="Set your goals and watch our AI work 24/7. Automatically adjust bids, pause underperforming keywords, and optimize ad copy - all based on real-time performance data."
+              icon={
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                  <circle cx="12" cy="12" r="3"></circle>
+                  <path d="M12 1v6m0 6v6"/>
+                  <path d="M15.5 4.5l-3 3m3 3l-3-3"/>
+                  <path d="M8.5 4.5l3 3m-3 3l3-3"/>
+                </svg>
+              }
+              color="#00ffe7"
+              gradient="linear-gradient(135deg, #00ffe7, #00d4aa)"
+            />
+
+            {/* Feature 3: Predictive Insights */}
+            <FeatureCard
+              title="Predictive Insights"
+              description="Stay ahead of the competition with predictive analytics. Our AI forecasts campaign performance up to 30 days ahead, identifies seasonal trends, and recommends proactive strategies before your competitors catch on."
+              icon={
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                  <path d="M12 2v4m0 12v4"/>
+                  <path d="M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83"/>
+                  <path d="M19.07 4.93l-2.83 2.83m-8.48 8.48l-2.83 2.83"/>
+                  <circle cx="12" cy="12" r="3"/>
+                </svg>
+              }
+              color="#8b5cf6"
+              gradient="linear-gradient(135deg, #8b5cf6, #a855f7)"
+            />
+          </div>
 
         </div>
       </section>
