@@ -2,8 +2,44 @@
 
 import { useState } from 'react';
 import Header from '../../components/Header';
+import AnimatedHero from '../../components/AnimatedHero';
 
 export default function KampaioHome() {
+  return (
+    <>
+      <style jsx>{`
+        @keyframes aiPulse {
+          0%, 100% { 
+            transform: scale(1);
+            box-shadow: 0 8px 40px rgba(26,26,26,0.15);
+          }
+          50% { 
+            transform: scale(1.05);
+            box-shadow: 0 12px 50px rgba(26,26,26,0.25);
+          }
+        }
+        
+        @keyframes rotate {
+          from { transform: translate(-50%,-50%) rotate(0deg); }
+          to { transform: translate(-50%,-50%) rotate(360deg); }
+        }
+        
+        @keyframes flow {
+          0% { transform: translateX(-100%); opacity: 0; }
+          50% { opacity: 1; }
+          100% { transform: translateX(100%); opacity: 0; }
+        }
+        
+        @keyframes pulse {
+          0%, 100% { opacity: 0.6; }
+          50% { opacity: 1; }
+        }
+        
+        @keyframes countUp {
+          from { transform: translateY(20px); opacity: 0; }
+          to { transform: translateY(0); opacity: 1; }
+        }
+      `}</style>
   return (
     <div style={{
       minHeight: '100vh',
@@ -14,9 +50,7 @@ export default function KampaioHome() {
       {/* Header */}
       <Header variant="full" />
 
-
-
-      {/* Main Hero Block */}
+      {/* Main Hero Block 1 */}
       <section style={{
         padding: '120px 0',
         background: '#1a1a1a',
@@ -497,11 +531,10 @@ export default function KampaioHome() {
             </div>
           </div>
         </div>
-
-
       </section>
 
-
+      {/* Main Hero Block 2 - Interactive AI Hero */}
+      <AnimatedHero />
 
       {/* How Kampaio Helps You Run Smarter Ads */}
       <section style={{
@@ -1967,853 +2000,799 @@ export default function KampaioHome() {
         </div>
       </section>
 
-      {/* AI Decision Engine - Interactive Demo */}
+      {/* === ВАРІАНТ 1: Professional Code Editor === */}
       <section style={{
-        padding: '120px 0',
-        background: 'linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%)',
-        position: 'relative',
-        overflow: 'hidden'
+        background:'white',
+        padding:'120px 0 48px 0',
+        overflow:'hidden',
+        position:'relative'
       }}>
-        {/* Animated background elements */}
+        <div style={{textAlign:'center',marginBottom:'48px'}}>
+          <h2 style={{fontSize:'32px',fontWeight:'700',color:'#1a1a1a',marginBottom:'16px',marginTop:0}}>AI в дії</h2>
+          <p style={{fontSize:'18px',color:'#a0a0a0',margin:0}}>Як Kampaio AI аналізує дані та приймає рішення</p>
+        </div>
+        
+        {/* Professional Code Editor Layout */}
         <div style={{
-          position: 'absolute',
-          top: '10%',
-          left: '10%',
-          width: '200px',
-          height: '200px',
-          background: 'radial-gradient(circle, rgba(127,156,245,0.1) 0%, transparent 70%)',
-          borderRadius: '50%',
-          animation: 'pulse 4s ease-in-out infinite'
-        }}></div>
-        <div style={{
-          position: 'absolute',
-          top: '60%',
-          right: '15%',
-          width: '150px',
-          height: '150px',
-          background: 'radial-gradient(circle, rgba(0,255,231,0.1) 0%, transparent 70%)',
-          borderRadius: '50%',
-          animation: 'pulse 4s ease-in-out infinite 2s'
-        }}></div>
-
-        <div style={{
-          maxWidth: '1200px',
-          margin: '0 auto',
-          padding: '0 24px',
-          position: 'relative',
-          zIndex: 1
+          maxWidth:'1000px',
+          margin:'0 auto 60px auto',
+          background:'#fafafa',
+          borderRadius:'12px',
+          border:'1px solid #e5e5e5',
+          overflow:'hidden',
+          boxShadow:'0 8px 32px rgba(0,0,0,0.08)'
         }}>
-          {/* Section Header */}
+          {/* Editor Header */}
           <div style={{
-            textAlign: 'center',
-            marginBottom: '80px'
+            background:'#f5f5f5',
+            padding:'16px 24px',
+            borderBottom:'1px solid #e5e5e5',
+            display:'flex',
+            alignItems:'center',
+            gap:'12px'
           }}>
-            <h2 style={{
-              fontSize: 'clamp(36px, 4vw, 48px)',
-              fontWeight: '800',
-              color: '#fff',
-              marginBottom: '24px',
-              lineHeight: '1.2'
+            <div style={{
+              display:'flex',
+              gap:'8px'
             }}>
-              See AI in Action
-            </h2>
-            <p style={{
-              fontSize: 'clamp(18px, 2vw, 20px)',
-              color: '#a0a0a0',
-              maxWidth: '600px',
-              margin: '0 auto',
-              lineHeight: '1.6'
-            }}>
-              Watch our AI analyze your campaign data, identify patterns, and make intelligent optimization decisions in real-time
-            </p>
-          </div>
-
-          {/* Interactive AI Demo */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: '60px',
-            alignItems: 'center'
-          }}>
-            {/* Left side - AI Decision Process */}
-            <div>
               <div style={{
-                background: 'rgba(255,255,255,0.05)',
-                borderRadius: '20px',
-                padding: '40px',
-                border: '1px solid rgba(255,255,255,0.1)',
-                backdropFilter: 'blur(10px)'
-              }}>
-                <h3 style={{
-                  fontSize: '24px',
-                  fontWeight: '700',
-                  color: '#fff',
-                  marginBottom: '32px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '12px'
-                }}>
-                  <div style={{
-                    width: '32px',
-                    height: '32px',
-                    background: 'linear-gradient(135deg, #00ffe7, #7f9cf5)',
-                    borderRadius: '50%',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontSize: '16px',
-                    fontWeight: 'bold',
-                    color: '#1a1a1a'
-                  }}>
-                    🤖
-                  </div>
-                  AI Decision Engine
-                </h3>
-
-                {/* Decision Steps */}
-                <div style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '24px'
-                }}>
-                  {/* Step 1: Data Analysis */}
-                  <div style={{
-                    background: 'rgba(127,156,245,0.1)',
-                    borderRadius: '12px',
-                    padding: '20px',
-                    border: '1px solid rgba(127,156,245,0.2)',
-                    animation: 'fadeIn 0.6s ease-out',
-                    position: 'relative',
-                    overflow: 'hidden'
-                  }}>
-                    <div style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '12px',
-                      marginBottom: '12px'
-                    }}>
-                      <div style={{
-                        width: '24px',
-                        height: '24px',
-                        background: '#7f9cf5',
-                        borderRadius: '50%',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        fontSize: '12px',
-                        fontWeight: 'bold',
-                        color: 'white',
-                        animation: 'rotate 2s linear infinite'
-                      }}>
-                        1
-                      </div>
-                      <span style={{
-                        fontSize: '16px',
-                        fontWeight: '600',
-                        color: '#fff'
-                      }}>
-                        Data Analysis
-                      </span>
-                    </div>
-                    <p style={{
-                      fontSize: '14px',
-                      color: '#a0a0a0',
-                      lineHeight: '1.5',
-                      margin: 0
-                    }}>
-                      <span style={{ animation: 'typing 2s steps(40, end) infinite' }}>
-                        Analyzing 2,847 clicks, 156 conversions, and 89 keywords across 3 campaigns...
-                      </span>
-                    </p>
-                    <div style={{
-                      display: 'flex',
-                      gap: '8px',
-                      marginTop: '12px'
-                    }}>
-                      <div style={{
-                        width: '8px',
-                        height: '8px',
-                        background: '#7f9cf5',
-                        borderRadius: '50%',
-                        animation: 'pulse 1s ease infinite'
-                      }}></div>
-                      <div style={{
-                        width: '8px',
-                        height: '8px',
-                        background: '#7f9cf5',
-                        borderRadius: '50%',
-                        animation: 'pulse 1s ease infinite 0.2s'
-                      }}></div>
-                      <div style={{
-                        width: '8px',
-                        height: '8px',
-                        background: '#7f9cf5',
-                        borderRadius: '50%',
-                        animation: 'pulse 1s ease infinite 0.4s'
-                      }}></div>
-                    </div>
-                    {/* Animated data flow lines */}
-                    <div style={{
-                      position: 'absolute',
-                      top: '0',
-                      left: '0',
-                      right: '0',
-                      bottom: '0',
-                      pointerEvents: 'none'
-                    }}>
-                      <div style={{
-                        position: 'absolute',
-                        top: '10px',
-                        left: '-20px',
-                        width: '40px',
-                        height: '2px',
-                        background: 'linear-gradient(90deg, transparent, #7f9cf5, transparent)',
-                        animation: 'slideRight 2s ease-in-out infinite'
-                      }}></div>
-                      <div style={{
-                        position: 'absolute',
-                        top: '30px',
-                        right: '-20px',
-                        width: '40px',
-                        height: '2px',
-                        background: 'linear-gradient(90deg, transparent, #7f9cf5, transparent)',
-                        animation: 'slideLeft 2s ease-in-out infinite 0.5s'
-                      }}></div>
-                    </div>
-                  </div>
-
-                  {/* Step 2: Pattern Recognition */}
-                  <div style={{
-                    background: 'rgba(0,255,231,0.1)',
-                    borderRadius: '12px',
-                    padding: '20px',
-                    border: '1px solid rgba(0,255,231,0.2)',
-                    animation: 'fadeIn 0.6s ease-out 0.3s both',
-                    position: 'relative',
-                    overflow: 'hidden'
-                  }}>
-                    <div style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '12px',
-                      marginBottom: '12px'
-                    }}>
-                      <div style={{
-                        width: '24px',
-                        height: '24px',
-                        background: '#00ffe7',
-                        borderRadius: '50%',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        fontSize: '12px',
-                        fontWeight: 'bold',
-                        color: '#1a1a1a',
-                        animation: 'pulse 1.5s ease infinite'
-                      }}>
-                        2
-                      </div>
-                      <span style={{
-                        fontSize: '16px',
-                        fontWeight: '600',
-                        color: '#fff'
-                      }}>
-                        Pattern Recognition
-                      </span>
-                    </div>
-                    <p style={{
-                      fontSize: '14px',
-                      color: '#a0a0a0',
-                      lineHeight: '1.5',
-                      margin: 0
-                    }}>
-                      <span style={{ animation: 'typing 2.5s steps(60, end) infinite 0.3s' }}>
-                        Detected: Mobile users convert 3.2x better than desktop for "dentist near me" keywords
-                      </span>
-                    </p>
-                    <div style={{
-                      background: 'rgba(0,255,231,0.2)',
-                      borderRadius: '8px',
-                      padding: '8px 12px',
-                      marginTop: '12px',
-                      animation: 'pulse 2s ease infinite 1s'
-                    }}>
-                      <span style={{
-                        fontSize: '12px',
-                        color: '#00ffe7',
-                        fontWeight: '600'
-                      }}>
-                        🎯 High-value insight identified
-                      </span>
-                    </div>
-                    {/* Animated pattern lines */}
-                    <div style={{
-                      position: 'absolute',
-                      top: '0',
-                      left: '0',
-                      right: '0',
-                      bottom: '0',
-                      pointerEvents: 'none'
-                    }}>
-                      <div style={{
-                        position: 'absolute',
-                        top: '15px',
-                        left: '50%',
-                        width: '2px',
-                        height: '20px',
-                        background: 'linear-gradient(180deg, transparent, #00ffe7, transparent)',
-                        animation: 'slideRight 2s ease-in-out infinite 0.3s'
-                      }}></div>
-                      <div style={{
-                        position: 'absolute',
-                        bottom: '15px',
-                        right: '30px',
-                        width: '2px',
-                        height: '15px',
-                        background: 'linear-gradient(180deg, transparent, #00ffe7, transparent)',
-                        animation: 'slideLeft 2s ease-in-out infinite 0.8s'
-                      }}></div>
-                    </div>
-                  </div>
-
-                  {/* Step 3: Optimization Decision */}
-                  <div style={{
-                    background: 'rgba(139,92,246,0.1)',
-                    borderRadius: '12px',
-                    padding: '20px',
-                    border: '1px solid rgba(139,92,246,0.2)',
-                    animation: 'fadeIn 0.6s ease-out 0.6s both',
-                    position: 'relative',
-                    overflow: 'hidden'
-                  }}>
-                    <div style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '12px',
-                      marginBottom: '12px'
-                    }}>
-                      <div style={{
-                        width: '24px',
-                        height: '24px',
-                        background: '#8b5cf6',
-                        borderRadius: '50%',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        fontSize: '12px',
-                        fontWeight: 'bold',
-                        color: 'white',
-                        animation: 'rotate 3s linear infinite'
-                      }}>
-                        3
-                      </div>
-                      <span style={{
-                        fontSize: '16px',
-                        fontWeight: '600',
-                        color: '#fff'
-                      }}>
-                        Optimization Decision
-                      </span>
-                    </div>
-                    <p style={{
-                      fontSize: '14px',
-                      color: '#a0a0a0',
-                      lineHeight: '1.5',
-                      margin: 0
-                    }}>
-                      <span style={{ animation: 'typing 3s steps(70, end) infinite 0.6s' }}>
-                        Recommended: Increase mobile bid adjustment by +25% for high-converting keywords
-                      </span>
-                    </p>
-                    <div style={{
-                      display: 'flex',
-                      gap: '8px',
-                      marginTop: '12px'
-                    }}>
-                      <div style={{
-                        background: '#8b5cf6',
-                        color: 'white',
-                        padding: '4px 8px',
-                        borderRadius: '4px',
-                        fontSize: '11px',
-                        fontWeight: '600',
-                        animation: 'pulse 2s ease infinite 1.5s'
-                      }}>
-                        Confidence: 94%
-                      </div>
-                      <div style={{
-                        background: 'rgba(139,92,246,0.3)',
-                        color: '#8b5cf6',
-                        padding: '4px 8px',
-                        borderRadius: '4px',
-                        fontSize: '11px',
-                        fontWeight: '600',
-                        animation: 'pulse 2s ease infinite 2s'
-                      }}>
-                        ROI Impact: +18%
-                      </div>
-                    </div>
-                    {/* Animated decision arrows */}
-                    <div style={{
-                      position: 'absolute',
-                      top: '0',
-                      left: '0',
-                      right: '0',
-                      bottom: '0',
-                      pointerEvents: 'none'
-                    }}>
-                      <div style={{
-                        position: 'absolute',
-                        top: '10px',
-                        right: '15px',
-                        width: '0',
-                        height: '0',
-                        borderLeft: '8px solid #8b5cf6',
-                        borderTop: '6px solid transparent',
-                        borderBottom: '6px solid transparent',
-                        animation: 'slideRight 2s ease-in-out infinite 0.6s'
-                      }}></div>
-                      <div style={{
-                        position: 'absolute',
-                        bottom: '10px',
-                        left: '15px',
-                        width: '0',
-                        height: '0',
-                        borderRight: '8px solid #8b5cf6',
-                        borderTop: '6px solid transparent',
-                        borderBottom: '6px solid transparent',
-                        animation: 'slideLeft 2s ease-in-out infinite 1.2s'
-                      }}></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                width:'12px',
+                height:'12px',
+                borderRadius:'50%',
+                background:'#ff5f56'
+              }}></div>
+              <div style={{
+                width:'12px',
+                height:'12px',
+                borderRadius:'50%',
+                background:'#ffbd2e'
+              }}></div>
+              <div style={{
+                width:'12px',
+                height:'12px',
+                borderRadius:'50%',
+                background:'#27ca3f'
+              }}></div>
             </div>
-
-            {/* Right side - Live Metrics Dashboard */}
-            <div>
-              <div style={{
-                background: 'rgba(255,255,255,0.05)',
-                borderRadius: '20px',
-                padding: '40px',
-                border: '1px solid rgba(255,255,255,0.1)',
-                backdropFilter: 'blur(10px)'
-              }}>
-                <h3 style={{
-                  fontSize: '24px',
-                  fontWeight: '700',
-                  color: '#fff',
-                  marginBottom: '32px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '12px'
-                }}>
-                  <div style={{
-                    width: '32px',
-                    height: '32px',
-                    background: 'linear-gradient(135deg, #ff6b6b, #ffa726)',
-                    borderRadius: '50%',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontSize: '16px',
-                    fontWeight: 'bold',
-                    color: 'white'
-                  }}>
-                    📊
-                  </div>
-                  Live Performance Metrics
-                </h3>
-
-                {/* Metrics Grid */}
-                <div style={{
-                  display: 'grid',
-                  gridTemplateColumns: '1fr 1fr',
-                  gap: '20px',
-                  marginBottom: '32px'
-                }}>
-                  {/* CTR */}
-                  <div style={{
-                    background: 'rgba(255,255,255,0.1)',
-                    borderRadius: '12px',
-                    padding: '20px',
-                    textAlign: 'center',
-                    animation: 'fadeIn 0.6s ease-out 0.9s both',
-                    position: 'relative',
-                    overflow: 'hidden'
-                  }}>
-                    <div style={{
-                      fontSize: '32px',
-                      fontWeight: '800',
-                      color: '#00ffe7',
-                      marginBottom: '8px',
-                      animation: 'countUp 3s ease-out infinite'
-                    }}>
-                      4.2%
-                    </div>
-                    <div style={{
-                      fontSize: '14px',
-                      color: '#a0a0a0',
-                      fontWeight: '500'
-                    }}>
-                      Click-Through Rate
-                    </div>
-                    <div style={{
-                      fontSize: '12px',
-                      color: '#00d4aa',
-                      marginTop: '4px'
-                    }}>
-                      +12% vs last week
-                    </div>
-                    {/* Animated progress bar */}
-                    <div style={{
-                      position: 'absolute',
-                      bottom: '0',
-                      left: '0',
-                      height: '3px',
-                      background: 'linear-gradient(90deg, #00ffe7, #7f9cf5)',
-                      animation: 'progressBar 3s ease-in-out infinite',
-                      borderRadius: '0 0 12px 12px'
-                    }}></div>
-                  </div>
-
-                  {/* Conversion Rate */}
-                  <div style={{
-                    background: 'rgba(255,255,255,0.1)',
-                    borderRadius: '12px',
-                    padding: '20px',
-                    textAlign: 'center',
-                    animation: 'fadeIn 0.6s ease-out 1.2s both',
-                    position: 'relative',
-                    overflow: 'hidden'
-                  }}>
-                    <div style={{
-                      fontSize: '32px',
-                      fontWeight: '800',
-                      color: '#7f9cf5',
-                      marginBottom: '8px',
-                      animation: 'countUp 3s ease-out infinite 0.5s'
-                    }}>
-                      8.7%
-                    </div>
-                    <div style={{
-                      fontSize: '14px',
-                      color: '#a0a0a0',
-                      fontWeight: '500'
-                    }}>
-                      Conversion Rate
-                    </div>
-                    <div style={{
-                      fontSize: '12px',
-                      color: '#7f9cf5',
-                      marginTop: '4px'
-                    }}>
-                      +5% vs last week
-                    </div>
-                    {/* Animated progress bar */}
-                    <div style={{
-                      position: 'absolute',
-                      bottom: '0',
-                      left: '0',
-                      height: '3px',
-                      background: 'linear-gradient(90deg, #7f9cf5, #00ffe7)',
-                      animation: 'progressBar 3s ease-in-out infinite 0.5s',
-                      borderRadius: '0 0 12px 12px'
-                    }}></div>
-                  </div>
-
-                  {/* Cost per Conversion */}
-                  <div style={{
-                    background: 'rgba(255,255,255,0.1)',
-                    borderRadius: '12px',
-                    padding: '20px',
-                    textAlign: 'center',
-                    animation: 'fadeIn 0.6s ease-out 1.5s both'
-                  }}>
-                    <div style={{
-                      fontSize: '32px',
-                      fontWeight: '800',
-                      color: '#ff6b6b',
-                      marginBottom: '8px'
-                    }}>
-                      $24.50
-                    </div>
-                    <div style={{
-                      fontSize: '14px',
-                      color: '#a0a0a0',
-                      fontWeight: '500'
-                    }}>
-                      Cost per Conversion
-                    </div>
-                    <div style={{
-                      fontSize: '12px',
-                      color: '#ff6b6b',
-                      marginTop: '4px'
-                    }}>
-                      -8% vs last week
-                    </div>
-                  </div>
-
-                  {/* ROAS */}
-                  <div style={{
-                    background: 'rgba(255,255,255,0.1)',
-                    borderRadius: '12px',
-                    padding: '20px',
-                    textAlign: 'center',
-                    animation: 'fadeIn 0.6s ease-out 1.8s both'
-                  }}>
-                    <div style={{
-                      fontSize: '32px',
-                      fontWeight: '800',
-                      color: '#8b5cf6',
-                      marginBottom: '8px'
-                    }}>
-                      4.1x
-                    </div>
-                    <div style={{
-                      fontSize: '14px',
-                      color: '#a0a0a0',
-                      fontWeight: '500'
-                    }}>
-                      Return on Ad Spend
-                    </div>
-                    <div style={{
-                      fontSize: '12px',
-                      color: '#8b5cf6',
-                      marginTop: '4px'
-                    }}>
-                      +15% vs last week
-                    </div>
-                  </div>
-                </div>
-
-                                 {/* AI Status */}
-                 <div style={{
-                   background: 'rgba(0,255,231,0.1)',
-                   borderRadius: '12px',
-                   padding: '20px',
-                   border: '1px solid rgba(0,255,231,0.2)',
-                   animation: 'fadeIn 0.6s ease-out 2.1s both',
-                   position: 'relative',
-                   overflow: 'hidden'
-                 }}>
-                   <div style={{
-                     display: 'flex',
-                     alignItems: 'center',
-                     gap: '12px',
-                     marginBottom: '12px'
-                   }}>
-                     <div style={{
-                       width: '20px',
-                       height: '20px',
-                       background: '#00ffe7',
-                       borderRadius: '50%',
-                       animation: 'pulse 2s ease infinite'
-                     }}></div>
-                     <span style={{
-                       fontSize: '16px',
-                       fontWeight: '600',
-                       color: '#fff'
-                     }}>
-                       AI Status: Active & Optimizing
-                     </span>
-                   </div>
-                   <p style={{
-                     fontSize: '14px',
-                     color: '#a0a0a0',
-                     lineHeight: '1.5',
-                     margin: 0
-                   }}>
-                     <span style={{ animation: 'typing 3s steps(50, end) infinite' }}>
-                       Last optimization: 2 minutes ago • Next analysis: 5 minutes
-                     </span>
-                   </p>
-                   {/* Animated data particles */}
-                   <div style={{
-                     position: 'absolute',
-                     top: '0',
-                     left: '0',
-                     right: '0',
-                     bottom: '0',
-                     pointerEvents: 'none'
-                   }}>
-                     <div style={{
-                       position: 'absolute',
-                       top: '10px',
-                       left: '20px',
-                       width: '4px',
-                       height: '4px',
-                       background: '#00ffe7',
-                       borderRadius: '50%',
-                       animation: 'dataFlow 3s ease-in-out infinite'
-                     }}></div>
-                     <div style={{
-                       position: 'absolute',
-                       top: '15px',
-                       right: '30px',
-                       width: '3px',
-                       height: '3px',
-                       background: '#7f9cf5',
-                       borderRadius: '50%',
-                       animation: 'dataFlow 3s ease-in-out infinite 1s'
-                     }}></div>
-                     <div style={{
-                       position: 'absolute',
-                       bottom: '15px',
-                       left: '40px',
-                       width: '2px',
-                       height: '2px',
-                       background: '#8b5cf6',
-                       borderRadius: '50%',
-                       animation: 'dataFlow 3s ease-in-out infinite 2s'
-                     }}></div>
-                   </div>
-                 </div>
-              </div>
+            <div style={{
+              fontSize:'14px',
+              color:'#666',
+              fontWeight:'500'
+            }}>
+              kampaio-ai-analysis.js
             </div>
           </div>
 
-          {/* CTA Section */}
+          {/* Editor Content */}
           <div style={{
-            textAlign: 'center',
-            marginTop: '80px'
+            padding:'24px',
+            display:'grid',
+            gridTemplateColumns:'1fr 1fr',
+            gap:'40px',
+            alignItems:'center'
           }}>
-            <h3 style={{
-              fontSize: 'clamp(24px, 3vw, 32px)',
-              fontWeight: '700',
-              color: '#fff',
-              marginBottom: '24px'
+            {/* Left: Code */}
+            <div style={{
+              background:'#1a1a1a',
+              borderRadius:'8px',
+              padding:'24px',
+              fontFamily:'Monaco, Menlo, monospace',
+              fontSize:'14px',
+              lineHeight:'1.6',
+              color:'#fff',
+              position:'relative',
+              overflow:'hidden'
             }}>
-              Ready to see AI optimize your campaigns?
-            </h3>
-            <p style={{
-              fontSize: '18px',
-              color: '#a0a0a0',
-              marginBottom: '40px',
-              maxWidth: '500px',
-              margin: '0 auto 40px auto',
-              lineHeight: '1.6'
+              {/* Animated lines */}
+              <div style={{
+                position:'absolute',
+                top:'0',
+                left:'0',
+                right:'0',
+                height:'2px',
+                background:'linear-gradient(90deg, transparent, #00ffe7, transparent)',
+                animation:'flow 3s ease-in-out infinite'
+              }}></div>
+              
+              <div style={{color:'#7f9cf5'}}>// AI Analysis Engine</div>
+              <div style={{color:'#7f9cf5'}}>class KampaioAI {'{'}</div>
+              <div style={{marginLeft:'20px',color:'#a0a0a0'}}>constructor() {'{'}</div>
+              <div style={{marginLeft:'40px',color:'#00ffe7'}}>this.accuracy = 0.98;</div>
+              <div style={{marginLeft:'40px',color:'#00ffe7'}}>this.roiBoost = 3.2;</div>
+              <div style={{marginLeft:'20px',color:'#a0a0a0'}}>{'}'}</div>
+              <br/>
+              <div style={{marginLeft:'20px',color:'#7f9cf5'}}>analyzeCampaign(data) {'{'}</div>
+              <div style={{marginLeft:'40px',color:'#a0a0a0'}}>// Pattern recognition</div>
+              <div style={{marginLeft:'40px',color:'#00ffe7'}}>const insights = this.findInsights(data);</div>
+              <div style={{marginLeft:'40px',color:'#00ffe7'}}>return this.optimize(data, insights);</div>
+              <div style={{marginLeft:'20px',color:'#a0a0a0'}}>{'}'}</div>
+              <div style={{color:'#7f9cf5'}}>{'}'}</div>
+            </div>
+
+            {/* Right: AI Processing Visualization */}
+            <div style={{
+              display:'flex',
+              flexDirection:'column',
+              gap:'24px'
             }}>
-              Join thousands of advertisers who trust AI to maximize their Google Ads performance
-            </p>
-            <button style={{
-              background: 'linear-gradient(135deg, #00ffe7, #7f9cf5)',
-              border: 'none',
-              borderRadius: '12px',
-              padding: '18px 36px',
-              fontSize: '18px',
-              fontWeight: '700',
-              color: '#1a1a1a',
-              cursor: 'pointer',
-              transition: 'all 0.3s ease',
-              boxShadow: '0 8px 32px rgba(0,255,231,0.3)'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-3px)';
-              e.currentTarget.style.boxShadow = '0 12px 40px rgba(0,255,231,0.4)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 8px 32px rgba(0,255,231,0.3)';
-            }}>
-              Start Your Free Trial
-            </button>
+              {/* AI Core */}
+              <div style={{
+                display:'flex',
+                alignItems:'center',
+                gap:'16px'
+              }}>
+                <div style={{
+                  width:'60px',
+                  height:'60px',
+                  background:'#1a1a1a',
+                  borderRadius:'50%',
+                  display:'flex',
+                  alignItems:'center',
+                  justifyContent:'center',
+                  animation:'aiPulse 2s ease-in-out infinite'
+                }}>
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2">
+                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="12" y1="17" x2="12.01" y2="17"/>
+                  </svg>
+                </div>
+                <div>
+                  <div style={{fontSize:'18px',fontWeight:'600',color:'#1a1a1a',marginBottom:'4px'}}>AI Processing</div>
+                  <div style={{fontSize:'14px',color:'#666'}}>Real-time analysis</div>
+                </div>
+              </div>
+
+              {/* Metrics */}
+              <div style={{
+                display:'grid',
+                gridTemplateColumns:'1fr 1fr',
+                gap:'16px'
+              }}>
+                <div style={{
+                  background:'#f8f9fa',
+                  padding:'16px',
+                  borderRadius:'8px',
+                  border:'1px solid #e5e5e5',
+                  textAlign:'center'
+                }}>
+                  <div style={{fontSize:'24px',fontWeight:'700',color:'#1a1a1a',marginBottom:'4px'}}>98%</div>
+                  <div style={{fontSize:'12px',color:'#666'}}>Accuracy</div>
+                </div>
+                <div style={{
+                  background:'#f8f9fa',
+                  padding:'16px',
+                  borderRadius:'8px',
+                  border:'1px solid #e5e5e5',
+                  textAlign:'center'
+                }}>
+                  <div style={{fontSize:'24px',fontWeight:'700',color:'#1a1a1a',marginBottom:'4px'}}>3.2x</div>
+                  <div style={{fontSize:'12px',color:'#666'}}>ROI Boost</div>
+                </div>
+              </div>
+
+              {/* Processing Lines */}
+              <div style={{
+                position:'relative',
+                height:'40px'
+              }}>
+                <div style={{
+                  position:'absolute',
+                  top:'50%',
+                  left:'0',
+                  right:'0',
+                  height:'2px',
+                  background:'#e5e5e5',
+                  transform:'translateY(-50%)'
+                }}></div>
+                <div style={{
+                  position:'absolute',
+                  top:'50%',
+                  left:'0',
+                  width:'60%',
+                  height:'2px',
+                  background:'#00ffe7',
+                  transform:'translateY(-50%)',
+                  animation:'flow 2s ease-in-out infinite'
+                }}></div>
+              </div>
+            </div>
           </div>
+        </div>
+
+        {/* Metrics */}
+        <div style={{
+          display:'flex',
+          justifyContent:'center',
+          gap:'60px',
+          marginBottom:'60px'
+        }}>
+          <div style={{textAlign:'center'}}>
+            <div style={{fontSize:'36px',fontWeight:'700',color:'#1a1a1a',marginBottom:'8px'}}>98%</div>
+            <div style={{fontSize:'14px',color:'#666'}}>Accuracy</div>
+          </div>
+          <div style={{textAlign:'center'}}>
+            <div style={{fontSize:'36px',fontWeight:'700',color:'#1a1a1a',marginBottom:'8px'}}>3.2x</div>
+            <div style={{fontSize:'14px',color:'#666'}}>ROI Boost</div>
+          </div>
+          <div style={{textAlign:'center'}}>
+            <div style={{fontSize:'36px',fontWeight:'700',color:'#1a1a1a',marginBottom:'8px'}}>24/7</div>
+            <div style={{fontSize:'14px',color:'#666'}}>Monitoring</div>
+          </div>
+        </div>
+
+        <div style={{textAlign:'center'}}>
+          <button style={{
+            background:'#1a1a1a',
+            color:'white',
+            border:'none',
+            padding:'16px 32px',
+            borderRadius:'12px',
+            fontSize:'16px',
+            fontWeight:'600',
+            cursor:'pointer',
+            transition:'all 0.3s ease'
+          }}>
+            Start Your Free Trial
+          </button>
         </div>
       </section>
 
-      <style jsx>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0px) rotate(-15deg); }
-          50% { transform: translateY(-20px) rotate(-15deg); }
-        }
-
-        @keyframes pulse {
-          0%, 100% { opacity: 0.2; }
-          50% { opacity: 0.4; }
-        }
+      {/* Tailored AI Solutions for Every Industry */}
+      <section style={{
+        background:'#fafafa',
+        padding:'120px 0 80px 0',
+        overflow:'hidden',
+        position:'relative'
+      }}>
+        {/* Animated Background Elements */}
+        <div style={{
+          position:'absolute',
+          top:'10%',
+          left:'5%',
+          width:'200px',
+          height:'200px',
+          background:'radial-gradient(circle, rgba(0,255,231,0.1) 0%, transparent 70%)',
+          borderRadius:'50%',
+          animation:'pulse 4s ease-in-out infinite'
+        }}></div>
+        <div style={{
+          position:'absolute',
+          top:'60%',
+          right:'10%',
+          width:'150px',
+          height:'150px',
+          background:'radial-gradient(circle, rgba(127,156,245,0.08) 0%, transparent 70%)',
+          borderRadius:'50%',
+          animation:'pulse 6s ease-in-out infinite'
+        }}></div>
         
-        @keyframes bounce {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-20px); }
-        }
+        <div style={{
+          maxWidth:'1200px',
+          margin:'0 auto',
+          padding:'0 24px',
+          position:'relative',
+          zIndex:1
+        }}>
+          {/* Header with Floating Elements */}
+          <div style={{textAlign:'center',marginBottom:'80px',position:'relative'}}>
+            {/* Floating AI Particles */}
+            <div style={{
+              position:'absolute',
+              top:'-20px',
+              left:'20%',
+              width:'8px',
+              height:'8px',
+              background:'#00ffe7',
+              borderRadius:'50%',
+              animation:'pulse 2s ease-in-out infinite'
+            }}></div>
+            <div style={{
+              position:'absolute',
+              top:'40px',
+              right:'25%',
+              width:'6px',
+              height:'6px',
+              background:'#7f9cf5',
+              borderRadius:'50%',
+              animation:'pulse 3s ease-in-out infinite'
+            }}></div>
+            
+            <h2 style={{
+              fontSize:'clamp(32px, 4vw, 48px)',
+              fontWeight:'700',
+              color:'#1a1a1a',
+              marginBottom:'24px',
+              marginTop:0,
+              lineHeight:'1.2',
+              position:'relative'
+            }}>
+              Tailored AI Solutions for Every Industry
+              {/* Animated Underline */}
+              <div style={{
+                position:'absolute',
+                bottom:'-8px',
+                left:'50%',
+                transform:'translateX(-50%)',
+                width:'80px',
+                height:'3px',
+                background:'linear-gradient(90deg, #00ffe7, #7f9cf5)',
+                borderRadius:'2px',
+                animation:'flow 3s ease-in-out infinite'
+              }}></div>
+            </h2>
+            <p style={{
+              fontSize:'clamp(18px, 2vw, 22px)',
+              color:'#666',
+              margin:0,
+              lineHeight:'1.6',
+              maxWidth:'600px',
+              marginLeft:'auto',
+              marginRight:'auto'
+            }}>
+              Our AI understands the unique challenges of your business
+            </p>
+          </div>
 
-        @keyframes slideInRight {
-          from {
-            transform: translateX(100%);
-            opacity: 0;
-          }
-          to {
-            transform: translateX(0);
-            opacity: 1;
-          }
-        }
+          {/* Industry Cards Grid with 3D Effects */}
+          <div style={{
+            display:'grid',
+            gridTemplateColumns:'repeat(auto-fit, minmax(280px, 1fr))',
+            gap:'32px',
+            marginBottom:'80px',
+            perspective:'1000px'
+          }}>
+            {/* Dentists - Holographic Card */}
+            <div style={{
+              background:'linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.85))',
+              borderRadius:'20px',
+              padding:'40px 32px',
+              border:'1px solid rgba(229,229,229,0.3)',
+              boxShadow:'0 8px 32px rgba(0,0,0,0.1), 0 0 0 1px rgba(255,255,255,0.2)',
+              transition:'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+              position:'relative',
+              overflow:'hidden',
+              backdropFilter:'blur(10px)'
+            }} onMouseEnter={(e) => {
+              const target = e.target as HTMLElement;
+              target.style.transform = 'translateY(-8px) rotateX(5deg)';
+              target.style.boxShadow = '0 20px 60px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,255,231,0.3)';
+            }} onMouseLeave={(e) => {
+              const target = e.target as HTMLElement;
+              target.style.transform = 'translateY(0) rotateX(0deg)';
+              target.style.boxShadow = '0 8px 32px rgba(0,0,0,0.1), 0 0 0 1px rgba(255,255,255,0.2)';
+            }}>
+              {/* Holographic Effect */}
+              <div style={{
+                position:'absolute',
+                top:0,
+                left:0,
+                right:0,
+                height:'100%',
+                background:'linear-gradient(45deg, transparent 30%, rgba(0,255,231,0.1) 50%, transparent 70%)',
+                animation:'flow 4s ease-in-out infinite',
+                pointerEvents:'none'
+              }}></div>
+              
+              {/* Animated Icon Container */}
+              <div style={{
+                width:'80px',
+                height:'80px',
+                background:'linear-gradient(135deg, #f8f9fa, #e9ecef)',
+                borderRadius:'20px',
+                display:'flex',
+                alignItems:'center',
+                justifyContent:'center',
+                marginBottom:'24px',
+                border:'2px solid rgba(0,255,231,0.2)',
+                position:'relative',
+                overflow:'hidden'
+              }}>
+                {/* Rotating Background */}
+                <div style={{
+                  position:'absolute',
+                  top:'50%',
+                  left:'50%',
+                  width:'60px',
+                  height:'60px',
+                  background:'conic-gradient(from 0deg, transparent, rgba(0,255,231,0.1), transparent)',
+                  borderRadius:'50%',
+                  transform:'translate(-50%, -50%)',
+                  animation:'rotate 8s linear infinite'
+                }}></div>
+                
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" strokeWidth="2" style={{position:'relative',zIndex:1}}>
+                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                </svg>
+              </div>
 
-        @keyframes slideInLeft {
-          from {
-            transform: translateX(-100%);
-            opacity: 0;
-          }
-          to {
-            transform: translateX(0);
-            opacity: 1;
-          }
-        }
+              <h3 style={{
+                fontSize:'26px',
+                fontWeight:'700',
+                color:'#1a1a1a',
+                margin:'0 0 16px 0',
+                position:'relative'
+              }}>
+                Dentists
+              </h3>
+              
+              <p style={{
+                fontSize:'16px',
+                color:'#666',
+                lineHeight:'1.6',
+                margin:'0 0 24px 0'
+              }}>
+                Attract more patients with targeted local SEO campaigns. Our AI optimizes for dental-specific keywords and local search intent.
+              </p>
 
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-          }
-          to {
-            opacity: 1;
-          }
-        }
+              {/* Animated Button */}
+              <button style={{
+                background:'linear-gradient(135deg, transparent, transparent)',
+                color:'#1a1a1a',
+                border:'2px solid rgba(0,255,231,0.3)',
+                padding:'14px 28px',
+                borderRadius:'12px',
+                fontSize:'14px',
+                fontWeight:'600',
+                cursor:'pointer',
+                transition:'all 0.3s ease',
+                position:'relative',
+                overflow:'hidden'
+              }} onMouseEnter={(e) => {
+                const target = e.target as HTMLElement;
+                target.style.background = 'linear-gradient(135deg, #1a1a1a, #2a2a2a)';
+                target.style.color = 'white';
+                target.style.borderColor = '#00ffe7';
+                target.style.transform = 'scale(1.05)';
+              }} onMouseLeave={(e) => {
+                const target = e.target as HTMLElement;
+                target.style.background = 'linear-gradient(135deg, transparent, transparent)';
+                target.style.color = '#1a1a1a';
+                target.style.borderColor = 'rgba(0,255,231,0.3)';
+                target.style.transform = 'scale(1)';
+              }}>
+                <span style={{position:'relative',zIndex:1}}>Learn more</span>
+              </button>
+            </div>
 
-        @keyframes typing {
-          0%, 100% { opacity: 0.5; }
-          50% { opacity: 1; }
-        }
+            {/* Real Estate - Neural Network Card */}
+            <div style={{
+              background:'linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.85))',
+              borderRadius:'20px',
+              padding:'40px 32px',
+              border:'1px solid rgba(229,229,229,0.3)',
+              boxShadow:'0 8px 32px rgba(0,0,0,0.1), 0 0 0 1px rgba(255,255,255,0.2)',
+              transition:'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+              position:'relative',
+              overflow:'hidden',
+              backdropFilter:'blur(10px)'
+            }} onMouseEnter={(e) => {
+              const target = e.target as HTMLElement;
+              target.style.transform = 'translateY(-8px) rotateX(5deg)';
+              target.style.boxShadow = '0 20px 60px rgba(0,0,0,0.15), 0 0 0 1px rgba(127,156,245,0.3)';
+            }} onMouseLeave={(e) => {
+              const target = e.target as HTMLElement;
+              target.style.transform = 'translateY(0) rotateX(0deg)';
+              target.style.boxShadow = '0 8px 32px rgba(0,0,0,0.1), 0 0 0 1px rgba(255,255,255,0.2)';
+            }}>
+              {/* Neural Network Animation */}
+              <div style={{
+                position:'absolute',
+                top:'20px',
+                right:'20px',
+                width:'60px',
+                height:'60px',
+                opacity:'0.3'
+              }}>
+                <svg viewBox="0 0 60 60" fill="none">
+                  <circle cx="30" cy="15" r="3" fill="#7f9cf5" opacity="0.6">
+                    <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
+                  </circle>
+                  <circle cx="15" cy="30" r="3" fill="#00ffe7" opacity="0.6">
+                    <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" begin="0.5s" repeatCount="indefinite"/>
+                  </circle>
+                  <circle cx="45" cy="30" r="3" fill="#7f9cf5" opacity="0.6">
+                    <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" begin="1s" repeatCount="indefinite"/>
+                  </circle>
+                  <circle cx="30" cy="45" r="3" fill="#00ffe7" opacity="0.6">
+                    <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" begin="1.5s" repeatCount="indefinite"/>
+                  </circle>
+                  <line x1="30" y1="15" x2="15" y2="30" stroke="#7f9cf5" strokeWidth="1" opacity="0.4"/>
+                  <line x1="30" y1="15" x2="45" y2="30" stroke="#00ffe7" strokeWidth="1" opacity="0.4"/>
+                  <line x1="15" y1="30" x2="30" y2="45" stroke="#7f9cf5" strokeWidth="1" opacity="0.4"/>
+                  <line x1="45" y1="30" x2="30" y2="45" stroke="#00ffe7" strokeWidth="1" opacity="0.4"/>
+                </svg>
+              </div>
+              
+              {/* Animated Icon Container */}
+              <div style={{
+                width:'80px',
+                height:'80px',
+                background:'linear-gradient(135deg, #f8f9fa, #e9ecef)',
+                borderRadius:'20px',
+                display:'flex',
+                alignItems:'center',
+                justifyContent:'center',
+                marginBottom:'24px',
+                border:'2px solid rgba(127,156,245,0.2)',
+                position:'relative',
+                overflow:'hidden'
+              }}>
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" strokeWidth="2">
+                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                  <polyline points="9,22 9,12 15,12 15,22"/>
+                </svg>
+              </div>
 
-        @keyframes rotate {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
+              <h3 style={{
+                fontSize:'26px',
+                fontWeight:'700',
+                color:'#1a1a1a',
+                margin:'0 0 16px 0'
+              }}>
+                Real Estate
+              </h3>
+              
+              <p style={{
+                fontSize:'16px',
+                color:'#666',
+                lineHeight:'1.6',
+                margin:'0 0 24px 0'
+              }}>
+                Generate qualified leads with hyper-local targeting. Our AI finds the perfect audience for your property listings and market updates.
+              </p>
 
-        @keyframes slideRight {
-          0% { transform: translateX(-100%); opacity: 0; }
-          50% { opacity: 1; }
-          100% { transform: translateX(100%); opacity: 0; }
-        }
+              <button style={{
+                background:'linear-gradient(135deg, transparent, transparent)',
+                color:'#1a1a1a',
+                border:'2px solid rgba(127,156,245,0.3)',
+                padding:'14px 28px',
+                borderRadius:'12px',
+                fontSize:'14px',
+                fontWeight:'600',
+                cursor:'pointer',
+                transition:'all 0.3s ease'
+              }} onMouseEnter={(e) => {
+                const target = e.target as HTMLElement;
+                target.style.background = 'linear-gradient(135deg, #1a1a1a, #2a2a2a)';
+                target.style.color = 'white';
+                target.style.borderColor = '#7f9cf5';
+                target.style.transform = 'scale(1.05)';
+              }} onMouseLeave={(e) => {
+                const target = e.target as HTMLElement;
+                target.style.background = 'linear-gradient(135deg, transparent, transparent)';
+                target.style.color = '#1a1a1a';
+                target.style.borderColor = 'rgba(127,156,245,0.3)';
+                target.style.transform = 'scale(1)';
+              }}>
+                Learn more
+              </button>
+            </div>
 
-        @keyframes slideLeft {
-          0% { transform: translateX(100%); opacity: 0; }
-          50% { opacity: 1; }
-          100% { transform: translateX(-100%); opacity: 0; }
-        }
+            {/* SaaS Companies - Data Flow Card */}
+            <div style={{
+              background:'linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.85))',
+              borderRadius:'20px',
+              padding:'40px 32px',
+              border:'1px solid rgba(229,229,229,0.3)',
+              boxShadow:'0 8px 32px rgba(0,0,0,0.1), 0 0 0 1px rgba(255,255,255,0.2)',
+              transition:'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+              position:'relative',
+              overflow:'hidden',
+              backdropFilter:'blur(10px)'
+            }} onMouseEnter={(e) => {
+              const target = e.target as HTMLElement;
+              target.style.transform = 'translateY(-8px) rotateX(5deg)';
+              target.style.boxShadow = '0 20px 60px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,255,231,0.3)';
+            }} onMouseLeave={(e) => {
+              const target = e.target as HTMLElement;
+              target.style.transform = 'translateY(0) rotateX(0deg)';
+              target.style.boxShadow = '0 8px 32px rgba(0,0,0,0.1), 0 0 0 1px rgba(255,255,255,0.2)';
+            }}>
+              {/* Data Flow Animation */}
+              <div style={{
+                position:'absolute',
+                top:'0',
+                left:'0',
+                right:'0',
+                height:'2px',
+                background:'linear-gradient(90deg, transparent, #00ffe7, transparent)',
+                animation:'flow 3s ease-in-out infinite'
+              }}></div>
+              
+              {/* Animated Icon Container */}
+              <div style={{
+                width:'80px',
+                height:'80px',
+                background:'linear-gradient(135deg, #f8f9fa, #e9ecef)',
+                borderRadius:'20px',
+                display:'flex',
+                alignItems:'center',
+                justifyContent:'center',
+                marginBottom:'24px',
+                border:'2px solid rgba(0,255,231,0.2)',
+                position:'relative'
+              }}>
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" strokeWidth="2">
+                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                  <line x1="8" y1="21" x2="16" y2="21"/>
+                  <line x1="12" y1="17" x2="12" y2="21"/>
+                </svg>
+              </div>
 
-        @keyframes countUp {
-          0% { transform: scale(1); }
-          50% { transform: scale(1.05); }
-          100% { transform: scale(1); }
-        }
+              <h3 style={{
+                fontSize:'26px',
+                fontWeight:'700',
+                color:'#1a1a1a',
+                margin:'0 0 16px 0'
+              }}>
+                SaaS Companies
+              </h3>
+              
+              <p style={{
+                fontSize:'16px',
+                color:'#666',
+                lineHeight:'1.6',
+                margin:'0 0 24px 0'
+              }}>
+                Scale your user acquisition with intelligent B2B targeting. Our AI optimizes for high-value leads and reduces customer acquisition costs.
+              </p>
 
-        @keyframes progressBar {
-          0% { width: 0%; }
-          50% { width: 100%; }
-          100% { width: 0%; }
-        }
+              <button style={{
+                background:'linear-gradient(135deg, transparent, transparent)',
+                color:'#1a1a1a',
+                border:'2px solid rgba(0,255,231,0.3)',
+                padding:'14px 28px',
+                borderRadius:'12px',
+                fontSize:'14px',
+                fontWeight:'600',
+                cursor:'pointer',
+                transition:'all 0.3s ease'
+              }} onMouseEnter={(e) => {
+                const target = e.target as HTMLElement;
+                target.style.background = 'linear-gradient(135deg, #1a1a1a, #2a2a2a)';
+                target.style.color = 'white';
+                target.style.borderColor = '#00ffe7';
+                target.style.transform = 'scale(1.05)';
+              }} onMouseLeave={(e) => {
+                const target = e.target as HTMLElement;
+                target.style.background = 'linear-gradient(135deg, transparent, transparent)';
+                target.style.color = '#1a1a1a';
+                target.style.borderColor = 'rgba(0,255,231,0.3)';
+                target.style.transform = 'scale(1)';
+              }}>
+                Learn more
+              </button>
+            </div>
 
-        @keyframes shimmer {
-          0% { background-position: -200px 0; }
-          100% { background-position: calc(200px + 100%) 0; }
-        }
+            {/* Legal Services - Quantum Card */}
+            <div style={{
+              background:'linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.85))',
+              borderRadius:'20px',
+              padding:'40px 32px',
+              border:'1px solid rgba(229,229,229,0.3)',
+              boxShadow:'0 8px 32px rgba(0,0,0,0.1), 0 0 0 1px rgba(255,255,255,0.2)',
+              transition:'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+              position:'relative',
+              overflow:'hidden',
+              backdropFilter:'blur(10px)'
+            }} onMouseEnter={(e) => {
+              const target = e.target as HTMLElement;
+              target.style.transform = 'translateY(-8px) rotateX(5deg)';
+              target.style.boxShadow = '0 20px 60px rgba(0,0,0,0.15), 0 0 0 1px rgba(127,156,245,0.3)';
+            }} onMouseLeave={(e) => {
+              const target = e.target as HTMLElement;
+              target.style.transform = 'translateY(0) rotateX(0deg)';
+              target.style.boxShadow = '0 8px 32px rgba(0,0,0,0.1), 0 0 0 1px rgba(255,255,255,0.2)';
+            }}>
+              {/* Quantum Particles */}
+              <div style={{
+                position:'absolute',
+                top:'20px',
+                left:'20px',
+                width:'40px',
+                height:'40px',
+                opacity:'0.4'
+              }}>
+                <div style={{
+                  width:'4px',
+                  height:'4px',
+                  background:'#7f9cf5',
+                  borderRadius:'50%',
+                  position:'absolute',
+                  animation:'pulse 2s ease-in-out infinite'
+                }}></div>
+                <div style={{
+                  width:'3px',
+                  height:'3px',
+                  background:'#00ffe7',
+                  borderRadius:'50%',
+                  position:'absolute',
+                  top:'15px',
+                  left:'25px',
+                  animation:'pulse 2s ease-in-out infinite 0.5s'
+                }}></div>
+                <div style={{
+                  width:'2px',
+                  height:'2px',
+                  background:'#7f9cf5',
+                  borderRadius:'50%',
+                  position:'absolute',
+                  top:'30px',
+                  left:'10px',
+                  animation:'pulse 2s ease-in-out infinite 1s'
+                }}></div>
+              </div>
+              
+              {/* Animated Icon Container */}
+              <div style={{
+                width:'80px',
+                height:'80px',
+                background:'linear-gradient(135deg, #f8f9fa, #e9ecef)',
+                borderRadius:'20px',
+                display:'flex',
+                alignItems:'center',
+                justifyContent:'center',
+                marginBottom:'24px',
+                border:'2px solid rgba(127,156,245,0.2)',
+                position:'relative'
+              }}>
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" strokeWidth="2">
+                  <path d="M12 1l3.09 6.26L22 7.27l-5 4.87 1.18 6.88L12 17.77l-6.18 1.25L7 12.14 2 7.27l6.91-1.01L12 1z"/>
+                </svg>
+              </div>
 
-        @keyframes dataFlow {
-          0% { transform: translateY(0px); opacity: 0; }
-          50% { opacity: 1; }
-          100% { transform: translateY(-20px); opacity: 0; }
-        }
-      `}</style>
+              <h3 style={{
+                fontSize:'26px',
+                fontWeight:'700',
+                color:'#1a1a1a',
+                margin:'0 0 16px 0'
+              }}>
+                Legal Services
+              </h3>
+              
+              <p style={{
+                fontSize:'16px',
+                color:'#666',
+                lineHeight:'1.6',
+                margin:'0 0 24px 0'
+              }}>
+                Build trust and attract qualified clients. Our AI targets legal-specific keywords and optimizes for high-intent search queries.
+              </p>
+
+              <button style={{
+                background:'linear-gradient(135deg, transparent, transparent)',
+                color:'#1a1a1a',
+                border:'2px solid rgba(127,156,245,0.3)',
+                padding:'14px 28px',
+                borderRadius:'12px',
+                fontSize:'14px',
+                fontWeight:'600',
+                cursor:'pointer',
+                transition:'all 0.3s ease'
+              }} onMouseEnter={(e) => {
+                const target = e.target as HTMLElement;
+                target.style.background = 'linear-gradient(135deg, #1a1a1a, #2a2a2a)';
+                target.style.color = 'white';
+                target.style.borderColor = '#7f9cf5';
+                target.style.transform = 'scale(1.05)';
+              }} onMouseLeave={(e) => {
+                const target = e.target as HTMLElement;
+                target.style.background = 'linear-gradient(135deg, transparent, transparent)';
+                target.style.color = '#1a1a1a';
+                target.style.borderColor = 'rgba(127,156,245,0.3)';
+                target.style.transform = 'scale(1)';
+              }}>
+                Learn more
+              </button>
+            </div>
+          </div>
+
+
+        </div>
+      </section>
+
     </div>
+    </>
   );
 } 

@@ -633,6 +633,311 @@ export default function Home() {
         />
       </section>
 
+      {/* AI в дії: спрощена візуалізація AI процесу */}
+      <section style={{background:'#0f0f0f',padding:'120px 0',overflow:'hidden',position:'relative'}}>
+        {/* Анімований фон */}
+        <div style={{
+          position:'absolute',
+          top:0,
+          left:0,
+          width:'100%',
+          height:'100%',
+          background:'radial-gradient(circle at 30% 50%, rgba(127,156,245,0.1) 0%, transparent 50%), radial-gradient(circle at 70% 50%, rgba(0,255,231,0.1) 0%, transparent 50%)',
+          zIndex:0
+        }}></div>
+        
+        <div style={{position:'relative',zIndex:1,maxWidth:'1200px',margin:'0 auto',textAlign:'center'}}>
+          <h2 style={{fontSize:'48px',fontWeight:'700',color:'#fff',marginBottom:'24px',marginTop:0}}>AI в дії</h2>
+          <p style={{fontSize:'20px',color:'#a0a0a0',marginBottom:'80px',maxWidth:'600px',marginLeft:'auto',marginRight:'auto'}}>
+            Подивіться, як наш AI аналізує ваші Google Ads дані та генерує оптимізації в реальному часі
+          </p>
+          
+          {/* Основна візуалізація */}
+          <div style={{
+            position:'relative',
+            width:'100%',
+            height:'500px',
+            display:'flex',
+            alignItems:'center',
+            justifyContent:'center',
+            marginBottom:'60px'
+          }}>
+            
+            {/* Вхідні дані */}
+            <div style={{
+              position:'absolute',
+              left:'10%',
+              top:'50%',
+              transform:'translateY(-50%)',
+              width:'200px',
+              height:'200px',
+              background:'linear-gradient(135deg, #23272f 0%, #2d3748 100%)',
+              borderRadius:'20px',
+              border:'2px solid rgba(127,156,245,0.3)',
+              display:'flex',
+              flexDirection:'column',
+              alignItems:'center',
+              justifyContent:'center',
+              boxShadow:'0 8px 32px rgba(127,156,245,0.2)',
+              animation:'pulse 3s ease-in-out infinite'
+            }}>
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#7f9cf5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14,2 14,8 20,8"/>
+                <line x1="16" y1="13" x2="8" y2="13"/>
+                <line x1="16" y1="17" x2="8" y2="17"/>
+                <polyline points="10,9 9,9 8,9"/>
+              </svg>
+              <div style={{fontSize:'16px',fontWeight:'600',color:'#fff',marginTop:'16px',textAlign:'center'}}>Google Ads<br/>Дані</div>
+            </div>
+
+            {/* Анімовані лінії даних */}
+            <svg style={{
+              position:'absolute',
+              top:0,
+              left:0,
+              width:'100%',
+              height:'100%',
+              zIndex:1
+            }} viewBox="0 0 1200 500" fill="none">
+              <defs>
+                <linearGradient id="dataFlow" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#7f9cf5" stopOpacity="0"/>
+                  <stop offset="50%" stopColor="#7f9cf5" stopOpacity="1"/>
+                  <stop offset="100%" stopColor="#7f9cf5" stopOpacity="0"/>
+                </linearGradient>
+              </defs>
+              <path 
+                d="M 240 250 Q 400 200 600 250" 
+                stroke="url(#dataFlow)" 
+                strokeWidth="3" 
+                strokeDasharray="10 10"
+                style={{
+                  animation:'flow 2s linear infinite'
+                }}
+              />
+              <path 
+                d="M 240 250 Q 400 300 600 250" 
+                stroke="url(#dataFlow)" 
+                strokeWidth="3" 
+                strokeDasharray="10 10"
+                style={{
+                  animation:'flow 2s linear infinite 0.5s'
+                }}
+              />
+            </svg>
+
+            {/* Центральний AI блок */}
+            <div style={{
+              position:'relative',
+              width:'300px',
+              height:'300px',
+              background:'linear-gradient(135deg, #7f9cf5 0%, #00ffe7 100%)',
+              borderRadius:'50%',
+              display:'flex',
+              alignItems:'center',
+              justifyContent:'center',
+              boxShadow:'0 0 60px rgba(127,156,245,0.4), inset 0 0 60px rgba(255,255,255,0.1)',
+              animation:'aiPulse 2s ease-in-out infinite',
+              zIndex:2
+            }}>
+              <div style={{
+                width:'200px',
+                height:'200px',
+                background:'rgba(255,255,255,0.1)',
+                borderRadius:'50%',
+                display:'flex',
+                alignItems:'center',
+                justifyContent:'center',
+                backdropFilter:'blur(10px)',
+                border:'2px solid rgba(255,255,255,0.2)'
+              }}>
+                <div style={{textAlign:'center'}}>
+                  <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="12" y1="17" x2="12.01" y2="17"/>
+                  </svg>
+                  <div style={{fontSize:'18px',fontWeight:'700',color:'#fff',marginTop:'12px'}}>AI Аналіз</div>
+                </div>
+              </div>
+              
+              {/* Обертаючі елементи */}
+              <div style={{
+                position:'absolute',
+                top:'-20px',
+                left:'50%',
+                transform:'translateX(-50%)',
+                width:'40px',
+                height:'40px',
+                background:'rgba(255,255,255,0.2)',
+                borderRadius:'50%',
+                animation:'rotate 4s linear infinite'
+              }}></div>
+              <div style={{
+                position:'absolute',
+                bottom:'-20px',
+                left:'50%',
+                transform:'translateX(-50%)',
+                width:'40px',
+                height:'40px',
+                background:'rgba(255,255,255,0.2)',
+                borderRadius:'50%',
+                animation:'rotate 4s linear infinite reverse'
+              }}></div>
+            </div>
+
+            {/* Анімовані лінії результатів */}
+            <svg style={{
+              position:'absolute',
+              top:0,
+              left:0,
+              width:'100%',
+              height:'100%',
+              zIndex:1
+            }} viewBox="0 0 1200 500" fill="none">
+              <path 
+                d="M 900 250 Q 1100 200 1200 250" 
+                stroke="url(#dataFlow)" 
+                strokeWidth="3" 
+                strokeDasharray="10 10"
+                style={{
+                  animation:'flow 2s linear infinite 1s'
+                }}
+              />
+              <path 
+                d="M 900 250 Q 1100 300 1200 250" 
+                stroke="url(#dataFlow)" 
+                strokeWidth="3" 
+                strokeDasharray="10 10"
+                style={{
+                  animation:'flow 2s linear infinite 1.5s'
+                }}
+              />
+            </svg>
+
+            {/* Результати */}
+            <div style={{
+              position:'absolute',
+              right:'10%',
+              top:'50%',
+              transform:'translateY(-50%)',
+              width:'200px',
+              height:'200px',
+              background:'linear-gradient(135deg, #23272f 0%, #2d3748 100%)',
+              borderRadius:'20px',
+              border:'2px solid rgba(0,255,231,0.3)',
+              display:'flex',
+              flexDirection:'column',
+              alignItems:'center',
+              justifyContent:'center',
+              boxShadow:'0 8px 32px rgba(0,255,231,0.2)',
+              animation:'pulse 3s ease-in-out infinite 1s'
+            }}>
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#00ffe7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22,4 12,14.01 9,11.01"/>
+              </svg>
+              <div style={{fontSize:'16px',fontWeight:'600',color:'#fff',marginTop:'16px',textAlign:'center'}}>Оптимізації<br/>& Рекомендації</div>
+            </div>
+          </div>
+
+          {/* Метрики в реальному часі */}
+          <div style={{
+            display:'flex',
+            justifyContent:'center',
+            gap:'60px',
+            marginBottom:'60px'
+          }}>
+            <div style={{textAlign:'center'}}>
+              <div style={{
+                fontSize:'36px',
+                fontWeight:'700',
+                color:'#7f9cf5',
+                marginBottom:'8px',
+                animation:'countUp 3s ease-out'
+              }}>98%</div>
+              <div style={{fontSize:'16px',color:'#a0a0a0'}}>Точність аналізу</div>
+            </div>
+            <div style={{textAlign:'center'}}>
+              <div style={{
+                fontSize:'36px',
+                fontWeight:'700',
+                color:'#00ffe7',
+                marginBottom:'8px',
+                animation:'countUp 3s ease-out 0.5s'
+              }}>3.2x</div>
+              <div style={{fontSize:'16px',color:'#a0a0a0'}}>Покращення ROI</div>
+            </div>
+            <div style={{textAlign:'center'}}>
+              <div style={{
+                fontSize:'36px',
+                fontWeight:'700',
+                color:'#7f9cf5',
+                marginBottom:'8px',
+                animation:'countUp 3s ease-out 1s'
+              }}>24/7</div>
+              <div style={{fontSize:'16px',color:'#a0a0a0'}}>Моніторинг</div>
+            </div>
+          </div>
+
+          {/* CTA кнопка */}
+          <button style={{
+            background:'linear-gradient(135deg, #7f9cf5 0%, #00ffe7 100%)',
+            color:'#fff',
+            border:'none',
+            padding:'16px 32px',
+            borderRadius:'12px',
+            fontSize:'18px',
+            fontWeight:'600',
+            cursor:'pointer',
+            transition:'all 0.3s ease',
+            boxShadow:'0 8px 32px rgba(127,156,245,0.3)'
+          }} onMouseEnter={(e) => {
+            e.currentTarget.style.transform = 'translateY(-2px)'
+            e.currentTarget.style.boxShadow = '0 12px 40px rgba(127,156,245,0.4)'
+          }} onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'translateY(0)'
+            e.currentTarget.style.boxShadow = '0 8px 32px rgba(127,156,245,0.3)'
+          }}>
+            Спробувати AI безкоштовно
+          </button>
+        </div>
+
+        <style jsx>{`
+          @keyframes pulse {
+            0%, 100% { transform: translateY(-50%) scale(1); }
+            50% { transform: translateY(-50%) scale(1.05); }
+          }
+          
+          @keyframes aiPulse {
+            0%, 100% { 
+              transform: scale(1);
+              box-shadow: 0 0 60px rgba(127,156,245,0.4), inset 0 0 60px rgba(255,255,255,0.1);
+            }
+            50% { 
+              transform: scale(1.1);
+              box-shadow: 0 0 80px rgba(127,156,245,0.6), inset 0 0 80px rgba(255,255,255,0.2);
+            }
+          }
+          
+          @keyframes flow {
+            0% { stroke-dashoffset: 20; }
+            100% { stroke-dashoffset: 0; }
+          }
+          
+          @keyframes rotate {
+            0% { transform: translateX(-50%) rotate(0deg); }
+            100% { transform: translateX(-50%) rotate(360deg); }
+          }
+          
+          @keyframes countUp {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+          }
+        `}</style>
+      </section>
+
       <Footer showTitle={true} />
     </>
   )

@@ -1,0 +1,111 @@
+<figure class="DevelopersCodeEditor" data-js-controller="DevelopersCodeEditor" data-currency="usd">
+  <div class="AnimatedCodeEditor" data-js-controller="AnimatedCodeEditor">
+  <div class="
+    Card
+    
+    
+    
+    Card--shadowXLarge
+    
+    
+    
+    
+  ">
+  <div class="CodeEditor CodeEditor--hasStatusBar CodeEditor--initialized" aria-hidden="true" data-js-controller="CodeEditor" data-js-language-mode="javascript" style="--codeEditorLineNumbersWidth: 38px;">
+    
+
+    
+
+    
+
+    <code class="CodeEditor__scrollContainer" data-js-target="CodeEditor.scrollContainer">
+      <pre class="CodeSyntax CodeEditor__editor"><div class="CodeEditorLineNumbers" data-js-controller="CodeEditorLineNumbers">
+  <div class="CodeEditorLineNumbers__lineNumbersContainer" data-js-target="CodeEditorLineNumbers.lineNumbersContainer"><span class="CodeEditorLineNumbers__number">1</span><span class="CodeEditorLineNumbers__number">2</span><span class="CodeEditorLineNumbers__number">3</span><span class="CodeEditorLineNumbers__number">4</span><span class="CodeEditorLineNumbers__number">5</span><span class="CodeEditorLineNumbers__number">6</span></div>
+
+  
+</div>
+        
+        <span class="CodeEditorAsciiLoader"></span>
+        
+        <span class="CodeEditor__typingArea"><span class="" data-js-target="CodeEditor.editor"><span class="token keyword">const</span> stripe <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'stripe'</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token string">'sk_test_BQokikJOvBi2Hl4olfQ2'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">await</span> stripe<span class="token punctuation">.</span>paymentIntents<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  amount<span class="token operator">:</span> <span class="token number">2000</span><span class="token punctuation">,</span>
+  currency<span class="token operator">:</span> <span class="token string">'usd'</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+          
+            <span class="CodeEditorCursor" data-js-controller="CodeEditorCursor" style="top: 141px; left: 45.028px;"></span>
+            <div class="CodeEditorAutocomplete" data-js-controller="CodeEditorAutocomplete" style="top: 164px; left: 41.028px;">
+  <ul class="CodeEditorAutocomplete__list" data-js-target="CodeEditorAutocomplete.list" style="transform: translateY(0px);"><span class="CodeEditorAutocomplete__listItem">currency</span></ul>
+</div>
+          
+        </span></pre>
+    </code>
+
+    
+      <div class="CodeEditorStatusBar" data-js-controller="CodeEditorStatusBar">
+  <div class="CodeEditorStatusBar__left">
+    <div class="CodeEditorStatusBar__editingMode" data-js-target="CodeEditorStatusBar.modeLabel">NORMAL</div>
+    <div class="CodeEditorStatusBar__prompt" data-js-target="CodeEditorStatusBar.prompt">
+      <span data-js-target="CodeEditorStatusBar.prompt">server.js</span>
+    </div>
+  </div>
+
+  <div class="CodeEditorStatusBar__right">
+    <div class="CodeEditorStatusBar__downProgress" data-js-target="CodeEditorStatusBar.downProgress">100%</div>
+    <div class="CodeEditorStatusBar__lineIcon">☰</div>
+    <div class="CodeEditorStatusBar__lineProgress" data-js-target="CodeEditorStatusBar.lineInfo">6/6</div>
+    <div class="CodeEditorStatusBar__ln">ln</div>
+    <div class="CodeEditorStatusBar__lineColon">:</div>
+    <div class="CodeEditorStatusBar__currentColumn" data-js-target="CodeEditorStatusBar.currentColumn">4</div>
+  </div>
+</div>
+    
+  </div>
+</div>
+</div>
+
+  <div class="CodeTerminal CodeTerminal--focused" aria-hidden="true" data-js-controller="CodeTerminal">
+  <div class="
+    HorizontalOverflowContainer
+    
+  " data-js-controller="HorizontalOverflowContainer" style="--horizontalOverflowSpacing: 16px;">
+  <div class="HorizontalOverflowContainer__track" data-js-target="HorizontalOverflowContainer.track">
+    
+
+    <div class="HorizontalOverflowContainer__items">
+      <code>
+        <pre class="CodeSyntax CodeTerminal__buffer"><span class="CodeTerminal__buffer" data-js-target="CodeTerminal.buffer">
+    <span class="CodeTerminal__bufferLineItem"><span class="CodeTerminal__promptSign">$</span><span>node server.js &amp;&amp; stripe listen</span>
+  </span>
+    <span class="CodeTerminal__bufferLineItem"><span>&gt; Ready! Waiting for requests...</span>
+  </span>
+    <span class="CodeTerminal__bufferLineItem"><span class="CodeTerminal__bufferPiece CodeTerminal__bufferPiece--meta">2025-07-03 19:50:07</span> [<span class="CodeTerminal__bufferPiece CodeTerminal__bufferPiece--highlighted">200</span>] <span>payment_intent.created</span>
+  </span>
+    <span class="CodeTerminal__bufferLineItem"><span class="CodeTerminal__bufferPiece CodeTerminal__bufferPiece--meta">2025-07-03 19:50:07</span> [<span class="CodeTerminal__bufferPiece CodeTerminal__bufferPiece--highlighted">200</span>] <span>charge.succeeded</span>
+  </span>
+    <span class="CodeTerminal__bufferLineItem"><span class="CodeTerminal__bufferPiece CodeTerminal__bufferPiece--meta">2025-07-03 19:50:07</span> [<span class="CodeTerminal__bufferPiece CodeTerminal__bufferPiece--highlighted">200</span>] <span>payment_intent.succeeded</span>
+  </span></span>
+          <span class="CodeTerminal__bufferLineItem" data-js-target="CodeTerminal.prompt" style="display: none;"><span class="CodeTerminal__promptSign">$</span><span data-js-target="CodeTerminal.promptContent"></span>
+
+          <span class="CodeTerminal__cursor" data-js-target="CodeTerminal.cursor" style="left: 16.8235px;"></span></span></pre>
+      </code>
+    </div>
+
+    
+  </div>
+</div>
+
+  <template data-js-target="CodeTerminal.bufferLineItemTemplate">
+    <span class="CodeTerminal__bufferLineItem"><span class="CodeTerminal__promptSign">$</span><span data-js-target="CodeTerminal.promptContent"></span>
+  </span></template>
+
+  <template data-js-target="CodeTerminal.textOutputTemplate">
+    <span class="CodeTerminal__bufferLineItem"><span data-js-target="CodeTerminal.promptContent"></span>
+  </span></template>
+
+  <template data-js-target="CodeTerminal.stripeCLIOutputTemplate">
+    <span class="CodeTerminal__bufferLineItem"><span class="CodeTerminal__bufferPiece CodeTerminal__bufferPiece--meta" data-js-target="CodeTerminal.promptDateTime"></span> [<span class="CodeTerminal__bufferPiece CodeTerminal__bufferPiece--highlighted" data-js-target="CodeTerminal.promptStatusCode"></span>] <span data-js-target="CodeTerminal.promptContent"></span>
+  </span></template>
+</div>
+</figure>
