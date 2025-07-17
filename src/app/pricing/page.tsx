@@ -1,14 +1,12 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 
 export default function PricingPage() {
   const [currentPhase, setCurrentPhase] = useState(0);
   const [dataFlow, setDataFlow] = useState(0);
   const [isProcessing, setIsProcessing] = useState(false);
-
 
   // Data flow animation
   useEffect(() => {
@@ -29,8 +27,6 @@ export default function PricingPage() {
 
     return () => clearInterval(interval);
   }, []);
-
-
 
   const phases = [
     { 
@@ -177,35 +173,6 @@ export default function PricingPage() {
           flexDirection: 'column'
         }}>
           
-          {/* System Header */}
-          <div style={{
-            textAlign: 'center',
-            marginBottom: '40px',
-            animation: 'fadeInUp 1s ease-out'
-          }}>
-            <h1 style={{
-              fontSize: 'clamp(2rem, 4vw, 3rem)',
-              fontWeight: '300',
-              color: '#1a1a1a',
-              marginBottom: '8px',
-              letterSpacing: '0.2em',
-              textTransform: 'uppercase',
-              textShadow: '0 0 20px rgba(102, 126, 234, 0.3)'
-            }}>
-              KAMPAIO AI ANALYTICS
-            </h1>
-            <div style={{
-              fontSize: '0.875rem',
-              color: 'rgba(26, 26, 26, 0.6)',
-              letterSpacing: '0.1em',
-              textTransform: 'uppercase'
-            }}>
-              SYSTEM STATUS: OPERATIONAL | VERSION 2.1.4 | AI CORE: ACTIVE
-            </div>
-          </div>
-
-
-
           {/* Main Interactive Dashboard */}
           <div style={{
             flex: 1,
@@ -215,7 +182,8 @@ export default function PricingPage() {
             borderRadius: '12px',
             padding: '32px',
             backdropFilter: 'blur(20px)',
-            minHeight: '600px'
+            minHeight: '600px',
+            marginBottom: '40px'
           }}>
             
             {/* Phase Indicator */}
@@ -446,90 +414,460 @@ export default function PricingPage() {
               ))}
             </div>
           </div>
+
+          {/* Combined Block: Real-time Data Processing Pipeline + AI Neural Network */}
+          <div style={{
+            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 50%, #1a1a1a 100%)',
+            borderRadius: '16px',
+            padding: '40px',
+            marginBottom: '40px',
+            position: 'relative',
+            overflow: 'hidden',
+            boxShadow: '0 20px 40px rgba(102, 126, 234, 0.3)'
+          }}>
+            <div style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              background: `
+                radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(102, 126, 234, 0.1) 0%, transparent 50%)
+              `,
+              pointerEvents: 'none'
+            }} />
+
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: '1fr 1fr',
+              gap: '40px',
+              alignItems: 'start'
+            }}>
+              {/* Left Side: Real-time Data Processing Pipeline */}
+              <div>
+                <h2 style={{
+                  fontSize: '1.75rem',
+                  fontWeight: '600',
+                  color: '#ffffff',
+                  marginBottom: '24px',
+                  textAlign: 'center',
+                  textShadow: '0 2px 10px rgba(0,0,0,0.3)'
+                }}>
+                  Real-time Data Processing Pipeline
+                </h2>
+
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(2, 1fr)',
+                  gap: '16px',
+                  marginBottom: '24px'
+                }}>
+                  {[
+                    { title: 'API Connection', status: 'Connected', data: '2.4M requests/min', icon: '🔗' },
+                    { title: 'Data Ingestion', status: 'Active', data: '1.8TB/hour', icon: '📊' },
+                    { title: 'AI Processing', status: 'Running', data: '99.7% accuracy', icon: '🤖' },
+                    { title: 'Insights Generated', status: 'Live', data: '156 insights/sec', icon: '💡' }
+                  ].map((item, index) => (
+                    <div key={index} style={{
+                      background: 'rgba(255,255,255,0.1)',
+                      backdropFilter: 'blur(10px)',
+                      borderRadius: '12px',
+                      padding: '20px',
+                      border: '1px solid rgba(255,255,255,0.2)',
+                      transition: 'all 0.3s ease',
+                      cursor: 'pointer',
+                      position: 'relative',
+                      overflow: 'hidden'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = 'translateY(-8px) scale(1.02)';
+                      e.currentTarget.style.boxShadow = '0 20px 40px rgba(0,0,0,0.3)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                      e.currentTarget.style.boxShadow = 'none';
+                    }}>
+                      <div style={{
+                        fontSize: '1.5rem',
+                        marginBottom: '12px',
+                        textAlign: 'center'
+                      }}>
+                        {item.icon}
+                      </div>
+                      <h3 style={{
+                        fontSize: '1rem',
+                        fontWeight: '600',
+                        color: '#ffffff',
+                        marginBottom: '6px',
+                        textAlign: 'center'
+                      }}>
+                        {item.title}
+                      </h3>
+                      <div style={{
+                        fontSize: '1.25rem',
+                        fontWeight: '700',
+                        color: '#ffffff',
+                        marginBottom: '6px',
+                        textAlign: 'center',
+                        textShadow: '0 2px 10px rgba(0,0,0,0.3)'
+                      }}>
+                        {item.data}
+                      </div>
+                      <div style={{
+                        fontSize: '0.75rem',
+                        color: '#43e97b',
+                        textAlign: 'center',
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.05em',
+                        fontWeight: '600'
+                      }}>
+                        {item.status}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div style={{
+                  textAlign: 'center'
+                }}>
+                  <button style={{
+                    background: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
+                    border: 'none',
+                    borderRadius: '12px',
+                    padding: '14px 28px',
+                    fontSize: '0.9rem',
+                    fontWeight: '600',
+                    color: '#1a1a1a',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease',
+                    boxShadow: '0 8px 20px rgba(67, 233, 123, 0.3)',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.05em'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                    e.currentTarget.style.boxShadow = '0 12px 30px rgba(67, 233, 123, 0.4)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = '0 8px 20px rgba(67, 233, 123, 0.3)';
+                  }}>
+                    Launch Demo
+                  </button>
+                </div>
+              </div>
+
+              {/* Right Side: AI Neural Network Processing */}
+              <div style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                position: 'relative',
+                height: '100%',
+                minHeight: '400px'
+              }}>
+                {/* Central AI Brain */}
+                <div style={{
+                  width: '100px',
+                  height: '100px',
+                  background: 'radial-gradient(circle, rgba(102, 126, 234, 0.3) 0%, rgba(102, 126, 234, 0.1) 70%, transparent 100%)',
+                  borderRadius: '50%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  border: '2px solid rgba(102, 126, 234, 0.5)',
+                  boxShadow: '0 0 40px rgba(102, 126, 234, 0.4)',
+                  animation: 'pulse 2s ease-in-out infinite',
+                  position: 'relative',
+                  zIndex: 10
+                }}>
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" style={{color: '#667eea'}}>
+                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M2 17L12 22L22 17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M2 12L12 17L22 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="1.5"/>
+                  </svg>
+                </div>
+
+                {/* Neural Connections */}
+                {[...Array(8)].map((_, i) => (
+                  <div
+                    key={i}
+                    style={{
+                      position: 'absolute',
+                      width: '150px',
+                      height: '2px',
+                      background: `linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.6), transparent)`,
+                      transform: `rotate(${i * 45}deg)`,
+                      animation: `neuralPulse ${2 + i * 0.5}s ease-in-out infinite`,
+                      animationDelay: `${i * 0.2}s`
+                    }}
+                  />
+                ))}
+
+                {/* Processing Nodes */}
+                {[...Array(6)].map((_, i) => (
+                  <div
+                    key={i}
+                    style={{
+                      position: 'absolute',
+                      width: '16px',
+                      height: '16px',
+                      background: `hsl(${200 + i * 30}, 80%, 60%)`,
+                      borderRadius: '50%',
+                      transform: `rotate(${i * 60}deg) translateX(110px)`,
+                      boxShadow: `0 0 20px hsl(${200 + i * 30}, 80%, 60%)`,
+                      animation: `nodePulse ${1.5 + i * 0.3}s ease-in-out infinite`,
+                      animationDelay: `${i * 0.1}s`
+                    }}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Variant 3: Live Performance Analytics */}
+          <div style={{
+            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)',
+            borderRadius: '16px',
+            padding: '40px',
+            marginBottom: '40px',
+            position: 'relative',
+            overflow: 'hidden',
+            boxShadow: '0 20px 40px rgba(102, 126, 234, 0.3)'
+          }}>
+            <div style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              background: `
+                radial-gradient(circle at 20% 30%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(240, 147, 251, 0.1) 0%, transparent 50%)
+              `,
+              pointerEvents: 'none'
+            }} />
+
+            <h2 style={{
+              fontSize: '2rem',
+              fontWeight: '600',
+              color: '#ffffff',
+              marginBottom: '32px',
+              textAlign: 'center',
+              textShadow: '0 2px 10px rgba(0,0,0,0.3)'
+            }}>
+              Live Performance Analytics
+            </h2>
+
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: '2fr 1fr',
+              gap: '32px',
+              marginBottom: '32px'
+            }}>
+              {/* Live Chart Area */}
+              <div style={{
+                background: 'rgba(255,255,255,0.1)',
+                backdropFilter: 'blur(10px)',
+                borderRadius: '12px',
+                padding: '24px',
+                border: '1px solid rgba(255,255,255,0.2)',
+                position: 'relative',
+                overflow: 'hidden'
+              }}>
+                <h3 style={{
+                  fontSize: '1.25rem',
+                  fontWeight: '600',
+                  color: '#ffffff',
+                  marginBottom: '20px'
+                }}>
+                  Real-time Performance Metrics
+                </h3>
+                
+                {/* Animated Chart Lines */}
+                <svg width="100%" height="200" viewBox="0 0 400 200" style={{marginBottom: '20px'}}>
+                  <defs>
+                    <linearGradient id="chartGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                      <stop offset="0%" stopColor="rgba(102, 126, 234, 0.8)" />
+                      <stop offset="100%" stopColor="rgba(102, 126, 234, 0.1)" />
+                    </linearGradient>
+                  </defs>
+                  <path
+                    d="M0,150 Q50,120 100,140 T200,100 T300,80 T400,60"
+                    stroke="rgba(102, 126, 234, 0.8)"
+                    strokeWidth="3"
+                    fill="none"
+                    style={{
+                      animation: 'chartAnimation 3s ease-in-out infinite'
+                    }}
+                  />
+                  <path
+                    d="M0,180 Q50,160 100,170 T200,150 T300,130 T400,110"
+                    stroke="rgba(240, 147, 251, 0.8)"
+                    strokeWidth="2"
+                    fill="none"
+                    style={{
+                      animation: 'chartAnimation 3s ease-in-out infinite 0.5s'
+                    }}
+                  />
+                </svg>
+
+                <div style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center'
+                }}>
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px'
+                  }}>
+                    <div style={{
+                      width: '12px',
+                      height: '12px',
+                      borderRadius: '50%',
+                      background: '#667eea'
+                    }} />
+                    <span style={{color: '#ffffff', fontSize: '0.875rem'}}>CTR Performance</span>
+                  </div>
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px'
+                  }}>
+                    <div style={{
+                      width: '12px',
+                      height: '12px',
+                      borderRadius: '50%',
+                      background: '#f093fb'
+                    }} />
+                    <span style={{color: '#ffffff', fontSize: '0.875rem'}}>Conversion Rate</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Live Metrics */}
+              <div style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '16px'
+              }}>
+                {[
+                  { label: 'CTR', value: '4.2%', change: '+12%', trend: 'up' },
+                  { label: 'CPC', value: '$2.34', change: '-8%', trend: 'down' },
+                  { label: 'ROAS', value: '3.8x', change: '+15%', trend: 'up' },
+                  { label: 'Impressions', value: '2.1M', change: '+5%', trend: 'up' }
+                ].map((metric, index) => (
+                  <div key={index} style={{
+                    background: 'rgba(255,255,255,0.1)',
+                    borderRadius: '8px',
+                    padding: '16px',
+                    border: '1px solid rgba(255,255,255,0.2)',
+                    transition: 'all 0.3s ease',
+                    cursor: 'pointer'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'scale(1.05)';
+                    e.currentTarget.style.background = 'rgba(255,255,255,0.15)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'scale(1)';
+                    e.currentTarget.style.background = 'rgba(255,255,255,0.1)';
+                  }}>
+                    <div style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                      marginBottom: '8px'
+                    }}>
+                      <span style={{
+                        fontSize: '0.875rem',
+                        color: 'rgba(255,255,255,0.8)',
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.05em'
+                      }}>
+                        {metric.label}
+                      </span>
+                      <span style={{
+                        fontSize: '0.75rem',
+                        color: metric.trend === 'up' ? '#43e97b' : '#fa709a',
+                        fontWeight: '600'
+                      }}>
+                        {metric.change}
+                      </span>
+                    </div>
+                    <div style={{
+                      fontSize: '1.5rem',
+                      fontWeight: '700',
+                      color: '#ffffff',
+                      textShadow: '0 2px 10px rgba(0,0,0,0.3)'
+                    }}>
+                      {metric.value}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div style={{
+              textAlign: 'center'
+            }}>
+              <button style={{
+                background: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
+                border: 'none',
+                borderRadius: '12px',
+                padding: '16px 32px',
+                fontSize: '1rem',
+                fontWeight: '600',
+                color: '#1a1a1a',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease',
+                boxShadow: '0 8px 20px rgba(67, 233, 123, 0.3)',
+                textTransform: 'uppercase',
+                letterSpacing: '0.05em',
+                marginRight: '16px'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-2px)';
+                e.currentTarget.style.boxShadow = '0 12px 30px rgba(67, 233, 123, 0.4)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 8px 20px rgba(67, 233, 123, 0.3)';
+              }}>
+                View Full Report
+              </button>
+              <button style={{
+                background: 'rgba(255,255,255,0.1)',
+                border: '1px solid rgba(255,255,255,0.3)',
+                borderRadius: '12px',
+                padding: '16px 32px',
+                fontSize: '1rem',
+                fontWeight: '600',
+                color: '#ffffff',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease',
+                textTransform: 'uppercase',
+                letterSpacing: '0.05em'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'rgba(255,255,255,0.2)';
+                e.currentTarget.style.transform = 'translateY(-2px)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'rgba(255,255,255,0.1)';
+                e.currentTarget.style.transform = 'translateY(0)';
+              }}>
+                Export Data
+              </button>
+            </div>
+          </div>
         </div>
 
         <Footer />
       </div>
-
-      <style jsx>{`
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes gridMove {
-          0% { transform: translate(0, 0); }
-          100% { transform: translate(50px, 50px); }
-        }
-
-        @keyframes dataFloat {
-          0% {
-            transform: translateY(100vh) scale(0);
-            opacity: 0;
-          }
-          10% {
-            opacity: 1;
-          }
-          90% {
-            opacity: 1;
-          }
-          100% {
-            transform: translateY(-100px) scale(1);
-            opacity: 0;
-          }
-        }
-
-        @keyframes hubPulse {
-          0%, 100% {
-            transform: translate(-50%, -50%) scale(1);
-            box-shadow: 0 0 60px rgba(102, 126, 234, 0.3);
-          }
-          50% {
-            transform: translate(-50%, -50%) scale(1.05);
-            box-shadow: 0 0 80px rgba(102, 126, 234, 0.5);
-          }
-        }
-
-        @keyframes phaseActive {
-          0%, 100% {
-            opacity: 0.5;
-            box-shadow: 0 0 10px currentColor;
-          }
-          50% {
-            opacity: 1;
-            box-shadow: 0 0 20px currentColor;
-          }
-        }
-
-        @keyframes phasePulse {
-          0%, 100% {
-            transform: scale(1);
-          }
-          50% {
-            transform: scale(1.1);
-          }
-        }
-
-        @keyframes dataFlow {
-          0% { stroke-dashoffset: 0; }
-          100% { stroke-dashoffset: -15; }
-        }
-
-        @keyframes pulse {
-          0%, 100% {
-            opacity: 1;
-          }
-          50% {
-            opacity: 0.5;
-          }
-        }
-      `}</style>
     </>
   );
 } 
