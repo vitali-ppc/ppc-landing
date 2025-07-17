@@ -320,12 +320,12 @@ function AIAnalyticsDashboard() {
               top: '-15px',
               width: '30px',
               height: '30px',
-              background: currentPhase === phase.id ? phase.color : 'rgba(255, 255, 255, 0.1)',
+              background: currentPhase === phase.id ? phase.color : 'rgba(102, 126, 234, 0.1)',
               borderRadius: '50%',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              color: currentPhase === phase.id ? '#ffffff' : 'rgba(255, 255, 255, 0.3)',
+              color: currentPhase === phase.id ? '#ffffff' : 'rgba(102, 126, 234, 0.6)',
               boxShadow: currentPhase === phase.id 
                 ? `0 0 15px ${phase.color}` 
                 : 'none',
@@ -338,7 +338,7 @@ function AIAnalyticsDashboard() {
               right: '-90px',
               top: '-8px',
               fontSize: '0.625rem',
-              color: currentPhase === phase.id ? phase.color : 'rgba(255, 255, 255, 0.3)',
+              color: currentPhase === phase.id ? phase.color : 'rgba(102, 126, 234, 0.6)',
               textTransform: 'uppercase',
               letterSpacing: '0.05em',
               whiteSpace: 'nowrap',
@@ -376,7 +376,7 @@ function AIAnalyticsDashboard() {
           fill="none"
           strokeDasharray="10,5"
           style={{
-            animation: `dataFlow ${3 + dataFlow / 20}s linear infinite`
+            animation: 'dataFlow 6s linear infinite'
           }}
         />
         <path
@@ -386,7 +386,7 @@ function AIAnalyticsDashboard() {
           fill="none"
           strokeDasharray="10,5"
           style={{
-            animation: `dataFlow ${2 + dataFlow / 30}s linear infinite`
+            animation: 'dataFlow 5s linear infinite'
           }}
         />
         <path
@@ -396,7 +396,7 @@ function AIAnalyticsDashboard() {
           fill="none"
           strokeDasharray="10,5"
           style={{
-            animation: `dataFlow ${4 + dataFlow / 25}s linear infinite`
+            animation: 'dataFlow 7s linear infinite'
           }}
         />
       </svg>
@@ -1164,7 +1164,7 @@ export default function KampaioHome() {
                         inset: 0,
                         background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent)',
                         width: '20px',
-                        animation: 'dataFlow 3s ease-in-out infinite'
+                        animation: 'dataFlow 2s ease-in-out infinite'
                       }}></div>
                     </div>
                     <div style={{
@@ -1195,7 +1195,7 @@ export default function KampaioHome() {
                     height: '6px',
                     background: '#7f9cf5',
                     borderRadius: '50%',
-                    animation: 'dataFlow 3s ease-in-out infinite',
+                    animation: 'dataFlow 2s ease-in-out infinite',
                     boxShadow: '0 0 8px rgba(127,156,245,0.4)'
                   }}></div>
                 </div>
@@ -1265,7 +1265,7 @@ export default function KampaioHome() {
                         inset: 0,
                         background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent)',
                         width: '20px',
-                        animation: 'dataFlow 3s ease-in-out infinite'
+                        animation: 'dataFlow 2s ease-in-out infinite'
                       }}></div>
                     </div>
                     <div style={{
@@ -1296,7 +1296,7 @@ export default function KampaioHome() {
                     height: '6px',
                     background: '#00ffe7',
                     borderRadius: '50%',
-                    animation: 'dataFlow 3s ease-in-out infinite',
+                    animation: 'dataFlow 2s ease-in-out infinite',
                     boxShadow: '0 0 8px rgba(0,255,231,0.4)'
                   }}></div>
                 </div>

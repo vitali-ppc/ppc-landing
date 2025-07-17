@@ -331,7 +331,7 @@ export default function PricingPage() {
                 fill="none"
                 strokeDasharray="10,5"
                 style={{
-                  animation: `dataFlow ${3 + dataFlow / 20}s linear infinite`
+                  animation: 'dataFlow 6s linear infinite'
                 }}
               />
               <path
@@ -341,7 +341,7 @@ export default function PricingPage() {
                 fill="none"
                 strokeDasharray="10,5"
                 style={{
-                  animation: `dataFlow ${2 + dataFlow / 30}s linear infinite`
+                  animation: 'dataFlow 7s linear infinite'
                 }}
               />
               <path
@@ -351,7 +351,7 @@ export default function PricingPage() {
                 fill="none"
                 strokeDasharray="10,5"
                 style={{
-                  animation: `dataFlow ${4 + dataFlow / 25}s linear infinite`
+                  animation: 'dataFlow 7s linear infinite'
                 }}
               />
             </svg>
