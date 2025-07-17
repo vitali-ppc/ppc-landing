@@ -384,6 +384,12 @@ function IndustryCards() {
 
 
 export default function KampaioHome() {
+  const [openQuestion, setOpenQuestion] = useState<number | null>(null);
+
+  const handleFAQClick = (questionId: number) => {
+    setOpenQuestion(openQuestion === questionId ? null : questionId);
+  };
+
   return (
     <>
       <style jsx>{`
@@ -3400,7 +3406,7 @@ export default function KampaioHome() {
         </div>
       </section>
 
-      {/* FAQ Section */}
+      {/* Interactive FAQ Section */}
       <section style={{
         padding: '120px 0',
         background: 'linear-gradient(180deg, #f8fafc 0%, #ffffff 100%)',
@@ -3425,198 +3431,741 @@ export default function KampaioHome() {
             }}>
               Frequently Asked Questions
             </h2>
+            <p style={{
+              fontSize: 'clamp(16px, 2vw, 18px)',
+              color: '#666',
+              maxWidth: '600px',
+              margin: '0 auto',
+              lineHeight: '1.6'
+            }}>
+              Everything you need to know about Kampaio
+            </p>
           </div>
 
-          {/* FAQ Items */}
+          {/* Interactive FAQ Items */}
           <div style={{
             display: 'flex',
             flexDirection: 'column',
-            gap: '32px'
+            gap: '16px'
           }}>
             {/* FAQ Item 1 */}
             <div style={{
               background: 'white',
-              borderRadius: '20px',
-              padding: '32px',
-              boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
-              border: '1px solid rgba(127,156,245,0.1)',
-              transition: 'all 0.3s ease'
-            }}>
-              <h3 style={{
-                fontSize: '20px',
-                fontWeight: '700',
-                color: '#1a1a1a',
-                marginBottom: '16px',
+              borderRadius: '16px',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
+              border: '1px solid #f3f4f6',
+              overflow: 'hidden',
+              transition: 'all 0.3s ease',
+              cursor: 'pointer'
+            }} onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-2px)';
+              e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
+            }} onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,0,0,0.06)';
+            }} onClick={() => handleFAQClick(1)}>
+              <div style={{
+                padding: '24px',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '12px'
+                justifyContent: 'space-between',
+                transition: 'background-color 0.3s ease'
+              }} onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#f9fafb';
+              }} onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'transparent';
               }}>
-                <span style={{ fontSize: '24px' }}>❓</span>
-                What is Kampaio?
-              </h3>
-              <p style={{
-                fontSize: '16px',
-                color: '#666',
-                lineHeight: '1.6',
-                margin: 0
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '16px'
+                }}>
+                  <div id="faq-icon-1" style={{
+                    width: '40px',
+                    height: '40px',
+                    borderRadius: '8px',
+                    backgroundColor: openQuestion === 1 ? '#00BFAE' : '#E5E7EB',
+                    color: openQuestion === 1 ? 'white' : '#6B7280',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '18px',
+                    fontWeight: 'bold',
+                    transition: 'all 0.3s ease'
+                  }}>
+                    {openQuestion === 1 ? '−' : '+'}
+                  </div>
+                  <h3 style={{
+                    fontSize: '18px',
+                    fontWeight: '600',
+                    color: '#1a1a1a',
+                    margin: 0
+                  }}>
+                    What is Kampaio?
+                  </h3>
+                </div>
+                
+                <svg 
+                  style={{
+                    width: '20px',
+                    height: '20px',
+                    color: '#9ca3af',
+                    transition: 'transform 0.3s ease'
+                  }}
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+              
+              {/* Animated Answer */}
+              <div id="faq-answer-1" style={{
+                maxHeight: openQuestion === 1 ? '200px' : '0px',
+                opacity: openQuestion === 1 ? '1' : '0',
+                overflow: 'hidden',
+                transition: 'all 0.3s ease-in-out'
               }}>
-                Kampaio is an AI assistant for Google Ads that analyzes your campaigns, generates reports, and suggests data-driven strategies and improvements.
-              </p>
+                <div style={{
+                  padding: '0 24px 24px 24px'
+                }}>
+                  <div style={{
+                    paddingLeft: '56px',
+                    borderLeft: '4px solid #00BFAE',
+                    paddingTop: '16px',
+                    paddingBottom: '16px'
+                  }}>
+                    <p style={{
+                      color: '#666',
+                      lineHeight: '1.6',
+                      margin: '0 0 16px 0'
+                    }}>
+                      Kampaio is an AI assistant for Google Ads that analyzes your campaigns, generates reports, and suggests data-driven strategies and improvements.
+                    </p>
+                    
+                    {/* Action Buttons */}
+                    <div style={{
+                      display: 'flex',
+                      gap: '12px'
+                    }}>
+                      <button id="faq-button-1" style={{
+                        padding: '8px 16px',
+                        fontSize: '14px',
+                        fontWeight: '500',
+                        color: 'white',
+                        backgroundColor: openQuestion === 1 ? '#00BFAE' : '#E5E7EB',
+                        border: 'none',
+                        borderRadius: '8px',
+                        cursor: 'pointer',
+                        transition: 'all 0.3s ease'
+                      }}>
+                        Get Started
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             {/* FAQ Item 2 */}
             <div style={{
               background: 'white',
-              borderRadius: '20px',
-              padding: '32px',
-              boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
-              border: '1px solid rgba(127,156,245,0.1)',
-              transition: 'all 0.3s ease'
-            }}>
-              <h3 style={{
-                fontSize: '20px',
-                fontWeight: '700',
-                color: '#1a1a1a',
-                marginBottom: '16px',
+              borderRadius: '16px',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
+              border: '1px solid #f3f4f6',
+              overflow: 'hidden',
+              transition: 'all 0.3s ease',
+              cursor: 'pointer'
+            }} onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-2px)';
+              e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
+            }} onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,0,0,0.06)';
+            }} onClick={() => handleFAQClick(2)}>
+              <div style={{
+                padding: '24px',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '12px'
+                justifyContent: 'space-between',
+                transition: 'background-color 0.3s ease'
+              }} onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#f9fafb';
+              }} onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'transparent';
               }}>
-                <span style={{ fontSize: '24px' }}>❓</span>
-                How is Kampaio different from other tools?
-              </h3>
-              <p style={{
-                fontSize: '16px',
-                color: '#666',
-                lineHeight: '1.6',
-                margin: 0
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '16px'
+                }}>
+                  <div id="faq-icon-2" style={{
+                    width: '40px',
+                    height: '40px',
+                    borderRadius: '8px',
+                    backgroundColor: openQuestion === 2 ? '#00BFAE' : '#E5E7EB',
+                    color: openQuestion === 2 ? 'white' : '#6B7280',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '18px',
+                    fontWeight: 'bold',
+                    transition: 'all 0.3s ease'
+                  }}>
+                    {openQuestion === 2 ? '−' : '+'}
+                  </div>
+                  <h3 style={{
+                    fontSize: '18px',
+                    fontWeight: '600',
+                    color: '#1a1a1a',
+                    margin: 0
+                  }}>
+                    How is Kampaio different from other tools?
+                  </h3>
+                </div>
+                
+                <svg 
+                  style={{
+                    width: '20px',
+                    height: '20px',
+                    color: '#9ca3af',
+                    transition: 'transform 0.3s ease'
+                  }}
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+              
+              {/* Animated Answer */}
+              <div id="faq-answer-2" style={{
+                maxHeight: openQuestion === 2 ? '200px' : '0px',
+                opacity: openQuestion === 2 ? '1' : '0',
+                overflow: 'hidden',
+                transition: 'all 0.3s ease-in-out'
               }}>
-                Unlike generic tools, Kampaio combines GPT-4, Google Ads API, and RAG to deliver precise, personalized recommendations — not just templates.
-              </p>
+                <div style={{
+                  padding: '0 24px 24px 24px'
+                }}>
+                  <div style={{
+                    paddingLeft: '56px',
+                    borderLeft: '4px solid #00BFAE',
+                    paddingTop: '16px',
+                    paddingBottom: '16px'
+                  }}>
+                    <p style={{
+                      color: '#666',
+                      lineHeight: '1.6',
+                      margin: '0 0 16px 0'
+                    }}>
+                      Unlike generic tools, Kampaio combines GPT-4, Google Ads API, and RAG to deliver precise, personalized recommendations — not just templates.
+                    </p>
+                    
+                    {/* Action Buttons */}
+                    <div style={{
+                      display: 'flex',
+                      gap: '12px'
+                    }}>
+                      <button id="faq-button-2" style={{
+                        padding: '8px 16px',
+                        fontSize: '14px',
+                        fontWeight: '500',
+                        color: 'white',
+                        backgroundColor: openQuestion === 2 ? '#00BFAE' : '#E5E7EB',
+                        border: 'none',
+                        borderRadius: '8px',
+                        cursor: 'pointer',
+                        transition: 'all 0.3s ease'
+                      }}>
+                        Get Started
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             {/* FAQ Item 3 */}
             <div style={{
               background: 'white',
-              borderRadius: '20px',
-              padding: '32px',
-              boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
-              border: '1px solid rgba(127,156,245,0.1)',
-              transition: 'all 0.3s ease'
-            }}>
-              <h3 style={{
-                fontSize: '20px',
-                fontWeight: '700',
-                color: '#1a1a1a',
-                marginBottom: '16px',
+              borderRadius: '16px',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
+              border: '1px solid #f3f4f6',
+              overflow: 'hidden',
+              transition: 'all 0.3s ease',
+              cursor: 'pointer'
+            }} onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-2px)';
+              e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
+            }} onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,0,0,0.06)';
+            }} onClick={() => handleFAQClick(3)}>
+              <div style={{
+                padding: '24px',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '12px'
+                justifyContent: 'space-between',
+                transition: 'background-color 0.3s ease'
+              }} onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#f9fafb';
+              }} onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'transparent';
               }}>
-                <span style={{ fontSize: '24px' }}>❓</span>
-                Do I need to give access to my Google Ads account?
-              </h3>
-              <p style={{
-                fontSize: '16px',
-                color: '#666',
-                lineHeight: '1.6',
-                margin: 0
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '16px'
+                }}>
+                  <div id="faq-icon-3" style={{
+                    width: '40px',
+                    height: '40px',
+                    borderRadius: '8px',
+                    backgroundColor: openQuestion === 3 ? '#00BFAE' : '#E5E7EB',
+                    color: openQuestion === 3 ? 'white' : '#6B7280',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '18px',
+                    fontWeight: 'bold',
+                    transition: 'all 0.3s ease'
+                  }}>
+                    {openQuestion === 3 ? '−' : '+'}
+                  </div>
+                  <h3 style={{
+                    fontSize: '18px',
+                    fontWeight: '600',
+                    color: '#1a1a1a',
+                    margin: 0
+                  }}>
+                    Do I need to give access to my Google Ads account?
+                  </h3>
+                </div>
+                
+                <svg 
+                  style={{
+                    width: '20px',
+                    height: '20px',
+                    color: '#9ca3af',
+                    transition: 'transform 0.3s ease'
+                  }}
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+              
+              {/* Animated Answer */}
+              <div id="faq-answer-3" style={{
+                maxHeight: openQuestion === 3 ? '200px' : '0px',
+                opacity: openQuestion === 3 ? '1' : '0',
+                overflow: 'hidden',
+                transition: 'all 0.3s ease-in-out'
               }}>
-                Yes, but only read-only access. You stay in full control. Kampaio never makes automatic changes unless you explicitly approve them.
-              </p>
+                <div style={{
+                  padding: '0 24px 24px 24px'
+                }}>
+                  <div style={{
+                    paddingLeft: '56px',
+                    borderLeft: '4px solid #00BFAE',
+                    paddingTop: '16px',
+                    paddingBottom: '16px'
+                  }}>
+                                         <p style={{
+                       color: '#666',
+                       lineHeight: '1.6',
+                       margin: '0 0 16px 0'
+                     }}>
+                       Yes, but only read-only access. You stay in full control. Kampaio never makes automatic changes unless you explicitly approve them.
+                     </p>
+                    
+                    {/* Action Buttons */}
+                    <div style={{
+                      display: 'flex',
+                      gap: '12px'
+                    }}>
+                      <button id="faq-button-3" style={{
+                        padding: '8px 16px',
+                        fontSize: '14px',
+                        fontWeight: '500',
+                        color: 'white',
+                        backgroundColor: openQuestion === 3 ? '#00BFAE' : '#E5E7EB',
+                        border: 'none',
+                        borderRadius: '8px',
+                        cursor: 'pointer',
+                        transition: 'all 0.3s ease'
+                      }}>
+                        Get Started
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             {/* FAQ Item 4 */}
             <div style={{
               background: 'white',
-              borderRadius: '20px',
-              padding: '32px',
-              boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
-              border: '1px solid rgba(127,156,245,0.1)',
-              transition: 'all 0.3s ease'
-            }}>
-              <h3 style={{
-                fontSize: '20px',
-                fontWeight: '700',
-                color: '#1a1a1a',
-                marginBottom: '16px',
+              borderRadius: '16px',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
+              border: '1px solid #f3f4f6',
+              overflow: 'hidden',
+              transition: 'all 0.3s ease',
+              cursor: 'pointer'
+            }} onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-2px)';
+              e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
+            }} onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,0,0,0.06)';
+            }} onClick={() => handleFAQClick(4)}>
+              <div style={{
+                padding: '24px',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '12px'
+                justifyContent: 'space-between',
+                transition: 'background-color 0.3s ease'
+              }} onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#f9fafb';
+              }} onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'transparent';
               }}>
-                <span style={{ fontSize: '24px' }}>❓</span>
-                Can I try it for free?
-              </h3>
-              <p style={{
-                fontSize: '16px',
-                color: '#666',
-                lineHeight: '1.6',
-                margin: 0
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '16px'
+                }}>
+                  <div id="faq-icon-4" style={{
+                    width: '40px',
+                    height: '40px',
+                    borderRadius: '8px',
+                    backgroundColor: openQuestion === 4 ? '#00BFAE' : '#E5E7EB',
+                    color: openQuestion === 4 ? 'white' : '#6B7280',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '18px',
+                    fontWeight: 'bold',
+                    transition: 'all 0.3s ease'
+                  }}>
+                    {openQuestion === 4 ? '−' : '+'}
+                  </div>
+                                     <h3 style={{
+                     fontSize: '18px',
+                     fontWeight: '600',
+                     color: '#1a1a1a',
+                     margin: 0
+                   }}>
+                     Can I try it for free?
+                   </h3>
+                </div>
+                
+                <svg 
+                  style={{
+                    width: '20px',
+                    height: '20px',
+                    color: '#9ca3af',
+                    transition: 'transform 0.3s ease'
+                  }}
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+              
+              {/* Animated Answer */}
+              <div id="faq-answer-4" style={{
+                maxHeight: openQuestion === 4 ? '200px' : '0px',
+                opacity: openQuestion === 4 ? '1' : '0',
+                overflow: 'hidden',
+                transition: 'all 0.3s ease-in-out'
               }}>
-                Yes! You get a 7-day free trial, no credit card required. Try Kampaio on your own ad campaigns and see the results yourself.
-              </p>
+                <div style={{
+                  padding: '0 24px 24px 24px'
+                }}>
+                  <div style={{
+                    paddingLeft: '56px',
+                    borderLeft: '4px solid #00BFAE',
+                    paddingTop: '16px',
+                    paddingBottom: '16px'
+                  }}>
+                                         <p style={{
+                       color: '#666',
+                       lineHeight: '1.6',
+                       margin: '0 0 16px 0'
+                     }}>
+                       Yes! You get a 7-day free trial, no credit card required. Try Kampaio on your own ad campaigns and see the results yourself.
+                     </p>
+                    
+                    {/* Action Buttons */}
+                    <div style={{
+                      display: 'flex',
+                      gap: '12px'
+                    }}>
+                      <button id="faq-button-4" style={{
+                        padding: '8px 16px',
+                        fontSize: '14px',
+                        fontWeight: '500',
+                        color: 'white',
+                        backgroundColor: openQuestion === 4 ? '#00BFAE' : '#E5E7EB',
+                        border: 'none',
+                        borderRadius: '8px',
+                        cursor: 'pointer',
+                        transition: 'all 0.3s ease'
+                      }}>
+                        Get Started
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             {/* FAQ Item 5 */}
             <div style={{
               background: 'white',
-              borderRadius: '20px',
-              padding: '32px',
-              boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
-              border: '1px solid rgba(127,156,245,0.1)',
-              transition: 'all 0.3s ease'
-            }}>
-              <h3 style={{
-                fontSize: '20px',
-                fontWeight: '700',
-                color: '#1a1a1a',
-                marginBottom: '16px',
+              borderRadius: '16px',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
+              border: '1px solid #f3f4f6',
+              overflow: 'hidden',
+              transition: 'all 0.3s ease',
+              cursor: 'pointer'
+            }} onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-2px)';
+              e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
+            }} onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,0,0,0.06)';
+            }} onClick={() => handleFAQClick(5)}>
+              <div style={{
+                padding: '24px',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '12px'
+                justifyContent: 'space-between',
+                transition: 'background-color 0.3s ease'
+              }} onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#f9fafb';
+              }} onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'transparent';
               }}>
-                <span style={{ fontSize: '24px' }}>❓</span>
-                Is my Google Ads data secure?
-              </h3>
-              <p style={{
-                fontSize: '16px',
-                color: '#666',
-                lineHeight: '1.6',
-                margin: 0
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '16px'
+                }}>
+                  <div id="faq-icon-5" style={{
+                    width: '40px',
+                    height: '40px',
+                    borderRadius: '8px',
+                    backgroundColor: openQuestion === 5 ? '#00BFAE' : '#E5E7EB',
+                    color: openQuestion === 5 ? 'white' : '#6B7280',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '18px',
+                    fontWeight: 'bold',
+                    transition: 'all 0.3s ease'
+                  }}>
+                    {openQuestion === 5 ? '−' : '+'}
+                  </div>
+                                     <h3 style={{
+                     fontSize: '18px',
+                     fontWeight: '600',
+                     color: '#1a1a1a',
+                     margin: 0
+                   }}>
+                     Is my Google Ads data secure?
+                   </h3>
+                </div>
+                
+                <svg 
+                  style={{
+                    width: '20px',
+                    height: '20px',
+                    color: '#9ca3af',
+                    transition: 'transform 0.3s ease'
+                  }}
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+              
+              {/* Animated Answer */}
+              <div id="faq-answer-5" style={{
+                maxHeight: openQuestion === 5 ? '200px' : '0px',
+                opacity: openQuestion === 5 ? '1' : '0',
+                overflow: 'hidden',
+                transition: 'all 0.3s ease-in-out'
               }}>
-                Yes, your data is completely secure. We use bank-level 256-bit SSL encryption, are SOC 2 Type II compliant, and follow GDPR regulations. We never share your data with third parties and only access what's necessary to optimize your campaigns.
-              </p>
+                <div style={{
+                  padding: '0 24px 24px 24px'
+                }}>
+                  <div style={{
+                    paddingLeft: '56px',
+                    borderLeft: '4px solid #00BFAE',
+                    paddingTop: '16px',
+                    paddingBottom: '16px'
+                  }}>
+                                         <p style={{
+                       color: '#666',
+                       lineHeight: '1.6',
+                       margin: '0 0 16px 0'
+                     }}>
+                       Yes, your data is completely secure. We use bank-level 256-bit SSL encryption, are SOC 2 Type II compliant, and follow GDPR regulations. We never share your data with third parties and only access what's necessary to optimize your campaigns.
+                     </p>
+                    
+                    {/* Action Buttons */}
+                    <div style={{
+                      display: 'flex',
+                      gap: '12px'
+                    }}>
+                      <button id="faq-button-5" style={{
+                        padding: '8px 16px',
+                        fontSize: '14px',
+                        fontWeight: '500',
+                        color: 'white',
+                        backgroundColor: openQuestion === 5 ? '#00BFAE' : '#E5E7EB',
+                        border: 'none',
+                        borderRadius: '8px',
+                        cursor: 'pointer',
+                        transition: 'all 0.3s ease'
+                      }}>
+                        Get Started
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             {/* FAQ Item 6 */}
             <div style={{
               background: 'white',
-              borderRadius: '20px',
-              padding: '32px',
-              boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
-              border: '1px solid rgba(127,156,245,0.1)',
-              transition: 'all 0.3s ease'
-            }}>
-              <h3 style={{
-                fontSize: '20px',
-                fontWeight: '700',
-                color: '#1a1a1a',
-                marginBottom: '16px',
+              borderRadius: '16px',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
+              border: '1px solid #f3f4f6',
+              overflow: 'hidden',
+              transition: 'all 0.3s ease',
+              cursor: 'pointer'
+            }} onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-2px)';
+              e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
+            }} onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,0,0,0.06)';
+            }} onClick={() => handleFAQClick(6)}>
+              <div style={{
+                padding: '24px',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '12px'
+                justifyContent: 'space-between',
+                transition: 'background-color 0.3s ease'
+              }} onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#f9fafb';
+              }} onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'transparent';
               }}>
-                <span style={{ fontSize: '24px' }}>❓</span>
-                Is it difficult to set up and get started?
-              </h3>
-              <p style={{
-                fontSize: '16px',
-                color: '#666',
-                lineHeight: '1.6',
-                margin: 0
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '16px'
+                }}>
+                  <div id="faq-icon-6" style={{
+                    width: '40px',
+                    height: '40px',
+                    borderRadius: '8px',
+                    backgroundColor: openQuestion === 6 ? '#00BFAE' : '#E5E7EB',
+                    color: openQuestion === 6 ? 'white' : '#6B7280',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '18px',
+                    fontWeight: 'bold',
+                    transition: 'all 0.3s ease'
+                  }}>
+                    {openQuestion === 6 ? '−' : '+'}
+                  </div>
+                  <h3 style={{
+                    fontSize: '18px',
+                    fontWeight: '600',
+                    color: '#1a1a1a',
+                    margin: 0
+                  }}>
+                    Is it difficult to set up and get started?
+                  </h3>
+                </div>
+                
+                <svg 
+                  style={{
+                    width: '20px',
+                    height: '20px',
+                    color: '#9ca3af',
+                    transition: 'transform 0.3s ease'
+                  }}
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+              
+              {/* Animated Answer */}
+              <div id="faq-answer-6" style={{
+                maxHeight: openQuestion === 6 ? '200px' : '0px',
+                opacity: openQuestion === 6 ? '1' : '0',
+                overflow: 'hidden',
+                transition: 'all 0.3s ease-in-out'
               }}>
-                Not at all. Setup takes about 5 minutes - just connect your Google Ads account and we'll do the rest. We provide pre-built templates for your industry and step-by-step guides to get you started quickly.
-              </p>
+                <div style={{
+                  padding: '0 24px 24px 24px'
+                }}>
+                  <div style={{
+                    paddingLeft: '56px',
+                    borderLeft: '4px solid #00BFAE',
+                    paddingTop: '16px',
+                    paddingBottom: '16px'
+                  }}>
+                    <p style={{
+                      color: '#666',
+                      lineHeight: '1.6',
+                      margin: '0 0 16px 0'
+                    }}>
+                      Not at all. Setup takes about 5 minutes - just connect your Google Ads account and we'll do the rest. We provide pre-built templates for your industry and step-by-step guides to get you started quickly.
+                    </p>
+                    
+                    {/* Action Buttons */}
+                    <div style={{
+                      display: 'flex',
+                      gap: '12px'
+                    }}>
+                      <button id="faq-button-6" style={{
+                        padding: '8px 16px',
+                        fontSize: '14px',
+                        fontWeight: '500',
+                        color: 'white',
+                        backgroundColor: openQuestion === 6 ? '#00BFAE' : '#E5E7EB',
+                        border: 'none',
+                        borderRadius: '8px',
+                        cursor: 'pointer',
+                        transition: 'all 0.3s ease'
+                      }}>
+                        Get Started
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -3624,8 +4173,7 @@ export default function KampaioHome() {
 
       {/* Footer */}
       <Footer compact={true} />
-
     </div>
-    </>
+  </>
   );
 } 
