@@ -6,6 +6,462 @@ import AnimatedHero from '../../components/AnimatedHero';
 import FeatureCard from '../../components/InteractiveFeatureCard';
 import Footer from '../../components/Footer';
 
+// AI Dashboard Component
+function AIAnalyticsDashboard() {
+  const [currentPhase, setCurrentPhase] = useState(0);
+  const [dataFlow, setDataFlow] = useState(0);
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [metrics, setMetrics] = useState({
+    dataPoints: 0,
+    patterns: 0,
+    optimizations: 0,
+    accuracy: 0
+  });
+
+  // Data flow animation
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setDataFlow(prev => (prev + 1) % 100);
+    }, 50);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  // Phase progression
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentPhase(prev => (prev + 1) % 6);
+      setIsProcessing(true);
+      setTimeout(() => setIsProcessing(false), 2000);
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  // Live metrics
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setMetrics(prev => ({
+        dataPoints: Math.min(prev.dataPoints + Math.floor(Math.random() * 5000), 1000000),
+        patterns: Math.min(prev.patterns + Math.floor(Math.random() * 3000), 950000),
+        optimizations: Math.min(prev.optimizations + Math.floor(Math.random() * 100), 50000),
+        accuracy: Math.min(prev.accuracy + Math.random() * 0.5, 99.8)
+      }));
+    }, 100);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const phases = [
+    { 
+      id: 0, 
+      name: 'DATA INGESTION', 
+      color: '#667eea',
+      icon: (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M2 17L12 22L22 17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M2 12L12 17L22 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      )
+    },
+    { 
+      id: 1, 
+      name: 'ANALYSIS', 
+      color: '#f093fb',
+      icon: (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M3 3V21H21" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M9 9L12 6L16 10L21 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <circle cx="9" cy="9" r="1" fill="currentColor"/>
+          <circle cx="12" cy="6" r="1" fill="currentColor"/>
+          <circle cx="16" cy="10" r="1" fill="currentColor"/>
+          <circle cx="21" cy="5" r="1" fill="currentColor"/>
+        </svg>
+      )
+    },
+    { 
+      id: 2, 
+      name: 'PATTERN DETECTION', 
+      color: '#4facfe',
+      icon: (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <circle cx="11" cy="11" r="8" stroke="currentColor" strokeWidth="1.5"/>
+          <path d="M21 21L16.65 16.65" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M11 7V11L14 14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      )
+    },
+    { 
+      id: 3, 
+      name: 'OPTIMIZATION', 
+      color: '#43e97b',
+      icon: (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M19 15L20 17L22 18L20 19L19 21L18 19L16 18L18 17L19 15Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M5 15L6 17L8 18L6 19L5 21L4 19L2 18L4 17L5 15Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      )
+    },
+    { 
+      id: 4, 
+      name: 'VALIDATION', 
+      color: '#fa709a',
+      icon: (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M9 12L11 14L15 10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" strokeWidth="1.5"/>
+        </svg>
+      )
+    },
+    { 
+      id: 5, 
+      name: 'DEPLOYMENT', 
+      color: '#a8edea',
+      icon: (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M2 17L12 22L22 17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M2 12L12 17L22 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M12 12V22" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      )
+    }
+  ];
+
+  return (
+    <div style={{
+      width: '100%',
+      height: '500px',
+      background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%)',
+      borderRadius: '20px',
+      border: '1px solid rgba(102, 126, 234, 0.2)',
+      position: 'relative',
+      overflow: 'hidden',
+      fontFamily: 'monospace'
+    }}>
+      
+      {/* Holographic Grid Background */}
+      <div style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        background: `
+          linear-gradient(90deg, rgba(102, 126, 234, 0.1) 1px, transparent 1px),
+          linear-gradient(rgba(102, 126, 234, 0.1) 1px, transparent 1px)
+        `,
+        backgroundSize: '50px 50px',
+        animation: 'gridMove 20s linear infinite',
+        pointerEvents: 'none'
+      }} />
+
+      {/* Floating Data Particles */}
+      <div style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        pointerEvents: 'none'
+      }}>
+        {[...Array(30)].map((_, i) => (
+          <div
+            key={i}
+            style={{
+              position: 'absolute',
+              width: '2px',
+              height: '2px',
+              background: `hsl(${200 + i * 3}, 70%, 60%)`,
+              borderRadius: '50%',
+              left: `${(i * 7) % 100}%`,
+              top: `${(i * 11) % 100}%`,
+              animation: `dataFloat ${3 + i % 5}s linear infinite`,
+              animationDelay: `${i * 0.1}s`,
+              boxShadow: `0 0 10px hsl(${200 + i * 3}, 70%, 60%)`
+            }}
+          />
+        ))}
+      </div>
+
+      {/* System Header */}
+      <div style={{
+        position: 'absolute',
+        top: '20px',
+        left: '20px',
+        right: '20px',
+        zIndex: 10
+      }}>
+        <div style={{
+          textAlign: 'center',
+          marginBottom: '20px'
+        }}>
+          <h3 style={{
+            fontSize: '1.25rem',
+            fontWeight: '300',
+            color: '#ffffff',
+            marginBottom: '4px',
+            letterSpacing: '0.1em',
+            textTransform: 'uppercase',
+            textShadow: '0 0 10px rgba(102, 126, 234, 0.5)'
+          }}>
+            AI Analytics Dashboard
+          </h3>
+          <div style={{
+            fontSize: '0.75rem',
+            color: 'rgba(255, 255, 255, 0.6)',
+            letterSpacing: '0.05em',
+            textTransform: 'uppercase'
+          }}>
+            SYSTEM STATUS: OPERATIONAL | AI CORE: ACTIVE
+          </div>
+        </div>
+
+        {/* Live Metrics Bar */}
+        <div style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          padding: '12px 16px',
+          background: 'rgba(255, 255, 255, 0.05)',
+          border: '1px solid rgba(102, 126, 234, 0.3)',
+          borderRadius: '8px',
+          backdropFilter: 'blur(10px)'
+        }}>
+          {[
+            { label: 'DATA', value: metrics.dataPoints.toLocaleString(), color: '#667eea' },
+            { label: 'PATTERNS', value: metrics.patterns.toLocaleString(), color: '#f093fb' },
+            { label: 'OPTIMIZATIONS', value: metrics.optimizations.toLocaleString(), color: '#43e97b' },
+            { label: 'ACCURACY', value: `${metrics.accuracy.toFixed(1)}%`, color: '#fa709a' }
+          ].map((metric, index) => (
+            <div key={metric.label} style={{ textAlign: 'center' }}>
+              <div style={{
+                fontSize: '1rem',
+                fontWeight: '600',
+                color: metric.color,
+                marginBottom: '2px',
+                textShadow: `0 0 10px ${metric.color}`
+              }}>
+                {metric.value}
+              </div>
+              <div style={{
+                fontSize: '0.625rem',
+                color: 'rgba(255, 255, 255, 0.5)',
+                letterSpacing: '0.05em',
+                textTransform: 'uppercase'
+              }}>
+                {metric.label}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Central Processing Hub */}
+      <div style={{
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: '120px',
+        height: '120px',
+        background: 'radial-gradient(circle, rgba(102, 126, 234, 0.2) 0%, rgba(102, 126, 234, 0.05) 70%, transparent 100%)',
+        borderRadius: '50%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        color: '#667eea',
+        boxShadow: `
+          0 0 40px rgba(102, 126, 234, 0.3),
+          inset 0 0 40px rgba(102, 126, 234, 0.1)
+        `,
+        animation: 'hubPulse 3s ease-in-out infinite',
+        border: '2px solid rgba(102, 126, 234, 0.3)'
+      }}>
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M2 17L12 22L22 17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M2 12L12 17L22 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="1.5"/>
+          <path d="M12 9V15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+          <path d="M9 12H15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+        </svg>
+      </div>
+
+      {/* Rotating Phase Rings */}
+      <div style={{
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: '300px',
+        height: '300px'
+      }}>
+        {phases.map((phase, index) => (
+          <div
+            key={phase.id}
+            style={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: `translate(-50%, -50%) rotate(${index * 60}deg)`,
+              width: '220px',
+              height: '2px',
+              background: currentPhase === phase.id 
+                ? `linear-gradient(90deg, transparent, ${phase.color}, transparent)`
+                : 'rgba(255, 255, 255, 0.1)',
+              animation: currentPhase === phase.id ? 'phaseActive 2s ease-in-out infinite' : 'none'
+            }}
+          >
+            <div style={{
+              position: 'absolute',
+              right: '-15px',
+              top: '-15px',
+              width: '30px',
+              height: '30px',
+              background: currentPhase === phase.id ? phase.color : 'rgba(255, 255, 255, 0.1)',
+              borderRadius: '50%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: currentPhase === phase.id ? '#ffffff' : 'rgba(255, 255, 255, 0.3)',
+              boxShadow: currentPhase === phase.id 
+                ? `0 0 15px ${phase.color}` 
+                : 'none',
+              animation: currentPhase === phase.id ? 'phasePulse 2s ease-in-out infinite' : 'none'
+            }}>
+              {phase.icon}
+            </div>
+            <div style={{
+              position: 'absolute',
+              right: '-90px',
+              top: '-8px',
+              fontSize: '0.625rem',
+              color: currentPhase === phase.id ? phase.color : 'rgba(255, 255, 255, 0.3)',
+              textTransform: 'uppercase',
+              letterSpacing: '0.05em',
+              whiteSpace: 'nowrap',
+              textShadow: currentPhase === phase.id ? `0 0 10px ${phase.color}` : 'none'
+            }}>
+              {phase.name}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Data Flow Lines */}
+      <svg
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          pointerEvents: 'none'
+        }}
+        viewBox="0 0 500 500"
+      >
+        <defs>
+          <linearGradient id="dataFlow" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="rgba(102, 126, 234, 0)" />
+            <stop offset="50%" stopColor="rgba(102, 126, 234, 0.8)" />
+            <stop offset="100%" stopColor="rgba(102, 126, 234, 0)" />
+          </linearGradient>
+        </defs>
+        <path
+          d="M 50 250 Q 125 200 250 250 T 450 250"
+          stroke="url(#dataFlow)"
+          strokeWidth="2"
+          fill="none"
+          strokeDasharray="10,5"
+          style={{
+            animation: `dataFlow ${3 + dataFlow / 20}s linear infinite`
+          }}
+        />
+        <path
+          d="M 50 200 Q 150 150 250 200 T 450 200"
+          stroke="url(#dataFlow)"
+          strokeWidth="2"
+          fill="none"
+          strokeDasharray="10,5"
+          style={{
+            animation: `dataFlow ${2 + dataFlow / 30}s linear infinite`
+          }}
+        />
+        <path
+          d="M 50 300 Q 150 350 250 300 T 450 300"
+          stroke="url(#dataFlow)"
+          strokeWidth="2"
+          fill="none"
+          strokeDasharray="10,5"
+          style={{
+            animation: `dataFlow ${4 + dataFlow / 25}s linear infinite`
+          }}
+        />
+      </svg>
+
+      {/* Processing Zones */}
+      <div style={{
+        position: 'absolute',
+        bottom: '20px',
+        left: '20px',
+        right: '20px',
+        display: 'flex',
+        justifyContent: 'space-between',
+        gap: '12px'
+      }}>
+        {[
+          { name: 'INPUT', status: 'ACTIVE', data: '1.2M/s' },
+          { name: 'PROCESS', status: currentPhase > 0 ? 'ACTIVE' : 'STANDBY', data: '850K/s' },
+          { name: 'ANALYZE', status: currentPhase > 1 ? 'ACTIVE' : 'STANDBY', data: '650K/s' },
+          { name: 'OUTPUT', status: currentPhase > 4 ? 'ACTIVE' : 'STANDBY', data: '450K/s' }
+        ].map((zone, index) => (
+          <div
+            key={zone.name}
+            style={{
+              flex: 1,
+              padding: '8px',
+              background: zone.status === 'ACTIVE' 
+                ? 'rgba(102, 126, 234, 0.1)' 
+                : 'rgba(255, 255, 255, 0.05)',
+              border: `1px solid ${zone.status === 'ACTIVE' ? 'rgba(102, 126, 234, 0.3)' : 'rgba(255, 255, 255, 0.1)'}`,
+              borderRadius: '6px',
+              textAlign: 'center',
+              transition: 'all 0.3s ease'
+            }}
+          >
+            <div style={{
+              fontSize: '0.625rem',
+              color: zone.status === 'ACTIVE' ? '#667eea' : 'rgba(255, 255, 255, 0.5)',
+              marginBottom: '4px',
+              textTransform: 'uppercase',
+              letterSpacing: '0.05em'
+            }}>
+              {zone.name}
+            </div>
+            <div style={{
+              fontSize: '0.875rem',
+              fontWeight: '600',
+              color: zone.status === 'ACTIVE' ? '#ffffff' : 'rgba(255, 255, 255, 0.3)',
+              marginBottom: '2px'
+            }}>
+              {zone.data}
+            </div>
+            <div style={{
+              fontSize: '0.5rem',
+              color: zone.status === 'ACTIVE' ? '#43e97b' : 'rgba(255, 255, 255, 0.3)',
+              textTransform: 'uppercase'
+            }}>
+              {zone.status}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 // Компонент для анимированных счетчиков
 function AnimatedCounter({ 
   endValue, 
@@ -438,6 +894,63 @@ export default function KampaioHome() {
           to { 
             transform: translateY(0); 
             opacity: 1; 
+          }
+        }
+        
+        @keyframes gridMove {
+          0% { transform: translate(0, 0); }
+          100% { transform: translate(50px, 50px); }
+        }
+        
+        @keyframes dataFloat {
+          0%, 100% { 
+            transform: translateY(0px) translateX(0px);
+            opacity: 0.3;
+          }
+          25% { 
+            transform: translateY(-20px) translateX(10px);
+            opacity: 0.8;
+          }
+          50% { 
+            transform: translateY(-10px) translateX(-5px);
+            opacity: 1;
+          }
+          75% { 
+            transform: translateY(-30px) translateX(15px);
+            opacity: 0.6;
+          }
+        }
+        
+        @keyframes hubPulse {
+          0%, 100% { 
+            transform: translate(-50%, -50%) scale(1);
+            box-shadow: 0 0 40px rgba(102, 126, 234, 0.3);
+          }
+          50% { 
+            transform: translate(-50%, -50%) scale(1.1);
+            box-shadow: 0 0 60px rgba(102, 126, 234, 0.5);
+          }
+        }
+        
+        @keyframes phaseActive {
+          0%, 100% { 
+            opacity: 0.3;
+            transform: scale(1);
+          }
+          50% { 
+            opacity: 1;
+            transform: scale(1.05);
+          }
+        }
+        
+        @keyframes phasePulse {
+          0%, 100% { 
+            transform: scale(1);
+            box-shadow: 0 0 15px currentColor;
+          }
+          50% { 
+            transform: scale(1.1);
+            box-shadow: 0 0 25px currentColor;
           }
         }
       `}</style>
@@ -2286,258 +2799,11 @@ export default function KampaioHome() {
           <div style={{
             display: 'flex',
             justifyContent: 'center',
-            alignItems: 'flex-start',
+            alignItems: 'center',
             position: 'relative',
             marginTop: '-60px'
           }}>
-            <div style={{
-              width: '100%',
-              maxWidth: '500px',
-              height: '400px',
-              background: 'white',
-              borderRadius: '20px',
-              border: '1px solid #e9ecef',
-              display: 'flex',
-              position: 'relative',
-              overflow: 'hidden',
-              boxShadow: 'rgba(0, 0, 0, 0.1) 0px 20px 40px',
-              flexDirection: 'column'
-            }}>
-              <div style={{
-                padding: '16px 20px',
-                borderBottom: '1px solid #e9ecef',
-                background: '#f8f9fa',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '12px'
-              }}>
-                <div style={{
-                  width: '32px',
-                  height: '32px',
-                  background: 'linear-gradient(45deg, #00ffe7, #7f9cf5)',
-                  borderRadius: '50%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '16px',
-                  color: 'white',
-                  fontWeight: 'bold'
-                }}>
-                  K
-                </div>
-                <div>
-                  <div style={{
-                    fontSize: '14px',
-                    fontWeight: '600',
-                    color: '#1a1a1a'
-                  }}>
-                    Kampaio AI
-                  </div>
-                  <div style={{
-                    fontSize: '12px',
-                    color: '#666',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '4px'
-                  }}>
-                    <div style={{
-                      width: '6px',
-                      height: '6px',
-                      background: '#00d4aa',
-                      borderRadius: '50%',
-                      animation: 'pulse 2s ease infinite'
-                    }}></div>
-                    Online
-                  </div>
-                </div>
-              </div>
-              <div style={{
-                flex: '1',
-                padding: '20px',
-                overflow: 'hidden',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '16px'
-              }}>
-                <div style={{
-                  alignSelf: 'flex-end',
-                  maxWidth: '80%'
-                }}>
-                  <div style={{
-                    background: '#1a1a1a',
-                    color: 'white',
-                    padding: '12px 16px',
-                    borderRadius: '18px 18px 4px',
-                    fontSize: '14px',
-                    lineHeight: '1.4',
-                    animation: 'slideInRight 0.5s ease-out'
-                  }}>
-                    How can I optimize my Google Ads campaign for better ROI?
-                  </div>
-                </div>
-                <div style={{
-                  alignSelf: 'flex-start',
-                  maxWidth: '80%'
-                }}>
-                  <div style={{
-                    background: '#f8f9fa',
-                    color: '#1a1a1a',
-                    padding: '12px 16px',
-                    borderRadius: '18px 18px 18px 4px',
-                    fontSize: '14px',
-                    lineHeight: '1.4',
-                    border: '1px solid #e9ecef',
-                    animation: 'slideInLeft 0.5s ease-out 0.3s both'
-                  }}>
-                    <div style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '8px',
-                      marginBottom: '8px'
-                    }}>
-                      <div style={{
-                        width: '20px',
-                        height: '20px',
-                        background: 'linear-gradient(45deg, #00ffe7, #7f9cf5)',
-                        borderRadius: '50%',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        fontSize: '10px',
-                        color: 'white',
-                        fontWeight: 'bold'
-                      }}>
-                        K
-                      </div>
-                      <span style={{
-                        fontSize: '12px',
-                        fontWeight: '600',
-                        color: '#666'
-                      }}>
-                        Kampaio AI
-                      </span>
-                    </div>
-                    <div style={{
-                      marginBottom: '8px'
-                    }}>
-                      Here are 5 key strategies to optimize your Google Ads ROI:
-                    </div>
-                    <div style={{
-                      fontSize: '13px',
-                      color: '#666',
-                      lineHeight: '1.5'
-                    }}>
-                      1. <strong>Audience Targeting:</strong> Use lookalike audiences and custom intent targeting<br />
-                      2. <strong>Keyword Optimization:</strong> Focus on long-tail keywords with lower competition<br />
-                      3. <strong>Ad Copy Testing:</strong> A/B test headlines and descriptions regularly<br />
-                      4. <strong>Landing Page Optimization:</strong> Improve conversion rates with better UX<br />
-                      5. <strong>Bid Management:</strong> Use automated bidding strategies
-                    </div>
-                  </div>
-                </div>
-                <div style={{
-                  alignSelf: 'flex-start',
-                  maxWidth: '80%',
-                  animation: 'fadeIn 0.5s ease-out 1s both'
-                }}>
-                  <div style={{
-                    background: '#f8f9fa',
-                    padding: '12px 16px',
-                    borderRadius: '18px 18px 18px 4px',
-                    border: '1px solid #e9ecef',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '8px'
-                  }}>
-                    <div style={{
-                      width: '20px',
-                      height: '20px',
-                      background: 'linear-gradient(45deg, #00ffe7, #7f9cf5)',
-                      borderRadius: '50%',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontSize: '10px',
-                      color: 'white',
-                      fontWeight: 'bold'
-                    }}>
-                      K
-                    </div>
-                    <div style={{
-                      display: 'flex',
-                      gap: '4px'
-                    }}>
-                      <div style={{
-                        width: '6px',
-                        height: '6px',
-                        background: '#666',
-                        borderRadius: '50%',
-                        animation: 'typing 1.4s ease infinite'
-                      }}></div>
-                      <div style={{
-                        width: '6px',
-                        height: '6px',
-                        background: '#666',
-                        borderRadius: '50%',
-                        animation: 'typing 1.4s ease infinite 0.2s'
-                      }}></div>
-                      <div style={{
-                        width: '6px',
-                        height: '6px',
-                        background: '#666',
-                        borderRadius: '50%',
-                        animation: 'typing 1.4s ease infinite 0.4s'
-                      }}></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div style={{
-                background: '#f8f9fa',
-                padding: '16px 20px',
-                borderTop: '1px solid #e9ecef'
-              }}>
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '12px',
-                  background: 'white',
-                  border: '1px solid #e9ecef',
-                  borderRadius: '24px',
-                  padding: '8px 16px'
-                }}>
-                  <input
-                    placeholder="Ask Kampaio AI anything..."
-                    type="text"
-                    style={{
-                      flex: '1',
-                      border: 'none',
-                      outline: 'none',
-                      fontSize: '14px',
-                      background: 'transparent',
-                      color: '#1a1a1a'
-                    }}
-                  />
-                  <button style={{
-                    width: '32px',
-                    height: '32px',
-                    background: 'linear-gradient(45deg, #00ffe7, #7f9cf5)',
-                    border: 'none',
-                    borderRadius: '50%',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    cursor: 'pointer',
-                    transition: 'transform 0.2s'
-                  }}>
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M8 1L15 8L8 15" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      <path d="M1 8H15" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </button>
-                </div>
-              </div>
-            </div>
+            <AIAnalyticsDashboard />
           </div>
         </div>
       </section>
