@@ -960,6 +960,8 @@ export default function KampaioHome() {
         color: 'white',
         fontFamily: 'system-ui, -apple-system, sans-serif'
       }}>
+
+
       {/* Header */}
       <Header variant="full" />
 
@@ -4436,6 +4438,56 @@ export default function KampaioHome() {
           </div>
         </div>
       </section>
+
+      {/* Pre-Footer CTA Block */}
+      <div style={{
+        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        padding: '40px 20px',
+        textAlign: 'center',
+        color: 'white'
+      }}>
+        <div style={{
+          maxWidth: '1200px',
+          margin: '0 auto'
+        }}>
+          <h2 style={{
+            fontSize: 'clamp(2rem, 4vw, 3rem)',
+            fontWeight: '700',
+            marginBottom: '16px',
+            color: 'white'
+          }}>
+            Tired of wasting money on Google Ads?
+          </h2>
+          <p style={{
+            fontSize: 'clamp(1rem, 2vw, 1.25rem)',
+            marginBottom: '24px',
+            opacity: '0.9',
+            maxWidth: '800px',
+            margin: '0 auto 24px auto',
+            lineHeight: '1.6'
+          }}>
+            Stop guessing and start winning. Our AI identifies exactly where your budget is bleeding and shows you how to fix it in minutes.
+          </p>
+          <div style={{
+            display: 'flex',
+            gap: '16px',
+            justifyContent: 'center',
+            flexWrap: 'wrap'
+          }}>
+            <a href="https://replit.com/signup" style={{
+              padding: '12px 24px',
+              borderRadius: '8px',
+              backgroundColor: '#ff6b6b',
+              color: 'white',
+              textDecoration: 'none',
+              fontWeight: '500',
+              transition: 'all 0.3s ease'
+            }}>
+              Find My Leaks
+            </a>
+          </div>
+        </div>
+      </div>
 
       {/* Footer */}
       <Footer compact={true} />
