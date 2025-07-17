@@ -42,10 +42,10 @@ function AIAnalyticsDashboard() {
   useEffect(() => {
     const interval = setInterval(() => {
       setMetrics(prev => ({
-        dataPoints: Math.min(prev.dataPoints + Math.floor(Math.random() * 5000), 1000000),
-        patterns: Math.min(prev.patterns + Math.floor(Math.random() * 3000), 950000),
-        optimizations: Math.min(prev.optimizations + Math.floor(Math.random() * 100), 50000),
-        accuracy: Math.min(prev.accuracy + Math.random() * 0.5, 99.8)
+        dataPoints: Math.min(prev.dataPoints + Math.floor((Date.now() % 5000) / 100), 1000000),
+        patterns: Math.min(prev.patterns + Math.floor((Date.now() % 3000) / 100), 950000),
+        optimizations: Math.min(prev.optimizations + Math.floor((Date.now() % 100) / 10), 50000),
+        accuracy: Math.min(prev.accuracy + ((Date.now() % 50) / 100), 99.8)
       }));
     }, 100);
 
@@ -4485,6 +4485,122 @@ export default function KampaioHome() {
             }}>
               Find My Leaks
             </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Hero Block Variant - Subtle Gradient */}
+      <div style={{
+        padding: '40px 20px',
+        background: 'white'
+      }}>
+        
+        {/* Variant 2 - Subtle Gradient */}
+        <div style={{
+          background: 'linear-gradient(135deg, #FFFFFF 0%, #E0E6F7 100%)',
+          borderRadius: '20px',
+          padding: '60px 40px',
+          marginBottom: '40px',
+          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.08)',
+          position: 'relative',
+          overflow: 'hidden'
+        }}>
+          <div style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'radial-gradient(circle at 20% 30%, rgba(0, 255, 231, 0.05) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(0, 255, 231, 0.03) 0%, transparent 50%)',
+            pointerEvents: 'none'
+          }} />
+          
+          <div style={{
+            maxWidth: '1200px',
+            margin: '0 auto',
+            textAlign: 'center',
+            position: 'relative',
+            zIndex: 2
+          }}>
+            <h1 style={{
+              fontSize: '48px',
+              fontWeight: '800',
+              color: '#1A1A1A',
+              marginBottom: '24px',
+              lineHeight: '1.2'
+            }}>
+              Intelligent Analytics
+              <span style={{
+                background: 'linear-gradient(135deg, #00FFE7, #00BFAE)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text'
+              }}> AI Assistant</span>
+            </h1>
+            
+            <p style={{
+              fontSize: '20px',
+              color: '#666',
+              marginBottom: '40px',
+              maxWidth: '600px',
+              marginLeft: 'auto',
+              marginRight: 'auto',
+              lineHeight: '1.6'
+            }}>
+              Leverage advanced AI to optimize your digital advertising campaigns with precision and efficiency
+            </p>
+
+            <div style={{
+              display: 'flex',
+              gap: '20px',
+              justifyContent: 'center',
+              flexWrap: 'wrap'
+            }}>
+              <button style={{
+                background: 'linear-gradient(135deg, #00FFE7, #00BFAE)',
+                border: 'none',
+                borderRadius: '12px',
+                padding: '16px 32px',
+                fontSize: '16px',
+                fontWeight: '600',
+                color: '#1A1A1A',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease',
+                boxShadow: '0 8px 24px rgba(0, 255, 231, 0.3)'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-2px)';
+                e.currentTarget.style.boxShadow = '0 12px 32px rgba(0, 255, 231, 0.4)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 255, 231, 0.3)';
+              }}>
+                Get Started
+              </button>
+              
+              <button style={{
+                background: 'rgba(0, 255, 231, 0.1)',
+                border: '2px solid rgba(0, 255, 231, 0.3)',
+                borderRadius: '12px',
+                padding: '16px 32px',
+                fontSize: '16px',
+                fontWeight: '600',
+                color: '#00FFE7',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'rgba(0, 255, 231, 0.15)';
+                e.currentTarget.style.borderColor = 'rgba(0, 255, 231, 0.5)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'rgba(0, 255, 231, 0.1)';
+                e.currentTarget.style.borderColor = 'rgba(0, 255, 231, 0.3)';
+              }}>
+                Learn More
+              </button>
+            </div>
           </div>
         </div>
       </div>

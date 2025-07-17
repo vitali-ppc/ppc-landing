@@ -149,7 +149,7 @@ const ChatFormGPT: React.FC = () => {
       
       if (typingIndex.current < fullText.length - 1) {
         typingIndex.current++;
-        typingTimeout.current = setTimeout(type, 12 + Math.random() * 30);
+        typingTimeout.current = setTimeout(type, 12 + (typingIndex.current % 30));
       } else {
         setTypingText(null);
       }

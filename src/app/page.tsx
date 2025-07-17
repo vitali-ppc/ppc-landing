@@ -76,12 +76,12 @@ export default function Home() {
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
-    const stars = Array.from({ length: 32 }, () => ({
-      x: Math.random() * 900,
-      y: Math.random() * 160,
-      r: 2 + Math.random() * 2,
-      dx: (Math.random() - 0.5) * 0.2,
-      dy: (Math.random() - 0.5) * 0.2
+    const stars = Array.from({ length: 32 }, (_, i) => ({
+      x: (i * 28) % 900,
+      y: (i * 5) % 160,
+      r: 2 + (i % 3),
+      dx: ((i % 10) - 5) * 0.04,
+      dy: ((i % 7) - 3) * 0.04
     }))
 
     function drawCosmos() {

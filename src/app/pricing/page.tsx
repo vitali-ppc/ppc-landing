@@ -35,9 +35,8 @@ export default function PricingPage() {
       color: '#667eea',
       icon: (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M2 17L12 22L22 17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M2 12L12 17L22 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M3 12H7L10 9L14 15L17 12H21" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <circle cx="12" cy="12" r="2" stroke="currentColor" strokeWidth="1.5"/>
         </svg>
       )
     },
@@ -47,12 +46,12 @@ export default function PricingPage() {
       color: '#f093fb',
       icon: (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path d="M3 3V21H21" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M9 9L12 6L16 10L21 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          <circle cx="9" cy="9" r="1" fill="currentColor"/>
-          <circle cx="12" cy="6" r="1" fill="currentColor"/>
-          <circle cx="16" cy="10" r="1" fill="currentColor"/>
-          <circle cx="21" cy="5" r="1" fill="currentColor"/>
+          <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" strokeWidth="1.5"/>
+          <path d="M7 17L10 14L14 17L21 10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <circle cx="7" cy="17" r="1" fill="currentColor"/>
+          <circle cx="10" cy="14" r="1" fill="currentColor"/>
+          <circle cx="14" cy="17" r="1" fill="currentColor"/>
+          <circle cx="21" cy="10" r="1" fill="currentColor"/>
         </svg>
       )
     },
@@ -62,9 +61,15 @@ export default function PricingPage() {
       color: '#4facfe',
       icon: (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <circle cx="11" cy="11" r="8" stroke="currentColor" strokeWidth="1.5"/>
-          <path d="M21 21L16.65 16.65" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M11 7V11L14 14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <circle cx="12" cy="12" r="8" stroke="currentColor" strokeWidth="1.5"/>
+          <path d="M12 4V8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+          <path d="M12 16V20" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+          <path d="M4 12H8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+          <path d="M16 12H20" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+          <path d="M6.34 6.34L8.93 8.93" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+          <path d="M15.07 15.07L17.66 17.66" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+          <path d="M6.34 17.66L8.93 15.07" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+          <path d="M15.07 8.93L17.66 6.34" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
         </svg>
       )
     },
@@ -74,9 +79,11 @@ export default function PricingPage() {
       color: '#43e97b',
       icon: (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M19 15L20 17L22 18L20 19L19 21L18 19L16 18L18 17L19 15Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M5 15L6 17L8 18L6 19L5 21L4 19L2 18L4 17L5 15Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M12 2L12 22" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+          <path d="M2 12H22" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+          <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="1.5"/>
+          <path d="M12 5L15 8L12 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M12 19L9 16L12 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
       )
     },
@@ -86,8 +93,8 @@ export default function PricingPage() {
       color: '#fa709a',
       icon: (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path d="M9 12L11 14L15 10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" strokeWidth="1.5"/>
+          <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" strokeWidth="1.5"/>
+          <path d="M7 12L10 15L17 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
       )
     },
@@ -97,10 +104,9 @@ export default function PricingPage() {
       color: '#a8edea',
       icon: (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M2 17L12 22L22 17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M2 12L12 17L22 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M12 12V22" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M12 2L12 22" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+          <path d="M5 12L12 5L19 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M5 19L12 12L19 19" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
       )
     }
@@ -116,7 +122,7 @@ export default function PricingPage() {
         flexDirection: 'column',
         position: 'relative',
         overflow: 'hidden',
-        fontFamily: 'monospace'
+        fontFamily: 'Inter, SF Pro Display, Segoe UI, Arial, sans-serif'
       }}>
         
         {/* Holographic Grid Background */}
@@ -417,13 +423,13 @@ export default function PricingPage() {
 
           {/* Combined Block: Real-time Data Processing Pipeline + AI Neural Network */}
           <div style={{
-            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 50%, #1a1a1a 100%)',
+            background: 'white',
             borderRadius: '16px',
             padding: '40px',
             marginBottom: '40px',
             position: 'relative',
             overflow: 'hidden',
-            boxShadow: '0 20px 40px rgba(102, 126, 234, 0.3)'
+            boxShadow: '0 20px 40px rgba(0, 0, 0, 0.1)'
           }}>
             <div style={{
               position: 'absolute',
@@ -431,10 +437,7 @@ export default function PricingPage() {
               left: 0,
               right: 0,
               bottom: 0,
-              background: `
-                radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(102, 126, 234, 0.1) 0%, transparent 50%)
-              `,
+              background: 'transparent',
               pointerEvents: 'none'
             }} />
 
@@ -447,12 +450,12 @@ export default function PricingPage() {
               {/* Left Side: Real-time Data Processing Pipeline */}
               <div>
                 <h2 style={{
-                  fontSize: '1.75rem',
-                  fontWeight: '600',
-                  color: '#ffffff',
+                  fontSize: 'clamp(36px, 4vw, 48px)',
+                  fontWeight: '800',
+                  color: '#1a1a1a',
                   marginBottom: '24px',
-                  textAlign: 'center',
-                  textShadow: '0 2px 10px rgba(0,0,0,0.3)'
+                  lineHeight: '1.2',
+                  textAlign: 'center'
                 }}>
                   Real-time Data Processing Pipeline
                 </h2>
@@ -464,17 +467,68 @@ export default function PricingPage() {
                   marginBottom: '24px'
                 }}>
                   {[
-                    { title: 'API Connection', status: 'Connected', data: '2.4M requests/min', icon: '🔗' },
-                    { title: 'Data Ingestion', status: 'Active', data: '1.8TB/hour', icon: '📊' },
-                    { title: 'AI Processing', status: 'Running', data: '99.7% accuracy', icon: '🤖' },
-                    { title: 'Insights Generated', status: 'Live', data: '156 insights/sec', icon: '💡' }
+                    { 
+                      title: 'Dentists', 
+                      status: 'Connected', 
+                      data: '2.4M requests/min', 
+                      icon: (
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                          <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                          <path d="M19 10v2a7 7 0 0 1-14 0v-2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                          <line x1="12" y1="19" x2="12" y2="23" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                          <line x1="8" y1="23" x2="16" y2="23" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                        </svg>
+                      )
+                    },
+                    { 
+                      title: 'Real Estate', 
+                      status: 'Active', 
+                      data: '1.8TB/hour', 
+                      icon: (
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                          <polyline points="9,22 9,12 15,12 15,22" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                          <path d="M9 9h.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                          <path d="M15 9h.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                        </svg>
+                      )
+                    },
+                    { 
+                      title: 'SaaS Companies', 
+                      status: 'Running', 
+                      data: '99.7% accuracy', 
+                      icon: (
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                          <rect x="3" y="3" width="18" height="18" rx="2" ry="2" stroke="currentColor" strokeWidth="1.5"/>
+                          <path d="M8 8h8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                          <path d="M8 12h8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                          <path d="M8 16h5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                          <circle cx="16" cy="16" r="2" stroke="currentColor" strokeWidth="1.5"/>
+                          <path d="M16 14v4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                          <path d="M14 16h4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                        </svg>
+                      )
+                    },
+                    { 
+                      title: 'Legal Services', 
+                      status: 'Live', 
+                      data: '156 insights/sec', 
+                      icon: (
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                          <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                          <path d="M2 17L12 22L22 17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                          <path d="M2 12L12 17L22 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                          <path d="M12 12V22" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                          <path d="M8 18L12 22L16 18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      )
+                    }
                   ].map((item, index) => (
                     <div key={index} style={{
-                      background: 'rgba(255,255,255,0.1)',
-                      backdropFilter: 'blur(10px)',
+                      background: 'rgba(102, 126, 234, 0.05)',
                       borderRadius: '12px',
                       padding: '20px',
-                      border: '1px solid rgba(255,255,255,0.2)',
+                      border: '1px solid rgba(102, 126, 234, 0.2)',
                       transition: 'all 0.3s ease',
                       cursor: 'pointer',
                       position: 'relative',
@@ -489,16 +543,16 @@ export default function PricingPage() {
                       e.currentTarget.style.boxShadow = 'none';
                     }}>
                       <div style={{
-                        fontSize: '1.5rem',
                         marginBottom: '12px',
-                        textAlign: 'center'
+                        textAlign: 'center',
+                        color: '#667eea'
                       }}>
                         {item.icon}
                       </div>
                       <h3 style={{
                         fontSize: '1rem',
                         fontWeight: '600',
-                        color: '#ffffff',
+                        color: '#1a1a1a',
                         marginBottom: '6px',
                         textAlign: 'center'
                       }}>
@@ -507,10 +561,9 @@ export default function PricingPage() {
                       <div style={{
                         fontSize: '1.25rem',
                         fontWeight: '700',
-                        color: '#ffffff',
+                        color: '#1a1a1a',
                         marginBottom: '6px',
-                        textAlign: 'center',
-                        textShadow: '0 2px 10px rgba(0,0,0,0.3)'
+                        textAlign: 'center'
                       }}>
                         {item.data}
                       </div>
@@ -569,24 +622,27 @@ export default function PricingPage() {
               }}>
                 {/* Central AI Brain */}
                 <div style={{
-                  width: '100px',
-                  height: '100px',
-                  background: 'radial-gradient(circle, rgba(102, 126, 234, 0.3) 0%, rgba(102, 126, 234, 0.1) 70%, transparent 100%)',
+                  width: '150px',
+                  height: '150px',
+                  background: 'radial-gradient(circle, rgba(102, 126, 234, 0.4) 0%, rgba(102, 126, 234, 0.15) 70%, transparent 100%)',
                   borderRadius: '50%',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  border: '2px solid rgba(102, 126, 234, 0.5)',
-                  boxShadow: '0 0 40px rgba(102, 126, 234, 0.4)',
-                  animation: 'pulse 2s ease-in-out infinite',
+                  border: '3px solid rgba(102, 126, 234, 0.6)',
+                  boxShadow: '0 0 60px rgba(102, 126, 234, 0.5)',
+                  animation: 'pulse 1.5s ease-in-out infinite',
                   position: 'relative',
                   zIndex: 10
                 }}>
-                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" style={{color: '#667eea'}}>
-                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    <path d="M2 17L12 22L22 17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    <path d="M2 12L12 17L22 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="1.5"/>
+                  <svg width="60" height="60" viewBox="0 0 24 24" fill="none" style={{color: '#667eea'}}>
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.5"/>
+                    <circle cx="12" cy="12" r="6" stroke="currentColor" strokeWidth="1.5"/>
+                    <circle cx="12" cy="12" r="2" stroke="currentColor" strokeWidth="1.5"/>
+                    <path d="M2 12H4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                    <path d="M20 12H22" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                    <path d="M12 2V4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                    <path d="M12 20V22" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
                   </svg>
                 </div>
 
@@ -862,6 +918,768 @@ export default function PricingPage() {
               }}>
                 Export Data
               </button>
+            </div>
+          </div>
+
+          {/* Premium AI Analytics Visualization Block */}
+          <div style={{
+            background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #533483 100%)',
+            borderRadius: '24px',
+            padding: '60px 40px',
+            marginBottom: '40px',
+            position: 'relative',
+            overflow: 'hidden',
+            boxShadow: '0 40px 80px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
+            backdropFilter: 'blur(20px)',
+            border: '1px solid rgba(255, 255, 255, 0.1)'
+          }}>
+            
+            {/* Animated Background Elements */}
+            <div style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              background: `
+                radial-gradient(circle at 20% 20%, rgba(102, 126, 234, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(240, 147, 251, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 60%, rgba(67, 233, 123, 0.08) 0%, transparent 50%)
+              `,
+              animation: 'pulse 4s ease-in-out infinite',
+              pointerEvents: 'none'
+            }} />
+
+            {/* Floating 3D Particles */}
+            <div style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              pointerEvents: 'none'
+            }}>
+              {[...Array(20)].map((_, i) => (
+                <div
+                  key={i}
+                  style={{
+                    position: 'absolute',
+                    width: `${2 + (i % 4)}px`,
+                    height: `${2 + (i % 4)}px`,
+                    background: `hsl(${200 + i * 8}, 80%, 60%)`,
+                    borderRadius: '50%',
+                    left: `${(i * 5) % 100}%`,
+                    top: `${(i * 7) % 100}%`,
+                    animation: `dataFloat ${4 + i % 6}s linear infinite`,
+                    animationDelay: `${i * 0.2}s`,
+                    boxShadow: `0 0 20px hsl(${200 + i * 8}, 80%, 60%)`,
+                    transform: 'translateZ(0)'
+                  }}
+                />
+              ))}
+            </div>
+
+            {/* Main Content */}
+            <div style={{
+              position: 'relative',
+              zIndex: 10,
+              textAlign: 'center'
+            }}>
+              
+              {/* Hero Section */}
+              <h2 style={{
+                fontSize: 'clamp(48px, 6vw, 72px)',
+                fontWeight: '800',
+                background: 'linear-gradient(135deg, #ffffff 0%, #667eea 50%, #f093fb 100%)',
+                backgroundClip: 'text',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                marginBottom: '24px',
+                lineHeight: '1.1',
+                textShadow: '0 4px 20px rgba(102, 126, 234, 0.3)'
+              }}>
+                AI Analytics in Real-Time
+              </h2>
+              
+              <p style={{
+                fontSize: 'clamp(18px, 2.5vw, 24px)',
+                color: 'rgba(255, 255, 255, 0.8)',
+                marginBottom: '60px',
+                maxWidth: '800px',
+                margin: '0 auto 60px',
+                lineHeight: '1.6',
+                fontWeight: '300'
+              }}>
+                Watch as our AI processes Google Ads data with surgical precision, delivering insights that transform your campaigns
+              </p>
+
+              {/* Interactive Process Visualization */}
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+                gap: '32px',
+                marginBottom: '60px'
+              }}>
+                
+                {/* Step 1: API Connection */}
+                <div style={{
+                  background: 'rgba(255, 255, 255, 0.05)',
+                  backdropFilter: 'blur(20px)',
+                  borderRadius: '20px',
+                  padding: '32px',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  transition: 'all 0.4s ease',
+                  cursor: 'pointer',
+                  position: 'relative',
+                  overflow: 'hidden'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-12px) scale(1.02)';
+                  e.currentTarget.style.boxShadow = '0 30px 60px rgba(0, 0, 0, 0.4)';
+                  e.currentTarget.style.borderColor = 'rgba(102, 126, 234, 0.4)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                  e.currentTarget.style.boxShadow = 'none';
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                }}>
+                  
+                  {/* Step Number */}
+                  <div style={{
+                    position: 'absolute',
+                    top: '20px',
+                    right: '20px',
+                    width: '40px',
+                    height: '40px',
+                    background: 'linear-gradient(135deg, #667eea, #764ba2)',
+                    borderRadius: '50%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '18px',
+                    fontWeight: '700',
+                    color: '#ffffff',
+                    boxShadow: '0 8px 24px rgba(102, 126, 234, 0.4)'
+                  }}>
+                    1
+                  </div>
+
+                  {/* Icon */}
+                  <div style={{
+                    width: '80px',
+                    height: '80px',
+                    background: 'linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(102, 126, 234, 0.1))',
+                    borderRadius: '20px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    margin: '0 auto 24px',
+                    border: '1px solid rgba(102, 126, 234, 0.3)',
+                    animation: 'pulse 2s ease-in-out infinite'
+                  }}>
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" style={{color: '#667eea'}}>
+                      <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M2 17L12 22L22 17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M2 12L12 17L22 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="1.5"/>
+                    </svg>
+                  </div>
+
+                  <h3 style={{
+                    fontSize: '24px',
+                    fontWeight: '700',
+                    color: '#ffffff',
+                    marginBottom: '16px',
+                    textAlign: 'center'
+                  }}>
+                    API Connection
+                  </h3>
+                  
+                  <p style={{
+                    fontSize: '16px',
+                    color: 'rgba(255, 255, 255, 0.7)',
+                    lineHeight: '1.6',
+                    marginBottom: '20px',
+                    textAlign: 'center'
+                  }}>
+                    Secure real-time connection to Google Ads API with 99.9% uptime
+                  </p>
+
+                  {/* Live Status */}
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '8px'
+                  }}>
+                    <div style={{
+                      width: '8px',
+                      height: '8px',
+                      borderRadius: '50%',
+                      background: '#43e97b',
+                      animation: 'pulse 1s ease-in-out infinite'
+                    }} />
+                    <span style={{
+                      fontSize: '14px',
+                      color: '#43e97b',
+                      fontWeight: '600',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.05em'
+                    }}>
+                      Connected
+                    </span>
+                  </div>
+                </div>
+
+                {/* Step 2: Data Analysis */}
+                <div style={{
+                  background: 'rgba(255, 255, 255, 0.05)',
+                  backdropFilter: 'blur(20px)',
+                  borderRadius: '20px',
+                  padding: '32px',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  transition: 'all 0.4s ease',
+                  cursor: 'pointer',
+                  position: 'relative',
+                  overflow: 'hidden'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-12px) scale(1.02)';
+                  e.currentTarget.style.boxShadow = '0 30px 60px rgba(0, 0, 0, 0.4)';
+                  e.currentTarget.style.borderColor = 'rgba(240, 147, 251, 0.4)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                  e.currentTarget.style.boxShadow = 'none';
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                }}>
+                  
+                  <div style={{
+                    position: 'absolute',
+                    top: '20px',
+                    right: '20px',
+                    width: '40px',
+                    height: '40px',
+                    background: 'linear-gradient(135deg, #f093fb, #f5576c)',
+                    borderRadius: '50%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '18px',
+                    fontWeight: '700',
+                    color: '#ffffff',
+                    boxShadow: '0 8px 24px rgba(240, 147, 251, 0.4)'
+                  }}>
+                    2
+                  </div>
+
+                  <div style={{
+                    width: '80px',
+                    height: '80px',
+                    background: 'linear-gradient(135deg, rgba(240, 147, 251, 0.2), rgba(240, 147, 251, 0.1))',
+                    borderRadius: '20px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    margin: '0 auto 24px',
+                    border: '1px solid rgba(240, 147, 251, 0.3)',
+                    animation: 'pulse 2s ease-in-out infinite 0.5s'
+                  }}>
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" style={{color: '#f093fb'}}>
+                      <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" strokeWidth="1.5"/>
+                      <path d="M7 17L10 14L14 17L21 10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      <circle cx="7" cy="17" r="1" fill="currentColor"/>
+                      <circle cx="10" cy="14" r="1" fill="currentColor"/>
+                      <circle cx="14" cy="17" r="1" fill="currentColor"/>
+                      <circle cx="21" cy="10" r="1" fill="currentColor"/>
+                    </svg>
+                  </div>
+
+                  <h3 style={{
+                    fontSize: '24px',
+                    fontWeight: '700',
+                    color: '#ffffff',
+                    marginBottom: '16px',
+                    textAlign: 'center'
+                  }}>
+                    Data Analysis
+                  </h3>
+                  
+                  <p style={{
+                    fontSize: '16px',
+                    color: 'rgba(255, 255, 255, 0.7)',
+                    lineHeight: '1.6',
+                    marginBottom: '20px',
+                    textAlign: 'center'
+                  }}>
+                    Advanced pattern recognition and trend analysis in milliseconds
+                  </p>
+
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '8px'
+                  }}>
+                    <div style={{
+                      width: '8px',
+                      height: '8px',
+                      borderRadius: '50%',
+                      background: '#43e97b',
+                      animation: 'pulse 1s ease-in-out infinite'
+                    }} />
+                    <span style={{
+                      fontSize: '14px',
+                      color: '#43e97b',
+                      fontWeight: '600',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.05em'
+                    }}>
+                      Processing
+                    </span>
+                  </div>
+                </div>
+
+                {/* Step 3: AI Processing */}
+                <div style={{
+                  background: 'rgba(255, 255, 255, 0.05)',
+                  backdropFilter: 'blur(20px)',
+                  borderRadius: '20px',
+                  padding: '32px',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  transition: 'all 0.4s ease',
+                  cursor: 'pointer',
+                  position: 'relative',
+                  overflow: 'hidden'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-12px) scale(1.02)';
+                  e.currentTarget.style.boxShadow = '0 30px 60px rgba(0, 0, 0, 0.4)';
+                  e.currentTarget.style.borderColor = 'rgba(67, 233, 123, 0.4)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                  e.currentTarget.style.boxShadow = 'none';
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                }}>
+                  
+                  <div style={{
+                    position: 'absolute',
+                    top: '20px',
+                    right: '20px',
+                    width: '40px',
+                    height: '40px',
+                    background: 'linear-gradient(135deg, #43e97b, #38f9d7)',
+                    borderRadius: '50%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '18px',
+                    fontWeight: '700',
+                    color: '#ffffff',
+                    boxShadow: '0 8px 24px rgba(67, 233, 123, 0.4)'
+                  }}>
+                    3
+                  </div>
+
+                  <div style={{
+                    width: '80px',
+                    height: '80px',
+                    background: 'linear-gradient(135deg, rgba(67, 233, 123, 0.2), rgba(67, 233, 123, 0.1))',
+                    borderRadius: '20px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    margin: '0 auto 24px',
+                    border: '1px solid rgba(67, 233, 123, 0.3)',
+                    animation: 'pulse 2s ease-in-out infinite 1s'
+                  }}>
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" style={{color: '#43e97b'}}>
+                      <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.5"/>
+                      <path d="M12 4V8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                      <path d="M12 16V20" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                      <path d="M4 12H8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                      <path d="M16 12H20" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                      <path d="M6.34 6.34L8.93 8.93" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                      <path d="M15.07 15.07L17.66 17.66" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                      <path d="M6.34 17.66L8.93 15.07" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                      <path d="M15.07 8.93L17.66 6.34" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                    </svg>
+                  </div>
+
+                  <h3 style={{
+                    fontSize: '24px',
+                    fontWeight: '700',
+                    color: '#ffffff',
+                    marginBottom: '16px',
+                    textAlign: 'center'
+                  }}>
+                    AI Processing
+                  </h3>
+                  
+                  <p style={{
+                    fontSize: '16px',
+                    color: 'rgba(255, 255, 255, 0.7)',
+                    lineHeight: '1.6',
+                    marginBottom: '20px',
+                    textAlign: 'center'
+                  }}>
+                    Neural networks analyze patterns and predict optimal strategies
+                  </p>
+
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '8px'
+                  }}>
+                    <div style={{
+                      width: '8px',
+                      height: '8px',
+                      borderRadius: '50%',
+                      background: '#43e97b',
+                      animation: 'pulse 1s ease-in-out infinite'
+                    }} />
+                    <span style={{
+                      fontSize: '14px',
+                      color: '#43e97b',
+                      fontWeight: '600',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.05em'
+                    }}>
+                      Active
+                    </span>
+                  </div>
+                </div>
+
+                {/* Step 4: Insights Generation */}
+                <div style={{
+                  background: 'rgba(255, 255, 255, 0.05)',
+                  backdropFilter: 'blur(20px)',
+                  borderRadius: '20px',
+                  padding: '32px',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  transition: 'all 0.4s ease',
+                  cursor: 'pointer',
+                  position: 'relative',
+                  overflow: 'hidden'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-12px) scale(1.02)';
+                  e.currentTarget.style.boxShadow = '0 30px 60px rgba(0, 0, 0, 0.4)';
+                  e.currentTarget.style.borderColor = 'rgba(250, 112, 154, 0.4)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                  e.currentTarget.style.boxShadow = 'none';
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                }}>
+                  
+                  <div style={{
+                    position: 'absolute',
+                    top: '20px',
+                    right: '20px',
+                    width: '40px',
+                    height: '40px',
+                    background: 'linear-gradient(135deg, #fa709a, #fee140)',
+                    borderRadius: '50%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '18px',
+                    fontWeight: '700',
+                    color: '#ffffff',
+                    boxShadow: '0 8px 24px rgba(250, 112, 154, 0.4)'
+                  }}>
+                    4
+                  </div>
+
+                  <div style={{
+                    width: '80px',
+                    height: '80px',
+                    background: 'linear-gradient(135deg, rgba(250, 112, 154, 0.2), rgba(250, 112, 154, 0.1))',
+                    borderRadius: '20px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    margin: '0 auto 24px',
+                    border: '1px solid rgba(250, 112, 154, 0.3)',
+                    animation: 'pulse 2s ease-in-out infinite 1.5s'
+                  }}>
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" style={{color: '#fa709a'}}>
+                      <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" strokeWidth="1.5"/>
+                      <path d="M7 12L10 15L17 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
+
+                  <h3 style={{
+                    fontSize: '24px',
+                    fontWeight: '700',
+                    color: '#ffffff',
+                    marginBottom: '16px',
+                    textAlign: 'center'
+                  }}>
+                    Insights Generation
+                  </h3>
+                  
+                  <p style={{
+                    fontSize: '16px',
+                    color: 'rgba(255, 255, 255, 0.7)',
+                    lineHeight: '1.6',
+                    marginBottom: '20px',
+                    textAlign: 'center'
+                  }}>
+                    Actionable insights and recommendations generated instantly
+                  </p>
+
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '8px'
+                  }}>
+                    <div style={{
+                      width: '8px',
+                      height: '8px',
+                      borderRadius: '50%',
+                      background: '#43e97b',
+                      animation: 'pulse 1s ease-in-out infinite'
+                    }} />
+                    <span style={{
+                      fontSize: '14px',
+                      color: '#43e97b',
+                      fontWeight: '600',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.05em'
+                    }}>
+                      Ready
+                    </span>
+                  </div>
+                </div>
+
+                {/* Step 5: Optimization */}
+                <div style={{
+                  background: 'rgba(255, 255, 255, 0.05)',
+                  backdropFilter: 'blur(20px)',
+                  borderRadius: '20px',
+                  padding: '32px',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  transition: 'all 0.4s ease',
+                  cursor: 'pointer',
+                  position: 'relative',
+                  overflow: 'hidden'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-12px) scale(1.02)';
+                  e.currentTarget.style.boxShadow = '0 30px 60px rgba(0, 0, 0, 0.4)';
+                  e.currentTarget.style.borderColor = 'rgba(168, 237, 234, 0.4)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                  e.currentTarget.style.boxShadow = 'none';
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                }}>
+                  
+                  <div style={{
+                    position: 'absolute',
+                    top: '20px',
+                    right: '20px',
+                    width: '40px',
+                    height: '40px',
+                    background: 'linear-gradient(135deg, #a8edea, #fed6e3)',
+                    borderRadius: '50%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '18px',
+                    fontWeight: '700',
+                    color: '#ffffff',
+                    boxShadow: '0 8px 24px rgba(168, 237, 234, 0.4)'
+                  }}>
+                    5
+                  </div>
+
+                  <div style={{
+                    width: '80px',
+                    height: '80px',
+                    background: 'linear-gradient(135deg, rgba(168, 237, 234, 0.2), rgba(168, 237, 234, 0.1))',
+                    borderRadius: '20px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    margin: '0 auto 24px',
+                    border: '1px solid rgba(168, 237, 234, 0.3)',
+                    animation: 'pulse 2s ease-in-out infinite 2s'
+                  }}>
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" style={{color: '#a8edea'}}>
+                      <path d="M12 2L12 22" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                      <path d="M2 12H22" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                      <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="1.5"/>
+                      <path d="M12 5L15 8L12 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M12 19L9 16L12 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
+
+                  <h3 style={{
+                    fontSize: '24px',
+                    fontWeight: '700',
+                    color: '#ffffff',
+                    marginBottom: '16px',
+                    textAlign: 'center'
+                  }}>
+                    Optimization
+                  </h3>
+                  
+                  <p style={{
+                    fontSize: '16px',
+                    color: 'rgba(255, 255, 255, 0.7)',
+                    lineHeight: '1.6',
+                    marginBottom: '20px',
+                    textAlign: 'center'
+                  }}>
+                    Continuous campaign optimization for maximum ROI
+                  </p>
+
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '8px'
+                  }}>
+                    <div style={{
+                      width: '8px',
+                      height: '8px',
+                      borderRadius: '50%',
+                      background: '#43e97b',
+                      animation: 'pulse 1s ease-in-out infinite'
+                    }} />
+                    <span style={{
+                      fontSize: '14px',
+                      color: '#43e97b',
+                      fontWeight: '600',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.05em'
+                    }}>
+                      Optimizing
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Live Metrics Bar */}
+              <div style={{
+                background: 'rgba(255, 255, 255, 0.05)',
+                backdropFilter: 'blur(20px)',
+                borderRadius: '16px',
+                padding: '32px',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                marginBottom: '40px'
+              }}>
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+                  gap: '24px'
+                }}>
+                  {[
+                    { label: 'Data Points Processed', value: '2.4M', suffix: '/sec', color: '#667eea' },
+                    { label: 'AI Accuracy', value: '99.7', suffix: '%', color: '#43e97b' },
+                    { label: 'Response Time', value: '<50', suffix: 'ms', color: '#f093fb' },
+                    { label: 'Campaigns Optimized', value: '1,247', suffix: '', color: '#fa709a' }
+                  ].map((metric, index) => (
+                    <div key={index} style={{
+                      textAlign: 'center',
+                      padding: '20px',
+                      background: 'rgba(255, 255, 255, 0.03)',
+                      borderRadius: '12px',
+                      border: '1px solid rgba(255, 255, 255, 0.05)',
+                      transition: 'all 0.3s ease'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = 'scale(1.05)';
+                      e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = 'scale(1)';
+                      e.currentTarget.style.background = 'rgba(255, 255, 255, 0.03)';
+                    }}>
+                      <div style={{
+                        fontSize: '32px',
+                        fontWeight: '800',
+                        color: metric.color,
+                        marginBottom: '8px',
+                        textShadow: `0 0 20px ${metric.color}40`
+                      }}>
+                        {metric.value}{metric.suffix}
+                      </div>
+                      <div style={{
+                        fontSize: '14px',
+                        color: 'rgba(255, 255, 255, 0.7)',
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.05em',
+                        fontWeight: '500'
+                      }}>
+                        {metric.label}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* CTA Section */}
+              <div style={{
+                textAlign: 'center'
+              }}>
+                <button style={{
+                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)',
+                  border: 'none',
+                  borderRadius: '16px',
+                  padding: '20px 48px',
+                  fontSize: '18px',
+                  fontWeight: '700',
+                  color: '#ffffff',
+                  cursor: 'pointer',
+                  transition: 'all 0.4s ease',
+                  boxShadow: '0 20px 40px rgba(102, 126, 234, 0.4)',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.1em',
+                  position: 'relative',
+                  overflow: 'hidden'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-4px) scale(1.02)';
+                  e.currentTarget.style.boxShadow = '0 30px 60px rgba(102, 126, 234, 0.6)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                  e.currentTarget.style.boxShadow = '0 20px 40px rgba(102, 126, 234, 0.4)';
+                }}>
+                  <span style={{
+                    position: 'relative',
+                    zIndex: 2
+                  }}>
+                    Launch AI Demo
+                  </span>
+                  <div style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: '-100%',
+                    width: '100%',
+                    height: '100%',
+                    background: 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent)',
+                    transition: 'left 0.5s ease',
+                    zIndex: 1
+                  }} />
+                </button>
+                
+                <p style={{
+                  fontSize: '14px',
+                  color: 'rgba(255, 255, 255, 0.6)',
+                  marginTop: '16px',
+                  fontWeight: '300'
+                }}>
+                  Experience the future of AI-powered analytics
+                </p>
+              </div>
             </div>
           </div>
         </div>
