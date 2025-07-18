@@ -966,13 +966,13 @@ export default function PricingPage() {
                     position: 'absolute',
                     width: `${2 + (i % 4)}px`,
                     height: `${2 + (i % 4)}px`,
-                    background: `hsl(${200 + i * 8}, 80%, 60%)`,
+                    background: i % 3 === 0 ? '#00FFE7' : i % 3 === 1 ? '#7F9CF5' : '#00BFAE',
                     borderRadius: '50%',
                     left: `${(i * 5) % 100}%`,
                     top: `${(i * 7) % 100}%`,
                     animation: `dataFloat ${4 + i % 6}s linear infinite`,
                     animationDelay: `${i * 0.2}s`,
-                    boxShadow: `0 0 20px hsl(${200 + i * 8}, 80%, 60%)`,
+                    boxShadow: i % 3 === 0 ? '0 0 20px #00FFE7' : i % 3 === 1 ? '0 0 20px #7F9CF5' : '0 0 20px #00BFAE',
                     transform: 'translateZ(0)'
                   }}
                 />
@@ -990,13 +990,13 @@ export default function PricingPage() {
               <h2 style={{
                 fontSize: 'clamp(48px, 6vw, 72px)',
                 fontWeight: '800',
-                background: 'linear-gradient(135deg, #ffffff 0%, #667eea 50%, #f093fb 100%)',
+                background: 'linear-gradient(135deg, #00FFE7 0%, #7F9CF5 50%, #00BFAE 100%)',
                 backgroundClip: 'text',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 marginBottom: '24px',
                 lineHeight: '1.1',
-                textShadow: '0 4px 20px rgba(102, 126, 234, 0.3)'
+                textShadow: '0 4px 20px rgba(0, 255, 231, 0.3)'
               }}>
                 AI Analytics in Real-Time
               </h2>
@@ -1036,7 +1036,7 @@ export default function PricingPage() {
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = 'translateY(-12px) scale(1.02)';
                   e.currentTarget.style.boxShadow = '0 30px 60px rgba(0, 0, 0, 0.4)';
-                  e.currentTarget.style.borderColor = 'rgba(102, 126, 234, 0.4)';
+                  e.currentTarget.style.borderColor = 'rgba(0, 255, 231, 0.4)';
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = 'translateY(0) scale(1)';
@@ -1051,7 +1051,7 @@ export default function PricingPage() {
                     right: '20px',
                     width: '40px',
                     height: '40px',
-                    background: 'linear-gradient(135deg, #667eea, #764ba2)',
+                    background: 'linear-gradient(135deg, #00FFE7, #7F9CF5)',
                     borderRadius: '50%',
                     display: 'flex',
                     alignItems: 'center',
@@ -1059,7 +1059,7 @@ export default function PricingPage() {
                     fontSize: '18px',
                     fontWeight: '700',
                     color: '#ffffff',
-                    boxShadow: '0 8px 24px rgba(102, 126, 234, 0.4)'
+                    boxShadow: '0 8px 24px rgba(0, 255, 231, 0.4)'
                   }}>
                     1
                   </div>
@@ -1068,16 +1068,16 @@ export default function PricingPage() {
                   <div style={{
                     width: '80px',
                     height: '80px',
-                    background: 'linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(102, 126, 234, 0.1))',
+                    background: 'linear-gradient(135deg, rgba(0, 255, 231, 0.2), rgba(127, 156, 245, 0.1))',
                     borderRadius: '20px',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     margin: '0 auto 24px',
-                    border: '1px solid rgba(102, 126, 234, 0.3)',
+                    border: '1px solid rgba(0, 255, 231, 0.3)',
                     animation: 'pulse 2s ease-in-out infinite'
                   }}>
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" style={{color: '#667eea'}}>
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" style={{color: '#00FFE7'}}>
                       <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                       <path d="M2 17L12 22L22 17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                       <path d="M2 12L12 17L22 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -1116,12 +1116,12 @@ export default function PricingPage() {
                       width: '8px',
                       height: '8px',
                       borderRadius: '50%',
-                      background: '#43e97b',
+                      background: '#00BFAE',
                       animation: 'pulse 1s ease-in-out infinite'
                     }} />
                     <span style={{
                       fontSize: '14px',
-                      color: '#43e97b',
+                      color: '#00BFAE',
                       fontWeight: '600',
                       textTransform: 'uppercase',
                       letterSpacing: '0.05em'
@@ -1146,7 +1146,7 @@ export default function PricingPage() {
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = 'translateY(-12px) scale(1.02)';
                   e.currentTarget.style.boxShadow = '0 30px 60px rgba(0, 0, 0, 0.4)';
-                  e.currentTarget.style.borderColor = 'rgba(240, 147, 251, 0.4)';
+                  e.currentTarget.style.borderColor = 'rgba(127, 156, 245, 0.4)';
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = 'translateY(0) scale(1)';
@@ -1160,7 +1160,7 @@ export default function PricingPage() {
                     right: '20px',
                     width: '40px',
                     height: '40px',
-                    background: 'linear-gradient(135deg, #f093fb, #f5576c)',
+                    background: 'linear-gradient(135deg, #7F9CF5, #00BFAE)',
                     borderRadius: '50%',
                     display: 'flex',
                     alignItems: 'center',
@@ -1168,7 +1168,7 @@ export default function PricingPage() {
                     fontSize: '18px',
                     fontWeight: '700',
                     color: '#ffffff',
-                    boxShadow: '0 8px 24px rgba(240, 147, 251, 0.4)'
+                    boxShadow: '0 8px 24px rgba(127, 156, 245, 0.4)'
                   }}>
                     2
                   </div>
@@ -1176,16 +1176,16 @@ export default function PricingPage() {
                   <div style={{
                     width: '80px',
                     height: '80px',
-                    background: 'linear-gradient(135deg, rgba(240, 147, 251, 0.2), rgba(240, 147, 251, 0.1))',
+                    background: 'linear-gradient(135deg, rgba(127, 156, 245, 0.2), rgba(0, 191, 174, 0.1))',
                     borderRadius: '20px',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     margin: '0 auto 24px',
-                    border: '1px solid rgba(240, 147, 251, 0.3)',
+                    border: '1px solid rgba(127, 156, 245, 0.3)',
                     animation: 'pulse 2s ease-in-out infinite 0.5s'
                   }}>
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" style={{color: '#f093fb'}}>
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" style={{color: '#7F9CF5'}}>
                       <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" strokeWidth="1.5"/>
                       <path d="M7 17L10 14L14 17L21 10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                       <circle cx="7" cy="17" r="1" fill="currentColor"/>
@@ -1225,12 +1225,12 @@ export default function PricingPage() {
                       width: '8px',
                       height: '8px',
                       borderRadius: '50%',
-                      background: '#43e97b',
+                      background: '#00FFE7',
                       animation: 'pulse 1s ease-in-out infinite'
                     }} />
                     <span style={{
                       fontSize: '14px',
-                      color: '#43e97b',
+                      color: '#00FFE7',
                       fontWeight: '600',
                       textTransform: 'uppercase',
                       letterSpacing: '0.05em'
@@ -1255,7 +1255,7 @@ export default function PricingPage() {
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = 'translateY(-12px) scale(1.02)';
                   e.currentTarget.style.boxShadow = '0 30px 60px rgba(0, 0, 0, 0.4)';
-                  e.currentTarget.style.borderColor = 'rgba(67, 233, 123, 0.4)';
+                  e.currentTarget.style.borderColor = 'rgba(0, 255, 231, 0.4)';
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = 'translateY(0) scale(1)';
@@ -1269,7 +1269,7 @@ export default function PricingPage() {
                     right: '20px',
                     width: '40px',
                     height: '40px',
-                    background: 'linear-gradient(135deg, #43e97b, #38f9d7)',
+                    background: 'linear-gradient(135deg, #00FFE7, #00BFAE)',
                     borderRadius: '50%',
                     display: 'flex',
                     alignItems: 'center',
@@ -1277,7 +1277,7 @@ export default function PricingPage() {
                     fontSize: '18px',
                     fontWeight: '700',
                     color: '#ffffff',
-                    boxShadow: '0 8px 24px rgba(67, 233, 123, 0.4)'
+                    boxShadow: '0 8px 24px rgba(0, 255, 231, 0.4)'
                   }}>
                     3
                   </div>
@@ -1285,16 +1285,16 @@ export default function PricingPage() {
                   <div style={{
                     width: '80px',
                     height: '80px',
-                    background: 'linear-gradient(135deg, rgba(67, 233, 123, 0.2), rgba(67, 233, 123, 0.1))',
+                    background: 'linear-gradient(135deg, rgba(0, 255, 231, 0.2), rgba(0, 191, 174, 0.1))',
                     borderRadius: '20px',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     margin: '0 auto 24px',
-                    border: '1px solid rgba(67, 233, 123, 0.3)',
+                    border: '1px solid rgba(0, 255, 231, 0.3)',
                     animation: 'pulse 2s ease-in-out infinite 1s'
                   }}>
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" style={{color: '#43e97b'}}>
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" style={{color: '#00FFE7'}}>
                       <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.5"/>
                       <path d="M12 4V8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
                       <path d="M12 16V20" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
@@ -1337,12 +1337,12 @@ export default function PricingPage() {
                       width: '8px',
                       height: '8px',
                       borderRadius: '50%',
-                      background: '#43e97b',
+                      background: '#7F9CF5',
                       animation: 'pulse 1s ease-in-out infinite'
                     }} />
                     <span style={{
                       fontSize: '14px',
-                      color: '#43e97b',
+                      color: '#7F9CF5',
                       fontWeight: '600',
                       textTransform: 'uppercase',
                       letterSpacing: '0.05em'
@@ -1367,7 +1367,7 @@ export default function PricingPage() {
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = 'translateY(-12px) scale(1.02)';
                   e.currentTarget.style.boxShadow = '0 30px 60px rgba(0, 0, 0, 0.4)';
-                  e.currentTarget.style.borderColor = 'rgba(250, 112, 154, 0.4)';
+                  e.currentTarget.style.borderColor = 'rgba(0, 191, 174, 0.4)';
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = 'translateY(0) scale(1)';
@@ -1381,7 +1381,7 @@ export default function PricingPage() {
                     right: '20px',
                     width: '40px',
                     height: '40px',
-                    background: 'linear-gradient(135deg, #fa709a, #fee140)',
+                    background: 'linear-gradient(135deg, #00BFAE, #7F9CF5)',
                     borderRadius: '50%',
                     display: 'flex',
                     alignItems: 'center',
@@ -1389,7 +1389,7 @@ export default function PricingPage() {
                     fontSize: '18px',
                     fontWeight: '700',
                     color: '#ffffff',
-                    boxShadow: '0 8px 24px rgba(250, 112, 154, 0.4)'
+                    boxShadow: '0 8px 24px rgba(0, 191, 174, 0.4)'
                   }}>
                     4
                   </div>
@@ -1397,16 +1397,16 @@ export default function PricingPage() {
                   <div style={{
                     width: '80px',
                     height: '80px',
-                    background: 'linear-gradient(135deg, rgba(250, 112, 154, 0.2), rgba(250, 112, 154, 0.1))',
+                    background: 'linear-gradient(135deg, rgba(0, 191, 174, 0.2), rgba(127, 156, 245, 0.1))',
                     borderRadius: '20px',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     margin: '0 auto 24px',
-                    border: '1px solid rgba(250, 112, 154, 0.3)',
+                    border: '1px solid rgba(0, 191, 174, 0.3)',
                     animation: 'pulse 2s ease-in-out infinite 1.5s'
                   }}>
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" style={{color: '#fa709a'}}>
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" style={{color: '#00BFAE'}}>
                       <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" strokeWidth="1.5"/>
                       <path d="M7 12L10 15L17 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
@@ -1442,12 +1442,12 @@ export default function PricingPage() {
                       width: '8px',
                       height: '8px',
                       borderRadius: '50%',
-                      background: '#43e97b',
+                      background: '#00FFE7',
                       animation: 'pulse 1s ease-in-out infinite'
                     }} />
                     <span style={{
                       fontSize: '14px',
-                      color: '#43e97b',
+                      color: '#00FFE7',
                       fontWeight: '600',
                       textTransform: 'uppercase',
                       letterSpacing: '0.05em'
@@ -1472,7 +1472,7 @@ export default function PricingPage() {
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = 'translateY(-12px) scale(1.02)';
                   e.currentTarget.style.boxShadow = '0 30px 60px rgba(0, 0, 0, 0.4)';
-                  e.currentTarget.style.borderColor = 'rgba(168, 237, 234, 0.4)';
+                  e.currentTarget.style.borderColor = 'rgba(127, 156, 245, 0.4)';
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = 'translateY(0) scale(1)';
@@ -1486,7 +1486,7 @@ export default function PricingPage() {
                     right: '20px',
                     width: '40px',
                     height: '40px',
-                    background: 'linear-gradient(135deg, #a8edea, #fed6e3)',
+                    background: 'linear-gradient(135deg, #7F9CF5, #00FFE7)',
                     borderRadius: '50%',
                     display: 'flex',
                     alignItems: 'center',
@@ -1494,7 +1494,7 @@ export default function PricingPage() {
                     fontSize: '18px',
                     fontWeight: '700',
                     color: '#ffffff',
-                    boxShadow: '0 8px 24px rgba(168, 237, 234, 0.4)'
+                    boxShadow: '0 8px 24px rgba(127, 156, 245, 0.4)'
                   }}>
                     5
                   </div>
@@ -1502,16 +1502,16 @@ export default function PricingPage() {
                   <div style={{
                     width: '80px',
                     height: '80px',
-                    background: 'linear-gradient(135deg, rgba(168, 237, 234, 0.2), rgba(168, 237, 234, 0.1))',
+                    background: 'linear-gradient(135deg, rgba(127, 156, 245, 0.2), rgba(0, 255, 231, 0.1))',
                     borderRadius: '20px',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     margin: '0 auto 24px',
-                    border: '1px solid rgba(168, 237, 234, 0.3)',
+                    border: '1px solid rgba(127, 156, 245, 0.3)',
                     animation: 'pulse 2s ease-in-out infinite 2s'
                   }}>
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" style={{color: '#a8edea'}}>
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" style={{color: '#7F9CF5'}}>
                       <path d="M12 2L12 22" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
                       <path d="M2 12H22" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
                       <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="1.5"/>
@@ -1550,12 +1550,12 @@ export default function PricingPage() {
                       width: '8px',
                       height: '8px',
                       borderRadius: '50%',
-                      background: '#43e97b',
+                      background: '#00BFAE',
                       animation: 'pulse 1s ease-in-out infinite'
                     }} />
                     <span style={{
                       fontSize: '14px',
-                      color: '#43e97b',
+                      color: '#00BFAE',
                       fontWeight: '600',
                       textTransform: 'uppercase',
                       letterSpacing: '0.05em'
@@ -1581,10 +1581,10 @@ export default function PricingPage() {
                   gap: '24px'
                 }}>
                   {[
-                    { label: 'Data Points Processed', value: '2.4M', suffix: '/sec', color: '#667eea' },
-                    { label: 'AI Accuracy', value: '99.7', suffix: '%', color: '#43e97b' },
-                    { label: 'Response Time', value: '<50', suffix: 'ms', color: '#f093fb' },
-                    { label: 'Campaigns Optimized', value: '1,247', suffix: '', color: '#fa709a' }
+                    { label: 'Data Points Processed', value: '2.4M', suffix: '/sec', color: '#00FFE7' },
+                    { label: 'AI Accuracy', value: '99.7', suffix: '%', color: '#7F9CF5' },
+                    { label: 'Response Time', value: '<50', suffix: 'ms', color: '#00BFAE' },
+                    { label: 'Campaigns Optimized', value: '1,247', suffix: '', color: '#00FFE7' }
                   ].map((metric, index) => (
                     <div key={index} style={{
                       textAlign: 'center',
@@ -1630,7 +1630,7 @@ export default function PricingPage() {
                 textAlign: 'center'
               }}>
                 <button style={{
-                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)',
+                  background: 'linear-gradient(135deg, #00FFE7 0%, #7F9CF5 50%, #00BFAE 100%)',
                   border: 'none',
                   borderRadius: '16px',
                   padding: '20px 48px',
@@ -1639,7 +1639,7 @@ export default function PricingPage() {
                   color: '#ffffff',
                   cursor: 'pointer',
                   transition: 'all 0.4s ease',
-                  boxShadow: '0 20px 40px rgba(102, 126, 234, 0.4)',
+                  boxShadow: '0 20px 40px rgba(0, 255, 231, 0.4)',
                   textTransform: 'uppercase',
                   letterSpacing: '0.1em',
                   position: 'relative',
@@ -1647,11 +1647,11 @@ export default function PricingPage() {
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = 'translateY(-4px) scale(1.02)';
-                  e.currentTarget.style.boxShadow = '0 30px 60px rgba(102, 126, 234, 0.6)';
+                  e.currentTarget.style.boxShadow = '0 30px 60px rgba(0, 255, 231, 0.6)';
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = 'translateY(0) scale(1)';
-                  e.currentTarget.style.boxShadow = '0 20px 40px rgba(102, 126, 234, 0.4)';
+                  e.currentTarget.style.boxShadow = '0 20px 40px rgba(0, 255, 231, 0.4)';
                 }}>
                   <span style={{
                     position: 'relative',
@@ -1683,6 +1683,358 @@ export default function PricingPage() {
             </div>
           </div>
         </div>
+
+        {/* Premium Industry Solutions Block */}
+        <section style={{
+          padding: '120px 0',
+          background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%)',
+          position: 'relative',
+          overflow: 'hidden'
+        }}>
+          {/* Animated Background Elements */}
+          <div style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: `
+              radial-gradient(circle at 20% 30%, rgba(0, 255, 231, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 80% 70%, rgba(127, 156, 245, 0.08) 0%, transparent 50%),
+              radial-gradient(circle at 40% 80%, rgba(0, 191, 174, 0.06) 0%, transparent 50%)
+            `,
+            pointerEvents: 'none'
+          }} />
+
+          {/* Floating Geometric Shapes */}
+          <div style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            pointerEvents: 'none'
+          }}>
+            {[...Array(12)].map((_, i) => (
+              <div
+                key={i}
+                style={{
+                  position: 'absolute',
+                  width: `${20 + (i % 3) * 10}px`,
+                  height: `${20 + (i % 3) * 10}px`,
+                  background: i % 3 === 0 ? 'rgba(0, 255, 231, 0.1)' : i % 3 === 1 ? 'rgba(127, 156, 245, 0.1)' : 'rgba(0, 191, 174, 0.1)',
+                  borderRadius: i % 2 === 0 ? '50%' : '4px',
+                  left: `${(i * 8) % 100}%`,
+                  top: `${(i * 12) % 100}%`,
+                  animation: `float ${6 + i % 4}s ease-in-out infinite`,
+                  animationDelay: `${i * 0.5}s`,
+                  transform: 'rotate(45deg)'
+                }}
+              />
+            ))}
+          </div>
+
+          <div style={{
+            maxWidth: '1400px',
+            margin: '0 auto',
+            padding: '0 24px',
+            position: 'relative',
+            zIndex: 1
+          }}>
+            {/* Header Section */}
+            <div style={{
+              textAlign: 'center',
+              marginBottom: '80px'
+            }}>
+              <h2 style={{
+                fontSize: 'clamp(48px, 6vw, 72px)',
+                fontWeight: '800',
+                background: 'linear-gradient(135deg, #00FFE7 0%, #7F9CF5 50%, #00BFAE 100%)',
+                backgroundClip: 'text',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                marginBottom: '24px',
+                lineHeight: '1.1',
+                textShadow: '0 4px 20px rgba(0, 255, 231, 0.3)'
+              }}>
+                Tailored AI Solutions for Every Industry
+              </h2>
+              
+              <p style={{
+                fontSize: 'clamp(18px, 2.5vw, 24px)',
+                color: 'rgba(255, 255, 255, 0.8)',
+                maxWidth: '800px',
+                margin: '0 auto',
+                lineHeight: '1.6',
+                fontWeight: '300'
+              }}>
+                Our AI understands the unique challenges of your business
+              </p>
+            </div>
+
+            {/* Interactive Industry Cards */}
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+              gap: '32px',
+              marginBottom: '60px'
+            }}>
+              {[
+                {
+                  title: 'Dentists',
+                  description: 'Attract more patients with targeted local SEO campaigns. Our AI optimizes for dental-specific keywords and local search intent.',
+                  icon: (
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+                      <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="1.5"/>
+                    </svg>
+                  ),
+                  gradient: 'linear-gradient(135deg, #00FFE7, #7F9CF5)',
+                  stats: { patients: '+47%', keywords: '2.3K', cpc: '-32%' }
+                },
+                {
+                  title: 'Real Estate',
+                  description: 'Generate qualified leads with hyper-local targeting. Our AI finds the perfect audience for your property listings and market updates.',
+                  icon: (
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+                      <path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M9 22V12H15V22" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  ),
+                  gradient: 'linear-gradient(135deg, #7F9CF5, #00BFAE)',
+                  stats: { leads: '+89%', targeting: 'Hyper-local', roi: '+156%' }
+                },
+                {
+                  title: 'SaaS Companies',
+                  description: 'Scale your user acquisition with intelligent B2B targeting. Our AI optimizes for high-value leads and reduces customer acquisition costs.',
+                  icon: (
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+                      <rect x="2" y="3" width="20" height="14" rx="2" ry="2" stroke="currentColor" strokeWidth="1.5"/>
+                      <line x1="8" y1="21" x2="16" y2="21" stroke="currentColor" strokeWidth="1.5"/>
+                      <line x1="12" y1="17" x2="12" y2="21" stroke="currentColor" strokeWidth="1.5"/>
+                      <circle cx="12" cy="9" r="2" stroke="currentColor" strokeWidth="1.5"/>
+                      <path d="M8 13C8 13 9 12 12 12C15 12 16 13 16 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                    </svg>
+                  ),
+                  gradient: 'linear-gradient(135deg, #00BFAE, #00FFE7)',
+                  stats: { users: '+234%', cac: '-41%', ltv: '+89%' }
+                },
+                {
+                  title: 'Legal Services',
+                  description: 'Build trust and attract qualified clients. Our AI targets legal-specific keywords and optimizes for high-intent search queries.',
+                  icon: (
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+                      <path d="M12 1V23" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M17 5H9.5C8.57174 5 7.6815 5.36875 7.02513 6.02513C6.36875 6.6815 6 7.57174 6 8.5C6 9.42826 6.36875 10.3185 7.02513 10.9749C7.6815 11.6313 8.57174 12 9.5 12H14.5C15.4283 12 16.3185 12.3687 16.9749 13.0251C17.6313 13.6815 18 14.5717 18 15.5C18 16.4283 17.6313 17.3185 16.9749 17.9749C16.3185 18.6313 15.4283 19 14.5 19H6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  ),
+                  gradient: 'linear-gradient(135deg, #00FFE7, #00BFAE)',
+                  stats: { clients: '+67%', trust: 'High-intent', conversion: '+89%' }
+                }
+              ].map((industry, index) => (
+                <div
+                  key={index}
+                  style={{
+                    background: 'rgba(255, 255, 255, 0.03)',
+                    backdropFilter: 'blur(20px)',
+                    borderRadius: '24px',
+                    padding: '40px',
+                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
+                    cursor: 'pointer',
+                    position: 'relative',
+                    overflow: 'hidden'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-16px) scale(1.02)';
+                    e.currentTarget.style.boxShadow = '0 40px 80px rgba(0, 0, 0, 0.4)';
+                    e.currentTarget.style.borderColor = 'rgba(0, 255, 231, 0.3)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                    e.currentTarget.style.boxShadow = 'none';
+                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                  }}
+                >
+                  {/* Animated Background Gradient */}
+                  <div style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    background: industry.gradient,
+                    opacity: 0,
+                    transition: 'opacity 0.5s ease',
+                    zIndex: 0
+                  }} />
+                  
+                  {/* Icon Container */}
+                  <div style={{
+                    width: '80px',
+                    height: '80px',
+                    background: industry.gradient,
+                    borderRadius: '20px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginBottom: '24px',
+                    position: 'relative',
+                    zIndex: 1,
+                    boxShadow: `0 8px 32px ${industry.gradient.includes('#00FFE7') ? 'rgba(0, 255, 231, 0.3)' : industry.gradient.includes('#7F9CF5') ? 'rgba(127, 156, 245, 0.3)' : 'rgba(0, 191, 174, 0.3)'}`,
+                    animation: 'pulse 3s ease-in-out infinite'
+                  }}>
+                    <div style={{ color: '#ffffff' }}>
+                      {industry.icon}
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <div style={{ position: 'relative', zIndex: 1 }}>
+                    <h3 style={{
+                      fontSize: '28px',
+                      fontWeight: '700',
+                      color: '#ffffff',
+                      marginBottom: '16px',
+                      lineHeight: '1.2'
+                    }}>
+                      {industry.title}
+                    </h3>
+                    
+                    <p style={{
+                      fontSize: '16px',
+                      color: 'rgba(255, 255, 255, 0.7)',
+                      lineHeight: '1.6',
+                      marginBottom: '24px'
+                    }}>
+                      {industry.description}
+                    </p>
+
+                    {/* Live Stats */}
+                    <div style={{
+                      display: 'grid',
+                      gridTemplateColumns: 'repeat(3, 1fr)',
+                      gap: '16px',
+                      marginBottom: '24px'
+                    }}>
+                      {Object.entries(industry.stats).map(([key, value], statIndex) => (
+                        <div key={statIndex} style={{
+                          textAlign: 'center',
+                          padding: '12px',
+                          background: 'rgba(255, 255, 255, 0.05)',
+                          borderRadius: '12px',
+                          border: '1px solid rgba(255, 255, 255, 0.1)'
+                        }}>
+                          <div style={{
+                            fontSize: '18px',
+                            fontWeight: '700',
+                            color: industry.gradient.includes('#00FFE7') ? '#00FFE7' : industry.gradient.includes('#7F9CF5') ? '#7F9CF5' : '#00BFAE',
+                            marginBottom: '4px'
+                          }}>
+                            {value}
+                          </div>
+                          <div style={{
+                            fontSize: '12px',
+                            color: 'rgba(255, 255, 255, 0.6)',
+                            textTransform: 'uppercase',
+                            letterSpacing: '0.05em',
+                            fontWeight: '500'
+                          }}>
+                            {key}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Learn More Button */}
+                    <button style={{
+                      background: 'transparent',
+                      border: '2px solid rgba(255, 255, 255, 0.2)',
+                      borderRadius: '12px',
+                      padding: '12px 24px',
+                      fontSize: '14px',
+                      fontWeight: '600',
+                      color: '#ffffff',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s ease',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.05em',
+                      position: 'relative',
+                      overflow: 'hidden'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.borderColor = industry.gradient.includes('#00FFE7') ? '#00FFE7' : industry.gradient.includes('#7F9CF5') ? '#7F9CF5' : '#00BFAE';
+                      e.currentTarget.style.background = industry.gradient.includes('#00FFE7') ? 'rgba(0, 255, 231, 0.1)' : industry.gradient.includes('#7F9CF5') ? 'rgba(127, 156, 245, 0.1)' : 'rgba(0, 191, 174, 0.1)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                      e.currentTarget.style.background = 'transparent';
+                    }}>
+                      Learn more
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Bottom CTA */}
+            <div style={{
+              textAlign: 'center',
+              padding: '60px 0',
+              background: 'rgba(255, 255, 255, 0.02)',
+              borderRadius: '24px',
+              border: '1px solid rgba(255, 255, 255, 0.05)',
+              backdropFilter: 'blur(20px)'
+            }}>
+              <h3 style={{
+                fontSize: 'clamp(32px, 4vw, 48px)',
+                fontWeight: '700',
+                color: '#ffffff',
+                marginBottom: '16px'
+              }}>
+                Ready to Transform Your Business?
+              </h3>
+              
+              <p style={{
+                fontSize: '18px',
+                color: 'rgba(255, 255, 255, 0.7)',
+                marginBottom: '32px',
+                maxWidth: '600px',
+                margin: '0 auto 32px',
+                lineHeight: '1.6'
+              }}>
+                Join thousands of businesses already using AI to optimize their campaigns and drive results
+              </p>
+              
+              <button style={{
+                background: 'linear-gradient(135deg, #00FFE7 0%, #7F9CF5 50%, #00BFAE 100%)',
+                border: 'none',
+                borderRadius: '16px',
+                padding: '20px 48px',
+                fontSize: '18px',
+                fontWeight: '700',
+                color: '#ffffff',
+                cursor: 'pointer',
+                transition: 'all 0.4s ease',
+                boxShadow: '0 20px 40px rgba(0, 255, 231, 0.4)',
+                textTransform: 'uppercase',
+                letterSpacing: '0.1em',
+                position: 'relative',
+                overflow: 'hidden'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-4px) scale(1.02)';
+                e.currentTarget.style.boxShadow = '0 30px 60px rgba(0, 255, 231, 0.6)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                e.currentTarget.style.boxShadow = '0 20px 40px rgba(0, 255, 231, 0.4)';
+              }}>
+                Start Your AI Journey
+              </button>
+            </div>
+          </div>
+        </section>
 
         <Footer />
       </div>

@@ -954,12 +954,12 @@ export default function KampaioHome() {
           }
         }
       `}</style>
-      <div style={{
-        minHeight: '100vh',
-        background: '#1a1a1a',
-        color: 'white',
-        fontFamily: 'system-ui, -apple-system, sans-serif'
-      }}>
+    <div style={{
+      minHeight: '100vh',
+      background: '#1a1a1a',
+      color: 'white',
+      fontFamily: 'system-ui, -apple-system, sans-serif'
+    }}>
 
 
       {/* Header */}
@@ -1384,8 +1384,8 @@ export default function KampaioHome() {
                           <circle cx="12" cy="12" r="10"/>
                           <polyline points="12,6 12,12 16,14"/>
                         </svg>
-                      </div>
-                      <div style={{
+                    </div>
+                    <div style={{
                         animation: 'countUp 1.5s ease-out'
                       }}>
                         <AnimatedCounter endValue={85} suffix="%" delay={800} />
@@ -1435,8 +1435,8 @@ export default function KampaioHome() {
                       </div>
                       <div style={{
                         animation: 'countUp 1.5s ease-out',
-                        animationDelay: '0.2s'
-                      }}>
+                      animationDelay: '0.2s'
+                    }}>
                         <AnimatedCurrencyCounter endValue={1.30} delay={1000} />
                       </div>
                     </div>
@@ -1485,8 +1485,8 @@ export default function KampaioHome() {
                       </div>
                       <div style={{
                         animation: 'countUp 1.5s ease-out',
-                        animationDelay: '0.4s'
-                      }}>
+                      animationDelay: '0.4s'
+                    }}>
                         <AnimatedCounter endValue={87} suffix="%" delay={1200} />
                       </div>
                     </div>
@@ -2811,242 +2811,7 @@ export default function KampaioHome() {
       </section>
 
       {/* === ВАРІАНТ 1: Professional Code Editor === */}
-      <section style={{
-        background:'white',
-        padding:'120px 0 48px 0',
-        overflow:'hidden',
-        position:'relative'
-      }}>
-        <div style={{textAlign:'center',marginBottom:'48px'}}>
-          <h2 style={{fontSize:'32px',fontWeight:'700',color:'#1a1a1a',marginBottom:'16px',marginTop:0}}>AI в дії</h2>
-          <p style={{fontSize:'18px',color:'#a0a0a0',margin:0}}>Як Kampaio AI аналізує дані та приймає рішення</p>
-        </div>
-        
-        {/* Professional Code Editor Layout */}
-        <div style={{
-          maxWidth:'1000px',
-          margin:'0 auto 60px auto',
-          background:'#fafafa',
-          borderRadius:'12px',
-          border:'1px solid #e5e5e5',
-          overflow:'hidden',
-          boxShadow:'0 8px 32px rgba(0,0,0,0.08)'
-        }}>
-          {/* Editor Header */}
-          <div style={{
-            background:'#f5f5f5',
-            padding:'16px 24px',
-            borderBottom:'1px solid #e5e5e5',
-            display:'flex',
-            alignItems:'center',
-            gap:'12px'
-          }}>
-            <div style={{
-              display:'flex',
-              gap:'8px'
-            }}>
-              <div style={{
-                width:'12px',
-                height:'12px',
-                borderRadius:'50%',
-                background:'#ff5f56'
-              }}></div>
-              <div style={{
-                width:'12px',
-                height:'12px',
-                borderRadius:'50%',
-                background:'#ffbd2e'
-              }}></div>
-              <div style={{
-                width:'12px',
-                height:'12px',
-                borderRadius:'50%',
-                background:'#27ca3f'
-              }}></div>
-            </div>
-            <div style={{
-              fontSize:'14px',
-              color:'#666',
-              fontWeight:'500'
-            }}>
-              kampaio-ai-analysis.js
-            </div>
-          </div>
 
-          {/* Editor Content */}
-          <div style={{
-            padding:'24px',
-            display:'grid',
-            gridTemplateColumns:'1fr 1fr',
-            gap:'40px',
-            alignItems:'center'
-          }}>
-            {/* Left: Code */}
-            <div style={{
-              background:'#1a1a1a',
-              borderRadius:'8px',
-              padding:'24px',
-              fontFamily:'Monaco, Menlo, monospace',
-              fontSize:'14px',
-              lineHeight:'1.6',
-              color:'#fff',
-              position:'relative',
-              overflow:'hidden'
-            }}>
-              {/* Animated lines */}
-              <div style={{
-                position:'absolute',
-                top:'0',
-                left:'0',
-                right:'0',
-                height:'2px',
-                background:'linear-gradient(90deg, transparent, #00ffe7, transparent)',
-                animation:'flow 3s ease-in-out infinite'
-              }}></div>
-              
-              <div style={{color:'#7f9cf5'}}>// AI Analysis Engine</div>
-              <div style={{color:'#7f9cf5'}}>class KampaioAI {'{'}</div>
-              <div style={{marginLeft:'20px',color:'#a0a0a0'}}>constructor() {'{'}</div>
-              <div style={{marginLeft:'40px',color:'#00ffe7'}}>this.accuracy = 0.98;</div>
-              <div style={{marginLeft:'40px',color:'#00ffe7'}}>this.roiBoost = 3.2;</div>
-              <div style={{marginLeft:'20px',color:'#a0a0a0'}}>{'}'}</div>
-              <br/>
-              <div style={{marginLeft:'20px',color:'#7f9cf5'}}>analyzeCampaign(data) {'{'}</div>
-              <div style={{marginLeft:'40px',color:'#a0a0a0'}}>// Pattern recognition</div>
-              <div style={{marginLeft:'40px',color:'#00ffe7'}}>const insights = this.findInsights(data);</div>
-              <div style={{marginLeft:'40px',color:'#00ffe7'}}>return this.optimize(data, insights);</div>
-              <div style={{marginLeft:'20px',color:'#a0a0a0'}}>{'}'}</div>
-              <div style={{color:'#7f9cf5'}}>{'}'}</div>
-            </div>
-
-            {/* Right: AI Processing Visualization */}
-            <div style={{
-              display:'flex',
-              flexDirection:'column',
-              gap:'24px'
-            }}>
-              {/* AI Core */}
-              <div style={{
-                display:'flex',
-                alignItems:'center',
-                gap:'16px'
-              }}>
-                <div style={{
-                  width:'60px',
-                  height:'60px',
-                  background:'#1a1a1a',
-                  borderRadius:'50%',
-                  display:'flex',
-                  alignItems:'center',
-                  justifyContent:'center',
-                  animation:'aiPulse 2s ease-in-out infinite'
-                }}>
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2">
-                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
-                    <circle cx="12" cy="12" r="10"/>
-                    <line x1="12" y1="17" x2="12.01" y2="17"/>
-                  </svg>
-                </div>
-                <div>
-                  <div style={{fontSize:'18px',fontWeight:'600',color:'#1a1a1a',marginBottom:'4px'}}>AI Processing</div>
-                  <div style={{fontSize:'14px',color:'#666'}}>Real-time analysis</div>
-                </div>
-              </div>
-
-              {/* Metrics */}
-              <div style={{
-                display:'grid',
-                gridTemplateColumns:'1fr 1fr',
-                gap:'16px'
-              }}>
-                <div style={{
-                  background:'#f8f9fa',
-                  padding:'16px',
-                  borderRadius:'8px',
-                  border:'1px solid #e5e5e5',
-                  textAlign:'center'
-                }}>
-                  <div style={{fontSize:'24px',fontWeight:'700',color:'#1a1a1a',marginBottom:'4px'}}>98%</div>
-                  <div style={{fontSize:'12px',color:'#666'}}>Accuracy</div>
-                </div>
-                <div style={{
-                  background:'#f8f9fa',
-                  padding:'16px',
-                  borderRadius:'8px',
-                  border:'1px solid #e5e5e5',
-                  textAlign:'center'
-                }}>
-                  <div style={{fontSize:'24px',fontWeight:'700',color:'#1a1a1a',marginBottom:'4px'}}>3.2x</div>
-                  <div style={{fontSize:'12px',color:'#666'}}>ROI Boost</div>
-                </div>
-              </div>
-
-              {/* Processing Lines */}
-              <div style={{
-                position:'relative',
-                height:'40px'
-              }}>
-                <div style={{
-                  position:'absolute',
-                  top:'50%',
-                  left:'0',
-                  right:'0',
-                  height:'2px',
-                  background:'#e5e5e5',
-                  transform:'translateY(-50%)'
-                }}></div>
-                <div style={{
-                  position:'absolute',
-                  top:'50%',
-                  left:'0',
-                  width:'60%',
-                  height:'2px',
-                  background:'#00ffe7',
-                  transform:'translateY(-50%)',
-                  animation:'flow 2s ease-in-out infinite'
-                }}></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Metrics */}
-        <div style={{
-          display:'flex',
-          justifyContent:'center',
-          gap:'60px',
-          marginBottom:'60px'
-        }}>
-          <div style={{textAlign:'center'}}>
-            <div style={{fontSize:'36px',fontWeight:'700',color:'#1a1a1a',marginBottom:'8px'}}>98%</div>
-            <div style={{fontSize:'14px',color:'#666'}}>Accuracy</div>
-          </div>
-          <div style={{textAlign:'center'}}>
-            <div style={{fontSize:'36px',fontWeight:'700',color:'#1a1a1a',marginBottom:'8px'}}>3.2x</div>
-            <div style={{fontSize:'14px',color:'#666'}}>ROI Boost</div>
-          </div>
-          <div style={{textAlign:'center'}}>
-            <div style={{fontSize:'36px',fontWeight:'700',color:'#1a1a1a',marginBottom:'8px'}}>24/7</div>
-            <div style={{fontSize:'14px',color:'#666'}}>Monitoring</div>
-          </div>
-        </div>
-
-        <div style={{textAlign:'center'}}>
-          <button style={{
-            background:'#1a1a1a',
-            color:'white',
-            border:'none',
-            padding:'16px 32px',
-            borderRadius:'12px',
-            fontSize:'16px',
-            fontWeight:'600',
-            cursor:'pointer',
-            transition:'all 0.3s ease'
-          }}>
-            Start Your Free Trial
-          </button>
-        </div>
-      </section>
 
       {/* Tailored AI Solutions for Every Industry */}
       <section style={{
@@ -3752,8 +3517,8 @@ export default function KampaioHome() {
                     width: '40px',
                     height: '40px',
                     borderRadius: '8px',
-                    backgroundColor: openQuestion === 1 ? '#00BFAE' : '#E5E7EB',
-                    color: openQuestion === 1 ? 'white' : '#6B7280',
+                    backgroundColor: openQuestion === 1 ? '#00FFE7' : '#E5E7EB',
+                    color: openQuestion === 1 ? '#1A1A1A' : '#6B7280',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -3800,7 +3565,7 @@ export default function KampaioHome() {
                 }}>
                   <div style={{
                     paddingLeft: '56px',
-                    borderLeft: '4px solid #00BFAE',
+                    borderLeft: '4px solid #00FFE7',
                     paddingTop: '16px',
                     paddingBottom: '16px'
                   }}>
@@ -3821,12 +3586,13 @@ export default function KampaioHome() {
                         padding: '8px 16px',
                         fontSize: '14px',
                         fontWeight: '500',
-                        color: 'white',
-                        backgroundColor: openQuestion === 1 ? '#00BFAE' : '#E5E7EB',
+                        color: openQuestion === 1 ? '#1A1A1A' : '#6B7280',
+                        background: openQuestion === 1 ? 'linear-gradient(45deg, #00FFE7, #00BFAE)' : '#E5E7EB',
                         border: 'none',
                         borderRadius: '8px',
                         cursor: 'pointer',
-                        transition: 'all 0.3s ease'
+                        transition: 'all 0.3s ease',
+                        boxShadow: openQuestion === 1 ? '0 4px 12px rgba(0, 255, 231, 0.2)' : 'none'
                       }}>
                         Get Started
                       </button>
@@ -3872,8 +3638,8 @@ export default function KampaioHome() {
                     width: '40px',
                     height: '40px',
                     borderRadius: '8px',
-                    backgroundColor: openQuestion === 2 ? '#00BFAE' : '#E5E7EB',
-                    color: openQuestion === 2 ? 'white' : '#6B7280',
+                    backgroundColor: openQuestion === 2 ? '#00FFE7' : '#E5E7EB',
+                    color: openQuestion === 2 ? '#1A1A1A' : '#6B7280',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -3920,7 +3686,7 @@ export default function KampaioHome() {
                 }}>
                   <div style={{
                     paddingLeft: '56px',
-                    borderLeft: '4px solid #00BFAE',
+                    borderLeft: '4px solid #00FFE7',
                     paddingTop: '16px',
                     paddingBottom: '16px'
                   }}>
@@ -3941,12 +3707,13 @@ export default function KampaioHome() {
                         padding: '8px 16px',
                         fontSize: '14px',
                         fontWeight: '500',
-                        color: 'white',
-                        backgroundColor: openQuestion === 2 ? '#00BFAE' : '#E5E7EB',
+                        color: openQuestion === 2 ? '#1A1A1A' : '#6B7280',
+                        background: openQuestion === 2 ? 'linear-gradient(45deg, #00FFE7, #00BFAE)' : '#E5E7EB',
                         border: 'none',
                         borderRadius: '8px',
                         cursor: 'pointer',
-                        transition: 'all 0.3s ease'
+                        transition: 'all 0.3s ease',
+                        boxShadow: openQuestion === 2 ? '0 4px 12px rgba(0, 255, 231, 0.2)' : 'none'
                       }}>
                         Get Started
                       </button>
@@ -3992,8 +3759,8 @@ export default function KampaioHome() {
                     width: '40px',
                     height: '40px',
                     borderRadius: '8px',
-                    backgroundColor: openQuestion === 3 ? '#00BFAE' : '#E5E7EB',
-                    color: openQuestion === 3 ? 'white' : '#6B7280',
+                    backgroundColor: openQuestion === 3 ? '#00FFE7' : '#E5E7EB',
+                    color: openQuestion === 3 ? '#1A1A1A' : '#6B7280',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -4040,7 +3807,7 @@ export default function KampaioHome() {
                 }}>
                   <div style={{
                     paddingLeft: '56px',
-                    borderLeft: '4px solid #00BFAE',
+                    borderLeft: '4px solid #00FFE7',
                     paddingTop: '16px',
                     paddingBottom: '16px'
                   }}>
@@ -4061,12 +3828,13 @@ export default function KampaioHome() {
                         padding: '8px 16px',
                         fontSize: '14px',
                         fontWeight: '500',
-                        color: 'white',
-                        backgroundColor: openQuestion === 3 ? '#00BFAE' : '#E5E7EB',
+                        color: openQuestion === 3 ? '#1A1A1A' : '#6B7280',
+                        background: openQuestion === 3 ? 'linear-gradient(45deg, #00FFE7, #00BFAE)' : '#E5E7EB',
                         border: 'none',
                         borderRadius: '8px',
                         cursor: 'pointer',
-                        transition: 'all 0.3s ease'
+                        transition: 'all 0.3s ease',
+                        boxShadow: openQuestion === 3 ? '0 4px 12px rgba(0, 255, 231, 0.2)' : 'none'
                       }}>
                         Get Started
                       </button>
@@ -4112,8 +3880,8 @@ export default function KampaioHome() {
                     width: '40px',
                     height: '40px',
                     borderRadius: '8px',
-                    backgroundColor: openQuestion === 4 ? '#00BFAE' : '#E5E7EB',
-                    color: openQuestion === 4 ? 'white' : '#6B7280',
+                    backgroundColor: openQuestion === 4 ? '#00FFE7' : '#E5E7EB',
+                    color: openQuestion === 4 ? '#1A1A1A' : '#6B7280',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -4160,7 +3928,7 @@ export default function KampaioHome() {
                 }}>
                   <div style={{
                     paddingLeft: '56px',
-                    borderLeft: '4px solid #00BFAE',
+                    borderLeft: '4px solid #00FFE7',
                     paddingTop: '16px',
                     paddingBottom: '16px'
                   }}>
@@ -4181,12 +3949,13 @@ export default function KampaioHome() {
                         padding: '8px 16px',
                         fontSize: '14px',
                         fontWeight: '500',
-                        color: 'white',
-                        backgroundColor: openQuestion === 4 ? '#00BFAE' : '#E5E7EB',
+                        color: openQuestion === 4 ? '#1A1A1A' : '#6B7280',
+                        background: openQuestion === 4 ? 'linear-gradient(45deg, #00FFE7, #00BFAE)' : '#E5E7EB',
                         border: 'none',
                         borderRadius: '8px',
                         cursor: 'pointer',
-                        transition: 'all 0.3s ease'
+                        transition: 'all 0.3s ease',
+                        boxShadow: openQuestion === 4 ? '0 4px 12px rgba(0, 255, 231, 0.2)' : 'none'
                       }}>
                         Get Started
                       </button>
@@ -4232,8 +4001,8 @@ export default function KampaioHome() {
                     width: '40px',
                     height: '40px',
                     borderRadius: '8px',
-                    backgroundColor: openQuestion === 5 ? '#00BFAE' : '#E5E7EB',
-                    color: openQuestion === 5 ? 'white' : '#6B7280',
+                    backgroundColor: openQuestion === 5 ? '#00FFE7' : '#E5E7EB',
+                    color: openQuestion === 5 ? '#1A1A1A' : '#6B7280',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -4280,7 +4049,7 @@ export default function KampaioHome() {
                 }}>
                   <div style={{
                     paddingLeft: '56px',
-                    borderLeft: '4px solid #00BFAE',
+                    borderLeft: '4px solid #00FFE7',
                     paddingTop: '16px',
                     paddingBottom: '16px'
                   }}>
@@ -4301,12 +4070,13 @@ export default function KampaioHome() {
                         padding: '8px 16px',
                         fontSize: '14px',
                         fontWeight: '500',
-                        color: 'white',
-                        backgroundColor: openQuestion === 5 ? '#00BFAE' : '#E5E7EB',
+                        color: openQuestion === 5 ? '#1A1A1A' : '#6B7280',
+                        background: openQuestion === 5 ? 'linear-gradient(45deg, #00FFE7, #00BFAE)' : '#E5E7EB',
                         border: 'none',
                         borderRadius: '8px',
                         cursor: 'pointer',
-                        transition: 'all 0.3s ease'
+                        transition: 'all 0.3s ease',
+                        boxShadow: openQuestion === 5 ? '0 4px 12px rgba(0, 255, 231, 0.2)' : 'none'
                       }}>
                         Get Started
                       </button>
@@ -4352,8 +4122,8 @@ export default function KampaioHome() {
                     width: '40px',
                     height: '40px',
                     borderRadius: '8px',
-                    backgroundColor: openQuestion === 6 ? '#00BFAE' : '#E5E7EB',
-                    color: openQuestion === 6 ? 'white' : '#6B7280',
+                    backgroundColor: openQuestion === 6 ? '#00FFE7' : '#E5E7EB',
+                    color: openQuestion === 6 ? '#1A1A1A' : '#6B7280',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -4400,7 +4170,7 @@ export default function KampaioHome() {
                 }}>
                   <div style={{
                     paddingLeft: '56px',
-                    borderLeft: '4px solid #00BFAE',
+                    borderLeft: '4px solid #00FFE7',
                     paddingTop: '16px',
                     paddingBottom: '16px'
                   }}>
@@ -4421,12 +4191,13 @@ export default function KampaioHome() {
                         padding: '8px 16px',
                         fontSize: '14px',
                         fontWeight: '500',
-                        color: 'white',
-                        backgroundColor: openQuestion === 6 ? '#00BFAE' : '#E5E7EB',
+                        color: openQuestion === 6 ? '#1A1A1A' : '#6B7280',
+                        background: openQuestion === 6 ? 'linear-gradient(45deg, #00FFE7, #00BFAE)' : '#E5E7EB',
                         border: 'none',
                         borderRadius: '8px',
                         cursor: 'pointer',
-                        transition: 'all 0.3s ease'
+                        transition: 'all 0.3s ease',
+                        boxShadow: openQuestion === 6 ? '0 4px 12px rgba(0, 255, 231, 0.2)' : 'none'
                       }}>
                         Get Started
                       </button>
@@ -4477,11 +4248,21 @@ export default function KampaioHome() {
             <a href="https://replit.com/signup" style={{
               padding: '12px 24px',
               borderRadius: '8px',
-              backgroundColor: '#ff6b6b',
-              color: 'white',
+              background: 'linear-gradient(45deg, #00FFE7, #00BFAE)',
+              color: '#1A1A1A',
               textDecoration: 'none',
               fontWeight: '500',
-              transition: 'all 0.3s ease'
+              transition: 'all 0.3s ease',
+              boxShadow: '0 4px 12px rgba(0, 255, 231, 0.2)',
+              display: 'inline-block'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-2px)';
+              e.currentTarget.style.boxShadow = '0 6px 16px rgba(0, 255, 231, 0.3)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 255, 231, 0.2)';
             }}>
               Find My Leaks
             </a>
@@ -4489,125 +4270,1356 @@ export default function KampaioHome() {
         </div>
       </div>
 
-      {/* Hero Block Variant - Subtle Gradient */}
-      <div style={{
-        padding: '40px 20px',
+
+
+      {/* Integrations Section */}
+      <section style={{
+        padding: '80px 20px',
         background: 'white'
       }}>
-        
-        {/* Variant 2 - Subtle Gradient */}
         <div style={{
-          background: 'linear-gradient(135deg, #FFFFFF 0%, #E0E6F7 100%)',
-          borderRadius: '20px',
-          padding: '60px 40px',
-          marginBottom: '40px',
-          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.08)',
-          position: 'relative',
-          overflow: 'hidden'
+          maxWidth: '1200px',
+          margin: '0 auto'
         }}>
-          <div style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            background: 'radial-gradient(circle at 20% 30%, rgba(0, 255, 231, 0.05) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(0, 255, 231, 0.03) 0%, transparent 50%)',
-            pointerEvents: 'none'
+          <style dangerouslySetInnerHTML={{
+            __html: `
+              @media screen and (min-width: 991px) {
+                .integrations-logo-row-container {
+                  -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 1) 5%, rgba(0, 0, 0, 1) 95%, transparent 100%)
+                }
+              }
+
+              @keyframes integration-logo-slides {
+                from {transform: translateX(0);}
+                to {transform: translateX(-100%);}
+              }
+              .integration-logo-row {
+                animation: 35s integration-logo-slides infinite linear;
+              }
+            `
           }} />
           
           <div style={{
-            maxWidth: '1200px',
-            margin: '0 auto',
-            textAlign: 'center',
-            position: 'relative',
-            zIndex: 2
+            display: 'grid',
+            gridTemplateColumns: 'repeat(12, 1fr)',
+            gap: '0rem',
+            alignItems: 'top'
           }}>
-            <h1 style={{
-              fontSize: '48px',
-              fontWeight: '800',
-              color: '#1A1A1A',
-              marginBottom: '24px',
-              lineHeight: '1.2'
-            }}>
-              Intelligent Analytics
-              <span style={{
-                background: 'linear-gradient(135deg, #00FFE7, #00BFAE)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text'
-              }}> AI Assistant</span>
-            </h1>
-            
-            <p style={{
-              fontSize: '20px',
-              color: '#666',
-              marginBottom: '40px',
-              maxWidth: '600px',
-              marginLeft: 'auto',
-              marginRight: 'auto',
-              lineHeight: '1.6'
-            }}>
-              Leverage advanced AI to optimize your digital advertising campaigns with precision and efficiency
-            </p>
-
             <div style={{
-              display: 'flex',
-              gap: '20px',
-              justifyContent: 'center',
-              flexWrap: 'wrap'
+              gridColumn: 'span 12',
+              marginBottom: '16px'
             }}>
-              <button style={{
-                background: 'linear-gradient(135deg, #00FFE7, #00BFAE)',
-                border: 'none',
-                borderRadius: '12px',
-                padding: '16px 32px',
-                fontSize: '16px',
-                fontWeight: '600',
-                color: '#1A1A1A',
-                cursor: 'pointer',
-                transition: 'all 0.3s ease',
-                boxShadow: '0 8px 24px rgba(0, 255, 231, 0.3)'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-2px)';
-                e.currentTarget.style.boxShadow = '0 12px 32px rgba(0, 255, 231, 0.4)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 255, 231, 0.3)';
+              <div style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center'
               }}>
-                Get Started
-              </button>
-              
-              <button style={{
-                background: 'rgba(0, 255, 231, 0.1)',
-                border: '2px solid rgba(0, 255, 231, 0.3)',
-                borderRadius: '12px',
-                padding: '16px 32px',
-                fontSize: '16px',
-                fontWeight: '600',
-                color: '#00FFE7',
-                cursor: 'pointer',
+                <div style={{
+                  padding: '4px 12px',
+                  backgroundColor: '#f3f4f6',
+                  borderRadius: '20px',
+                  fontSize: '12px',
+                  fontWeight: '500',
+                  color: '#6b7280'
+                }}>
+                  integrations
+                </div>
+              </div>
+            </div>
+            
+            <div style={{
+              gridColumn: 'span 12',
+              textAlign: 'center'
+            }}>
+              <div style={{
+                maxWidth: '736px',
+                margin: '0 auto'
+              }}>
+                <div style={{
+                  color: '#1a1a1a'
+                }}>
+                  <h2 style={{
+                    fontSize: 'clamp(2rem, 4vw, 3rem)',
+                    fontWeight: '700',
+                    marginBottom: '24px',
+                    lineHeight: '1.2'
+                  }}>
+                    Embed your videos into your favorite tools
+                  </h2>
+                </div>
+              </div>
+            </div>
+            
+            <div style={{
+              gridColumn: 'span 12',
+              textAlign: 'center'
+            }}>
+              <p style={{
+                fontSize: 'clamp(1.125rem, 2vw, 1.25rem)',
+                color: '#666',
+                marginBottom: '40px',
+                maxWidth: '600px',
+                margin: '0 auto 40px auto',
+                lineHeight: '1.6'
+              }}>
+                Streamline your video creation process by embedding your videos into your authoring tool, LMS, CMS, CRM and more.
+              </p>
+            </div>
+            
+            <div style={{
+              gridColumn: 'span 12',
+              textAlign: 'center',
+              marginBottom: '40px'
+            }}>
+              <a href="https://docs.synthesia.io/docs/synthesia-integrations" target="_blank" style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                padding: '12px 24px',
+                backgroundColor: 'transparent',
+                border: '2px solid #e5e7eb',
+                borderRadius: '8px',
+                color: '#374151',
+                textDecoration: 'none',
+                fontWeight: '500',
                 transition: 'all 0.3s ease'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'rgba(0, 255, 231, 0.15)';
-                e.currentTarget.style.borderColor = 'rgba(0, 255, 231, 0.5)';
+                e.currentTarget.style.backgroundColor = '#f9fafb';
+                e.currentTarget.style.borderColor = '#d1d5db';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'rgba(0, 255, 231, 0.1)';
-                e.currentTarget.style.borderColor = 'rgba(0, 255, 231, 0.3)';
+                e.currentTarget.style.backgroundColor = 'transparent';
+                e.currentTarget.style.borderColor = '#e5e7eb';
               }}>
-                Learn More
-              </button>
+                <div>Explore all integrations</div>
+                <div style={{
+                  width: '16px',
+                  height: '16px'
+                }}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 17" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+                    <path d="M1 8.28955H15" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"></path>
+                    <path d="M9.27344 2.5625L15.0007 8.28977L9.27344 14.017" stroke="currentColor" strokeWidth="1.27273" strokeLinecap="round" strokeLinejoin="round"></path>
+                  </svg>
+                </div>
+              </a>
+            </div>
+            
+            <div style={{
+              gridColumn: 'span 12'
+            }}>
+              <div style={{
+                marginBottom: '80px'
+              }}></div>
+              <div style={{
+                overflow: 'hidden',
+                position: 'relative'
+              }}>
+                <div className="integration-logo-row" style={{
+                  display: 'flex',
+                  whiteSpace: 'nowrap'
+                }}>
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '60px'
+                  }}>
+                    <div><img src="https://cdn.prod.website-files.com/65e89895c5a4b8d764c0d710/6824502cfe93b2721842680d_Notion-logo.svg" loading="lazy" alt="" style={{ height: '40px', width: 'auto' }} /></div>
+                    <div><img src="https://cdn.prod.website-files.com/65e89895c5a4b8d764c0d710/6824502cd3f5f7870ffa96d9_Articulate-logo.svg" loading="lazy" alt="" style={{ height: '40px', width: 'auto' }} /></div>
+                    <div><img src="https://cdn.prod.website-files.com/65e89895c5a4b8d764c0d710/6824502ce9b1dc3ae4b1e505_Moodle-logo.svg" loading="lazy" alt="" style={{ height: '40px', width: 'auto' }} /></div>
+                    <div><img src="https://cdn.prod.website-files.com/65e89895c5a4b8d764c0d710/6824502c7866cd3b24bc69a4_Docebo-logo.svg" loading="lazy" alt="" style={{ height: '40px', width: 'auto' }} /></div>
+                    <div><img src="https://cdn.prod.website-files.com/65e89895c5a4b8d764c0d710/6824502dbc66f17533c40239_Hubspot-logo.svg" loading="lazy" alt="" style={{ height: '40px', width: 'auto' }} /></div>
+                    <div><img src="https://cdn.prod.website-files.com/65e89895c5a4b8d764c0d710/6824502da8de5dce3edf0f14_Intercom-logo.svg" loading="lazy" alt="" style={{ height: '40px', width: 'auto' }} /></div>
+                    <div><img src="https://cdn.prod.website-files.com/65e89895c5a4b8d764c0d710/6824502d060942d60bc153e4_Thinkific-logo.svg" loading="lazy" alt="" style={{ height: '40px', width: 'auto' }} /></div>
+                    <div><img src="https://cdn.prod.website-files.com/65e89895c5a4b8d764c0d710/6824502c8dd1d5890c58c7c4_PP-logo.svg" loading="lazy" alt="" style={{ height: '40px', width: 'auto' }} /></div>
+                    <div><img src="https://cdn.prod.website-files.com/65e89895c5a4b8d764c0d710/6824502cc41e031df9a310b3_360learning-logo.svg" loading="lazy" alt="" style={{ height: '40px', width: 'auto' }} /></div>
+                  </div>
+                </div>
+                <div className="integration-logo-row" style={{
+                  display: 'flex',
+                  whiteSpace: 'nowrap'
+                }}>
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '60px'
+                  }}>
+                    <div><img src="https://cdn.prod.website-files.com/65e89895c5a4b8d764c0d710/6824502cfe93b2721842680d_Notion-logo.svg" loading="lazy" alt="" style={{ height: '40px', width: 'auto' }} /></div>
+                    <div><img src="https://cdn.prod.website-files.com/65e89895c5a4b8d764c0d710/6824502cd3f5f7870ffa96d9_Articulate-logo.svg" loading="lazy" alt="" style={{ height: '40px', width: 'auto' }} /></div>
+                    <div><img src="https://cdn.prod.website-files.com/65e89895c5a4b8d764c0d710/6824502ce9b1dc3ae4b1e505_Moodle-logo.svg" loading="lazy" alt="" style={{ height: '40px', width: 'auto' }} /></div>
+                    <div><img src="https://cdn.prod.website-files.com/65e89895c5a4b8d764c0d710/6824502c7866cd3b24bc69a4_Docebo-logo.svg" loading="lazy" alt="" style={{ height: '40px', width: 'auto' }} /></div>
+                    <div><img src="https://cdn.prod.website-files.com/65e89895c5a4b8d764c0d710/6824502dbc66f17533c40239_Hubspot-logo.svg" loading="lazy" alt="" style={{ height: '40px', width: 'auto' }} /></div>
+                    <div><img src="https://cdn.prod.website-files.com/65e89895c5a4b8d764c0d710/6824502da8de5dce3edf0f14_Intercom-logo.svg" loading="lazy" alt="" style={{ height: '40px', width: 'auto' }} /></div>
+                    <div><img src="https://cdn.prod.website-files.com/65e89895c5a4b8d764c0d710/6824502d060942d60bc153e4_Thinkific-logo.svg" loading="lazy" alt="" style={{ height: '40px', width: 'auto' }} /></div>
+                    <div><img src="https://cdn.prod.website-files.com/65e89895c5a4b8d764c0d710/6824502c8dd1d5890c58c7c4_PP-logo.svg" loading="lazy" alt="" style={{ height: '40px', width: 'auto' }} /></div>
+                    <div><img src="https://cdn.prod.website-files.com/65e89895c5a4b8d764c0d710/6824502cc41e031df9a310b3_360learning-logo.svg" loading="lazy" alt="" style={{ height: '40px', width: 'auto' }} /></div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* G2 Grid Section */}
+      <section style={{
+        padding: '80px 20px',
+        background: 'white'
+      }}>
+        <div style={{
+          maxWidth: '1200px',
+          margin: '0 auto'
+        }}>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(12, 1fr)',
+            gap: '0rem',
+            alignItems: 'center'
+          }}>
+            {/* Left side - Text content */}
+            <div style={{
+              gridColumn: 'span 6',
+              paddingRight: '40px'
+            }}>
+              <div style={{
+                color: '#1a1a1a'
+              }}>
+                <h2 style={{
+                  fontSize: 'clamp(2rem, 4vw, 3rem)',
+                  fontWeight: '700',
+                  marginBottom: '16px',
+                  lineHeight: '1.2'
+                }}>
+                  <span style={{
+                    background: 'linear-gradient(135deg, #00FFE7, #00BFAE)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text'
+                  }}>Leader </span>
+                  <span>in the AI Video Generator category</span>
+                </h2>
+              </div>
+              <div style={{
+                marginBottom: '16px'
+              }}></div>
+              <div style={{
+                fontSize: 'clamp(1.125rem, 2vw, 1.25rem)',
+                color: '#666',
+                marginBottom: '40px',
+                lineHeight: '1.6'
+              }}>
+                <p>Synthesia is the leader in AI Video Generator on G2, the world's largest and most trusted software marketplace.</p>
+              </div>
+              
+              {/* Badges grid */}
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: '1fr 1fr',
+                gap: '16px',
+                marginBottom: '40px'
+              }}>
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px'
+                }}>
+                  <div style={{
+                    width: '20px',
+                    height: '20px'
+                  }}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 25" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+                      <rect y="0.231445" width="24" height="24" rx="4.5" fill="#3E57DA"></rect>
+                      <path d="M6.12811 18.2314H16.1525C18.622 18.2314 20.1952 16.7132 20.4514 14.39L20.9635 9.57899H17.5061L17.0305 13.9693C16.9756 14.5548 16.6097 14.8839 16.0061 14.8839H6.4574L6.12811 18.2314ZM6.4574 14.8839L6.93298 10.4936C6.9879 9.90814 7.35376 9.57899 7.95741 9.57899H17.5061L17.8355 6.23145H7.81099C5.34146 6.23145 3.7683 7.74982 3.51215 10.0729L3 14.8839H6.4574Z" fill="white"></path>
+                    </svg>
+                  </div>
+                  <p style={{
+                    fontSize: '16px',
+                    fontWeight: '500',
+                    color: '#1a1a1a',
+                    margin: 0
+                  }}>Best for Enterprise</p>
+                </div>
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px'
+                }}>
+                  <div style={{
+                    width: '20px',
+                    height: '20px'
+                  }}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 25" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+                      <rect y="0.231445" width="24" height="24" rx="4.5" fill="#3E57DA"></rect>
+                      <path d="M6.12811 18.2314H16.1525C18.622 18.2314 20.1952 16.7132 20.4514 14.39L20.9635 9.57899H17.5061L17.0305 13.9693C16.9756 14.5548 16.6097 14.8839 16.0061 14.8839H6.4574L6.12811 18.2314ZM6.4574 14.8839L6.93298 10.4936C6.9879 9.90814 7.35376 9.57899 7.95741 9.57899H17.5061L17.8355 6.23145H7.81099C5.34146 6.23145 3.7683 7.74982 3.51215 10.0729L3 14.8839H6.4574Z" fill="white"></path>
+                    </svg>
+                  </div>
+                  <p style={{
+                    fontSize: '16px',
+                    fontWeight: '500',
+                    color: '#1a1a1a',
+                    margin: 0
+                  }}>Best for Mid-Market</p>
+                </div>
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px'
+                }}>
+                  <div style={{
+                    width: '20px',
+                    height: '20px'
+                  }}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 25" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+                      <rect y="0.231445" width="24" height="24" rx="4.5" fill="#3E57DA"></rect>
+                      <path d="M6.12811 18.2314H16.1525C18.622 18.2314 20.1952 16.7132 20.4514 14.39L20.9635 9.57899H17.5061L17.0305 13.9693C16.9756 14.5548 16.6097 14.8839 16.0061 14.8839H6.4574L6.12811 18.2314ZM6.4574 14.8839L6.93298 10.4936C6.9879 9.90814 7.35376 9.57899 7.95741 9.57899H17.5061L17.8355 6.23145H7.81099C5.34146 6.23145 3.7683 7.74982 3.51215 10.0729L3 14.8839H6.4574Z" fill="white"></path>
+                    </svg>
+                  </div>
+                  <p style={{
+                    fontSize: '16px',
+                    fontWeight: '500',
+                    color: '#1a1a1a',
+                    margin: 0
+                  }}>Highest User Satisfaction</p>
+                </div>
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px'
+                }}>
+                  <div style={{
+                    width: '20px',
+                    height: '20px'
+                  }}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 25" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+                      <rect y="0.231445" width="24" height="24" rx="4.5" fill="#3E57DA"></rect>
+                      <path d="M6.12811 18.2314H16.1525C18.622 18.2314 20.1952 16.7132 20.4514 14.39L20.9635 9.57899H17.5061L17.0305 13.9693C16.9756 14.5548 16.6097 14.8839 16.0061 14.8839H6.4574L6.12811 18.2314ZM6.4574 14.8839L6.93298 10.4936C6.9879 9.90814 7.35376 9.57899 7.95741 9.57899H17.5061L17.8355 6.23145H7.81099C5.34146 6.23145 3.7683 7.74982 3.51215 10.0729L3 14.8839H6.4574Z" fill="white"></path>
+                    </svg>
+                  </div>
+                  <p style={{
+                    fontSize: '16px',
+                    fontWeight: '500',
+                    color: '#1a1a1a',
+                    margin: 0
+                  }}>Best for Small Business</p>
+                </div>
+              </div>
+              
+              {/* Button */}
+              <div>
+                <a href="/book-a-demo" style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  padding: '16px 32px',
+                  background: 'linear-gradient(135deg, #00FFE7, #00BFAE)',
+                  color: '#1A1A1A',
+                  textDecoration: 'none',
+                  borderRadius: '12px',
+                  fontWeight: '600',
+                  fontSize: '16px',
+                  transition: 'all 0.3s ease',
+                  boxShadow: '0 8px 24px rgba(0, 255, 231, 0.3)'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                  e.currentTarget.style.boxShadow = '0 12px 32px rgba(0, 255, 231, 0.4)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 255, 231, 0.3)';
+                }}>
+                  <div>Book demo</div>
+                  <div style={{
+                    width: '16px',
+                    height: '16px'
+                  }}>
+                    <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M1 8.28955H15" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"></path>
+                      <path d="M9.27344 2.5625L15.0007 8.28977L9.27344 14.017" stroke="currentColor" strokeWidth="1.27273" strokeLinecap="round" strokeLinejoin="round"></path>
+                    </svg>
+                  </div>
+                </a>
+              </div>
+            </div>
+            
+            {/* Right side - Image */}
+            <div style={{
+              gridColumn: 'span 6',
+              display: 'flex',
+              justifyContent: 'flex-end'
+            }}>
+              <a aria-label="Image displaying Synthesia as the leader in AI Video Generator on G2" href="https://www.g2.com/categories/video-communications?utf8=%E2%9C%93&amp;selected_view=trending&amp;segment=enterprise#grid" target="_blank" style={{
+                position: 'relative',
+                display: 'block',
+                width: '100%',
+                maxWidth: '500px'
+              }}>
+                <div style={{
+                  borderRadius: '16px',
+                  border: '1px solid #e5e7eb',
+                  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+                  overflow: 'hidden',
+                  position: 'relative'
+                }}>
+                  <img src="https://cdn.prod.website-files.com/65e89895c5a4b8d764c0d710/66604139c144ea1b821629dc_G2-grid.webp" loading="lazy" alt="" style={{
+                    width: '100%',
+                    height: 'auto',
+                    aspectRatio: '493/437'
+                  }} />
+                  
+                  {/* Google Services Badges Overlay */}
+                  <div style={{
+                    position: 'absolute',
+                    top: '20px',
+                    right: '20px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px'
+                  }}>
+                    {/* Google Ads Badge */}
+                    <div style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      width: '36px',
+                      height: '36px',
+                      background: 'rgba(255, 255, 255, 0.95)',
+                      borderRadius: '8px',
+                      boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+                      border: '1px solid rgba(66, 133, 244, 0.2)',
+                      backdropFilter: 'blur(8px)'
+                    }}>
+                      <img 
+                        src="https://img.icons8.com/color/48/google-ads.png" 
+                        alt="Google Ads Official Partner" 
+                        style={{
+                          width: '20px',
+                          height: '20px'
+                        }}
+                      />
+                    </div>
+                    
+                    {/* Google Sheets Badge */}
+                    <div style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      width: '36px',
+                      height: '36px',
+                      background: 'rgba(255, 255, 255, 0.95)',
+                      borderRadius: '8px',
+                      boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+                      border: '1px solid rgba(34, 197, 94, 0.2)',
+                      backdropFilter: 'blur(8px)'
+                    }}>
+                      <img 
+                        src="https://img.icons8.com/color/48/google-sheets.png" 
+                        alt="Google Sheets Integration" 
+                        style={{
+                          width: '20px',
+                          height: '20px'
+                        }}
+                      />
+                    </div>
+                    
+                    {/* PDF Export Badge */}
+                    <div style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      width: '36px',
+                      height: '36px',
+                      background: 'rgba(255, 255, 255, 0.95)',
+                      borderRadius: '8px',
+                      boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+                      border: '1px solid rgba(239, 68, 68, 0.2)',
+                      backdropFilter: 'blur(8px)'
+                    }}>
+                      <img 
+                        src="https://img.icons8.com/color/48/pdf.png" 
+                        alt="PDF Export" 
+                        style={{
+                          width: '20px',
+                          height: '20px'
+                        }}
+                      />
+                    </div>
+                    
+                    {/* OpenAI Badge */}
+                    <div style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      width: '36px',
+                      height: '36px',
+                      background: 'rgba(255, 255, 255, 0.95)',
+                      borderRadius: '8px',
+                      boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+                      border: '1px solid rgba(16, 185, 129, 0.2)',
+                      backdropFilter: 'blur(8px)'
+                    }}>
+                      <img 
+                        src="https://img.icons8.com/color/48/chatgpt.png" 
+                        alt="OpenAI Integration" 
+                        style={{
+                          width: '20px',
+                          height: '20px'
+                        }}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <div style={{
+          marginBottom: '80px'
+        }}></div>
+        
+        <div style={{
+          maxWidth: '1200px',
+          margin: '0 auto'
+        }}>
+          <style dangerouslySetInnerHTML={{
+            __html: `
+              /* Fade container on desktop */
+              @media screen and (min-width: 991px) {
+                .g2-logo-row-container {
+                  -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 1) 5%, rgba(0, 0, 0, 1) 95%, transparent 100%);
+                }
+              }
+
+              /* Slide animation */
+              @keyframes g2-logo-slides {
+                from {transform: translateX(0);}
+                to {transform: translateX(-71rem);}
+              }
+              .g2-row-img-container-inner {
+                animation: 35s g2-logo-slides infinite linear;
+              }
+              .g2-logo-row-container,
+              .g2-row-img-container-inner,
+              .g2-row-img-container-inner img {
+                will-change: transform;
+              }
+              .g2-slider-image-container {
+                width: 100%;
+                height: 100%;
+              }
+            `
+          }} />
+          
+          <div style={{
+            overflow: 'hidden',
+            position: 'relative'
+          }}>
+            {/* Заголовок блока */}
+            <div style={{
+              textAlign: 'center',
+              marginBottom: '30px'
+            }}>
+              <h3 style={{
+                fontSize: '28px',
+                fontWeight: '600',
+                color: '#1a1a2e',
+                marginBottom: '12px'
+              }}>
+                Поддерживаемые ниши
+              </h3>
+              <p style={{
+                fontSize: '16px',
+                color: '#666',
+                maxWidth: '600px',
+                margin: '0 auto',
+                lineHeight: '1.5'
+              }}>
+                Специализированные AI-решения для различных отраслей бизнеса
+              </p>
+            </div>
+            
+            <div style={{
+              display: 'flex',
+              whiteSpace: 'nowrap'
+            }}>
+              <div className="g2-row-img-container-inner" style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '40px'
+              }}>
+                {/* Dentists */}
+                <div style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: '8px'
+                }}>
+                  <div style={{
+                    width: '200px',
+                    height: '80px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    background: 'linear-gradient(135deg, #00FFE7, #00BFAE)',
+                    borderRadius: '12px',
+                    padding: '16px'
+                  }}>
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M24 4C12.954 4 4 12.954 4 24s8.954 20 20 20 20-8.954 20-20S35.046 4 24 4zm0 36c-8.837 0-16-7.163-16-16S15.163 8 24 8s16 7.163 16 16-7.163 16-16 16z" fill="white"/>
+                      <path d="M18 20h12v2H18zm0 4h12v2H18zm0 4h8v2h-8z" fill="white"/>
+                    </svg>
+                  </div>
+                  <span style={{
+                    fontSize: '14px',
+                    fontWeight: '500',
+                    color: '#1a1a2e',
+                    textAlign: 'center'
+                  }}>
+                    Dentists
+                  </span>
+                </div>
+                
+                {/* Real Estate Agents */}
+                <div style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: '8px'
+                }}>
+                  <div style={{
+                    width: '200px',
+                    height: '80px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    background: 'linear-gradient(135deg, #7F9CF5, #667eea)',
+                    borderRadius: '12px',
+                    padding: '16px'
+                  }}>
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M24 4L4 20h4v20h32V20h4L24 4zm-2 34V26h4v12h-4zm8 0V26h4v12h-4z" fill="white"/>
+                    </svg>
+                  </div>
+                  <span style={{
+                    fontSize: '14px',
+                    fontWeight: '500',
+                    color: '#1a1a2e',
+                    textAlign: 'center'
+                  }}>
+                    Real Estate Agents
+                  </span>
+                </div>
+                
+                {/* SaaS Products */}
+                <div style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: '8px'
+                }}>
+                  <div style={{
+                    width: '200px',
+                    height: '80px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    background: 'linear-gradient(135deg, #00FFE7, #00BFAE)',
+                    borderRadius: '12px',
+                    padding: '16px'
+                  }}>
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M24 4L4 12v12c0 11.046 8.954 20 20 20s20-8.954 20-20V12L24 4zm0 32c-8.837 0-16-7.163-16-16V16l16-8 16 8v4c0 8.837-7.163 16-16 16z" fill="white"/>
+                    </svg>
+                  </div>
+                  <span style={{
+                    fontSize: '14px',
+                    fontWeight: '500',
+                    color: '#1a1a2e',
+                    textAlign: 'center'
+                  }}>
+                    SaaS Products
+                  </span>
+                </div>
+                
+                {/* Lawyers / Attorneys */}
+                <div style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: '8px'
+                }}>
+                  <div style={{
+                    width: '200px',
+                    height: '80px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    background: 'linear-gradient(135deg, #7F9CF5, #667eea)',
+                    borderRadius: '12px',
+                    padding: '16px'
+                  }}>
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M24 4L8 12v12c0 8.837 7.163 16 16 16s16-7.163 16-16V12L24 4zm0 28c-6.627 0-12-5.373-12-12V16l12-8 12 8v4c0 6.627-5.373 12-12 12z" fill="white"/>
+                    </svg>
+                  </div>
+                  <span style={{
+                    fontSize: '14px',
+                    fontWeight: '500',
+                    color: '#1a1a2e',
+                    textAlign: 'center'
+                  }}>
+                    Lawyers / Attorneys
+                  </span>
+                </div>
+                
+                {/* Plumbers */}
+                <div style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: '8px'
+                }}>
+                  <div style={{
+                    width: '200px',
+                    height: '80px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    background: 'linear-gradient(135deg, #00FFE7, #00BFAE)',
+                    borderRadius: '12px',
+                    padding: '16px'
+                  }}>
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M24 4c-5.514 0-10 4.486-10 10v4h20v-4c0-5.514-4.486-10-10-10zm-6 18v12h12V22H18z" fill="white"/>
+                    </svg>
+                  </div>
+                  <span style={{
+                    fontSize: '14px',
+                    fontWeight: '500',
+                    color: '#1a1a2e',
+                    textAlign: 'center'
+                  }}>
+                    Plumbers
+                  </span>
+                </div>
+                
+                {/* Roofers */}
+                <div style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: '8px'
+                }}>
+                  <div style={{
+                    width: '200px',
+                    height: '80px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    background: 'linear-gradient(135deg, #7F9CF5, #667eea)',
+                    borderRadius: '12px',
+                    padding: '16px'
+                  }}>
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M24 4L4 20h4v20h32V20h4L24 4zm-2 34V26h4v12h-4zm8 0V26h4v12h-4z" fill="white"/>
+                    </svg>
+                  </div>
+                  <span style={{
+                    fontSize: '14px',
+                    fontWeight: '500',
+                    color: '#1a1a2e',
+                    textAlign: 'center'
+                  }}>
+                    Roofers
+                  </span>
+                </div>
+                
+                {/* Electricians */}
+                <div style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: '8px'
+                }}>
+                  <div style={{
+                    width: '200px',
+                    height: '80px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    background: 'linear-gradient(135deg, #00FFE7, #00BFAE)',
+                    borderRadius: '12px',
+                    padding: '16px'
+                  }}>
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M24 4L12 20h6v20h12V20h6L24 4z" fill="white"/>
+                    </svg>
+                  </div>
+                  <span style={{
+                    fontSize: '14px',
+                    fontWeight: '500',
+                    color: '#1a1a2e',
+                    textAlign: 'center'
+                  }}>
+                    Electricians
+                  </span>
+                </div>
+                
+                {/* Gyms & Fitness Studios */}
+                <div style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: '8px'
+                }}>
+                  <div style={{
+                    width: '200px',
+                    height: '80px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    background: 'linear-gradient(135deg, #7F9CF5, #667eea)',
+                    borderRadius: '12px',
+                    padding: '16px'
+                  }}>
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M24 4c-5.514 0-10 4.486-10 10v20h20V14c0-5.514-4.486-10-10-10z" fill="white"/>
+                    </svg>
+                  </div>
+                  <span style={{
+                    fontSize: '14px',
+                    fontWeight: '500',
+                    color: '#1a1a2e',
+                    textAlign: 'center'
+                  }}>
+                    Gyms & Fitness Studios
+                  </span>
+                </div>
+                
+                {/* Therapists / Counselors */}
+                <div style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: '8px'
+                }}>
+                  <div style={{
+                    width: '200px',
+                    height: '80px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    background: 'linear-gradient(135deg, #00FFE7, #00BFAE)',
+                    borderRadius: '12px',
+                    padding: '16px'
+                  }}>
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M24 4C12.954 4 4 12.954 4 24s8.954 20 20 20 20-8.954 20-20S35.046 4 24 4zm0 36c-8.837 0-16-7.163-16-16S15.163 8 24 8s16 7.163 16 16-7.163 16-16 16z" fill="white"/>
+                      <path d="M18 20h12v2H18zm0 4h12v2H18zm0 4h8v2h-8z" fill="white"/>
+                    </svg>
+                  </div>
+                  <span style={{
+                    fontSize: '14px',
+                    fontWeight: '500',
+                    color: '#1a1a2e',
+                    textAlign: 'center'
+                  }}>
+                    Therapists / Counselors
+                  </span>
+                </div>
+                
+                {/* Ecommerce Stores */}
+                <div style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: '8px'
+                }}>
+                  <div style={{
+                    width: '200px',
+                    height: '80px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    background: 'linear-gradient(135deg, #7F9CF5, #667eea)',
+                    borderRadius: '12px',
+                    padding: '16px'
+                  }}>
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M24 4L4 12v12c0 11.046 8.954 20 20 20s20-8.954 20-20V12L24 4zm0 32c-8.837 0-16-7.163-16-16V16l16-8 16 8v4c0 8.837-7.163 16-16 16z" fill="white"/>
+                    </svg>
+                  </div>
+                  <span style={{
+                    fontSize: '14px',
+                    fontWeight: '500',
+                    color: '#1a1a2e',
+                    textAlign: 'center'
+                  }}>
+                    Ecommerce Stores
+                  </span>
+                </div>
+                
+                {/* Wedding Photographers */}
+                <div style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: '8px'
+                }}>
+                  <div style={{
+                    width: '200px',
+                    height: '80px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    background: 'linear-gradient(135deg, #00FFE7, #00BFAE)',
+                    borderRadius: '12px',
+                    padding: '16px'
+                  }}>
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M24 4c-5.514 0-10 4.486-10 10v20h20V14c0-5.514-4.486-10-10-10z" fill="white"/>
+                    </svg>
+                  </div>
+                  <span style={{
+                    fontSize: '14px',
+                    fontWeight: '500',
+                    color: '#1a1a2e',
+                    textAlign: 'center'
+                  }}>
+                    Wedding Photographers
+                  </span>
+                </div>
+                
+                {/* Home Cleaning Services */}
+                <div style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: '8px'
+                }}>
+                  <div style={{
+                    width: '200px',
+                    height: '80px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    background: 'linear-gradient(135deg, #7F9CF5, #667eea)',
+                    borderRadius: '12px',
+                    padding: '16px'
+                  }}>
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M24 4L4 20h4v20h32V20h4L24 4zm-2 34V26h4v12h-4zm8 0V26h4v12h-4z" fill="white"/>
+                    </svg>
+                  </div>
+                  <span style={{
+                    fontSize: '14px',
+                    fontWeight: '500',
+                    color: '#1a1a2e',
+                    textAlign: 'center'
+                  }}>
+                    Home Cleaning Services
+                  </span>
+                </div>
+                
+                {/* Digital Agencies */}
+                <div style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: '8px'
+                }}>
+                  <div style={{
+                    width: '200px',
+                    height: '80px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    background: 'linear-gradient(135deg, #00FFE7, #00BFAE)',
+                    borderRadius: '12px',
+                    padding: '16px'
+                  }}>
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M24 4L8 12v12c0 8.837 7.163 16 16 16s16-7.163 16-16V12L24 4zm0 28c-6.627 0-12-5.373-12-12V16l12-8 12 8v4c0 6.627-5.373 12-12 12z" fill="white"/>
+                    </svg>
+                  </div>
+                  <span style={{
+                    fontSize: '14px',
+                    fontWeight: '500',
+                    color: '#1a1a2e',
+                    textAlign: 'center'
+                  }}>
+                    Digital Agencies
+                  </span>
+                </div>
+                
+                {/* Auto Repair Shops */}
+                <div style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: '8px'
+                }}>
+                  <div style={{
+                    width: '200px',
+                    height: '80px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    background: 'linear-gradient(135deg, #7F9CF5, #667eea)',
+                    borderRadius: '12px',
+                    padding: '16px'
+                  }}>
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M24 4c-5.514 0-10 4.486-10 10v4h20v-4c0-5.514-4.486-10-10-10zm-6 18v12h12V22H18z" fill="white"/>
+                    </svg>
+                  </div>
+                  <span style={{
+                    fontSize: '14px',
+                    fontWeight: '500',
+                    color: '#1a1a2e',
+                    textAlign: 'center'
+                  }}>
+                    Auto Repair Shops
+                  </span>
+                </div>
+              </div>
+              
+              <div className="g2-row-img-container-inner" style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '40px'
+              }}>
+                {/* Dentists */}
+                <div style={{
+                  width: '200px',
+                  height: '80px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  background: 'linear-gradient(135deg, #00FFE7, #00BFAE)',
+                  borderRadius: '12px',
+                  padding: '16px'
+                }}>
+                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 4C12.954 4 4 12.954 4 24s8.954 20 20 20 20-8.954 20-20S35.046 4 24 4zm0 36c-8.837 0-16-7.163-16-16S15.163 8 24 8s16 7.163 16 16-7.163 16-16 16z" fill="white"/>
+                    <path d="M18 20h12v2H18zm0 4h12v2H18zm0 4h8v2h-8z" fill="white"/>
+                  </svg>
+                </div>
+                
+                {/* Real Estate Agents */}
+                <div style={{
+                  width: '200px',
+                  height: '80px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  background: 'linear-gradient(135deg, #7F9CF5, #667eea)',
+                  borderRadius: '12px',
+                  padding: '16px'
+                }}>
+                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 4L4 20h4v20h32V20h4L24 4zm-2 34V26h4v12h-4zm8 0V26h4v12h-4z" fill="white"/>
+                  </svg>
+                </div>
+                
+                {/* SaaS Products */}
+                <div style={{
+                  width: '200px',
+                  height: '80px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  background: 'linear-gradient(135deg, #00FFE7, #00BFAE)',
+                  borderRadius: '12px',
+                  padding: '16px'
+                }}>
+                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 4L4 12v12c0 11.046 8.954 20 20 20s20-8.954 20-20V12L24 4zm0 32c-8.837 0-16-7.163-16-16V16l16-8 16 8v4c0 8.837-7.163 16-16 16z" fill="white"/>
+                  </svg>
+                </div>
+                
+                {/* Lawyers / Attorneys */}
+                <div style={{
+                  width: '200px',
+                  height: '80px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  background: 'linear-gradient(135deg, #7F9CF5, #667eea)',
+                  borderRadius: '12px',
+                  padding: '16px'
+                }}>
+                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 4L8 12v12c0 8.837 7.163 16 16 16s16-7.163 16-16V12L24 4zm0 28c-6.627 0-12-5.373-12-12V16l12-8 12 8v4c0 6.627-5.373 12-12 12z" fill="white"/>
+                  </svg>
+                </div>
+                
+                {/* Plumbers */}
+                <div style={{
+                  width: '200px',
+                  height: '80px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  background: 'linear-gradient(135deg, #00FFE7, #00BFAE)',
+                  borderRadius: '12px',
+                  padding: '16px'
+                }}>
+                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 4c-5.514 0-10 4.486-10 10v4h20v-4c0-5.514-4.486-10-10-10zm-6 18v12h12V22H18z" fill="white"/>
+                  </svg>
+                </div>
+                
+                {/* Roofers */}
+                <div style={{
+                  width: '200px',
+                  height: '80px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  background: 'linear-gradient(135deg, #7F9CF5, #667eea)',
+                  borderRadius: '12px',
+                  padding: '16px'
+                }}>
+                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 4L4 20h4v20h32V20h4L24 4zm-2 34V26h4v12h-4zm8 0V26h4v12h-4z" fill="white"/>
+                  </svg>
+                </div>
+                
+                {/* Electricians */}
+                <div style={{
+                  width: '200px',
+                  height: '80px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  background: 'linear-gradient(135deg, #00FFE7, #00BFAE)',
+                  borderRadius: '12px',
+                  padding: '16px'
+                }}>
+                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 4L12 20h6v20h12V20h6L24 4z" fill="white"/>
+                  </svg>
+                </div>
+                
+                {/* Gyms & Fitness Studios */}
+                <div style={{
+                  width: '200px',
+                  height: '80px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  background: 'linear-gradient(135deg, #7F9CF5, #667eea)',
+                  borderRadius: '12px',
+                  padding: '16px'
+                }}>
+                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 4c-5.514 0-10 4.486-10 10v20h20V14c0-5.514-4.486-10-10-10z" fill="white"/>
+                  </svg>
+                </div>
+                
+                {/* Therapists / Counselors */}
+                <div style={{
+                  width: '200px',
+                  height: '80px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  background: 'linear-gradient(135deg, #00FFE7, #00BFAE)',
+                  borderRadius: '12px',
+                  padding: '16px'
+                }}>
+                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 4C12.954 4 4 12.954 4 24s8.954 20 20 20 20-8.954 20-20S35.046 4 24 4zm0 36c-8.837 0-16-7.163-16-16S15.163 8 24 8s16 7.163 16 16-7.163 16-16 16z" fill="white"/>
+                    <path d="M18 20h12v2H18zm0 4h12v2H18zm0 4h8v2h-8z" fill="white"/>
+                  </svg>
+                </div>
+                
+                {/* Ecommerce Stores */}
+                <div style={{
+                  width: '200px',
+                  height: '80px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  background: 'linear-gradient(135deg, #7F9CF5, #667eea)',
+                  borderRadius: '12px',
+                  padding: '16px'
+                }}>
+                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 4L4 12v12c0 11.046 8.954 20 20 20s20-8.954 20-20V12L24 4zm0 32c-8.837 0-16-7.163-16-16V16l16-8 16 8v4c0 8.837-7.163 16-16 16z" fill="white"/>
+                  </svg>
+                </div>
+                
+                {/* Wedding Photographers */}
+                <div style={{
+                  width: '200px',
+                  height: '80px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  background: 'linear-gradient(135deg, #00FFE7, #00BFAE)',
+                  borderRadius: '12px',
+                  padding: '16px'
+                }}>
+                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 4c-5.514 0-10 4.486-10 10v20h20V14c0-5.514-4.486-10-10-10z" fill="white"/>
+                  </svg>
+                </div>
+                
+                {/* Home Cleaning Services */}
+                <div style={{
+                  width: '200px',
+                  height: '80px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  background: 'linear-gradient(135deg, #7F9CF5, #667eea)',
+                  borderRadius: '12px',
+                  padding: '16px'
+                }}>
+                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 4L4 20h4v20h32V20h4L24 4zm-2 34V26h4v12h-4zm8 0V26h4v12h-4z" fill="white"/>
+                  </svg>
+                </div>
+                
+                {/* Digital Agencies */}
+                <div style={{
+                  width: '200px',
+                  height: '80px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  background: 'linear-gradient(135deg, #00FFE7, #00BFAE)',
+                  borderRadius: '12px',
+                  padding: '16px'
+                }}>
+                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 4L8 12v12c0 8.837 7.163 16 16 16s16-7.163 16-16V12L24 4zm0 28c-6.627 0-12-5.373-12-12V16l12-8 12 8v4c0 6.627-5.373 12-12 12z" fill="white"/>
+                  </svg>
+                </div>
+                
+                {/* Auto Repair Shops */}
+                <div style={{
+                  width: '200px',
+                  height: '80px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  background: 'linear-gradient(135deg, #7F9CF5, #667eea)',
+                  borderRadius: '12px',
+                  padding: '16px'
+                }}>
+                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 4c-5.514 0-10 4.486-10 10v4h20v-4c0-5.514-4.486-10-10-10zm-6 18v12h12V22H18z" fill="white"/>
+                  </svg>
+                </div>
+                
+                {/* Pet Services */}
+                <div style={{
+                  width: '200px',
+                  height: '80px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  background: 'linear-gradient(135deg, #00FFE7, #00BFAE)',
+                  borderRadius: '12px',
+                  padding: '16px'
+                }}>
+                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 4C12.954 4 4 12.954 4 24s8.954 20 20 20 20-8.954 20-20S35.046 4 24 4zm0 36c-8.837 0-16-7.163-16-16S15.163 8 24 8s16 7.163 16 16-7.163 16-16 16z" fill="white"/>
+                  </svg>
+                </div>
+                
+                {/* Education Courses */}
+                <div style={{
+                  width: '200px',
+                  height: '80px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  background: 'linear-gradient(135deg, #7F9CF5, #667eea)',
+                  borderRadius: '12px',
+                  padding: '16px'
+                }}>
+                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 4L4 12v12c0 11.046 8.954 20 20 20s20-8.954 20-20V12L24 4zm0 32c-8.837 0-16-7.163-16-16V16l16-8 16 8v4c0 8.837-7.163 16-16 16z" fill="white"/>
+                  </svg>
+                </div>
+                
+                {/* Cosmetic Clinics */}
+                <div style={{
+                  width: '200px',
+                  height: '80px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  background: 'linear-gradient(135deg, #00FFE7, #00BFAE)',
+                  borderRadius: '12px',
+                  padding: '16px'
+                }}>
+                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 4C12.954 4 4 12.954 4 24s8.954 20 20 20 20-8.954 20-20S35.046 4 24 4zm0 36c-8.837 0-16-7.163-16-16S15.163 8 24 8s16 7.163 16 16-7.163 16-16 16z" fill="white"/>
+                  </svg>
+                </div>
+                
+                {/* Moving Companies */}
+                <div style={{
+                  width: '200px',
+                  height: '80px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  background: 'linear-gradient(135deg, #7F9CF5, #667eea)',
+                  borderRadius: '12px',
+                  padding: '16px'
+                }}>
+                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 4L4 20h4v20h32V20h4L24 4zm-2 34V26h4v12h-4zm8 0V26h4v12h-4z" fill="white"/>
+                  </svg>
+                </div>
+                
+                {/* HVAC Services */}
+                <div style={{
+                  width: '200px',
+                  height: '80px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  background: 'linear-gradient(135deg, #00FFE7, #00BFAE)',
+                  borderRadius: '12px',
+                  padding: '16px'
+                }}>
+                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 4c-5.514 0-10 4.486-10 10v4h20v-4c0-5.514-4.486-10-10-10zm-6 18v12h12V22H18z" fill="white"/>
+                  </svg>
+                </div>
+                
+                {/* Chiropractors */}
+                <div style={{
+                  width: '200px',
+                  height: '80px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  background: 'linear-gradient(135deg, #7F9CF5, #667eea)',
+                  borderRadius: '12px',
+                  padding: '16px'
+                }}>
+                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 4C12.954 4 4 12.954 4 24s8.954 20 20 20 20-8.954 20-20S35.046 4 24 4zm0 36c-8.837 0-16-7.163-16-16S15.163 8 24 8s16 7.163 16 16-7.163 16-16 16z" fill="white"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Footer */}
       <Footer compact={true} />
     </div>
-  </>
+    </>
   );
 } 
