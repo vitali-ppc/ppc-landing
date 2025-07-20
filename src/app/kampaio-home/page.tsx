@@ -3094,68 +3094,6 @@ export default function KampaioHome() {
         </div>
       </section>
 
-      {/* Pre-Footer CTA Block */}
-      <div style={{
-        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-        padding: '40px 20px',
-        textAlign: 'center',
-        color: 'white'
-      }}>
-        <div style={{
-          maxWidth: '1200px',
-          margin: '0 auto'
-        }}>
-          <h2 style={{
-            fontSize: 'clamp(2rem, 4vw, 3rem)',
-            fontWeight: '700',
-            marginBottom: '16px',
-            color: 'white'
-          }}>
-            Tired of wasting money on Google Ads?
-          </h2>
-          <p style={{
-            fontSize: 'clamp(1rem, 2vw, 1.25rem)',
-            marginBottom: '24px',
-            opacity: '0.9',
-            maxWidth: '800px',
-            margin: '0 auto 24px auto',
-            lineHeight: '1.6'
-          }}>
-            Stop guessing and start winning. Our AI identifies exactly where your budget is bleeding and shows you how to fix it in minutes.
-          </p>
-          <div style={{
-            display: 'flex',
-            gap: '16px',
-            justifyContent: 'center',
-            flexWrap: 'wrap'
-          }}>
-            <a href="https://replit.com/signup" style={{
-              padding: '12px 24px',
-              borderRadius: '8px',
-              background: 'linear-gradient(45deg, #00FFE7, #00BFAE)',
-              color: '#1A1A1A',
-              textDecoration: 'none',
-              fontWeight: '500',
-              transition: 'all 0.3s ease',
-              boxShadow: '0 4px 12px rgba(0, 255, 231, 0.2)',
-              display: 'inline-block'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-2px)';
-              e.currentTarget.style.boxShadow = '0 6px 16px rgba(0, 255, 231, 0.3)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 255, 231, 0.2)';
-            }}>
-              Find My Leaks
-            </a>
-          </div>
-        </div>
-      </div>
-
-
-
 
 
       {/* G2 Grid Section */}
@@ -3308,7 +3246,7 @@ export default function KampaioHome() {
                     fontWeight: '500',
                     color: '#1a1a1a',
                     margin: 0
-                  }}>Legal Services</p>
+                  }}>Lawyers</p>
                 </div>
               </div>
               
@@ -3666,7 +3604,7 @@ export default function KampaioHome() {
                     color: '#1a1a2e',
                     textAlign: 'center'
                   }}>
-                    Real Estate Agents
+                    Real Estate
                   </span>
                 </div>
                 
@@ -3697,7 +3635,7 @@ export default function KampaioHome() {
                     color: '#1a1a2e',
                     textAlign: 'center'
                   }}>
-                    SaaS Products
+                    SaaS Companies
                   </span>
                 </div>
                 
@@ -3728,9 +3666,11 @@ export default function KampaioHome() {
                     color: '#1a1a2e',
                     textAlign: 'center'
                   }}>
-                    Lawyers / Attorneys
+                    Lawyers
                   </span>
                 </div>
+                
+
                 
                 {/* Plumbers */}
                 <div style={{
@@ -4066,7 +4006,7 @@ export default function KampaioHome() {
                   </svg>
                 </div>
                 
-                {/* Real Estate Agents */}
+                {/* Real Estate */}
                 <div style={{
                   width: '200px',
                   height: '80px',
@@ -4082,7 +4022,7 @@ export default function KampaioHome() {
                   </svg>
                 </div>
                 
-                {/* SaaS Products */}
+                {/* SaaS Companies */}
                 <div style={{
                   width: '200px',
                   height: '80px',
@@ -4113,6 +4053,8 @@ export default function KampaioHome() {
                     <path d="M24 4L8 12v12c0 8.837 7.163 16 16 16s16-7.163 16-16V12L24 4zm0 28c-6.627 0-12-5.373-12-12V16l12-8 12 8v4c0 6.627-5.373 12-12 12z" fill="white"/>
                   </svg>
                 </div>
+                
+
                 
                 {/* Plumbers */}
                 <div style={{
@@ -4377,6 +4319,66 @@ export default function KampaioHome() {
       </section>
 
 
+
+      {/* Pre-Footer CTA Block */}
+      <div style={{
+        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        padding: '40px 20px',
+        textAlign: 'center',
+        color: 'white'
+      }}>
+        <div style={{
+          maxWidth: '1200px',
+          margin: '0 auto'
+        }}>
+          <h2 style={{
+            fontSize: 'clamp(2rem, 4vw, 3rem)',
+            fontWeight: '700',
+            marginBottom: '16px',
+            color: 'white'
+          }}>
+            Tired of wasting money on Google Ads?
+          </h2>
+          <p style={{
+            fontSize: 'clamp(1rem, 2vw, 1.25rem)',
+            marginBottom: '24px',
+            opacity: '0.9',
+            maxWidth: '800px',
+            margin: '0 auto 24px auto',
+            lineHeight: '1.6'
+          }}>
+            Stop guessing and start winning. Our AI identifies exactly where your budget is bleeding and shows you how to fix it in minutes.
+          </p>
+          <div style={{
+            display: 'flex',
+            gap: '16px',
+            justifyContent: 'center',
+            flexWrap: 'wrap'
+          }}>
+            <a href="https://replit.com/signup" style={{
+              padding: '12px 24px',
+              borderRadius: '8px',
+              background: 'linear-gradient(45deg, #00FFE7, #00BFAE)',
+              color: '#1A1A1A',
+              textDecoration: 'none',
+              fontWeight: '500',
+              transition: 'all 0.3s ease',
+              boxShadow: '0 4px 12px rgba(0, 255, 231, 0.2)',
+              display: 'inline-block'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-2px)';
+              e.currentTarget.style.boxShadow = '0 6px 16px rgba(0, 255, 231, 0.3)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 255, 231, 0.2)';
+            }}>
+              Find My Leaks
+            </a>
+          </div>
+        </div>
+      </div>
 
       {/* Footer */}
       <Footer compact={true} />
