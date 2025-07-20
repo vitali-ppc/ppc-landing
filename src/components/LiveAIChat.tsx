@@ -120,7 +120,7 @@ export default function LiveAIChat() {
               style={{
                 width: '24px',
                 height: '24px',
-                background: 'linear-gradient(135deg, #00ffe7, #7f9cf5)',
+                background: 'linear-gradient(45deg, #00FFE7, #00BFAE)',
                 borderRadius: '6px',
                 display: 'flex',
                 alignItems: 'center',
@@ -273,33 +273,7 @@ export default function LiveAIChat() {
             alignItems: 'center',
             gap: '12px'
           }}>
-            <motion.div 
-              style={{
-                width: '8px',
-                height: '8px',
-                background: '#00ffe7',
-                borderRadius: '50%'
-              }}
-              animate={{
-                scale: [1, 1.5, 1],
-                opacity: [0.5, 1, 0.5]
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            />
-            <span style={{ color: '#1a1a1a', fontWeight: '500', fontSize: '14px' }}>Welcome, user</span>
-          </div>
-          <div style={{
-            padding: '4px 12px',
-            background: '#f0f0f0',
-            borderRadius: '6px',
-            fontSize: '12px',
-            color: '#666'
-          }}>
-            Free plan
+            {/* Removed turquoise dot */}
           </div>
         </div>
 
@@ -377,7 +351,7 @@ export default function LiveAIChat() {
                   <div style={{
                     width: '28px',
                     height: '28px',
-                    background: 'linear-gradient(135deg, #00ffe7, #7f9cf5)',
+                    background: 'linear-gradient(45deg, #00FFE7, #00BFAE)',
                     borderRadius: '6px',
                     display: 'flex',
                     alignItems: 'center',
@@ -421,7 +395,7 @@ export default function LiveAIChat() {
                   <div style={{
                     width: '28px',
                     height: '28px',
-                    background: 'linear-gradient(135deg, #00ffe7, #7f9cf5)',
+                    background: 'linear-gradient(45deg, #00FFE7, #00BFAE)',
                     borderRadius: '6px',
                     display: 'flex',
                     alignItems: 'center',

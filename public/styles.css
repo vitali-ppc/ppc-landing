@@ -643,8 +643,6 @@ a {
 }
 
 .header-btn-demo:hover {
-  background: linear-gradient(45deg, #00BFAE, #008B7A);
-  color: #FFFFFF;
   transform: translateY(-1px);
   box-shadow: 0 4px 15px rgba(0, 255, 231, 0.3);
 }
@@ -5819,8 +5817,6 @@ footer {
 }
 
 .mobile-btn-demo:hover {
-  background: linear-gradient(45deg, #00BFAE, #008B7A);
-  color: #FFFFFF;
   transform: translateY(-1px);
   box-shadow: 0 4px 15px rgba(0, 255, 231, 0.3);
 }
