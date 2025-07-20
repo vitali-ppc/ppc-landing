@@ -138,7 +138,7 @@ export default function LiveAIChat() {
             >
               <span style={{ fontSize: '12px', fontWeight: 'bold', color: '#1a1a1a' }}>K</span>
             </motion.div>
-            <span style={{ color: '#1a1a1a', fontWeight: '600', fontSize: '16px' }}>Kampaio</span>
+            
           </div>
         </div>
 
@@ -515,9 +515,9 @@ export default function LiveAIChat() {
 
             <motion.div 
               style={{
-                width: '28px',
+                                width: '28px',
                 height: '28px',
-                background: '#1a1a1a',
+                                  background: '#1a1a1a',
                 borderRadius: '6px',
                 display: 'flex',
                 alignItems: 'center',

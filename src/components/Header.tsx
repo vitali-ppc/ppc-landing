@@ -97,7 +97,7 @@ export default function Header({ variant = 'full' }: HeaderProps) {
                   position: 'absolute',
                   width: '100%',
                   height: '100%',
-                  background: '#1a1a1a !important',
+                  background: 'linear-gradient(45deg, #00FFE7, #00BFAE) !important',
                   borderRadius: '4px',
                   transform: 'rotate(-5deg)',
                   boxShadow: '0 2px 8px rgba(0, 0, 0, 0.3)'
@@ -105,12 +105,12 @@ export default function Header({ variant = 'full' }: HeaderProps) {
                 <span style={{
                   fontSize: '20px',
                   fontWeight: '800',
-                  color: 'white !important',
+                  color: '#1A1A1A !important',
                   zIndex: 1,
                   position: 'relative'
                 }}>K</span>
               </div>
-              <span style={{ color: '#23272f', fontWeight: 'bold', fontSize: '20px' }}>Kampaio</span>
+              <span style={{ color: '#1A1A1A', fontWeight: 'bold', fontSize: '20px' }}>Kampaio</span>
             </Link>
           <div className="header__right">
             <a href="/login" className="header-btn header-btn-login">Login</a>
@@ -148,7 +148,7 @@ export default function Header({ variant = 'full' }: HeaderProps) {
                   position: 'absolute',
                   width: '100%',
                   height: '100%',
-                  background: '#1a1a1a !important',
+                  background: 'linear-gradient(45deg, #00FFE7, #00BFAE) !important',
                   borderRadius: '4px',
                   transform: 'rotate(-5deg)',
                   boxShadow: '0 2px 8px rgba(0, 0, 0, 0.3)'
@@ -156,12 +156,12 @@ export default function Header({ variant = 'full' }: HeaderProps) {
                 <span style={{
                   fontSize: '20px',
                   fontWeight: '800',
-                  color: 'white !important',
+                  color: '#1A1A1A !important',
                   zIndex: 1,
                   position: 'relative'
                 }}>K</span>
               </div>
-              <span style={{ color: '#23272f', fontWeight: 'bold', fontSize: '20px' }}>Kampaio</span>
+              <span style={{ color: '#1A1A1A', fontWeight: 'bold', fontSize: '20px' }}>Kampaio</span>
             </Link>
             <nav className="header__nav">
               <div className="templates-dropdown">

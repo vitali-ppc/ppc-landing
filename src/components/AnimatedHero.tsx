@@ -191,15 +191,15 @@ export default function AnimatedHero() {
             >
               <MagneticButton
                 style={{
-                  background: 'white',
+                  background: 'linear-gradient(45deg, #00FFE7, #00BFAE)',
                   border: 'none',
                   borderRadius: '12px',
                   padding: '18px 36px',
                   fontSize: '18px',
                   fontWeight: '700',
-                  color: '#1a1a1a',
+                  color: '#1A1A1A',
                   cursor: 'pointer',
-                  boxShadow: '0 8px 32px rgba(255,255,255,0.2)',
+                  boxShadow: '0 8px 32px rgba(0, 255, 231, 0.3)',
                   letterSpacing: '0.5px',
                   position: 'relative',
                   overflow: 'hidden'
