@@ -2550,559 +2550,7 @@ export default function KampaioHome() {
       {/* === ВАРІАНТ 1: Professional Code Editor === */}
 
 
-      {/* Tailored AI Solutions for Every Industry */}
-      <section style={{
-        background:'#fafafa',
-        padding:'120px 0 80px 0',
-        overflow:'hidden',
-        position:'relative'
-      }}>
-        {/* Animated Background Elements */}
-        <div style={{
-          position:'absolute',
-          top:'10%',
-          left:'5%',
-          width:'200px',
-          height:'200px',
-          background:'radial-gradient(circle, rgba(0,255,231,0.1) 0%, transparent 70%)',
-          borderRadius:'50%',
-          animation:'pulse 4s ease-in-out infinite'
-        }}></div>
-        <div style={{
-          position:'absolute',
-          top:'60%',
-          right:'10%',
-          width:'150px',
-          height:'150px',
-          background:'radial-gradient(circle, rgba(127,156,245,0.08) 0%, transparent 70%)',
-          borderRadius:'50%',
-          animation:'pulse 6s ease-in-out infinite'
-        }}></div>
-        
-        <div style={{
-          maxWidth:'1200px',
-          margin:'0 auto',
-          padding:'0 24px',
-          position:'relative',
-          zIndex:1
-        }}>
-          {/* Header with Floating Elements */}
-          <div style={{textAlign:'center',marginBottom:'80px',position:'relative'}}>
-            {/* Floating AI Particles */}
-            <div style={{
-              position:'absolute',
-              top:'-20px',
-              left:'20%',
-              width:'8px',
-              height:'8px',
-              background:'#00ffe7',
-              borderRadius:'50%',
-              animation:'pulse 2s ease-in-out infinite'
-            }}></div>
-            <div style={{
-              position:'absolute',
-              top:'40px',
-              right:'25%',
-              width:'6px',
-              height:'6px',
-              background:'#7f9cf5',
-              borderRadius:'50%',
-              animation:'pulse 3s ease-in-out infinite'
-            }}></div>
-            
-            <h2 style={{
-              fontSize:'clamp(32px, 4vw, 48px)',
-              fontWeight:'700',
-              color:'#1a1a1a',
-              marginBottom:'24px',
-              marginTop:0,
-              lineHeight:'1.2',
-              position:'relative'
-            }}>
-              Tailored AI Solutions for Every Industry
-              {/* Animated Underline */}
-              <div style={{
-                position:'absolute',
-                bottom:'-8px',
-                left:'50%',
-                transform:'translateX(-50%)',
-                width:'80px',
-                height:'3px',
-                background:'linear-gradient(90deg, #00ffe7, #7f9cf5)',
-                borderRadius:'2px',
-                animation:'flow 3s ease-in-out infinite'
-              }}></div>
-            </h2>
-            <p style={{
-              fontSize:'clamp(18px, 2vw, 22px)',
-              color:'#666',
-              margin:0,
-              lineHeight:'1.6',
-              maxWidth:'600px',
-              marginLeft:'auto',
-              marginRight:'auto'
-            }}>
-              Our AI understands the unique challenges of your business
-            </p>
-          </div>
 
-          {/* Industry Cards Grid with 3D Effects */}
-          <div style={{
-            display:'grid',
-            gridTemplateColumns:'repeat(auto-fit, minmax(280px, 1fr))',
-            gap:'32px',
-            marginBottom:'80px',
-            perspective:'1000px'
-          }}>
-            {/* Dentists - Holographic Card */}
-            <div style={{
-              background:'linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.85))',
-              borderRadius:'20px',
-              padding:'40px 32px',
-              border:'1px solid rgba(229,229,229,0.3)',
-              boxShadow:'0 8px 32px rgba(0,0,0,0.1), 0 0 0 1px rgba(255,255,255,0.2)',
-              transition:'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-              position:'relative',
-              overflow:'hidden',
-              backdropFilter:'blur(10px)'
-            }} onMouseEnter={(e) => {
-              const target = e.target as HTMLElement;
-              target.style.transform = 'translateY(-8px) rotateX(5deg)';
-              target.style.boxShadow = '0 20px 60px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,255,231,0.3)';
-            }} onMouseLeave={(e) => {
-              const target = e.target as HTMLElement;
-              target.style.transform = 'translateY(0) rotateX(0deg)';
-              target.style.boxShadow = '0 8px 32px rgba(0,0,0,0.1), 0 0 0 1px rgba(255,255,255,0.2)';
-            }}>
-              {/* Holographic Effect */}
-              <div style={{
-                position:'absolute',
-                top:0,
-                left:0,
-                right:0,
-                height:'100%',
-                background:'linear-gradient(45deg, transparent 30%, rgba(0,255,231,0.1) 50%, transparent 70%)',
-                animation:'flow 4s ease-in-out infinite',
-                pointerEvents:'none'
-              }}></div>
-              
-              {/* Animated Icon Container */}
-              <div style={{
-                width:'80px',
-                height:'80px',
-                background:'linear-gradient(135deg, #f8f9fa, #e9ecef)',
-                borderRadius:'20px',
-                display:'flex',
-                alignItems:'center',
-                justifyContent:'center',
-                marginBottom:'24px',
-                border:'2px solid rgba(0,255,231,0.2)',
-                position:'relative',
-                overflow:'hidden'
-              }}>
-                {/* Rotating Background */}
-                <div style={{
-                  position:'absolute',
-                  top:'50%',
-                  left:'50%',
-                  width:'60px',
-                  height:'60px',
-                  background:'conic-gradient(from 0deg, transparent, rgba(0,255,231,0.1), transparent)',
-                  borderRadius:'50%',
-                  transform:'translate(-50%, -50%)',
-                  animation:'rotate 8s linear infinite'
-                }}></div>
-                
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" strokeWidth="2" style={{position:'relative',zIndex:1}}>
-                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-                </svg>
-              </div>
-
-              <h3 style={{
-                fontSize:'26px',
-                fontWeight:'700',
-                color:'#1a1a1a',
-                margin:'0 0 16px 0',
-                position:'relative'
-              }}>
-                Dentists
-              </h3>
-              
-              <p style={{
-                fontSize:'16px',
-                color:'#666',
-                lineHeight:'1.6',
-                margin:'0 0 24px 0'
-              }}>
-                Attract more patients with targeted local SEO campaigns. Our AI optimizes for dental-specific keywords and local search intent.
-              </p>
-
-              {/* Animated Button */}
-              <button style={{
-                background:'linear-gradient(135deg, transparent, transparent)',
-                color:'#1a1a1a',
-                border:'2px solid rgba(0,255,231,0.3)',
-                padding:'14px 28px',
-                borderRadius:'12px',
-                fontSize:'14px',
-                fontWeight:'600',
-                cursor:'pointer',
-                transition:'all 0.3s ease',
-                position:'relative',
-                overflow:'hidden'
-              }} onMouseEnter={(e) => {
-                const target = e.target as HTMLElement;
-                target.style.background = 'linear-gradient(135deg, #1a1a1a, #2a2a2a)';
-                target.style.color = 'white';
-                target.style.borderColor = '#00ffe7';
-                target.style.transform = 'scale(1.05)';
-              }} onMouseLeave={(e) => {
-                const target = e.target as HTMLElement;
-                target.style.background = 'linear-gradient(135deg, transparent, transparent)';
-                target.style.color = '#1a1a1a';
-                target.style.borderColor = 'rgba(0,255,231,0.3)';
-                target.style.transform = 'scale(1)';
-              }}>
-                <span style={{position:'relative',zIndex:1}}>Learn more</span>
-              </button>
-            </div>
-
-            {/* Real Estate - Neural Network Card */}
-            <div style={{
-              background:'linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.85))',
-              borderRadius:'20px',
-              padding:'40px 32px',
-              border:'1px solid rgba(229,229,229,0.3)',
-              boxShadow:'0 8px 32px rgba(0,0,0,0.1), 0 0 0 1px rgba(255,255,255,0.2)',
-              transition:'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-              position:'relative',
-              overflow:'hidden',
-              backdropFilter:'blur(10px)'
-            }} onMouseEnter={(e) => {
-              const target = e.target as HTMLElement;
-              target.style.transform = 'translateY(-8px) rotateX(5deg)';
-              target.style.boxShadow = '0 20px 60px rgba(0,0,0,0.15), 0 0 0 1px rgba(127,156,245,0.3)';
-            }} onMouseLeave={(e) => {
-              const target = e.target as HTMLElement;
-              target.style.transform = 'translateY(0) rotateX(0deg)';
-              target.style.boxShadow = '0 8px 32px rgba(0,0,0,0.1), 0 0 0 1px rgba(255,255,255,0.2)';
-            }}>
-              {/* Neural Network Animation */}
-              <div style={{
-                position:'absolute',
-                top:'20px',
-                right:'20px',
-                width:'60px',
-                height:'60px',
-                opacity:'0.3'
-              }}>
-                <svg viewBox="0 0 60 60" fill="none">
-                  <circle cx="30" cy="15" r="3" fill="#7f9cf5" opacity="0.6">
-                    <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
-                  </circle>
-                  <circle cx="15" cy="30" r="3" fill="#00ffe7" opacity="0.6">
-                    <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" begin="0.5s" repeatCount="indefinite"/>
-                  </circle>
-                  <circle cx="45" cy="30" r="3" fill="#7f9cf5" opacity="0.6">
-                    <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" begin="1s" repeatCount="indefinite"/>
-                  </circle>
-                  <circle cx="30" cy="45" r="3" fill="#00ffe7" opacity="0.6">
-                    <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" begin="1.5s" repeatCount="indefinite"/>
-                  </circle>
-                  <line x1="30" y1="15" x2="15" y2="30" stroke="#7f9cf5" strokeWidth="1" opacity="0.4"/>
-                  <line x1="30" y1="15" x2="45" y2="30" stroke="#00ffe7" strokeWidth="1" opacity="0.4"/>
-                  <line x1="15" y1="30" x2="30" y2="45" stroke="#7f9cf5" strokeWidth="1" opacity="0.4"/>
-                  <line x1="45" y1="30" x2="30" y2="45" stroke="#00ffe7" strokeWidth="1" opacity="0.4"/>
-                </svg>
-              </div>
-              
-              {/* Animated Icon Container */}
-              <div style={{
-                width:'80px',
-                height:'80px',
-                background:'linear-gradient(135deg, #f8f9fa, #e9ecef)',
-                borderRadius:'20px',
-                display:'flex',
-                alignItems:'center',
-                justifyContent:'center',
-                marginBottom:'24px',
-                border:'2px solid rgba(127,156,245,0.2)',
-                position:'relative',
-                overflow:'hidden'
-              }}>
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" strokeWidth="2">
-                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                  <polyline points="9,22 9,12 15,12 15,22"/>
-                </svg>
-              </div>
-
-              <h3 style={{
-                fontSize:'26px',
-                fontWeight:'700',
-                color:'#1a1a1a',
-                margin:'0 0 16px 0'
-              }}>
-                Real Estate
-              </h3>
-              
-              <p style={{
-                fontSize:'16px',
-                color:'#666',
-                lineHeight:'1.6',
-                margin:'0 0 24px 0'
-              }}>
-                Generate qualified leads with hyper-local targeting. Our AI finds the perfect audience for your property listings and market updates.
-              </p>
-
-              <button style={{
-                background:'linear-gradient(135deg, transparent, transparent)',
-                color:'#1a1a1a',
-                border:'2px solid rgba(127,156,245,0.3)',
-                padding:'14px 28px',
-                borderRadius:'12px',
-                fontSize:'14px',
-                fontWeight:'600',
-                cursor:'pointer',
-                transition:'all 0.3s ease'
-              }} onMouseEnter={(e) => {
-                const target = e.target as HTMLElement;
-                target.style.background = 'linear-gradient(135deg, #1a1a1a, #2a2a2a)';
-                target.style.color = 'white';
-                target.style.borderColor = '#7f9cf5';
-                target.style.transform = 'scale(1.05)';
-              }} onMouseLeave={(e) => {
-                const target = e.target as HTMLElement;
-                target.style.background = 'linear-gradient(135deg, transparent, transparent)';
-                target.style.color = '#1a1a1a';
-                target.style.borderColor = 'rgba(127,156,245,0.3)';
-                target.style.transform = 'scale(1)';
-              }}>
-                Learn more
-              </button>
-            </div>
-
-            {/* SaaS Companies - Data Flow Card */}
-            <div style={{
-              background:'linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.85))',
-              borderRadius:'20px',
-              padding:'40px 32px',
-              border:'1px solid rgba(229,229,229,0.3)',
-              boxShadow:'0 8px 32px rgba(0,0,0,0.1), 0 0 0 1px rgba(255,255,255,0.2)',
-              transition:'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-              position:'relative',
-              overflow:'hidden',
-              backdropFilter:'blur(10px)'
-            }} onMouseEnter={(e) => {
-              const target = e.target as HTMLElement;
-              target.style.transform = 'translateY(-8px) rotateX(5deg)';
-              target.style.boxShadow = '0 20px 60px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,255,231,0.3)';
-            }} onMouseLeave={(e) => {
-              const target = e.target as HTMLElement;
-              target.style.transform = 'translateY(0) rotateX(0deg)';
-              target.style.boxShadow = '0 8px 32px rgba(0,0,0,0.1), 0 0 0 1px rgba(255,255,255,0.2)';
-            }}>
-              {/* Data Flow Animation */}
-              <div style={{
-                position:'absolute',
-                top:'0',
-                left:'0',
-                right:'0',
-                height:'2px',
-                background:'linear-gradient(90deg, transparent, #00ffe7, transparent)',
-                animation:'flow 3s ease-in-out infinite'
-              }}></div>
-              
-              {/* Animated Icon Container */}
-              <div style={{
-                width:'80px',
-                height:'80px',
-                background:'linear-gradient(135deg, #f8f9fa, #e9ecef)',
-                borderRadius:'20px',
-                display:'flex',
-                alignItems:'center',
-                justifyContent:'center',
-                marginBottom:'24px',
-                border:'2px solid rgba(0,255,231,0.2)',
-                position:'relative'
-              }}>
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" strokeWidth="2">
-                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
-                  <line x1="8" y1="21" x2="16" y2="21"/>
-                  <line x1="12" y1="17" x2="12" y2="21"/>
-                </svg>
-              </div>
-
-              <h3 style={{
-                fontSize:'26px',
-                fontWeight:'700',
-                color:'#1a1a1a',
-                margin:'0 0 16px 0'
-              }}>
-                SaaS Companies
-              </h3>
-              
-              <p style={{
-                fontSize:'16px',
-                color:'#666',
-                lineHeight:'1.6',
-                margin:'0 0 24px 0'
-              }}>
-                Scale your user acquisition with intelligent B2B targeting. Our AI optimizes for high-value leads and reduces customer acquisition costs.
-              </p>
-
-              <button style={{
-                background:'linear-gradient(135deg, transparent, transparent)',
-                color:'#1a1a1a',
-                border:'2px solid rgba(0,255,231,0.3)',
-                padding:'14px 28px',
-                borderRadius:'12px',
-                fontSize:'14px',
-                fontWeight:'600',
-                cursor:'pointer',
-                transition:'all 0.3s ease'
-              }} onMouseEnter={(e) => {
-                const target = e.target as HTMLElement;
-                target.style.background = 'linear-gradient(135deg, #1a1a1a, #2a2a2a)';
-                target.style.color = 'white';
-                target.style.borderColor = '#00ffe7';
-                target.style.transform = 'scale(1.05)';
-              }} onMouseLeave={(e) => {
-                const target = e.target as HTMLElement;
-                target.style.background = 'linear-gradient(135deg, transparent, transparent)';
-                target.style.color = '#1a1a1a';
-                target.style.borderColor = 'rgba(0,255,231,0.3)';
-                target.style.transform = 'scale(1)';
-              }}>
-                Learn more
-              </button>
-            </div>
-
-            {/* Legal Services - Quantum Card */}
-            <div style={{
-              background:'linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.85))',
-              borderRadius:'20px',
-              padding:'40px 32px',
-              border:'1px solid rgba(229,229,229,0.3)',
-              boxShadow:'0 8px 32px rgba(0,0,0,0.1), 0 0 0 1px rgba(255,255,255,0.2)',
-              transition:'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-              position:'relative',
-              overflow:'hidden',
-              backdropFilter:'blur(10px)'
-            }} onMouseEnter={(e) => {
-              const target = e.target as HTMLElement;
-              target.style.transform = 'translateY(-8px) rotateX(5deg)';
-              target.style.boxShadow = '0 20px 60px rgba(0,0,0,0.15), 0 0 0 1px rgba(127,156,245,0.3)';
-            }} onMouseLeave={(e) => {
-              const target = e.target as HTMLElement;
-              target.style.transform = 'translateY(0) rotateX(0deg)';
-              target.style.boxShadow = '0 8px 32px rgba(0,0,0,0.1), 0 0 0 1px rgba(255,255,255,0.2)';
-            }}>
-              {/* Quantum Particles */}
-              <div style={{
-                position:'absolute',
-                top:'20px',
-                left:'20px',
-                width:'40px',
-                height:'40px',
-                opacity:'0.4'
-              }}>
-                <div style={{
-                  width:'4px',
-                  height:'4px',
-                  background:'#7f9cf5',
-                  borderRadius:'50%',
-                  position:'absolute',
-                  animation:'pulse 2s ease-in-out infinite'
-                }}></div>
-                <div style={{
-                  width:'3px',
-                  height:'3px',
-                  background:'#00ffe7',
-                  borderRadius:'50%',
-                  position:'absolute',
-                  top:'15px',
-                  left:'25px',
-                  animation:'pulse 2s ease-in-out infinite 0.5s'
-                }}></div>
-                <div style={{
-                  width:'2px',
-                  height:'2px',
-                  background:'#7f9cf5',
-                  borderRadius:'50%',
-                  position:'absolute',
-                  top:'30px',
-                  left:'10px',
-                  animation:'pulse 2s ease-in-out infinite 1s'
-                }}></div>
-              </div>
-              
-              {/* Animated Icon Container */}
-              <div style={{
-                width:'80px',
-                height:'80px',
-                background:'linear-gradient(135deg, #f8f9fa, #e9ecef)',
-                borderRadius:'20px',
-                display:'flex',
-                alignItems:'center',
-                justifyContent:'center',
-                marginBottom:'24px',
-                border:'2px solid rgba(127,156,245,0.2)',
-                position:'relative'
-              }}>
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" strokeWidth="2">
-                  <path d="M12 1l3.09 6.26L22 7.27l-5 4.87 1.18 6.88L12 17.77l-6.18 1.25L7 12.14 2 7.27l6.91-1.01L12 1z"/>
-                </svg>
-              </div>
-
-              <h3 style={{
-                fontSize:'26px',
-                fontWeight:'700',
-                color:'#1a1a1a',
-                margin:'0 0 16px 0'
-              }}>
-                Legal Services
-              </h3>
-              
-              <p style={{
-                fontSize:'16px',
-                color:'#666',
-                lineHeight:'1.6',
-                margin:'0 0 24px 0'
-              }}>
-                Build trust and attract qualified clients. Our AI targets legal-specific keywords and optimizes for high-intent search queries.
-              </p>
-
-              <button style={{
-                background:'linear-gradient(135deg, transparent, transparent)',
-                color:'#1a1a1a',
-                border:'2px solid rgba(127,156,245,0.3)',
-                padding:'14px 28px',
-                borderRadius:'12px',
-                fontSize:'14px',
-                fontWeight:'600',
-                cursor:'pointer',
-                transition:'all 0.3s ease'
-              }} onMouseEnter={(e) => {
-                const target = e.target as HTMLElement;
-                target.style.background = 'linear-gradient(135deg, #1a1a1a, #2a2a2a)';
-                target.style.color = 'white';
-                target.style.borderColor = '#7f9cf5';
-                target.style.transform = 'scale(1.05)';
-              }} onMouseLeave={(e) => {
-                const target = e.target as HTMLElement;
-                target.style.background = 'linear-gradient(135deg, transparent, transparent)';
-                target.style.color = '#1a1a1a';
-                target.style.borderColor = 'rgba(127,156,245,0.3)';
-                target.style.transform = 'scale(1)';
-              }}>
-                Learn more
-              </button>
-            </div>
-          </div>
-
-
-        </div>
-      </section>
 
 
 
@@ -3975,8 +3423,8 @@ export default function KampaioHome() {
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                     backgroundClip: 'text'
-                  }}>Leader </span>
-                  <span>in the AI Video Generator category</span>
+                  }}>Works </span>
+                  <span>with Your Tools, Optimizes for Your Industry</span>
                 </h2>
               </div>
               <div style={{
@@ -3988,7 +3436,7 @@ export default function KampaioHome() {
                 marginBottom: '40px',
                 lineHeight: '1.6'
               }}>
-                <p>Synthesia is the leader in AI Video Generator on G2, the world's largest and most trusted software marketplace.</p>
+                <p>From dentists to SaaS companies - get AI-powered Google Ads optimization that integrates with your existing workflow and understands your business</p>
               </div>
               
               {/* Badges grid */}
@@ -4007,9 +3455,10 @@ export default function KampaioHome() {
                     width: '20px',
                     height: '20px'
                   }}>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 25" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
-                      <rect y="0.231445" width="24" height="24" rx="4.5" fill="#3E57DA"></rect>
-                      <path d="M6.12811 18.2314H16.1525C18.622 18.2314 20.1952 16.7132 20.4514 14.39L20.9635 9.57899H17.5061L17.0305 13.9693C16.9756 14.5548 16.6097 14.8839 16.0061 14.8839H6.4574L6.12811 18.2314ZM6.4574 14.8839L6.93298 10.4936C6.9879 9.90814 7.35376 9.57899 7.95741 9.57899H17.5061L17.8355 6.23145H7.81099C5.34146 6.23145 3.7683 7.74982 3.51215 10.0729L3 14.8839H6.4574Z" fill="white"></path>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      {/* Стилизованная башня - Enterprise */}
+                      <path d="M12 2L8 6v4h2v8h4v-8h2V6l-4-4z" fill="#3E57DA"/>
+                      <rect x="10" y="14" width="4" height="2" fill="#3E57DA"/>
                     </svg>
                   </div>
                   <p style={{
@@ -4017,7 +3466,7 @@ export default function KampaioHome() {
                     fontWeight: '500',
                     color: '#1a1a1a',
                     margin: 0
-                  }}>Best for Enterprise</p>
+                  }}>Dentists</p>
                 </div>
                 <div style={{
                   display: 'flex',
@@ -4028,9 +3477,10 @@ export default function KampaioHome() {
                     width: '20px',
                     height: '20px'
                   }}>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 25" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
-                      <rect y="0.231445" width="24" height="24" rx="4.5" fill="#3E57DA"></rect>
-                      <path d="M6.12811 18.2314H16.1525C18.622 18.2314 20.1952 16.7132 20.4514 14.39L20.9635 9.57899H17.5061L17.0305 13.9693C16.9756 14.5548 16.6097 14.8839 16.0061 14.8839H6.4574L6.12811 18.2314ZM6.4574 14.8839L6.93298 10.4936C6.9879 9.90814 7.35376 9.57899 7.95741 9.57899H17.5061L17.8355 6.23145H7.81099C5.34146 6.23145 3.7683 7.74982 3.51215 10.0729L3 14.8839H6.4574Z" fill="white"></path>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      {/* Волновая линия - Mid-Market */}
+                      <path d="M3 12c2-4 4-6 6-6s4 2 6 6 4 6 6 6" stroke="#3E57DA" strokeWidth="2" fill="none" strokeLinecap="round"/>
+                      <circle cx="12" cy="12" r="2" fill="#3E57DA"/>
                     </svg>
                   </div>
                   <p style={{
@@ -4038,7 +3488,7 @@ export default function KampaioHome() {
                     fontWeight: '500',
                     color: '#1a1a1a',
                     margin: 0
-                  }}>Best for Mid-Market</p>
+                  }}>Real Estate</p>
                 </div>
                 <div style={{
                   display: 'flex',
@@ -4049,9 +3499,11 @@ export default function KampaioHome() {
                     width: '20px',
                     height: '20px'
                   }}>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 25" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
-                      <rect y="0.231445" width="24" height="24" rx="4.5" fill="#3E57DA"></rect>
-                      <path d="M6.12811 18.2314H16.1525C18.622 18.2314 20.1952 16.7132 20.4514 14.39L20.9635 9.57899H17.5061L17.0305 13.9693C16.9756 14.5548 16.6097 14.8839 16.0061 14.8839H6.4574L6.12811 18.2314ZM6.4574 14.8839L6.93298 10.4936C6.9879 9.90814 7.35376 9.57899 7.95741 9.57899H17.5061L17.8355 6.23145H7.81099C5.34146 6.23145 3.7683 7.74982 3.51215 10.0729L3 14.8839H6.4574Z" fill="white"></path>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      {/* Пульсирующий круг - User Satisfaction */}
+                      <circle cx="12" cy="12" r="8" fill="#3E57DA"/>
+                      <circle cx="12" cy="12" r="4" fill="white"/>
+                      <circle cx="12" cy="12" r="2" fill="#3E57DA"/>
                     </svg>
                   </div>
                   <p style={{
@@ -4059,7 +3511,7 @@ export default function KampaioHome() {
                     fontWeight: '500',
                     color: '#1a1a1a',
                     margin: 0
-                  }}>Highest User Satisfaction</p>
+                  }}>SaaS Companies</p>
                 </div>
                 <div style={{
                   display: 'flex',
@@ -4070,9 +3522,16 @@ export default function KampaioHome() {
                     width: '20px',
                     height: '20px'
                   }}>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 25" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
-                      <rect y="0.231445" width="24" height="24" rx="4.5" fill="#3E57DA"></rect>
-                      <path d="M6.12811 18.2314H16.1525C18.622 18.2314 20.1952 16.7132 20.4514 14.39L20.9635 9.57899H17.5061L17.0305 13.9693C16.9756 14.5548 16.6097 14.8839 16.0061 14.8839H6.4574L6.12811 18.2314ZM6.4574 14.8839L6.93298 10.4936C6.9879 9.90814 7.35376 9.57899 7.95741 9.57899H17.5061L17.8355 6.23145H7.81099C5.34146 6.23145 3.7683 7.74982 3.51215 10.0729L3 14.8839H6.4574Z" fill="white"></path>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      {/* Соединенные точки - Small Business */}
+                      <circle cx="8" cy="8" r="2" fill="#3E57DA"/>
+                      <circle cx="16" cy="8" r="2" fill="#3E57DA"/>
+                      <circle cx="8" cy="16" r="2" fill="#3E57DA"/>
+                      <circle cx="16" cy="16" r="2" fill="#3E57DA"/>
+                      <line x1="8" y1="8" x2="16" y2="8" stroke="#3E57DA" strokeWidth="1"/>
+                      <line x1="8" y1="16" x2="16" y2="16" stroke="#3E57DA" strokeWidth="1"/>
+                      <line x1="8" y1="8" x2="8" y2="16" stroke="#3E57DA" strokeWidth="1"/>
+                      <line x1="16" y1="8" x2="16" y2="16" stroke="#3E57DA" strokeWidth="1"/>
                     </svg>
                   </div>
                   <p style={{
@@ -4080,7 +3539,7 @@ export default function KampaioHome() {
                     fontWeight: '500',
                     color: '#1a1a1a',
                     margin: 0
-                  }}>Best for Small Business</p>
+                  }}>Legal Services</p>
                 </div>
               </div>
               
@@ -4108,7 +3567,7 @@ export default function KampaioHome() {
                   e.currentTarget.style.transform = 'translateY(0)';
                   e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 255, 231, 0.3)';
                 }}>
-                  <div>Book demo</div>
+                  <div>Find Your Industry</div>
                   <div style={{
                     width: '16px',
                     height: '16px'
@@ -4139,114 +3598,165 @@ export default function KampaioHome() {
                   border: '1px solid #e5e7eb',
                   boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
                   overflow: 'hidden',
-                  position: 'relative'
+                  position: 'relative',
+                  background: 'linear-gradient(135deg, #00FFE7, #00BFAE)',
+                  aspectRatio: '493/437',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
                 }}>
-                  <img src="https://cdn.prod.website-files.com/65e89895c5a4b8d764c0d710/66604139c144ea1b821629dc_G2-grid.webp" loading="lazy" alt="" style={{
-                    width: '100%',
-                    height: 'auto',
-                    aspectRatio: '493/437'
-                  }} />
+                  {/* Голографическая сетка */}
+                  <svg width="100%" height="100%" viewBox="0 0 400 300" style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0
+                  }}>
+                    <defs>
+                      <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                        <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="1"/>
+                      </pattern>
+                      <radialGradient id="hologram" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stopColor="rgba(255,255,255,0.8)"/>
+                        <stop offset="50%" stopColor="rgba(255,255,255,0.3)"/>
+                        <stop offset="100%" stopColor="rgba(255,255,255,0.1)"/>
+                      </radialGradient>
+                    </defs>
+                    <rect width="100%" height="100%" fill="url(#grid)"/>
+                    <circle cx="200" cy="150" r="80" fill="url(#hologram)" opacity="0.6">
+                      <animate attributeName="r" values="80;90;80" dur="3s" repeatCount="indefinite"/>
+                      <animate attributeName="opacity" values="0.6;0.8;0.6" dur="3s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="200" cy="150" r="60" fill="none" stroke="rgba(255,255,255,0.5)" strokeWidth="2">
+                      <animate attributeName="r" values="60;70;60" dur="2s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="200" cy="150" r="40" fill="none" stroke="rgba(255,255,255,0.7)" strokeWidth="1">
+                      <animate attributeName="r" values="40;50;40" dur="1.5s" repeatCount="indefinite"/>
+                    </circle>
+                  </svg>
                   
-                  {/* Google Services Badges Overlay */}
+                                    {/* Google Services Badges Overlay - ближе к кругу */}
+                  {/* Google Ads Badge - хаотично размещен */}
                   <div style={{
                     position: 'absolute',
-                    top: '20px',
-                    right: '20px',
+                    top: '25%',
+                    left: '20%',
+                    transform: 'translate(-50%, -50%)',
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '8px'
+                    justifyContent: 'center',
+                    width: '48px',
+                    height: '48px',
+                    background: 'white',
+                    borderRadius: '50%',
+                    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1)',
+                    padding: '8px'
                   }}>
-                    {/* Google Ads Badge */}
-                    <div style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      width: '36px',
-                      height: '36px'
-                    }}>
-                      <img 
-                        src="https://img.icons8.com/color/48/google-ads.png" 
-                        alt="Google Ads Official Partner" 
-                        style={{
-                          width: '20px',
-                          height: '20px'
-                        }}
-                      />
-                    </div>
-                    
-                    {/* Google Sheets Badge */}
-                    <div style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      width: '36px',
-                      height: '36px'
-                    }}>
-                      <img 
-                        src="https://img.icons8.com/color/48/google-sheets.png" 
-                        alt="Google Sheets Integration" 
-                        style={{
-                          width: '20px',
-                          height: '20px'
-                        }}
-                      />
-                    </div>
-                    
-                    {/* PDF Export Badge */}
-                    <div style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      width: '36px',
-                      height: '36px'
-                    }}>
-                      <img 
-                        src="https://img.icons8.com/color/48/pdf.png" 
-                        alt="PDF Export" 
-                        style={{
-                          width: '20px',
-                          height: '20px'
-                        }}
-                      />
-                    </div>
-                    
-                    {/* OpenAI Badge */}
-                    <div style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      width: '36px',
-                      height: '36px'
-                    }}>
-                      <img 
-                        src="https://img.icons8.com/color/48/chatgpt.png" 
-                        alt="OpenAI Integration" 
-                        style={{
-                          width: '20px',
-                          height: '20px'
-                        }}
-                      />
-                    </div>
-                    
-                    {/* Google Analytics Badge */}
-                    <div style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      width: '36px',
-                      height: '36px'
-                    }}>
-                      <img 
-                        src="https://storage.googleapis.com/proudcity/helpsite/uploads/2023/04/google-analytics.png" 
-                        alt="Google Analytics Integration" 
-                        style={{
-                          width: '20px',
-                          height: '20px'
-                        }}
-                      />
-                    </div>
-                    
-
+                    <img 
+                      src="https://img.icons8.com/color/48/google-ads.png" 
+                      alt="Google Ads Official Partner" 
+                      style={{
+                        width: '32px',
+                        height: '32px'
+                      }}
+                    />
+                  </div>
+                  
+                  {/* Google Sheets Badge - хаотично размещен */}
+                  <div style={{
+                    position: 'absolute',
+                    top: '15%',
+                    right: '25%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: '48px',
+                    height: '48px',
+                    background: 'white',
+                    borderRadius: '50%',
+                    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1)',
+                    padding: '8px'
+                  }}>
+                    <img 
+                      src="https://img.icons8.com/color/48/google-sheets.png" 
+                      alt="Google Sheets Integration" 
+                      style={{
+                        width: '32px',
+                        height: '32px'
+                      }}
+                    />
+                  </div>
+                  
+                  {/* PDF Export Badge - хаотично размещен */}
+                  <div style={{
+                    position: 'absolute',
+                    top: '65%',
+                    left: '15%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: '48px',
+                    height: '48px',
+                    background: 'white',
+                    borderRadius: '50%',
+                    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1)',
+                    padding: '8px'
+                  }}>
+                    <img 
+                      src="https://img.icons8.com/color/48/pdf.png" 
+                      alt="PDF Export" 
+                      style={{
+                        width: '32px',
+                        height: '32px'
+                      }}
+                    />
+                  </div>
+                  
+                  {/* OpenAI Badge - хаотично размещен */}
+                  <div style={{
+                    position: 'absolute',
+                    top: '45%',
+                    right: '15%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: '48px',
+                    height: '48px',
+                    background: 'white',
+                    borderRadius: '50%',
+                    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1)',
+                    padding: '8px'
+                  }}>
+                    <img 
+                      src="https://img.icons8.com/color/48/chatgpt.png" 
+                      alt="OpenAI Integration" 
+                      style={{
+                        width: '32px',
+                        height: '32px'
+                      }}
+                    />
+                  </div>
+                  
+                  {/* Google Analytics Badge - хаотично размещен */}
+                  <div style={{
+                    position: 'absolute',
+                    bottom: '25%',
+                    right: '20%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: '48px',
+                    height: '48px',
+                    background: 'white',
+                    borderRadius: '50%',
+                    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1)',
+                    padding: '8px'
+                  }}>
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      {/* Google Analytics logo без белого фона */}
+                      <rect x="4" y="12" width="4" height="8" rx="1" fill="#FF9800"/>
+                      <rect x="9" y="8" width="4" height="12" rx="1" fill="#FF5722"/>
+                      <rect x="14" y="4" width="4" height="16" rx="1" fill="#F57C00"/>
+                    </svg>
                   </div>
                 </div>
               </a>
