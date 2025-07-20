@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Header from '../../components/Header';
 import AnimatedHero from '../../components/AnimatedHero';
 import FeatureCard from '../../components/InteractiveFeatureCard';
@@ -578,6 +578,19 @@ function AnimatedCurrencyCounter({
 
 export default function KampaioHome() {
   const [openQuestion, setOpenQuestion] = useState<number | null>(null);
+  const sliderRef = useRef<HTMLDivElement>(null);
+
+  const scrollLeft = () => {
+    if (sliderRef.current) {
+      sliderRef.current.scrollBy({ left: -400, behavior: 'smooth' });
+    }
+  };
+
+  const scrollRight = () => {
+    if (sliderRef.current) {
+      sliderRef.current.scrollBy({ left: 400, behavior: 'smooth' });
+    }
+  };
 
   const handleFAQClick = (questionId: number) => {
     setOpenQuestion(openQuestion === questionId ? null : questionId);
@@ -4039,6 +4052,422 @@ export default function KampaioHome() {
           </div>
         </div>
       </div>
+
+      {/* GTM AI Strategy Section */}
+      <section id="why-gtm-ai" style={{
+        padding: '120px 0',
+        background: 'white',
+        position: 'relative',
+        overflow: 'hidden'
+      }}>
+        <div style={{
+          maxWidth: '1200px',
+          margin: '0 auto',
+          padding: '0 24px'
+        }}>
+          <div style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'flex-start',
+            marginBottom: '60px'
+          }}>
+            <div>
+              <h2 style={{
+                fontSize: 'clamp(36px, 4vw, 48px)',
+                fontWeight: '800',
+                color: '#1a1a1a',
+                lineHeight: '1.2',
+                marginBottom: '16px'
+              }}>
+                Expert Insights from PPC Professionals
+              </h2>
+              <p style={{
+                fontSize: 'clamp(18px, 2vw, 20px)',
+                color: '#666',
+                lineHeight: '1.5',
+                maxWidth: '600px'
+              }}>
+                Stay ahead with proven strategies and AI-powered insights
+              </p>
+            </div>
+            <div style={{
+              display: 'flex',
+              gap: '16px'
+            }}>
+              <button 
+                onClick={scrollLeft}
+                style={{
+                  width: '48px',
+                  height: '48px',
+                  borderRadius: '50%',
+                  border: '1px solid #e5e7eb',
+                  background: 'white',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = '#1a1a1a';
+                  e.currentTarget.style.background = '#f8f9fa';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = '#e5e7eb';
+                  e.currentTarget.style.background = 'white';
+                }}>
+                <svg width="16" height="11" viewBox="0 0 16 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fillRule="evenodd" clipRule="evenodd" d="M9.6 0L0 5.5L9.6 11V6.45263H16V4.54737H9.6V0Z" fill="currentColor"></path>
+                </svg>
+              </button>
+              <button 
+                onClick={scrollRight}
+                style={{
+                  width: '48px',
+                  height: '48px',
+                  borderRadius: '50%',
+                  border: '1px solid #e5e7eb',
+                  background: 'white',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = '#1a1a1a';
+                  e.currentTarget.style.background = '#f8f9fa';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = '#e5e7eb';
+                  e.currentTarget.style.background = 'white';
+                }}>
+                <svg width="16" height="11" viewBox="0 0 16 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fillRule="evenodd" clipRule="evenodd" d="M6.4 0L16 5.5L6.4 11V6.45263H0V4.54737H6.4V0Z" fill="currentColor"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+          
+          <div 
+            ref={sliderRef}
+            style={{
+              display: 'flex',
+              gap: '40px',
+              overflowX: 'auto',
+              paddingBottom: '20px'
+            }}>
+            {/* Blog Card 1 */}
+            <div style={{
+              minWidth: '360px',
+              background: 'white',
+              borderRadius: '16px',
+              overflow: 'hidden',
+              boxShadow: '0 8px 32px rgba(0,0,0,0.08)',
+              transition: 'all 0.3s ease',
+              cursor: 'pointer'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-8px)';
+              e.currentTarget.style.boxShadow = '0 20px 40px rgba(0,0,0,0.12)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = '0 8px 32px rgba(0,0,0,0.08)';
+            }}>
+              <div style={{
+                width: '100%',
+                height: '200px',
+                background: 'linear-gradient(135deg, #7F9CF5 0%, #667eea 100%)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                position: 'relative',
+                overflow: 'hidden'
+              }}>
+                <div style={{
+                  position: 'absolute',
+                  top: '20px',
+                  right: '20px',
+                  width: '60px',
+                  height: '60px',
+                  background: 'rgba(255,255,255,0.2)',
+                  borderRadius: '50%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}>
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M2 17L12 22L22 17" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M2 12L12 17L22 12" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </div>
+                <div style={{
+                  textAlign: 'center',
+                  color: 'white'
+                }}>
+                  <div style={{
+                    fontSize: '48px',
+                    fontWeight: '800'
+                  }}>📊</div>
+                </div>
+              </div>
+              <div style={{
+                padding: '24px'
+              }}>
+                <h3 style={{
+                  fontSize: '20px',
+                  fontWeight: '700',
+                  color: '#1a1a1a',
+                  marginBottom: '12px',
+                  lineHeight: '1.3'
+                }}>
+                  What CEOs Want to See in Google Ads Reports
+                </h3>
+                <p style={{
+                  fontSize: '15px',
+                  color: '#666',
+                  lineHeight: '1.5'
+                }}>
+                  Learn which Google Ads metrics CEOs care about (hint: it's not clicks) and get the exact reporting template that secures bigger budgets.
+                </p>
+              </div>
+            </div>
+
+            {/* Blog Card 2 */}
+            <div style={{
+              minWidth: '360px',
+              background: 'white',
+              borderRadius: '16px',
+              overflow: 'hidden',
+              boxShadow: '0 8px 32px rgba(0,0,0,0.08)',
+              transition: 'all 0.3s ease',
+              cursor: 'pointer'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-8px)';
+              e.currentTarget.style.boxShadow = '0 20px 40px rgba(0,0,0,0.12)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = '0 8px 32px rgba(0,0,0,0.08)';
+            }}>
+              <div style={{
+                width: '100%',
+                height: '200px',
+                background: 'linear-gradient(135deg, #00FFE7 0%, #00BFAE 100%)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                position: 'relative',
+                overflow: 'hidden'
+              }}>
+                <div style={{
+                  position: 'absolute',
+                  top: '20px',
+                  right: '20px',
+                  width: '60px',
+                  height: '60px',
+                  background: 'rgba(255,255,255,0.2)',
+                  borderRadius: '50%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}>
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 12L11 14L15 10" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="white" strokeWidth="2"/>
+                  </svg>
+                </div>
+                <div style={{
+                  textAlign: 'center',
+                  color: 'white'
+                }}>
+                  <div style={{
+                    fontSize: '48px',
+                    fontWeight: '800'
+                  }}>🎯</div>
+                </div>
+              </div>
+              <div style={{
+                padding: '24px'
+              }}>
+                <h3 style={{
+                  fontSize: '20px',
+                  fontWeight: '700',
+                  color: '#1a1a1a',
+                  marginBottom: '12px',
+                  lineHeight: '1.3'
+                }}>
+                  5 Tips for Working with AI-Powered PPC Tools
+                </h3>
+                <p style={{
+                  fontSize: '15px',
+                  color: '#666',
+                  lineHeight: '1.5'
+                }}>
+                  While competitors struggle with AI, you'll master it. Get the exact prompts and workflows used by top PPC professionals to 10x your productivity.
+                </p>
+              </div>
+            </div>
+
+            {/* Blog Card 3 */}
+            <div style={{
+              minWidth: '360px',
+              background: 'white',
+              borderRadius: '16px',
+              overflow: 'hidden',
+              boxShadow: '0 8px 32px rgba(0,0,0,0.08)',
+              transition: 'all 0.3s ease',
+              cursor: 'pointer'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-8px)';
+              e.currentTarget.style.boxShadow = '0 20px 40px rgba(0,0,0,0.12)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = '0 8px 32px rgba(0,0,0,0.08)';
+            }}>
+              <div style={{
+                width: '100%',
+                height: '200px',
+                background: 'linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 100%)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                position: 'relative',
+                overflow: 'hidden'
+              }}>
+                <div style={{
+                  position: 'absolute',
+                  top: '20px',
+                  right: '20px',
+                  width: '60px',
+                  height: '60px',
+                  background: 'rgba(255,255,255,0.2)',
+                  borderRadius: '50%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}>
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M19 15L20 17L22 18L20 19L19 21L18 19L16 18L18 17L19 15Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M5 15L6 17L8 18L6 19L5 21L4 19L2 18L4 17L5 15Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </div>
+                <div style={{
+                  textAlign: 'center',
+                  color: 'white'
+                }}>
+                  <div style={{
+                    fontSize: '48px',
+                    fontWeight: '800'
+                  }}>💰</div>
+                </div>
+              </div>
+              <div style={{
+                padding: '24px'
+              }}>
+                <h3 style={{
+                  fontSize: '20px',
+                  fontWeight: '700',
+                  color: '#1a1a1a',
+                  marginBottom: '12px',
+                  lineHeight: '1.3'
+                }}>
+                  Why Performance Max Fails in B2B Marketing
+                </h3>
+                <p style={{
+                  fontSize: '15px',
+                  color: '#666',
+                  lineHeight: '1.5'
+                }}>
+                  The dirty secret Google won't tell you: Performance Max is built for B2C, not B2B. Learn why it fails and get the alternative strategy that actually works.
+                </p>
+              </div>
+            </div>
+
+            {/* Blog Card 4 */}
+            <div style={{
+              minWidth: '360px',
+              background: 'white',
+              borderRadius: '16px',
+              overflow: 'hidden',
+              boxShadow: '0 8px 32px rgba(0,0,0,0.08)',
+              transition: 'all 0.3s ease',
+              cursor: 'pointer'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-8px)';
+              e.currentTarget.style.boxShadow = '0 20px 40px rgba(0,0,0,0.12)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = '0 8px 32px rgba(0,0,0,0.08)';
+            }}>
+              <div style={{
+                width: '100%',
+                height: '200px',
+                background: 'linear-gradient(135deg, #00BFAE 0%, #00A896 100%)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                position: 'relative',
+                overflow: 'hidden'
+              }}>
+                <div style={{
+                  position: 'absolute',
+                  top: '20px',
+                  right: '20px',
+                  width: '60px',
+                  height: '60px',
+                  background: 'rgba(255,255,255,0.2)',
+                  borderRadius: '50%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}>
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </div>
+                <div style={{
+                  textAlign: 'center',
+                  color: 'white'
+                }}>
+                  <div style={{
+                    fontSize: '48px',
+                    fontWeight: '800'
+                  }}>⚡</div>
+                </div>
+              </div>
+              <div style={{
+                padding: '24px'
+              }}>
+                <h3 style={{
+                  fontSize: '20px',
+                  fontWeight: '700',
+                  color: '#1a1a1a',
+                  marginBottom: '12px',
+                  lineHeight: '1.3'
+                }}>
+                  How AI is Transforming Google Ads in 2025
+                </h3>
+                <p style={{
+                  fontSize: '15px',
+                  color: '#666',
+                  lineHeight: '1.5'
+                }}>
+                  While most advertisers stick to old tactics, AI is quietly revolutionizing Google Ads. Get ahead of the curve with strategies that will dominate 2025.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Footer */}
       <Footer compact={true} />
