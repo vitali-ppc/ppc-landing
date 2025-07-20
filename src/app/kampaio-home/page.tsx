@@ -1407,20 +1407,16 @@ export default function KampaioHome() {
                 padding: '12px 20px',
                 borderRadius: '10px',
                 transition: 'all 0.3s ease',
-                border: '1px solid rgba(0,191,174,0.2)',
+                border: '2px solid #00BFAE',
                 marginTop: 'auto'
               }}
               onMouseEnter={(e) => {
                 const target = e.target as HTMLElement;
-                target.style.background = 'rgba(0,191,174,0.05)';
-                target.style.borderColor = 'rgba(0,191,174,0.3)';
-                target.style.transform = 'translateX(4px)';
+                target.style.background = 'rgba(0, 191, 174, 0.1)';
               }}
               onMouseLeave={(e) => {
                 const target = e.target as HTMLElement;
                 target.style.background = 'transparent';
-                target.style.borderColor = 'rgba(0,191,174,0.2)';
-                target.style.transform = 'translateX(0)';
               }}>
                 <span>Learn more</span>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{
@@ -1570,27 +1566,23 @@ export default function KampaioHome() {
                 alignItems: 'center',
                 gap: '8px',
                 fontSize: '15px',
-                color: '#FF6B6B',
+                color: '#00BFAE',
                 fontWeight: '600',
                 background: 'transparent',
                 cursor: 'pointer',
                 padding: '12px 20px',
                 borderRadius: '10px',
                 transition: 'all 0.3s ease',
-                border: '1px solid rgba(255,107,107,0.2)',
+                border: '2px solid #00BFAE',
                 marginTop: 'auto'
               }}
               onMouseEnter={(e) => {
                 const target = e.target as HTMLElement;
-                target.style.background = 'rgba(255,107,107,0.05)';
-                target.style.borderColor = 'rgba(255,107,107,0.3)';
-                target.style.transform = 'translateX(4px)';
+                target.style.background = 'rgba(0, 191, 174, 0.1)';
               }}
               onMouseLeave={(e) => {
                 const target = e.target as HTMLElement;
                 target.style.background = 'transparent';
-                target.style.borderColor = 'rgba(255,107,107,0.2)';
-                target.style.transform = 'translateX(0)';
               }}>
                 <span>Learn more</span>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{
@@ -1747,20 +1739,16 @@ export default function KampaioHome() {
                 padding: '12px 20px',
                 borderRadius: '10px',
                 transition: 'all 0.3s ease',
-                border: '1px solid rgba(0,191,174,0.2)',
+                border: '2px solid #00BFAE',
                 marginTop: 'auto'
               }}
               onMouseEnter={(e) => {
                 const target = e.target as HTMLElement;
-                target.style.background = 'rgba(0,191,174,0.05)';
-                target.style.borderColor = 'rgba(0,191,174,0.3)';
-                target.style.transform = 'translateX(4px)';
+                target.style.background = 'rgba(0, 191, 174, 0.1)';
               }}
               onMouseLeave={(e) => {
                 const target = e.target as HTMLElement;
                 target.style.background = 'transparent';
-                target.style.borderColor = 'rgba(0,191,174,0.2)';
-                target.style.transform = 'translateX(0)';
               }}>
                 <span>Learn more</span>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{
@@ -3993,65 +3981,7 @@ export default function KampaioHome() {
 
 
 
-      {/* Pre-Footer CTA Block */}
-      <div style={{
-        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-        padding: '40px 20px',
-        textAlign: 'center',
-        color: 'white'
-      }}>
-        <div style={{
-          maxWidth: '1200px',
-          margin: '0 auto'
-        }}>
-          <h2 style={{
-            fontSize: 'clamp(2rem, 4vw, 3rem)',
-            fontWeight: '700',
-            marginBottom: '16px',
-            color: 'white'
-          }}>
-            Tired of wasting money on Google Ads?
-          </h2>
-          <p style={{
-            fontSize: 'clamp(1rem, 2vw, 1.25rem)',
-            marginBottom: '24px',
-            opacity: '0.9',
-            maxWidth: '800px',
-            margin: '0 auto 24px auto',
-            lineHeight: '1.6'
-          }}>
-            Stop guessing and start winning. Our AI identifies exactly where your budget is bleeding and shows you how to fix it in minutes.
-          </p>
-          <div style={{
-            display: 'flex',
-            gap: '16px',
-            justifyContent: 'center',
-            flexWrap: 'wrap'
-          }}>
-            <a href="https://replit.com/signup" style={{
-              padding: '12px 24px',
-              borderRadius: '8px',
-              background: 'linear-gradient(45deg, #00FFE7, #00BFAE)',
-              color: '#1A1A1A',
-              textDecoration: 'none',
-              fontWeight: '500',
-              transition: 'all 0.3s ease',
-              boxShadow: '0 4px 12px rgba(0, 255, 231, 0.2)',
-              display: 'inline-block'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-2px)';
-              e.currentTarget.style.boxShadow = '0 6px 16px rgba(0, 255, 231, 0.3)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 255, 231, 0.2)';
-            }}>
-              Find My Leaks
-            </a>
-          </div>
-        </div>
-      </div>
+
 
       {/* GTM AI Strategy Section */}
       <section id="why-gtm-ai" style={{
@@ -4178,40 +4108,101 @@ export default function KampaioHome() {
               <div style={{
                 width: '100%',
                 height: '200px',
-                background: 'linear-gradient(135deg, #7F9CF5 0%, #667eea 100%)',
+                background: 'linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 position: 'relative',
                 overflow: 'hidden'
               }}>
+                {/* Grid Pattern */}
                 <div style={{
                   position: 'absolute',
-                  top: '20px',
-                  right: '20px',
-                  width: '60px',
-                  height: '60px',
-                  background: 'rgba(255,255,255,0.2)',
-                  borderRadius: '50%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}>
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    <path d="M2 17L12 22L22 17" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    <path d="M2 12L12 17L22 12" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </div>
-                <div style={{
-                  textAlign: 'center',
-                  color: 'white'
-                }}>
-                  <div style={{
-                    fontSize: '48px',
-                    fontWeight: '800'
-                  }}>📊</div>
-                </div>
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  backgroundImage: `
+                    linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)
+                  `,
+                  backgroundSize: '20px 20px',
+                  pointerEvents: 'none'
+                }} />
+                
+                {/* Simple Neural Network - CEO Card */}
+                <svg style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%',
+                  pointerEvents: 'none'
+                }} viewBox="0 0 360 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  {/* Input Layer - 3 nodes */}
+                  <circle cx="40" cy="60" r="5" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.25)" strokeWidth="1"/>
+                  <circle cx="40" cy="100" r="5" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.25)" strokeWidth="1"/>
+                  <circle cx="40" cy="140" r="5" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.25)" strokeWidth="1"/>
+                  
+                  {/* Hidden Layer 1 - 4 nodes */}
+                  <circle cx="120" cy="50" r="6" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.22)" strokeWidth="1"/>
+                  <circle cx="120" cy="85" r="6" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.22)" strokeWidth="1"/>
+                  <circle cx="120" cy="120" r="6" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.22)" strokeWidth="1"/>
+                  <circle cx="120" cy="155" r="6" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.22)" strokeWidth="1"/>
+                  
+                  {/* Hidden Layer 2 - 3 nodes */}
+                  <circle cx="200" cy="70" r="7" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" strokeWidth="1"/>
+                  <circle cx="200" cy="100" r="7" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" strokeWidth="1"/>
+                  <circle cx="200" cy="130" r="7" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" strokeWidth="1"/>
+                  
+                  {/* Output Layer - 1 node */}
+                  <circle cx="280" cy="100" r="8" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.35)" strokeWidth="1.5"/>
+                  
+                  {/* Connections - Input to Hidden 1 */}
+                  <line x1="45" y1="60" x2="114" y2="50" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8"/>
+                  <line x1="45" y1="60" x2="114" y2="85" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8"/>
+                  <line x1="45" y1="60" x2="114" y2="120" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8"/>
+                  <line x1="45" y1="60" x2="114" y2="155" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8"/>
+                  
+                  <line x1="45" y1="100" x2="114" y2="50" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8"/>
+                  <line x1="45" y1="100" x2="114" y2="85" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8"/>
+                  <line x1="45" y1="100" x2="114" y2="120" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8"/>
+                  <line x1="45" y1="100" x2="114" y2="155" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8"/>
+                  
+                  <line x1="45" y1="140" x2="114" y2="50" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8"/>
+                  <line x1="45" y1="140" x2="114" y2="85" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8"/>
+                  <line x1="45" y1="140" x2="114" y2="120" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8"/>
+                  <line x1="45" y1="140" x2="114" y2="155" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8"/>
+                  
+                  {/* Connections - Hidden 1 to Hidden 2 */}
+                  <line x1="126" y1="50" x2="193" y2="70" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8"/>
+                  <line x1="126" y1="50" x2="193" y2="100" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8"/>
+                  <line x1="126" y1="50" x2="193" y2="130" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8"/>
+                  
+                  <line x1="126" y1="85" x2="193" y2="70" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8"/>
+                  <line x1="126" y1="85" x2="193" y2="100" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8"/>
+                  <line x1="126" y1="85" x2="193" y2="130" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8"/>
+                  
+                  <line x1="126" y1="120" x2="193" y2="70" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8"/>
+                  <line x1="126" y1="120" x2="193" y2="100" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8"/>
+                  <line x1="126" y1="120" x2="193" y2="130" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8"/>
+                  
+                  <line x1="126" y1="155" x2="193" y2="70" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8"/>
+                  <line x1="126" y1="155" x2="193" y2="100" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8"/>
+                  <line x1="126" y1="155" x2="193" y2="130" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8"/>
+                  
+                  {/* Connections - Hidden 2 to Output */}
+                  <line x1="207" y1="70" x2="272" y2="100" stroke="rgba(255,255,255,0.15)" strokeWidth="1"/>
+                  <line x1="207" y1="100" x2="272" y2="100" stroke="rgba(255,255,255,0.15)" strokeWidth="1"/>
+                  <line x1="207" y1="130" x2="272" y2="100" stroke="rgba(255,255,255,0.15)" strokeWidth="1"/>
+                  
+                  {/* Data Flow Animation */}
+                  <circle cx="50" cy="100" r="2" fill="rgba(255,255,255,0.8)">
+                    <animate attributeName="cx" values="50;120;200;280" dur="3s" repeatCount="indefinite"/>
+                    <animate attributeName="cy" values="100;85;100;100" dur="3s" repeatCount="indefinite"/>
+                  </circle>
+                </svg>
+
               </div>
               <div style={{
                 padding: '24px'
@@ -4256,39 +4247,198 @@ export default function KampaioHome() {
               <div style={{
                 width: '100%',
                 height: '200px',
-                background: 'linear-gradient(135deg, #00FFE7 0%, #00BFAE 100%)',
+                background: 'linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 position: 'relative',
                 overflow: 'hidden'
               }}>
+                {/* Grid Pattern */}
                 <div style={{
                   position: 'absolute',
-                  top: '20px',
-                  right: '20px',
-                  width: '60px',
-                  height: '60px',
-                  background: 'rgba(255,255,255,0.2)',
-                  borderRadius: '50%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}>
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M9 12L11 14L15 10" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="white" strokeWidth="2"/>
-                  </svg>
-                </div>
-                <div style={{
-                  textAlign: 'center',
-                  color: 'white'
-                }}>
-                  <div style={{
-                    fontSize: '48px',
-                    fontWeight: '800'
-                  }}>🎯</div>
-                </div>
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  backgroundImage: `
+                    linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)
+                  `,
+                  backgroundSize: '20px 20px',
+                  pointerEvents: 'none'
+                }} />
+                
+                {/* Deep Neural Network - AI Tools Card */}
+                <svg style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%',
+                  pointerEvents: 'none'
+                }} viewBox="0 0 360 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  {/* Input Layer - 3 nodes */}
+                  <circle cx="30" cy="60" r="4" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.25)" strokeWidth="1"/>
+                  <circle cx="30" cy="100" r="4" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.25)" strokeWidth="1"/>
+                  <circle cx="30" cy="140" r="4" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.25)" strokeWidth="1"/>
+                  
+                  {/* Hidden Layer 1 - 6 nodes */}
+                  <circle cx="80" cy="40" r="5" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.22)" strokeWidth="1"/>
+                  <circle cx="80" cy="65" r="5" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.22)" strokeWidth="1"/>
+                  <circle cx="80" cy="90" r="5" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.22)" strokeWidth="1"/>
+                  <circle cx="80" cy="115" r="5" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.22)" strokeWidth="1"/>
+                  <circle cx="80" cy="140" r="5" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.22)" strokeWidth="1"/>
+                  <circle cx="80" cy="165" r="5" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.22)" strokeWidth="1"/>
+                  
+                  {/* Hidden Layer 2 - 5 nodes */}
+                  <circle cx="130" cy="50" r="6" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" strokeWidth="1"/>
+                  <circle cx="130" cy="75" r="6" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" strokeWidth="1"/>
+                  <circle cx="130" cy="100" r="6" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" strokeWidth="1"/>
+                  <circle cx="130" cy="125" r="6" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" strokeWidth="1"/>
+                  <circle cx="130" cy="150" r="6" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" strokeWidth="1"/>
+                  
+                  {/* Hidden Layer 3 - 4 nodes */}
+                  <circle cx="180" cy="60" r="7" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.18)" strokeWidth="1"/>
+                  <circle cx="180" cy="85" r="7" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.18)" strokeWidth="1"/>
+                  <circle cx="180" cy="110" r="7" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.18)" strokeWidth="1"/>
+                  <circle cx="180" cy="135" r="7" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.18)" strokeWidth="1"/>
+                  
+                  {/* Hidden Layer 4 - 3 nodes */}
+                  <circle cx="230" cy="70" r="7" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.18)" strokeWidth="1"/>
+                  <circle cx="230" cy="100" r="7" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.18)" strokeWidth="1"/>
+                  <circle cx="230" cy="130" r="7" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.18)" strokeWidth="1"/>
+                  
+                  {/* Hidden Layer 5 - 2 nodes */}
+                  <circle cx="280" cy="85" r="8" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" strokeWidth="1"/>
+                  <circle cx="280" cy="115" r="8" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" strokeWidth="1"/>
+                  
+                  {/* Output Layer - 1 node */}
+                  <circle cx="320" cy="100" r="8" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.35)" strokeWidth="1.5"/>
+                  
+                  {/* Connections - Input to Hidden 1 */}
+                  <line x1="34" y1="60" x2="75" y2="40" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="34" y1="60" x2="75" y2="65" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="34" y1="60" x2="75" y2="90" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="34" y1="60" x2="75" y2="115" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="34" y1="60" x2="75" y2="140" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="34" y1="60" x2="75" y2="165" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  
+                  <line x1="34" y1="100" x2="75" y2="40" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="34" y1="100" x2="75" y2="65" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="34" y1="100" x2="75" y2="90" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="34" y1="100" x2="75" y2="115" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="34" y1="100" x2="75" y2="140" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="34" y1="100" x2="75" y2="165" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  
+                  <line x1="34" y1="140" x2="75" y2="40" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="34" y1="140" x2="75" y2="65" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="34" y1="140" x2="75" y2="90" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="34" y1="140" x2="75" y2="115" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="34" y1="140" x2="75" y2="140" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="34" y1="140" x2="75" y2="165" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  
+                  {/* Connections - Hidden 1 to Hidden 2 */}
+                  <line x1="85" y1="40" x2="124" y2="50" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="85" y1="40" x2="124" y2="75" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="85" y1="40" x2="124" y2="100" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="85" y1="40" x2="124" y2="125" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="85" y1="40" x2="124" y2="150" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  
+                  <line x1="85" y1="65" x2="124" y2="50" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="85" y1="65" x2="124" y2="75" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="85" y1="65" x2="124" y2="100" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="85" y1="65" x2="124" y2="125" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="85" y1="65" x2="124" y2="150" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  
+                  <line x1="85" y1="90" x2="124" y2="50" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="85" y1="90" x2="124" y2="75" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="85" y1="90" x2="124" y2="100" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="85" y1="90" x2="124" y2="125" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="85" y1="90" x2="124" y2="150" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  
+                  <line x1="85" y1="115" x2="124" y2="50" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="85" y1="115" x2="124" y2="75" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="85" y1="115" x2="124" y2="100" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="85" y1="115" x2="124" y2="125" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="85" y1="115" x2="124" y2="150" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  
+                  <line x1="85" y1="140" x2="124" y2="50" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="85" y1="140" x2="124" y2="75" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="85" y1="140" x2="124" y2="100" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="85" y1="140" x2="124" y2="125" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="85" y1="140" x2="124" y2="150" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  
+                  <line x1="85" y1="165" x2="124" y2="50" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="85" y1="165" x2="124" y2="75" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="85" y1="165" x2="124" y2="100" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="85" y1="165" x2="124" y2="125" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="85" y1="165" x2="124" y2="150" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  
+                  {/* Connections - Hidden 2 to Hidden 3 */}
+                  <line x1="136" y1="50" x2="173" y2="60" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="136" y1="50" x2="173" y2="85" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="136" y1="50" x2="173" y2="110" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="136" y1="50" x2="173" y2="135" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  
+                  <line x1="136" y1="75" x2="173" y2="60" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="136" y1="75" x2="173" y2="85" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="136" y1="75" x2="173" y2="110" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="136" y1="75" x2="173" y2="135" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  
+                  <line x1="136" y1="100" x2="173" y2="60" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="136" y1="100" x2="173" y2="85" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="136" y1="100" x2="173" y2="110" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="136" y1="100" x2="173" y2="135" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  
+                  <line x1="136" y1="125" x2="173" y2="60" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="136" y1="125" x2="173" y2="85" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="136" y1="125" x2="173" y2="110" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="136" y1="125" x2="173" y2="135" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  
+                  <line x1="136" y1="150" x2="173" y2="60" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="136" y1="150" x2="173" y2="85" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="136" y1="150" x2="173" y2="110" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="136" y1="150" x2="173" y2="135" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  
+                  {/* Connections - Hidden 3 to Hidden 4 */}
+                  <line x1="187" y1="60" x2="223" y2="70" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="187" y1="60" x2="223" y2="100" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="187" y1="60" x2="223" y2="130" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  
+                  <line x1="187" y1="85" x2="223" y2="70" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="187" y1="85" x2="223" y2="100" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="187" y1="85" x2="223" y2="130" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  
+                  <line x1="187" y1="110" x2="223" y2="70" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="187" y1="110" x2="223" y2="100" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="187" y1="110" x2="223" y2="130" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  
+                  <line x1="187" y1="135" x2="223" y2="70" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="187" y1="135" x2="223" y2="100" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="187" y1="135" x2="223" y2="130" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  
+                  {/* Connections - Hidden 4 to Hidden 5 */}
+                  <line x1="237" y1="70" x2="272" y2="85" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="237" y1="70" x2="272" y2="115" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  
+                  <line x1="237" y1="100" x2="272" y2="85" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="237" y1="100" x2="272" y2="115" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  
+                  <line x1="237" y1="130" x2="272" y2="85" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  <line x1="237" y1="130" x2="272" y2="115" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
+                  
+                  {/* Connections - Hidden 5 to Output */}
+                  <line x1="288" y1="85" x2="312" y2="100" stroke="rgba(255,255,255,0.15)" strokeWidth="1"/>
+                  <line x1="288" y1="115" x2="312" y2="100" stroke="rgba(255,255,255,0.15)" strokeWidth="1"/>
+                  
+                  {/* Data Flow Animation */}
+                  <circle cx="50" cy="100" r="2" fill="rgba(255,255,255,0.8)">
+                    <animate attributeName="cx" values="50;80;130;180;230;280;320" dur="4s" repeatCount="indefinite"/>
+                    <animate attributeName="cy" values="100;90;100;85;100;100;100" dur="4s" repeatCount="indefinite"/>
+                  </circle>
+                </svg>
+
               </div>
               <div style={{
                 padding: '24px'
@@ -4333,40 +4483,89 @@ export default function KampaioHome() {
               <div style={{
                 width: '100%',
                 height: '200px',
-                background: 'linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 100%)',
+                background: 'linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 position: 'relative',
                 overflow: 'hidden'
               }}>
+                {/* Grid Pattern */}
                 <div style={{
                   position: 'absolute',
-                  top: '20px',
-                  right: '20px',
-                  width: '60px',
-                  height: '60px',
-                  background: 'rgba(255,255,255,0.2)',
-                  borderRadius: '50%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}>
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    <path d="M19 15L20 17L22 18L20 19L19 21L18 19L16 18L18 17L19 15Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    <path d="M5 15L6 17L8 18L6 19L5 21L4 19L2 18L4 17L5 15Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </div>
-                <div style={{
-                  textAlign: 'center',
-                  color: 'white'
-                }}>
-                  <div style={{
-                    fontSize: '48px',
-                    fontWeight: '800'
-                  }}>💰</div>
-                </div>
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  backgroundImage: `
+                    linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)
+                  `,
+                  backgroundSize: '20px 20px',
+                  pointerEvents: 'none'
+                }} />
+                
+                {/* Neural Network with Advertising Metrics */}
+                <svg style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%',
+                  pointerEvents: 'none'
+                }} viewBox="0 0 360 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  {/* Neural Nodes - Layer 1 */}
+                  <circle cx="40" cy="50" r="4" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.25)" strokeWidth="1"/>
+                  <circle cx="40" cy="100" r="4" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.2)" strokeWidth="1"/>
+                  <circle cx="40" cy="150" r="4" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.3)" strokeWidth="1"/>
+                  
+                  {/* Neural Nodes - Layer 2 */}
+                  <circle cx="120" cy="40" r="5" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" strokeWidth="1"/>
+                  <circle cx="120" cy="80" r="5" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.25)" strokeWidth="1"/>
+                  <circle cx="120" cy="120" r="5" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.18)" strokeWidth="1"/>
+                  <circle cx="120" cy="160" r="5" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.22)" strokeWidth="1"/>
+                  
+                  {/* Neural Nodes - Layer 3 */}
+                  <circle cx="200" cy="60" r="6" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.18)" strokeWidth="1"/>
+                  <circle cx="200" cy="100" r="6" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.25)" strokeWidth="1"/>
+                  <circle cx="200" cy="140" r="6" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" strokeWidth="1"/>
+                  
+                  {/* Neural Nodes - Layer 4 */}
+                  <circle cx="280" cy="80" r="7" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.22)" strokeWidth="1"/>
+                  <circle cx="280" cy="120" r="7" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.18)" strokeWidth="1"/>
+                  
+                  {/* Neural Nodes - Output */}
+                  <circle cx="320" cy="100" r="8" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.35)" strokeWidth="1.5"/>
+                  
+                  {/* Neural Connections */}
+                  <line x1="44" y1="50" x2="115" y2="40" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8"/>
+                  <line x1="44" y1="50" x2="115" y2="80" stroke="rgba(255,255,255,0.08)" strokeWidth="0.6"/>
+                  <line x1="44" y1="100" x2="115" y2="80" stroke="rgba(255,255,255,0.12)" strokeWidth="0.8"/>
+                  <line x1="44" y1="100" x2="115" y2="120" stroke="rgba(255,255,255,0.1)" strokeWidth="0.7"/>
+                  <line x1="44" y1="150" x2="115" y2="120" stroke="rgba(255,255,255,0.15)" strokeWidth="0.9"/>
+                  <line x1="44" y1="150" x2="115" y2="160" stroke="rgba(255,255,255,0.08)" strokeWidth="0.6"/>
+                  <line x1="125" y1="40" x2="194" y2="60" stroke="rgba(255,255,255,0.1)" strokeWidth="0.7"/>
+                  <line x1="125" y1="80" x2="194" y2="60" stroke="rgba(255,255,255,0.12)" strokeWidth="0.8"/>
+                  <line x1="125" y1="80" x2="194" y2="100" stroke="rgba(255,255,255,0.1)" strokeWidth="0.7"/>
+                  <line x1="125" y1="120" x2="194" y2="100" stroke="rgba(255,255,255,0.15)" strokeWidth="0.9"/>
+                  <line x1="125" y1="160" x2="194" y2="100" stroke="rgba(255,255,255,0.1)" strokeWidth="0.7"/>
+                  <line x1="206" y1="60" x2="273" y2="80" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8"/>
+                  <line x1="206" y1="100" x2="273" y2="80" stroke="rgba(255,255,255,0.12)" strokeWidth="0.9"/>
+                  <line x1="206" y1="100" x2="273" y2="120" stroke="rgba(255,255,255,0.1)" strokeWidth="0.7"/>
+                  <line x1="287" y1="80" x2="312" y2="100" stroke="rgba(255,255,255,0.15)" strokeWidth="1"/>
+                  <line x1="287" y1="120" x2="312" y2="100" stroke="rgba(255,255,255,0.12)" strokeWidth="0.9"/>
+                  
+
+                  
+
+                  
+                  {/* Data Flow Animation */}
+                  <circle cx="50" cy="100" r="2" fill="rgba(255,255,255,0.8)">
+                    <animate attributeName="cx" values="50;120;200;280;320" dur="3s" repeatCount="indefinite"/>
+                    <animate attributeName="cy" values="100;80;100;100;100" dur="3s" repeatCount="indefinite"/>
+                  </circle>
+                </svg>
+
               </div>
               <div style={{
                 padding: '24px'
@@ -4411,38 +4610,102 @@ export default function KampaioHome() {
               <div style={{
                 width: '100%',
                 height: '200px',
-                background: 'linear-gradient(135deg, #00BFAE 0%, #00A896 100%)',
+                background: 'linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 position: 'relative',
                 overflow: 'hidden'
               }}>
+                {/* Grid Pattern */}
                 <div style={{
                   position: 'absolute',
-                  top: '20px',
-                  right: '20px',
-                  width: '60px',
-                  height: '60px',
-                  background: 'rgba(255,255,255,0.2)',
-                  borderRadius: '50%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}>
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </div>
-                <div style={{
-                  textAlign: 'center',
-                  color: 'white'
-                }}>
-                  <div style={{
-                    fontSize: '48px',
-                    fontWeight: '800'
-                  }}>⚡</div>
-                </div>
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  backgroundImage: `
+                    linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)
+                  `,
+                  backgroundSize: '20px 20px',
+                  pointerEvents: 'none'
+                }} />
+                
+                {/* Neural Network with Futuristic Elements */}
+                <svg style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%',
+                  pointerEvents: 'none'
+                }} viewBox="0 0 360 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  {/* Neural Nodes - Layer 1 */}
+                  <circle cx="40" cy="50" r="4" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.25)" strokeWidth="1"/>
+                  <circle cx="40" cy="100" r="4" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.2)" strokeWidth="1"/>
+                  <circle cx="40" cy="150" r="4" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.3)" strokeWidth="1"/>
+                  
+                  {/* Neural Nodes - Layer 2 */}
+                  <circle cx="120" cy="40" r="5" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" strokeWidth="1"/>
+                  <circle cx="120" cy="80" r="5" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.25)" strokeWidth="1"/>
+                  <circle cx="120" cy="120" r="5" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.18)" strokeWidth="1"/>
+                  <circle cx="120" cy="160" r="5" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.22)" strokeWidth="1"/>
+                  
+                  {/* Neural Nodes - Layer 3 */}
+                  <circle cx="200" cy="60" r="6" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.18)" strokeWidth="1"/>
+                  <circle cx="200" cy="100" r="6" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.25)" strokeWidth="1"/>
+                  <circle cx="200" cy="140" r="6" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" strokeWidth="1"/>
+                  
+                  {/* Neural Nodes - Layer 4 */}
+                  <circle cx="280" cy="80" r="7" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.22)" strokeWidth="1"/>
+                  <circle cx="280" cy="120" r="7" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.18)" strokeWidth="1"/>
+                  
+                  {/* Neural Nodes - Output */}
+                  <circle cx="320" cy="100" r="8" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.35)" strokeWidth="1.5"/>
+                  
+                  {/* Neural Connections */}
+                  <line x1="44" y1="50" x2="115" y2="40" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8"/>
+                  <line x1="44" y1="50" x2="115" y2="80" stroke="rgba(255,255,255,0.08)" strokeWidth="0.6"/>
+                  <line x1="44" y1="100" x2="115" y2="80" stroke="rgba(255,255,255,0.12)" strokeWidth="0.8"/>
+                  <line x1="44" y1="100" x2="115" y2="120" stroke="rgba(255,255,255,0.1)" strokeWidth="0.7"/>
+                  <line x1="44" y1="150" x2="115" y2="120" stroke="rgba(255,255,255,0.15)" strokeWidth="0.9"/>
+                  <line x1="44" y1="150" x2="115" y2="160" stroke="rgba(255,255,255,0.08)" strokeWidth="0.6"/>
+                  <line x1="125" y1="40" x2="194" y2="60" stroke="rgba(255,255,255,0.1)" strokeWidth="0.7"/>
+                  <line x1="125" y1="80" x2="194" y2="60" stroke="rgba(255,255,255,0.12)" strokeWidth="0.8"/>
+                  <line x1="125" y1="80" x2="194" y2="100" stroke="rgba(255,255,255,0.1)" strokeWidth="0.7"/>
+                  <line x1="125" y1="120" x2="194" y2="100" stroke="rgba(255,255,255,0.15)" strokeWidth="0.9"/>
+                  <line x1="125" y1="160" x2="194" y2="100" stroke="rgba(255,255,255,0.1)" strokeWidth="0.7"/>
+                  <line x1="206" y1="60" x2="273" y2="80" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8"/>
+                  <line x1="206" y1="100" x2="273" y2="80" stroke="rgba(255,255,255,0.12)" strokeWidth="0.9"/>
+                  <line x1="206" y1="100" x2="273" y2="120" stroke="rgba(255,255,255,0.1)" strokeWidth="0.7"/>
+                  <line x1="287" y1="80" x2="312" y2="100" stroke="rgba(255,255,255,0.15)" strokeWidth="1"/>
+                  <line x1="287" y1="120" x2="312" y2="100" stroke="rgba(255,255,255,0.12)" strokeWidth="0.9"/>
+                  
+                  {/* Futuristic Elements - Holographic Rings */}
+                  <circle cx="180" cy="100" r="25" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="1" strokeDasharray="5,5"/>
+                  <circle cx="180" cy="100" r="35" fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="0.8" strokeDasharray="3,7"/>
+                  
+                  {/* Futuristic Elements - Energy Particles */}
+                  <circle cx="50" cy="30" r="1.5" fill="rgba(255,255,255,0.6)">
+                    <animate attributeName="opacity" values="0.6;0.2;0.6" dur="2s" repeatCount="indefinite"/>
+                  </circle>
+                  <circle cx="300" cy="170" r="1.5" fill="rgba(255,255,255,0.6)">
+                    <animate attributeName="opacity" values="0.6;0.2;0.6" dur="2.5s" repeatCount="indefinite"/>
+                  </circle>
+                  <circle cx="320" cy="40" r="1.5" fill="rgba(255,255,255,0.6)">
+                    <animate attributeName="opacity" values="0.6;0.2;0.6" dur="1.8s" repeatCount="indefinite"/>
+                  </circle>
+                  
+
+                  
+                  {/* Data Flow Animation */}
+                  <circle cx="50" cy="100" r="2" fill="rgba(255,255,255,0.8)">
+                    <animate attributeName="cx" values="50;120;200;280;320" dur="3s" repeatCount="indefinite"/>
+                    <animate attributeName="cy" values="100;80;100;100;100" dur="3s" repeatCount="indefinite"/>
+                  </circle>
+                </svg>
+
               </div>
               <div style={{
                 padding: '24px'
@@ -4468,6 +4731,66 @@ export default function KampaioHome() {
           </div>
         </div>
       </section>
+
+      {/* Pre-Footer CTA Block */}
+      <div style={{
+        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        padding: '40px 20px',
+        textAlign: 'center',
+        color: 'white'
+      }}>
+        <div style={{
+          maxWidth: '1200px',
+          margin: '0 auto'
+        }}>
+          <h2 style={{
+            fontSize: 'clamp(2rem, 4vw, 3rem)',
+            fontWeight: '700',
+            marginBottom: '16px',
+            color: 'white'
+          }}>
+            Tired of wasting money on Google Ads?
+          </h2>
+          <p style={{
+            fontSize: 'clamp(1rem, 2vw, 1.25rem)',
+            marginBottom: '24px',
+            opacity: '0.9',
+            maxWidth: '800px',
+            margin: '0 auto 24px auto',
+            lineHeight: '1.6'
+          }}>
+            Stop guessing and start winning. Our AI identifies exactly where your budget is bleeding and shows you how to fix it in minutes.
+          </p>
+          <div style={{
+            display: 'flex',
+            gap: '16px',
+            justifyContent: 'center',
+            flexWrap: 'wrap'
+          }}>
+            <a href="https://replit.com/signup" style={{
+              padding: '12px 24px',
+              borderRadius: '8px',
+              background: 'linear-gradient(45deg, #00FFE7, #00BFAE)',
+              color: '#1A1A1A',
+              textDecoration: 'none',
+              fontWeight: '500',
+              transition: 'all 0.3s ease',
+              boxShadow: '0 4px 12px rgba(0, 255, 231, 0.2)',
+              display: 'inline-block'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-2px)';
+              e.currentTarget.style.boxShadow = '0 6px 16px rgba(0, 255, 231, 0.3)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 255, 231, 0.2)';
+            }}>
+              Find My Leaks
+            </a>
+          </div>
+        </div>
+      </div>
 
       {/* Footer */}
       <Footer compact={true} />
