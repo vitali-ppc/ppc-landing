@@ -570,272 +570,9 @@ function AnimatedCurrencyCounter({
   );
 }
 
-// AI Campaign Builder Component
-function AICampaignBuilder() {
-  const [activeIndustry, setActiveIndustry] = useState('default');
-  const [buildingStep, setBuildingStep] = useState(0);
 
-  useEffect(() => {
-    const handleStartCampaign = (event: CustomEvent) => {
-      const industry = event.detail;
-      setActiveIndustry(industry);
-      setBuildingStep(0);
-      
-      // Анимация по шагам
-      setTimeout(() => setBuildingStep(1), 500);
-      setTimeout(() => setBuildingStep(2), 1500);
-      setTimeout(() => setBuildingStep(3), 2500);
-    };
 
-    const handleReset = () => {
-      setActiveIndustry('default');
-      setBuildingStep(0);
-    };
 
-    window.addEventListener('startCampaignBuilding', handleStartCampaign as EventListener);
-    window.addEventListener('resetBuilder', handleReset);
-
-    return () => {
-      window.removeEventListener('startCampaignBuilding', handleStartCampaign as EventListener);
-      window.removeEventListener('resetBuilder', handleReset);
-    };
-  }, []);
-
-  const getKeywordsForIndustry = (industry: string) => {
-    const keywords: { [key: string]: string[] } = {
-      'Dentists': ['teeth whitening kiev', 'dental implants', 'emergency dentist'],
-      'Real Estate': ['buy apartment kiev', 'real estate agent', 'property investment'],
-      'SaaS Companies': ['project management software', 'team collaboration tool', 'CRM solution'],
-      'Legal Services': ['lawyer consultation', 'legal advice online', 'business attorney']
-    };
-    return keywords[industry] || [];
-  };
-
-  const getAdCopyForIndustry = (industry: string) => {
-    const adCopy: { [key: string]: string } = {
-      'Dentists': 'Professional dental care in Kiev. Free consultation, modern equipment. Book your appointment today!',
-      'Real Estate': 'Find your dream home in Kiev. Expert agents, verified properties. Start your search now!',
-      'SaaS Companies': 'Boost your team productivity with our SaaS solution. Try free for 30 days!',
-      'Legal Services': 'Expert legal advice when you need it most. Free initial consultation available.'
-    };
-    return adCopy[industry] || 'Custom ad copy for your industry...';
-  };
-
-  return (
-    <div style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-      <div style={{ textAlign: 'center', marginBottom: '24px' }}>
-        <h3 style={{
-          fontSize: '24px',
-          fontWeight: '700',
-          color: '#1a1a1a',
-          marginBottom: '8px'
-        }}>
-          AI Campaign Builder
-        </h3>
-        <p style={{
-          fontSize: '14px',
-          color: '#666'
-        }}>
-          {activeIndustry === 'default' ? 'Hover industry to see AI in action' : `Building campaign for ${activeIndustry}`}
-        </p>
-      </div>
-      
-      {/* BUILDING PROCESS */}
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '16px' }}>
-        <div style={{
-          background: 'white',
-          borderRadius: '12px',
-          padding: '16px',
-          borderLeft: '4px solid #7F9CF5',
-          boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-          transition: 'all 0.3s ease'
-        }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-            <div style={{
-              width: '24px',
-              height: '24px',
-              background: '#7F9CF5',
-              borderRadius: '50%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center'
-            }}>
-              <span style={{ color: 'white', fontSize: '12px', fontWeight: '600' }}>1</span>
-            </div>
-            <span style={{ fontWeight: '600', color: '#1a1a1a' }}>Analyzing Industry</span>
-            {buildingStep >= 1 && <span style={{ color: '#00BFAE', fontSize: '18px' }}>✓</span>}
-          </div>
-          {buildingStep >= 1 && (
-            <div style={{ fontSize: '14px', color: '#666', marginLeft: '32px' }}>
-              Understanding {activeIndustry} market dynamics...
-            </div>
-          )}
-        </div>
-        
-        <div style={{
-          background: 'white',
-          borderRadius: '12px',
-          padding: '16px',
-          borderLeft: '4px solid #00BFAE',
-          boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-          transition: 'all 0.3s ease'
-        }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-            <div style={{
-              width: '24px',
-              height: '24px',
-              background: '#00BFAE',
-              borderRadius: '50%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center'
-            }}>
-              <span style={{ color: 'white', fontSize: '12px', fontWeight: '600' }}>2</span>
-            </div>
-            <span style={{ fontWeight: '600', color: '#1a1a1a' }}>Generating Keywords</span>
-            {buildingStep >= 2 && <span style={{ color: '#00BFAE', fontSize: '18px' }}>✓</span>}
-          </div>
-          {buildingStep >= 2 && (
-            <div style={{ fontSize: '14px', color: '#666', marginLeft: '32px' }}>
-              {getKeywordsForIndustry(activeIndustry).map((keyword, index) => (
-                <div key={index} style={{ marginBottom: '4px' }}>• {keyword}</div>
-              ))}
-            </div>
-          )}
-        </div>
-        
-        <div style={{
-          background: 'white',
-          borderRadius: '12px',
-          padding: '16px',
-          borderLeft: '4px solid #FF6B6B',
-          boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-          transition: 'all 0.3s ease'
-        }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-            <div style={{
-              width: '24px',
-              height: '24px',
-              background: '#FF6B6B',
-              borderRadius: '50%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center'
-            }}>
-              <span style={{ color: 'white', fontSize: '12px', fontWeight: '600' }}>3</span>
-            </div>
-            <span style={{ fontWeight: '600', color: '#1a1a1a' }}>Creating Ads</span>
-            {buildingStep >= 3 && <span style={{ color: '#00BFAE', fontSize: '18px' }}>✓</span>}
-          </div>
-          {buildingStep >= 3 && (
-            <div style={{ fontSize: '14px', color: '#666', marginLeft: '32px', background: '#f8fafc', padding: '8px', borderRadius: '8px' }}>
-              "{getAdCopyForIndustry(activeIndustry)}"
-            </div>
-          )}
-        </div>
-      </div>
-      
-      {/* RESULTS */}
-      {buildingStep >= 3 && (
-        <div style={{
-          background: 'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)',
-          borderRadius: '12px',
-          padding: '16px',
-          border: '1px solid #bbf7d0',
-          marginTop: '16px'
-        }}>
-          <h4 style={{ fontWeight: '700', color: '#166534', marginBottom: '8px' }}>Campaign Ready! 🎯</h4>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '16px', fontSize: '14px' }}>
-            <div>
-              <div style={{ color: '#00BFAE', fontWeight: '700', fontSize: '18px' }}>$12</div>
-              <div style={{ color: '#666' }}>Cost per lead</div>
-            </div>
-            <div>
-              <div style={{ color: '#00BFAE', fontWeight: '700', fontSize: '18px' }}>3.2%</div>
-              <div style={{ color: '#666' }}>Expected CTR</div>
-            </div>
-            <div>
-              <div style={{ color: '#00BFAE', fontWeight: '700', fontSize: '18px' }}>67</div>
-              <div style={{ color: '#666' }}>Monthly leads</div>
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
-
-// Industry Cards Component
-function IndustryCards() {
-  const industries = [
-    { name: 'Dentists', icon: '🦷', color: 'linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%)', borderColor: '#3b82f6' },
-    { name: 'Real Estate', icon: '🏠', color: 'linear-gradient(135deg, #cffafe 0%, #a5f3fc 100%)', borderColor: '#06b6d4' },
-    { name: 'SaaS Companies', icon: '💻', color: 'linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%)', borderColor: '#8b5cf6' },
-    { name: 'Legal Services', icon: '⚖️', color: 'linear-gradient(135deg, #fee2e2 0%, #fecaca 100%)', borderColor: '#ef4444' }
-  ];
-
-  const [activeIndustry, setActiveIndustry] = useState('default');
-
-  const startCampaignBuilding = (industry: string) => {
-    setActiveIndustry(industry);
-    // Trigger AI Builder animation
-    const event = new CustomEvent('startCampaignBuilding', { detail: industry });
-    window.dispatchEvent(event);
-  };
-
-  const resetBuilder = () => {
-    setActiveIndustry('default');
-    const event = new CustomEvent('resetBuilder');
-    window.dispatchEvent(event);
-  };
-
-  return (
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
-      {industries.map((industry, index) => (
-        <div
-          key={industry.name}
-          style={{
-            background: industry.color,
-            borderRadius: '16px',
-            padding: '20px',
-            border: `2px solid ${industry.borderColor}`,
-            cursor: 'pointer',
-            transition: 'all 0.3s ease',
-            position: 'relative',
-            overflow: 'hidden'
-          }}
-          onMouseEnter={() => startCampaignBuilding(industry.name)}
-          onMouseLeave={resetBuilder}
-        >
-          <div style={{
-            fontSize: '32px',
-            marginBottom: '12px',
-            textAlign: 'center'
-          }}>
-            {industry.icon}
-          </div>
-          <h4 style={{
-            fontSize: '16px',
-            fontWeight: '700',
-            color: '#1a1a1a',
-            textAlign: 'center',
-            margin: '0 0 8px 0'
-          }}>
-            {industry.name}
-          </h4>
-          <p style={{
-            fontSize: '12px',
-            color: '#666',
-            textAlign: 'center',
-            margin: 0
-          }}>
-            Hover to see AI build your campaign
-          </p>
-        </div>
-      ))}
-    </div>
-  );
-}
 
 
 
@@ -3367,77 +3104,7 @@ export default function KampaioHome() {
         </div>
       </section>
 
-      {/* AI Campaign Builder - Split Screen Layout */}
-      <section style={{
-        padding: '120px 0',
-        background: 'white',
-        position: 'relative',
-        overflow: 'hidden'
-      }}>
-        <div style={{
-          maxWidth: '1400px',
-          margin: '0 auto',
-          padding: '0 24px',
-          position: 'relative',
-          zIndex: 1
-        }}>
-          {/* Section Header */}
-          <div style={{
-            textAlign: 'center',
-            marginBottom: '60px'
-          }}>
-            <h2 style={{
-              fontSize: 'clamp(36px, 4vw, 48px)',
-              fontWeight: '800',
-              color: '#1a1a1a',
-              marginBottom: '24px',
-              lineHeight: '1.2'
-            }}>
-              Tailored AI Solutions for Every Industry
-            </h2>
-            <p style={{
-              fontSize: 'clamp(18px, 2vw, 20px)',
-              color: '#666',
-              maxWidth: '600px',
-              margin: '0 auto',
-              lineHeight: '1.6'
-            }}>
-              Watch our AI build custom campaigns for your business in real-time
-            </p>
-          </div>
 
-          {/* Split Screen Layout */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: '3fr 2fr',
-            gap: '32px',
-            height: '500px'
-          }}>
-            {/* AI BUILDER - Left Side (60%) */}
-            <div style={{
-              background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
-              borderRadius: '24px',
-              padding: '32px',
-              border: '1px solid rgba(127,156,245,0.1)',
-              boxShadow: '0 8px 32px rgba(0,0,0,0.08)',
-              position: 'relative',
-              overflow: 'hidden'
-            }}>
-              {/* AI Campaign Builder Visualization */}
-              <AICampaignBuilder />
-            </div>
-            
-            {/* INDUSTRY CARDS - Right Side (40%) */}
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: '1fr 1fr',
-              gap: '16px'
-            }}>
-              <IndustryCards />
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Interactive FAQ Section */}
       <section style={{
@@ -4272,194 +3939,7 @@ export default function KampaioHome() {
 
 
 
-      {/* Integrations Section */}
-      <section style={{
-        padding: '80px 20px',
-        background: 'white'
-      }}>
-        <div style={{
-          maxWidth: '1200px',
-          margin: '0 auto'
-        }}>
-          <style dangerouslySetInnerHTML={{
-            __html: `
-              @media screen and (min-width: 991px) {
-                .integrations-logo-row-container {
-                  -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 1) 5%, rgba(0, 0, 0, 1) 95%, transparent 100%)
-                }
-              }
 
-              @keyframes integration-logo-slides {
-                from {transform: translateX(0);}
-                to {transform: translateX(-100%);}
-              }
-              .integration-logo-row {
-                animation: 35s integration-logo-slides infinite linear;
-              }
-            `
-          }} />
-          
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(12, 1fr)',
-            gap: '0rem',
-            alignItems: 'top'
-          }}>
-            <div style={{
-              gridColumn: 'span 12',
-              marginBottom: '16px'
-            }}>
-              <div style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center'
-              }}>
-                <div style={{
-                  padding: '4px 12px',
-                  backgroundColor: '#f3f4f6',
-                  borderRadius: '20px',
-                  fontSize: '12px',
-                  fontWeight: '500',
-                  color: '#6b7280'
-                }}>
-                  integrations
-                </div>
-              </div>
-            </div>
-            
-            <div style={{
-              gridColumn: 'span 12',
-              textAlign: 'center'
-            }}>
-              <div style={{
-                maxWidth: '736px',
-                margin: '0 auto'
-              }}>
-                <div style={{
-                  color: '#1a1a1a'
-                }}>
-                  <h2 style={{
-                    fontSize: 'clamp(2rem, 4vw, 3rem)',
-                    fontWeight: '700',
-                    marginBottom: '24px',
-                    lineHeight: '1.2'
-                  }}>
-                    Embed your videos into your favorite tools
-                  </h2>
-                </div>
-              </div>
-            </div>
-            
-            <div style={{
-              gridColumn: 'span 12',
-              textAlign: 'center'
-            }}>
-              <p style={{
-                fontSize: 'clamp(1.125rem, 2vw, 1.25rem)',
-                color: '#666',
-                marginBottom: '40px',
-                maxWidth: '600px',
-                margin: '0 auto 40px auto',
-                lineHeight: '1.6'
-              }}>
-                Streamline your video creation process by embedding your videos into your authoring tool, LMS, CMS, CRM and more.
-              </p>
-            </div>
-            
-            <div style={{
-              gridColumn: 'span 12',
-              textAlign: 'center',
-              marginBottom: '40px'
-            }}>
-              <a href="https://docs.synthesia.io/docs/synthesia-integrations" target="_blank" style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '8px',
-                padding: '12px 24px',
-                backgroundColor: 'transparent',
-                border: '2px solid #e5e7eb',
-                borderRadius: '8px',
-                color: '#374151',
-                textDecoration: 'none',
-                fontWeight: '500',
-                transition: 'all 0.3s ease'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = '#f9fafb';
-                e.currentTarget.style.borderColor = '#d1d5db';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = 'transparent';
-                e.currentTarget.style.borderColor = '#e5e7eb';
-              }}>
-                <div>Explore all integrations</div>
-                <div style={{
-                  width: '16px',
-                  height: '16px'
-                }}>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 17" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
-                    <path d="M1 8.28955H15" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"></path>
-                    <path d="M9.27344 2.5625L15.0007 8.28977L9.27344 14.017" stroke="currentColor" strokeWidth="1.27273" strokeLinecap="round" strokeLinejoin="round"></path>
-                  </svg>
-                </div>
-              </a>
-            </div>
-            
-            <div style={{
-              gridColumn: 'span 12'
-            }}>
-              <div style={{
-                marginBottom: '80px'
-              }}></div>
-              <div style={{
-                overflow: 'hidden',
-                position: 'relative'
-              }}>
-                <div className="integration-logo-row" style={{
-                  display: 'flex',
-                  whiteSpace: 'nowrap'
-                }}>
-                  <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '60px'
-                  }}>
-                    <div><img src="https://cdn.prod.website-files.com/65e89895c5a4b8d764c0d710/6824502cfe93b2721842680d_Notion-logo.svg" loading="lazy" alt="" style={{ height: '40px', width: 'auto' }} /></div>
-                    <div><img src="https://cdn.prod.website-files.com/65e89895c5a4b8d764c0d710/6824502cd3f5f7870ffa96d9_Articulate-logo.svg" loading="lazy" alt="" style={{ height: '40px', width: 'auto' }} /></div>
-                    <div><img src="https://cdn.prod.website-files.com/65e89895c5a4b8d764c0d710/6824502ce9b1dc3ae4b1e505_Moodle-logo.svg" loading="lazy" alt="" style={{ height: '40px', width: 'auto' }} /></div>
-                    <div><img src="https://cdn.prod.website-files.com/65e89895c5a4b8d764c0d710/6824502c7866cd3b24bc69a4_Docebo-logo.svg" loading="lazy" alt="" style={{ height: '40px', width: 'auto' }} /></div>
-                    <div><img src="https://cdn.prod.website-files.com/65e89895c5a4b8d764c0d710/6824502dbc66f17533c40239_Hubspot-logo.svg" loading="lazy" alt="" style={{ height: '40px', width: 'auto' }} /></div>
-                    <div><img src="https://cdn.prod.website-files.com/65e89895c5a4b8d764c0d710/6824502da8de5dce3edf0f14_Intercom-logo.svg" loading="lazy" alt="" style={{ height: '40px', width: 'auto' }} /></div>
-                    <div><img src="https://cdn.prod.website-files.com/65e89895c5a4b8d764c0d710/6824502d060942d60bc153e4_Thinkific-logo.svg" loading="lazy" alt="" style={{ height: '40px', width: 'auto' }} /></div>
-                    <div><img src="https://cdn.prod.website-files.com/65e89895c5a4b8d764c0d710/6824502c8dd1d5890c58c7c4_PP-logo.svg" loading="lazy" alt="" style={{ height: '40px', width: 'auto' }} /></div>
-                    <div><img src="https://cdn.prod.website-files.com/65e89895c5a4b8d764c0d710/6824502cc41e031df9a310b3_360learning-logo.svg" loading="lazy" alt="" style={{ height: '40px', width: 'auto' }} /></div>
-                  </div>
-                </div>
-                <div className="integration-logo-row" style={{
-                  display: 'flex',
-                  whiteSpace: 'nowrap'
-                }}>
-                  <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '60px'
-                  }}>
-                    <div><img src="https://cdn.prod.website-files.com/65e89895c5a4b8d764c0d710/6824502cfe93b2721842680d_Notion-logo.svg" loading="lazy" alt="" style={{ height: '40px', width: 'auto' }} /></div>
-                    <div><img src="https://cdn.prod.website-files.com/65e89895c5a4b8d764c0d710/6824502cd3f5f7870ffa96d9_Articulate-logo.svg" loading="lazy" alt="" style={{ height: '40px', width: 'auto' }} /></div>
-                    <div><img src="https://cdn.prod.website-files.com/65e89895c5a4b8d764c0d710/6824502ce9b1dc3ae4b1e505_Moodle-logo.svg" loading="lazy" alt="" style={{ height: '40px', width: 'auto' }} /></div>
-                    <div><img src="https://cdn.prod.website-files.com/65e89895c5a4b8d764c0d710/6824502c7866cd3b24bc69a4_Docebo-logo.svg" loading="lazy" alt="" style={{ height: '40px', width: 'auto' }} /></div>
-                    <div><img src="https://cdn.prod.website-files.com/65e89895c5a4b8d764c0d710/6824502dbc66f17533c40239_Hubspot-logo.svg" loading="lazy" alt="" style={{ height: '40px', width: 'auto' }} /></div>
-                    <div><img src="https://cdn.prod.website-files.com/65e89895c5a4b8d764c0d710/6824502da8de5dce3edf0f14_Intercom-logo.svg" loading="lazy" alt="" style={{ height: '40px', width: 'auto' }} /></div>
-                    <div><img src="https://cdn.prod.website-files.com/65e89895c5a4b8d764c0d710/6824502d060942d60bc153e4_Thinkific-logo.svg" loading="lazy" alt="" style={{ height: '40px', width: 'auto' }} /></div>
-                    <div><img src="https://cdn.prod.website-files.com/65e89895c5a4b8d764c0d710/6824502c8dd1d5890c58c7c4_PP-logo.svg" loading="lazy" alt="" style={{ height: '40px', width: 'auto' }} /></div>
-                    <div><img src="https://cdn.prod.website-files.com/65e89895c5a4b8d764c0d710/6824502cc41e031df9a310b3_360learning-logo.svg" loading="lazy" alt="" style={{ height: '40px', width: 'auto' }} /></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* G2 Grid Section */}
       <section style={{
@@ -4682,12 +4162,7 @@ export default function KampaioHome() {
                       alignItems: 'center',
                       justifyContent: 'center',
                       width: '36px',
-                      height: '36px',
-                      background: 'rgba(255, 255, 255, 0.95)',
-                      borderRadius: '8px',
-                      boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
-                      border: '1px solid rgba(66, 133, 244, 0.2)',
-                      backdropFilter: 'blur(8px)'
+                      height: '36px'
                     }}>
                       <img 
                         src="https://img.icons8.com/color/48/google-ads.png" 
@@ -4705,12 +4180,7 @@ export default function KampaioHome() {
                       alignItems: 'center',
                       justifyContent: 'center',
                       width: '36px',
-                      height: '36px',
-                      background: 'rgba(255, 255, 255, 0.95)',
-                      borderRadius: '8px',
-                      boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
-                      border: '1px solid rgba(34, 197, 94, 0.2)',
-                      backdropFilter: 'blur(8px)'
+                      height: '36px'
                     }}>
                       <img 
                         src="https://img.icons8.com/color/48/google-sheets.png" 
@@ -4728,12 +4198,7 @@ export default function KampaioHome() {
                       alignItems: 'center',
                       justifyContent: 'center',
                       width: '36px',
-                      height: '36px',
-                      background: 'rgba(255, 255, 255, 0.95)',
-                      borderRadius: '8px',
-                      boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
-                      border: '1px solid rgba(239, 68, 68, 0.2)',
-                      backdropFilter: 'blur(8px)'
+                      height: '36px'
                     }}>
                       <img 
                         src="https://img.icons8.com/color/48/pdf.png" 
@@ -4751,12 +4216,7 @@ export default function KampaioHome() {
                       alignItems: 'center',
                       justifyContent: 'center',
                       width: '36px',
-                      height: '36px',
-                      background: 'rgba(255, 255, 255, 0.95)',
-                      borderRadius: '8px',
-                      boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
-                      border: '1px solid rgba(16, 185, 129, 0.2)',
-                      backdropFilter: 'blur(8px)'
+                      height: '36px'
                     }}>
                       <img 
                         src="https://img.icons8.com/color/48/chatgpt.png" 
@@ -4767,6 +4227,26 @@ export default function KampaioHome() {
                         }}
                       />
                     </div>
+                    
+                    {/* Google Analytics Badge */}
+                    <div style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      width: '36px',
+                      height: '36px'
+                    }}>
+                      <img 
+                        src="https://storage.googleapis.com/proudcity/helpsite/uploads/2023/04/google-analytics.png" 
+                        alt="Google Analytics Integration" 
+                        style={{
+                          width: '20px',
+                          height: '20px'
+                        }}
+                      />
+                    </div>
+                    
+
                   </div>
                 </div>
               </a>
@@ -5616,6 +5096,8 @@ export default function KampaioHome() {
           </div>
         </div>
       </section>
+
+
 
       {/* Footer */}
       <Footer compact={true} />
