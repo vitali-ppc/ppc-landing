@@ -2825,8 +2825,8 @@ export default function KampaioHome() {
                   }}>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       {/* Стилизованная башня - Enterprise */}
-                      <path d="M12 2L8 6v4h2v8h4v-8h2V6l-4-4z" fill="#3E57DA"/>
-                      <rect x="10" y="14" width="4" height="2" fill="#3E57DA"/>
+                      <path d="M12 2L8 6v4h2v8h4v-8h2V6l-4-4z" fill="#374151"/>
+                      <rect x="10" y="14" width="4" height="2" fill="#374151"/>
                     </svg>
                   </div>
                   <p style={{
@@ -2847,8 +2847,8 @@ export default function KampaioHome() {
                   }}>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       {/* Волновая линия - Mid-Market */}
-                      <path d="M3 12c2-4 4-6 6-6s4 2 6 6 4 6 6 6" stroke="#3E57DA" strokeWidth="2" fill="none" strokeLinecap="round"/>
-                      <circle cx="12" cy="12" r="2" fill="#3E57DA"/>
+                      <path d="M3 12c2-4 4-6 6-6s4 2 6 6 4 6 6 6" stroke="#374151" strokeWidth="2" fill="none" strokeLinecap="round"/>
+                      <circle cx="12" cy="12" r="2" fill="#374151"/>
                     </svg>
                   </div>
                   <p style={{
@@ -2869,9 +2869,9 @@ export default function KampaioHome() {
                   }}>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       {/* Пульсирующий круг - User Satisfaction */}
-                      <circle cx="12" cy="12" r="8" fill="#3E57DA"/>
+                      <circle cx="12" cy="12" r="8" fill="#374151"/>
                       <circle cx="12" cy="12" r="4" fill="white"/>
-                      <circle cx="12" cy="12" r="2" fill="#3E57DA"/>
+                      <circle cx="12" cy="12" r="2" fill="#374151"/>
                     </svg>
                   </div>
                   <p style={{
@@ -2892,14 +2892,14 @@ export default function KampaioHome() {
                   }}>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       {/* Соединенные точки - Small Business */}
-                      <circle cx="8" cy="8" r="2" fill="#3E57DA"/>
-                      <circle cx="16" cy="8" r="2" fill="#3E57DA"/>
-                      <circle cx="8" cy="16" r="2" fill="#3E57DA"/>
-                      <circle cx="16" cy="16" r="2" fill="#3E57DA"/>
-                      <line x1="8" y1="8" x2="16" y2="8" stroke="#3E57DA" strokeWidth="1"/>
-                      <line x1="8" y1="16" x2="16" y2="16" stroke="#3E57DA" strokeWidth="1"/>
-                      <line x1="8" y1="8" x2="8" y2="16" stroke="#3E57DA" strokeWidth="1"/>
-                      <line x1="16" y1="8" x2="16" y2="16" stroke="#3E57DA" strokeWidth="1"/>
+                      <circle cx="8" cy="8" r="2" fill="#374151"/>
+                      <circle cx="16" cy="8" r="2" fill="#374151"/>
+                      <circle cx="8" cy="16" r="2" fill="#374151"/>
+                      <circle cx="16" cy="16" r="2" fill="#374151"/>
+                      <line x1="8" y1="8" x2="16" y2="8" stroke="#374151" strokeWidth="1"/>
+                      <line x1="8" y1="16" x2="16" y2="16" stroke="#374151" strokeWidth="1"/>
+                      <line x1="8" y1="8" x2="8" y2="16" stroke="#374151" strokeWidth="1"/>
+                      <line x1="16" y1="8" x2="16" y2="16" stroke="#374151" strokeWidth="1"/>
                     </svg>
                   </div>
                   <p style={{
@@ -2963,11 +2963,11 @@ export default function KampaioHome() {
               }}>
                 <div style={{
                   borderRadius: '16px',
-                  border: '1px solid #e5e7eb',
-                  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+                  border: '2px solid #00BFAE',
+                  boxShadow: '0 4px 12px rgba(0, 191, 174, 0.15)',
                   overflow: 'hidden',
                   position: 'relative',
-                  background: 'linear-gradient(135deg, #00FFE7, #00BFAE)',
+                  background: '#F8FAFC',
                   aspectRatio: '493/437',
                   display: 'flex',
                   alignItems: 'center',
@@ -2981,12 +2981,12 @@ export default function KampaioHome() {
                   }}>
                     <defs>
                       <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
-                        <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="1"/>
+                        <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(0,191,174,0.2)" strokeWidth="1"/>
                       </pattern>
                       <radialGradient id="hologram" cx="50%" cy="50%" r="50%">
-                        <stop offset="0%" stopColor="rgba(255,255,255,0.8)"/>
-                        <stop offset="50%" stopColor="rgba(255,255,255,0.3)"/>
-                        <stop offset="100%" stopColor="rgba(255,255,255,0.1)"/>
+                        <stop offset="0%" stopColor="rgba(0,191,174,0.4)"/>
+                        <stop offset="50%" stopColor="rgba(0,191,174,0.2)"/>
+                        <stop offset="100%" stopColor="rgba(0,191,174,0.1)"/>
                       </radialGradient>
                     </defs>
                     <rect width="100%" height="100%" fill="url(#grid)"/>
@@ -2994,10 +2994,10 @@ export default function KampaioHome() {
                       <animate attributeName="r" values="80;90;80" dur="3s" repeatCount="indefinite"/>
                       <animate attributeName="opacity" values="0.6;0.8;0.6" dur="3s" repeatCount="indefinite"/>
                     </circle>
-                    <circle cx="200" cy="150" r="60" fill="none" stroke="rgba(255,255,255,0.5)" strokeWidth="2">
+                    <circle cx="200" cy="150" r="60" fill="none" stroke="rgba(0,191,174,0.3)" strokeWidth="2">
                       <animate attributeName="r" values="60;70;60" dur="2s" repeatCount="indefinite"/>
                     </circle>
-                    <circle cx="200" cy="150" r="40" fill="none" stroke="rgba(255,255,255,0.7)" strokeWidth="1">
+                    <circle cx="200" cy="150" r="40" fill="none" stroke="rgba(0,191,174,0.4)" strokeWidth="1">
                       <animate attributeName="r" values="40;50;40" dur="1.5s" repeatCount="indefinite"/>
                     </circle>
                   </svg>
@@ -3211,27 +3211,16 @@ export default function KampaioHome() {
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  gap: '8px'
+                  gap: '12px'
                 }}>
-                  <div style={{
-                    width: '200px',
-                    height: '80px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    background: 'linear-gradient(135deg, #00FFE7, #00BFAE)',
-                    borderRadius: '12px',
-                    padding: '16px'
-                  }}>
-                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M24 4C12.954 4 4 12.954 4 24s8.954 20 20 20 20-8.954 20-20S35.046 4 24 4zm0 36c-8.837 0-16-7.163-16-16S15.163 8 24 8s16 7.163 16 16-7.163 16-16 16z" fill="white"/>
-                      <path d="M18 20h12v2H18zm0 4h12v2H18zm0 4h8v2h-8z" fill="white"/>
-                    </svg>
-                  </div>
+                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 4C12.954 4 4 12.954 4 24s8.954 20 20 20 20-8.954 20-20S35.046 4 24 4zm0 36c-8.837 0-16-7.163-16-16S15.163 8 24 8s16 7.163 16 16-7.163 16-16 16z" fill="#374151"/>
+                    <path d="M18 20h12v2H18zm0 4h12v2H18zm0 4h8v2h-8z" fill="#374151"/>
+                  </svg>
                   <span style={{
                     fontSize: '14px',
                     fontWeight: '500',
-                    color: '#1a1a2e',
+                    color: '#374151',
                     textAlign: 'center'
                   }}>
                     Dentists
@@ -3243,26 +3232,15 @@ export default function KampaioHome() {
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  gap: '8px'
+                  gap: '12px'
                 }}>
-                  <div style={{
-                    width: '200px',
-                    height: '80px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    background: 'linear-gradient(135deg, #7F9CF5, #667eea)',
-                    borderRadius: '12px',
-                    padding: '16px'
-                  }}>
-                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M24 4L4 20h4v20h32V20h4L24 4zm-2 34V26h4v12h-4zm8 0V26h4v12h-4z" fill="white"/>
-                    </svg>
-                  </div>
+                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 4L4 20h4v20h32V20h4L24 4zm-2 34V26h4v12h-4zm8 0V26h4v12h-4z" fill="#374151"/>
+                  </svg>
                   <span style={{
                     fontSize: '14px',
                     fontWeight: '500',
-                    color: '#1a1a2e',
+                    color: '#374151',
                     textAlign: 'center'
                   }}>
                     Real Estate
@@ -3274,26 +3252,15 @@ export default function KampaioHome() {
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  gap: '8px'
+                  gap: '12px'
                 }}>
-                  <div style={{
-                    width: '200px',
-                    height: '80px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    background: 'linear-gradient(135deg, #00FFE7, #00BFAE)',
-                    borderRadius: '12px',
-                    padding: '16px'
-                  }}>
-                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M24 4L4 12v12c0 11.046 8.954 20 20 20s20-8.954 20-20V12L24 4zm0 32c-8.837 0-16-7.163-16-16V16l16-8 16 8v4c0 8.837-7.163 16-16 16z" fill="white"/>
-                    </svg>
-                  </div>
+                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 4L4 12v12c0 11.046 8.954 20 20 20s20-8.954 20-20V12L24 4zm0 32c-8.837 0-16-7.163-16-16V16l16-8 16 8v4c0 8.837-7.163 16-16 16z" fill="#374151"/>
+                  </svg>
                   <span style={{
                     fontSize: '14px',
                     fontWeight: '500',
-                    color: '#1a1a2e',
+                    color: '#374151',
                     textAlign: 'center'
                   }}>
                     SaaS Companies
@@ -3305,26 +3272,15 @@ export default function KampaioHome() {
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  gap: '8px'
+                  gap: '12px'
                 }}>
-                  <div style={{
-                    width: '200px',
-                    height: '80px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    background: 'linear-gradient(135deg, #7F9CF5, #667eea)',
-                    borderRadius: '12px',
-                    padding: '16px'
-                  }}>
-                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M24 4L8 12v12c0 8.837 7.163 16 16 16s16-7.163 16-16V12L24 4zm0 28c-6.627 0-12-5.373-12-12V16l12-8 12 8v4c0 6.627-5.373 12-12 12z" fill="white"/>
-                    </svg>
-                  </div>
+                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 4L8 12v12c0 8.837 7.163 16 16 16s16-7.163 16-16V12L24 4zm0 28c-6.627 0-12-5.373-12-12V16l12-8 12 8v4c0 6.627-5.373 12-12 12z" fill="#374151"/>
+                  </svg>
                   <span style={{
                     fontSize: '14px',
                     fontWeight: '500',
-                    color: '#1a1a2e',
+                    color: '#374151',
                     textAlign: 'center'
                   }}>
                     Lawyers
@@ -3338,26 +3294,15 @@ export default function KampaioHome() {
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  gap: '8px'
+                  gap: '12px'
                 }}>
-                  <div style={{
-                    width: '200px',
-                    height: '80px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    background: 'linear-gradient(135deg, #00FFE7, #00BFAE)',
-                    borderRadius: '12px',
-                    padding: '16px'
-                  }}>
-                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M24 4c-5.514 0-10 4.486-10 10v4h20v-4c0-5.514-4.486-10-10-10zm-6 18v12h12V22H18z" fill="white"/>
-                    </svg>
-                  </div>
+                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 4c-5.514 0-10 4.486-10 10v4h20v-4c0-5.514-4.486-10-10-10zm-6 18v12h12V22H18z" fill="#374151"/>
+                  </svg>
                   <span style={{
                     fontSize: '14px',
                     fontWeight: '500',
-                    color: '#1a1a2e',
+                    color: '#374151',
                     textAlign: 'center'
                   }}>
                     Plumbers
@@ -3369,26 +3314,15 @@ export default function KampaioHome() {
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  gap: '8px'
+                  gap: '12px'
                 }}>
-                  <div style={{
-                    width: '200px',
-                    height: '80px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    background: 'linear-gradient(135deg, #7F9CF5, #667eea)',
-                    borderRadius: '12px',
-                    padding: '16px'
-                  }}>
-                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M24 4L4 20h4v20h32V20h4L24 4zm-2 34V26h4v12h-4zm8 0V26h4v12h-4z" fill="white"/>
-                    </svg>
-                  </div>
+                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 4L4 20h4v20h32V20h4L24 4zm-2 34V26h4v12h-4zm8 0V26h4v12h-4z" fill="#374151"/>
+                  </svg>
                   <span style={{
                     fontSize: '14px',
                     fontWeight: '500',
-                    color: '#1a1a2e',
+                    color: '#374151',
                     textAlign: 'center'
                   }}>
                     Roofers
@@ -3400,26 +3334,15 @@ export default function KampaioHome() {
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  gap: '8px'
+                  gap: '12px'
                 }}>
-                  <div style={{
-                    width: '200px',
-                    height: '80px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    background: 'linear-gradient(135deg, #00FFE7, #00BFAE)',
-                    borderRadius: '12px',
-                    padding: '16px'
-                  }}>
-                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M24 4L12 20h6v20h12V20h6L24 4z" fill="white"/>
-                    </svg>
-                  </div>
+                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 4L12 20h6v20h12V20h6L24 4z" fill="#374151"/>
+                  </svg>
                   <span style={{
                     fontSize: '14px',
                     fontWeight: '500',
-                    color: '#1a1a2e',
+                    color: '#374151',
                     textAlign: 'center'
                   }}>
                     Electricians
@@ -3431,26 +3354,15 @@ export default function KampaioHome() {
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  gap: '8px'
+                  gap: '12px'
                 }}>
-                  <div style={{
-                    width: '200px',
-                    height: '80px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    background: 'linear-gradient(135deg, #7F9CF5, #667eea)',
-                    borderRadius: '12px',
-                    padding: '16px'
-                  }}>
-                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M24 4c-5.514 0-10 4.486-10 10v20h20V14c0-5.514-4.486-10-10-10z" fill="white"/>
-                    </svg>
-                  </div>
+                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 4c-5.514 0-10 4.486-10 10v20h20V14c0-5.514-4.486-10-10-10z" fill="#374151"/>
+                  </svg>
                   <span style={{
                     fontSize: '14px',
                     fontWeight: '500',
-                    color: '#1a1a2e',
+                    color: '#374151',
                     textAlign: 'center'
                   }}>
                     Gyms & Fitness Studios
@@ -3462,27 +3374,16 @@ export default function KampaioHome() {
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  gap: '8px'
+                  gap: '12px'
                 }}>
-                  <div style={{
-                    width: '200px',
-                    height: '80px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    background: 'linear-gradient(135deg, #00FFE7, #00BFAE)',
-                    borderRadius: '12px',
-                    padding: '16px'
-                  }}>
-                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M24 4C12.954 4 4 12.954 4 24s8.954 20 20 20 20-8.954 20-20S35.046 4 24 4zm0 36c-8.837 0-16-7.163-16-16S15.163 8 24 8s16 7.163 16 16-7.163 16-16 16z" fill="white"/>
-                      <path d="M18 20h12v2H18zm0 4h12v2H18zm0 4h8v2h-8z" fill="white"/>
-                    </svg>
-                  </div>
+                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 4C12.954 4 4 12.954 4 24s8.954 20 20 20 20-8.954 20-20S35.046 4 24 4zm0 36c-8.837 0-16-7.163-16-16S15.163 8 24 8s16 7.163 16 16-7.163 16-16 16z" fill="#374151"/>
+                    <path d="M18 20h12v2H18zm0 4h12v2H18zm0 4h8v2h-8z" fill="#374151"/>
+                  </svg>
                   <span style={{
                     fontSize: '14px',
                     fontWeight: '500',
-                    color: '#1a1a2e',
+                    color: '#374151',
                     textAlign: 'center'
                   }}>
                     Therapists / Counselors
@@ -3494,26 +3395,15 @@ export default function KampaioHome() {
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  gap: '8px'
+                  gap: '12px'
                 }}>
-                  <div style={{
-                    width: '200px',
-                    height: '80px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    background: 'linear-gradient(135deg, #7F9CF5, #667eea)',
-                    borderRadius: '12px',
-                    padding: '16px'
-                  }}>
-                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M24 4L4 12v12c0 11.046 8.954 20 20 20s20-8.954 20-20V12L24 4zm0 32c-8.837 0-16-7.163-16-16V16l16-8 16 8v4c0 8.837-7.163 16-16 16z" fill="white"/>
-                    </svg>
-                  </div>
+                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 4L4 12v12c0 11.046 8.954 20 20 20s20-8.954 20-20V12L24 4zm0 32c-8.837 0-16-7.163-16-16V16l16-8 16 8v4c0 8.837-7.163 16-16 16z" fill="#374151"/>
+                  </svg>
                   <span style={{
                     fontSize: '14px',
                     fontWeight: '500',
-                    color: '#1a1a2e',
+                    color: '#374151',
                     textAlign: 'center'
                   }}>
                     Ecommerce Stores
@@ -3525,26 +3415,15 @@ export default function KampaioHome() {
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  gap: '8px'
+                  gap: '12px'
                 }}>
-                  <div style={{
-                    width: '200px',
-                    height: '80px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    background: 'linear-gradient(135deg, #00FFE7, #00BFAE)',
-                    borderRadius: '12px',
-                    padding: '16px'
-                  }}>
-                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M24 4c-5.514 0-10 4.486-10 10v20h20V14c0-5.514-4.486-10-10-10z" fill="white"/>
-                    </svg>
-                  </div>
+                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 4c-5.514 0-10 4.486-10 10v20h20V14c0-5.514-4.486-10-10-10z" fill="#374151"/>
+                  </svg>
                   <span style={{
                     fontSize: '14px',
                     fontWeight: '500',
-                    color: '#1a1a2e',
+                    color: '#374151',
                     textAlign: 'center'
                   }}>
                     Wedding Photographers
@@ -3556,26 +3435,15 @@ export default function KampaioHome() {
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  gap: '8px'
+                  gap: '12px'
                 }}>
-                  <div style={{
-                    width: '200px',
-                    height: '80px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    background: 'linear-gradient(135deg, #7F9CF5, #667eea)',
-                    borderRadius: '12px',
-                    padding: '16px'
-                  }}>
-                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M24 4L4 20h4v20h32V20h4L24 4zm-2 34V26h4v12h-4zm8 0V26h4v12h-4z" fill="white"/>
-                    </svg>
-                  </div>
+                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 4L4 20h4v20h32V20h4L24 4zm-2 34V26h4v12h-4zm8 0V26h4v12h-4z" fill="#374151"/>
+                  </svg>
                   <span style={{
                     fontSize: '14px',
                     fontWeight: '500',
-                    color: '#1a1a2e',
+                    color: '#374151',
                     textAlign: 'center'
                   }}>
                     Home Cleaning Services
@@ -3587,26 +3455,15 @@ export default function KampaioHome() {
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  gap: '8px'
+                  gap: '12px'
                 }}>
-                  <div style={{
-                    width: '200px',
-                    height: '80px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    background: 'linear-gradient(135deg, #00FFE7, #00BFAE)',
-                    borderRadius: '12px',
-                    padding: '16px'
-                  }}>
-                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M24 4L8 12v12c0 8.837 7.163 16 16 16s16-7.163 16-16V12L24 4zm0 28c-6.627 0-12-5.373-12-12V16l12-8 12 8v4c0 6.627-5.373 12-12 12z" fill="white"/>
-                    </svg>
-                  </div>
+                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 4L8 12v12c0 8.837 7.163 16 16 16s16-7.163 16-16V12L24 4zm0 28c-6.627 0-12-5.373-12-12V16l12-8 12 8v4c0 6.627-5.373 12-12 12z" fill="#374151"/>
+                  </svg>
                   <span style={{
                     fontSize: '14px',
                     fontWeight: '500',
-                    color: '#1a1a2e',
+                    color: '#374151',
                     textAlign: 'center'
                   }}>
                     Digital Agencies
@@ -3618,26 +3475,15 @@ export default function KampaioHome() {
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  gap: '8px'
+                  gap: '12px'
                 }}>
-                  <div style={{
-                    width: '200px',
-                    height: '80px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    background: 'linear-gradient(135deg, #7F9CF5, #667eea)',
-                    borderRadius: '12px',
-                    padding: '16px'
-                  }}>
-                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M24 4c-5.514 0-10 4.486-10 10v4h20v-4c0-5.514-4.486-10-10-10zm-6 18v12h12V22H18z" fill="white"/>
-                    </svg>
-                  </div>
+                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 4c-5.514 0-10 4.486-10 10v4h20v-4c0-5.514-4.486-10-10-10zm-6 18v12h12V22H18z" fill="#374151"/>
+                  </svg>
                   <span style={{
                     fontSize: '14px',
                     fontWeight: '500',
-                    color: '#1a1a2e',
+                    color: '#374151',
                     textAlign: 'center'
                   }}>
                     Auto Repair Shops
@@ -3652,18 +3498,13 @@ export default function KampaioHome() {
               }}>
                 {/* Dentists */}
                 <div style={{
-                  width: '200px',
-                  height: '80px',
                   display: 'flex',
                   alignItems: 'center',
-                  justifyContent: 'center',
-                  background: 'linear-gradient(135deg, #00FFE7, #00BFAE)',
-                  borderRadius: '12px',
-                  padding: '16px'
+                  justifyContent: 'center'
                 }}>
                   <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M24 4C12.954 4 4 12.954 4 24s8.954 20 20 20 20-8.954 20-20S35.046 4 24 4zm0 36c-8.837 0-16-7.163-16-16S15.163 8 24 8s16 7.163 16 16-7.163 16-16 16z" fill="white"/>
-                    <path d="M18 20h12v2H18zm0 4h12v2H18zm0 4h8v2h-8z" fill="white"/>
+                    <path d="M24 4C12.954 4 4 12.954 4 24s8.954 20 20 20 20-8.954 20-20S35.046 4 24 4zm0 36c-8.837 0-16-7.163-16-16S15.163 8 24 8s16 7.163 16 16-7.163 16-16 16z" fill="#374151"/>
+                    <path d="M18 20h12v2H18zm0 4h12v2H18zm0 4h8v2h-8z" fill="#374151"/>
                   </svg>
                 </div>
                 
@@ -3685,33 +3526,23 @@ export default function KampaioHome() {
                 
                 {/* SaaS Companies */}
                 <div style={{
-                  width: '200px',
-                  height: '80px',
                   display: 'flex',
                   alignItems: 'center',
-                  justifyContent: 'center',
-                  background: 'linear-gradient(135deg, #00FFE7, #00BFAE)',
-                  borderRadius: '12px',
-                  padding: '16px'
+                  justifyContent: 'center'
                 }}>
                   <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M24 4L4 12v12c0 11.046 8.954 20 20 20s20-8.954 20-20V12L24 4zm0 32c-8.837 0-16-7.163-16-16V16l16-8 16 8v4c0 8.837-7.163 16-16 16z" fill="white"/>
+                    <path d="M24 4L4 12v12c0 11.046 8.954 20 20 20s20-8.954 20-20V12L24 4zm0 32c-8.837 0-16-7.163-16-16V16l16-8 16 8v4c0 8.837-7.163 16-16 16z" fill="#374151"/>
                   </svg>
                 </div>
                 
                 {/* Lawyers / Attorneys */}
                 <div style={{
-                  width: '200px',
-                  height: '80px',
                   display: 'flex',
                   alignItems: 'center',
-                  justifyContent: 'center',
-                  background: 'linear-gradient(135deg, #7F9CF5, #667eea)',
-                  borderRadius: '12px',
-                  padding: '16px'
+                  justifyContent: 'center'
                 }}>
                   <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M24 4L8 12v12c0 8.837 7.163 16 16 16s16-7.163 16-16V12L24 4zm0 28c-6.627 0-12-5.373-12-12V16l12-8 12 8v4c0 6.627-5.373 12-12 12z" fill="white"/>
+                    <path d="M24 4L8 12v12c0 8.837 7.163 16 16 16s16-7.163 16-16V12L24 4zm0 28c-6.627 0-12-5.373-12-12V16l12-8 12 8v4c0 6.627-5.373 12-12 12z" fill="#374151"/>
                   </svg>
                 </div>
                 
@@ -3719,162 +3550,112 @@ export default function KampaioHome() {
                 
                 {/* Plumbers */}
                 <div style={{
-                  width: '200px',
-                  height: '80px',
                   display: 'flex',
                   alignItems: 'center',
-                  justifyContent: 'center',
-                  background: 'linear-gradient(135deg, #00FFE7, #00BFAE)',
-                  borderRadius: '12px',
-                  padding: '16px'
+                  justifyContent: 'center'
                 }}>
                   <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M24 4c-5.514 0-10 4.486-10 10v4h20v-4c0-5.514-4.486-10-10-10zm-6 18v12h12V22H18z" fill="white"/>
+                    <path d="M24 4c-5.514 0-10 4.486-10 10v4h20v-4c0-5.514-4.486-10-10-10zm-6 18v12h12V22H18z" fill="#374151"/>
                   </svg>
                 </div>
                 
                 {/* Roofers */}
                 <div style={{
-                  width: '200px',
-                  height: '80px',
                   display: 'flex',
                   alignItems: 'center',
-                  justifyContent: 'center',
-                  background: 'linear-gradient(135deg, #7F9CF5, #667eea)',
-                  borderRadius: '12px',
-                  padding: '16px'
+                  justifyContent: 'center'
                 }}>
                   <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M24 4L4 20h4v20h32V20h4L24 4zm-2 34V26h4v12h-4zm8 0V26h4v12h-4z" fill="white"/>
+                    <path d="M24 4L4 20h4v20h32V20h4L24 4zm-2 34V26h4v12h-4zm8 0V26h4v12h-4z" fill="#374151"/>
                   </svg>
                 </div>
                 
                 {/* Electricians */}
                 <div style={{
-                  width: '200px',
-                  height: '80px',
                   display: 'flex',
                   alignItems: 'center',
-                  justifyContent: 'center',
-                  background: 'linear-gradient(135deg, #00FFE7, #00BFAE)',
-                  borderRadius: '12px',
-                  padding: '16px'
+                  justifyContent: 'center'
                 }}>
                   <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M24 4L12 20h6v20h12V20h6L24 4z" fill="white"/>
+                    <path d="M24 4L12 20h6v20h12V20h6L24 4z" fill="#374151"/>
                   </svg>
                 </div>
                 
                 {/* Gyms & Fitness Studios */}
                 <div style={{
-                  width: '200px',
-                  height: '80px',
                   display: 'flex',
                   alignItems: 'center',
-                  justifyContent: 'center',
-                  background: 'linear-gradient(135deg, #7F9CF5, #667eea)',
-                  borderRadius: '12px',
-                  padding: '16px'
+                  justifyContent: 'center'
                 }}>
                   <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M24 4c-5.514 0-10 4.486-10 10v20h20V14c0-5.514-4.486-10-10-10z" fill="white"/>
+                    <path d="M24 4c-5.514 0-10 4.486-10 10v20h20V14c0-5.514-4.486-10-10-10z" fill="#374151"/>
                   </svg>
                 </div>
                 
                 {/* Therapists / Counselors */}
                 <div style={{
-                  width: '200px',
-                  height: '80px',
                   display: 'flex',
                   alignItems: 'center',
-                  justifyContent: 'center',
-                  background: 'linear-gradient(135deg, #00FFE7, #00BFAE)',
-                  borderRadius: '12px',
-                  padding: '16px'
+                  justifyContent: 'center'
                 }}>
                   <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M24 4C12.954 4 4 12.954 4 24s8.954 20 20 20 20-8.954 20-20S35.046 4 24 4zm0 36c-8.837 0-16-7.163-16-16S15.163 8 24 8s16 7.163 16 16-7.163 16-16 16z" fill="white"/>
-                    <path d="M18 20h12v2H18zm0 4h12v2H18zm0 4h8v2h-8z" fill="white"/>
+                    <path d="M24 4C12.954 4 4 12.954 4 24s8.954 20 20 20 20-8.954 20-20S35.046 4 24 4zm0 36c-8.837 0-16-7.163-16-16S15.163 8 24 8s16 7.163 16 16-7.163 16-16 16z" fill="#374151"/>
+                    <path d="M18 20h12v2H18zm0 4h12v2H18zm0 4h8v2h-8z" fill="#374151"/>
                   </svg>
                 </div>
                 
                 {/* Ecommerce Stores */}
                 <div style={{
-                  width: '200px',
-                  height: '80px',
                   display: 'flex',
                   alignItems: 'center',
-                  justifyContent: 'center',
-                  background: 'linear-gradient(135deg, #7F9CF5, #667eea)',
-                  borderRadius: '12px',
-                  padding: '16px'
+                  justifyContent: 'center'
                 }}>
                   <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M24 4L4 12v12c0 11.046 8.954 20 20 20s20-8.954 20-20V12L24 4zm0 32c-8.837 0-16-7.163-16-16V16l16-8 16 8v4c0 8.837-7.163 16-16 16z" fill="white"/>
+                    <path d="M24 4L4 12v12c0 11.046 8.954 20 20 20s20-8.954 20-20V12L24 4zm0 32c-8.837 0-16-7.163-16-16V16l16-8 16 8v4c0 8.837-7.163 16-16 16z" fill="#374151"/>
                   </svg>
                 </div>
                 
                 {/* Wedding Photographers */}
                 <div style={{
-                  width: '200px',
-                  height: '80px',
                   display: 'flex',
                   alignItems: 'center',
-                  justifyContent: 'center',
-                  background: 'linear-gradient(135deg, #00FFE7, #00BFAE)',
-                  borderRadius: '12px',
-                  padding: '16px'
+                  justifyContent: 'center'
                 }}>
                   <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M24 4c-5.514 0-10 4.486-10 10v20h20V14c0-5.514-4.486-10-10-10z" fill="white"/>
+                    <path d="M24 4c-5.514 0-10 4.486-10 10v20h20V14c0-5.514-4.486-10-10-10z" fill="#374151"/>
                   </svg>
                 </div>
                 
                 {/* Home Cleaning Services */}
                 <div style={{
-                  width: '200px',
-                  height: '80px',
                   display: 'flex',
                   alignItems: 'center',
-                  justifyContent: 'center',
-                  background: 'linear-gradient(135deg, #7F9CF5, #667eea)',
-                  borderRadius: '12px',
-                  padding: '16px'
+                  justifyContent: 'center'
                 }}>
                   <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M24 4L4 20h4v20h32V20h4L24 4zm-2 34V26h4v12h-4zm8 0V26h4v12h-4z" fill="white"/>
+                    <path d="M24 4L4 20h4v20h32V20h4L24 4zm-2 34V26h4v12h-4zm8 0V26h4v12h-4z" fill="#374151"/>
                   </svg>
                 </div>
                 
                 {/* Digital Agencies */}
                 <div style={{
-                  width: '200px',
-                  height: '80px',
                   display: 'flex',
                   alignItems: 'center',
-                  justifyContent: 'center',
-                  background: 'linear-gradient(135deg, #00FFE7, #00BFAE)',
-                  borderRadius: '12px',
-                  padding: '16px'
+                  justifyContent: 'center'
                 }}>
                   <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M24 4L8 12v12c0 8.837 7.163 16 16 16s16-7.163 16-16V12L24 4zm0 28c-6.627 0-12-5.373-12-12V16l12-8 12 8v4c0 6.627-5.373 12-12 12z" fill="white"/>
+                    <path d="M24 4L8 12v12c0 8.837 7.163 16 16 16s16-7.163 16-16V12L24 4zm0 28c-6.627 0-12-5.373-12-12V16l12-8 12 8v4c0 6.627-5.373 12-12 12z" fill="#374151"/>
                   </svg>
                 </div>
                 
                 {/* Auto Repair Shops */}
                 <div style={{
-                  width: '200px',
-                  height: '80px',
                   display: 'flex',
                   alignItems: 'center',
-                  justifyContent: 'center',
-                  background: 'linear-gradient(135deg, #7F9CF5, #667eea)',
-                  borderRadius: '12px',
-                  padding: '16px'
+                  justifyContent: 'center'
                 }}>
                   <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M24 4c-5.514 0-10 4.486-10 10v4h20v-4c0-5.514-4.486-10-10-10zm-6 18v12h12V22H18z" fill="white"/>
+                    <path d="M24 4c-5.514 0-10 4.486-10 10v4h20v-4c0-5.514-4.486-10-10-10zm-6 18v12h12V22H18z" fill="#374151"/>
                   </svg>
                 </div>
                 
@@ -4108,7 +3889,7 @@ export default function KampaioHome() {
               <div style={{
                 width: '100%',
                 height: '200px',
-                background: 'linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%)',
+                background: 'linear-gradient(135deg, #7F9CF5 0%, #667eea 100%)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -4247,7 +4028,7 @@ export default function KampaioHome() {
               <div style={{
                 width: '100%',
                 height: '200px',
-                background: 'linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%)',
+                background: 'linear-gradient(135deg, #7F9CF5 0%, #667eea 100%)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -4483,7 +4264,7 @@ export default function KampaioHome() {
               <div style={{
                 width: '100%',
                 height: '200px',
-                background: 'linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%)',
+                background: 'linear-gradient(135deg, #7F9CF5 0%, #667eea 100%)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -4610,7 +4391,7 @@ export default function KampaioHome() {
               <div style={{
                 width: '100%',
                 height: '200px',
-                background: 'linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%)',
+                background: 'linear-gradient(135deg, #7F9CF5 0%, #667eea 100%)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -4734,7 +4515,7 @@ export default function KampaioHome() {
 
       {/* Pre-Footer CTA Block */}
       <div style={{
-        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        background: 'linear-gradient(135deg, #7F9CF5 0%, #667eea 100%)',
         padding: '40px 20px',
         textAlign: 'center',
         color: 'white'
