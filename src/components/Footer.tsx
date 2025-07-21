@@ -8,8 +8,30 @@ interface FooterProps {
 }
 
 export default function Footer({ showTitle = false, compact = false }: FooterProps) {
-  // Мемоизируем текущий год для производительности
   const currentYear = useMemo(() => new Date().getFullYear(), [])
+
+  if (compact) {
+    return (
+      <footer style={{
+        background: '#374151',
+        borderTop: '1px solid #23272f',
+        padding: '32px 0 24px',
+        textAlign: 'center',
+        fontSize: '15px',
+        color: 'white',
+        lineHeight: '1.6'
+      }}>
+        <div style={{ marginBottom: 4 }}>
+          © Kampaio, 2025. All rights reserved | info@kampaio.com
+        </div>
+        <div>
+          <a href="/privacy-policy" style={{ color: 'white', textDecoration: 'underline', marginRight: 12 }}>Privacy Policy</a>
+          |
+          <a href="/terms-of-service" style={{ color: 'white', textDecoration: 'underline', marginLeft: 12 }}>Terms of Service</a>
+        </div>
+      </footer>
+    );
+  }
 
   return (
     <footer style={{
@@ -23,35 +45,9 @@ export default function Footer({ showTitle = false, compact = false }: FooterPro
             Comprehensive Digital Services for Business Growth
           </h2>
         )}
-        
-        {compact ? (
-          // Компактний футер для інших сторінок (в два рядки)
-          <>
-            <p style={{ textAlign: 'center', margin: 0, padding: '0 0 8px 0', color: 'rgba(255,255,255,0.8)', fontSize: '15px', letterSpacing: '0.2px' }}>
-              &copy; Kampaio, {currentYear}. All rights reserved |{' '}
-              <a href="mailto:info@kampaio.com" style={{ color: 'inherit', textDecoration: 'none' }} aria-label="Send email to info@kampaio.com">
-                info@kampaio.com
-              </a>
-            </p>
-            <p style={{ textAlign: 'center', margin: 0, padding: '0 0 16px 0', color: 'rgba(255,255,255,0.8)', fontSize: '15px', letterSpacing: '0.2px' }}>
-              <a href="/privacy-policy" style={{ color: 'inherit', textDecoration: 'none' }}>Privacy Policy</a>
-              {' '}|{' '}
-              <a href="/terms-of-service" style={{ color: 'inherit', textDecoration: 'none' }}>Terms of Service</a>
-            </p>
-          </>
-        ) : (
-          // Повний футер для головної сторінки (в один рядок)
-          <p style={{ textAlign: 'center', margin: 0, padding: '0 0 16px 0', color: 'rgba(255,255,255,0.8)', fontSize: '15px', letterSpacing: '0.2px' }}>
-            &copy; Kampaio, {currentYear}. All rights reserved |{' '}
-            <a href="mailto:info@kampaio.com" style={{ color: 'inherit', textDecoration: 'none' }} aria-label="Send email to info@kampaio.com">
-              info@kampaio.com
-            </a>
-            {' '}|{' '}
-            <a href="/privacy-policy" style={{ color: 'inherit', textDecoration: 'none' }}>Privacy Policy</a>
-            {' '}|{' '}
-            <a href="/terms-of-service" style={{ color: 'inherit', textDecoration: 'none' }}>Terms of Service</a>
-          </p>
-        )}
+        <div>
+          © Kampaio, 2025. All rights reserved | info@kampaio.com | Privacy Policy | Terms of Service
+        </div>
       </div>
     </footer>
   )

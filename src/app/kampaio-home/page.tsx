@@ -3878,6 +3878,7 @@ export default function KampaioHome() {
               transition: 'all 0.3s ease',
               cursor: 'pointer'
             }}
+            onClick={() => window.location.href = '/blog/what-ceos-want-google-ads-reports'}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = 'translateY(-8px)';
               e.currentTarget.style.boxShadow = '0 20px 40px rgba(0,0,0,0.12)';
@@ -4017,6 +4018,7 @@ export default function KampaioHome() {
               transition: 'all 0.3s ease',
               cursor: 'pointer'
             }}
+            onClick={() => window.location.href = '/blog/5-tips-for-working-with-ai-ppc-tools'}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = 'translateY(-8px)';
               e.currentTarget.style.boxShadow = '0 20px 40px rgba(0,0,0,0.12)';
@@ -4238,7 +4240,7 @@ export default function KampaioHome() {
                   color: '#666',
                   lineHeight: '1.5'
                 }}>
-                  While competitors struggle with AI, you'll master it. Get the exact prompts and workflows used by top PPC professionals to 10x your productivity.
+                  While competitors struggle with AI, you'll master it. Discover prompts and workflows top PPC pros use to 10x your productivity.
                 </p>
               </div>
             </div>
@@ -4253,6 +4255,7 @@ export default function KampaioHome() {
               transition: 'all 0.3s ease',
               cursor: 'pointer'
             }}
+            onClick={() => window.location.href = '/blog/performance-max-problems-b2b-marketing'}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = 'translateY(-8px)';
               e.currentTarget.style.boxShadow = '0 20px 40px rgba(0,0,0,0.12)';
@@ -4380,6 +4383,7 @@ export default function KampaioHome() {
               transition: 'all 0.3s ease',
               cursor: 'pointer'
             }}
+            onClick={() => window.location.href = '/blog/how-ai-is-transforming-google-ads-in-2025'}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = 'translateY(-8px)';
               e.currentTarget.style.boxShadow = '0 20px 40px rgba(0,0,0,0.12)';
@@ -4505,7 +4509,7 @@ export default function KampaioHome() {
                   color: '#666',
                   lineHeight: '1.5'
                 }}>
-                  While most advertisers stick to old tactics, AI is quietly revolutionizing Google Ads. Get ahead of the curve with strategies that will dominate 2025.
+                  It's 2025 — AI is already transforming Google Ads. Discover the new rules of PPC and get instant, personalized insights to boost your campaigns today.
                 </p>
               </div>
             </div>

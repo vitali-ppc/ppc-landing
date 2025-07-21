@@ -16,8 +16,9 @@ export default function BlogPostPage() {
     "description": "Learn which Google Ads metrics CEOs care about (hint: it's not clicks) and get the exact reporting template that secures bigger budgets.",
     "image": "https://kampaio.com/logo.png",
     "author": {
-      "@type": "Organization",
-      "name": "Kampaio Team"
+      "@type": "Person",
+      "name": "Emily Carter",
+      "jobTitle": "Paid Media Strategist at Kampaio"
     },
     "publisher": {
       "@type": "Organization",
@@ -27,8 +28,8 @@ export default function BlogPostPage() {
         "url": "https://kampaio.com/logo.png"
       }
     },
-    "datePublished": "2024-12-15T00:00:00.000Z",
-    "dateModified": "2024-12-15T00:00:00.000Z",
+    "datePublished": "2025-07-15T00:00:00.000Z",
+    "dateModified": "2025-07-15T00:00:00.000Z",
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https://kampaio.com/blog/what-ceos-want-google-ads-reports"
@@ -128,7 +129,7 @@ export default function BlogPostPage() {
             lineHeight: '1.6',
             fontWeight: '500'
           }}>
-            Learn which Google Ads metrics CEOs care about (hint: it's not clicks) and get the exact reporting template that secures bigger budgets.
+            Discover the Google Ads metrics that matter most to CEOs — and get a ready-to-use reporting template that proves your campaigns drive real business results.
           </p>
 
           {/* Meta Info */}
@@ -140,29 +141,16 @@ export default function BlogPostPage() {
             paddingBottom: '32px',
             borderBottom: '1px solid #e5e7eb'
           }}>
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '8px'
-            }}>
-              <div style={{
-                width: '40px',
-                height: '40px',
-                borderRadius: '50%',
-                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: 'white',
-                fontWeight: '600',
-                fontSize: '16px'
-              }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: '600', fontSize: '16px' }}>
                 K
               </div>
-              <span style={{ color: '#666', fontSize: '16px' }}>Kampaio Team</span>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '2px' }}>
+                <span style={{ color: '#666', fontSize: '16px', fontWeight: 600 }}>by Emily Carter</span>
+                <span style={{ color: '#888', fontSize: '15px' }}>Paid Media Strategist at Kampaio</span>
+                <span style={{ color: '#888', fontSize: '15px' }}>July 15, 2025 · 12 min read</span>
+              </div>
             </div>
-            <div style={{ color: '#666', fontSize: '16px' }}>December 15, 2024</div>
-            <div style={{ color: '#666', fontSize: '16px' }}>12 min read</div>
           </div>
 
           {/* Table of Contents Toggle */}
@@ -928,9 +916,10 @@ export default function BlogPostPage() {
                 fontSize: '28px',
                 fontWeight: '700',
                 color: 'white',
-                marginBottom: '16px'
+                marginBottom: '16px',
+                lineHeight: '1.2'
               }}>
-                Get Your Free CEO Reporting Template
+                Stop wasting budget on metrics that don't matter
               </h3>
               <p style={{
                 fontSize: '18px',
@@ -938,65 +927,38 @@ export default function BlogPostPage() {
                 marginBottom: '32px',
                 opacity: '0.9'
               }}>
-                Download our complete CEO reporting template and start securing bigger budgets today.
+                Let our AI uncover where your Google Ads spend is leaking — and help you fix it in minutes.
               </p>
-              <button style={{
-                background: 'white',
-                color: '#667eea',
-                border: 'none',
-                padding: '16px 32px',
-                borderRadius: '8px',
-                fontSize: '16px',
-                fontWeight: '600',
-                cursor: 'pointer',
-                transition: 'all 0.3s ease'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-2px)';
-                e.currentTarget.style.boxShadow = '0 8px 25px rgba(0,0,0,0.15)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = 'none';
-              }}
+              <button
+                style={{
+                  background: 'linear-gradient(45deg, #00FFE7, #00BFAE)',
+                  color: '#1A1A1A',
+                  border: 'none',
+                  padding: '16px 32px',
+                  borderRadius: '10px',
+                  fontSize: '16px',
+                  fontWeight: '600',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  display: 'inline-block',
+                  boxShadow: 'none',
+                }}
+                onClick={() => { window.location.href = '/chat'; }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.boxShadow = '0 8px 25px rgba(0,191,174,0.15)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.boxShadow = 'none';
+                }}
               >
-                Download Free Template
+                Find My Leaks
               </button>
-            </div>
-
-            <div style={{
-              background: '#f8fafc',
-              border: '1px solid #e5e7eb',
-              borderRadius: '12px',
-              padding: '24px'
-            }}>
-              <h4 style={{
-                fontSize: '20px',
-                fontWeight: '600',
-                color: '#1a1a1a',
-                marginBottom: '16px'
-              }}>
-                Check out these Free PPC Tools today:
-              </h4>
-              <ul style={{
-                fontSize: '16px',
-                lineHeight: '1.6',
-                color: '#374151',
-                margin: '0',
-                paddingLeft: '20px'
-              }}>
-                <li style={{ marginBottom: '8px' }}><strong>ROI Calculator</strong> - Calculate true ROI including all costs and overhead</li>
-                <li style={{ marginBottom: '8px' }}><strong>CAC Analyzer</strong> - Track customer acquisition costs across all channels</li>
-                <li style={{ marginBottom: '8px' }}><strong>CLV Predictor</strong> - Forecast customer lifetime value with AI</li>
-                <li style={{ marginBottom: '8px' }}><strong>Executive Dashboard</strong> - Create CEO-ready reports in minutes</li>
-                <li style={{ marginBottom: '8px' }}><strong>Budget Optimizer</strong> - Maximize your PPC budget allocation</li>
-              </ul>
             </div>
           </section>
         </div>
       </div>
 
-        <Footer />
+        <Footer compact={true} />
       </div>
     </>
   );

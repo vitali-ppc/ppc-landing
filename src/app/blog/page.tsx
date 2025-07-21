@@ -10,11 +10,11 @@ export default function BlogPage() {
 
   const categories = [
     { id: 'all', name: 'All Posts' },
-    { id: 'ppc', name: 'PPC Optimization' },
     { id: 'ai', name: 'AI & Automation' },
     { id: 'google-ads', name: 'Google Ads' },
     { id: 'strategy', name: 'Strategy' },
-    { id: 'case-studies', name: 'Case Studies' }
+    { id: 'ppc', name: 'PPC Optimization' },
+    { id: 'b2b', name: 'B2B Marketing' }
   ];
 
   const blogPosts = [
@@ -24,7 +24,7 @@ export default function BlogPage() {
       excerpt: 'Learn which Google Ads metrics CEOs care about (hint: it\'s not clicks) and get the exact reporting template that secures bigger budgets.',
       category: 'strategy',
       author: 'Kampaio Team',
-      date: '2024-12-15',
+      date: '2025-07-15',
       readTime: '12 min read',
       featured: true,
       slug: 'what-ceos-want-google-ads-reports'
@@ -35,26 +35,49 @@ export default function BlogPage() {
       excerpt: 'Discover how artificial intelligence is revolutionizing PPC campaigns and learn proven strategies to boost your ROI.',
       category: 'ai',
       author: 'Kampaio Team',
-      date: '2024-12-14',
-      readTime: '8 min read'
+      date: '2025-07-14',
+      readTime: '8 min read',
+      slug: '10-ai-powered-ppc-optimization-strategies'
     },
     {
       id: 3,
-      title: 'The Complete Guide to Google Ads Quality Score in 2024',
+      title: 'The Complete Guide to Google Ads Quality Score in 2025',
       excerpt: 'Master the fundamentals of Quality Score and learn advanced techniques to improve your ad performance.',
       category: 'google-ads',
       author: 'Sarah Johnson',
-      date: '2024-12-12',
-      readTime: '12 min read'
+      date: '2025-07-21',
+      readTime: '12 min read',
+      slug: 'the-complete-guide-to-google-ads-quality-score-in-2024'
     },
     {
       id: 4,
-      title: 'How We Increased Client ROI by 340% Using AI Automation',
-      excerpt: 'Real case study showing how our AI-powered platform transformed a struggling PPC campaign.',
-      category: 'case-studies',
-      author: 'Mike Chen',
-      date: '2024-12-10',
-      readTime: '10 min read'
+      title: '5 Tips for Working with AI-Powered PPC Tools',
+      excerpt: "While competitors struggle with AI, you'll master it. Discover prompts and workflows top PPC pros use to 10x your productivity.",
+      category: 'ai',
+      author: 'Kampaio Team',
+      date: '2025-07-22',
+      readTime: '7 min read',
+      slug: '5-tips-for-working-with-ai-ppc-tools'
+    },
+    {
+      id: 6,
+      title: 'Why Performance Max Fails in B2B Marketing',
+      excerpt: "The dirty secret Google won't tell you: Performance Max is built for B2C, not B2B. Learn why it fails and get the alternative strategy that actually works.",
+      category: 'google-ads',
+      author: 'Kampaio Team',
+      date: '2025-07-23',
+      readTime: '9 min read',
+      slug: 'performance-max-problems-b2b-marketing'
+    },
+    {
+      id: 7,
+      title: 'How AI is Transforming Google Ads in 2025',
+      excerpt: "It's 2025 — AI is already transforming Google Ads. Discover the new rules of PPC and get instant, personalized insights to boost your campaigns today.",
+      category: 'ai',
+      author: 'by Emily Carter, Paid Media Strategist at Kampaio',
+      date: '2025-07-24',
+      readTime: '10 min read',
+      slug: 'how-ai-is-transforming-google-ads-in-2025'
     }
   ];
 
@@ -182,11 +205,14 @@ export default function BlogPage() {
       </div>
 
       {/* Blog Posts Grid */}
-      <div style={{
-        maxWidth: '1200px',
-        margin: '0 auto',
-        padding: '0 24px 80px'
-      }}>
+      <div
+        className="blog-grid"
+        style={{
+          maxWidth: '1200px',
+          margin: '0 auto',
+          padding: '0 24px 80px'
+        }}
+      >
         <h2 style={{
           fontSize: '24px',
           fontWeight: '700',
@@ -196,7 +222,6 @@ export default function BlogPage() {
         }}>
           Latest Articles
         </h2>
-        
         {filteredPosts.length === 0 ? (
           <div style={{
             textAlign: 'center',
@@ -207,15 +232,21 @@ export default function BlogPage() {
             <p>Try adjusting your search or filter criteria</p>
           </div>
         ) : (
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
-            gap: '32px'
-          }}>
+          <div
+            className="blog-grid"
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(3, 1fr)',
+              gap: '32px',
+              justifyItems: 'center'
+            }}
+          >
             {filteredPosts.map((post) => (
               <article
                 key={post.id}
                 style={{
+                  width: '100%',
+                  maxWidth: '370px',
                   background: 'white',
                   borderRadius: '16px',
                   overflow: 'hidden',
