@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Header from '../../../components/Header';
 import Footer from '../../../components/Footer';
 import { generateTitle, generateSEOTitle, generateSEODescription, generateSubheading } from '../../../../utils/seo';
+import { useState } from 'react';
 
 // Премиум заголовки для ключевых ниш
 const premiumTitles: Record<string, string> = {
@@ -67,11 +68,11 @@ function normalizeNiche(niche: string): string {
 }
 
 const cities = [
-  { slug: 'chicago', name: 'Chicago', desc: 'Grow your dental practice in Chicago with targeted Google Ads and local PPC strategies.' },
-  { slug: 'miami', name: 'Miami', desc: 'Attract more patients in Miami with expert Google Ads management for dentists.' },
-  { slug: 'austin', name: 'Austin', desc: 'Boost your Austin dental clinic with high-converting PPC campaigns.' },
-  { slug: 'phoenix', name: 'Phoenix', desc: 'Drive more appointments in Phoenix with local PPC for dentists.' },
-  { slug: 'san-diego', name: 'San Diego', desc: 'Get more dental leads in San Diego with city-focused Google Ads.' },
+  { slug: 'chicago', name: 'Chicago' },
+  { slug: 'miami', name: 'Miami' },
+  { slug: 'austin', name: 'Austin' },
+  { slug: 'phoenix', name: 'Phoenix' },
+  { slug: 'san-diego', name: 'San Diego' },
 ];
 
 export default function DentistAdsHubPage() {
@@ -82,6 +83,14 @@ export default function DentistAdsHubPage() {
   const seoTitle = generateSEOTitle(niche);
   const seoDescription = generateSEODescription(niche);
   const subheading = generateSubheading(niche);
+
+  // Состояние для поиска
+  const [searchQuery, setSearchQuery] = useState('');
+
+  // Фильтрация городов по поиску
+  const filteredCities = cities.filter(city =>
+    city.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   // Для демонстрации (можно удалить):
   console.log('SEO Title:', seoTitle);
@@ -97,70 +106,254 @@ export default function DentistAdsHubPage() {
             for {titleParts[1]}
           </h1>
           <p style={{ fontSize: '1.15rem', color: '#374151', fontWeight: 400, marginBottom: 24 }}>
-            {subheading}
+            Discover AI-optimized, data-driven ad strategies to help dentists attract more local patients. Choose your city to explore tailored insights and proven campaign examples.
           </p>
         </div>
+        
+        {/* Поиск по городам */}
+        <div style={{ maxWidth: 600, margin: '0 auto 48px auto' }}>
+          <div style={{
+            position: 'relative',
+            background: 'white',
+            borderRadius: '16px',
+            boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
+            border: '1px solid #e5e7eb',
+            overflow: 'hidden'
+          }}>
+            <input
+              type="text"
+              placeholder="Search cities..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              style={{
+                width: '100%',
+                padding: '16px 20px',
+                border: 'none',
+                outline: 'none',
+                fontSize: '16px',
+                background: 'transparent',
+                color: '#1a1a1a'
+              }}
+            />
+            <div style={{
+              position: 'absolute',
+              right: '16px',
+              top: '50%',
+              transform: 'translateY(-50%)',
+              color: '#A0A0A0'
+            }}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="m21 21-4.35-4.35"/>
+              </svg>
+            </div>
+          </div>
+          {searchQuery && (
+            <div style={{
+              textAlign: 'center',
+              marginTop: '12px',
+              fontSize: '14px',
+              color: '#A0A0A0'
+            }}>
+              {filteredCities.length} city{filteredCities.length !== 1 ? 'ies' : 'y'} found
+            </div>
+          )}
+        </div>
+
         <section style={{ maxWidth: 1100, margin: '0 auto' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 32 }}>
-            {cities.map(city => (
-              <div
-                key={city.slug}
-                style={{
+          <div style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(3, 1fr)', 
+            gap: 32,
+            minHeight: '400px'
+          }}>
+            {filteredCities.map((city, index) => {
+              // Разные стили для каждой карточки
+              const cardStyles = [
+                // 1. Phoenix - Интерактивный (Framer)
+                {
                   background: 'white',
-                  borderRadius: 20,
-                  boxShadow: '0 8px 32px rgba(0,0,0,0.08)',
-                  padding: 32,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-between',
-                  transition: 'box-shadow 0.3s',
-                  minHeight: 220,
-                  border: '1px solid #e5e7eb',
-                  position: 'relative',
-                }}
-                onMouseEnter={e => {
-                  (e.currentTarget as HTMLElement).style.boxShadow = '0 16px 40px rgba(0,0,0,0.12)';
-                }}
-                onMouseLeave={e => {
-                  (e.currentTarget as HTMLElement).style.boxShadow = '0 8px 32px rgba(0,0,0,0.08)';
-                }}
-              >
-                <div>
-                  <h3 style={{ fontSize: '1.25rem', fontWeight: 600, color: '#2563eb', marginBottom: 8 }}>{city.name}</h3>
-                  <p style={{ color: '#6b7280', marginBottom: 16 }}>{city.desc}</p>
-                </div>
+                  border: '2px solid #667eea',
+                  boxShadow: '0 8px 32px rgba(102,126,234,0.3)',
+                  borderRadius: '16px',
+                  padding: '30px',
+                  transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
+                },
+                // 2. Phoenix - Интерактивный (Framer)
+                {
+                  background: 'white',
+                  border: '2px solid #667eea',
+                  boxShadow: '0 8px 32px rgba(102,126,234,0.3)',
+                  borderRadius: '16px',
+                  padding: '30px',
+                  transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
+                },
+                // 3. Phoenix - Интерактивный (Framer)
+                {
+                  background: 'white',
+                  border: '2px solid #667eea',
+                  boxShadow: '0 8px 32px rgba(102,126,234,0.3)',
+                  borderRadius: '16px',
+                  padding: '30px',
+                  transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
+                },
+                // 4. Phoenix - Интерактивный (Framer)
+                {
+                  background: 'white',
+                  border: '2px solid #667eea',
+                  boxShadow: '0 8px 32px rgba(102,126,234,0.3)',
+                  borderRadius: '16px',
+                  padding: '30px',
+                  transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
+                },
+                // 5. Phoenix - Интерактивный (Framer)
+                {
+                  background: 'white',
+                  border: '2px solid #667eea',
+                  boxShadow: '0 8px 32px rgba(102,126,234,0.3)',
+                  borderRadius: '16px',
+                  padding: '30px',
+                  transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
+                }
+              ];
+
+              const textColors = [
+                '#1a1a1a', // Phoenix - темный
+                '#1a1a1a', // Phoenix - темный
+                '#1a1a1a', // Phoenix - темный
+                '#1a1a1a', // Phoenix - темный
+                '#1a1a1a'  // Phoenix - темный
+              ];
+
+              const buttonStyles = [
+                // Phoenix - градиентная кнопка
+                {
+                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                  color: 'white',
+                  border: 'none',
+                  boxShadow: '0 4px 16px rgba(102,126,234,0.3)'
+                },
+                // Phoenix - градиентная кнопка
+                {
+                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                  color: 'white',
+                  border: 'none',
+                  boxShadow: '0 4px 16px rgba(102,126,234,0.3)'
+                },
+                // Phoenix - градиентная кнопка
+                {
+                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                  color: 'white',
+                  border: 'none',
+                  boxShadow: '0 4px 16px rgba(102,126,234,0.3)'
+                },
+                // Phoenix - градиентная кнопка
+                {
+                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                  color: 'white',
+                  border: 'none',
+                  boxShadow: '0 4px 16px rgba(102,126,234,0.3)'
+                },
+                // Phoenix - градиентная кнопка
+                {
+                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                  color: 'white',
+                  border: 'none',
+                  boxShadow: '0 4px 16px rgba(102,126,234,0.3)'
+                }
+              ];
+
+              const currentStyle = cardStyles[index] || cardStyles[0];
+              const currentTextColor = textColors[index] || textColors[0];
+              const currentButtonStyle = buttonStyles[index] || buttonStyles[0];
+
+                            return (
                 <Link
+                  key={city.slug}
                   href={`/ads/dentist/${city.slug}`}
                   style={{
-                    display: 'inline-block',
-                    marginTop: 'auto',
-                    padding: '12px 28px',
-                    borderRadius: 12,
-                    background: 'linear-gradient(90deg, #2563eb 0%, #06b6d4 100%)',
-                    color: 'white',
-                    fontWeight: 700,
-                    fontSize: '1rem',
-                    boxShadow: '0 4px 16px rgba(37,99,235,0.12)',
+                    ...currentStyle,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-between',
+                    minHeight: 220,
+                    maxHeight: 220,
+                    width: '100%',
+                    position: 'relative',
                     textDecoration: 'none',
-                    transition: 'background 0.2s',
-                    border: 'none',
                     cursor: 'pointer',
                   }}
                   onMouseEnter={e => {
-                    (e.currentTarget as HTMLElement).style.background = 'linear-gradient(90deg, #1d4ed8 0%, #0891b2 100%)';
+                    const target = e.currentTarget as HTMLElement;
+                    // Все карточки Phoenix - интерактивный hover
+                    target.style.transform = 'translateY(-8px) scale(1.05) rotate(1deg)';
+                    target.style.boxShadow = '0 16px 40px rgba(102,126,234,0.4)';
                   }}
                   onMouseLeave={e => {
-                    (e.currentTarget as HTMLElement).style.background = 'linear-gradient(90deg, #2563eb 0%, #06b6d4 100%)';
+                    const target = e.currentTarget as HTMLElement;
+                    target.style.transform = 'translateY(0) scale(1) rotate(0deg)';
+                    target.style.boxShadow = currentStyle.boxShadow;
+                    target.style.background = currentStyle.background;
                   }}
                 >
-                  Explore
+                  <div>
+                    <h3 style={{ 
+                      fontSize: '1.25rem', 
+                      fontWeight: 600, 
+                      color: currentTextColor, 
+                      marginBottom: 8 
+                    }}>
+                      {city.name}
+                    </h3>
+ 
+                  </div>
+                  <div
+                    style={{
+                      display: 'inline-block',
+                      marginTop: 'auto',
+                      padding: '12px 28px',
+                      borderRadius: 12,
+                      ...currentButtonStyle,
+                      fontWeight: 700,
+                      fontSize: '1rem',
+                      textAlign: 'center',
+                      transition: 'all 0.2s',
+                    }}
+                  >
+                    Explore
+                  </div>
                 </Link>
-              </div>
-            ))}
+              );
+            })}
           </div>
+          
+          {/* Сообщение, если ничего не найдено */}
+          {filteredCities.length === 0 && searchQuery && (
+            <div style={{
+              textAlign: 'center',
+              padding: '48px 24px',
+              color: '#A0A0A0',
+              fontSize: '16px'
+            }}>
+              No cities found for "{searchQuery}". Try a different search term.
+            </div>
+          )}
+        </section>
+
+        {/* SEO-параграф */}
+        <section style={{ maxWidth: 800, margin: '48px auto', padding: '0 16px' }}>
+          <p style={{
+            fontSize: '1rem',
+            lineHeight: '1.6',
+            color: '#6b7280',
+            textAlign: 'center',
+            margin: 0
+          }}>
+            This page lists AI-optimized Google Ads examples and strategies for dentists in cities like Chicago, Miami, Austin, Phoenix, San Diego, and more. Whether you're running a dental clinic or managing marketing for one, our tools help you get more local patients through paid search.
+          </p>
         </section>
       </main>
       <Footer compact={true} />
     </>
   );
-} 
+}

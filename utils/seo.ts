@@ -48,10 +48,18 @@ export const customDescriptions: Record<string, string> = {
 
 // Кастомные подзаголовки для ключевых ниш
 export const customSubheadings: Record<string, string> = {
-  dentist: 'Unlock targeted, data-driven Google Ads campaigns designed specifically for dentists — increase local leads and grow your practice faster.',
-  lawyer: 'Unlock data-driven Google Ads campaigns tailored for lawyers — get more local clients and grow your law practice.',
-  'real-estate': 'Unlock Google Ads strategies for real estate agents — attract more buyers and sellers in your area.',
-  // ... другие ключевые ниши
+  dentist: 'Discover AI-optimized, data-driven ad strategies to help dentists attract more local patients. Choose your city to explore tailored insights and proven campaign examples.',
+  lawyer: 'Discover AI-optimized, data-driven ad strategies to help lawyers attract more local clients. Choose your city to explore tailored insights and proven campaign examples.',
+  'real-estate': 'Discover AI-optimized, data-driven ad strategies to help real estate agents attract more local clients. Choose your city to explore tailored insights and proven campaign examples.',
+  'car-dealer': 'Discover AI-optimized, data-driven ad strategies to help car dealerships attract more local customers. Choose your city to explore tailored insights and proven campaign examples.',
+  'plumber': 'Discover AI-optimized, data-driven ad strategies to help plumbers attract more local customers. Choose your city to explore tailored insights and proven campaign examples.',
+  'electrician': 'Discover AI-optimized, data-driven ad strategies to help electricians attract more local customers. Choose your city to explore tailored insights and proven campaign examples.',
+  'roofer': 'Discover AI-optimized, data-driven ad strategies to help roofers attract more local customers. Choose your city to explore tailored insights and proven campaign examples.',
+  'contractor': 'Discover AI-optimized, data-driven ad strategies to help contractors attract more local customers. Choose your city to explore tailored insights and proven campaign examples.',
+  'restaurant': 'Discover AI-optimized, data-driven ad strategies to help restaurants attract more local customers. Choose your city to explore tailored insights and proven campaign examples.',
+  'gym': 'Discover AI-optimized, data-driven ad strategies to help gyms attract more local members. Choose your city to explore tailored insights and proven campaign examples.',
+  'salon': 'Discover AI-optimized, data-driven ad strategies to help salons attract more local customers. Choose your city to explore tailored insights and proven campaign examples.',
+  'chiropractor': 'Discover AI-optimized, data-driven ad strategies to help chiropractors attract more local patients. Choose your city to explore tailored insights and proven campaign examples.',
 };
 
 // Автоматическое форматирование ниши
@@ -121,8 +129,8 @@ export function generateSubheading(niche: string): string {
     return customSubheadings[normalizedNiche];
   }
   if (!normalizedNiche || normalizedNiche === 'unknown' || normalizedNiche === '') {
-    return 'Unlock targeted, data-driven Google Ads campaigns for your business — increase local leads and grow faster.';
+    return 'Discover AI-optimized, data-driven ad strategies to help your business attract more local customers. Choose your city to explore tailored insights and proven campaign examples.';
   }
   const formattedNiche = formatNiche(normalizedNiche);
-  return `Unlock targeted, data-driven Google Ads campaigns designed specifically for ${formattedNiche.toLowerCase()} — increase local leads and grow your business faster.`;
+  return `Discover AI-optimized, data-driven ad strategies to help ${formattedNiche.toLowerCase()} businesses attract more local customers. Choose your city to explore tailored insights and proven campaign examples.`;
 } 
