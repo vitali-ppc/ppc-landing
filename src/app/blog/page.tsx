@@ -23,7 +23,7 @@ export default function BlogPage() {
       title: 'What CEOs Want to See in Google Ads Reports',
       excerpt: 'Learn which Google Ads metrics CEOs care about (hint: it\'s not clicks) and get the exact reporting template that secures bigger budgets.',
       category: 'strategy',
-      author: 'Kampaio Team',
+      author: 'By Emily Carter',
       date: '2025-07-15',
       readTime: '12 min read',
       featured: true,
@@ -34,7 +34,7 @@ export default function BlogPage() {
       title: '10 AI-Powered PPC Optimization Strategies That Actually Work',
       excerpt: 'Discover how artificial intelligence is revolutionizing PPC campaigns and learn proven strategies to boost your ROI.',
       category: 'ai',
-      author: 'Kampaio Team',
+      author: 'By Emily Carter',
       date: '2025-07-14',
       readTime: '8 min read',
       slug: '10-ai-powered-ppc-optimization-strategies'
@@ -44,7 +44,7 @@ export default function BlogPage() {
       title: 'The Complete Guide to Google Ads Quality Score in 2025',
       excerpt: 'Master the fundamentals of Quality Score and learn advanced techniques to improve your ad performance.',
       category: 'google-ads',
-      author: 'Sarah Johnson',
+      author: 'By Emily Carter',
       date: '2025-07-21',
       readTime: '12 min read',
       slug: 'the-complete-guide-to-google-ads-quality-score-in-2024'
@@ -54,7 +54,7 @@ export default function BlogPage() {
       title: '5 Tips for Working with AI-Powered PPC Tools',
       excerpt: "While competitors struggle with AI, you'll master it. Discover prompts and workflows top PPC pros use to 10x your productivity.",
       category: 'ai',
-      author: 'Kampaio Team',
+      author: 'By Emily Carter',
       date: '2025-07-22',
       readTime: '7 min read',
       slug: '5-tips-for-working-with-ai-ppc-tools'
@@ -64,7 +64,7 @@ export default function BlogPage() {
       title: 'Why Performance Max Fails in B2B Marketing',
       excerpt: "The dirty secret Google won't tell you: Performance Max is built for B2C, not B2B. Learn why it fails and get the alternative strategy that actually works.",
       category: 'google-ads',
-      author: 'Kampaio Team',
+      author: 'By Emily Carter',
       date: '2025-07-23',
       readTime: '9 min read',
       slug: 'performance-max-problems-b2b-marketing'
@@ -74,7 +74,7 @@ export default function BlogPage() {
       title: 'How AI is Transforming Google Ads in 2025',
       excerpt: "It's 2025 — AI is already transforming Google Ads. Discover the new rules of PPC and get instant, personalized insights to boost your campaigns today.",
       category: 'ai',
-      author: 'by Emily Carter, Paid Media Strategist at Kampaio',
+      author: 'By Emily Carter',
       date: '2025-07-24',
       readTime: '10 min read',
       slug: 'how-ai-is-transforming-google-ads-in-2025'
@@ -330,7 +330,7 @@ export default function BlogPage() {
                     fontSize: '12px',
                     color: '#666'
                   }}>
-                    <span>By {post.author}</span>
+                    <span>{post.author}</span>
                     <span>
                       {new Date(post.date).toLocaleDateString('en-US', {
                         year: 'numeric',
