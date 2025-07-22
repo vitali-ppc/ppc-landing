@@ -14,6 +14,7 @@ export const premiumTitles: Record<string, string> = {
   'gym': 'AI-Powered Local Google Ads for Gyms & Fitness Centers',
   'salon': 'AI-Powered Local Google Ads for Hair Salons & Spas',
   'chiropractor': 'AI-Powered Local Google Ads for Chiropractors',
+  saas: 'AI-Powered Local Google Ads for SaaS Companies',
 };
 
 // Словарь синонимов для ниш
@@ -43,6 +44,7 @@ export const nicheSynonyms: Record<string, string> = {
 // Кастомные SEO description для ключевых ниш
 export const customDescriptions: Record<string, string> = {
   dentist: 'Discover how AI-powered Google Ads help dentists attract more local customers and grow revenue. Get expert PPC strategies and local optimization tips tailored for dental services.',
+  saas: 'Discover how AI-powered Google Ads help SaaS companies attract more local customers and grow revenue. Get expert PPC strategies and local optimization tips tailored for SaaS services.',
   // В будущем можно добавить lawyer, real-estate и т.д.
 };
 
@@ -60,10 +62,16 @@ export const customSubheadings: Record<string, string> = {
   'gym': 'Discover AI-optimized, data-driven ad strategies to help gyms attract more local members. Choose your city to explore tailored insights and proven campaign examples.',
   'salon': 'Discover AI-optimized, data-driven ad strategies to help salons attract more local customers. Choose your city to explore tailored insights and proven campaign examples.',
   'chiropractor': 'Discover AI-optimized, data-driven ad strategies to help chiropractors attract more local patients. Choose your city to explore tailored insights and proven campaign examples.',
+  saas: 'Discover AI-optimized, data-driven ad strategies to help SaaS companies attract more local customers. Choose your city to explore tailored insights and proven campaign examples.',
 };
 
 // Автоматическое форматирование ниши
 export function formatNiche(niche: string) {
+  // Специальные случаи для аббревиатур
+  if (niche.toLowerCase() === 'saas') {
+    return 'SaaS';
+  }
+  
   return niche
     .split('-')
     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
@@ -133,4 +141,45 @@ export function generateSubheading(niche: string): string {
   }
   const formattedNiche = formatNiche(normalizedNiche);
   return `Discover AI-optimized, data-driven ad strategies to help ${formattedNiche.toLowerCase()} businesses attract more local customers. Choose your city to explore tailored insights and proven campaign examples.`;
+} 
+
+// Словарь для множественного числа (plural) и профессионала (professional) по нишам
+export const nichePlurals: Record<string, string> = {
+  dentist: 'dental clinics',
+  lawyer: 'law firms',
+  'real-estate': 'real estate agencies',
+  'car-dealer': 'car dealerships',
+  'plumber': 'plumbing companies',
+  'electrician': 'electrical companies',
+  'roofer': 'roofing companies',
+  'contractor': 'contractor businesses',
+  'restaurant': 'restaurants',
+  'gym': 'gyms',
+  'salon': 'salons',
+  'chiropractor': 'chiropractic clinics',
+  saas: 'SaaS companies',
+};
+
+export const nicheProfessionals: Record<string, string> = {
+  dentist: 'dentist',
+  lawyer: 'lawyer',
+  'real-estate': 'real estate agent',
+  'car-dealer': 'car dealership owner',
+  'plumber': 'plumber',
+  'electrician': 'electrician',
+  'roofer': 'roofer',
+  'contractor': 'contractor',
+  'restaurant': 'restaurant owner',
+  'gym': 'gym owner',
+  'salon': 'salon owner',
+  'chiropractor': 'chiropractor',
+  saas: 'SaaS founder',
+};
+
+// Генерация SEO-параграфа для хаба
+export function generateSEOParagraph(niche: string): string {
+  const normalizedNiche = normalizeNiche(niche);
+  const plural = nichePlurals[normalizedNiche] || `${formatNiche(normalizedNiche)} businesses`;
+  const professional = nicheProfessionals[normalizedNiche] || `${formatNiche(normalizedNiche)} professional`;
+  return `On this page, you'll find AI-powered Google Ads strategies and real-world examples designed specifically for ${plural} in cities across the U.S., Canada, Europe, and beyond — from Chicago to Berlin. Whether you're a ${professional} or a digital marketing professional, our resources provide localized PPC campaign insights that help you connect with the right audience, reduce advertising costs, and increase customer acquisition efficiently.`;
 } 

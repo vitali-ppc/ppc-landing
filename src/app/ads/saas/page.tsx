@@ -6,67 +6,6 @@ import Footer from '../../../components/Footer';
 import { generateTitle, generateSEOTitle, generateSEODescription, generateSubheading, generateSEOParagraph } from '../../../../utils/seo';
 import { useState } from 'react';
 
-// Премиум заголовки для ключевых ниш
-const premiumTitles: Record<string, string> = {
-  dentist: 'AI-Powered Local Google Ads for Dentists',
-  lawyer: 'AI-Powered Local Google Ads for Lawyers & Law Firms',
-  'real-estate': 'AI-Powered Local Google Ads for Real Estate Agents',
-  'car-dealer': 'AI-Powered Local Google Ads for Car Dealerships',
-  'plumber': 'AI-Powered Local Google Ads for Plumbing Services',
-  'electrician': 'AI-Powered Local Google Ads for Electrical Services',
-  'roofer': 'AI-Powered Local Google Ads for Roofing Companies',
-  'contractor': 'AI-Powered Local Google Ads for General Contractors',
-  'restaurant': 'AI-Powered Local Google Ads for Restaurants',
-  'gym': 'AI-Powered Local Google Ads for Gyms & Fitness Centers',
-  'salon': 'AI-Powered Local Google Ads for Hair Salons & Spas',
-  'chiropractor': 'AI-Powered Local Google Ads for Chiropractors',
-};
-
-// Словарь синонимов для ниш
-const nicheSynonyms: Record<string, string> = {
-  'attorney': 'lawyer',
-  'law-firm': 'lawyer',
-  'real-estate-agent': 'real-estate',
-  'realtor': 'real-estate',
-  'car-dealership': 'car-dealer',
-  'auto-dealer': 'car-dealer',
-  'plumbing': 'plumber',
-  'electrical': 'electrician',
-  'roofing': 'roofer',
-  'general-contractor': 'contractor',
-  'construction': 'contractor',
-  'fitness': 'gym',
-  'fitness-center': 'gym',
-  'hair-salon': 'salon',
-  'spa': 'salon',
-  'beauty-salon': 'salon',
-  'chiropractic': 'chiropractor',
-  'dental': 'dentist',
-  'dental-clinic': 'dentist',
-  'dental-practice': 'dentist',
-};
-
-// Автоматическое форматирование ниши
-function formatNiche(niche: string) {
-  return niche
-    .split('-')
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ');
-}
-
-// Нормализация ниши (проверка синонимов)
-function normalizeNiche(niche: string): string {
-  const normalized = niche.toLowerCase().trim();
-  
-  // Сначала проверяем синонимы
-  if (nicheSynonyms[normalized]) {
-    return nicheSynonyms[normalized];
-  }
-  
-  // Если нет синонима, возвращаем как есть
-  return normalized;
-}
-
 const cities = [
   { slug: 'chicago', name: 'Chicago' },
   { slug: 'miami', name: 'Miami' },
@@ -75,8 +14,8 @@ const cities = [
   { slug: 'san-diego', name: 'San Diego' },
 ];
 
-export default function DentistAdsHubPage() {
-  const niche = 'dentist'; // В будущем это будет приходить как параметр
+export default function SaasAdsHubPage() {
+  const niche = 'saas'; // Ниша SaaS
   const title = generateTitle(niche);
   const titleParts = title.split(' for ');
   // SEO-метаданные (пример использования)
@@ -107,7 +46,7 @@ export default function DentistAdsHubPage() {
             for {titleParts[1]}
           </h1>
           <p style={{ fontSize: '1.15rem', color: '#374151', fontWeight: 400, marginBottom: 24 }}>
-            Discover AI-optimized, data-driven ad strategies to help dentists attract more local patients. Choose your city to explore tailored insights and proven campaign examples.
+            {subheading}
           </p>
         </div>
         
@@ -268,10 +207,10 @@ export default function DentistAdsHubPage() {
               const currentTextColor = textColors[index] || textColors[0];
               const currentButtonStyle = buttonStyles[index] || buttonStyles[0];
 
-                            return (
+              return (
                 <Link
                   key={city.slug}
-                  href={`/ads/dentist/${city.slug}`}
+                  href={`/ads/saas/${city.slug}`}
                   style={{
                     ...currentStyle,
                     display: 'flex',
@@ -357,4 +296,4 @@ export default function DentistAdsHubPage() {
       <Footer compact={true} />
     </>
   );
-}
+} 
