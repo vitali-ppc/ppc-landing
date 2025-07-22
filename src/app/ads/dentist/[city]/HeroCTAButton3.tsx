@@ -1,11 +1,11 @@
 "use client";
 import React, { useState } from "react";
 
-interface HeroCTAButtonProps {
+interface HeroCTAButton3Props {
   customText?: string;
 }
 
-export default function HeroCTAButton({ customText }: HeroCTAButtonProps) {
+export default function HeroCTAButton3({ customText }: HeroCTAButton3Props) {
   const [hover, setHover] = useState(false);
   const buttonText = customText || "Get AI Analysis in 60 Seconds";
   
@@ -16,18 +16,17 @@ export default function HeroCTAButton({ customText }: HeroCTAButtonProps) {
         display: 'inline-block',
         padding: '18px 44px',
         borderRadius: 12,
-        background: hover
-          ? 'linear-gradient(90deg, #764ba2 0%, #00ffe7 100%)'
-          : 'linear-gradient(90deg, #667eea 0%, #00ffe7 100%)',
-        color: '#23272f',
-        fontWeight: 800,
+        background: hover ? '#8B5CF6' : '#7F9CF5',
+        color: 'white',
+        fontWeight: 700,
         fontSize: '1.18rem',
         boxShadow: hover
-          ? '0 6px 32px rgba(0,255,231,0.4)'
-          : '0 4px 24px rgba(0,255,231,0.3)',
+          ? '0 4px 20px rgba(127,156,245,0.3)'
+          : '0 2px 12px rgba(127,156,245,0.2)',
         textDecoration: 'none',
-        marginTop: 8,
-        transition: 'background 0.2s',
+        transition: 'all 0.3s ease',
+        border: 'none',
+        letterSpacing: '-0.2px',
       }}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}

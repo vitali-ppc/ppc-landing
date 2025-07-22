@@ -97,7 +97,7 @@ export default function Header({ variant = 'full' }: HeaderProps) {
                   position: 'absolute',
                   width: '100%',
                   height: '100%',
-                  background: 'linear-gradient(45deg, #00FFE7, #00BFAE) !important',
+                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important',
                   borderRadius: '4px',
                   transform: 'rotate(-5deg)',
                   boxShadow: '0 2px 8px rgba(0, 0, 0, 0.3)'
@@ -148,7 +148,7 @@ export default function Header({ variant = 'full' }: HeaderProps) {
                   position: 'absolute',
                   width: '100%',
                   height: '100%',
-                  background: 'linear-gradient(45deg, #00FFE7, #00BFAE) !important',
+                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important',
                   borderRadius: '4px',
                   transform: 'rotate(-5deg)',
                   boxShadow: '0 2px 8px rgba(0, 0, 0, 0.3)'
