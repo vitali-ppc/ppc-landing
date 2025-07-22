@@ -1,5 +1,9 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import Header from '../../../../components/Header';
+import Footer from '../../../../components/Footer';
+import CTAButton from "./CTAButton";
+import HeroCTAButton from './HeroCTAButton';
 
 // Список дозволених міст
 const allowedCities = [
@@ -11,6 +15,14 @@ function formatCity(city: string) {
   return city
     .split('-')
     .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(' ');
+}
+
+// Автоматическое форматирование ниши
+function formatNiche(niche: string) {
+  return niche
+    .split('-')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' ');
 }
 
@@ -26,10 +38,12 @@ export async function generateMetadata({ params }: { params: { city: string } })
 // Основний компонент сторінки
 export default function DentistCityPage({ params }: { params: { city: string } }) {
   const city = params.city?.toLowerCase();
+  const niche = 'dentist'; // Фиксированная ниша для этой страницы
   if (!city || !allowedCities.includes(city)) {
     notFound();
   }
   const cityName = formatCity(city);
+  const formattedNiche = formatNiche(niche);
 
   // 3 практичні поради для стоматологів у цьому місті
   const tips = [
@@ -39,48 +53,72 @@ export default function DentistCityPage({ params }: { params: { city: string } }
   ];
 
   return (
-    <main className="min-h-screen bg-gray-50 py-10 px-4">
-      <h2 style={{ fontSize: '2rem', fontWeight: 700, color: '#1a1a1a', marginBottom: 16 }}>
-        Google Ads for Dentists in Miami
-      </h2>
-      <p style={{ fontSize: '1.1rem', color: '#374151', marginBottom: 32 }}>
-        If you’re a dental clinic in Miami, our AI-powered tool can help optimize your Google Ads for more local patient leads.
-      </p>
-      <p style={{ fontSize: '1.1rem', color: '#374151', marginBottom: 32 }}>
-        If you’re a dental clinic in Miami, our AI-powered tool can help optimize your Google Ads for more local patient leads.
-      </p>
-      {/* H1 та вступ */}
-      <div className="max-w-3xl mx-auto text-center mb-10">
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-4">
-          Google Ads для стоматологів у {cityName}
-        </h1>
-        <p className="text-lg text-gray-700 mb-4">
-          Запускати Google Ads для стоматологічної клініки у {cityName} — це можливість залучити більше локальних пацієнтів, підвищити впізнаваність бренду та отримати стабільний потік нових записів. Враховуйте локальні особливості ринку та конкуренцію, щоб отримати максимальний результат від PPC.
-        </p>
-      </div>
-
-      {/* Практичні поради */}
-      <section className="max-w-2xl mx-auto mb-10">
-        <h2 className="text-xl font-bold text-blue-700 mb-6 text-center">3 практичні поради для стоматологів у {cityName}</h2>
-        <ul className="space-y-6">
-          {tips.map((tip, i) => (
-            <li key={i} className="bg-white rounded-lg shadow p-5 text-gray-800 flex items-start gap-3">
-              <span className="inline-block w-8 h-8 flex-shrink-0 rounded-full bg-blue-100 text-blue-700 font-bold flex items-center justify-center">{i + 1}</span>
-              <span>{tip}</span>
-            </li>
-          ))}
-        </ul>
+    <>
+      <Header />
+      
+      {/* Hero Block */}
+      <section style={{
+        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        padding: '80px 0 60px',
+        textAlign: 'center',
+        color: 'white'
+      }}>
+        <div style={{ maxWidth: 800, margin: '0 auto', padding: '0 24px' }}>
+          <h1 style={{
+            fontSize: '3.2rem',
+            fontWeight: 900,
+            marginBottom: 24,
+            lineHeight: 1.1,
+            letterSpacing: '-1px'
+          }}>
+            Google Ads for Dentists in {cityName}
+          </h1>
+          <p style={{
+            fontSize: '1.25rem',
+            marginBottom: 32,
+            lineHeight: 1.6,
+            opacity: 0.95,
+            maxWidth: 600,
+            marginLeft: 'auto',
+            marginRight: 'auto'
+          }}>
+            AI market analysis for {cityName} + ready-made campaign templates for local dental clinics
+          </p>
+          <HeroCTAButton />
+        </div>
       </section>
 
-      {/* CTA */}
-      <div className="max-w-xl mx-auto text-center mt-12">
-        <a
-          href="/chat"
-          className="inline-block px-8 py-3 rounded-lg bg-gradient-to-r from-blue-500 to-cyan-400 text-white font-bold text-lg shadow hover:from-blue-600 hover:to-cyan-500 transition-colors"
-        >
-          Отримати AI-аудит Google Ads для {cityName}
-        </a>
-      </div>
-    </main>
+      <main style={{ minHeight: '100vh', background: '#f7fafc', padding: '48px 0 0 0' }}>
+        <section style={{ maxWidth: 800, margin: '0 auto', padding: '0 24px' }}>
+          <h1 style={{ fontSize: '2.6rem', fontWeight: 900, color: '#23272f', textAlign: 'center', marginBottom: 12, letterSpacing: '-1px', lineHeight: 1.1 }}>
+            Google Ads для стоматологів у {cityName}
+          </h1>
+          <p style={{ fontSize: '1.18rem', color: '#374151', textAlign: 'center', marginBottom: 32, lineHeight: 1.6, maxWidth: 600, marginLeft: 'auto', marginRight: 'auto' }}>
+            Запускати Google Ads для стоматологічної клініки у {cityName} — це можливість залучити більше локальних пацієнтів, підвищити впізнаваність бренду та отримати стабільний потік нових записів. Враховуйте локальні особливості ринку та конкуренцію, щоб отримати максимальний результат від PPC.
+          </p>
+        </section>
+
+        {/* Практичні поради */}
+        <section style={{ maxWidth: 700, margin: '0 auto', marginBottom: 48, padding: '0 24px' }}>
+          <h2 style={{ fontSize: '1.35rem', fontWeight: 700, color: '#4f46e5', textAlign: 'center', marginBottom: 28, letterSpacing: '-0.5px' }}>
+            3 практичні поради для стоматологів у {cityName}
+          </h2>
+          <ul style={{ display: 'flex', flexDirection: 'column', gap: 24, margin: 0, padding: 0, listStyle: 'none' }}>
+            {tips.map((tip, i) => (
+              <li key={i} style={{ background: '#fff', borderRadius: 14, boxShadow: '0 2px 16px rgba(80,100,180,0.07)', padding: '22px 28px', display: 'flex', alignItems: 'flex-start', gap: 18 }}>
+                <span style={{ minWidth: 38, height: 38, borderRadius: '50%', background: '#e0e7ff', color: '#4f46e5', fontWeight: 700, fontSize: 20, display: 'flex', alignItems: 'center', justifyContent: 'center', marginRight: 8 }}>{i + 1}</span>
+                <span style={{ fontSize: '1.08rem', color: '#23272f', lineHeight: 1.6 }}>{tip}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        {/* CTA */}
+        <section style={{ maxWidth: 600, margin: '0 auto', textAlign: 'center', marginBottom: 60, padding: '0 24px' }}>
+          <CTAButton cityName={cityName} />
+        </section>
+      </main>
+      <Footer compact={true} />
+    </>
   );
 } 

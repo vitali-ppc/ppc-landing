@@ -5,6 +5,7 @@ import Header from '../../../components/Header';
 import Footer from '../../../components/Footer';
 import { generateTitle, generateSEOTitle, generateSEODescription, generateSubheading, generateSEOParagraph } from '../../../../utils/seo';
 import { useState } from 'react';
+import NichePromoBlock from '../../../components/NichePromoBlock';
 
 const cities = [
   { slug: 'chicago', name: 'Chicago' },
@@ -26,11 +27,13 @@ export default function SaasAdsHubPage() {
 
   // Состояние для поиска
   const [searchQuery, setSearchQuery] = useState('');
+  const [showAllCities, setShowAllCities] = useState(false);
 
   // Фильтрация городов по поиску
   const filteredCities = cities.filter(city =>
     city.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
+  const visibleCities = showAllCities ? filteredCities : filteredCities.slice(0, 4);
 
   // Для демонстрации (можно удалить):
   console.log('SEO Title:', seoTitle);
@@ -100,14 +103,13 @@ export default function SaasAdsHubPage() {
           )}
         </div>
 
-        <section style={{ maxWidth: 1100, margin: '0 auto' }}>
+        <section style={{ maxWidth: 1200, margin: '0 auto' }}>
           <div style={{ 
             display: 'grid', 
-            gridTemplateColumns: 'repeat(3, 1fr)', 
-            gap: 32,
-            minHeight: '400px'
+            gridTemplateColumns: 'repeat(4, 1fr)', 
+            gap: 32
           }}>
-            {filteredCities.map((city, index) => {
+            {visibleCities.map((city, index) => {
               // Разные стили для каждой карточки
               const cardStyles = [
                 // 1. Phoenix - Интерактивный (Framer)
@@ -266,6 +268,27 @@ export default function SaasAdsHubPage() {
               );
             })}
           </div>
+          {filteredCities.length > 4 && (
+            <div style={{ textAlign: 'center', marginTop: 32 }}>
+              <button
+                onClick={() => setShowAllCities(v => !v)}
+                style={{
+                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                  color: 'white',
+                  border: 'none',
+                  padding: '12px 32px',
+                  borderRadius: 8,
+                  fontWeight: 700,
+                  fontSize: '1rem',
+                  cursor: 'pointer',
+                  boxShadow: '0 2px 8px rgba(127,156,245,0.10)',
+                  transition: 'background 0.2s',
+                }}
+              >
+                {showAllCities ? 'Hide cities' : 'Show all cities'}
+              </button>
+            </div>
+          )}
           
           {/* Сообщение, если ничего не найдено */}
           {filteredCities.length === 0 && searchQuery && (
@@ -292,6 +315,7 @@ export default function SaasAdsHubPage() {
             {seoParagraph}
           </p>
         </section>
+        <NichePromoBlock niche="saas" />
       </main>
       <Footer compact={true} />
     </>

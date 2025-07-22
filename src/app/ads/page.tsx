@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import { formatNiche } from '../../../utils/seo';
+import React from 'react';
 
 const niches = [
   { slug: 'dentist', name: 'Dentist' },
@@ -28,6 +29,24 @@ const niches = [
   { slug: 'hvac', name: 'HVAC Services' },
   { slug: 'chiropractor', name: 'Chiropractors' },
 ];
+
+// 2. IconLawyer как отдельный компонент
+const IconLawyer = () => (
+  <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+    <rect x="6" y="16" width="24" height="4" rx="2" fill="#667eea" />
+    <rect x="16" y="6" width="4" height="24" rx="2" fill="#667eea" />
+    <circle cx="18" cy="18" r="17" stroke="#764ba2" strokeWidth="2" fill="none" />
+  </svg>
+);
+
+// 3. IconRealEstate как переменная (имитация импорта)
+const IconRealEstate = (
+  <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+    <rect x="8" y="18" width="20" height="10" rx="2" fill="#764ba2" />
+    <polygon points="18,8 6,18 30,18" fill="#667eea" />
+    <rect x="15" y="23" width="6" height="5" rx="1" fill="#fff" />
+  </svg>
+);
 
 export default function AdsMainHubPage() {
   const title = 'Your AI Assistant for Google Ads. Tailored to Your Industry.';
@@ -136,40 +155,43 @@ export default function AdsMainHubPage() {
           )}
         </div>
         <section style={{ maxWidth: 1100, margin: '0 auto' }}>
-          <div style={{ 
-            display: 'grid', 
-            gridTemplateColumns: 'repeat(4, 1fr)', 
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(4, 1fr)',
             gap: 32,
-            minHeight: '300px'
+            maxWidth: 1200,
+            margin: '0 auto',
+            marginBottom: 40,
           }}>
-            {visibleNiches.map((niche, index) => (
-              <Link
-                key={niche.slug}
-                href={`/ads/${niche.slug}`}
-                style={cardStyle}
-                onMouseEnter={e => {
-                  const target = e.currentTarget as HTMLElement;
-                  target.style.transform = 'translateY(-8px) scale(1.05) rotate(1deg)';
-                  target.style.boxShadow = '0 16px 40px rgba(102,126,234,0.4)';
-                }}
-                onMouseLeave={e => {
-                  const target = e.currentTarget as HTMLElement;
-                  target.style.transform = 'translateY(0) scale(1) rotate(0deg)';
-                  target.style.boxShadow = cardStyle.boxShadow;
-                  target.style.background = cardStyle.background;
-                }}
-              >
-                <div>
-                  <h3 style={{
-                    fontSize: '1.25rem',
-                    fontWeight: 600,
-                    color: '#1a1a1a',
-                    marginBottom: 8
-                  }}>{formatNiche(niche.name)}</h3>
-                </div>
-                <div style={buttonStyle}>Explore</div>
-              </Link>
-            ))}
+            {visibleNiches.map((niche, index) => {
+              // icon = null для всех карточек
+              return (
+                <Link
+                  key={niche.slug}
+                  href={`/ads/${niche.slug}`}
+                  style={{ ...cardStyle }}
+                  onMouseEnter={e => {
+                    const target = e.currentTarget as HTMLElement;
+                    target.style.transform = 'translateY(-8px) scale(1.05) rotate(1deg)';
+                    target.style.boxShadow = '0 16px 40px rgba(102,126,234,0.4)';
+                  }}
+                  onMouseLeave={e => {
+                    const target = e.currentTarget as HTMLElement;
+                    target.style.transform = 'translateY(0) scale(1) rotate(0deg)';
+                    target.style.boxShadow = cardStyle.boxShadow;
+                    target.style.background = cardStyle.background;
+                  }}
+                >
+                  {/* Все иконки убраны */}
+                  <div>
+                    <h3 style={{ fontSize: '1.25rem', fontWeight: 600, color: '#23272f', marginBottom: 8 }}>
+                      {niche.name}
+                    </h3>
+                  </div>
+                  <div style={buttonStyle}>Explore</div>
+                </Link>
+              );
+            })}
           </div>
           {filteredNiches.length > 4 && (
             <div style={{ textAlign: 'center', marginTop: 32 }}>
@@ -261,8 +283,8 @@ export default function AdsMainHubPage() {
             Try for Free
           </a>
         </section>
-        <Footer compact={true} />
       </main>
+      <Footer compact={true} />
     </>
   );
 } 

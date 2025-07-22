@@ -2913,33 +2913,32 @@ export default function KampaioHome() {
               
               {/* Button */}
               <div>
-                <a href="/book-a-demo" style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  padding: '16px 32px',
-                  background: 'linear-gradient(135deg, #00FFE7, #00BFAE)',
-                  color: '#1A1A1A',
-                  textDecoration: 'none',
-                  borderRadius: '12px',
-                  fontWeight: '600',
-                  fontSize: '16px',
-                  transition: 'all 0.3s ease',
-                  boxShadow: '0 8px 24px rgba(0, 255, 231, 0.3)'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-2px)';
-                  e.currentTarget.style.boxShadow = '0 12px 32px rgba(0, 255, 231, 0.4)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 255, 231, 0.3)';
-                }}>
+                <a href="/ads"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    padding: '16px 32px',
+                    background: 'linear-gradient(135deg, #00FFE7, #00BFAE)',
+                    color: '#1A1A1A',
+                    textDecoration: 'none',
+                    borderRadius: '12px',
+                    fontWeight: '600',
+                    fontSize: '16px',
+                    transition: 'all 0.3s ease',
+                    boxShadow: '0 8px 24px rgba(0, 255, 231, 0.3)'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                    e.currentTarget.style.boxShadow = '0 12px 32px rgba(0, 255, 231, 0.4)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 255, 231, 0.3)';
+                  }}
+                >
                   <div>Find Your Industry</div>
-                  <div style={{
-                    width: '16px',
-                    height: '16px'
-                  }}>
+                  <div style={{ width: '16px', height: '16px' }}>
                     <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M1 8.28955H15" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"></path>
                       <path d="M9.27344 2.5625L15.0007 8.28977L9.27344 14.017" stroke="currentColor" strokeWidth="1.27273" strokeLinecap="round" strokeLinejoin="round"></path>
