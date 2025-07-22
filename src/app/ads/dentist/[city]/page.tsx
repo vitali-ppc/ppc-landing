@@ -40,6 +40,15 @@ export default function DentistCityPage({ params }: { params: { city: string } }
 
   return (
     <main className="min-h-screen bg-gray-50 py-10 px-4">
+      <h2 style={{ fontSize: '2rem', fontWeight: 700, color: '#1a1a1a', marginBottom: 16 }}>
+        Google Ads for Dentists in Miami
+      </h2>
+      <p style={{ fontSize: '1.1rem', color: '#374151', marginBottom: 32 }}>
+        If you’re a dental clinic in Miami, our AI-powered tool can help optimize your Google Ads for more local patient leads.
+      </p>
+      <p style={{ fontSize: '1.1rem', color: '#374151', marginBottom: 32 }}>
+        If you’re a dental clinic in Miami, our AI-powered tool can help optimize your Google Ads for more local patient leads.
+      </p>
       {/* H1 та вступ */}
       <div className="max-w-3xl mx-auto text-center mb-10">
         <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-4">

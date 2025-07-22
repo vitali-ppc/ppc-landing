@@ -30,14 +30,16 @@ const niches = [
 ];
 
 export default function AdsMainHubPage() {
-  const title = 'AI-Powered Local Google Ads Niches';
-  const subheading = 'Choose your business niche to explore city-specific Google Ads strategies, real-world PPC examples, and actionable insights for local growth.';
-  const seoParagraph = 'Browse our collection of AI-optimized Google Ads strategies and examples for top business niches — from dentists to SaaS. Each hub provides localized PPC campaign ideas, expert tips, and proven tactics to help you attract more local customers.';
+  const title = 'Your AI Assistant for Google Ads. Tailored to Your Industry.';
+  const subheading = 'Instantly generate tailored reports, strategic insights, and PPC audits — all customized for your industry.';
+  const seoParagraph = "Whether you’re running campaigns in eCommerce, SaaS, law, or local business, Kampaio analyzes your Google Ads data and delivers clear, industry-tailored insights. Join over 1,000 businesses who’ve uncovered hidden growth opportunities, simplified audits, and lowered costs — all without hiring an agency or drowning in complex reports. Stop guessing and start growing with AI-driven recommendations built for your niche.";
 
   const [searchQuery, setSearchQuery] = useState('');
+  const [showAllNiches, setShowAllNiches] = useState(false);
   const filteredNiches = niches.filter(niche =>
     formatNiche(niche.name).toLowerCase().includes(searchQuery.toLowerCase())
   );
+  const visibleNiches = showAllNiches ? filteredNiches : filteredNiches.slice(0, 4);
 
   // Стили карточек и кнопок как в SILO-хабах
   const cardStyle = {
@@ -136,11 +138,11 @@ export default function AdsMainHubPage() {
         <section style={{ maxWidth: 1100, margin: '0 auto' }}>
           <div style={{ 
             display: 'grid', 
-            gridTemplateColumns: 'repeat(3, 1fr)', 
+            gridTemplateColumns: 'repeat(4, 1fr)', 
             gap: 32,
             minHeight: '300px'
           }}>
-            {filteredNiches.map((niche, index) => (
+            {visibleNiches.map((niche, index) => (
               <Link
                 key={niche.slug}
                 href={`/ads/${niche.slug}`}
@@ -169,6 +171,27 @@ export default function AdsMainHubPage() {
               </Link>
             ))}
           </div>
+          {filteredNiches.length > 4 && (
+            <div style={{ textAlign: 'center', marginTop: 32 }}>
+              <button
+                onClick={() => setShowAllNiches(v => !v)}
+                style={{
+                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                  color: 'white',
+                  border: 'none',
+                  padding: '12px 32px',
+                  borderRadius: 8,
+                  fontWeight: 700,
+                  fontSize: '1rem',
+                  cursor: 'pointer',
+                  boxShadow: '0 2px 8px rgba(127,156,245,0.10)',
+                  transition: 'background 0.2s',
+                }}
+              >
+                {showAllNiches ? 'Hide niches' : 'Show all niches'}
+              </button>
+            </div>
+          )}
         </section>
         <section style={{ maxWidth: 800, margin: '48px auto', padding: '0 16px' }}>
           <p style={{
@@ -181,8 +204,65 @@ export default function AdsMainHubPage() {
             {seoParagraph}
           </p>
         </section>
+        <section style={{
+          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+          borderRadius: '16px',
+          padding: '40px',
+          textAlign: 'center',
+          marginTop: '60px',
+          marginBottom: '40px',
+          maxWidth: 800,
+          marginLeft: 'auto',
+          marginRight: 'auto',
+        }}>
+          <h2 style={{
+            fontSize: '2rem',
+            fontWeight: 700,
+            color: 'white',
+            marginBottom: '18px',
+            lineHeight: '1.3'
+          }}>
+            AI Assistant for Google Ads
+          </h2>
+          <p style={{
+            fontSize: '17px',
+            color: 'white',
+            marginBottom: '28px',
+            lineHeight: '1.6',
+            fontWeight: '500',
+            opacity: 0.9
+          }}>
+            Get tailored suggestions and audits for your business type or location.
+          </p>
+          <a
+            href="/chat"
+            className="btn"
+            style={{
+              background: 'linear-gradient(45deg, #00FFE7, #00BFAE)',
+              color: '#1A1A1A',
+              border: 'none',
+              padding: '16px 32px',
+              borderRadius: '10px',
+              fontSize: '16px',
+              fontWeight: '600',
+              cursor: 'pointer',
+              transition: 'all 0.3s ease',
+              display: 'inline-block',
+              boxShadow: 'none',
+              textDecoration: 'none',
+            }}
+            onMouseEnter={e => {
+              (e.currentTarget as HTMLAnchorElement).style.boxShadow = '0 8px 25px rgba(0,191,174,0.15)';
+            }}
+            onMouseLeave={e => {
+              (e.currentTarget as HTMLAnchorElement).style.boxShadow = 'none';
+            }}
+          >
+            Try for Free
+          </a>
+        </section>
+        <Footer compact={true} />
       </main>
-      <Footer compact={true} />
     </>
   );
 } 
