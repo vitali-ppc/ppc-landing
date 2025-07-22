@@ -7171,6 +7171,12 @@ html {
   transform: rotate(1deg) !important;
 }
 
+/* Final CTA button hover effect */
+.final-cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
 .internal-link-analytics {
   padding-top: 16px;
 }

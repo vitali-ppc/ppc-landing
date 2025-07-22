@@ -114,7 +114,7 @@ export default function DentistCityPage({ params }: { params: { city: string } }
                 lineHeight: 1.2,
                 letterSpacing: '-0.025em'
               }}>
-                Optimize Your Google Ads Campaigns
+                AI-Powered Campaign Optimization
               </h2>
               <div style={{ marginBottom: 24 }}></div>
               <p style={{
@@ -123,7 +123,7 @@ export default function DentistCityPage({ params }: { params: { city: string } }
                 lineHeight: 1.6,
                 marginBottom: 32
               }}>
-                Unlock the full potential of your dental practice with AI-powered Google Ads optimization. Say goodbye to manual campaign management and hello to automated processes that keep your marketing focused on what matters most: attracting more patients to your {cityName} clinic. Optimize your ad spend + targeting and accelerate your patient acquisition + revenue growth.
+                Transform your Google Ads campaigns with AI-powered optimization. Our intelligent system automates keyword research, bid management, and performance tracking to maximize your {cityName} dental clinic's ROI while reducing manual workload.
               </p>
               
               <ul style={{
@@ -147,7 +147,7 @@ export default function DentistCityPage({ params }: { params: { city: string } }
                     background: '#667eea',
                     flexShrink: 0
                   }}></div>
-                  <span>Automate keyword research and eliminate wasted ad spend</span>
+                  <span>Automated keyword research and bid optimization</span>
                 </li>
                 <li style={{
                   display: 'flex',
@@ -164,7 +164,7 @@ export default function DentistCityPage({ params }: { params: { city: string } }
                     background: '#667eea',
                     flexShrink: 0
                   }}></div>
-                  <span>Ensure targeting accuracy and consistency across campaigns</span>
+                  <span>Real-time performance monitoring and alerts</span>
                 </li>
                 <li style={{
                   display: 'flex',
@@ -181,7 +181,7 @@ export default function DentistCityPage({ params }: { params: { city: string } }
                     background: '#667eea',
                     flexShrink: 0
                   }}></div>
-                  <span>Enhance ROI visibility and enable data-driven optimization</span>
+                  <span>Intelligent budget allocation and scaling recommendations</span>
                 </li>
               </ul>
               
@@ -488,36 +488,257 @@ export default function DentistCityPage({ params }: { params: { city: string } }
         </div>
       </section>
 
-      <main style={{ minHeight: '100vh', background: '#f7fafc', padding: '48px 0 0 0' }}>
-        <section style={{ maxWidth: 800, margin: '0 auto', padding: '0 24px' }}>
-          <h1 style={{ fontSize: '2.6rem', fontWeight: 900, color: '#23272f', textAlign: 'center', marginBottom: 12, letterSpacing: '-1px', lineHeight: 1.1 }}>
-            Google Ads для стоматологів у {cityName}
-          </h1>
-          <p style={{ fontSize: '1.18rem', color: '#374151', textAlign: 'center', marginBottom: 32, lineHeight: 1.6, maxWidth: 600, marginLeft: 'auto', marginRight: 'auto' }}>
-            Запускати Google Ads для стоматологічної клініки у {cityName} — це можливість залучити більше локальних пацієнтів, підвищити впізнаваність бренду та отримати стабільний потік нових записів. Враховуйте локальні особливості ринку та конкуренцію, щоб отримати максимальний результат від PPC.
-          </p>
-        </section>
+      {/* Third Features Block - Same Layout as First */}
+      <section style={{
+        background: '#ffffff',
+        padding: '80px 0',
+        borderBottom: '1px solid #f1f5f9'
+      }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px' }}>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr',
+            gap: '80px',
+            alignItems: 'center'
+          }}
+          className="features-grid">
+            {/* Content */}
+            <div>
+              <h2 style={{
+                fontSize: '2.5rem',
+                fontWeight: 700,
+                color: '#1e293b',
+                marginBottom: 24,
+                lineHeight: 1.2,
+                letterSpacing: '-0.025em'
+              }}>
+                Competitive Intelligence
+              </h2>
+              <div style={{ marginBottom: 24 }}></div>
+              <p style={{
+                fontSize: '1.1rem',
+                color: '#64748b',
+                lineHeight: 1.6,
+                marginBottom: 32
+              }}>
+                Monitor your competitors and identify market opportunities in {cityName}. Our AI tracks competitor strategies and reveals gaps where you can capture more patients.
+              </p>
+              
+              <ul style={{
+                listStyle: 'none',
+                padding: 0,
+                margin: 0,
+                marginBottom: 32
+              }}>
+                <li style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 12,
+                  marginBottom: 16,
+                  fontSize: '1rem',
+                  color: '#334155'
+                }}>
+                  <div style={{
+                    width: 8,
+                    height: 8,
+                    borderRadius: '50%',
+                    background: '#667eea',
+                    flexShrink: 0
+                  }}></div>
+                  <span>Monitor competitor ads and pricing strategies</span>
+                </li>
+                <li style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 12,
+                  marginBottom: 16,
+                  fontSize: '1rem',
+                  color: '#334155'
+                }}>
+                  <div style={{
+                    width: 8,
+                    height: 8,
+                    borderRadius: '50%',
+                    background: '#667eea',
+                    flexShrink: 0
+                  }}></div>
+                  <span>Identify untapped keywords and market gaps</span>
+                </li>
+                <li style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 12,
+                  marginBottom: 16,
+                  fontSize: '1rem',
+                  color: '#334155'
+                }}>
+                  <div style={{
+                    width: 8,
+                    height: 8,
+                    borderRadius: '50%',
+                    background: '#667eea',
+                    flexShrink: 0
+                  }}></div>
+                  <span>Get alerts when competitors change their approach</span>
+                </li>
+              </ul>
+              
+              <div style={{ marginBottom: 24 }}></div>
+              <div style={{ marginBottom: 16 }}></div>
+              <a href="/chat" style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 8,
+                padding: '16px 32px',
+                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                color: 'white',
+                textDecoration: 'none',
+                borderRadius: 8,
+                fontWeight: 600,
+                fontSize: '1rem',
+                transition: 'all 0.3s ease',
+                boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)'
+              }}
+              className="features-cta-btn">
+                Get Free Strategy
+              </a>
+            </div>
+            
+            {/* Image */}
+            <div style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}>
+              <div style={{
+                width: '100%',
+                maxWidth: 500,
+                height: 400,
+                background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
+                borderRadius: 16,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                border: '1px solid #e2e8f0',
+                position: 'relative',
+                overflow: 'hidden',
+                transform: 'rotate(-3deg)',
+                transition: 'transform 0.3s ease'
+              }}>
+                <div style={{
+                  position: 'absolute',
+                  top: 20,
+                  left: 20,
+                  right: 20,
+                  bottom: 20,
+                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                  borderRadius: 12,
+                  opacity: 0.1
+                }}></div>
+                <div style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: 16,
+                  zIndex: 1
+                }}>
+                  <div style={{
+                    width: 80,
+                    height: 80,
+                    borderRadius: '50%',
+                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    boxShadow: '0 8px 24px rgba(102, 126, 234, 0.3)'
+                  }}>
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ color: 'white' }}>
+                      <path d="M3 3v18h18"/>
+                      <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"/>
+                      <circle cx="7" cy="7" r="1"/>
+                      <circle cx="17" cy="17" r="1"/>
+                      <path d="M7 17h10"/>
+                    </svg>
+                  </div>
+                  <div style={{ textAlign: 'center' }}>
+                    <h3 style={{
+                      fontSize: '1.5rem',
+                      fontWeight: 600,
+                      color: '#1e293b',
+                      margin: 0,
+                      marginBottom: 8
+                    }}>
+                      Competitive Edge
+                    </h3>
+                    <p style={{
+                      fontSize: '1rem',
+                      color: '#64748b',
+                      margin: 0,
+                      maxWidth: 300
+                    }}>
+                      Strategic insights for {cityName} dental market
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-        {/* Практичні поради */}
-        <section style={{ maxWidth: 700, margin: '0 auto', marginBottom: 48, padding: '0 24px' }}>
-          <h2 style={{ fontSize: '1.35rem', fontWeight: 700, color: '#4f46e5', textAlign: 'center', marginBottom: 28, letterSpacing: '-0.5px' }}>
-            3 практичні поради для стоматологів у {cityName}
-          </h2>
-          <ul style={{ display: 'flex', flexDirection: 'column', gap: 24, margin: 0, padding: 0, listStyle: 'none' }}>
-            {tips.map((tip, i) => (
-              <li key={i} style={{ background: '#fff', borderRadius: 14, boxShadow: '0 2px 16px rgba(80,100,180,0.07)', padding: '22px 28px', display: 'flex', alignItems: 'flex-start', gap: 18 }}>
-                <span style={{ minWidth: 38, height: 38, borderRadius: '50%', background: '#e0e7ff', color: '#4f46e5', fontWeight: 700, fontSize: 20, display: 'flex', alignItems: 'center', justifyContent: 'center', marginRight: 8 }}>{i + 1}</span>
-                <span style={{ fontSize: '1.08rem', color: '#23272f', lineHeight: 1.6 }}>{tip}</span>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        {/* CTA */}
-        <section style={{ maxWidth: 600, margin: '0 auto', textAlign: 'center', marginBottom: 60, padding: '0 24px' }}>
-          <CTAButton cityName={cityName} />
-        </section>
+      <main style={{ background: '#f7fafc', padding: '48px 0 0 0' }}>
+        {/* Main content area - ready for future content */}
       </main>
+
+      {/* Simple CTA Block */}
+      <section style={{
+        background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
+        padding: '60px 0',
+        textAlign: 'center',
+        borderTop: '1px solid #e2e8f0'
+      }}>
+        <div style={{ maxWidth: 600, margin: '0 auto', padding: '0 24px' }}>
+          <h2 style={{
+            fontSize: '2.2rem',
+            fontWeight: 700,
+            color: '#1e293b',
+            marginBottom: 16,
+            lineHeight: 1.2,
+            letterSpacing: '-0.025em'
+          }}>
+            Start Your AI-Powered Success Today
+          </h2>
+          <p style={{
+            fontSize: '1.1rem',
+            color: '#64748b',
+            lineHeight: 1.6,
+            marginBottom: 32,
+            maxWidth: 500,
+            marginLeft: 'auto',
+            marginRight: 'auto'
+          }}>
+            Join {cityName} dental clinics that are already winning with AI-driven Google Ads strategies
+          </p>
+          <a href="/chat" style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 8,
+            padding: '16px 32px',
+            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            color: 'white',
+            textDecoration: 'none',
+            borderRadius: 8,
+            fontWeight: 600,
+            fontSize: '1rem',
+            transition: 'all 0.3s ease',
+            boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)'
+          }}
+          className="final-cta-btn">
+            Get Free Strategy
+          </a>
+        </div>
+      </section>
+
       <Footer compact={true} />
     </>
   );
