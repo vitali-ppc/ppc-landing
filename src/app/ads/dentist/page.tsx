@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import Header from '../../../components/Header';
 import Footer from '../../../components/Footer';
+import Breadcrumbs from '../../../components/Breadcrumbs';
 import { generateTitle, generateSEOTitle, generateSEODescription, generateSubheading, generateSEOParagraph } from '../../../../utils/seo';
 import { useState } from 'react';
 import NichePromoBlock from '../../../components/NichePromoBlock';
@@ -103,6 +104,7 @@ export default function DentistAdsHubPage() {
   return (
     <>
       <Header />
+      <Breadcrumbs />
       <main style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)', padding: '48px 16px' }}>
         <div style={{ maxWidth: 800, margin: '0 auto', textAlign: 'center', marginBottom: 48 }}>
           <h1 style={{ fontSize: '2.5rem', fontWeight: 800, color: '#1a1a1a', marginBottom: 16 }}>

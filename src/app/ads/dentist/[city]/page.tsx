@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Header from '../../../../components/Header';
 import Footer from '../../../../components/Footer';
+import Breadcrumbs from '../../../../components/Breadcrumbs';
 import CTAButton from "./CTAButton";
 import HeroCTAButton from './HeroCTAButton';
 import HeroCTAButton2 from './HeroCTAButton2';
@@ -28,6 +29,29 @@ function formatNiche(niche: string) {
     .join(' ');
 }
 
+// Форматирование ниши в множине
+function formatNichePlural(niche: string) {
+  const singular = formatNiche(niche);
+  
+  // Словарь для правильного образования множественного числа
+  const pluralMap: Record<string, string> = {
+    'Dentist': 'Dentists',
+    'Lawyer': 'Lawyers',
+    'Real Estate': 'Real Estate Agents',
+    'SaaS': 'SaaS Companies',
+    'Plumber': 'Plumbers',
+    'Electrician': 'Electricians',
+    'Roofer': 'Roofers',
+    'Contractor': 'Contractors',
+    'Restaurant': 'Restaurants',
+    'Gym': 'Gyms',
+    'Salon': 'Salons',
+    'Chiropractor': 'Chiropractors'
+  };
+  
+  return pluralMap[singular] || singular + 's';
+}
+
 // Динамічний SEO metadata
 export async function generateMetadata({ params }: { params: { city: string } }): Promise<Metadata> {
   const cityName = formatCity(params.city);
@@ -46,6 +70,7 @@ export default function DentistCityPage({ params }: { params: { city: string } }
   }
   const cityName = formatCity(city);
   const formattedNiche = formatNiche(niche);
+  const formattedNichePlural = formatNichePlural(niche);
 
   // 3 практичні поради для стоматологів у цьому місті
   const tips = [
@@ -57,6 +82,7 @@ export default function DentistCityPage({ params }: { params: { city: string } }
   return (
     <>
       <Header />
+      <Breadcrumbs />
       
       {/* Hero Block */}
       <section style={{
@@ -73,17 +99,18 @@ export default function DentistCityPage({ params }: { params: { city: string } }
             lineHeight: 1.1,
             letterSpacing: '-1px'
           }}>
-            Google Ads for Dentists in {cityName} Powered by AI
+            Google Ads for {formattedNichePlural} in {cityName} Powered by AI
           </h1>
           <p style={{
             fontSize: '1.25rem',
             marginBottom: 32,
             lineHeight: 1.6,
             opacity: 0.95,
-            maxWidth: 600,
+            maxWidth: 700,
             marginLeft: 'auto',
             marginRight: 'auto'
           }}>
+            Tired of wasting your budget on ads that don't deliver?<br />
             Get better ROI, lower costs, and personalized strategies for your dental clinic in {cityName}.
           </p>
           <HeroCTAButton2 customText="Get Free Strategy" />
@@ -123,7 +150,15 @@ export default function DentistCityPage({ params }: { params: { city: string } }
                 lineHeight: 1.6,
                 marginBottom: 32
               }}>
-                Transform your Google Ads campaigns with AI-powered optimization. Our intelligent system automates keyword research, bid management, and performance tracking to maximize your {cityName} dental clinic's ROI while reducing manual workload.
+                Unlock higher performance with AI-powered Google Ads tailored for dental clinics in {cityName}. Our intelligent system automates keyword research, bid management, and performance tracking to maximize your ROI while reducing manual workload.
+              </p>
+              <p style={{
+                fontSize: '1.1rem',
+                color: '#64748b',
+                lineHeight: 1.6,
+                marginBottom: 32
+              }}>
+                See how top {cityName} dental clinics run Google Ads — and how you can outperform them.
               </p>
               
               <ul style={{
@@ -402,7 +437,7 @@ export default function DentistCityPage({ params }: { params: { city: string } }
                 lineHeight: 1.6,
                 marginBottom: 32
               }}>
-                Target patients with precision. Our AI analyzes search patterns, competitor activity, and patient behavior to create campaigns that bring qualified patients to your {cityName} dental clinic.
+                Acquire patients with precision. Our AI analyzes search patterns, competitor activity, and patient behavior to create campaigns that bring qualified patients to your {cityName} dental clinic.
               </p>
               
               <ul style={{
@@ -426,7 +461,7 @@ export default function DentistCityPage({ params }: { params: { city: string } }
                     background: '#667eea',
                     flexShrink: 0
                   }}></div>
-                  <span>AI-powered account analysis and data insights</span>
+                  <span>AI-powered account analysis and data-driven insights</span>
                 </li>
                 <li style={{
                   display: 'flex',
@@ -443,7 +478,7 @@ export default function DentistCityPage({ params }: { params: { city: string } }
                     background: '#667eea',
                     flexShrink: 0
                   }}></div>
-                  <span>Intelligent strategy recommendations and hypotheses</span>
+                  <span>Intelligent strategy recommendations and tested hypotheses</span>
                 </li>
                 <li style={{
                   display: 'flex',
@@ -481,7 +516,7 @@ export default function DentistCityPage({ params }: { params: { city: string } }
                 boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)'
               }}
               className="features-cta-btn">
-                Get Free Strategy
+                Get Free AI Audit
               </a>
             </div>
           </div>
@@ -521,7 +556,7 @@ export default function DentistCityPage({ params }: { params: { city: string } }
                 lineHeight: 1.6,
                 marginBottom: 32
               }}>
-                Monitor your competitors and identify market opportunities in {cityName}. Our AI tracks competitor strategies and reveals gaps where you can capture more patients.
+                Stay ahead by monitoring your competitors and spotting new market opportunities in {cityName}. Our AI uncovers competitor strategies and reveals gaps you can exploit to attract more patients.
               </p>
               
               <ul style={{
@@ -545,7 +580,7 @@ export default function DentistCityPage({ params }: { params: { city: string } }
                     background: '#667eea',
                     flexShrink: 0
                   }}></div>
-                  <span>Monitor competitor ads and pricing strategies</span>
+                  <span>Track competitor ads and pricing tactics</span>
                 </li>
                 <li style={{
                   display: 'flex',
@@ -562,7 +597,7 @@ export default function DentistCityPage({ params }: { params: { city: string } }
                     background: '#667eea',
                     flexShrink: 0
                   }}></div>
-                  <span>Identify untapped keywords and market gaps</span>
+                  <span>Discover untapped keywords and market niches</span>
                 </li>
                 <li style={{
                   display: 'flex',
@@ -579,7 +614,7 @@ export default function DentistCityPage({ params }: { params: { city: string } }
                     background: '#667eea',
                     flexShrink: 0
                   }}></div>
-                  <span>Get alerts when competitors change their approach</span>
+                  <span>Receive instant alerts on competitor changes</span>
                 </li>
               </ul>
               
@@ -676,7 +711,7 @@ export default function DentistCityPage({ params }: { params: { city: string } }
                       margin: 0,
                       maxWidth: 300
                     }}>
-                      Strategic insights for {cityName} dental market
+                      Gain strategic insights to dominate the {cityName} dental market
                     </p>
                   </div>
                 </div>
@@ -717,7 +752,7 @@ export default function DentistCityPage({ params }: { params: { city: string } }
             marginLeft: 'auto',
             marginRight: 'auto'
           }}>
-            Join {cityName} dental clinics that are already winning with AI-driven Google Ads strategies
+                            Join {cityName} dental clinics already winning with AI-driven Google Ads strategies that boost ROI and reduce costs
           </p>
           <a href="/chat" style={{
             display: 'inline-flex',
@@ -734,7 +769,7 @@ export default function DentistCityPage({ params }: { params: { city: string } }
             boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)'
           }}
           className="final-cta-btn">
-            Get Free Strategy
+            Get Your Free Strategy
           </a>
         </div>
       </section>
