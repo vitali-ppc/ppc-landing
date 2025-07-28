@@ -35,7 +35,7 @@ const ChatFormGPT: React.FC = () => {
   // Чат состояния
   const [chats, setChats] = useLocalStorage<Chat[]>('ppcset-chats', []);
   const [currentChatId, setCurrentChatId] = useLocalStorage<string | null>('ppcset-current-chat', null);
-  const [showSidebar, setShowSidebar] = useState(false);
+  const [showSidebar, setShowSidebar] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [openMenuId, setOpenMenuId] = useState<string | null>(null);
   const [editingChatId, setEditingChatId] = useState<string | null>(null);
@@ -594,7 +594,7 @@ const ChatFormGPT: React.FC = () => {
           position: 'fixed',
           left: 0,
           top: 0,
-          width: '70px',
+          width: '50px',
           height: '100vh',
           background: '#374151',
           borderRight: '1px solid #23272f',
@@ -607,18 +607,23 @@ const ChatFormGPT: React.FC = () => {
         onClick={() => setShowSidebar(!showSidebar)}
         style={{
           position: 'fixed',
-          left: '16px',
-          top: '16px',
+          left: '10px',
+          top: '12px',
           background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
           border: '1px solid #e2e8f0',
           color: '#23272f',
-          fontSize: 20,
+          fontSize: 16,
           cursor: 'pointer',
-          padding: '8px',
-          borderRadius: 6,
+          padding: '6px',
+          borderRadius: 4,
           transition: 'all 0.2s',
           zIndex: 200,
           boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+          width: '30px',
+          height: '30px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
         }}
         title={showSidebar ? 'Hide chat history' : 'Show chat history'}
         onMouseEnter={(e) => {
@@ -639,23 +644,23 @@ const ChatFormGPT: React.FC = () => {
           onClick={createNewChat}
           style={{
             position: 'fixed',
-            left: '16px',
-            top: '80px',
+            left: '10px',
+            top: '52px',
             background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
             border: '1px solid #e2e8f0',
             color: '#23272f',
-            fontSize: 18,
+            fontSize: 16,
             cursor: 'pointer',
-            padding: '10px 8px',
-            borderRadius: 6,
+            padding: '6px',
+            borderRadius: 4,
             transition: 'all 0.2s',
             zIndex: 200,
             boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            minWidth: '36px',
-            height: '40px',
+            width: '30px',
+            height: '30px',
           }}
           title="New chat"
           onMouseEnter={(e) => {
@@ -673,7 +678,7 @@ const ChatFormGPT: React.FC = () => {
 
       {/* Sidebar */}
       <div style={{
-        width: showSidebar ? 280 : 0,
+        width: showSidebar ? 250 : 0,
         background: '#374151',
         borderRight: '1px solid #23272f',
         transition: 'width 0.3s ease',
@@ -954,7 +959,7 @@ const ChatFormGPT: React.FC = () => {
         flex: 1,
         display: 'flex',
         justifyContent: 'center',
-        paddingLeft: showSidebar ? '280px' : '0',
+        paddingLeft: showSidebar ? '250px' : '0',
         transition: 'padding-left 0.3s ease',
       }}>
         <div className="chat-root" style={{
