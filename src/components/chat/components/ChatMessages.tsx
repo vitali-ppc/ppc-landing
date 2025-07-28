@@ -35,7 +35,7 @@ export const ChatMessages: React.FC<ChatMessagesProps> = React.memo(({
       maxHeight: '70vh',
       overflowY: 'auto',
       padding: '24px 0',
-      background: '#f9fafc',
+      background: 'transparent',
       borderBottomLeftRadius: 0,
       borderBottomRightRadius: 0,
       transition: 'background 0.2s',

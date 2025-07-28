@@ -965,15 +965,15 @@ const ChatFormGPT: React.FC = () => {
         <div className="chat-root" style={{
           maxWidth: '900px',
           width: '100%',
-          background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
+          background: 'transparent',
           borderRadius: 0,
-          boxShadow: showSidebar ? 'none' : '0 4px 32px rgba(0,0,0,0.1)',
-          border: '1px solid #e2e8f0',
+          boxShadow: 'none',
+          border: 'none',
           minHeight: 480,
           display: 'flex',
           flexDirection: 'column',
           transition: 'all 0.3s ease',
-          padding: '0 16px',
+          padding: '0',
           boxSizing: 'border-box',
         }}>
       {/* Top bar */}
@@ -1218,12 +1218,12 @@ const ChatFormGPT: React.FC = () => {
         gap: 16,
         padding: '18px 24px 32px 24px', // більше місця знизу
         borderTop: '1px solid #e2e8f0',
-        background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
+        background: 'transparent',
         borderBottomLeftRadius: 0,
         borderBottomRightRadius: 0,
         alignItems: 'flex-end',
       }}>
-        <div style={{ position: 'relative', flex: 1 }}>
+        <div style={{ position: 'relative', flex: 1, marginLeft: '60px' }}>
           <textarea
             ref={inputRef}
             value={input}
@@ -1256,7 +1256,7 @@ const ChatFormGPT: React.FC = () => {
     fontSize: 15,
     fontFamily: 'Inter, Segoe UI, Arial, sans-serif',
     lineHeight: 1.3,
-    background: '#f9fafc',
+    background: 'transparent',
     color: '#23272f',
     outline: 'none',
     boxShadow: '0 1px 2px rgba(0,0,0,0.01)',
@@ -1317,7 +1317,7 @@ const ChatFormGPT: React.FC = () => {
             }}
             style={{
               position: 'absolute',
-              right: '140px', // еще больше сдвинули влево
+              right: '150px', // еще больше сдвинули влево
               bottom: '6px', // отступ снизу для иконки
               background: 'none',
               border: 'none',
@@ -1355,7 +1355,7 @@ const ChatFormGPT: React.FC = () => {
             aria-label={loading || typingText !== null ? 'Зупинити друк відповіді' : 'Відправити'}
             style={{
               position: 'absolute',
-              right: '105px', // еще больше сдвинули влево
+              right: '115px', // еще больше сдвинули влево
               bottom: '6px', // отступ снизу
               width: 32,
               height: 32,
