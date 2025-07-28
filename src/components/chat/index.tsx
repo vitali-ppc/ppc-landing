@@ -208,6 +208,9 @@ const ChatFormGPT: React.FC = () => {
           : c
       ));
     }
+    if (inputRef.current) {
+      inputRef.current.style.height = '50px';
+    }
     inputRef.current?.focus();
   }, [currentChatId]);
 
@@ -1222,16 +1225,17 @@ const ChatFormGPT: React.FC = () => {
         borderBottomLeftRadius: 0,
         borderBottomRightRadius: 0,
         alignItems: 'flex-end',
+        position: 'relative',
       }}>
         <div style={{ position: 'relative', flex: 1, marginLeft: '60px' }}>
           <textarea
             ref={inputRef}
             value={input}
-              onChange={e => {
-    setInput(e.target.value);
-    e.target.style.height = '50px';
-    e.target.style.height = e.target.scrollHeight + 'px';
-  }}
+                            onChange={e => {
+                setInput(e.target.value);
+                e.target.style.height = '50px';
+                e.target.style.height = e.target.scrollHeight + 'px';
+              }}
             onKeyDown={e => {
               if (e.key === 'Enter' && !e.shiftKey) {
                 e.preventDefault();
@@ -1279,8 +1283,8 @@ const ChatFormGPT: React.FC = () => {
             }}
             style={{
               position: 'absolute',
-              left: '7px', // увеличенный отступ слева для иконки
-              bottom: '6px', // увеличенный отступ снизу для иконки
+              left: '7px', // отступ слева для иконки
+              bottom: '6px', // отступ снизу для иконки
               background: 'none',
               border: 'none',
               color: '#9ca3af',
@@ -1317,7 +1321,7 @@ const ChatFormGPT: React.FC = () => {
             }}
             style={{
               position: 'absolute',
-              right: '150px', // еще больше сдвинули влево
+              right: '120px', // сдвинули вправо
               bottom: '6px', // отступ снизу для иконки
               background: 'none',
               border: 'none',
@@ -1355,7 +1359,7 @@ const ChatFormGPT: React.FC = () => {
             aria-label={loading || typingText !== null ? 'Зупинити друк відповіді' : 'Відправити'}
             style={{
               position: 'absolute',
-              right: '115px', // еще больше сдвинули влево
+              right: '85px', // сдвинули вправо
               bottom: '6px', // отступ снизу
               width: 32,
               height: 32,
