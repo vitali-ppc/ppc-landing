@@ -31,6 +31,7 @@ const ChatFormGPT: React.FC = () => {
   const [placeholderIndex, setPlaceholderIndex] = useState(0);
   const [showReportTemplates, setShowReportTemplates] = useState(false);
   const [showHelpExamples, setShowHelpExamples] = useState(false);
+  const [showBottomTemplates, setShowBottomTemplates] = useState(false);
   
   // Чат состояния
   const [chats, setChats] = useLocalStorage<Chat[]>('ppcset-chats', []);
@@ -731,6 +732,60 @@ const ChatFormGPT: React.FC = () => {
             New Chat
           </button>
         </div>
+        
+        {/* Smart Mode Toggle */}
+        {(adsData || realAdsData) && (
+          <div style={{
+            padding: '12px 16px',
+            borderBottom: '1px solid #1a1a1a',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+          }}>
+            <div style={{
+              fontSize: '13px',
+              fontWeight: '500',
+              color: '#ffffff'
+            }}>
+              Smart Mode
+            </div>
+            <div
+              onClick={() => setUseAdsData(v => !v)}
+              style={{
+                width: '40px',
+                height: '22px',
+                background: useAdsData ? '#667eea' : '#4b5563',
+                borderRadius: '11px',
+                cursor: 'pointer',
+                position: 'relative',
+                transition: 'background 0.2s ease',
+                display: 'flex',
+                alignItems: 'center',
+                padding: '2px'
+              }}
+              title={realAdsData ? "Toggle real Google Ads data analysis" : "Toggle test Google Ads data analysis"}
+            >
+              <div style={{
+                width: '18px',
+                height: '18px',
+                background: 'white',
+                borderRadius: '50%',
+                transform: useAdsData ? 'translateX(18px)' : 'translateX(0px)',
+                transition: 'transform 0.2s ease',
+                boxShadow: '0 1px 3px rgba(0,0,0,0.2)'
+              }} />
+            </div>
+            <div style={{
+              fontSize: '11px',
+              fontWeight: '500',
+              color: useAdsData ? '#667eea' : '#ffffff',
+              minWidth: '25px',
+              textAlign: 'center'
+            }}>
+              {useAdsData ? 'ON' : 'OFF'}
+            </div>
+          </div>
+        )}
         <div style={{
           padding: '12px 16px',
           borderBottom: '1px solid #1a1a1a',
@@ -997,39 +1052,7 @@ const ChatFormGPT: React.FC = () => {
         {/* У top bar видаляю кнопку перемикача теми (іконка ☀️/🌙) */}
         <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
           {/* Theme toggle */}
-          {(adsData || realAdsData) && (
-            <button
-              onClick={() => setUseAdsData(v => !v)}
-              style={{
-                background: useAdsData ? '#0ea5e9' : '#e6f7ff',
-                color: useAdsData ? '#fff' : '#23272f',
-                border: '1.5px solid #0ea5e9',
-                borderRadius: 8,
-                padding: '6px 18px',
-                fontSize: 15,
-                fontWeight: 600,
-                cursor: 'pointer',
-                boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
-                marginRight: 8,
-                transition: 'background 0.2s',
-              }}
-              title={realAdsData ? "Add real Google Ads data to question" : "Add test Google Ads data to question"}
-            >
-              {useAdsData ? (realAdsData ? 'Real Google Ads data added' : 'Google Ads data added') : (realAdsData ? 'Use real Google Ads data' : 'Use Google Ads data')}
-            </button>
-          )}
-          <button onClick={handleClear} style={{
-            background: 'none',
-            border: 'none',
-            color: '#888',
-            fontSize: 15,
-            cursor: 'pointer',
-            padding: '4px 10px',
-            borderRadius: 8,
-            transition: 'background 0.2s',
-          }} title="Clear chat">
-            Clear chat
-          </button>
+
           <button
             onClick={() => setShowReportTemplates(!showReportTemplates)}
             style={{
@@ -1064,15 +1087,16 @@ const ChatFormGPT: React.FC = () => {
         gap: '4px',
       }}>
         <span style={{
-          color: '#23272f',
+          color: '#1a1a1a',
           fontSize: '18px',
           fontWeight: '500',
           fontFamily: 'Inter, Segoe UI, Arial, sans-serif',
         }}>
-          Connect
+          Tools
         </span>
         <div 
           onClick={() => setShowAccountModal(true)}
+          title="Connect"
           style={{
             display: 'flex',
             alignItems: 'center',
@@ -1105,23 +1129,58 @@ const ChatFormGPT: React.FC = () => {
             }}
           />
         </div>
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          width: '32px',
-          height: '32px',
-          background: 'white',
-          borderRadius: '50%',
-          boxShadow: '0 2px 6px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.1)',
-          padding: '4px',
-          marginTop: '4px'
-        }}>
+        <div 
+          title="Connect"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '32px',
+            height: '32px',
+            background: 'white',
+            borderRadius: '50%',
+            boxShadow: '0 2px 6px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.1)',
+            padding: '4px',
+            marginTop: '4px'
+          }}>
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             {/* Google Analytics logo без белого фона */}
             <rect x="4" y="12" width="4" height="8" rx="1" fill="#FF9800"/>
             <rect x="9" y="8" width="4" height="12" rx="1" fill="#FF5722"/>
             <rect x="14" y="4" width="4" height="16" rx="1" fill="#F57C00"/>
+          </svg>
+        </div>
+        
+        {/* Clear Chat Icon */}
+        <div 
+          onClick={handleClear}
+          title="Clear chat"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '32px',
+            height: '32px',
+            background: 'white',
+            borderRadius: '50%',
+            boxShadow: '0 2px 6px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.1)',
+            padding: '4px',
+            cursor: 'pointer',
+            marginTop: '4px',
+            transition: 'all 0.2s ease'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = 'scale(1.1)';
+            e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.15)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'scale(1)';
+            e.currentTarget.style.boxShadow = '0 2px 6px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.1)';
+          }}
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="10" stroke="#23272f" strokeWidth="2"/>
+            <path d="M15 9l-6 6M9 9l6 6" stroke="#23272f" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         </div>
       </div>
@@ -1137,39 +1196,8 @@ const ChatFormGPT: React.FC = () => {
           boxShadow: '0 4px 16px rgba(0,0,0,0.1)',
         }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
-            <h3 style={{ fontSize: 16, fontWeight: 600, color: '#23272f', margin: 0 }}>
-              Report Templates
-            </h3>
-            <button
-              onClick={() => {
-                if (!accountConnected) {
-                  // Auto-connect: включаємо тестові дані та показуємо модалку для реального підключення
-                  setUseAdsData(true);
-                  setAccountConnected(true);
-                  fetch('/api/ads-data')
-                    .then(res => res.json())
-                    .then(data => setAdsData(data))
-                    .catch(() => setAdsData(null));
-                  
-                  // Показуємо модалку для підключення реального акаунту
-                  setTimeout(() => setShowAccountModal(true), 500);
-                }
-              }}
-              style={{
-                background: accountConnected ? '#e6f7ff' : '#fff',
-                color: accountConnected ? '#0ea5e9' : '#23272f',
-                border: '1.5px solid #0ea5e9',
-                borderRadius: 6,
-                padding: '4px 12px',
-                fontSize: 13,
-                fontWeight: 500,
-                cursor: 'pointer',
-                transition: 'background 0.2s',
-              }}
-              title="Automatic Google Ads connection"
-            >
-              {accountConnected ? 'Google Ads data added' : 'Auto-connect'}
-            </button>
+
+
           </div>
           <div style={{
             display: 'grid',
@@ -1208,33 +1236,7 @@ const ChatFormGPT: React.FC = () => {
       )}
 
       {/* Блок "Дані Google Ads підключені" */}
-      {useAdsData && (adsData || realAdsData) && (
-        <div style={{
-          background: realAdsData ? '#e6f7ff' : '#fff3cd',
-          color: '#23272f',
-          border: realAdsData ? '1.5px solid #0ea5e9' : '1.5px solid #ffc107',
-          borderRadius: 12,
-          margin: '0 48px 8px 48px',
-          padding: '12px 18px',
-          fontSize: 15,
-          fontWeight: 500,
-          display: 'flex',
-          alignItems: 'center',
-          gap: 18,
-        }}>
-          <span style={{ fontWeight: 600, color: realAdsData ? '#0ea5e9' : '#856404' }}>
-            {realAdsData ? 'Real Google Ads data connected' : 'Test Google Ads data connected'}
-          </span>
-          <details style={{ flex: 1 }}>
-            <summary style={{ cursor: 'pointer', color: realAdsData ? '#0ea5e9' : '#856404', fontWeight: 400, fontSize: 15 }}>
-              {realAdsData ? 'View real data' : 'View test data'}
-            </summary>
-            <pre style={{ fontSize: 13, background: '#f9fafc', borderRadius: 8, padding: 12, marginTop: 8, overflowX: 'auto' }}>
-              {JSON.stringify(realAdsData || adsData, null, 2)}
-            </pre>
-          </details>
-        </div>
-      )}
+
       {/* Chat history */}
       <ChatMessages
         messages={messages}
@@ -1524,7 +1526,7 @@ const ChatFormGPT: React.FC = () => {
 
       {/* Підказка під textarea */}
       <div style={{ color: '#64748b', fontSize: 14, margin: '0 48px 12px 48px', textAlign: 'center' }}>
-        For a personalized answer, click <b>"Use Google Ads data"</b> before submitting your question.
+        For a personalized answer, turn <b>"Smart Mode" ON</b> in the sidebar before submitting your question.
       </div>
 
       {/* Кнопки Templates та Help */}
@@ -1533,43 +1535,186 @@ const ChatFormGPT: React.FC = () => {
         gap: 12,
         justifyContent: 'center',
         margin: '0 48px 16px 48px',
+        position: 'relative',
       }}>
-        <button
-          type="button"
-          onClick={() => setShowReportTemplates(!showReportTemplates)}
-          style={{
-            background: '#fff',
-            color: '#23272f',
-            border: '1.2px solid #e2e8f0',
-            borderRadius: 8,
-            padding: '8px 16px',
-            fontSize: 14,
-            fontWeight: 500,
-            cursor: 'pointer',
-            transition: 'all 0.2s',
-            boxShadow: '0 1px 4px rgba(0,0,0,0.03)',
-            display: 'flex',
-            alignItems: 'center',
-            gap: 6,
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.background = '#f8fafc';
-            e.currentTarget.style.borderColor = '#cbd5e1';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.background = '#fff';
-            e.currentTarget.style.borderColor = '#e2e8f0';
-          }}
-        >
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-            <polyline points="14,2 14,8 20,8"/>
-            <line x1="16" y1="13" x2="8" y2="13"/>
-            <line x1="16" y1="17" x2="8" y2="17"/>
-            <polyline points="10,9 9,9 8,9"/>
-          </svg>
-          Templates
-        </button>
+        <div style={{ position: 'relative' }}>
+          <button
+            type="button"
+            onClick={() => setShowBottomTemplates(!showBottomTemplates)}
+            style={{
+              background: '#fff',
+              color: '#23272f',
+              border: '1.2px solid #e2e8f0',
+              borderRadius: 8,
+              padding: '8px 16px',
+              fontSize: 14,
+              fontWeight: 500,
+              cursor: 'pointer',
+              transition: 'all 0.2s',
+              boxShadow: '0 1px 4px rgba(0,0,0,0.03)',
+              display: 'flex',
+              alignItems: 'center',
+              gap: 6,
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = '#f8fafc';
+              e.currentTarget.style.borderColor = '#cbd5e1';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = '#fff';
+              e.currentTarget.style.borderColor = '#e2e8f0';
+            }}
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M12 20h9" />
+              <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z" />
+            </svg>
+            Templates-2
+          </button>
+
+          {/* Dropdown для Templates-2 (окремий) */}
+          {showBottomTemplates && (
+            <div style={{
+              position: 'absolute',
+              bottom: '100%',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              background: '#fff',
+              border: '1px solid #e2e8f0',
+              borderRadius: 12,
+              boxShadow: '0 8px 32px rgba(0,0,0,0.12)',
+              padding: '8px',
+              minWidth: 320,
+              maxWidth: 400,
+              zIndex: 1000,
+              marginBottom: 8,
+            }}>
+              {/* Header з іконкою та кнопкою закриття */}
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                padding: '8px',
+                borderBottom: '1px solid #f1f5f9',
+                marginBottom: '4px'
+              }}>
+                <svg width="16" height="16" viewBox="0 0 256 256" fill="currentColor" style={{ color: '#64748b' }}>
+                  <path d="M227.31,73.37,182.63,28.68a16,16,0,0,0-22.63,0L36.69,152A15.86,15.86,0,0,0,32,163.31V208a16,16,0,0,0,16,16H92.69A15.86,15.86,0,0,0,104,219.31L227.31,96a16,16,0,0,0,0-22.63ZM92.69,208H48V163.31l88-88L180.69,120ZM192,108.68,147.31,64l24-24L216,84.68Z" fill="currentColor"/>
+                </svg>
+                <span style={{ 
+                  flex: 1, 
+                  fontSize: '12px', 
+                  fontWeight: '500', 
+                  color: '#64748b' 
+                }}>
+                  Google Ads Templates
+                </span>
+                <button
+                  onClick={() => setShowBottomTemplates(false)}
+                  style={{
+                    background: 'none',
+                    border: 'none',
+                    color: '#64748b',
+                    cursor: 'pointer',
+                    padding: '4px',
+                    borderRadius: '4px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    transition: 'all 0.2s'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = '#f1f5f9';
+                    e.currentTarget.style.color = '#374151';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = 'transparent';
+                    e.currentTarget.style.color = '#64748b';
+                  }}
+                >
+                  <svg width="16" height="16" viewBox="0 0 256 256" fill="currentColor">
+                    <path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/>
+                  </svg>
+                </button>
+              </div>
+              
+                             {/* Список шаблонів */}
+               <ul style={{
+                 listStyle: 'none',
+                 padding: 0,
+                 margin: 0,
+                 fontSize: '14px'
+               }}>
+                 {[
+                   { name: "Campaign Analysis", description: "Detailed campaign performance analysis" },
+                   { name: "Keyword Analysis", description: "Keyword performance analysis" },
+                   { name: "Monthly Report", description: "Comprehensive monthly report" },
+                   { name: "Quick Analysis", description: "Quick overview of key metrics" },
+                   { name: "Performance Review", description: "Detailed performance review" },
+                   { name: "Budget Analysis", description: "Budget allocation and efficiency analysis" }
+                 ].map((template, i) => (
+                   <li key={i} style={{
+                     borderBottom: i < 5 ? '1px solid #f1f5f9' : 'none'
+                   }}>
+                     <button
+                                             onClick={() => {
+                        setInput(template.name);
+                        setShowBottomTemplates(false);
+                        // Автоматична відправка форми
+                        setTimeout(() => {
+                          const form = document.querySelector('form');
+                          if (form) form.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
+                        }, 100);
+                      }}
+                       style={{
+                         width: '100%',
+                         background: 'transparent',
+                         border: 'none',
+                         padding: '10px 8px',
+                         fontSize: '14px',
+                         textAlign: 'left',
+                         cursor: 'pointer',
+                         borderRadius: '8px',
+                         transition: 'all 0.2s',
+                         display: 'flex',
+                         alignItems: 'center',
+                         justifyContent: 'space-between',
+                         color: '#374151'
+                       }}
+                       onMouseEnter={(e) => {
+                         e.currentTarget.style.background = '#f8fafc';
+                       }}
+                       onMouseLeave={(e) => {
+                         e.currentTarget.style.background = 'transparent';
+                       }}
+                     >
+                       <div style={{ flex: 1 }}>
+                         <div style={{ fontWeight: '500', marginBottom: '2px' }}>{template.name}</div>
+                         <div style={{ fontSize: '12px', color: '#64748b' }}>{template.description}</div>
+                       </div>
+                       <svg 
+                         width="16" 
+                         height="16" 
+                         viewBox="0 0 256 256" 
+                         fill="currentColor"
+                         style={{ 
+                           opacity: 0,
+                           transition: 'opacity 0.2s',
+                           color: '#64748b'
+                         }}
+                         onMouseEnter={(e) => {
+                           e.currentTarget.style.opacity = '1';
+                         }}
+                       >
+                         <path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"/>
+                       </svg>
+                     </button>
+                   </li>
+                 ))}
+               </ul>
+            </div>
+          )}
+        </div>
 
         <button
           type="button"
@@ -1607,77 +1752,210 @@ const ChatFormGPT: React.FC = () => {
         </button>
       </div>
 
-      {/* Dropdown для Help */}
-      {showHelpExamples && (
-        <div style={{
-          position: 'absolute',
-          bottom: '100%',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          background: '#fff',
-          border: '1px solid #e2e8f0',
-          borderRadius: 12,
-          boxShadow: '0 8px 32px rgba(0,0,0,0.12)',
-          padding: '16px',
-          minWidth: 280,
-          maxWidth: 400,
-          zIndex: 1000,
-          marginBottom: 8,
-        }}>
-          <div style={{
-            fontSize: 14,
-            fontWeight: 600,
-            color: '#23272f',
-            marginBottom: 12,
-            textAlign: 'center',
-          }}>
-            Quick prompts
-          </div>
-          <div style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 8,
-          }}>
-            {[
-              "How can I improve my Google Ads campaign?",
-              "Why is my CPA so high?",
-              "Show me insights for my last 30 days."
-            ].map((example, i) => (
-              <button
-                key={i}
-                type="button"
-                onClick={() => {
-                  setInput(example);
-                  setShowHelpExamples(false);
-                }}
-                style={{
-                  background: '#f8fafc',
-                  color: '#23272f',
-                  border: '1px solid #e2e8f0',
-                  borderRadius: 8,
-                  padding: '10px 12px',
-                  fontSize: 14,
-                  textAlign: 'left',
-                  cursor: 'pointer',
-                  transition: 'all 0.2s',
-                  outline: 'none',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = '#f1f5f9';
-                  e.currentTarget.style.borderColor = '#cbd5e1';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = '#f8fafc';
-                  e.currentTarget.style.borderColor = '#e2e8f0';
-                }}
-              >
-                {example}
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
+             {/* Dropdown для Help */}
+       {showHelpExamples && (
+         <div style={{
+           position: 'absolute',
+           bottom: '100%',
+           left: '50%',
+           transform: 'translateX(-50%)',
+           background: '#fff',
+           border: '1px solid #e2e8f0',
+           borderRadius: 12,
+           boxShadow: '0 8px 32px rgba(0,0,0,0.12)',
+           padding: '16px',
+           minWidth: 280,
+           maxWidth: 400,
+           zIndex: 1000,
+           marginBottom: 8,
+         }}>
+           <div style={{
+             fontSize: 14,
+             fontWeight: 600,
+             color: '#23272f',
+             marginBottom: 12,
+             textAlign: 'center',
+           }}>
+             Quick prompts
+           </div>
+           <div style={{
+             display: 'flex',
+             flexDirection: 'column',
+             gap: 8,
+           }}>
+             {[
+               "How can I improve my Google Ads campaign?",
+               "Why is my CPA so high?",
+               "Show me insights for my last 30 days."
+             ].map((example, i) => (
+               <button
+                 key={i}
+                 type="button"
+                 onClick={() => {
+                   setInput(example);
+                   setShowHelpExamples(false);
+                 }}
+                 style={{
+                   background: '#f8fafc',
+                   color: '#23272f',
+                   border: '1px solid #e2e8f0',
+                   borderRadius: 8,
+                   padding: '10px 12px',
+                   fontSize: 14,
+                   textAlign: 'left',
+                   cursor: 'pointer',
+                   transition: 'all 0.2s',
+                   outline: 'none',
+                 }}
+                 onMouseEnter={(e) => {
+                   e.currentTarget.style.background = '#f1f5f9';
+                   e.currentTarget.style.borderColor = '#cbd5e1';
+                 }}
+                 onMouseLeave={(e) => {
+                   e.currentTarget.style.background = '#f8fafc';
+                   e.currentTarget.style.borderColor = '#e2e8f0';
+                 }}
+               >
+                 {example}
+               </button>
+             ))}
+           </div>
+         </div>
+       )}
 
+       {/* Dropdown для Templates (оригінальний) */}
+       {showReportTemplates && (
+         <div style={{
+           position: 'absolute',
+           bottom: '100%',
+           left: '50%',
+           transform: 'translateX(-50%)',
+           background: '#fff',
+           border: '1px solid #e2e8f0',
+           borderRadius: 12,
+           boxShadow: '0 8px 32px rgba(0,0,0,0.12)',
+           padding: '8px',
+           minWidth: 320,
+           maxWidth: 400,
+           zIndex: 1000,
+           marginBottom: 8,
+         }}>
+           {/* Header з іконкою та кнопкою закриття */}
+           <div style={{
+             display: 'flex',
+             alignItems: 'center',
+             gap: '8px',
+             padding: '8px',
+             borderBottom: '1px solid #f1f5f9',
+             marginBottom: '4px'
+           }}>
+             <svg width="16" height="16" viewBox="0 0 256 256" fill="currentColor" style={{ color: '#64748b' }}>
+               <path d="M227.31,73.37,182.63,28.68a16,16,0,0,0-22.63,0L36.69,152A15.86,15.86,0,0,0,32,163.31V208a16,16,0,0,0,16,16H92.69A15.86,15.86,0,0,0,104,219.31L227.31,96a16,16,0,0,0,0-22.63ZM92.69,208H48V163.31l88-88L180.69,120ZM192,108.68,147.31,64l24-24L216,84.68Z"/>
+             </svg>
+             <span style={{ 
+               flex: 1, 
+               fontSize: '12px', 
+               fontWeight: '500', 
+               color: '#64748b' 
+             }}>
+               Google Ads Templates
+             </span>
+             <button
+               onClick={() => setShowReportTemplates(false)}
+               style={{
+                 background: 'none',
+                 border: 'none',
+                 color: '#64748b',
+                 cursor: 'pointer',
+                 padding: '4px',
+                 borderRadius: '4px',
+                 display: 'flex',
+                 alignItems: 'center',
+                 justifyContent: 'center',
+                 transition: 'all 0.2s'
+               }}
+               onMouseEnter={(e) => {
+                 e.currentTarget.style.background = '#f1f5f9';
+                 e.currentTarget.style.color = '#374151';
+               }}
+               onMouseLeave={(e) => {
+                 e.currentTarget.style.background = 'transparent';
+                 e.currentTarget.style.color = '#64748b';
+               }}
+             >
+               <svg width="16" height="16" viewBox="0 0 256 256" fill="currentColor">
+                 <path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/>
+               </svg>
+             </button>
+           </div>
+           
+           {/* Список шаблонів */}
+           <ul style={{
+             listStyle: 'none',
+             padding: 0,
+             margin: 0,
+             fontSize: '14px'
+           }}>
+             {[
+               "Generate Performance Report",
+               "Analyze Campaign Performance", 
+               "Create Budget Optimization Plan",
+               "Audit Ad Quality Score",
+               "Generate Keyword Insights"
+             ].map((template, i) => (
+               <li key={i} style={{
+                 borderBottom: i < 4 ? '1px solid #f1f5f9' : 'none'
+               }}>
+                 <button
+                   onClick={() => {
+                     setInput(template);
+                     setShowReportTemplates(false);
+                   }}
+                   style={{
+                     width: '100%',
+                     background: 'transparent',
+                     border: 'none',
+                     padding: '10px 8px',
+                     fontSize: '14px',
+                     textAlign: 'left',
+                     cursor: 'pointer',
+                     borderRadius: '8px',
+                     transition: 'all 0.2s',
+                     display: 'flex',
+                     alignItems: 'center',
+                     justifyContent: 'space-between',
+                     color: '#374151'
+                   }}
+                   onMouseEnter={(e) => {
+                     e.currentTarget.style.background = '#f8fafc';
+                   }}
+                   onMouseLeave={(e) => {
+                     e.currentTarget.style.background = 'transparent';
+                   }}
+                 >
+                   <span>{template}</span>
+                   <svg 
+                     width="16" 
+                     height="16" 
+                     viewBox="0 0 256 256" 
+                     fill="currentColor"
+                     style={{ 
+                       opacity: 0,
+                       transition: 'opacity 0.2s',
+                       color: '#64748b'
+                     }}
+                     onMouseEnter={(e) => {
+                       e.currentTarget.style.opacity = '1';
+                     }}
+                   >
+                     <path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"/>
+                   </svg>
+                 </button>
+               </li>
+             ))}
+           </ul>
+         </div>
+       )}
 
       {error && <div style={{ color: 'red', margin: '0 48px 10px 48px' }}>{error}</div>}
       {/* Модалка-заглушка для підключення акаунта */}
