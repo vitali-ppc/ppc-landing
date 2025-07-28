@@ -3,7 +3,6 @@
 import { useChat } from 'ai/react';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
-import Breadcrumbs from '../../components/Breadcrumbs';
 
 export default function ChatNewPage() {
   const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat({
@@ -13,7 +12,6 @@ export default function ChatNewPage() {
   return (
     <>
       <Header />
-      <Breadcrumbs />
       <main style={{ 
         minHeight: 'calc(100vh - 200px)', 
         background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',

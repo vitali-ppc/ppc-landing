@@ -9,8 +9,14 @@ export const metadata: Metadata = {
 
 export default function ChatPage() {
   return (
-    <main>
+    <div style={{
+      background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
+      height: '100vh',
+      margin: 0,
+      padding: 0,
+      overflow: 'hidden'
+    }}>
       <ChatFormGPT />
-    </main>
+    </div>
   );
 } 

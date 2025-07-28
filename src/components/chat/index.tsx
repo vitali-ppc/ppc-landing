@@ -569,7 +569,7 @@ const ChatFormGPT: React.FC = () => {
         fontFamily: 'Inter, SF Pro Display, Segoe UI, Arial, sans-serif',
         alignItems: 'center',
         justifyContent: 'center',
-        background: '#f9fafc',
+        background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
       }}>
         <div style={{ fontSize: '18px', color: '#23272f' }}>Loading...</div>
       </div>
@@ -577,12 +577,16 @@ const ChatFormGPT: React.FC = () => {
   }
 
   return (
-    <div style={{
-      display: 'flex',
-      height: '100vh',
-      width: '100vw',
-      fontFamily: 'Inter, SF Pro Display, Segoe UI, Arial, sans-serif',
-    }}>
+          <div style={{
+        display: 'flex',
+        height: '100vh',
+        width: '100vw',
+        fontFamily: 'Inter, SF Pro Display, Segoe UI, Arial, sans-serif',
+        background: 'transparent',
+        position: 'fixed',
+        top: 0,
+        left: 0,
+      }}>
       {/* Narrow sidebar background - visible only when sidebar is closed */}
       {!showSidebar && (
         <div style={{
@@ -591,8 +595,8 @@ const ChatFormGPT: React.FC = () => {
           top: 0,
           width: '70px',
           height: '100vh',
-          background: '#23272f',
-          borderRight: '1px solid #1a1a1a',
+          background: '#374151',
+          borderRight: '1px solid #23272f',
           zIndex: 150,
         }} />
       )}
@@ -604,9 +608,9 @@ const ChatFormGPT: React.FC = () => {
           position: 'fixed',
           left: '16px',
           top: '16px',
-          background: '#23272f',
-          border: '1px solid #1a1a1a',
-          color: '#fff',
+          background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
+          border: '1px solid #e2e8f0',
+          color: '#23272f',
           fontSize: 20,
           cursor: 'pointer',
           padding: '8px',
@@ -617,33 +621,31 @@ const ChatFormGPT: React.FC = () => {
         }}
         title={showSidebar ? 'Hide chat history' : 'Show chat history'}
         onMouseEnter={(e) => {
-          e.currentTarget.style.color = '#00ffe7';
-          e.currentTarget.style.background = '#1a1a1a';
-          e.currentTarget.style.border = '1px solid #00ffe7';
+          e.currentTarget.style.background = 'linear-gradient(135deg, #e2e8f0 0%, #f8fafc 100%)';
+          e.currentTarget.style.border = '1px solid #cbd5e1';
         }}
         onMouseLeave={(e) => {
-          e.currentTarget.style.color = '#fff';
-          e.currentTarget.style.background = '#23272f';
-          e.currentTarget.style.border = '1px solid #1a1a1a';
+          e.currentTarget.style.background = 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)';
+          e.currentTarget.style.border = '1px solid #e2e8f0';
         }}
       >
         ☰
       </button>
 
-      {/* New chat button (pencil) - visible only when sidebar is closed */}
+      {/* New chat button (+) - visible only when sidebar is closed */}
       {!showSidebar && (
         <button
           onClick={createNewChat}
           style={{
             position: 'fixed',
             left: '16px',
-            top: '60px',
-            background: '#23272f',
-            border: '1px solid #1a1a1a',
-            color: '#fff',
-            fontSize: 16,
+            top: '80px',
+            background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
+            border: '1px solid #e2e8f0',
+            color: '#23272f',
+            fontSize: 18,
             cursor: 'pointer',
-            padding: '8px',
+            padding: '10px 8px',
             borderRadius: 6,
             transition: 'all 0.2s',
             zIndex: 200,
@@ -651,28 +653,28 @@ const ChatFormGPT: React.FC = () => {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+            minWidth: '36px',
+            height: '40px',
           }}
           title="New chat"
           onMouseEnter={(e) => {
-            e.currentTarget.style.color = '#00ffe7';
-            e.currentTarget.style.background = '#1a1a1a';
-            e.currentTarget.style.border = '1px solid #00ffe7';
+            e.currentTarget.style.background = 'linear-gradient(135deg, #e2e8f0 0%, #f8fafc 100%)';
+            e.currentTarget.style.border = '1px solid #cbd5e1';
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.color = '#fff';
-            e.currentTarget.style.background = '#23272f';
-            e.currentTarget.style.border = '1px solid #1a1a1a';
+            e.currentTarget.style.background = 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)';
+            e.currentTarget.style.border = '1px solid #e2e8f0';
           }}
         >
-          ✏️
+          +
         </button>
       )}
 
       {/* Sidebar */}
       <div style={{
         width: showSidebar ? 280 : 0,
-        background: '#23272f',
-        borderRight: '1px solid #1a1a1a',
+        background: '#374151',
+        borderRight: '1px solid #23272f',
         transition: 'width 0.3s ease',
         overflow: 'hidden',
         display: 'flex',
@@ -957,10 +959,10 @@ const ChatFormGPT: React.FC = () => {
         <div className="chat-root" style={{
           maxWidth: '900px',
           width: '100%',
-          background: '#1a1a1a',
+          background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
           borderRadius: 0,
-          boxShadow: showSidebar ? 'none' : '0 4px 32px rgba(0,0,0,0.3)',
-          border: '1px solid #23272f',
+          boxShadow: showSidebar ? 'none' : '0 4px 32px rgba(0,0,0,0.1)',
+          border: '1px solid #e2e8f0',
           minHeight: 480,
           display: 'flex',
           flexDirection: 'column',
@@ -974,15 +976,13 @@ const ChatFormGPT: React.FC = () => {
         alignItems: 'center',
         justifyContent: 'space-between',
         padding: '22px 48px 12px 48px',
-        borderBottom: '1px solid #23272f',
-        background: '#23272f',
+        borderBottom: '1px solid #e2e8f0',
+        background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
         borderTopLeftRadius: 0,
         borderTopRightRadius: 0,
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-          <span style={{ fontWeight: 700, fontSize: 20, color: '#fff', letterSpacing: '-0.5px' }}>
-            PPCSet AI
-          </span>
+          {/* Removed: PPCSet AI text */}
         </div>
         {/* У top bar видаляю кнопку перемикача теми (іконка ☀️/🌙) */}
         <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
