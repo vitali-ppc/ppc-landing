@@ -1317,7 +1317,7 @@ const ChatFormGPT: React.FC = () => {
             }}
             style={{
               position: 'absolute',
-              right: '120px', // еще больше сдвинули влево
+              right: '140px', // еще больше сдвинули влево
               bottom: '6px', // отступ снизу для иконки
               background: 'none',
               border: 'none',
@@ -1351,10 +1351,11 @@ const ChatFormGPT: React.FC = () => {
           <button
             type="submit"
             disabled={loading || !input.trim()}
+            data-disabled={(loading || !input.trim()).toString()}
             aria-label={loading || typingText !== null ? 'Зупинити друк відповіді' : 'Відправити'}
             style={{
               position: 'absolute',
-              right: '75px', // еще больше сдвинули влево
+              right: '105px', // еще больше сдвинули влево
               bottom: '6px', // отступ снизу
               width: 32,
               height: 32,
@@ -1387,25 +1388,22 @@ const ChatFormGPT: React.FC = () => {
               </svg>
             ) : (
               // Ромбік Kampaio з літерою K
-              <div style={{
-                position: 'relative',
-                width: '24px',
-                height: '24px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
-              }}>
+              <div 
+                className="chat-send-rhombus"
+                style={{
+                  position: 'relative',
+                  width: '24px',
+                  height: '24px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+              >
                 <div style={{
                   position: 'absolute',
                   width: '100%',
                   height: '100%',
-                  background: loading || !input.trim() 
-                    ? '#e2e8f0 !important' 
-                    : '#374151 !important',
-                  borderRadius: '3px',
-                  transform: 'rotate(-5deg)',
-                  boxShadow: '0 2px 6px rgba(0, 0, 0, 0.2)',
-                  transition: 'all 0.2s ease'
+                  background: loading || !input.trim() ? '#e2e8f0' : '#374151'
                 }}></div>
                 <svg 
                   width="14" 

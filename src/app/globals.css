@@ -1154,6 +1154,15 @@ body {
   }
 }
 
+/* Chat send button rhombus styles */
+.chat-send-rhombus > div {
+  background: #374151 !important;
+  border-radius: 3px !important;
+  transform: rotate(-5deg) !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2) !important;
+  transition: all 0.2s ease !important;
+}
+
 /* New animations for pricing page variants */
 @keyframes progressPulse {
   0%, 100% {
