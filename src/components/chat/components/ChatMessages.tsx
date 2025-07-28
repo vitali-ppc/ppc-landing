@@ -39,7 +39,7 @@ export const ChatMessages: React.FC<ChatMessagesProps> = React.memo(({
       borderBottomLeftRadius: 0,
       borderBottomRightRadius: 0,
       transition: 'background 0.2s',
-    }}>
+        }}>
       {messages.length === 0 && (
         <div style={{ 
           color: '#23272f', 
@@ -55,7 +55,7 @@ export const ChatMessages: React.FC<ChatMessagesProps> = React.memo(({
           justifyContent: 'center',
           minHeight: '60vh',
         }}>
-          <div style={{ fontSize: '28px', fontWeight: '600', color: '#7f9cf5' }}>
+          <div style={{ fontSize: '28px', fontWeight: '600', color: '#667eea' }}>
             Ready to boost your Google Ads performance?
           </div>
         </div>

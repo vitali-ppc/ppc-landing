@@ -147,10 +147,10 @@ export const ChatSidebar: React.FC<ChatSidebarProps> = React.memo(({
           filteredChats.map((chat) => (
             <div
               key={chat.id}
-              style={{
-                padding: '12px 16px',
-                margin: '4px 0',
-                borderRadius: 8,
+                             style={{
+                 padding: '8px 16px',
+                 margin: '2px 0',
+                 borderRadius: 8,
                 background: currentChatId === chat.id ? '#1a1a1a' : 'transparent',
                 border: currentChatId === chat.id ? '1px solid #7f9cf5' : '1px solid transparent',
                 cursor: 'pointer',
