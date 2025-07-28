@@ -3785,7 +3785,7 @@ export default function KampaioHome() {
               <h2 style={{
                 fontSize: 'clamp(36px, 4vw, 48px)',
                 fontWeight: '800',
-                color: '#1a1a1a',
+                color: '#1e293b',
                 lineHeight: '1.2',
                 marginBottom: '16px'
               }}>
@@ -3793,7 +3793,7 @@ export default function KampaioHome() {
               </h2>
               <p style={{
                 fontSize: 'clamp(18px, 2vw, 20px)',
-                color: '#666',
+                color: '#64748b',
                 lineHeight: '1.5',
                 maxWidth: '600px'
               }}>
@@ -3819,7 +3819,7 @@ export default function KampaioHome() {
                   transition: 'all 0.3s ease'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = '#1a1a1a';
+                  e.currentTarget.style.borderColor = '#1e293b';
                   e.currentTarget.style.background = '#f8f9fa';
                 }}
                 onMouseLeave={(e) => {
@@ -3845,7 +3845,7 @@ export default function KampaioHome() {
                   transition: 'all 0.3s ease'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = '#1a1a1a';
+                  e.currentTarget.style.borderColor = '#1e293b';
                   e.currentTarget.style.background = '#f8f9fa';
                 }}
                 onMouseLeave={(e) => {
@@ -3889,7 +3889,7 @@ export default function KampaioHome() {
               <div style={{
                 width: '100%',
                 height: '200px',
-                background: 'linear-gradient(135deg, #7F9CF5 0%, #667eea 100%)',
+                background: 'linear-gradient(135deg, #764ba2 0%, #667eea 100%)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -3991,7 +3991,7 @@ export default function KampaioHome() {
                 <h3 style={{
                   fontSize: '20px',
                   fontWeight: '700',
-                  color: '#1a1a1a',
+                  color: '#1e293b',
                   marginBottom: '12px',
                   lineHeight: '1.3'
                 }}>
@@ -3999,7 +3999,7 @@ export default function KampaioHome() {
                 </h3>
                 <p style={{
                   fontSize: '15px',
-                  color: '#666',
+                  color: '#64748b',
                   lineHeight: '1.5'
                 }}>
                   Learn which Google Ads metrics CEOs care about (hint: it's not clicks) and get the exact reporting template that secures bigger budgets.
@@ -4029,7 +4029,7 @@ export default function KampaioHome() {
               <div style={{
                 width: '100%',
                 height: '200px',
-                background: 'linear-gradient(135deg, #7F9CF5 0%, #667eea 100%)',
+                background: 'linear-gradient(135deg, #764ba2 0%, #667eea 100%)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -4228,7 +4228,7 @@ export default function KampaioHome() {
                 <h3 style={{
                   fontSize: '20px',
                   fontWeight: '700',
-                  color: '#1a1a1a',
+                  color: '#1e293b',
                   marginBottom: '12px',
                   lineHeight: '1.3'
                 }}>
@@ -4236,7 +4236,7 @@ export default function KampaioHome() {
                 </h3>
                 <p style={{
                   fontSize: '15px',
-                  color: '#666',
+                  color: '#64748b',
                   lineHeight: '1.5'
                 }}>
                   While competitors struggle with AI, you'll master it. Discover prompts and workflows top PPC pros use to 10x your productivity.
@@ -4266,7 +4266,7 @@ export default function KampaioHome() {
               <div style={{
                 width: '100%',
                 height: '200px',
-                background: 'linear-gradient(135deg, #7F9CF5 0%, #667eea 100%)',
+                background: 'linear-gradient(135deg, #764ba2 0%, #667eea 100%)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -4356,7 +4356,7 @@ export default function KampaioHome() {
                 <h3 style={{
                   fontSize: '20px',
                   fontWeight: '700',
-                  color: '#1a1a1a',
+                  color: '#1e293b',
                   marginBottom: '12px',
                   lineHeight: '1.3'
                 }}>
@@ -4364,7 +4364,7 @@ export default function KampaioHome() {
                 </h3>
                 <p style={{
                   fontSize: '15px',
-                  color: '#666',
+                  color: '#64748b',
                   lineHeight: '1.5'
                 }}>
                   The dirty secret Google won't tell you: Performance Max is built for B2C, not B2B. Learn why it fails and get the alternative strategy that actually works.
@@ -4394,7 +4394,7 @@ export default function KampaioHome() {
               <div style={{
                 width: '100%',
                 height: '200px',
-                background: 'linear-gradient(135deg, #7F9CF5 0%, #667eea 100%)',
+                background: 'linear-gradient(135deg, #764ba2 0%, #667eea 100%)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -4497,7 +4497,7 @@ export default function KampaioHome() {
                 <h3 style={{
                   fontSize: '20px',
                   fontWeight: '700',
-                  color: '#1a1a1a',
+                  color: '#1e293b',
                   marginBottom: '12px',
                   lineHeight: '1.3'
                 }}>
@@ -4505,7 +4505,7 @@ export default function KampaioHome() {
                 </h3>
                 <p style={{
                   fontSize: '15px',
-                  color: '#666',
+                  color: '#64748b',
                   lineHeight: '1.5'
                 }}>
                   It's 2025 — AI is already transforming Google Ads. Discover the new rules of PPC and get instant, personalized insights to boost your campaigns today.
@@ -4518,10 +4518,10 @@ export default function KampaioHome() {
 
       {/* Pre-Footer CTA Block */}
       <div style={{
-        background: 'linear-gradient(135deg, #7F9CF5 0%, #667eea 100%)',
+        background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
         padding: '40px 20px',
         textAlign: 'center',
-        color: 'white'
+        color: '#1e293b'
       }}>
         <div style={{
           maxWidth: '1200px',
@@ -4531,14 +4531,14 @@ export default function KampaioHome() {
             fontSize: 'clamp(2rem, 4vw, 3rem)',
             fontWeight: '700',
             marginBottom: '16px',
-            color: 'white'
+            color: '#1e293b'
           }}>
             Tired of wasting money on Google Ads?
           </h2>
           <p style={{
             fontSize: 'clamp(1rem, 2vw, 1.25rem)',
             marginBottom: '24px',
-            opacity: '0.9',
+            color: '#64748b',
             maxWidth: '800px',
             margin: '0 auto 24px auto',
             lineHeight: '1.6'
@@ -4554,12 +4554,12 @@ export default function KampaioHome() {
             <a href="https://replit.com/signup" style={{
               padding: '12px 24px',
               borderRadius: '8px',
-              background: 'linear-gradient(45deg, #00FFE7, #00BFAE)',
-              color: '#1A1A1A',
+              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+              color: 'white',
               textDecoration: 'none',
               fontWeight: '500',
               transition: 'all 0.3s ease',
-              boxShadow: '0 4px 12px rgba(0, 255, 231, 0.2)',
+              boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)',
               display: 'inline-block'
             }}
             onMouseEnter={(e) => {
