@@ -241,7 +241,7 @@ const ChatFormGPT: React.FC = () => {
       setSelectedImage(null);
       setImagePreview(null);
       if (inputRef.current) {
-        inputRef.current.style.height = '40px';
+        inputRef.current.style.height = '50px';
       }
       return;
     }
@@ -295,7 +295,7 @@ const ChatFormGPT: React.FC = () => {
     setSelectedImage(null);
     setImagePreview(null);
     if (inputRef.current) {
-      inputRef.current.style.height = '40px';
+      inputRef.current.style.height = '50px';
     }
 
     try {
@@ -1227,11 +1227,11 @@ const ChatFormGPT: React.FC = () => {
           <textarea
             ref={inputRef}
             value={input}
-            onChange={e => {
-              setInput(e.target.value);
-              e.target.style.height = '40px';
-              e.target.style.height = e.target.scrollHeight + 'px';
-            }}
+              onChange={e => {
+    setInput(e.target.value);
+    e.target.style.height = '50px';
+    e.target.style.height = e.target.scrollHeight + 'px';
+  }}
             onKeyDown={e => {
               if (e.key === 'Enter' && !e.shiftKey) {
                 e.preventDefault();
@@ -1244,25 +1244,25 @@ const ChatFormGPT: React.FC = () => {
             placeholder={placeholders[placeholderIndex]}
             disabled={loading}
             rows={1}
-            style={{
-              width: '100%',
-              minHeight: 40,
-              maxHeight: 260,
-              resize: 'none',
-              overflowY: 'auto',
-              padding: '8px 10px 8px 32px',
-              borderRadius: '0 0 8px 8px',
-              border: '1.2px solid #cbd5e1',
-              fontSize: 15,
-              fontFamily: 'Inter, Segoe UI, Arial, sans-serif',
-              lineHeight: 1.3,
-              background: '#f9fafc',
-              color: '#23272f',
-              outline: 'none',
-              boxShadow: '0 1px 2px rgba(0,0,0,0.01)',
-              transition: 'height 0.2s',
-              boxSizing: 'border-box',
-            }}
+              style={{
+    width: '720px',
+    minHeight: 50,
+    maxHeight: 260,
+    resize: 'none',
+    overflowY: 'auto',
+    padding: '8px 15px 40px 15px', // увеличенный отступ слева для текста
+    borderRadius: '12px',
+    border: '1.2px solid #cbd5e1',
+    fontSize: 15,
+    fontFamily: 'Inter, Segoe UI, Arial, sans-serif',
+    lineHeight: 1.3,
+    background: '#f9fafc',
+    color: '#23272f',
+    outline: 'none',
+    boxShadow: '0 1px 2px rgba(0,0,0,0.01)',
+    transition: 'height 0.2s',
+    boxSizing: 'border-box',
+  }}
             autoFocus
           />
           <input
@@ -1272,26 +1272,26 @@ const ChatFormGPT: React.FC = () => {
             style={{ display: 'none' }}
             id="image-upload"
           />
-          <button
+                    <button
             type="button"
             onClick={() => {
               document.getElementById('image-upload')?.click();
             }}
             style={{
-                position: 'absolute',
-                left: '6px',
-                top: '50%',
-                transform: 'translateY(-50%)',
-                background: 'none',
-                border: 'none',
+              position: 'absolute',
+              left: '7px', // увеличенный отступ слева для иконки
+              bottom: '6px', // увеличенный отступ снизу для иконки
+              background: 'none',
+              border: 'none',
               color: '#9ca3af',
               cursor: 'pointer',
-              padding: '4px',
+              padding: '8px',
               borderRadius: '4px',
               transition: 'color 0.2s',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
+              zIndex: 10,
             }}
             title="Upload image"
             onMouseEnter={(e) => {
@@ -1301,57 +1301,133 @@ const ChatFormGPT: React.FC = () => {
               e.currentTarget.style.color = '#9ca3af';
             }}
           >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
               <circle cx="8.5" cy="8.5" r="1.5"/>
               <polyline points="21,15 16,10 5,21"/>
             </svg>
           </button>
+          
+          {/* Голосовой помощник */}
+          <button
+            type="button"
+            onClick={() => {
+              // TODO: Добавить функциональность голосового помощника
+              console.log('Voice assistant clicked');
+            }}
+            style={{
+              position: 'absolute',
+              right: '120px', // еще больше сдвинули влево
+              bottom: '6px', // отступ снизу для иконки
+              background: 'none',
+              border: 'none',
+              color: '#9ca3af',
+              cursor: 'pointer',
+              padding: '8px',
+              borderRadius: '4px',
+              transition: 'color 0.2s',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              zIndex: 10,
+            }}
+            title="Voice assistant"
+            onMouseEnter={(e) => {
+              e.currentTarget.style.color = '#7f9cf5';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.color = '#9ca3af';
+            }}
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+              <line x1="12" y1="19" x2="12" y2="23"/>
+              <line x1="8" y1="23" x2="16" y2="23"/>
+            </svg>
+          </button>
+          
+          {/* Кнопка отправки внутри textarea - Ромбік Kampaio */}
+          <button
+            type="submit"
+            disabled={loading || !input.trim()}
+            aria-label={loading || typingText !== null ? 'Зупинити друк відповіді' : 'Відправити'}
+            style={{
+              position: 'absolute',
+              right: '75px', // еще больше сдвинули влево
+              bottom: '6px', // отступ снизу
+              width: 32,
+              height: 32,
+              borderRadius: '4px',
+              background: 'transparent',
+              border: 'none',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: loading || typingText !== null ? 'pointer' : 'pointer',
+              transition: 'all 0.2s ease',
+              zIndex: 10,
+            }}
+            onClick={e => {
+              if (typingText !== null) {
+                typingInterrupted.current = true;
+                setTypingText(null);
+                if (typingTimeout.current) clearTimeout(typingTimeout.current);
+                // Показати одразу повний текст
+                const lastAiMsg = messages[messages.length - 1]?.text;
+                if (lastAiMsg) setMessages(prev => prev.map((m, i) => i === prev.length - 1 ? { ...m, text: lastAiMsg } : m));
+                e.preventDefault();
+              }
+            }}
+          >
+            {(loading || typingText !== null) ? (
+              // Квадратик для зупинки (як у цьому чаті)
+              <svg width="16" height="16" viewBox="0 0 22 22" fill="none">
+                <rect x="5" y="5" width="12" height="12" rx="3" fill="#888" />
+              </svg>
+            ) : (
+              // Ромбік Kampaio з літерою K
+              <div style={{
+                position: 'relative',
+                width: '24px',
+                height: '24px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}>
+                <div style={{
+                  position: 'absolute',
+                  width: '100%',
+                  height: '100%',
+                  background: loading || !input.trim() 
+                    ? '#e2e8f0 !important' 
+                    : '#374151 !important',
+                  borderRadius: '3px',
+                  transform: 'rotate(-5deg)',
+                  boxShadow: '0 2px 6px rgba(0, 0, 0, 0.2)',
+                  transition: 'all 0.2s ease'
+                }}></div>
+                <svg 
+                  width="14" 
+                  height="14" 
+                  viewBox="0 0 24 24" 
+                  fill="none" 
+                  stroke="#ffffff" 
+                  strokeWidth="2.5" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round"
+                  style={{
+                    zIndex: 1,
+                    position: 'relative',
+                    transition: 'stroke 0.2s ease'
+                  }}
+                >
+                  <path d="M12 19V5M5 12l7-7 7 7"/>
+                </svg>
+              </div>
+            )}
+          </button>
         </div>
-        <button
-          type="submit"
-          disabled={loading || !input.trim()}
-          aria-label={loading || typingText !== null ? 'Зупинити друк відповіді' : 'Відправити'}
-          style={{
-            width: 40,
-            height: 40,
-            borderRadius: '50%',
-            background: loading || typingText !== null ? '#e2e8f0' : '#23272f',
-            color: loading || typingText !== null ? '#888' : '#fff',
-            border: 'none',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontSize: 20,
-            cursor: loading || typingText !== null ? 'pointer' : 'pointer',
-            transition: 'background 0.2s',
-            boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
-            marginLeft: 8
-          }}
-          onClick={e => {
-            if (typingText !== null) {
-              typingInterrupted.current = true;
-              setTypingText(null);
-              if (typingTimeout.current) clearTimeout(typingTimeout.current);
-              // Показати одразу повний текст
-              const lastAiMsg = messages[messages.length - 1]?.text;
-              if (lastAiMsg) setMessages(prev => prev.map((m, i) => i === prev.length - 1 ? { ...m, text: lastAiMsg } : m));
-              e.preventDefault();
-            }
-          }}
-        >
-          {(loading || typingText !== null) ? (
-            // Квадратик (як у цьому чаті)
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-              <rect x="5" y="5" width="12" height="12" rx="3" fill="#888" />
-            </svg>
-          ) : (
-            // Стрілочка
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-              <path d="M3 11L19 3L11 19L10 13L3 11Z" fill="currentColor"/>
-            </svg>
-          )}
-        </button>
       </form>
       
       {/* Image preview */}
