@@ -692,7 +692,7 @@ const ChatFormGPT: React.FC = () => {
         zIndex: 100,
       }}>
         <div style={{
-          padding: '12px 16px 20px 16px',
+          padding: '10px 16px 20px 16px',
           borderBottom: '1px solid #1a1a1a',
           display: 'flex',
           alignItems: 'center',
@@ -702,13 +702,13 @@ const ChatFormGPT: React.FC = () => {
             onClick={createNewChat}
             style={{
               background: 'rgba(255,255,255,0.03)',
-              color: '#fff',
-              border: '1.5px solid rgba(255,255,255,0.08)',
-              borderRadius: 12,
-              padding: '16px 24px',
-              fontSize: 14,
-              fontWeight: 600,
-              cursor: 'pointer',
+                              color: '#fff',
+                border: '1.5px solid rgba(255,255,255,0.08)',
+                borderRadius: 6,
+                padding: '10px 16px',
+                fontSize: 12,
+                fontWeight: 600,
+                cursor: 'pointer',
               transition: 'all 0.3s ease',
               boxShadow: 'none',
             }}
@@ -957,10 +957,10 @@ const ChatFormGPT: React.FC = () => {
       {/* Main chat area */}
       <div style={{
         flex: 1,
-        display: 'flex',
-        justifyContent: 'center',
-        paddingLeft: showSidebar ? '250px' : '0',
-        transition: 'padding-left 0.3s ease',
+                  display: 'flex',
+          justifyContent: 'center',
+          paddingLeft: showSidebar ? '250px' : '0',
+          transition: 'padding-left 0.3s ease',
       }}>
         <div className="chat-root" style={{
           maxWidth: '900px',
@@ -977,16 +977,17 @@ const ChatFormGPT: React.FC = () => {
           boxSizing: 'border-box',
         }}>
       {/* Top bar */}
-      <div style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        padding: '22px 48px 12px 48px',
-        borderBottom: '1px solid #e2e8f0',
-        background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
-        borderTopLeftRadius: 0,
-        borderTopRightRadius: 0,
-      }}>
+                    <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                padding: '22px 48px 12px 48px',
+                borderBottom: '1px solid #e2e8f0',
+                background: '#374151',
+                borderTopLeftRadius: 8,
+                borderTopRightRadius: 8,
+                marginTop: '16px',
+              }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
           {/* Removed: PPCSet AI text */}
         </div>
@@ -1277,12 +1278,12 @@ const ChatFormGPT: React.FC = () => {
               document.getElementById('image-upload')?.click();
             }}
             style={{
-              position: 'absolute',
-              left: '6px',
-              top: '50%',
-              transform: 'translateY(-50%)',
-              background: 'none',
-              border: 'none',
+                position: 'absolute',
+                left: '6px',
+                top: '50%',
+                transform: 'translateY(-50%)',
+                background: 'none',
+                border: 'none',
               color: '#9ca3af',
               cursor: 'pointer',
               padding: '4px',
