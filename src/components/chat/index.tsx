@@ -997,39 +997,6 @@ const ChatFormGPT: React.FC = () => {
         {/* У top bar видаляю кнопку перемикача теми (іконка ☀️/🌙) */}
         <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
           {/* Theme toggle */}
-          
-          <button
-            onClick={() => setShowAccountModal(true)}
-            style={{
-              background: accountConnected ? '#e6f7ff' : '#fff',
-              color: accountConnected ? '#0ea5e9' : '#23272f',
-              border: '1.5px solid #667eea',
-              borderRadius: 8,
-              padding: '6px 18px',
-              fontSize: 15,
-              fontWeight: 600,
-              cursor: 'pointer',
-              boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
-                                    marginRight: 8,
-                      transition: 'background 0.2s',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: 8
-            }}
-            title={accountConnected ? 'Google Ads account connected' : 'Connect Google Ads account'}
-          >
-            <img 
-              src="https://img.icons8.com/color/48/google-ads.png" 
-              alt="Google Ads" 
-              style={{ 
-                width: 20, 
-                height: 20, 
-                marginRight: 4,
-                filter: accountConnected ? 'none' : 'grayscale(100%)'
-              }} 
-            />
-            {accountConnected ? 'Connected' : 'Connect'}
-          </button>
           {(adsData || realAdsData) && (
             <button
               onClick={() => setUseAdsData(v => !v)}
@@ -1082,6 +1049,80 @@ const ChatFormGPT: React.FC = () => {
           >
             Templates
           </button>
+        </div>
+      </div>
+
+      {/* Google text and logo in top right corner */}
+      <div style={{
+        position: 'absolute',
+        top: '16px',
+        right: '48px',
+        zIndex: 10,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: '4px',
+      }}>
+        <span style={{
+          color: '#23272f',
+          fontSize: '18px',
+          fontWeight: '500',
+          fontFamily: 'Inter, Segoe UI, Arial, sans-serif',
+        }}>
+          Connect
+        </span>
+        <div 
+          onClick={() => setShowAccountModal(true)}
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '32px',
+            height: '32px',
+            background: 'white',
+            borderRadius: '50%',
+            border: accountConnected ? '2px solid #667eea' : 'none',
+            boxShadow: '0 2px 6px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.1)',
+            padding: '4px',
+            cursor: 'pointer',
+            transition: 'all 0.2s ease'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = 'scale(1.1)';
+            e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.15)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'scale(1)';
+            e.currentTarget.style.boxShadow = '0 2px 6px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.1)';
+          }}
+        >
+          <img 
+            src="https://img.icons8.com/color/48/google-ads.png" 
+            alt="Google Ads" 
+            style={{
+              width: '24px',
+              height: '24px'
+            }}
+          />
+        </div>
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: '32px',
+          height: '32px',
+          background: 'white',
+          borderRadius: '50%',
+          boxShadow: '0 2px 6px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.1)',
+          padding: '4px',
+          marginTop: '4px'
+        }}>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            {/* Google Analytics logo без белого фона */}
+            <rect x="4" y="12" width="4" height="8" rx="1" fill="#FF9800"/>
+            <rect x="9" y="8" width="4" height="12" rx="1" fill="#FF5722"/>
+            <rect x="14" y="4" width="4" height="16" rx="1" fill="#F57C00"/>
+          </svg>
         </div>
       </div>
 
