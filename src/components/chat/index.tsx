@@ -30,6 +30,7 @@ const ChatFormGPT: React.FC = () => {
   const [theme, setTheme] = useLocalStorage<'light' | 'dark'>('chatTheme', 'light');
   const [placeholderIndex, setPlaceholderIndex] = useState(0);
   const [showReportTemplates, setShowReportTemplates] = useState(false);
+  const [showHelpExamples, setShowHelpExamples] = useState(false);
   
   // Чат состояния
   const [chats, setChats] = useLocalStorage<Chat[]>('ppcset-chats', []);
@@ -583,7 +584,7 @@ const ChatFormGPT: React.FC = () => {
         width: '100vw',
         fontFamily: 'Inter, SF Pro Display, Segoe UI, Arial, sans-serif',
         background: 'transparent',
-        position: 'fixed',
+        position: 'absolute',
         top: 0,
         left: 0,
       }}>
@@ -993,26 +994,32 @@ const ChatFormGPT: React.FC = () => {
             style={{
               background: accountConnected ? '#e6f7ff' : '#fff',
               color: accountConnected ? '#0ea5e9' : '#23272f',
-              border: '1.5px solid #0ea5e9',
+              border: '1.5px solid #667eea',
               borderRadius: 8,
               padding: '6px 18px',
               fontSize: 15,
               fontWeight: 600,
               cursor: 'pointer',
               boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
-              marginRight: 8,
-              transition: 'background 0.2s',
-              display: 'flex',
-              alignItems: 'center',
-              gap: 8
+                                    marginRight: 8,
+                      transition: 'background 0.2s',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 8
             }}
             title={accountConnected ? 'Google Ads account connected' : 'Connect Google Ads account'}
           >
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style={{ marginRight: 4 }}>
-              <circle cx="10" cy="10" r="9" stroke="#0ea5e9" strokeWidth="2" fill={accountConnected ? '#0ea5e9' : 'none'} />
-              <path d="M6 10l2.5 2.5L14 7" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: accountConnected ? 1 : 0 }} />
-            </svg>
-            {accountConnected ? 'Google Ads account connected' : 'Connect Google Ads account'}
+            <img 
+              src="https://img.icons8.com/color/48/google-ads.png" 
+              alt="Google Ads" 
+              style={{ 
+                width: 20, 
+                height: 20, 
+                marginRight: 4,
+                filter: accountConnected ? 'none' : 'grayscale(100%)'
+              }} 
+            />
+            {accountConnected ? 'Connected' : 'Connect'}
           </button>
           {(adsData || realAdsData) && (
             <button
@@ -1205,7 +1212,7 @@ const ChatFormGPT: React.FC = () => {
         gap: 16,
         padding: '18px 24px 32px 24px', // більше місця знизу
         borderTop: '1px solid #e2e8f0',
-        background: '#fff',
+        background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
         borderBottomLeftRadius: 0,
         borderBottomRightRadius: 0,
         alignItems: 'flex-end',
@@ -1389,49 +1396,162 @@ const ChatFormGPT: React.FC = () => {
           </div>
         </div>
       )}
-      {/* Example prompt suggestions under textarea */}
-      <div style={{
-        display: 'flex',
-        gap: 10,
-        justifyContent: 'center',
-        margin: '0 48px 10px 48px',
-        flexWrap: 'wrap',
-      }}>
-        {[
-          "How can I improve my Google Ads campaign?",
-          "Why is my CPA so high?",
-          "Show me insights for my last 30 days."
-        ].map((example, i) => (
-          <button
-            key={i}
-            type="button"
-            onClick={() => setInput(example)}
-            style={{
-              background: '#f5f5f5',
-              color: '#23272f',
-              border: '1.2px solid #e2e8f0',
-              borderRadius: 8,
-              padding: '7px 16px',
-              fontSize: 15,
-              fontWeight: 500,
-              cursor: 'pointer',
-              transition: 'background 0.18s, border 0.18s',
-              marginBottom: 2,
-              boxShadow: '0 1px 4px rgba(0,0,0,0.03)',
-              outline: 'none',
-              whiteSpace: 'nowrap',
-            }}
-            tabIndex={0}
-            aria-label={`Insert example: ${example}`}
-          >
-            {example}
-          </button>
-        ))}
-      </div>
+
       {/* Підказка під textarea */}
-      <div style={{ color: '#888', fontSize: 14, margin: '0 48px 12px 48px', textAlign: 'center' }}>
+      <div style={{ color: '#64748b', fontSize: 14, margin: '0 48px 12px 48px', textAlign: 'center' }}>
         For a personalized answer, click <b>"Use Google Ads data"</b> before submitting your question.
       </div>
+
+      {/* Кнопки Templates та Help */}
+      <div style={{
+        display: 'flex',
+        gap: 12,
+        justifyContent: 'center',
+        margin: '0 48px 16px 48px',
+      }}>
+        <button
+          type="button"
+          onClick={() => setShowReportTemplates(!showReportTemplates)}
+          style={{
+            background: '#fff',
+            color: '#23272f',
+            border: '1.2px solid #e2e8f0',
+            borderRadius: 8,
+            padding: '8px 16px',
+            fontSize: 14,
+            fontWeight: 500,
+            cursor: 'pointer',
+            transition: 'all 0.2s',
+            boxShadow: '0 1px 4px rgba(0,0,0,0.03)',
+            display: 'flex',
+            alignItems: 'center',
+            gap: 6,
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = '#f8fafc';
+            e.currentTarget.style.borderColor = '#cbd5e1';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = '#fff';
+            e.currentTarget.style.borderColor = '#e2e8f0';
+          }}
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14,2 14,8 20,8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+            <polyline points="10,9 9,9 8,9"/>
+          </svg>
+          Templates
+        </button>
+
+        <button
+          type="button"
+          onClick={() => setShowHelpExamples(!showHelpExamples)}
+          style={{
+            background: '#fff',
+            color: '#23272f',
+            border: '1.2px solid #e2e8f0',
+            borderRadius: 8,
+            padding: '8px 16px',
+            fontSize: 14,
+            fontWeight: 500,
+            cursor: 'pointer',
+            transition: 'all 0.2s',
+            boxShadow: '0 1px 4px rgba(0,0,0,0.03)',
+            display: 'flex',
+            alignItems: 'center',
+            gap: 6,
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = '#f8fafc';
+            e.currentTarget.style.borderColor = '#cbd5e1';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = '#fff';
+            e.currentTarget.style.borderColor = '#e2e8f0';
+          }}
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+            <line x1="12" y1="17" x2="12.01" y2="17"/>
+          </svg>
+          Help
+        </button>
+      </div>
+
+      {/* Dropdown для Help */}
+      {showHelpExamples && (
+        <div style={{
+          position: 'absolute',
+          bottom: '100%',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          background: '#fff',
+          border: '1px solid #e2e8f0',
+          borderRadius: 12,
+          boxShadow: '0 8px 32px rgba(0,0,0,0.12)',
+          padding: '16px',
+          minWidth: 280,
+          maxWidth: 400,
+          zIndex: 1000,
+          marginBottom: 8,
+        }}>
+          <div style={{
+            fontSize: 14,
+            fontWeight: 600,
+            color: '#23272f',
+            marginBottom: 12,
+            textAlign: 'center',
+          }}>
+            Quick prompts
+          </div>
+          <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 8,
+          }}>
+            {[
+              "How can I improve my Google Ads campaign?",
+              "Why is my CPA so high?",
+              "Show me insights for my last 30 days."
+            ].map((example, i) => (
+              <button
+                key={i}
+                type="button"
+                onClick={() => {
+                  setInput(example);
+                  setShowHelpExamples(false);
+                }}
+                style={{
+                  background: '#f8fafc',
+                  color: '#23272f',
+                  border: '1px solid #e2e8f0',
+                  borderRadius: 8,
+                  padding: '10px 12px',
+                  fontSize: 14,
+                  textAlign: 'left',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s',
+                  outline: 'none',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = '#f1f5f9';
+                  e.currentTarget.style.borderColor = '#cbd5e1';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = '#f8fafc';
+                  e.currentTarget.style.borderColor = '#e2e8f0';
+                }}
+              >
+                {example}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
 
 
       {error && <div style={{ color: 'red', margin: '0 48px 10px 48px' }}>{error}</div>}
@@ -1509,7 +1629,7 @@ const ChatFormGPT: React.FC = () => {
                   marginTop: 8,
                   transition: 'background 0.2s',
                 }}
-              >Connect Google Ads account</button>
+              >Connect</button>
             )}
           </div>
         </div>

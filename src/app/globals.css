@@ -100,7 +100,6 @@ body {
     );
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
 }
 
 /* Прибираємо зайві відступи для чату */
@@ -108,6 +107,19 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%;
+  overflow-x: hidden;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
+/* Предотвращаем скролл на странице чата */
+body.chat-page {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
 }
 
 @layer utilities {
@@ -118,8 +130,8 @@ html, body {
 
 /* Hero Section Styles */
 body { 
-  background: #1a1a1a; 
-  color: #fff; 
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  color: #23272f; 
 }
 
 .main-hero {
