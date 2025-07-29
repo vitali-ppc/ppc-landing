@@ -1268,8 +1268,8 @@ export default function KampaioHome() {
               background: 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)',
               borderRadius: '20px',
               padding: '40px',
-              border: '1px solid rgba(127,156,245,0.1)',
-              boxShadow: '0 8px 32px rgba(0,0,0,0.08), 0 4px 16px rgba(127,156,245,0.05)',
+              border: '1px solid rgba(102, 126, 234, 0.1)',
+              boxShadow: '0 8px 32px rgba(0,0,0,0.08), 0 4px 16px rgba(102, 126, 234, 0.05)',
               transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
               position: 'relative',
               overflow: 'hidden',
@@ -1280,14 +1280,14 @@ export default function KampaioHome() {
             onMouseEnter={(e) => {
               const target = e.target as HTMLElement;
               target.style.transform = 'translateY(-4px) scale(1.02)';
-              target.style.boxShadow = '0 20px 40px rgba(127,156,245,0.12), 0 8px 24px rgba(0,0,0,0.1)';
-              target.style.borderColor = 'rgba(127,156,245,0.2)';
+              target.style.boxShadow = '0 20px 40px rgba(102, 126, 234, 0.12), 0 8px 24px rgba(0,0,0,0.1)';
+              target.style.borderColor = 'rgba(102, 126, 234, 0.2)';
             }}
             onMouseLeave={(e) => {
               const target = e.target as HTMLElement;
               target.style.transform = 'translateY(0) scale(1)';
-              target.style.boxShadow = '0 8px 32px rgba(0,0,0,0.08), 0 4px 16px rgba(127,156,245,0.05)';
-              target.style.borderColor = 'rgba(127,156,245,0.1)';
+              target.style.boxShadow = '0 8px 32px rgba(0,0,0,0.08), 0 4px 16px rgba(102, 126, 234, 0.05)';
+              target.style.borderColor = 'rgba(102, 126, 234, 0.1)';
             }}>
               {/* Subtle background pattern */}
               <div style={{
@@ -1296,7 +1296,7 @@ export default function KampaioHome() {
                 right: 0,
                 width: '100px',
                 height: '100px',
-                background: 'radial-gradient(circle, rgba(127,156,245,0.03) 0%, transparent 70%)',
+                background: 'radial-gradient(circle, rgba(102, 126, 234, 0.03) 0%, transparent 70%)',
                 borderRadius: '50%',
                 transform: 'translate(30px, -30px)',
                 pointerEvents: 'none'
@@ -1305,13 +1305,13 @@ export default function KampaioHome() {
               <div style={{
                 width: '60px',
                 height: '60px',
-                background: 'linear-gradient(135deg, #00BFAE, #00A896)',
+                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                 borderRadius: '16px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 marginBottom: '24px',
-                boxShadow: '0 8px 24px rgba(0,191,174,0.2)',
+                boxShadow: '0 8px 24px rgba(102, 126, 234, 0.2)',
                 transition: 'all 0.3s ease'
               }}>
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
@@ -1323,7 +1323,7 @@ export default function KampaioHome() {
               <h3 style={{
                 fontSize: '24px',
                 fontWeight: '700',
-                color: '#1a1a1a',
+                color: '#1e293b',
                 marginBottom: '16px',
                 whiteSpace: 'nowrap'
               }}>
@@ -1331,7 +1331,7 @@ export default function KampaioHome() {
               </h3>
               <p style={{
                 fontSize: '16px',
-                color: '#666',
+                color: '#64748b',
                 lineHeight: '1.6',
                 marginBottom: '24px',
                 minHeight: '140px'
@@ -1347,13 +1347,13 @@ export default function KampaioHome() {
                   gap: '12px',
                   marginBottom: '12px',
                   fontSize: '15px',
-                  color: '#1a1a1a',
+                  color: '#1e293b',
                   fontWeight: '500'
                 }}>
                   <div style={{
                     width: '8px',
                     height: '8px',
-                    background: '#00BFAE',
+                    background: '#667eea',
                     borderRadius: '50%',
                     flexShrink: 0
                   }}></div>
@@ -1365,13 +1365,13 @@ export default function KampaioHome() {
                   gap: '12px',
                   marginBottom: '12px',
                   fontSize: '15px',
-                  color: '#1a1a1a',
+                  color: '#1e293b',
                   fontWeight: '500'
                 }}>
                   <div style={{
                     width: '8px',
                     height: '8px',
-                    background: '#00BFAE',
+                    background: '#667eea',
                     borderRadius: '50%',
                     flexShrink: 0
                   }}></div>
@@ -1382,13 +1382,13 @@ export default function KampaioHome() {
                   alignItems: 'center',
                   gap: '12px',
                   fontSize: '15px',
-                  color: '#1a1a1a',
+                  color: '#1e293b',
                   fontWeight: '500'
                 }}>
                   <div style={{
                     width: '8px',
                     height: '8px',
-                    background: '#00BFAE',
+                    background: '#667eea',
                     borderRadius: '50%',
                     flexShrink: 0
                   }}></div>
@@ -1400,19 +1400,19 @@ export default function KampaioHome() {
                 alignItems: 'center',
                 gap: '8px',
                 fontSize: '15px',
-                color: '#00BFAE',
+                color: '#667eea',
                 fontWeight: '600',
                 background: 'transparent',
                 cursor: 'pointer',
                 padding: '12px 20px',
                 borderRadius: '10px',
                 transition: 'all 0.3s ease',
-                border: '2px solid #00BFAE',
+                border: '2px solid #667eea',
                 marginTop: 'auto'
               }}
               onMouseEnter={(e) => {
                 const target = e.target as HTMLElement;
-                target.style.background = 'rgba(0, 191, 174, 0.1)';
+                target.style.background = 'rgba(102, 126, 234, 0.1)';
               }}
               onMouseLeave={(e) => {
                 const target = e.target as HTMLElement;
@@ -1433,8 +1433,8 @@ export default function KampaioHome() {
               background: 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)',
               borderRadius: '20px',
               padding: '40px',
-              border: '1px solid rgba(255,107,107,0.1)',
-              boxShadow: '0 8px 32px rgba(0,0,0,0.08), 0 4px 16px rgba(255,107,107,0.05)',
+              border: '1px solid rgba(102, 126, 234, 0.1)',
+              boxShadow: '0 8px 32px rgba(0,0,0,0.08), 0 4px 16px rgba(102, 126, 234, 0.05)',
               transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
               position: 'relative',
               overflow: 'hidden',
@@ -1445,14 +1445,14 @@ export default function KampaioHome() {
             onMouseEnter={(e) => {
               const target = e.target as HTMLElement;
               target.style.transform = 'translateY(-4px) scale(1.02)';
-              target.style.boxShadow = '0 20px 40px rgba(255,107,107,0.12), 0 8px 24px rgba(0,0,0,0.1)';
-              target.style.borderColor = 'rgba(255,107,107,0.2)';
+              target.style.boxShadow = '0 20px 40px rgba(102, 126, 234, 0.12), 0 8px 24px rgba(0,0,0,0.1)';
+              target.style.borderColor = 'rgba(102, 126, 234, 0.2)';
             }}
             onMouseLeave={(e) => {
               const target = e.target as HTMLElement;
               target.style.transform = 'translateY(0) scale(1)';
-              target.style.boxShadow = '0 8px 32px rgba(0,0,0,0.08), 0 4px 16px rgba(255,107,107,0.05)';
-              target.style.borderColor = 'rgba(255,107,107,0.1)';
+              target.style.boxShadow = '0 8px 32px rgba(0,0,0,0.08), 0 4px 16px rgba(102, 126, 234, 0.05)';
+              target.style.borderColor = 'rgba(102, 126, 234, 0.1)';
             }}>
               {/* Subtle background pattern */}
               <div style={{
@@ -1461,7 +1461,7 @@ export default function KampaioHome() {
                 right: 0,
                 width: '100px',
                 height: '100px',
-                background: 'radial-gradient(circle, rgba(255,107,107,0.03) 0%, transparent 70%)',
+                background: 'radial-gradient(circle, rgba(102, 126, 234, 0.03) 0%, transparent 70%)',
                 borderRadius: '50%',
                 transform: 'translate(30px, -30px)',
                 pointerEvents: 'none'
@@ -1470,26 +1470,25 @@ export default function KampaioHome() {
               <div style={{
                 width: '60px',
                 height: '60px',
-                background: 'linear-gradient(135deg, #FF6B6B, #FF8E8E)',
+                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                 borderRadius: '16px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 marginBottom: '24px',
-                boxShadow: '0 8px 24px rgba(255,107,107,0.2)',
+                boxShadow: '0 8px 24px rgba(102, 126, 234, 0.2)',
                 transition: 'all 0.3s ease'
               }}>
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                  <circle cx="12" cy="12" r="3"></circle>
-                  <path d="M12 1v6m0 6v6"/>
-                  <path d="M15.5 4.5l-3 3m3 3l-3-3"/>
-                  <path d="M8.5 4.5l3 3m-3 3l3-3"/>
+                  <path d="M9 11H1l8-8 8 8h-8v8z"/>
+                  <path d="M3 15h6"/>
+                  <path d="M3 19h6"/>
                 </svg>
               </div>
               <h3 style={{
                 fontSize: '24px',
                 fontWeight: '700',
-                color: '#1a1a1a',
+                color: '#1e293b',
                 marginBottom: '16px',
                 whiteSpace: 'nowrap'
               }}>
@@ -1497,7 +1496,7 @@ export default function KampaioHome() {
               </h3>
               <p style={{
                 fontSize: '16px',
-                color: '#666',
+                color: '#64748b',
                 lineHeight: '1.6',
                 marginBottom: '24px',
                 minHeight: '140px'
@@ -1513,13 +1512,13 @@ export default function KampaioHome() {
                   gap: '12px',
                   marginBottom: '12px',
                   fontSize: '15px',
-                  color: '#1a1a1a',
+                  color: '#1e293b',
                   fontWeight: '500'
                 }}>
                   <div style={{
                     width: '8px',
                     height: '8px',
-                    background: '#FF6B6B',
+                    background: '#667eea',
                     borderRadius: '50%',
                     flexShrink: 0
                   }}></div>
@@ -1531,13 +1530,13 @@ export default function KampaioHome() {
                   gap: '12px',
                   marginBottom: '12px',
                   fontSize: '15px',
-                  color: '#1a1a1a',
+                  color: '#1e293b',
                   fontWeight: '500'
                 }}>
                   <div style={{
                     width: '8px',
                     height: '8px',
-                    background: '#FF6B6B',
+                    background: '#667eea',
                     borderRadius: '50%',
                     flexShrink: 0
                   }}></div>
@@ -1548,13 +1547,13 @@ export default function KampaioHome() {
                   alignItems: 'center',
                   gap: '12px',
                   fontSize: '15px',
-                  color: '#1a1a1a',
+                  color: '#1e293b',
                   fontWeight: '500'
                 }}>
                   <div style={{
                     width: '8px',
                     height: '8px',
-                    background: '#FF6B6B',
+                    background: '#667eea',
                     borderRadius: '50%',
                     flexShrink: 0
                   }}></div>
@@ -1566,19 +1565,19 @@ export default function KampaioHome() {
                 alignItems: 'center',
                 gap: '8px',
                 fontSize: '15px',
-                color: '#00BFAE',
+                color: '#667eea',
                 fontWeight: '600',
                 background: 'transparent',
                 cursor: 'pointer',
                 padding: '12px 20px',
                 borderRadius: '10px',
                 transition: 'all 0.3s ease',
-                border: '2px solid #00BFAE',
+                border: '2px solid #667eea',
                 marginTop: 'auto'
               }}
               onMouseEnter={(e) => {
                 const target = e.target as HTMLElement;
-                target.style.background = 'rgba(0, 191, 174, 0.1)';
+                target.style.background = 'rgba(102, 126, 234, 0.1)';
               }}
               onMouseLeave={(e) => {
                 const target = e.target as HTMLElement;
@@ -1636,13 +1635,13 @@ export default function KampaioHome() {
               <div style={{
                 width: '60px',
                 height: '60px',
-                background: 'linear-gradient(135deg, #00BFAE, #00D4AA)',
+                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                 borderRadius: '16px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 marginBottom: '24px',
-                boxShadow: '0 8px 24px rgba(0,191,174,0.2)',
+                boxShadow: '0 8px 24px rgba(102, 126, 234, 0.2)',
                 transition: 'all 0.3s ease'
               }}>
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
@@ -1655,7 +1654,7 @@ export default function KampaioHome() {
               <h3 style={{
                 fontSize: '24px',
                 fontWeight: '700',
-                color: '#1a1a1a',
+                color: '#1e293b',
                 marginBottom: '16px',
                 whiteSpace: 'nowrap'
               }}>
@@ -1663,7 +1662,7 @@ export default function KampaioHome() {
               </h3>
               <p style={{
                 fontSize: '16px',
-                color: '#666',
+                color: '#64748b',
                 lineHeight: '1.6',
                 marginBottom: '24px',
                 minHeight: '140px'
@@ -1679,13 +1678,13 @@ export default function KampaioHome() {
                   gap: '12px',
                   marginBottom: '12px',
                   fontSize: '15px',
-                  color: '#1a1a1a',
+                  color: '#1e293b',
                   fontWeight: '500'
                 }}>
                   <div style={{
                     width: '8px',
                     height: '8px',
-                    background: '#00BFAE',
+                    background: '#667eea',
                     borderRadius: '50%',
                     flexShrink: 0
                   }}></div>
@@ -1697,13 +1696,13 @@ export default function KampaioHome() {
                   gap: '12px',
                   marginBottom: '12px',
                   fontSize: '15px',
-                  color: '#1a1a1a',
+                  color: '#1e293b',
                   fontWeight: '500'
                 }}>
                   <div style={{
                     width: '8px',
                     height: '8px',
-                    background: '#00BFAE',
+                    background: '#667eea',
                     borderRadius: '50%',
                     flexShrink: 0
                   }}></div>
@@ -1714,13 +1713,13 @@ export default function KampaioHome() {
                   alignItems: 'center',
                   gap: '12px',
                   fontSize: '15px',
-                  color: '#1a1a1a',
+                  color: '#1e293b',
                   fontWeight: '500'
                 }}>
                   <div style={{
                     width: '8px',
                     height: '8px',
-                    background: '#00BFAE',
+                    background: '#667eea',
                     borderRadius: '50%',
                     flexShrink: 0
                   }}></div>
@@ -1732,19 +1731,19 @@ export default function KampaioHome() {
                 alignItems: 'center',
                 gap: '8px',
                 fontSize: '15px',
-                color: '#00BFAE',
+                color: '#667eea',
                 fontWeight: '600',
                 background: 'transparent',
                 cursor: 'pointer',
                 padding: '12px 20px',
                 borderRadius: '10px',
                 transition: 'all 0.3s ease',
-                border: '2px solid #00BFAE',
+                border: '2px solid #667eea',
                 marginTop: 'auto'
               }}
               onMouseEnter={(e) => {
                 const target = e.target as HTMLElement;
-                target.style.background = 'rgba(0, 191, 174, 0.1)';
+                target.style.background = 'rgba(102, 126, 234, 0.1)';
               }}
               onMouseLeave={(e) => {
                 const target = e.target as HTMLElement;
@@ -2003,7 +2002,7 @@ export default function KampaioHome() {
             <h2 style={{
               fontSize: 'clamp(36px, 4vw, 48px)',
               fontWeight: '800',
-              color: '#1a1a1a',
+              color: '#1e293b',
               marginBottom: '24px',
               lineHeight: '1.2'
             }}>
@@ -2011,7 +2010,7 @@ export default function KampaioHome() {
             </h2>
             <p style={{
               fontSize: 'clamp(16px, 2vw, 18px)',
-              color: '#666',
+              color: '#64748b',
               maxWidth: '600px',
               margin: '0 auto',
               lineHeight: '1.6'
@@ -2062,8 +2061,8 @@ export default function KampaioHome() {
                     width: '40px',
                     height: '40px',
                     borderRadius: '8px',
-                    backgroundColor: openQuestion === 1 ? '#00FFE7' : '#E5E7EB',
-                    color: openQuestion === 1 ? '#1A1A1A' : '#6B7280',
+                    backgroundColor: openQuestion === 1 ? '#667eea' : '#E5E7EB',
+                    color: openQuestion === 1 ? 'white' : '#6B7280',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -2076,7 +2075,7 @@ export default function KampaioHome() {
                   <h3 style={{
                     fontSize: '18px',
                     fontWeight: '600',
-                    color: '#1a1a1a',
+                    color: '#1e293b',
                     margin: 0
                   }}>
                     What is Kampaio?
@@ -2110,12 +2109,12 @@ export default function KampaioHome() {
                 }}>
                   <div style={{
                     paddingLeft: '56px',
-                    borderLeft: '4px solid #00FFE7',
+                    borderLeft: '4px solid #667eea',
                     paddingTop: '16px',
                     paddingBottom: '16px'
                   }}>
                     <p style={{
-                      color: '#666',
+                      color: '#64748b',
                       lineHeight: '1.6',
                       margin: '0 0 16px 0'
                     }}>
@@ -2131,13 +2130,13 @@ export default function KampaioHome() {
                         padding: '8px 16px',
                         fontSize: '14px',
                         fontWeight: '500',
-                        color: openQuestion === 1 ? '#1A1A1A' : '#6B7280',
-                        background: openQuestion === 1 ? 'linear-gradient(45deg, #00FFE7, #00BFAE)' : '#E5E7EB',
+                        color: openQuestion === 1 ? 'white' : '#6B7280',
+                        background: openQuestion === 1 ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' : '#E5E7EB',
                         border: 'none',
                         borderRadius: '8px',
                         cursor: 'pointer',
                         transition: 'all 0.3s ease',
-                        boxShadow: openQuestion === 1 ? '0 4px 12px rgba(0, 255, 231, 0.2)' : 'none'
+                        boxShadow: openQuestion === 1 ? '0 4px 12px rgba(102, 126, 234, 0.2)' : 'none'
                       }}>
                         Get Started
                       </button>
@@ -2183,8 +2182,8 @@ export default function KampaioHome() {
                     width: '40px',
                     height: '40px',
                     borderRadius: '8px',
-                    backgroundColor: openQuestion === 2 ? '#00FFE7' : '#E5E7EB',
-                    color: openQuestion === 2 ? '#1A1A1A' : '#6B7280',
+                    backgroundColor: openQuestion === 2 ? '#667eea' : '#E5E7EB',
+                    color: openQuestion === 2 ? 'white' : '#6B7280',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -2197,7 +2196,7 @@ export default function KampaioHome() {
                   <h3 style={{
                     fontSize: '18px',
                     fontWeight: '600',
-                    color: '#1a1a1a',
+                    color: '#1e293b',
                     margin: 0
                   }}>
                     How is Kampaio different from other tools?
@@ -2231,12 +2230,12 @@ export default function KampaioHome() {
                 }}>
                   <div style={{
                     paddingLeft: '56px',
-                    borderLeft: '4px solid #00FFE7',
+                    borderLeft: '4px solid #667eea',
                     paddingTop: '16px',
                     paddingBottom: '16px'
                   }}>
                     <p style={{
-                      color: '#666',
+                      color: '#64748b',
                       lineHeight: '1.6',
                       margin: '0 0 16px 0'
                     }}>
@@ -2252,13 +2251,13 @@ export default function KampaioHome() {
                         padding: '8px 16px',
                         fontSize: '14px',
                         fontWeight: '500',
-                        color: openQuestion === 2 ? '#1A1A1A' : '#6B7280',
-                        background: openQuestion === 2 ? 'linear-gradient(45deg, #00FFE7, #00BFAE)' : '#E5E7EB',
+                        color: openQuestion === 2 ? 'white' : '#6B7280',
+                        background: openQuestion === 2 ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' : '#E5E7EB',
                         border: 'none',
                         borderRadius: '8px',
                         cursor: 'pointer',
                         transition: 'all 0.3s ease',
-                        boxShadow: openQuestion === 2 ? '0 4px 12px rgba(0, 255, 231, 0.2)' : 'none'
+                        boxShadow: openQuestion === 2 ? '0 4px 12px rgba(102, 126, 234, 0.2)' : 'none'
                       }}>
                         Get Started
                       </button>
@@ -2304,8 +2303,8 @@ export default function KampaioHome() {
                     width: '40px',
                     height: '40px',
                     borderRadius: '8px',
-                    backgroundColor: openQuestion === 3 ? '#00FFE7' : '#E5E7EB',
-                    color: openQuestion === 3 ? '#1A1A1A' : '#6B7280',
+                    backgroundColor: openQuestion === 3 ? '#667eea' : '#E5E7EB',
+                    color: openQuestion === 3 ? 'white' : '#6B7280',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -2318,7 +2317,7 @@ export default function KampaioHome() {
                   <h3 style={{
                     fontSize: '18px',
                     fontWeight: '600',
-                    color: '#1a1a1a',
+                    color: '#1e293b',
                     margin: 0
                   }}>
                     Do I need to give access to my Google Ads account?
@@ -2352,12 +2351,12 @@ export default function KampaioHome() {
                 }}>
                   <div style={{
                     paddingLeft: '56px',
-                    borderLeft: '4px solid #00FFE7',
+                    borderLeft: '4px solid #667eea',
                     paddingTop: '16px',
                     paddingBottom: '16px'
                   }}>
                                          <p style={{
-                       color: '#666',
+                       color: '#64748b',
                        lineHeight: '1.6',
                        margin: '0 0 16px 0'
                      }}>
@@ -2373,13 +2372,13 @@ export default function KampaioHome() {
                         padding: '8px 16px',
                         fontSize: '14px',
                         fontWeight: '500',
-                        color: openQuestion === 3 ? '#1A1A1A' : '#6B7280',
-                        background: openQuestion === 3 ? 'linear-gradient(45deg, #00FFE7, #00BFAE)' : '#E5E7EB',
+                        color: openQuestion === 3 ? 'white' : '#6B7280',
+                        background: openQuestion === 3 ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' : '#E5E7EB',
                         border: 'none',
                         borderRadius: '8px',
                         cursor: 'pointer',
                         transition: 'all 0.3s ease',
-                        boxShadow: openQuestion === 3 ? '0 4px 12px rgba(0, 255, 231, 0.2)' : 'none'
+                        boxShadow: openQuestion === 3 ? '0 4px 12px rgba(102, 126, 234, 0.2)' : 'none'
                       }}>
                         Get Started
                       </button>
@@ -2425,8 +2424,8 @@ export default function KampaioHome() {
                     width: '40px',
                     height: '40px',
                     borderRadius: '8px',
-                    backgroundColor: openQuestion === 4 ? '#00FFE7' : '#E5E7EB',
-                    color: openQuestion === 4 ? '#1A1A1A' : '#6B7280',
+                    backgroundColor: openQuestion === 4 ? '#667eea' : '#E5E7EB',
+                    color: openQuestion === 4 ? 'white' : '#6B7280',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -2439,7 +2438,7 @@ export default function KampaioHome() {
                                      <h3 style={{
                      fontSize: '18px',
                      fontWeight: '600',
-                     color: '#1a1a1a',
+                     color: '#1e293b',
                      margin: 0
                    }}>
                      Can I try it for free?
@@ -2473,12 +2472,12 @@ export default function KampaioHome() {
                 }}>
                   <div style={{
                     paddingLeft: '56px',
-                    borderLeft: '4px solid #00FFE7',
+                    borderLeft: '4px solid #667eea',
                     paddingTop: '16px',
                     paddingBottom: '16px'
                   }}>
                                          <p style={{
-                       color: '#666',
+                       color: '#64748b',
                        lineHeight: '1.6',
                        margin: '0 0 16px 0'
                      }}>
@@ -2494,13 +2493,13 @@ export default function KampaioHome() {
                         padding: '8px 16px',
                         fontSize: '14px',
                         fontWeight: '500',
-                        color: openQuestion === 4 ? '#1A1A1A' : '#6B7280',
-                        background: openQuestion === 4 ? 'linear-gradient(45deg, #00FFE7, #00BFAE)' : '#E5E7EB',
+                        color: openQuestion === 4 ? 'white' : '#6B7280',
+                        background: openQuestion === 4 ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' : '#E5E7EB',
                         border: 'none',
                         borderRadius: '8px',
                         cursor: 'pointer',
                         transition: 'all 0.3s ease',
-                        boxShadow: openQuestion === 4 ? '0 4px 12px rgba(0, 255, 231, 0.2)' : 'none'
+                        boxShadow: openQuestion === 4 ? '0 4px 12px rgba(102, 126, 234, 0.2)' : 'none'
                       }}>
                         Get Started
                       </button>
@@ -2546,8 +2545,8 @@ export default function KampaioHome() {
                     width: '40px',
                     height: '40px',
                     borderRadius: '8px',
-                    backgroundColor: openQuestion === 5 ? '#00FFE7' : '#E5E7EB',
-                    color: openQuestion === 5 ? '#1A1A1A' : '#6B7280',
+                    backgroundColor: openQuestion === 5 ? '#667eea' : '#E5E7EB',
+                    color: openQuestion === 5 ? 'white' : '#6B7280',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -2560,7 +2559,7 @@ export default function KampaioHome() {
                                      <h3 style={{
                      fontSize: '18px',
                      fontWeight: '600',
-                     color: '#1a1a1a',
+                     color: '#1e293b',
                      margin: 0
                    }}>
                      Is my Google Ads data secure?
@@ -2594,12 +2593,12 @@ export default function KampaioHome() {
                 }}>
                   <div style={{
                     paddingLeft: '56px',
-                    borderLeft: '4px solid #00FFE7',
+                    borderLeft: '4px solid #667eea',
                     paddingTop: '16px',
                     paddingBottom: '16px'
                   }}>
                                          <p style={{
-                       color: '#666',
+                       color: '#64748b',
                        lineHeight: '1.6',
                        margin: '0 0 16px 0'
                      }}>
@@ -2615,13 +2614,13 @@ export default function KampaioHome() {
                         padding: '8px 16px',
                         fontSize: '14px',
                         fontWeight: '500',
-                        color: openQuestion === 5 ? '#1A1A1A' : '#6B7280',
-                        background: openQuestion === 5 ? 'linear-gradient(45deg, #00FFE7, #00BFAE)' : '#E5E7EB',
+                        color: openQuestion === 5 ? 'white' : '#6B7280',
+                        background: openQuestion === 5 ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' : '#E5E7EB',
                         border: 'none',
                         borderRadius: '8px',
                         cursor: 'pointer',
                         transition: 'all 0.3s ease',
-                        boxShadow: openQuestion === 5 ? '0 4px 12px rgba(0, 255, 231, 0.2)' : 'none'
+                        boxShadow: openQuestion === 5 ? '0 4px 12px rgba(102, 126, 234, 0.2)' : 'none'
                       }}>
                         Get Started
                       </button>
@@ -2667,8 +2666,8 @@ export default function KampaioHome() {
                     width: '40px',
                     height: '40px',
                     borderRadius: '8px',
-                    backgroundColor: openQuestion === 6 ? '#00FFE7' : '#E5E7EB',
-                    color: openQuestion === 6 ? '#1A1A1A' : '#6B7280',
+                    backgroundColor: openQuestion === 6 ? '#667eea' : '#E5E7EB',
+                    color: openQuestion === 6 ? 'white' : '#6B7280',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -2681,7 +2680,7 @@ export default function KampaioHome() {
                   <h3 style={{
                     fontSize: '18px',
                     fontWeight: '600',
-                    color: '#1a1a1a',
+                    color: '#1e293b',
                     margin: 0
                   }}>
                     Is it difficult to set up and get started?
@@ -2715,12 +2714,12 @@ export default function KampaioHome() {
                 }}>
                   <div style={{
                     paddingLeft: '56px',
-                    borderLeft: '4px solid #00FFE7',
+                    borderLeft: '4px solid #667eea',
                     paddingTop: '16px',
                     paddingBottom: '16px'
                   }}>
                     <p style={{
-                      color: '#666',
+                      color: '#64748b',
                       lineHeight: '1.6',
                       margin: '0 0 16px 0'
                     }}>
@@ -2736,13 +2735,13 @@ export default function KampaioHome() {
                         padding: '8px 16px',
                         fontSize: '14px',
                         fontWeight: '500',
-                        color: openQuestion === 6 ? '#1A1A1A' : '#6B7280',
-                        background: openQuestion === 6 ? 'linear-gradient(45deg, #00FFE7, #00BFAE)' : '#E5E7EB',
+                        color: openQuestion === 6 ? 'white' : '#6B7280',
+                        background: openQuestion === 6 ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' : '#E5E7EB',
                         border: 'none',
                         borderRadius: '8px',
                         cursor: 'pointer',
                         transition: 'all 0.3s ease',
-                        boxShadow: openQuestion === 6 ? '0 4px 12px rgba(0, 255, 231, 0.2)' : 'none'
+                        boxShadow: openQuestion === 6 ? '0 4px 12px rgba(102, 126, 234, 0.2)' : 'none'
                       }}>
                         Get Started
                       </button>
