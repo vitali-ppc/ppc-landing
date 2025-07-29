@@ -26,7 +26,7 @@ body {
 
 .privacy-policy-page h1,
 .terms-of-service-page h1 {
-  color: #1a1f36;
+  color: #1e293b;
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 8px;
@@ -35,7 +35,7 @@ body {
 
 .privacy-policy-page .last-updated,
 .terms-of-service-page .last-updated {
-  color: #6b7280;
+  color: #64748b;
   font-size: 0.9rem;
   text-align: center;
   margin-bottom: 40px;
@@ -49,7 +49,7 @@ body {
 
 .privacy-policy-page h2,
 .terms-of-service-page h2 {
-  color: #1a1f36;
+  color: #1e293b;
   font-size: 1.5rem;
   font-weight: 600;
   margin-bottom: 16px;
@@ -58,7 +58,7 @@ body {
 
 .privacy-policy-page h3,
 .terms-of-service-page h3 {
-  color: #374151;
+  color: #1e293b;
   font-size: 1.2rem;
   font-weight: 600;
   margin-bottom: 12px;
@@ -67,14 +67,14 @@ body {
 
 .privacy-policy-page p,
 .terms-of-service-page p {
-  color: #4b5563;
+  color: #64748b;
   line-height: 1.6;
   margin-bottom: 16px;
 }
 
 .privacy-policy-page ul,
 .terms-of-service-page ul {
-  color: #4b5563;
+  color: #64748b;
   line-height: 1.6;
   margin-bottom: 16px;
   padding-left: 24px;
@@ -90,7 +90,7 @@ body {
   background: #f8fafc;
   padding: 20px;
   border-radius: 8px;
-  border-left: 4px solid #3b82f6;
+  border-left: 4px solid #764ba2;
   margin-top: 16px;
 }
 
@@ -101,7 +101,7 @@ body {
 
 .privacy-policy-page .contact-info a,
 .terms-of-service-page .contact-info a {
-  color: #3b82f6;
+  color: #764ba2;
   text-decoration: none;
   font-weight: 500;
 }
@@ -383,6 +383,7 @@ a {
   text-decoration: underline;
   text-underline-offset: 4px;
   text-decoration-thickness: 2px;
+  text-decoration-color: #764ba2;
 }
 
 /* Templates Dropdown Styles */
@@ -485,7 +486,7 @@ a {
   transform: translateY(-50%);
   width: 3px;
   height: 0;
-  background: #7f9cf5;
+  background: #764ba2;
   border-radius: 0 2px 2px 0;
   transition: height 0.2s ease;
 }
@@ -547,7 +548,7 @@ a {
   transform: translateY(-50%);
   width: 3px;
   height: 0;
-  background: #7f9cf5;
+  background: #764ba2;
   border-radius: 0 2px 2px 0;
   transition: height 0.2s ease;
 }

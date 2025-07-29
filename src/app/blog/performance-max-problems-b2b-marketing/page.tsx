@@ -75,12 +75,12 @@ export default function BlogPostPage() {
               Google Ads · B2B
             </div>
             {/* Title */}
-            <h1 style={{ fontSize: 'clamp(32px, 4vw, 48px)', fontWeight: '800', color: '#1a1a1a', marginBottom: '24px', lineHeight: '1.2' }}>
+            <h1 style={{ fontSize: 'clamp(32px, 4vw, 48px)', fontWeight: '800', color: '#1e293b', marginBottom: '24px', lineHeight: '1.2' }}>
               Why Performance Max Fails in B2B Marketing
             </h1>
             {/* Subtitle */}
-            <p style={{ fontSize: '20px', color: '#666', marginBottom: '32px', lineHeight: '1.6', fontWeight: '500' }}>
-              Why Google’s Most Automated Campaign Type Fails for B2B — and What to Do Instead
+            <p style={{ fontSize: '20px', color: '#64748b', marginBottom: '32px', lineHeight: '1.6', fontWeight: '500' }}>
+              Why Google's Most Automated Campaign Type Fails for B2B — and What to Do Instead
             </p>
             {/* Meta Info */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '24px', marginBottom: '40px', paddingBottom: '32px', borderBottom: '1px solid #e5e7eb' }}>
@@ -89,9 +89,9 @@ export default function BlogPostPage() {
                   K
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '2px' }}>
-                  <span style={{ color: '#666', fontSize: '16px', fontWeight: 600 }}>by Emily Carter</span>
-                  <span style={{ color: '#888', fontSize: '15px' }}>Paid Media Strategist at Kampaio</span>
-                  <span style={{ color: '#888', fontSize: '15px' }}>July 23, 2025 · 9 min read</span>
+                  <span style={{ color: '#64748b', fontSize: '16px', fontWeight: 600 }}>by Emily Carter</span>
+                  <span style={{ color: '#64748b', fontSize: '15px' }}>Paid Media Strategist at Kampaio</span>
+                  <span style={{ color: '#64748b', fontSize: '15px' }}>July 23, 2025 · 9 min read</span>
                 </div>
               </div>
             </div>
@@ -99,7 +99,7 @@ export default function BlogPostPage() {
             <div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: '12px', padding: '20px', marginBottom: '40px' }}>
               <button
                 onClick={() => setIsTableOfContentsOpen(!isTableOfContentsOpen)}
-                style={{ background: 'none', border: 'none', fontSize: '18px', fontWeight: '600', color: '#1a1a1a', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px', width: '100%', justifyContent: 'space-between' }}
+                style={{ background: 'none', border: 'none', fontSize: '18px', fontWeight: '600', color: '#1e293b', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px', width: '100%', justifyContent: 'space-between' }}
               >
                 Table of Contents
                 <span style={{ transform: isTableOfContentsOpen ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.3s ease' }}>▼</span>
@@ -110,13 +110,13 @@ export default function BlogPostPage() {
                     <div
                       key={item.id}
                       onClick={() => scrollToSection(item.id)}
-                      style={{ padding: '8px 0', paddingLeft: `${(item.level - 1) * 20}px`, cursor: 'pointer', color: '#666', fontSize: '16px', lineHeight: '1.4', borderBottom: '1px solid transparent', transition: 'all 0.2s ease' }}
+                      style={{ padding: '8px 0', paddingLeft: `${(item.level - 1) * 20}px`, cursor: 'pointer', color: '#64748b', fontSize: '16px', lineHeight: '1.4', borderBottom: '1px solid transparent', transition: 'all 0.2s ease' }}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.color = '#667eea';
-                        e.currentTarget.style.borderBottomColor = '#667eea';
+                        e.currentTarget.style.color = '#764ba2';
+                        e.currentTarget.style.borderBottomColor = '#764ba2';
                       }}
                       onMouseLeave={(e) => {
-                        e.currentTarget.style.color = '#666';
+                        e.currentTarget.style.color = '#64748b';
                         e.currentTarget.style.borderBottomColor = 'transparent';
                       }}
                     >
@@ -133,47 +133,47 @@ export default function BlogPostPage() {
           <div style={{ maxWidth: '800px', margin: '0 auto' }}>
             {/* Introduction */}
             <section id="introduction">
-              <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#374151', marginBottom: '32px' }}>
-                Performance Max (PMax) is Google’s most automated campaign type — and it’s revolutionized e-commerce and lead gen for many businesses. But for B2B marketers, it’s often a source of frustration: poor lead quality, wasted budget, and a black box that’s hard to control.<br /><br />
-                In this article, we’ll break down the 5 biggest reasons why Performance Max fails for B2B, and show you how to fix them (or when to avoid PMax entirely).
+              <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
+                Performance Max (PMax) is Google's most automated campaign type — and it's revolutionized e-commerce and lead gen for many businesses. But for B2B marketers, it's often a source of frustration: poor lead quality, wasted budget, and a black box that's hard to control.<br /><br />
+                In this article, we'll break down the 5 biggest reasons why Performance Max fails for B2B, and show you how to fix them (or when to avoid PMax entirely).
               </p>
             </section>
             {/* 5 Problems */}
             <section>
-              <h2 style={{ fontSize: '32px', fontWeight: '700', color: '#1a1a1a', marginBottom: '32px', marginTop: '48px' }}>
+              <h2 style={{ fontSize: '32px', fontWeight: '700', color: '#1e293b', marginBottom: '32px', marginTop: '48px' }}>
                 5 Reasons Performance Max Fails for B2B
               </h2>
-              <ol style={{ fontSize: '18px', color: '#374151', lineHeight: '1.8', paddingLeft: '24px', marginBottom: '40px' }}>
+              <ol style={{ fontSize: '18px', color: '#1e293b', lineHeight: '1.8', paddingLeft: '24px', marginBottom: '40px' }}>
                 <li id="problem-1" style={{ marginBottom: '24px' }}><strong>Poor Lead Quality:</strong> PMax optimizes for volume, not quality. In B2B, this means lots of irrelevant demo requests, job seekers, or spam — not real buyers.</li>
-                <li id="problem-2" style={{ marginBottom: '24px' }}><strong>Long & Complex Sales Cycles:</strong> PMax can’t see your true sales funnel. It optimizes for quick conversions, not the months-long journeys typical in B2B.</li>
-                <li id="problem-3" style={{ marginBottom: '24px' }}><strong>Broken Conversion Tracking:</strong> If your tracking isn’t perfect, PMax will optimize for the wrong actions (or nothing at all). B2B tracking is notoriously tricky — think phone calls, offline sales, or multi-touch journeys.</li>
-                <li id="problem-4" style={{ marginBottom: '24px' }}><strong>Weak Audience Signals:</strong> PMax relies on strong audience signals (lists, custom segments, CRM data). Most B2B accounts don’t have enough data, so Google’s AI guesses — and often gets it wrong.</li>
+                <li id="problem-2" style={{ marginBottom: '24px' }}><strong>Long & Complex Sales Cycles:</strong> PMax can't see your true sales funnel. It optimizes for quick conversions, not the months-long journeys typical in B2B.</li>
+                <li id="problem-3" style={{ marginBottom: '24px' }}><strong>Broken Conversion Tracking:</strong> If your tracking isn't perfect, PMax will optimize for the wrong actions (or nothing at all). B2B tracking is notoriously tricky — think phone calls, offline sales, or multi-touch journeys.</li>
+                <li id="problem-4" style={{ marginBottom: '24px' }}><strong>Weak Audience Signals:</strong> PMax relies on strong audience signals (lists, custom segments, CRM data). Most B2B accounts don't have enough data, so Google's AI guesses — and often gets it wrong.</li>
                 <li id="problem-5" style={{ marginBottom: '24px' }}><strong>Budget Waste & Lack of Control:</strong> PMax spends aggressively and gives you little control over placements, search terms, or creative. In B2B, this means wasted spend on irrelevant clicks and channels.</li>
               </ol>
             </section>
             {/* Solutions */}
             <section id="solutions">
-              <h2 style={{ fontSize: '28px', fontWeight: '700', color: '#1a1a1a', marginBottom: '24px', marginTop: '48px' }}>
+              <h2 style={{ fontSize: '28px', fontWeight: '700', color: '#1e293b', marginBottom: '24px', marginTop: '48px' }}>
                 How to Fix Performance Max for B2B
               </h2>
-              <ul style={{ fontSize: '18px', color: '#374151', lineHeight: '1.8', paddingLeft: '24px', marginBottom: '40px' }}>
+              <ul style={{ fontSize: '18px', color: '#1e293b', lineHeight: '1.8', paddingLeft: '24px', marginBottom: '40px' }}>
                 <li style={{ marginBottom: '16px' }}><strong>Start with Search & Display:</strong> Use manual or semi-automated campaigns to build quality data before launching PMax.</li>
                 <li style={{ marginBottom: '16px' }}><strong>Feed PMax with CRM Data:</strong> Import offline conversions and use Customer Match lists to improve targeting.</li>
                 <li style={{ marginBottom: '16px' }}><strong>Set Up Robust Tracking:</strong> Track every meaningful action (form fills, calls, meetings booked) and import them into Google Ads.</li>
-                <li style={{ marginBottom: '16px' }}><strong>Monitor Lead Quality Weekly:</strong> Don’t just look at conversion volume — check if leads are real, qualified, and sales-ready.</li>
-                <li style={{ marginBottom: '16px' }}><strong>Don’t Be Afraid to Pause PMax:</strong> If you can’t get quality or control, switch back to Search/Display until you have better data.</li>
+                <li style={{ marginBottom: '16px' }}><strong>Monitor Lead Quality Weekly:</strong> Don't just look at conversion volume — check if leads are real, qualified, and sales-ready.</li>
+                <li style={{ marginBottom: '16px' }}><strong>Don't Be Afraid to Pause PMax:</strong> If you can't get quality or control, switch back to Search/Display until you have better data.</li>
               </ul>
             </section>
             {/* Conclusion */}
             <section id="conclusion">
-              <h2 style={{ fontSize: '28px', fontWeight: '700', color: '#1a1a1a', marginBottom: '24px', marginTop: '48px' }}>
+              <h2 style={{ fontSize: '28px', fontWeight: '700', color: '#1e293b', marginBottom: '24px', marginTop: '48px' }}>
                 Conclusion
               </h2>
-              <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#374151', marginBottom: '32px' }}>
-                Performance Max is powerful — but it’s not a magic bullet for B2B. If you want real pipeline, not just conversions, you need to control your data, signals, and strategy. Use PMax as a tool, not a default, and always optimize for quality over quantity.
+              <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
+                Performance Max is powerful — but it's not a magic bullet for B2B. If you want real pipeline, not just conversions, you need to control your data, signals, and strategy. Use PMax as a tool, not a default, and always optimize for quality over quantity.
               </p>
               <div style={{
-                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
                 borderRadius: '16px',
                 padding: '40px',
                 textAlign: 'center',
@@ -183,7 +183,7 @@ export default function BlogPostPage() {
                 <h3 style={{
                   fontSize: '22px',
                   fontWeight: '700',
-                  color: 'white',
+                  color: '#1e293b',
                   marginBottom: '18px',
                   lineHeight: '1.3'
                 }}>
@@ -191,7 +191,7 @@ export default function BlogPostPage() {
                 </h3>
                 <p style={{
                   fontSize: '17px',
-                  color: 'white',
+                  color: '#64748b',
                   marginBottom: '28px',
                   lineHeight: '1.6',
                   fontWeight: '500',
@@ -199,10 +199,12 @@ export default function BlogPostPage() {
                 }}>
                   Let our AI analyze your account and show how to build a pipeline — not just drive clicks.
                 </p>
-                <button
+                <a
+                  href="/chat"
+                  className="btn"
                   style={{
-                    background: 'linear-gradient(45deg, #00FFE7, #00BFAE)',
-                    color: '#1A1A1A',
+                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                    color: 'white',
                     border: 'none',
                     padding: '16px 32px',
                     borderRadius: '10px',
@@ -211,18 +213,20 @@ export default function BlogPostPage() {
                     cursor: 'pointer',
                     transition: 'all 0.3s ease',
                     display: 'inline-block',
-                    boxShadow: 'none',
+                    boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)',
+                    textDecoration: 'none',
                   }}
-                  onClick={() => { window.location.href = '/chat'; }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.boxShadow = '0 8px 25px rgba(0,191,174,0.15)';
+                  onMouseEnter={e => {
+                    (e.currentTarget as HTMLAnchorElement).style.boxShadow = '0 8px 25px rgba(102, 126, 234, 0.4)';
+                    (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(-2px)';
                   }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.boxShadow = 'none';
+                  onMouseLeave={e => {
+                    (e.currentTarget as HTMLAnchorElement).style.boxShadow = '0 4px 12px rgba(102, 126, 234, 0.3)';
+                    (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
                   }}
                 >
                   Get My B2B Audit
-                </button>
+                </a>
               </div>
             </section>
           </div>
