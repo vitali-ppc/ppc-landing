@@ -107,11 +107,11 @@ export default function DentistAdsHubPage() {
       <Breadcrumbs />
       <main style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)', padding: '48px 16px' }}>
         <div style={{ maxWidth: 800, margin: '0 auto', textAlign: 'center', marginBottom: 48 }}>
-          <h1 style={{ fontSize: '2.5rem', fontWeight: 800, color: '#1a1a1a', marginBottom: 16 }}>
+          <h1 style={{ fontSize: '2.5rem', fontWeight: 800, color: '#1e293b', marginBottom: 16 }}>
             {titleParts[0]} <br />
             for {titleParts[1]}
           </h1>
-          <p style={{ fontSize: '1.15rem', color: '#374151', fontWeight: 400, marginBottom: 24 }}>
+          <p style={{ fontSize: '1.15rem', color: '#64748b', fontWeight: 400, marginBottom: 24 }}>
             Discover AI-optimized, data-driven ad strategies to help dentists attract more local patients. Choose your city to explore tailored insights and proven campaign examples.
           </p>
         </div>
@@ -138,7 +138,7 @@ export default function DentistAdsHubPage() {
                 outline: 'none',
                 fontSize: '16px',
                 background: 'transparent',
-                color: '#1a1a1a'
+                color: '#1e293b'
               }}
             />
             <div style={{
@@ -146,7 +146,7 @@ export default function DentistAdsHubPage() {
               right: '16px',
               top: '50%',
               transform: 'translateY(-50%)',
-              color: '#A0A0A0'
+              color: '#64748b'
             }}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <circle cx="11" cy="11" r="8"/>
@@ -159,7 +159,7 @@ export default function DentistAdsHubPage() {
               textAlign: 'center',
               marginTop: '12px',
               fontSize: '14px',
-              color: '#A0A0A0'
+              color: '#64748b'
             }}>
               {filteredCities.length} city{filteredCities.length !== 1 ? 'ies' : 'y'} found
             </div>
@@ -223,11 +223,11 @@ export default function DentistAdsHubPage() {
               ];
 
               const textColors = [
-                '#1a1a1a', // Phoenix - темный
-                '#1a1a1a', // Phoenix - темный
-                '#1a1a1a', // Phoenix - темный
-                '#1a1a1a', // Phoenix - темный
-                '#1a1a1a'  // Phoenix - темный
+                '#1e293b', // Phoenix - темный
+                '#1e293b', // Phoenix - темный
+                '#1e293b', // Phoenix - темный
+                '#1e293b', // Phoenix - темный
+                '#1e293b'  // Phoenix - темный
               ];
 
               const buttonStyles = [
@@ -358,7 +358,7 @@ export default function DentistAdsHubPage() {
             <div style={{
               textAlign: 'center',
               padding: '48px 24px',
-              color: '#A0A0A0',
+              color: '#64748b',
               fontSize: '16px'
             }}>
               No cities found for "{searchQuery}". Try a different search term.
@@ -371,7 +371,7 @@ export default function DentistAdsHubPage() {
           <p style={{
             fontSize: '1rem',
             lineHeight: '1.6',
-            color: '#6b7280',
+            color: '#64748b',
             textAlign: 'center',
             margin: 0
           }}>

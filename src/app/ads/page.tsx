@@ -98,10 +98,10 @@ export default function AdsMainHubPage() {
       <Header />
       <main style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)', padding: '48px 16px' }}>
         <div style={{ maxWidth: 800, margin: '0 auto', textAlign: 'center', marginBottom: 48 }}>
-          <h1 style={{ fontSize: '2.5rem', fontWeight: 800, color: '#1a1a1a', marginBottom: 16 }}>
+          <h1 style={{ fontSize: '2.5rem', fontWeight: 800, color: '#1e293b', marginBottom: 16 }}>
             {title}
           </h1>
-          <p style={{ fontSize: '1.15rem', color: '#374151', fontWeight: 400, marginBottom: 24 }}>
+          <p style={{ fontSize: '1.15rem', color: '#64748b', fontWeight: 400, marginBottom: 24 }}>
             {subheading}
           </p>
         </div>
@@ -127,7 +127,7 @@ export default function AdsMainHubPage() {
                 outline: 'none',
                 fontSize: '16px',
                 background: 'transparent',
-                color: '#1a1a1a'
+                color: '#1e293b'
               }}
             />
             <div style={{
@@ -135,7 +135,7 @@ export default function AdsMainHubPage() {
               right: '16px',
               top: '50%',
               transform: 'translateY(-50%)',
-              color: '#A0A0A0'
+              color: '#64748b'
             }}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <circle cx="11" cy="11" r="8"/>
@@ -148,7 +148,7 @@ export default function AdsMainHubPage() {
               textAlign: 'center',
               marginTop: '12px',
               fontSize: '14px',
-              color: '#A0A0A0'
+              color: '#64748b'
             }}>
               {filteredNiches.length} niche{filteredNiches.length !== 1 ? 's' : ''} found
             </div>
@@ -184,7 +184,7 @@ export default function AdsMainHubPage() {
                 >
                   {/* Все иконки убраны */}
                   <div>
-                    <h3 style={{ fontSize: '1.25rem', fontWeight: 600, color: '#23272f', marginBottom: 8 }}>
+                    <h3 style={{ fontSize: '1.25rem', fontWeight: 600, color: '#1e293b', marginBottom: 8 }}>
                       {niche.name}
                     </h3>
                   </div>
@@ -219,7 +219,7 @@ export default function AdsMainHubPage() {
           <p style={{
             fontSize: '1rem',
             lineHeight: '1.6',
-            color: '#6b7280',
+            color: '#64748b',
             textAlign: 'center',
             margin: 0
           }}>
@@ -227,7 +227,7 @@ export default function AdsMainHubPage() {
           </p>
         </section>
         <section style={{
-          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+          background: 'linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%)',
           borderRadius: '16px',
           padding: '40px',
           textAlign: 'center',
@@ -240,7 +240,7 @@ export default function AdsMainHubPage() {
           <h2 style={{
             fontSize: '2rem',
             fontWeight: 700,
-            color: 'white',
+            color: '#1e293b',
             marginBottom: '18px',
             lineHeight: '1.3'
           }}>
@@ -248,7 +248,7 @@ export default function AdsMainHubPage() {
           </h2>
           <p style={{
             fontSize: '17px',
-            color: 'white',
+            color: '#64748b',
             marginBottom: '28px',
             lineHeight: '1.6',
             fontWeight: '500',
@@ -260,8 +260,8 @@ export default function AdsMainHubPage() {
             href="/chat"
             className="btn"
             style={{
-              background: 'linear-gradient(45deg, #00FFE7, #00BFAE)',
-              color: '#1A1A1A',
+              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+              color: 'white',
               border: 'none',
               padding: '16px 32px',
               borderRadius: '10px',
@@ -270,14 +270,16 @@ export default function AdsMainHubPage() {
               cursor: 'pointer',
               transition: 'all 0.3s ease',
               display: 'inline-block',
-              boxShadow: 'none',
+              boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)',
               textDecoration: 'none',
             }}
             onMouseEnter={e => {
-              (e.currentTarget as HTMLAnchorElement).style.boxShadow = '0 8px 25px rgba(0,191,174,0.15)';
+              (e.currentTarget as HTMLAnchorElement).style.boxShadow = '0 8px 25px rgba(102, 126, 234, 0.4)';
+              (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(-2px)';
             }}
             onMouseLeave={e => {
-              (e.currentTarget as HTMLAnchorElement).style.boxShadow = 'none';
+              (e.currentTarget as HTMLAnchorElement).style.boxShadow = '0 4px 12px rgba(102, 126, 234, 0.3)';
+              (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
             }}
           >
             Try for Free

@@ -24,8 +24,8 @@ export default function PricingPage() {
         'Chat history (7 days)'
       ],
       popular: false,
-      gradient: 'linear-gradient(135deg, #00FFE7 0%, #00BFAE 100%)',
-      buttonColor: 'linear-gradient(135deg, #7F9CF5 0%, #4A5BB8 100%)'
+      gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+      buttonColor: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
     },
     {
       id: 'professional',
@@ -44,8 +44,8 @@ export default function PricingPage() {
         'Keyword research & optimization'
       ],
       popular: true,
-      gradient: 'linear-gradient(135deg, #7F9CF5 0%, #4A5BB8 100%)',
-      buttonColor: 'linear-gradient(135deg, #7F9CF5 0%, #4A5BB8 100%)'
+      gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+      buttonColor: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
     },
     {
       id: 'enterprise',
@@ -68,8 +68,8 @@ export default function PricingPage() {
         'API access'
       ],
       popular: false,
-      gradient: 'linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 100%)',
-      buttonColor: 'linear-gradient(135deg, #7F9CF5 0%, #4A5BB8 100%)'
+      gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+      buttonColor: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
     }
   ];
 
@@ -100,7 +100,7 @@ export default function PricingPage() {
             <h1 style={{
               fontSize: 'clamp(36px, 5vw, 60px)',
               fontWeight: '800',
-              color: '#1a1a1a',
+              color: '#1e293b',
               marginBottom: '24px',
               lineHeight: '1.2'
             }}>
@@ -109,7 +109,7 @@ export default function PricingPage() {
             <p style={{
               fontSize: '18px',
               lineHeight: '1.6',
-              color: '#666',
+              color: '#64748b',
               marginBottom: '32px'
             }}>
               Start free and scale as you grow. All plans include advanced AI-powered optimization and real-time insights
@@ -126,23 +126,23 @@ export default function PricingPage() {
               <span style={{
                 fontSize: '14px',
                 fontWeight: '500',
-                color: !isAnnual ? '#1a1a1a' : '#666'
+                color: !isAnnual ? '#1e293b' : '#64748b'
               }}>
                 Monthly
               </span>
-                              <button
-                  onClick={() => setIsAnnual(!isAnnual)}
-                  style={{
-                    position: 'relative',
-                    width: '44px',
-                    height: '24px',
-                    borderRadius: '12px',
-                    border: 'none',
-                    background: isAnnual ? 'linear-gradient(135deg, #7F9CF5 0%, #4A5BB8 100%)' : '#e2e8f0',
-                    cursor: 'pointer',
-                    transition: 'all 0.3s ease'
-                  }}
-                >
+              <button
+                onClick={() => setIsAnnual(!isAnnual)}
+                style={{
+                  position: 'relative',
+                  width: '44px',
+                  height: '24px',
+                  borderRadius: '12px',
+                  border: 'none',
+                  background: isAnnual ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' : '#e2e8f0',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease'
+                }}
+              >
                 <span style={{
                   position: 'absolute',
                   top: '2px',
@@ -158,13 +158,13 @@ export default function PricingPage() {
               <span style={{
                 fontSize: '14px',
                 fontWeight: '500',
-                color: isAnnual ? '#1a1a1a' : '#666'
+                color: isAnnual ? '#1e293b' : '#64748b'
               }}>
                 Annual
                 <span style={{
                   marginLeft: '4px',
                   fontSize: '12px',
-                  color: '#4ECDC4'
+                  color: '#764ba2'
                 }}>
                   Save 20%
                 </span>
@@ -197,7 +197,7 @@ export default function PricingPage() {
                 boxShadow: plan.popular ? '0 20px 40px rgba(0,0,0,0.1)' : '0 10px 30px rgba(0,0,0,0.1)',
                 transition: 'all 0.3s ease',
                 transform: plan.popular ? 'scale(1.05)' : hoveredPlan === plan.id ? 'scale(1.02)' : 'scale(1)',
-                border: plan.popular ? '2px solid #7F9CF5' : '1px solid #e2e8f0'
+                border: plan.popular ? '2px solid #764ba2' : '1px solid #e2e8f0'
               }}
               onMouseEnter={() => setHoveredPlan(plan.id)}
               onMouseLeave={() => setHoveredPlan(null)}
@@ -223,14 +223,14 @@ export default function PricingPage() {
                 <h3 style={{
                   fontSize: '24px',
                   fontWeight: '700',
-                  color: '#1a1a1a',
+                  color: '#1e293b',
                   marginBottom: '8px'
                 }}>
                   {plan.name}
                 </h3>
                 <p style={{
                   fontSize: '16px',
-                  color: '#666',
+                  color: '#64748b',
                   marginBottom: '32px'
                 }}>
                   {plan.description}
@@ -246,13 +246,13 @@ export default function PricingPage() {
                     <span style={{
                       fontSize: '48px',
                       fontWeight: '800',
-                      color: '#1a1a1a'
+                      color: '#1e293b'
                     }}>
                       ${plan.price}
                     </span>
                     <span style={{
                       fontSize: '20px',
-                      color: '#666'
+                      color: '#64748b'
                     }}>
                       /month
                     </span>
@@ -261,7 +261,7 @@ export default function PricingPage() {
                     <p style={{
                       marginTop: '8px',
                       fontSize: '14px',
-                      color: '#666',
+                      color: '#64748b',
                       textDecoration: 'line-through'
                     }}>
                       ${plan.originalPrice}/month
@@ -281,13 +281,13 @@ export default function PricingPage() {
                       alignItems: 'center',
                       marginBottom: '16px',
                       fontSize: '16px',
-                      color: '#374151'
+                      color: '#1e293b'
                     }}>
                       <svg
                         style={{
                           width: '20px',
                           height: '20px',
-                          color: '#4ECDC4',
+                          color: '#764ba2',
                           marginRight: '12px',
                           flexShrink: 0
                         }}
@@ -317,15 +317,15 @@ export default function PricingPage() {
                     fontWeight: '600',
                     cursor: 'pointer',
                     transition: 'all 0.3s ease',
-                    boxShadow: '0 4px 12px rgba(0,0,0,0.15)'
+                    boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)'
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.transform = 'translateY(-2px)';
-                    e.currentTarget.style.boxShadow = '0 8px 20px rgba(0,0,0,0.2)';
+                    e.currentTarget.style.boxShadow = '0 8px 20px rgba(102, 126, 234, 0.4)';
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.transform = 'translateY(0)';
-                    e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+                    e.currentTarget.style.boxShadow = '0 4px 12px rgba(102, 126, 234, 0.3)';
                   }}
                 >
                   Get Started

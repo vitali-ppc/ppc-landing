@@ -80,11 +80,11 @@ export default function BlogPostPage() {
               AI & Automation
             </div>
             {/* Title */}
-            <h1 style={{ fontSize: 'clamp(32px, 4vw, 48px)', fontWeight: '800', color: '#1a1a1a', marginBottom: '24px', lineHeight: '1.2' }}>
+            <h1 style={{ fontSize: 'clamp(32px, 4vw, 48px)', fontWeight: '800', color: '#1e293b', marginBottom: '24px', lineHeight: '1.2' }}>
               10 AI-Powered PPC Optimization Strategies That Actually Work
             </h1>
             {/* Subtitle */}
-            <p style={{ fontSize: '20px', color: '#666', marginBottom: '32px', lineHeight: '1.6', fontWeight: '500' }}>
+            <p style={{ fontSize: '20px', color: '#64748b', marginBottom: '32px', lineHeight: '1.6', fontWeight: '500' }}>
               Discover how artificial intelligence is revolutionizing PPC campaigns and learn proven strategies to boost your ROI.
             </p>
             {/* Meta Info */}
@@ -94,9 +94,9 @@ export default function BlogPostPage() {
                   K
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '2px' }}>
-                  <span style={{ color: '#666', fontSize: '16px', fontWeight: 600 }}>by Emily Carter</span>
-                  <span style={{ color: '#888', fontSize: '15px' }}>Paid Media Strategist at Kampaio</span>
-                  <span style={{ color: '#888', fontSize: '15px' }}>July 14, 2025 · 8 min read</span>
+                  <span style={{ color: '#64748b', fontSize: '16px', fontWeight: 600 }}>by Emily Carter</span>
+                  <span style={{ color: '#64748b', fontSize: '15px' }}>Paid Media Strategist at Kampaio</span>
+                  <span style={{ color: '#64748b', fontSize: '15px' }}>July 14, 2025 · 8 min read</span>
                 </div>
               </div>
             </div>
@@ -104,7 +104,7 @@ export default function BlogPostPage() {
             <div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: '12px', padding: '20px', marginBottom: '40px' }}>
               <button
                 onClick={() => setIsTableOfContentsOpen(!isTableOfContentsOpen)}
-                style={{ background: 'none', border: 'none', fontSize: '18px', fontWeight: '600', color: '#1a1a1a', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px', width: '100%', justifyContent: 'space-between' }}
+                style={{ background: 'none', border: 'none', fontSize: '18px', fontWeight: '600', color: '#1e293b', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px', width: '100%', justifyContent: 'space-between' }}
               >
                 Table of Contents
                 <span style={{ transform: isTableOfContentsOpen ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.3s ease' }}>▼</span>
@@ -115,13 +115,13 @@ export default function BlogPostPage() {
                     <div
                       key={item.id}
                       onClick={() => scrollToSection(item.id)}
-                      style={{ padding: '8px 0', paddingLeft: `${(item.level - 1) * 20}px`, cursor: 'pointer', color: '#666', fontSize: '16px', lineHeight: '1.4', borderBottom: '1px solid transparent', transition: 'all 0.2s ease' }}
+                      style={{ padding: '8px 0', paddingLeft: `${(item.level - 1) * 20}px`, cursor: 'pointer', color: '#64748b', fontSize: '16px', lineHeight: '1.4', borderBottom: '1px solid transparent', transition: 'all 0.2s ease' }}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.color = '#667eea';
-                        e.currentTarget.style.borderBottomColor = '#667eea';
+                        e.currentTarget.style.color = '#764ba2';
+                        e.currentTarget.style.borderBottomColor = '#764ba2';
                       }}
                       onMouseLeave={(e) => {
-                        e.currentTarget.style.color = '#666';
+                        e.currentTarget.style.color = '#64748b';
                         e.currentTarget.style.borderBottomColor = 'transparent';
                       }}
                     >
@@ -138,16 +138,16 @@ export default function BlogPostPage() {
           <div style={{ maxWidth: '800px', margin: '0 auto' }}>
             {/* Introduction */}
             <section id="introduction">
-              <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#374151', marginBottom: '32px' }}>
-                Artificial intelligence is no longer a buzzword in PPC — it’s a game-changer. From automating tedious tasks to uncovering insights humans might miss, AI is transforming how top advertisers run and scale their campaigns. In this article, you’ll discover 10 proven AI-powered strategies that deliver real results in Google Ads and beyond.
+              <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
+                Artificial intelligence is no longer a buzzword in PPC — it's a game-changer. From automating tedious tasks to uncovering insights humans might miss, AI is transforming how top advertisers run and scale their campaigns. In this article, you'll discover 10 proven AI-powered strategies that deliver real results in Google Ads and beyond.
               </p>
             </section>
             {/* 10 Strategies */}
             <section>
-              <h2 style={{ fontSize: '32px', fontWeight: '700', color: '#1a1a1a', marginBottom: '32px', marginTop: '48px' }}>
+              <h2 style={{ fontSize: '32px', fontWeight: '700', color: '#1e293b', marginBottom: '32px', marginTop: '48px' }}>
                 10 AI-Powered PPC Optimization Strategies
               </h2>
-              <ol style={{ fontSize: '18px', color: '#374151', lineHeight: '1.8', paddingLeft: '24px', marginBottom: '40px' }}>
+              <ol style={{ fontSize: '18px', color: '#1e293b', lineHeight: '1.8', paddingLeft: '24px', marginBottom: '40px' }}>
                 <li id="strategy-1" style={{ marginBottom: '24px' }}><strong>Automated Bid Management:</strong> Let AI adjust your bids in real time based on auction data, user intent, and conversion likelihood — maximizing ROI and saving hours of manual work.</li>
                 <li id="strategy-2" style={{ marginBottom: '24px' }}><strong>Smart Keyword Expansion:</strong> Use machine learning to discover new, high-converting keywords and long-tail opportunities your competitors miss.</li>
                 <li id="strategy-3" style={{ marginBottom: '24px' }}><strong>Dynamic Ad Copy Generation:</strong> AI tools can write and test dozens of ad variations, personalizing messaging for each audience segment and boosting CTR.</li>
@@ -162,10 +162,10 @@ export default function BlogPostPage() {
             </section>
             {/* Practical Tips */}
             <section id="practical-tips">
-              <h2 style={{ fontSize: '28px', fontWeight: '700', color: '#1a1a1a', marginBottom: '24px', marginTop: '48px' }}>
+              <h2 style={{ fontSize: '28px', fontWeight: '700', color: '#1e293b', marginBottom: '24px', marginTop: '48px' }}>
                 Practical Tips for Implementation
               </h2>
-              <ul style={{ fontSize: '18px', color: '#374151', lineHeight: '1.8', paddingLeft: '24px', marginBottom: '40px' }}>
+              <ul style={{ fontSize: '18px', color: '#1e293b', lineHeight: '1.8', paddingLeft: '24px', marginBottom: '40px' }}>
                 <li style={{ marginBottom: '16px' }}><strong>Start small:</strong> Test one or two AI strategies before scaling across all campaigns.</li>
                 <li style={{ marginBottom: '16px' }}><strong>Monitor results:</strong> Use dashboards and alerts to track performance and catch anomalies early.</li>
                 <li style={{ marginBottom: '16px' }}><strong>Combine human + AI:</strong> Let AI handle the heavy lifting, but use your expertise for strategy and creative direction.</li>
@@ -174,14 +174,14 @@ export default function BlogPostPage() {
             </section>
             {/* Conclusion */}
             <section id="conclusion">
-              <h2 style={{ fontSize: '28px', fontWeight: '700', color: '#1a1a1a', marginBottom: '24px', marginTop: '48px' }}>
+              <h2 style={{ fontSize: '28px', fontWeight: '700', color: '#1e293b', marginBottom: '24px', marginTop: '48px' }}>
                 Conclusion
               </h2>
-              <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#374151', marginBottom: '32px' }}>
-                AI is no longer optional for PPC success — it’s essential. By adopting these 10 strategies, you’ll save time, reduce wasted spend, and unlock new growth opportunities in your campaigns. Ready to see what AI can do for your PPC?
+              <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
+                AI is no longer optional for PPC success — it's essential. By adopting these 10 strategies, you'll save time, reduce wasted spend, and unlock new growth opportunities in your campaigns. Ready to see what AI can do for your PPC?
               </p>
               <div style={{
-                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
                 borderRadius: '16px',
                 padding: '40px',
                 textAlign: 'center',
@@ -191,7 +191,7 @@ export default function BlogPostPage() {
                 <h3 style={{
                   fontSize: '22px',
                   fontWeight: '700',
-                  color: 'white',
+                  color: '#1e293b',
                   marginBottom: '18px',
                   lineHeight: '1.3'
                 }}>
@@ -199,7 +199,7 @@ export default function BlogPostPage() {
                 </h3>
                 <p style={{
                   fontSize: '17px',
-                  color: 'white',
+                  color: '#64748b',
                   marginBottom: '28px',
                   lineHeight: '1.6',
                   fontWeight: '500',
@@ -207,10 +207,12 @@ export default function BlogPostPage() {
                 }}>
                   Let our platform analyze your campaigns<br />and show exactly where to optimize for better ROI.
                 </p>
-                <button
+                <a
+                  href="/chat"
+                  className="btn"
                   style={{
-                    background: 'linear-gradient(45deg, #00FFE7, #00BFAE)',
-                    color: '#1A1A1A',
+                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                    color: 'white',
                     border: 'none',
                     padding: '16px 32px',
                     borderRadius: '10px',
@@ -219,18 +221,20 @@ export default function BlogPostPage() {
                     cursor: 'pointer',
                     transition: 'all 0.3s ease',
                     display: 'inline-block',
-                    boxShadow: 'none',
+                    boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)',
+                    textDecoration: 'none',
                   }}
-                  onClick={() => { window.location.href = '/chat'; }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.boxShadow = '0 8px 25px rgba(0,191,174,0.15)';
+                  onMouseEnter={e => {
+                    (e.currentTarget as HTMLAnchorElement).style.boxShadow = '0 8px 25px rgba(102, 126, 234, 0.4)';
+                    (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(-2px)';
                   }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.boxShadow = 'none';
+                  onMouseLeave={e => {
+                    (e.currentTarget as HTMLAnchorElement).style.boxShadow = '0 4px 12px rgba(102, 126, 234, 0.3)';
+                    (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
                   }}
                 >
                   Run My Free AI Audit
-                </button>
+                </a>
               </div>
             </section>
           </div>

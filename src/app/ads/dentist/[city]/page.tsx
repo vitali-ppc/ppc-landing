@@ -88,8 +88,7 @@ export default function DentistCityPage({ params }: { params: { city: string } }
       <section style={{
         background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
         padding: '80px 0 60px',
-        textAlign: 'center',
-        color: '#23272f'
+        textAlign: 'center'
       }}>
         <div style={{ maxWidth: 800, margin: '0 auto', padding: '0 24px' }}>
           <h1 style={{
@@ -97,7 +96,8 @@ export default function DentistCityPage({ params }: { params: { city: string } }
             fontWeight: 900,
             marginBottom: 24,
             lineHeight: 1.1,
-            letterSpacing: '-1px'
+            letterSpacing: '-1px',
+            color: '#1e293b'
           }}>
             Google Ads for {formattedNichePlural} in {cityName} Powered by AI
           </h1>
@@ -108,7 +108,8 @@ export default function DentistCityPage({ params }: { params: { city: string } }
             opacity: 0.95,
             maxWidth: 700,
             marginLeft: 'auto',
-            marginRight: 'auto'
+            marginRight: 'auto',
+            color: '#64748b'
           }}>
             Tired of wasting your budget on ads that don't deliver?<br />
             Get better ROI, lower costs, and personalized strategies for your dental clinic in {cityName}.
@@ -173,7 +174,7 @@ export default function DentistCityPage({ params }: { params: { city: string } }
                   gap: 12,
                   marginBottom: 16,
                   fontSize: '1rem',
-                  color: '#334155'
+                  color: '#1e293b'
                 }}>
                   <div style={{
                     width: 8,
@@ -190,7 +191,7 @@ export default function DentistCityPage({ params }: { params: { city: string } }
                   gap: 12,
                   marginBottom: 16,
                   fontSize: '1rem',
-                  color: '#334155'
+                  color: '#1e293b'
                 }}>
                   <div style={{
                     width: 8,
@@ -207,7 +208,7 @@ export default function DentistCityPage({ params }: { params: { city: string } }
                   gap: 12,
                   marginBottom: 16,
                   fontSize: '1rem',
-                  color: '#334155'
+                  color: '#1e293b'
                 }}>
                   <div style={{
                     width: 8,
@@ -452,7 +453,7 @@ export default function DentistCityPage({ params }: { params: { city: string } }
                   gap: 12,
                   marginBottom: 16,
                   fontSize: '1rem',
-                  color: '#334155'
+                  color: '#1e293b'
                 }}>
                   <div style={{
                     width: 8,
@@ -469,7 +470,7 @@ export default function DentistCityPage({ params }: { params: { city: string } }
                   gap: 12,
                   marginBottom: 16,
                   fontSize: '1rem',
-                  color: '#334155'
+                  color: '#1e293b'
                 }}>
                   <div style={{
                     width: 8,
@@ -486,7 +487,7 @@ export default function DentistCityPage({ params }: { params: { city: string } }
                   gap: 12,
                   marginBottom: 16,
                   fontSize: '1rem',
-                  color: '#334155'
+                  color: '#1e293b'
                 }}>
                   <div style={{
                     width: 8,
@@ -571,7 +572,7 @@ export default function DentistCityPage({ params }: { params: { city: string } }
                   gap: 12,
                   marginBottom: 16,
                   fontSize: '1rem',
-                  color: '#334155'
+                  color: '#1e293b'
                 }}>
                   <div style={{
                     width: 8,
@@ -588,7 +589,7 @@ export default function DentistCityPage({ params }: { params: { city: string } }
                   gap: 12,
                   marginBottom: 16,
                   fontSize: '1rem',
-                  color: '#334155'
+                  color: '#1e293b'
                 }}>
                   <div style={{
                     width: 8,
@@ -605,7 +606,7 @@ export default function DentistCityPage({ params }: { params: { city: string } }
                   gap: 12,
                   marginBottom: 16,
                   fontSize: '1rem',
-                  color: '#334155'
+                  color: '#1e293b'
                 }}>
                   <div style={{
                     width: 8,

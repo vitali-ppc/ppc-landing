@@ -74,11 +74,11 @@ export default function BlogPostPage() {
               Google Ads
             </div>
             {/* Title */}
-            <h1 style={{ fontSize: 'clamp(32px, 4vw, 48px)', fontWeight: '800', color: '#1a1a1a', marginBottom: '24px', lineHeight: '1.2' }}>
+            <h1 style={{ fontSize: 'clamp(32px, 4vw, 48px)', fontWeight: '800', color: '#1e293b', marginBottom: '24px', lineHeight: '1.2' }}>
               The Complete Guide to Google Ads Quality Score in 2025
             </h1>
             {/* Subtitle */}
-            <p style={{ fontSize: '20px', color: '#666', marginBottom: '32px', lineHeight: '1.6', fontWeight: '500' }}>
+            <p style={{ fontSize: '20px', color: '#64748b', marginBottom: '32px', lineHeight: '1.6', fontWeight: '500' }}>
               Master the fundamentals of Quality Score and learn advanced techniques to improve your ad performance.
             </p>
             {/* Meta Info */}
@@ -88,9 +88,9 @@ export default function BlogPostPage() {
                   K
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '2px' }}>
-                  <span style={{ color: '#666', fontSize: '16px', fontWeight: 600 }}>by Emily Carter</span>
-                  <span style={{ color: '#888', fontSize: '15px' }}>Paid Media Strategist at Kampaio</span>
-                  <span style={{ color: '#888', fontSize: '15px' }}>July 21, 2025 · 12 min read</span>
+                  <span style={{ color: '#64748b', fontSize: '16px', fontWeight: 600 }}>by Emily Carter</span>
+                  <span style={{ color: '#64748b', fontSize: '15px' }}>Paid Media Strategist at Kampaio</span>
+                  <span style={{ color: '#64748b', fontSize: '15px' }}>July 21, 2025 · 12 min read</span>
                 </div>
               </div>
             </div>
@@ -98,7 +98,7 @@ export default function BlogPostPage() {
             <div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: '12px', padding: '20px', marginBottom: '40px' }}>
               <button
                 onClick={() => setIsTableOfContentsOpen(!isTableOfContentsOpen)}
-                style={{ background: 'none', border: 'none', fontSize: '18px', fontWeight: '600', color: '#1a1a1a', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px', width: '100%', justifyContent: 'space-between' }}
+                style={{ background: 'none', border: 'none', fontSize: '18px', fontWeight: '600', color: '#1e293b', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px', width: '100%', justifyContent: 'space-between' }}
               >
                 Table of Contents
                 <span style={{ transform: isTableOfContentsOpen ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.3s ease' }}>▼</span>
@@ -109,13 +109,13 @@ export default function BlogPostPage() {
                     <div
                       key={item.id}
                       onClick={() => scrollToSection(item.id)}
-                      style={{ padding: '8px 0', paddingLeft: `${(item.level - 1) * 20}px`, cursor: 'pointer', color: '#666', fontSize: '16px', lineHeight: '1.4', borderBottom: '1px solid transparent', transition: 'all 0.2s ease' }}
+                      style={{ padding: '8px 0', paddingLeft: `${(item.level - 1) * 20}px`, cursor: 'pointer', color: '#64748b', fontSize: '16px', lineHeight: '1.4', borderBottom: '1px solid transparent', transition: 'all 0.2s ease' }}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.color = '#667eea';
-                        e.currentTarget.style.borderBottomColor = '#667eea';
+                        e.currentTarget.style.color = '#764ba2';
+                        e.currentTarget.style.borderBottomColor = '#764ba2';
                       }}
                       onMouseLeave={(e) => {
-                        e.currentTarget.style.color = '#666';
+                        e.currentTarget.style.color = '#64748b';
                         e.currentTarget.style.borderBottomColor = 'transparent';
                       }}
                     >
@@ -132,65 +132,65 @@ export default function BlogPostPage() {
           <div style={{ maxWidth: '800px', margin: '0 auto' }}>
             {/* Introduction */}
             <section id="introduction">
-              <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#374151', marginBottom: '32px' }}>
-                Quality Score is one of the most important — and misunderstood — factors in Google Ads. In this comprehensive guide, you’ll learn what Quality Score really is, how it’s calculated, and the proven strategies top advertisers use to boost their scores and lower costs in 2025.
+              <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
+                Quality Score is one of the most important — and misunderstood — factors in Google Ads. In this comprehensive guide, you'll learn what Quality Score really is, how it's calculated, and the proven strategies top advertisers use to boost their scores and lower costs in 2025.
               </p>
             </section>
             {/* What is Quality Score */}
             <section id="what-is-quality-score">
-              <h2 style={{ fontSize: '28px', fontWeight: '700', color: '#1a1a1a', marginBottom: '24px', marginTop: '48px' }}>
+              <h2 style={{ fontSize: '28px', fontWeight: '700', color: '#1e293b', marginBottom: '24px', marginTop: '48px' }}>
                 What is Google Ads Quality Score?
               </h2>
-              <p style={{ fontSize: '18px', color: '#374151', lineHeight: '1.8', marginBottom: '24px' }}>
-                Quality Score is Google’s rating of the relevance and quality of your keywords, ads, and landing pages. It’s reported on a 1–10 scale and directly impacts your ad rank and cost per click (CPC).
+              <p style={{ fontSize: '18px', color: '#1e293b', lineHeight: '1.8', marginBottom: '24px' }}>
+                Quality Score is Google's rating of the relevance and quality of your keywords, ads, and landing pages. It's reported on a 1–10 scale and directly impacts your ad rank and cost per click (CPC).
               </p>
               {/* WOW Quality Score Diagram */}
               <div style={{ textAlign: 'center', margin: '32px 0' }}>
                 <svg width="400" height="180" viewBox="0 0 400 180" style={{ maxWidth: '100%' }}>
                   <defs>
                     <linearGradient id="qscore-bg" x1="0" y1="0" x2="1" y2="1">
-                      <stop offset="0%" stopColor="#00FFE7"/>
-                      <stop offset="100%" stopColor="#00BFAE"/>
+                      <stop offset="0%" stopColor="#667eea"/>
+                      <stop offset="100%" stopColor="#764ba2"/>
                     </linearGradient>
                   </defs>
                   <ellipse cx="200" cy="80" rx="90" ry="40" fill="url(#qscore-bg)" />
-                  <text x="200" y="90" textAnchor="middle" fontSize="24" fontWeight="bold" fill="#1A1A1A">Quality Score</text>
+                  <text x="200" y="90" textAnchor="middle" fontSize="24" fontWeight="bold" fill="#1e293b">Quality Score</text>
                   {/* CTR */}
                   <g>
                     <rect x="40" y="140" width="80" height="32" rx="10" fill="#e0e7ff" />
                     <text x="80" y="162" textAnchor="middle" fontSize="15" fill="#3730a3">CTR</text>
-                    <circle cx="80" cy="135" r="12" fill="#00BFAE" />
+                    <circle cx="80" cy="135" r="12" fill="#764ba2" />
                     <text x="80" y="140" textAnchor="middle" fontSize="13" fill="white" fontWeight="bold">%</text>
-                    <polyline points="80,135 80,120 200,120 200,120" fill="none" stroke="#00BFAE" strokeWidth="2"/>
+                    <polyline points="80,135 80,120 200,120 200,120" fill="none" stroke="#764ba2" strokeWidth="2"/>
                   </g>
                   {/* Ad Relevance */}
                   <g>
                     <rect x="160" y="140" width="80" height="32" rx="10" fill="#e0e7ff" />
                     <text x="200" y="162" textAnchor="middle" fontSize="15" fill="#3730a3">Ad Relevance</text>
-                    <rect x="200" y="135" width="16" height="16" rx="3" fill="#00BFAE" />
+                    <rect x="200" y="135" width="16" height="16" rx="3" fill="#764ba2" />
                     <text x="208" y="147" textAnchor="middle" fontSize="13" fill="white" fontWeight="bold">Ad</text>
-                    <polyline points="200,135 200,120" fill="none" stroke="#00BFAE" strokeWidth="2"/>
+                    <polyline points="200,135 200,120" fill="none" stroke="#764ba2" strokeWidth="2"/>
                   </g>
                   {/* Landing Page */}
                   <g>
                     <rect x="280" y="140" width="80" height="32" rx="10" fill="#e0e7ff" />
                     <text x="320" y="162" textAnchor="middle" fontSize="15" fill="#3730a3">Landing Page</text>
-                    <rect x="320" y="135" width="18" height="12" rx="2" fill="#00BFAE" />
+                    <rect x="320" y="135" width="18" height="12" rx="2" fill="#764ba2" />
                     <rect x="322" y="137" width="14" height="8" rx="1" fill="white" />
-                    <polyline points="320,135 320,120 200,120" fill="none" stroke="#00BFAE" strokeWidth="2"/>
+                    <polyline points="320,135 320,120 200,120" fill="none" stroke="#764ba2" strokeWidth="2"/>
                   </g>
                 </svg>
-                <div style={{ fontSize: '14px', color: '#666', marginTop: '8px' }}>
+                <div style={{ fontSize: '14px', color: '#64748b', marginTop: '8px' }}>
                   Quality Score components: CTR, Ad Relevance, Landing Page Experience
                 </div>
               </div>
             </section>
             {/* Components */}
             <section id="components">
-              <h2 style={{ fontSize: '28px', fontWeight: '700', color: '#1a1a1a', marginBottom: '24px', marginTop: '48px' }}>
+              <h2 style={{ fontSize: '28px', fontWeight: '700', color: '#1e293b', marginBottom: '24px', marginTop: '48px' }}>
                 Key Components of Quality Score
               </h2>
-              <ul style={{ fontSize: '18px', color: '#374151', lineHeight: '1.8', paddingLeft: '24px', marginBottom: '32px' }}>
+              <ul style={{ fontSize: '18px', color: '#1e293b', lineHeight: '1.8', paddingLeft: '24px', marginBottom: '32px' }}>
                 <li style={{ marginBottom: '16px' }}><strong>Expected Click-Through Rate (CTR):</strong> How likely your ad is to be clicked when shown.</li>
                 <li style={{ marginBottom: '16px' }}><strong>Ad Relevance:</strong> How closely your ad matches the intent behind a user’s search.</li>
                 <li style={{ marginBottom: '16px' }}><strong>Landing Page Experience:</strong> How relevant and useful your landing page is to people who click your ad.</li>
@@ -225,10 +225,10 @@ export default function BlogPostPage() {
             </section>
             {/* Improving Quality Score */}
             <section id="improving">
-              <h2 style={{ fontSize: '28px', fontWeight: '700', color: '#1a1a1a', marginBottom: '24px', marginTop: '48px' }}>
+              <h2 style={{ fontSize: '28px', fontWeight: '700', color: '#1e293b', marginBottom: '24px', marginTop: '48px' }}>
                 How to Improve Your Quality Score
               </h2>
-              <ul style={{ fontSize: '18px', color: '#374151', lineHeight: '1.8', paddingLeft: '24px', marginBottom: '32px' }}>
+              <ul style={{ fontSize: '18px', color: '#1e293b', lineHeight: '1.8', paddingLeft: '24px', marginBottom: '32px' }}>
                 <li style={{ marginBottom: '16px' }}><strong>Group keywords by theme:</strong> Create tightly themed ad groups for higher relevance.</li>
                 <li style={{ marginBottom: '16px' }}><strong>Write compelling, relevant ads:</strong> Match ad copy to keywords and user intent.</li>
                 <li style={{ marginBottom: '16px' }}><strong>Optimize landing pages:</strong> Ensure fast load times, mobile-friendliness, and clear calls to action.</li>
@@ -238,10 +238,10 @@ export default function BlogPostPage() {
             </section>
             {/* Advanced Techniques */}
             <section id="advanced">
-              <h2 style={{ fontSize: '28px', fontWeight: '700', color: '#1a1a1a', marginBottom: '24px', marginTop: '48px' }}>
+              <h2 style={{ fontSize: '28px', fontWeight: '700', color: '#1e293b', marginBottom: '24px', marginTop: '48px' }}>
                 Advanced Techniques for 2025
               </h2>
-              <ul style={{ fontSize: '18px', color: '#374151', lineHeight: '1.8', paddingLeft: '24px', marginBottom: '32px' }}>
+              <ul style={{ fontSize: '18px', color: '#1e293b', lineHeight: '1.8', paddingLeft: '24px', marginBottom: '32px' }}>
                 <li style={{ marginBottom: '16px' }}><strong>Leverage AI for ad copy and landing page optimization:</strong> Use machine learning tools to personalize and test at scale.</li>
                 <li style={{ marginBottom: '16px' }}><strong>Automate negative keyword management:</strong> Prevent irrelevant clicks and wasted spend.</li>
                 <li style={{ marginBottom: '16px' }}><strong>Analyze competitor Quality Scores:</strong> Benchmark and find new opportunities.</li>
@@ -250,10 +250,10 @@ export default function BlogPostPage() {
             </section>
             {/* Practical Tips & Common Mistakes */}
             <section id="practical-tips">
-              <h2 style={{ fontSize: '28px', fontWeight: '700', color: '#1a1a1a', marginBottom: '24px', marginTop: '48px' }}>
+              <h2 style={{ fontSize: '28px', fontWeight: '700', color: '#1e293b', marginBottom: '24px', marginTop: '48px' }}>
                 Practical Tips & Common Mistakes
               </h2>
-              <ul style={{ fontSize: '18px', color: '#374151', lineHeight: '1.8', paddingLeft: '24px', marginBottom: '40px' }}>
+              <ul style={{ fontSize: '18px', color: '#1e293b', lineHeight: '1.8', paddingLeft: '24px', marginBottom: '40px' }}>
                 <li style={{ marginBottom: '16px' }}><strong>Don’t chase 10/10 for every keyword:</strong> Focus on high-value terms and business impact.</li>
                 <li style={{ marginBottom: '16px' }}><strong>Don’t ignore landing page experience:</strong> It’s often the biggest lever for improvement.</li>
                 <li style={{ marginBottom: '16px' }}><strong>Don’t set and forget:</strong> Quality Score is dynamic — keep optimizing.</li>
@@ -261,14 +261,14 @@ export default function BlogPostPage() {
             </section>
             {/* Conclusion */}
             <section id="conclusion">
-              <h2 style={{ fontSize: '28px', fontWeight: '700', color: '#1a1a1a', marginBottom: '24px', marginTop: '48px' }}>
+              <h2 style={{ fontSize: '28px', fontWeight: '700', color: '#1e293b', marginBottom: '24px', marginTop: '48px' }}>
                 Conclusion
               </h2>
-              <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#374151', marginBottom: '32px' }}>
+              <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
                 Mastering Quality Score is one of the fastest ways to lower costs and boost results in Google Ads. By applying the fundamentals and advanced techniques in this guide, you’ll be ahead of the competition in 2025 and beyond.
               </p>
               <div style={{
-                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
                 borderRadius: '16px',
                 padding: '40px',
                 textAlign: 'center',
@@ -278,7 +278,7 @@ export default function BlogPostPage() {
                 <h3 style={{
                   fontSize: '22px',
                   fontWeight: '700',
-                  color: 'white',
+                  color: '#1e293b',
                   marginBottom: '18px',
                   lineHeight: '1.3'
                 }}>
@@ -286,7 +286,7 @@ export default function BlogPostPage() {
                 </h3>
                 <p style={{
                   fontSize: '17px',
-                  color: 'white',
+                  color: '#64748b',
                   marginBottom: '28px',
                   lineHeight: '1.6',
                   fontWeight: '500',
@@ -294,10 +294,12 @@ export default function BlogPostPage() {
                 }}>
                   Get a free AI-powered audit of your Google Ads account and discover actionable ways to improve your Quality Score and lower costs.
                 </p>
-                <button
+                <a
+                  href="/chat"
+                  className="btn"
                   style={{
-                    background: 'linear-gradient(45deg, #00FFE7, #00BFAE)',
-                    color: '#1A1A1A',
+                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                    color: 'white',
                     border: 'none',
                     padding: '16px 32px',
                     borderRadius: '10px',
@@ -306,18 +308,20 @@ export default function BlogPostPage() {
                     cursor: 'pointer',
                     transition: 'all 0.3s ease',
                     display: 'inline-block',
-                    boxShadow: 'none',
+                    boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)',
+                    textDecoration: 'none',
                   }}
-                  onClick={() => { window.location.href = '/chat'; }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.boxShadow = '0 8px 25px rgba(0,191,174,0.15)';
+                  onMouseEnter={e => {
+                    (e.currentTarget as HTMLAnchorElement).style.boxShadow = '0 8px 25px rgba(102, 126, 234, 0.4)';
+                    (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(-2px)';
                   }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.boxShadow = 'none';
+                  onMouseLeave={e => {
+                    (e.currentTarget as HTMLAnchorElement).style.boxShadow = '0 4px 12px rgba(102, 126, 234, 0.3)';
+                    (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
                   }}
                 >
                   Get My Free Audit
-                </button>
+                </a>
               </div>
             </section>
           </div>

@@ -114,7 +114,7 @@ export default function BlogPostPage() {
           <h1 style={{
             fontSize: 'clamp(32px, 4vw, 48px)',
             fontWeight: '800',
-            color: '#1a1a1a',
+            color: '#1e293b',
             marginBottom: '24px',
             lineHeight: '1.2'
           }}>
@@ -124,7 +124,7 @@ export default function BlogPostPage() {
           {/* Subtitle */}
           <p style={{
             fontSize: '20px',
-            color: '#666',
+            color: '#64748b',
             marginBottom: '32px',
             lineHeight: '1.6',
             fontWeight: '500'
@@ -146,9 +146,9 @@ export default function BlogPostPage() {
                 K
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '2px' }}>
-                <span style={{ color: '#666', fontSize: '16px', fontWeight: 600 }}>by Emily Carter</span>
-                <span style={{ color: '#888', fontSize: '15px' }}>Paid Media Strategist at Kampaio</span>
-                <span style={{ color: '#888', fontSize: '15px' }}>July 15, 2025 · 12 min read</span>
+                <span style={{ color: '#64748b', fontSize: '16px', fontWeight: 600 }}>by Emily Carter</span>
+                <span style={{ color: '#64748b', fontSize: '15px' }}>Paid Media Strategist at Kampaio</span>
+                <span style={{ color: '#64748b', fontSize: '15px' }}>July 15, 2025 · 12 min read</span>
               </div>
             </div>
           </div>
@@ -168,7 +168,7 @@ export default function BlogPostPage() {
                 border: 'none',
                 fontSize: '18px',
                 fontWeight: '600',
-                color: '#1a1a1a',
+                color: '#1e293b',
                 cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
@@ -200,18 +200,18 @@ export default function BlogPostPage() {
                       padding: '8px 0',
                       paddingLeft: `${(item.level - 1) * 20}px`,
                       cursor: 'pointer',
-                      color: '#666',
+                      color: '#64748b',
                       fontSize: '16px',
                       lineHeight: '1.4',
                       borderBottom: '1px solid transparent',
                       transition: 'all 0.2s ease'
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.color = '#667eea';
-                      e.currentTarget.style.borderBottomColor = '#667eea';
+                      e.currentTarget.style.color = '#764ba2';
+                      e.currentTarget.style.borderBottomColor = '#764ba2';
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.color = '#666';
+                      e.currentTarget.style.color = '#64748b';
                       e.currentTarget.style.borderBottomColor = 'transparent';
                     }}
                   >
@@ -240,7 +240,7 @@ export default function BlogPostPage() {
             <p style={{
               fontSize: '18px',
               lineHeight: '1.8',
-              color: '#374151',
+              color: '#1e293b',
               marginBottom: '32px'
             }}>
               As a PPC manager, you've probably spent countless hours optimizing campaigns, analyzing click-through rates, and fine-tuning ad copy. But here's the harsh truth: your CEO doesn't care about most of that data. They want to see one thing above all else: <strong>how your Google Ads campaigns are driving real business results.</strong>
@@ -249,7 +249,7 @@ export default function BlogPostPage() {
             <p style={{
               fontSize: '18px',
               lineHeight: '1.8',
-              color: '#374151',
+              color: '#1e293b',
               marginBottom: '32px'
             }}>
               In this comprehensive guide, we'll reveal the exact metrics that matter to executives and provide you with a proven reporting template that will help you secure bigger budgets and demonstrate your true value to the organization.
@@ -265,7 +265,7 @@ export default function BlogPostPage() {
               <h3 style={{
                 fontSize: '20px',
                 fontWeight: '600',
-                color: '#1a1a1a',
+                color: '#1e293b',
                 marginBottom: '16px'
               }}>
                 Key Takeaways:
@@ -273,7 +273,7 @@ export default function BlogPostPage() {
               <ul style={{
                 fontSize: '16px',
                 lineHeight: '1.6',
-                color: '#374151',
+                color: '#1e293b',
                 margin: '0',
                 paddingLeft: '20px'
               }}>
@@ -291,7 +291,7 @@ export default function BlogPostPage() {
             <h2 style={{
               fontSize: '32px',
               fontWeight: '700',
-              color: '#1a1a1a',
+              color: '#1e293b',
               marginBottom: '24px',
               marginTop: '48px'
             }}>
@@ -301,7 +301,7 @@ export default function BlogPostPage() {
             <p style={{
               fontSize: '18px',
               lineHeight: '1.8',
-              color: '#374151',
+              color: '#1e293b',
               marginBottom: '32px'
             }}>
               With a clear data-driven strategy and a commitment to business-focused reporting, organizations can achieve results that go beyond traditional marketing metrics:
@@ -386,7 +386,7 @@ export default function BlogPostPage() {
             <h2 style={{
               fontSize: '32px',
               fontWeight: '700',
-              color: '#1a1a1a',
+              color: '#1e293b',
               marginBottom: '24px',
               marginTop: '48px'
             }}>
@@ -396,7 +396,7 @@ export default function BlogPostPage() {
             <p style={{
               fontSize: '18px',
               lineHeight: '1.8',
-              color: '#374151',
+              color: '#1e293b',
               marginBottom: '24px'
             }}>
               Before we dive into the reporting template, let's understand what metrics actually matter to executives. Spoiler alert: it's not impressions, clicks, or even conversion rates in isolation.
@@ -407,7 +407,7 @@ export default function BlogPostPage() {
               <h3 style={{
                 fontSize: '24px',
                 fontWeight: '600',
-                color: '#1a1a1a',
+                color: '#1e293b',
                 marginBottom: '16px',
                 marginTop: '32px'
               }}>
@@ -417,7 +417,7 @@ export default function BlogPostPage() {
               <p style={{
                 fontSize: '18px',
                 lineHeight: '1.8',
-                color: '#374151',
+                color: '#1e293b',
                 marginBottom: '24px'
               }}>
                 <strong>Return on Investment (ROI)</strong> is the holy grail for CEOs. They want to know: "For every dollar we spend on Google Ads, how much revenue are we generating?" This simple question determines whether your campaigns are profitable and whether you'll get budget increases.
@@ -434,14 +434,14 @@ export default function BlogPostPage() {
                 <p style={{
                   fontSize: '18px',
                   lineHeight: '1.6',
-                  color: '#374151',
+                  color: '#1e293b',
                   margin: '0 0 16px 0'
                 }}>
                   "I think every company I've been at, it's always been about the data and the quality of that data and the types of tools and systems that people use and whether it's structured or unstructured data, just thinking about like the correlation of that data."
                 </p>
                 <p style={{
                   fontSize: '14px',
-                  color: '#666',
+                  color: '#64748b',
                   margin: '0',
                   fontWeight: '600'
                 }}>
@@ -459,7 +459,7 @@ export default function BlogPostPage() {
                 <h4 style={{
                   fontSize: '18px',
                   fontWeight: '600',
-                  color: '#1a1a1a',
+                  color: '#1e293b',
                   marginBottom: '12px'
                 }}>
                   💡 Pro Tip: Calculate True ROI
@@ -467,7 +467,7 @@ export default function BlogPostPage() {
                 <p style={{
                   fontSize: '16px',
                   lineHeight: '1.6',
-                  color: '#374151',
+                  color: '#1e293b',
                   margin: '0'
                 }}>
                   Don't just show revenue vs. ad spend. Include all costs: agency fees, tools, time, and overhead. A 300% ROI might look great, but if it's actually 150% after all costs, that's what your CEO needs to see.
@@ -480,7 +480,7 @@ export default function BlogPostPage() {
               <h3 style={{
                 fontSize: '24px',
                 fontWeight: '600',
-                color: '#1a1a1a',
+                color: '#1e293b',
                 marginBottom: '16px',
                 marginTop: '32px'
               }}>
@@ -490,7 +490,7 @@ export default function BlogPostPage() {
               <p style={{
                 fontSize: '18px',
                 lineHeight: '1.8',
-                color: '#374151',
+                color: '#1e293b',
                 marginBottom: '24px'
               }}>
                 CEOs need to understand the true cost of acquiring a new customer through Google Ads. This includes not just the ad spend, but also the lifetime value of that customer and how it compares to other acquisition channels.
@@ -502,7 +502,7 @@ export default function BlogPostPage() {
               <h3 style={{
                 fontSize: '24px',
                 fontWeight: '600',
-                color: '#1a1a1a',
+                color: '#1e293b',
                 marginBottom: '16px',
                 marginTop: '32px'
               }}>
@@ -512,7 +512,7 @@ export default function BlogPostPage() {
               <p style={{
                 fontSize: '18px',
                 lineHeight: '1.8',
-                color: '#374151',
+                color: '#1e293b',
                 marginBottom: '24px'
               }}>
                 The CLV to CAC ratio is crucial for CEOs. A ratio of 3:1 or higher typically indicates healthy customer acquisition economics. Show how Google Ads customers compare to customers from other channels.
@@ -524,7 +524,7 @@ export default function BlogPostPage() {
               <h3 style={{
                 fontSize: '24px',
                 fontWeight: '600',
-                color: '#1a1a1a',
+                color: '#1e293b',
                 marginBottom: '16px',
                 marginTop: '32px'
               }}>
@@ -534,7 +534,7 @@ export default function BlogPostPage() {
               <p style={{
                 fontSize: '18px',
                 lineHeight: '1.8',
-                color: '#374151',
+                color: '#1e293b',
                 marginBottom: '24px'
               }}>
                 CEOs want to see how Google Ads contributes to overall revenue growth. Use multi-touch attribution models to show the full customer journey and Google Ads' role in the conversion process.
@@ -547,7 +547,7 @@ export default function BlogPostPage() {
             <h2 style={{
               fontSize: '32px',
               fontWeight: '700',
-              color: '#1a1a1a',
+              color: '#1e293b',
               marginBottom: '24px',
               marginTop: '48px'
             }}>
@@ -557,7 +557,7 @@ export default function BlogPostPage() {
             <p style={{
               fontSize: '18px',
               lineHeight: '1.8',
-              color: '#374151',
+              color: '#1e293b',
               marginBottom: '32px'
             }}>
               Now let's build the reporting template that will make your CEO's eyes light up. This template focuses on business outcomes, not just marketing metrics.
@@ -568,7 +568,7 @@ export default function BlogPostPage() {
               <h3 style={{
                 fontSize: '24px',
                 fontWeight: '600',
-                color: '#1a1a1a',
+                color: '#1e293b',
                 marginBottom: '16px',
                 marginTop: '32px'
               }}>
@@ -578,7 +578,7 @@ export default function BlogPostPage() {
               <p style={{
                 fontSize: '18px',
                 lineHeight: '1.8',
-                color: '#374151',
+                color: '#1e293b',
                 marginBottom: '24px'
               }}>
                 Start with a one-page executive summary that answers these three questions:
@@ -587,7 +587,7 @@ export default function BlogPostPage() {
               <ul style={{
                 fontSize: '18px',
                 lineHeight: '1.8',
-                color: '#374151',
+                color: '#1e293b',
                 marginBottom: '24px',
                 paddingLeft: '24px'
               }}>
@@ -602,7 +602,7 @@ export default function BlogPostPage() {
               <h3 style={{
                 fontSize: '24px',
                 fontWeight: '600',
-                color: '#1a1a1a',
+                color: '#1e293b',
                 marginBottom: '16px',
                 marginTop: '32px'
               }}>
@@ -612,7 +612,7 @@ export default function BlogPostPage() {
               <p style={{
                 fontSize: '18px',
                 lineHeight: '1.8',
-                color: '#374151',
+                color: '#1e293b',
                 marginBottom: '24px'
               }}>
                 Create a visual dashboard with these key financial metrics:
@@ -628,7 +628,7 @@ export default function BlogPostPage() {
                 <h4 style={{
                   fontSize: '18px',
                   fontWeight: '600',
-                  color: '#1a1a1a',
+                  color: '#1e293b',
                   marginBottom: '16px'
                 }}>
                   Key Financial Metrics to Include:
@@ -636,7 +636,7 @@ export default function BlogPostPage() {
                 <ul style={{
                   fontSize: '16px',
                   lineHeight: '1.6',
-                  color: '#374151',
+                  color: '#1e293b',
                   margin: '0',
                   paddingLeft: '20px'
                 }}>
@@ -656,7 +656,7 @@ export default function BlogPostPage() {
               <h3 style={{
                 fontSize: '24px',
                 fontWeight: '600',
-                color: '#1a1a1a',
+                color: '#1e293b',
                 marginBottom: '16px',
                 marginTop: '32px'
               }}>
@@ -666,7 +666,7 @@ export default function BlogPostPage() {
               <p style={{
                 fontSize: '18px',
                 lineHeight: '1.8',
-                color: '#374151',
+                color: '#1e293b',
                 marginBottom: '24px'
               }}>
                 Show trends over time and provide forecasts. CEOs love seeing upward trends and projections that help with planning and budgeting decisions.
@@ -678,7 +678,7 @@ export default function BlogPostPage() {
               <h3 style={{
                 fontSize: '24px',
                 fontWeight: '600',
-                color: '#1a1a1a',
+                color: '#1e293b',
                 marginBottom: '16px',
                 marginTop: '32px'
               }}>
@@ -688,7 +688,7 @@ export default function BlogPostPage() {
               <p style={{
                 fontSize: '18px',
                 lineHeight: '1.8',
-                color: '#374151',
+                color: '#1e293b',
                 marginBottom: '24px'
               }}>
                 End your report with clear, actionable recommendations. What should the CEO approve? What budget increases are needed? What strategic decisions should be made?
@@ -701,7 +701,7 @@ export default function BlogPostPage() {
             <h2 style={{
               fontSize: '32px',
               fontWeight: '700',
-              color: '#1a1a1a',
+              color: '#1e293b',
               marginBottom: '24px',
               marginTop: '48px'
             }}>
@@ -711,7 +711,7 @@ export default function BlogPostPage() {
             <p style={{
               fontSize: '18px',
               lineHeight: '1.8',
-              color: '#374151',
+              color: '#1e293b',
               marginBottom: '32px'
             }}>
               Implementing a CEO-focused reporting strategy within an organization is not just about creating new reports; it requires a systematic approach to overcome various organizational barriers. Here's how to successfully integrate business-focused reporting into your processes and workflows.
@@ -727,7 +727,7 @@ export default function BlogPostPage() {
               <h3 style={{
                 fontSize: '20px',
                 fontWeight: '600',
-                color: '#1a1a1a',
+                color: '#1e293b',
                 marginBottom: '16px'
               }}>
                 Key Implementation Steps:
@@ -735,7 +735,7 @@ export default function BlogPostPage() {
               <ol style={{
                 fontSize: '16px',
                 lineHeight: '1.6',
-                color: '#374151',
+                color: '#1e293b',
                 margin: '0',
                 paddingLeft: '20px'
               }}>
@@ -752,7 +752,7 @@ export default function BlogPostPage() {
               <h3 style={{
                 fontSize: '24px',
                 fontWeight: '600',
-                color: '#1a1a1a',
+                color: '#1e293b',
                 marginBottom: '16px',
                 marginTop: '32px'
               }}>
@@ -762,7 +762,7 @@ export default function BlogPostPage() {
               <p style={{
                 fontSize: '18px',
                 lineHeight: '1.8',
-                color: '#374151',
+                color: '#1e293b',
                 marginBottom: '24px'
               }}>
                 Use tools like Google Data Studio, Tableau, or custom dashboards to automate your reporting. Set up automated data pulls and create templates that can be updated with fresh data each month.
@@ -774,7 +774,7 @@ export default function BlogPostPage() {
               <h3 style={{
                 fontSize: '24px',
                 fontWeight: '600',
-                color: '#1a1a1a',
+                color: '#1e293b',
                 marginBottom: '16px',
                 marginTop: '32px'
               }}>
@@ -784,7 +784,7 @@ export default function BlogPostPage() {
               <p style={{
                 fontSize: '18px',
                 lineHeight: '1.8',
-                color: '#374151',
+                color: '#1e293b',
                 marginBottom: '24px'
               }}>
                 Provide monthly executive summaries with quarterly deep-dive reports. Weekly updates can be brief and focus on any significant changes or issues that need immediate attention.
@@ -796,7 +796,7 @@ export default function BlogPostPage() {
               <h3 style={{
                 fontSize: '24px',
                 fontWeight: '600',
-                color: '#1a1a1a',
+                color: '#1e293b',
                 marginBottom: '16px',
                 marginTop: '32px'
               }}>
@@ -806,7 +806,7 @@ export default function BlogPostPage() {
               <p style={{
                 fontSize: '18px',
                 lineHeight: '1.8',
-                color: '#374151',
+                color: '#1e293b',
                 marginBottom: '24px'
               }}>
                 When presenting to your CEO:
@@ -815,7 +815,7 @@ export default function BlogPostPage() {
               <ul style={{
                 fontSize: '18px',
                 lineHeight: '1.8',
-                color: '#374151',
+                color: '#1e293b',
                 marginBottom: '24px',
                 paddingLeft: '24px'
               }}>
@@ -833,7 +833,7 @@ export default function BlogPostPage() {
             <h2 style={{
               fontSize: '32px',
               fontWeight: '700',
-              color: '#1a1a1a',
+              color: '#1e293b',
               marginBottom: '24px',
               marginTop: '48px'
             }}>
@@ -843,7 +843,7 @@ export default function BlogPostPage() {
             <p style={{
               fontSize: '18px',
               lineHeight: '1.8',
-              color: '#374151',
+              color: '#1e293b',
               marginBottom: '24px'
             }}>
               The journey of implementing CEO-focused reporting in PPC is not just about creating new dashboards; it's a transformative process that requires a strategic, organization-wide approach. As we've demonstrated throughout this guide, successful reporting transformation involves overcoming data quality challenges, standardizing processes, empowering teams, and addressing resistance head-on.
@@ -852,7 +852,7 @@ export default function BlogPostPage() {
             <p style={{
               fontSize: '18px',
               lineHeight: '1.8',
-              color: '#374151',
+              color: '#1e293b',
               marginBottom: '24px'
             }}>
               The potential business impact of proper PPC reporting is immense—from dramatically improving key metrics to enabling personalization at scale and optimizing resource allocation. However, realizing these benefits requires a leadership approach that prioritizes customer understanding, codifies best practices, and fosters cross-functional partnerships.
@@ -861,7 +861,7 @@ export default function BlogPostPage() {
             <p style={{
               fontSize: '18px',
               lineHeight: '1.8',
-              color: '#374151',
+              color: '#1e293b',
               marginBottom: '24px'
             }}>
               As we look to the future, it's clear that business-focused reporting will continue to reshape PPC strategies. Organizations that thrive in this new era embrace data-driven decision making not as a mere tool, but as a strategic imperative. Experiment, learn, and adapt. Reimagine reporting processes, roles, and possibilities.
@@ -870,7 +870,7 @@ export default function BlogPostPage() {
             <p style={{
               fontSize: '18px',
               lineHeight: '1.8',
-              color: '#374151',
+              color: '#1e293b',
               marginBottom: '24px'
             }}>
               The insights shared in this guide offer a valuable roadmap for leaders looking to embark on their own reporting transformation journey. Learn from the successes and challenges of pioneers in the industry. Chart a course toward a more intelligent, efficient, and impactful PPC future.
@@ -879,7 +879,7 @@ export default function BlogPostPage() {
             <p style={{
               fontSize: '18px',
               lineHeight: '1.8',
-              color: '#374151',
+              color: '#1e293b',
               marginBottom: '32px'
             }}>
               Ultimately, the power of proper reporting in PPC lies not in the metrics themselves, but in how they are put to work to augment human creativity, expertise, and strategic decision-making. As PPC professionals, seize this opportunity. Don't just track metrics—use them to drive meaningful, business-centric transformation. The future of PPC is data-driven. Embrace it now.
@@ -891,7 +891,7 @@ export default function BlogPostPage() {
             <h3 style={{
               fontSize: '24px',
               fontWeight: '600',
-              color: '#1a1a1a',
+              color: '#1e293b',
               marginBottom: '24px'
             }}>
               Ready to Take Your PPC Reporting to the Next Level?
@@ -899,40 +899,46 @@ export default function BlogPostPage() {
             <p style={{
               fontSize: '18px',
               lineHeight: '1.8',
-              color: '#374151',
+              color: '#1e293b',
               marginBottom: '32px'
             }}>
               If you're ready to prevent reporting bloat, achieve your business goals, and secure bigger budgets, Kampaio's AI-powered PPC platform is exactly what you need. Our platform will aid your organization in boosting its reporting velocity and enhancing its data maturity.
             </p>
             
             <div style={{
-              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+              background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
               borderRadius: '16px',
               padding: '40px',
               textAlign: 'center',
-              marginBottom: '40px'
+              marginTop: '60px',
+              marginBottom: '40px',
             }}>
               <h3 style={{
-                fontSize: '28px',
+                fontSize: '2rem',
                 fontWeight: '700',
-                color: 'white',
-                marginBottom: '16px',
-                lineHeight: '1.2'
+                color: '#1e293b',
+                marginBottom: '18px',
+                lineHeight: '1.3'
               }}>
-                Stop wasting budget on metrics that don't matter
+                Stop wasting budget<br />
+                on metrics that don't matter
               </h3>
               <p style={{
-                fontSize: '18px',
-                color: 'white',
-                marginBottom: '32px',
-                opacity: '0.9'
+                fontSize: '17px',
+                color: '#64748b',
+                marginBottom: '28px',
+                lineHeight: '1.6',
+                fontWeight: '500',
+                opacity: 0.9
               }}>
                 Let our AI uncover where your Google Ads spend is leaking — and help you fix it in minutes.
               </p>
-              <button
+              <a
+                href="/chat"
+                className="btn"
                 style={{
-                  background: 'linear-gradient(45deg, #00FFE7, #00BFAE)',
-                  color: '#1A1A1A',
+                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                  color: 'white',
                   border: 'none',
                   padding: '16px 32px',
                   borderRadius: '10px',
@@ -941,18 +947,20 @@ export default function BlogPostPage() {
                   cursor: 'pointer',
                   transition: 'all 0.3s ease',
                   display: 'inline-block',
-                  boxShadow: 'none',
+                  boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)',
+                  textDecoration: 'none',
                 }}
-                onClick={() => { window.location.href = '/chat'; }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.boxShadow = '0 8px 25px rgba(0,191,174,0.15)';
+                onMouseEnter={e => {
+                  (e.currentTarget as HTMLAnchorElement).style.boxShadow = '0 8px 25px rgba(102, 126, 234, 0.4)';
+                  (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(-2px)';
                 }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.boxShadow = 'none';
+                onMouseLeave={e => {
+                  (e.currentTarget as HTMLAnchorElement).style.boxShadow = '0 4px 12px rgba(102, 126, 234, 0.3)';
+                  (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
                 }}
               >
                 Find My Leaks
-              </button>
+              </a>
             </div>
           </section>
         </div>

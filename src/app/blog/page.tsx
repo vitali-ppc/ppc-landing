@@ -109,7 +109,7 @@ export default function BlogPage() {
           <h1 style={{
             fontSize: 'clamp(36px, 5vw, 56px)',
             fontWeight: '800',
-            color: '#1a1a1a',
+            color: '#1e293b',
             marginBottom: '20px',
             lineHeight: '1.2'
           }}>
@@ -117,7 +117,7 @@ export default function BlogPage() {
           </h1>
           <p style={{
             fontSize: '20px',
-            color: '#666',
+            color: '#64748b',
             marginBottom: '40px',
             maxWidth: '600px',
             margin: '0 auto 40px',
@@ -147,8 +147,8 @@ export default function BlogPage() {
                 transition: 'all 0.3s ease'
               }}
               onFocus={(e) => {
-                e.target.style.borderColor = '#7F9CF5';
-                e.target.style.boxShadow = '0 0 0 3px rgba(127, 156, 245, 0.1)';
+                e.target.style.borderColor = '#667eea';
+                e.target.style.boxShadow = '0 0 0 3px rgba(102, 126, 234, 0.1)';
               }}
               onBlur={(e) => {
                 e.target.style.borderColor = '#e2e8f0';
@@ -173,15 +173,15 @@ export default function BlogPage() {
                   borderRadius: '20px',
                   border: 'none',
                   background: selectedCategory === category.id 
-                    ? 'linear-gradient(135deg, #7F9CF5 0%, #4A5BB8 100%)'
+                    ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
                     : 'white',
-                  color: selectedCategory === category.id ? 'white' : '#666',
+                  color: selectedCategory === category.id ? 'white' : '#64748b',
                   fontSize: '14px',
                   fontWeight: '600',
                   cursor: 'pointer',
                   transition: 'all 0.3s ease',
                   boxShadow: selectedCategory === category.id 
-                    ? '0 4px 12px rgba(127, 156, 245, 0.3)'
+                    ? '0 4px 12px rgba(102, 126, 234, 0.3)'
                     : '0 2px 8px rgba(0,0,0,0.1)'
                 }}
                 onMouseEnter={(e) => {
@@ -216,7 +216,7 @@ export default function BlogPage() {
         <h2 style={{
           fontSize: '24px',
           fontWeight: '700',
-          color: '#1a1a1a',
+          color: '#1e293b',
           marginBottom: '32px',
           textAlign: 'center'
         }}>
@@ -226,7 +226,7 @@ export default function BlogPage() {
           <div style={{
             textAlign: 'center',
             padding: '60px 0',
-            color: '#666'
+            color: '#64748b'
           }}>
             <p style={{ fontSize: '18px', marginBottom: '16px' }}>No articles found</p>
             <p>Try adjusting your search or filter criteria</p>
@@ -270,7 +270,7 @@ export default function BlogPage() {
               >
                 <div style={{
                   height: '200px',
-                  background: 'linear-gradient(135deg, #7F9CF5 0%, #4A5BB8 100%)',
+                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center'
@@ -289,7 +289,7 @@ export default function BlogPage() {
                     marginBottom: '12px'
                   }}>
                     <span style={{
-                      background: 'linear-gradient(135deg, #7F9CF5 0%, #4A5BB8 100%)',
+                      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                       color: 'white',
                       padding: '4px 8px',
                       borderRadius: '8px',
@@ -300,7 +300,7 @@ export default function BlogPage() {
                       {categories.find(c => c.id === post.category)?.name}
                     </span>
                     <span style={{
-                      color: '#666',
+                      color: '#64748b',
                       fontSize: '12px'
                     }}>
                       {post.readTime}
@@ -309,7 +309,7 @@ export default function BlogPage() {
                   <h3 style={{
                     fontSize: '20px',
                     fontWeight: '700',
-                    color: '#1a1a1a',
+                    color: '#1e293b',
                     marginBottom: '12px',
                     lineHeight: '1.4'
                   }}>
@@ -317,7 +317,7 @@ export default function BlogPage() {
                   </h3>
                   <p style={{
                     fontSize: '14px',
-                    color: '#666',
+                    color: '#64748b',
                     lineHeight: '1.6',
                     marginBottom: '16px'
                   }}>
@@ -328,7 +328,7 @@ export default function BlogPage() {
                     alignItems: 'center',
                     justifyContent: 'space-between',
                     fontSize: '12px',
-                    color: '#666'
+                    color: '#64748b'
                   }}>
                     <span>{post.author}</span>
                     <span>
