@@ -75,8 +75,7 @@ export default function BlogPostPage() {
             </div>
             {/* Title */}
             <h1 style={{ fontSize: 'clamp(32px, 4vw, 48px)', fontWeight: '800', color: '#1e293b', marginBottom: '24px', lineHeight: '1.2' }}>
-              The Complete Guide to Google Ads Quality Score in 2025
-            </h1>
+            The Complete Guide to Google Ads Quality Score in 2025            </h1>
             {/* Subtitle */}
             <p style={{ fontSize: '20px', color: '#64748b', marginBottom: '32px', lineHeight: '1.6', fontWeight: '500' }}>
               Master the fundamentals of Quality Score and learn advanced techniques to improve your ad performance.

@@ -47,7 +47,7 @@ export default function BlogPage() {
       author: 'By Emily Carter',
       date: '2025-07-21',
       readTime: '12 min read',
-      slug: 'the-complete-guide-to-google-ads-quality-score-in-2024'
+      slug: 'the-complete-guide-to-google-ads-quality-score-in-2025'
     },
     {
       id: 4,

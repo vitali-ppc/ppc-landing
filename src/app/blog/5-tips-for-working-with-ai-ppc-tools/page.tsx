@@ -75,11 +75,11 @@ export default function BlogPostPage() {
               AI & Automation
             </div>
             {/* Title */}
-            <h1 style={{ fontSize: 'clamp(32px, 4vw, 48px)', fontWeight: '800', color: '#1a1a1a', marginBottom: '24px', lineHeight: '1.2' }}>
+            <h1 style={{ fontSize: 'clamp(32px, 4vw, 48px)', fontWeight: '800', color: '#1e293b', marginBottom: '24px', lineHeight: '1.2' }}>
               5 Tips for Working with AI-Powered PPC Tools
             </h1>
             {/* Subtitle */}
-            <p style={{ fontSize: '20px', color: '#666', marginBottom: '32px', lineHeight: '1.6', fontWeight: '500' }}>
+            <p style={{ fontSize: '20px', color: '#64748b', marginBottom: '32px', lineHeight: '1.6', fontWeight: '500' }}>
               Unlock the full potential of AI in your PPC campaigns with these 5 actionable tips for marketers and advertisers.
             </p>
             {/* Meta Info */}
@@ -89,9 +89,9 @@ export default function BlogPostPage() {
                   K
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '2px' }}>
-                  <span style={{ color: '#666', fontSize: '16px', fontWeight: 600 }}>by Emily Carter</span>
-                  <span style={{ color: '#888', fontSize: '15px' }}>Paid Media Strategist at Kampaio</span>
-                  <span style={{ color: '#888', fontSize: '15px' }}>July 22, 2025 · 7 min read</span>
+                  <span style={{ color: '#64748b', fontSize: '16px', fontWeight: 600 }}>by Emily Carter</span>
+                  <span style={{ color: '#64748b', fontSize: '15px' }}>Paid Media Strategist at Kampaio</span>
+                  <span style={{ color: '#64748b', fontSize: '15px' }}>July 22, 2025 · 7 min read</span>
                 </div>
               </div>
             </div>
@@ -99,7 +99,7 @@ export default function BlogPostPage() {
             <div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: '12px', padding: '20px', marginBottom: '40px' }}>
               <button
                 onClick={() => setIsTableOfContentsOpen(!isTableOfContentsOpen)}
-                style={{ background: 'none', border: 'none', fontSize: '18px', fontWeight: '600', color: '#1a1a1a', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px', width: '100%', justifyContent: 'space-between' }}
+                style={{ background: 'none', border: 'none', fontSize: '18px', fontWeight: '600', color: '#1e293b', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px', width: '100%', justifyContent: 'space-between' }}
               >
                 Table of Contents
                 <span style={{ transform: isTableOfContentsOpen ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.3s ease' }}>▼</span>
@@ -110,13 +110,13 @@ export default function BlogPostPage() {
                     <div
                       key={item.id}
                       onClick={() => scrollToSection(item.id)}
-                      style={{ padding: '8px 0', paddingLeft: `${(item.level - 1) * 20}px`, cursor: 'pointer', color: '#666', fontSize: '16px', lineHeight: '1.4', borderBottom: '1px solid transparent', transition: 'all 0.2s ease' }}
+                      style={{ padding: '8px 0', paddingLeft: `${(item.level - 1) * 20}px`, cursor: 'pointer', color: '#64748b', fontSize: '16px', lineHeight: '1.4', borderBottom: '1px solid transparent', transition: 'all 0.2s ease' }}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.color = '#667eea';
-                        e.currentTarget.style.borderBottomColor = '#667eea';
+                        e.currentTarget.style.color = '#764ba2';
+                        e.currentTarget.style.borderBottomColor = '#764ba2';
                       }}
                       onMouseLeave={(e) => {
-                        e.currentTarget.style.color = '#666';
+                        e.currentTarget.style.color = '#64748b';
                         e.currentTarget.style.borderBottomColor = 'transparent';
                       }}
                     >
@@ -133,44 +133,44 @@ export default function BlogPostPage() {
           <div style={{ maxWidth: '800px', margin: '0 auto' }}>
             {/* Introduction */}
             <section id="introduction">
-              <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#374151', marginBottom: '32px' }}>
+              <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
                 AI-powered PPC tools are changing the way marketers manage, optimize, and scale their campaigns. But to get the most out of these platforms, you need more than just access — you need the right approach. Here are five essential tips to help you work smarter (not just harder) with AI in your paid search efforts.
               </p>
             </section>
             {/* 5 Tips */}
             <section>
-              <h2 style={{ fontSize: '32px', fontWeight: '700', color: '#1a1a1a', marginBottom: '32px', marginTop: '48px' }}>
+              <h2 style={{ fontSize: '32px', fontWeight: '700', color: '#1e293b', marginBottom: '32px', marginTop: '48px' }}>
                 5 Tips for Working with AI-Powered PPC Tools
               </h2>
-              <ol style={{ fontSize: '18px', color: '#374151', lineHeight: '1.8', paddingLeft: '24px', marginBottom: '40px' }}>
+              <ol style={{ fontSize: '18px', color: '#1e293b', lineHeight: '1.8', paddingLeft: '24px', marginBottom: '40px' }}>
                 <li id="tip-1" style={{ marginBottom: '24px' }}><strong>Boost AI Accuracy by Defining Your Campaign Goals:</strong> Define what success looks like (e.g., lower CPA, higher ROAS, more conversions) so your AI platform can optimize toward the right outcomes.</li>
                 <li id="tip-2" style={{ marginBottom: '24px' }}><strong>Garbage In, Garbage Out — Why Your AI Needs Clean Data:</strong> The better your data (conversion tracking, audience signals, negative keywords), the smarter your AI will become. Regularly audit your data sources for accuracy.</li>
-                <li id="tip-3" style={{ marginBottom: '24px' }}><strong>Monitor and Validate AI Recommendations:</strong> Don’t blindly accept every suggestion. Review changes, test incrementally, and use your expertise to validate what makes sense for your business.</li>
+                <li id="tip-3" style={{ marginBottom: '24px' }}><strong>Monitor and Validate AI Recommendations:</strong> Don't blindly accept every suggestion. Review changes, test incrementally, and use your expertise to validate what makes sense for your business.</li>
                 <li id="tip-4" style={{ marginBottom: '24px' }}><strong>Combine Human Expertise with AI Insights:</strong> Use AI for scale and speed, but rely on your strategic thinking for creative, messaging, and big-picture decisions.</li>
                 <li id="tip-5" style={{ marginBottom: '24px' }}><strong>Stay Curious and Keep Learning:</strong> AI tools evolve fast. Stay updated on new features, experiment regularly, and share learnings with your team.</li>
               </ol>
             </section>
             {/* Practical Advice */}
             <section id="practical-tips">
-              <h2 style={{ fontSize: '28px', fontWeight: '700', color: '#1a1a1a', marginBottom: '24px', marginTop: '48px' }}>
+              <h2 style={{ fontSize: '28px', fontWeight: '700', color: '#1e293b', marginBottom: '24px', marginTop: '48px' }}>
                 Practical Advice for Success
               </h2>
-              <ul style={{ fontSize: '18px', color: '#374151', lineHeight: '1.8', paddingLeft: '24px', marginBottom: '40px' }}>
-                <li style={{ marginBottom: '16px' }}><strong>Start with one tool:</strong> Don’t try to automate everything at once. Master one AI feature or platform before expanding.</li>
-                <li style={{ marginBottom: '16px' }}><strong>Document your results:</strong> Track what works (and what doesn’t) so you can refine your approach over time.</li>
+              <ul style={{ fontSize: '18px', color: '#1e293b', lineHeight: '1.8', paddingLeft: '24px', marginBottom: '40px' }}>
+                <li style={{ marginBottom: '16px' }}><strong>Start with one tool:</strong> Don't try to automate everything at once. Master one AI feature or platform before expanding.</li>
+                <li style={{ marginBottom: '16px' }}><strong>Document your results:</strong> Track what works (and what doesn't) so you can refine your approach over time.</li>
                 <li style={{ marginBottom: '16px' }}><strong>Keep communication open:</strong> Align your team on how AI is being used and share best practices regularly.</li>
               </ul>
             </section>
             {/* Conclusion */}
             <section id="conclusion">
-              <h2 style={{ fontSize: '28px', fontWeight: '700', color: '#1a1a1a', marginBottom: '24px', marginTop: '48px' }}>
+              <h2 style={{ fontSize: '28px', fontWeight: '700', color: '#1e293b', marginBottom: '24px', marginTop: '48px' }}>
                 Conclusion
               </h2>
-              <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#374151', marginBottom: '32px' }}>
-                AI is a powerful ally for PPC marketers — but only if you use it wisely. By following these five tips, you’ll unlock more value from your tools, avoid common pitfalls, and stay ahead of the competition as AI continues to reshape digital advertising.
+              <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
+                AI is a powerful ally for PPC marketers — but only if you use it wisely. By following these five tips, you'll unlock more value from your tools, avoid common pitfalls, and stay ahead of the competition as AI continues to reshape digital advertising.
               </p>
               <div style={{
-                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
                 borderRadius: '16px',
                 padding: '40px',
                 textAlign: 'center',
@@ -180,7 +180,7 @@ export default function BlogPostPage() {
                 <h3 style={{
                   fontSize: '22px',
                   fontWeight: '700',
-                  color: 'white',
+                  color: '#1e293b',
                   marginBottom: '18px',
                   lineHeight: '1.3'
                 }}>
@@ -188,7 +188,7 @@ export default function BlogPostPage() {
                 </h3>
                 <p style={{
                   fontSize: '17px',
-                  color: 'white',
+                  color: '#64748b',
                   marginBottom: '28px',
                   lineHeight: '1.6',
                   fontWeight: '500',
@@ -196,10 +196,12 @@ export default function BlogPostPage() {
                 }}>
                   Let our platform analyze your account<br />and show you actionable ways to improve results — instantly.
                 </p>
-                <button
+                <a
+                  href="/chat"
+                  className="btn"
                   style={{
-                    background: 'linear-gradient(45deg, #00FFE7, #00BFAE)',
-                    color: '#1A1A1A',
+                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                    color: 'white',
                     border: 'none',
                     padding: '16px 32px',
                     borderRadius: '10px',
@@ -208,18 +210,20 @@ export default function BlogPostPage() {
                     cursor: 'pointer',
                     transition: 'all 0.3s ease',
                     display: 'inline-block',
-                    boxShadow: 'none',
+                    boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)',
+                    textDecoration: 'none',
                   }}
-                  onClick={() => { window.location.href = '/chat'; }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.boxShadow = '0 8px 25px rgba(0,191,174,0.15)';
+                  onMouseEnter={e => {
+                    (e.currentTarget as HTMLAnchorElement).style.boxShadow = '0 8px 25px rgba(102, 126, 234, 0.4)';
+                    (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(-2px)';
                   }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.boxShadow = 'none';
+                  onMouseLeave={e => {
+                    (e.currentTarget as HTMLAnchorElement).style.boxShadow = '0 4px 12px rgba(102, 126, 234, 0.3)';
+                    (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
                   }}
                 >
                   Try AI for Free
-                </button>
+                </a>
               </div>
             </section>
           </div>
