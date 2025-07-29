@@ -600,8 +600,8 @@ const ChatFormGPT: React.FC = () => {
           top: 0,
           width: '50px',
           height: '100vh',
-          background: '#374151',
-          borderRight: '1px solid #23272f',
+          background: '#1e293b',
+          borderRight: '1px solid #64748b',
           zIndex: 150,
         }} />
       )}
@@ -683,8 +683,8 @@ const ChatFormGPT: React.FC = () => {
       {/* Sidebar */}
       <div style={{
         width: showSidebar ? 250 : 0,
-        background: '#374151',
-        borderRight: '1px solid #23272f',
+        background: '#1e293b',
+        borderRight: '1px solid #64748b',
         transition: 'width 0.3s ease',
         overflow: 'hidden',
         display: 'flex',
@@ -697,17 +697,17 @@ const ChatFormGPT: React.FC = () => {
       }}>
         <div style={{
           padding: '10px 16px 20px 16px',
-          borderBottom: '1px solid #1a1a1a',
+          borderBottom: '1px solid #64748b',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'flex-end',
         }}>
-          <button
-            onClick={createNewChat}
-            style={{
-              background: 'rgba(255,255,255,0.03)',
+                      <button
+              onClick={createNewChat}
+              style={{
+                background: 'rgba(102, 126, 234, 0.1)',
                               color: '#fff',
-                border: '1.5px solid rgba(255,255,255,0.08)',
+                border: '1.5px solid rgba(102, 126, 234, 0.2)',
                 borderRadius: 6,
                 padding: '10px 16px',
                 fontSize: 12,
@@ -717,15 +717,15 @@ const ChatFormGPT: React.FC = () => {
               boxShadow: 'none',
             }}
             onMouseEnter={e => {
-              e.currentTarget.style.background = 'rgba(255,255,255,0.1)';
+              e.currentTarget.style.background = 'rgba(102, 126, 234, 0.2)';
               e.currentTarget.style.color = '#fff';
-              e.currentTarget.style.border = '1.5px solid rgba(255,255,255,0.2)';
-              e.currentTarget.style.boxShadow = '0 4px 12px rgba(255,255,255,0.1)';
+              e.currentTarget.style.border = '1.5px solid rgba(102, 126, 234, 0.4)';
+              e.currentTarget.style.boxShadow = '0 4px 12px rgba(102, 126, 234, 0.2)';
             }}
             onMouseLeave={e => {
-              e.currentTarget.style.background = 'rgba(255,255,255,0.03)';
+              e.currentTarget.style.background = 'rgba(102, 126, 234, 0.1)';
               e.currentTarget.style.color = '#fff';
-              e.currentTarget.style.border = '1.5px solid rgba(255,255,255,0.08)';
+              e.currentTarget.style.border = '1.5px solid rgba(102, 126, 234, 0.2)';
               e.currentTarget.style.boxShadow = 'none';
             }}
           >
@@ -735,13 +735,13 @@ const ChatFormGPT: React.FC = () => {
         
         {/* Smart Mode Toggle */}
         {(adsData || realAdsData) && (
-          <div style={{
-            padding: '12px 16px',
-            borderBottom: '1px solid #1a1a1a',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-          }}>
+                  <div style={{
+          padding: '12px 16px',
+          borderBottom: '1px solid #64748b',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+        }}>
             <div style={{
               fontSize: '13px',
               fontWeight: '500',
@@ -754,7 +754,7 @@ const ChatFormGPT: React.FC = () => {
               style={{
                 width: '40px',
                 height: '22px',
-                background: useAdsData ? '#667eea' : '#4b5563',
+                background: useAdsData ? '#667eea' : '#64748b',
                 borderRadius: '11px',
                 cursor: 'pointer',
                 position: 'relative',
@@ -788,7 +788,7 @@ const ChatFormGPT: React.FC = () => {
         )}
         <div style={{
           padding: '12px 16px',
-          borderBottom: '1px solid #1a1a1a',
+          borderBottom: '1px solid #64748b',
         }}>
           <input
             type="text"
@@ -798,19 +798,19 @@ const ChatFormGPT: React.FC = () => {
             style={{
               width: '100%',
               padding: '8px 12px',
-              border: '1px solid #1a1a1a',
+              border: '1px solid #e2e8f0',
               borderRadius: 6,
               fontSize: 14,
-              background: '#1a1a1a',
-              color: '#fff',
+              background: '#f8fafc',
+              color: '#1e293b',
               outline: 'none',
             }}
             onFocus={e => {
-              e.target.style.border = '1px solid #7f9cf5';
-              e.target.style.boxShadow = '0 0 0 2px rgba(127, 156, 245, 0.2)';
+              e.target.style.border = '1px solid #764ba2';
+              e.target.style.boxShadow = '0 0 0 2px rgba(118, 75, 162, 0.2)';
             }}
             onBlur={e => {
-              e.target.style.border = '1px solid #1a1a1a';
+              e.target.style.border = '1px solid #e2e8f0';
               e.target.style.boxShadow = 'none';
             }}
           />
