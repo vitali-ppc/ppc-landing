@@ -339,8 +339,8 @@ a {
 }
 
 .next-header.home-header .header-btn-demo {
-  background: linear-gradient(45deg, #00FFE7, #00BFAE) !important;
-  color: #1A1A1A !important;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  color: white !important;
   border: none !important;
   padding: 12px 24px !important;
   border-radius: 8px !important;
@@ -348,10 +348,10 @@ a {
 }
 
 .next-header.home-header .header-btn-demo:hover {
-  background: linear-gradient(45deg, #00BFAE, #008B7A) !important;
-  color: #FFFFFF !important;
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%) !important;
+  color: white !important;
   transform: translateY(-1px) !important;
-  box-shadow: 0 4px 15px rgba(0, 255, 231, 0.3) !important;
+  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4) !important;
 }
 
 /* На десктопі головний Next.js хедер має менший відступ */

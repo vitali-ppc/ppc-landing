@@ -59,7 +59,7 @@ export default function AnimatedHero() {
       ref={containerRef}
       style={{
         padding: '120px 0',
-        background: '#1a1a1a',
+        background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
         position: 'relative',
         overflow: 'hidden',
         minHeight: '100vh',
@@ -74,7 +74,7 @@ export default function AnimatedHero() {
         left: 0,
         right: 0,
         bottom: 0,
-        background: `radial-gradient(circle at ${mousePosition.x * 100}% ${mousePosition.y * 100}%, rgba(127,156,245,0.15) 0%, transparent 50%), radial-gradient(circle at ${(1 - mousePosition.x) * 100}% ${(1 - mousePosition.y) * 100}%, rgba(0,255,231,0.1) 0%, transparent 50%)`,
+        background: `radial-gradient(circle at ${mousePosition.x * 100}% ${mousePosition.y * 100}%, rgba(102, 126, 234, 0.08) 0%, transparent 50%), radial-gradient(circle at ${(1 - mousePosition.x) * 100}% ${(1 - mousePosition.y) * 100}%, rgba(118, 75, 162, 0.05) 0%, transparent 50%)`,
         pointerEvents: 'none',
         transition: 'all 0.3s ease'
       }} />
@@ -87,8 +87,8 @@ export default function AnimatedHero() {
         right: 0,
         bottom: 0,
         backgroundImage: `
-          linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px)
+          linear-gradient(rgba(102, 126, 234, 0.02) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(102, 126, 234, 0.02) 1px, transparent 1px)
         `,
         backgroundSize: '50px 50px',
         pointerEvents: 'none',
@@ -105,13 +105,13 @@ export default function AnimatedHero() {
             top: `${particle.y}%`,
             width: particle.size,
             height: particle.size,
-            background: 'rgba(0,255,231,0.3)',
+            background: particle.id % 2 === 0 ? 'rgba(102, 126, 234, 0.2)' : 'rgba(118, 75, 162, 0.2)',
             borderRadius: '50%',
             pointerEvents: 'none'
           }}
           animate={{
             y: [0, -30, 0],
-            opacity: [0.3, 0.8, 0.3],
+            opacity: [0.2, 0.6, 0.2],
             scale: [1, 1.2, 1]
           }}
           transition={{
@@ -147,8 +147,8 @@ export default function AnimatedHero() {
             <motion.h1 
               style={{
                 fontSize: 'clamp(40px, 5vw, 56px)',
-                fontWeight: '800',
-                color: '#fff',
+                fontWeight: '700',
+                color: '#1e293b',
                 marginBottom: '24px',
                 marginTop: 0,
                 lineHeight: '1.1'
@@ -158,7 +158,7 @@ export default function AnimatedHero() {
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <span style={{
-                background: 'linear-gradient(135deg, #00ffe7, #7f9cf5)',
+                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text'
@@ -171,7 +171,7 @@ export default function AnimatedHero() {
             <motion.p 
               style={{
                 fontSize: 'clamp(18px, 2vw, 22px)',
-                color: '#a0a0a0',
+                color: '#64748b',
                 marginBottom: '40px',
                 lineHeight: '1.6',
                 fontWeight: '400'
@@ -191,15 +191,15 @@ export default function AnimatedHero() {
             >
               <MagneticButton
                 style={{
-                  background: 'linear-gradient(45deg, #00FFE7, #00BFAE)',
+                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                   border: 'none',
                   borderRadius: '12px',
                   padding: '18px 36px',
                   fontSize: '18px',
                   fontWeight: '700',
-                  color: '#1A1A1A',
+                  color: 'white',
                   cursor: 'pointer',
-                  boxShadow: '0 8px 32px rgba(0, 255, 231, 0.3)',
+                  boxShadow: '0 8px 32px rgba(102, 126, 234, 0.3)',
                   letterSpacing: '0.5px',
                   position: 'relative',
                   overflow: 'hidden'
@@ -227,7 +227,7 @@ export default function AnimatedHero() {
             >
               <span style={{
                 fontSize: '12px',
-                color: '#a0a0a0',
+                color: '#64748b',
                 fontWeight: '400'
               }}>
                 No credit card required

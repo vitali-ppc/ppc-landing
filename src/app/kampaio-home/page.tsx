@@ -68,7 +68,7 @@ function AIAnalyticsDashboard() {
     { 
       id: 1, 
       name: 'ANALYSIS', 
-      color: '#f093fb',
+      color: '#667eea',
       icon: (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
           <path d="M3 3V21H21" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -83,7 +83,7 @@ function AIAnalyticsDashboard() {
     { 
       id: 2, 
       name: 'PATTERN DETECTION', 
-      color: '#4facfe',
+      color: '#764ba2',
       icon: (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
           <circle cx="11" cy="11" r="8" stroke="currentColor" strokeWidth="1.5"/>
@@ -95,7 +95,7 @@ function AIAnalyticsDashboard() {
     { 
       id: 3, 
       name: 'OPTIMIZATION', 
-      color: '#43e97b',
+      color: '#667eea',
       icon: (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
           <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -107,7 +107,7 @@ function AIAnalyticsDashboard() {
     { 
       id: 4, 
       name: 'VALIDATION', 
-      color: '#fa709a',
+      color: '#764ba2',
       icon: (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
           <path d="M9 12L11 14L15 10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -118,7 +118,7 @@ function AIAnalyticsDashboard() {
     { 
       id: 5, 
       name: 'DEPLOYMENT', 
-      color: '#a8edea',
+      color: '#667eea',
       icon: (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
           <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -134,9 +134,9 @@ function AIAnalyticsDashboard() {
     <div style={{
       width: '100%',
       height: '500px',
-      background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%)',
+      background: 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)',
       borderRadius: '20px',
-      border: '1px solid rgba(102, 126, 234, 0.2)',
+      border: '1px solid #f3f4f6',
       position: 'relative',
       overflow: 'hidden',
       fontFamily: 'monospace'
@@ -174,13 +174,13 @@ function AIAnalyticsDashboard() {
               position: 'absolute',
               width: '2px',
               height: '2px',
-              background: `hsl(${200 + i * 3}, 70%, 60%)`,
+              background: i % 2 === 0 ? '#667eea' : '#764ba2',
               borderRadius: '50%',
               left: `${(i * 7) % 100}%`,
               top: `${(i * 11) % 100}%`,
               animation: `dataFloat ${3 + i % 5}s linear infinite`,
               animationDelay: `${i * 0.1}s`,
-              boxShadow: `0 0 10px hsl(${200 + i * 3}, 70%, 60%)`
+              boxShadow: `0 0 10px ${i % 2 === 0 ? '#667eea' : '#764ba2'}`
             }}
           />
         ))}
@@ -201,17 +201,17 @@ function AIAnalyticsDashboard() {
           <h3 style={{
             fontSize: '1.25rem',
             fontWeight: '300',
-            color: '#ffffff',
+            color: '#1e293b',
             marginBottom: '4px',
             letterSpacing: '0.1em',
             textTransform: 'uppercase',
-            textShadow: '0 0 10px rgba(102, 126, 234, 0.5)'
+            textShadow: '0 0 10px rgba(102, 126, 234, 0.3)'
           }}>
             AI Analytics Dashboard
           </h3>
           <div style={{
             fontSize: '0.75rem',
-            color: 'rgba(255, 255, 255, 0.6)',
+            color: '#64748b',
             letterSpacing: '0.05em',
             textTransform: 'uppercase'
           }}>
@@ -224,16 +224,16 @@ function AIAnalyticsDashboard() {
           display: 'flex',
           justifyContent: 'space-between',
           padding: '12px 16px',
-          background: 'rgba(255, 255, 255, 0.05)',
-          border: '1px solid rgba(102, 126, 234, 0.3)',
+          background: 'rgba(255, 255, 255, 0.8)',
+          border: '1px solid rgba(102, 126, 234, 0.2)',
           borderRadius: '8px',
           backdropFilter: 'blur(10px)'
         }}>
           {[
             { label: 'DATA', value: metrics.dataPoints.toLocaleString(), color: '#667eea' },
-            { label: 'PATTERNS', value: metrics.patterns.toLocaleString(), color: '#f093fb' },
-            { label: 'OPTIMIZATIONS', value: metrics.optimizations.toLocaleString(), color: '#43e97b' },
-            { label: 'ACCURACY', value: `${metrics.accuracy.toFixed(1)}%`, color: '#fa709a' }
+            { label: 'PATTERNS', value: metrics.patterns.toLocaleString(), color: '#764ba2' },
+            { label: 'OPTIMIZATIONS', value: metrics.optimizations.toLocaleString(), color: '#667eea' },
+            { label: 'ACCURACY', value: `${metrics.accuracy.toFixed(1)}%`, color: '#764ba2' }
           ].map((metric, index) => (
             <div key={metric.label} style={{ textAlign: 'center' }}>
               <div style={{
@@ -247,7 +247,7 @@ function AIAnalyticsDashboard() {
               </div>
               <div style={{
                 fontSize: '0.625rem',
-                color: 'rgba(255, 255, 255, 0.5)',
+                color: '#64748b',
                 letterSpacing: '0.05em',
                 textTransform: 'uppercase'
               }}>
@@ -266,18 +266,18 @@ function AIAnalyticsDashboard() {
         transform: 'translate(-50%, -50%)',
         width: '120px',
         height: '120px',
-        background: 'radial-gradient(circle, rgba(102, 126, 234, 0.2) 0%, rgba(102, 126, 234, 0.05) 70%, transparent 100%)',
+        background: 'radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, rgba(102, 126, 234, 0.05) 70%, transparent 100%)',
         borderRadius: '50%',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         color: '#667eea',
         boxShadow: `
-          0 0 40px rgba(102, 126, 234, 0.3),
-          inset 0 0 40px rgba(102, 126, 234, 0.1)
+          0 0 40px rgba(102, 126, 234, 0.2),
+          inset 0 0 40px rgba(102, 126, 234, 0.05)
         `,
         animation: 'hubPulse 3s ease-in-out infinite',
-        border: '2px solid rgba(102, 126, 234, 0.3)'
+        border: '2px solid rgba(102, 126, 234, 0.2)'
       }}>
         <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
           <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -310,7 +310,7 @@ function AIAnalyticsDashboard() {
               height: '2px',
               background: currentPhase === phase.id 
                 ? `linear-gradient(90deg, transparent, ${phase.color}, transparent)`
-                : 'rgba(255, 255, 255, 0.1)',
+                : 'rgba(102, 126, 234, 0.1)',
               animation: currentPhase === phase.id ? 'phaseActive 2s ease-in-out infinite' : 'none'
             }}
           >
@@ -338,7 +338,7 @@ function AIAnalyticsDashboard() {
               right: '-90px',
               top: '-8px',
               fontSize: '0.625rem',
-              color: currentPhase === phase.id ? phase.color : 'rgba(102, 126, 234, 0.6)',
+              color: currentPhase === phase.id ? phase.color : '#64748b',
               textTransform: 'uppercase',
               letterSpacing: '0.05em',
               whiteSpace: 'nowrap',
@@ -365,7 +365,7 @@ function AIAnalyticsDashboard() {
         <defs>
           <linearGradient id="dataFlow" x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" stopColor="rgba(102, 126, 234, 0)" />
-            <stop offset="50%" stopColor="rgba(102, 126, 234, 0.8)" />
+            <stop offset="50%" stopColor="rgba(102, 126, 234, 0.6)" />
             <stop offset="100%" stopColor="rgba(102, 126, 234, 0)" />
           </linearGradient>
         </defs>
@@ -424,8 +424,8 @@ function AIAnalyticsDashboard() {
               padding: '8px',
               background: zone.status === 'ACTIVE' 
                 ? 'rgba(102, 126, 234, 0.1)' 
-                : 'rgba(255, 255, 255, 0.05)',
-              border: `1px solid ${zone.status === 'ACTIVE' ? 'rgba(102, 126, 234, 0.3)' : 'rgba(255, 255, 255, 0.1)'}`,
+                : 'rgba(255, 255, 255, 0.8)',
+              border: `1px solid ${zone.status === 'ACTIVE' ? 'rgba(102, 126, 234, 0.3)' : '#f3f4f6'}`,
               borderRadius: '6px',
               textAlign: 'center',
               transition: 'all 0.3s ease'
@@ -433,7 +433,7 @@ function AIAnalyticsDashboard() {
           >
             <div style={{
               fontSize: '0.625rem',
-              color: zone.status === 'ACTIVE' ? '#667eea' : 'rgba(255, 255, 255, 0.5)',
+              color: zone.status === 'ACTIVE' ? '#667eea' : '#64748b',
               marginBottom: '4px',
               textTransform: 'uppercase',
               letterSpacing: '0.05em'
@@ -443,14 +443,14 @@ function AIAnalyticsDashboard() {
             <div style={{
               fontSize: '0.875rem',
               fontWeight: '600',
-              color: zone.status === 'ACTIVE' ? '#ffffff' : 'rgba(255, 255, 255, 0.3)',
+              color: zone.status === 'ACTIVE' ? '#1e293b' : '#64748b',
               marginBottom: '2px'
             }}>
               {zone.data}
             </div>
             <div style={{
               fontSize: '0.5rem',
-              color: zone.status === 'ACTIVE' ? '#43e97b' : 'rgba(255, 255, 255, 0.3)',
+              color: zone.status === 'ACTIVE' ? '#667eea' : '#64748b',
               textTransform: 'uppercase'
             }}>
               {zone.status}
@@ -509,7 +509,7 @@ function AnimatedCounter({
     <span style={{
       fontSize: '28px',
       fontWeight: '700',
-      color: 'white',
+      color: '#1e293b',
       animation: 'countUp 1s ease-out',
       animationDelay: `${delay}ms`
     }}>
@@ -561,7 +561,7 @@ function AnimatedCurrencyCounter({
     <span style={{
       fontSize: '28px',
       fontWeight: '700',
-      color: 'white',
+      color: '#1e293b',
       animation: 'countUp 1s ease-out',
       animationDelay: `${delay}ms`
     }}>
@@ -750,8 +750,8 @@ export default function KampaioHome() {
           }}>
             <h2 style={{
               fontSize: 'clamp(36px, 4vw, 48px)',
-              fontWeight: '800',
-              color: '#1a1a1a',
+              fontWeight: '700',
+              color: '#1e293b',
               marginBottom: '24px',
               lineHeight: '1.2'
             }}>
@@ -759,7 +759,7 @@ export default function KampaioHome() {
             </h2>
             <p style={{
               fontSize: 'clamp(18px, 2vw, 20px)',
-              color: '#666',
+              color: '#64748b',
               maxWidth: '600px',
               margin: '0 auto',
               lineHeight: '1.6'
@@ -829,14 +829,14 @@ export default function KampaioHome() {
                 <h3 style={{
                   fontSize: '32px',
                   fontWeight: '700',
-                  color: '#1a1a1a',
+                  color: '#1e293b',
                   marginBottom: '12px'
                 }}>
                   AI Engine Under the Hood
                 </h3>
                 <p style={{
                   fontSize: '18px',
-                  color: '#666'
+                  color: '#64748b'
                 }}>
                   See how your data transforms into intelligent insights
                 </p>
@@ -867,7 +867,7 @@ export default function KampaioHome() {
                     margin: '0 auto 16px auto',
                     animation: 'pulse 2s infinite'
                   }}>
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#666" strokeWidth="2" style={{
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#64748b" strokeWidth="2" style={{
                       animation: 'pulse 2s infinite'
                     }}>
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
@@ -876,14 +876,14 @@ export default function KampaioHome() {
                   <h4 style={{
                     fontSize: '20px',
                     fontWeight: '700',
-                    color: '#1a1a1a',
+                    color: '#1e293b',
                     marginBottom: '6px'
                   }}>
                     Your Data
                   </h4>
                   <div style={{
                     fontSize: '15px',
-                    color: '#666',
+                    color: '#64748b',
                     lineHeight: '1.5'
                   }}>
                     <div>• Campaign metrics</div>
@@ -904,7 +904,7 @@ export default function KampaioHome() {
                     <div style={{
                       width: '60px',
                       height: '2px',
-                      background: 'linear-gradient(90deg, #7f9cf5, rgba(127,156,245,0.3))',
+                      background: 'linear-gradient(90deg, #667eea, rgba(102, 126, 234, 0.3))',
                       position: 'relative',
                       overflow: 'hidden',
                       borderRadius: '1px'
@@ -920,7 +920,7 @@ export default function KampaioHome() {
                     <div style={{
                       width: '0',
                       height: '0',
-                      borderLeft: '8px solid #7f9cf5',
+                      borderLeft: '8px solid #667eea',
                       borderTop: '5px solid transparent',
                       borderBottom: '5px solid transparent',
                       marginLeft: '2px',
@@ -929,7 +929,7 @@ export default function KampaioHome() {
                   </div>
                   <div style={{
                     fontSize: '11px',
-                    color: '#7f9cf5',
+                    color: '#667eea',
                     marginTop: '6px',
                     fontWeight: '500',
                     opacity: 0.8
@@ -943,10 +943,10 @@ export default function KampaioHome() {
                     left: '0',
                     width: '6px',
                     height: '6px',
-                    background: '#7f9cf5',
+                    background: '#667eea',
                     borderRadius: '50%',
                     animation: 'dataFlow 2s ease-in-out infinite',
-                    boxShadow: '0 0 8px rgba(127,156,245,0.4)'
+                    boxShadow: '0 0 8px rgba(102, 126, 234, 0.4)'
                   }}></div>
                 </div>
                 
@@ -958,9 +958,9 @@ export default function KampaioHome() {
                   <div style={{
                     width: '100px',
                     height: '100px',
-                    background: 'linear-gradient(135deg, #7f9cf5 0%, #00ffe7 100%)',
+                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                     borderRadius: '16px',
-                    boxShadow: '0 8px 24px rgba(127,156,245,0.3)',
+                    boxShadow: '0 8px 24px rgba(102, 126, 234, 0.3)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -977,14 +977,14 @@ export default function KampaioHome() {
                   <h4 style={{
                     fontSize: '20px',
                     fontWeight: '700',
-                    color: '#1a1a1a',
+                    color: '#1e293b',
                     marginBottom: '6px'
                   }}>
                     AI Engine
                   </h4>
                   <div style={{
                     fontSize: '15px',
-                    color: '#666',
+                    color: '#64748b',
                     lineHeight: '1.5'
                   }}>
                     <div>• Analysis</div>
@@ -1005,7 +1005,7 @@ export default function KampaioHome() {
                     <div style={{
                       width: '60px',
                       height: '2px',
-                      background: 'linear-gradient(90deg, #00ffe7, rgba(0,255,231,0.3))',
+                      background: 'linear-gradient(90deg, #764ba2, rgba(118, 75, 162, 0.3))',
                       position: 'relative',
                       overflow: 'hidden',
                       borderRadius: '1px'
@@ -1021,7 +1021,7 @@ export default function KampaioHome() {
                     <div style={{
                       width: '0',
                       height: '0',
-                      borderLeft: '8px solid #00ffe7',
+                      borderLeft: '8px solid #764ba2',
                       borderTop: '5px solid transparent',
                       borderBottom: '5px solid transparent',
                       marginLeft: '2px',
@@ -1030,7 +1030,7 @@ export default function KampaioHome() {
                   </div>
                   <div style={{
                     fontSize: '11px',
-                    color: '#00ffe7',
+                    color: '#764ba2',
                     marginTop: '6px',
                     fontWeight: '500',
                     opacity: 0.8
@@ -1044,10 +1044,10 @@ export default function KampaioHome() {
                     left: '0',
                     width: '6px',
                     height: '6px',
-                    background: '#00ffe7',
+                    background: '#764ba2',
                     borderRadius: '50%',
                     animation: 'dataFlow 2s ease-in-out infinite',
-                    boxShadow: '0 0 8px rgba(0,255,231,0.4)'
+                    boxShadow: '0 0 8px rgba(118, 75, 162, 0.4)'
                   }}></div>
                 </div>
                 
@@ -1068,7 +1068,7 @@ export default function KampaioHome() {
                     margin: '0 auto 16px auto',
                     animation: 'pulse 2s infinite'
                   }}>
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#00ffe7" strokeWidth="2" style={{
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#764ba2" strokeWidth="2" style={{
                       animation: 'pulse 2s infinite'
                     }}>
                       <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
@@ -1078,14 +1078,14 @@ export default function KampaioHome() {
                   <h4 style={{
                     fontSize: '20px',
                     fontWeight: '700',
-                    color: '#1a1a1a',
+                    color: '#1e293b',
                     marginBottom: '6px'
                   }}>
                     Smart Results
                   </h4>
                   <div style={{
                     fontSize: '15px',
-                    color: '#666',
+                    color: '#64748b',
                     lineHeight: '1.5'
                   }}>
                     <div>• Issues detected</div>
@@ -1097,11 +1097,11 @@ export default function KampaioHome() {
               
               {/* METRICS BAR - УЛУЧШЕННЫЕ АНИМИРОВАННЫЕ СЧЕТЧИКИ */}
               <div style={{
-                background: '#1a1a1a',
+                background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
                 borderRadius: '16px',
                 padding: '32px 24px',
-                boxShadow: '0 8px 32px rgba(0,0,0,0.15), 0 4px 16px rgba(127,156,245,0.1)',
-                border: '1px solid rgba(127,156,245,0.2)'
+                boxShadow: '0 8px 32px rgba(0,0,0,0.08), 0 4px 16px rgba(102, 126, 234, 0.05)',
+                border: '1px solid rgba(102, 126, 234, 0.1)'
               }}>
                 <div style={{
                   display: 'flex',
@@ -1124,7 +1124,7 @@ export default function KampaioHome() {
                       <div style={{
                         width: '24px',
                         height: '24px',
-                        background: 'linear-gradient(135deg, #7F9CF5, #667eea)',
+                        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                         borderRadius: '6px',
                         display: 'flex',
                         alignItems: 'center',
@@ -1143,7 +1143,7 @@ export default function KampaioHome() {
                     </div>
                     <div style={{
                       fontSize: '15px',
-                      color: 'white',
+                      color: '#1e293b',
                       fontWeight: '600',
                       marginBottom: '4px'
                     }}>
@@ -1155,7 +1155,7 @@ export default function KampaioHome() {
                   <div style={{
                     width: '1px',
                     height: '60px',
-                    background: 'linear-gradient(180deg, transparent, rgba(127,156,245,0.2), transparent)'
+                    background: 'linear-gradient(180deg, transparent, rgba(102, 126, 234, 0.2), transparent)'
                   }}></div>
                   
                   <div style={{
@@ -1173,7 +1173,7 @@ export default function KampaioHome() {
                       <div style={{
                         width: '24px',
                         height: '24px',
-                        background: 'linear-gradient(135deg, #00FFE7, #00d4aa)',
+                        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                         borderRadius: '6px',
                         display: 'flex',
                         alignItems: 'center',
@@ -1192,7 +1192,7 @@ export default function KampaioHome() {
                     </div>
                     <div style={{
                       fontSize: '15px',
-                      color: 'white',
+                      color: '#1e293b',
                       fontWeight: '600',
                       marginBottom: '4px'
                     }}>
@@ -1204,7 +1204,7 @@ export default function KampaioHome() {
                   <div style={{
                     width: '1px',
                     height: '60px',
-                    background: 'linear-gradient(180deg, transparent, rgba(0,255,231,0.2), transparent)'
+                    background: 'linear-gradient(180deg, transparent, rgba(118, 75, 162, 0.2), transparent)'
                   }}></div>
                   
                   <div style={{
@@ -1222,7 +1222,7 @@ export default function KampaioHome() {
                       <div style={{
                         width: '24px',
                         height: '24px',
-                        background: 'linear-gradient(135deg, #00BFAE, #00A896)',
+                        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                         borderRadius: '6px',
                         display: 'flex',
                         alignItems: 'center',
@@ -1242,7 +1242,7 @@ export default function KampaioHome() {
                     </div>
                     <div style={{
                       fontSize: '15px',
-                      color: 'white',
+                      color: '#1e293b',
                       fontWeight: '600',
                       marginBottom: '4px'
                     }}>
@@ -1793,7 +1793,7 @@ export default function KampaioHome() {
             <h2 style={{
               fontSize: 'clamp(32px, 4.5vw, 42px)',
               fontWeight: '700',
-              color: '#1a1a1a',
+              color: '#1e293b',
               marginBottom: '20px',
               lineHeight: '1.2'
             }}>
@@ -1801,7 +1801,7 @@ export default function KampaioHome() {
             </h2>
             <p style={{
               fontSize: 'clamp(16px, 1.8vw, 18px)',
-              color: '#666',
+              color: '#64748b',
               marginBottom: '40px',
               lineHeight: '1.5'
             }}>
@@ -1816,7 +1816,7 @@ export default function KampaioHome() {
             }}>
               <button style={{
                 padding: '16px 32px',
-                background: '#1a1a1a',
+                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                 border: 'none',
                 borderRadius: '8px',
                 fontWeight: '600',
@@ -1824,7 +1824,7 @@ export default function KampaioHome() {
                 cursor: 'pointer',
                 fontSize: '16px',
                 transition: 'all 0.3s ease',
-                boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
+                boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)'
               }}>
                 Try for free
               </button>
@@ -1840,7 +1840,7 @@ export default function KampaioHome() {
                 <h3 style={{
                   fontSize: '18px',
                   fontWeight: '600',
-                  color: '#1a1a1a',
+                  color: '#1e293b',
                   marginBottom: '24px'
                 }}>
                   Integrates with
@@ -1856,7 +1856,7 @@ export default function KampaioHome() {
                     borderRadius: '8px',
                     fontSize: '14px',
                     fontWeight: '500',
-                    color: '#1a1a1a',
+                    color: '#1e293b',
                     border: '1px solid #e9ecef',
                     transition: '0.2s',
                     cursor: 'pointer',
@@ -1888,7 +1888,7 @@ export default function KampaioHome() {
                 <h3 style={{
                   fontSize: '18px',
                   fontWeight: '600',
-                  color: '#1a1a1a',
+                  color: '#1e293b',
                   marginBottom: '24px'
                 }}>
                   Coming soon
@@ -1904,7 +1904,7 @@ export default function KampaioHome() {
                     borderRadius: '8px',
                     fontSize: '14px',
                     fontWeight: '500',
-                    color: '#666',
+                    color: '#64748b',
                     border: '1px solid #e9ecef',
                     opacity: '0.7',
                     transition: '0.2s',
@@ -1935,7 +1935,7 @@ export default function KampaioHome() {
                     borderRadius: '8px',
                     fontSize: '14px',
                     fontWeight: '500',
-                    color: '#666',
+                    color: '#64748b',
                     border: '1px solid #e9ecef',
                     opacity: '0.7',
                     transition: '0.2s',

@@ -97,7 +97,7 @@ export default function Header({ variant = 'full' }: HeaderProps) {
                   position: 'absolute',
                   width: '100%',
                   height: '100%',
-                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important',
+                  background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%) !important',
                   borderRadius: '4px',
                   transform: 'rotate(-5deg)',
                   boxShadow: '0 2px 8px rgba(0, 0, 0, 0.3)'
@@ -105,12 +105,15 @@ export default function Header({ variant = 'full' }: HeaderProps) {
                 <span style={{
                   fontSize: '20px',
                   fontWeight: '800',
-                  color: '#1A1A1A !important',
+                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
                   zIndex: 1,
                   position: 'relative'
                 }}>K</span>
               </div>
-              <span style={{ color: '#1A1A1A', fontWeight: 'bold', fontSize: '20px' }}>Kampaio</span>
+              <span style={{ color: '#1e293b', fontWeight: 'bold', fontSize: '20px' }}>Kampaio</span>
             </Link>
           <div className="header__right">
             <a href="/login" className="header-btn header-btn-login">Login</a>
@@ -148,7 +151,7 @@ export default function Header({ variant = 'full' }: HeaderProps) {
                   position: 'absolute',
                   width: '100%',
                   height: '100%',
-                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important',
+                  background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%) !important',
                   borderRadius: '4px',
                   transform: 'rotate(-5deg)',
                   boxShadow: '0 2px 8px rgba(0, 0, 0, 0.3)'
@@ -156,12 +159,15 @@ export default function Header({ variant = 'full' }: HeaderProps) {
                 <span style={{
                   fontSize: '20px',
                   fontWeight: '800',
-                  color: '#1A1A1A !important',
+                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
                   zIndex: 1,
                   position: 'relative'
                 }}>K</span>
               </div>
-              <span style={{ color: '#1A1A1A', fontWeight: 'bold', fontSize: '20px' }}>Kampaio</span>
+              <span style={{ color: '#1e293b', fontWeight: 'bold', fontSize: '20px' }}>Kampaio</span>
             </Link>
             <nav className="header__nav">
               <div className="templates-dropdown">
