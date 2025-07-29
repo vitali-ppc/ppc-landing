@@ -2778,7 +2778,7 @@ export default function KampaioHome() {
               paddingRight: '40px'
             }}>
               <div style={{
-                color: '#1a1a1a'
+                color: '#1e293b'
               }}>
                 <h2 style={{
                   fontSize: 'clamp(2rem, 4vw, 3rem)',
@@ -2787,7 +2787,7 @@ export default function KampaioHome() {
                   lineHeight: '1.2'
                 }}>
                   <span style={{
-                    background: 'linear-gradient(135deg, #00FFE7, #00BFAE)',
+                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                     backgroundClip: 'text'
@@ -2800,7 +2800,7 @@ export default function KampaioHome() {
               }}></div>
               <div style={{
                 fontSize: 'clamp(1.125rem, 2vw, 1.25rem)',
-                color: '#666',
+                color: '#64748b',
                 marginBottom: '40px',
                 lineHeight: '1.6'
               }}>
@@ -2832,7 +2832,7 @@ export default function KampaioHome() {
                   <p style={{
                     fontSize: '16px',
                     fontWeight: '500',
-                    color: '#1a1a1a',
+                    color: '#374151',
                     margin: 0
                   }}>Dentists</p>
                 </div>
@@ -2854,7 +2854,7 @@ export default function KampaioHome() {
                   <p style={{
                     fontSize: '16px',
                     fontWeight: '500',
-                    color: '#1a1a1a',
+                    color: '#374151',
                     margin: 0
                   }}>Real Estate</p>
                 </div>
@@ -2877,7 +2877,7 @@ export default function KampaioHome() {
                   <p style={{
                     fontSize: '16px',
                     fontWeight: '500',
-                    color: '#1a1a1a',
+                    color: '#374151',
                     margin: 0
                   }}>SaaS Companies</p>
                 </div>
@@ -2905,7 +2905,7 @@ export default function KampaioHome() {
                   <p style={{
                     fontSize: '16px',
                     fontWeight: '500',
-                    color: '#1a1a1a',
+                    color: '#374151',
                     margin: 0
                   }}>Lawyers</p>
                 </div>
@@ -2919,22 +2919,22 @@ export default function KampaioHome() {
                     alignItems: 'center',
                     gap: '8px',
                     padding: '16px 32px',
-                    background: 'linear-gradient(135deg, #00FFE7, #00BFAE)',
-                    color: '#1A1A1A',
+                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                    color: 'white',
                     textDecoration: 'none',
                     borderRadius: '12px',
                     fontWeight: '600',
                     fontSize: '16px',
                     transition: 'all 0.3s ease',
-                    boxShadow: '0 8px 24px rgba(0, 255, 231, 0.3)'
+                    boxShadow: '0 8px 24px rgba(102, 126, 234, 0.3)'
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.transform = 'translateY(-2px)';
-                    e.currentTarget.style.boxShadow = '0 12px 32px rgba(0, 255, 231, 0.4)';
+                    e.currentTarget.style.boxShadow = '0 12px 32px rgba(102, 126, 234, 0.4)';
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.transform = 'translateY(0)';
-                    e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 255, 231, 0.3)';
+                    e.currentTarget.style.boxShadow = '0 8px 24px rgba(102, 126, 234, 0.3)';
                   }}
                 >
                   <div>Find Your Industry</div>
@@ -2962,8 +2962,8 @@ export default function KampaioHome() {
               }}>
                 <div style={{
                   borderRadius: '16px',
-                  border: '2px solid #00BFAE',
-                  boxShadow: '0 4px 12px rgba(0, 191, 174, 0.15)',
+                  border: '2px solid #667eea',
+                  boxShadow: '0 4px 12px rgba(102, 126, 234, 0.15)',
                   overflow: 'hidden',
                   position: 'relative',
                   background: '#F8FAFC',
@@ -2980,12 +2980,12 @@ export default function KampaioHome() {
                   }}>
                     <defs>
                       <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
-                        <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(0,191,174,0.2)" strokeWidth="1"/>
+                        <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(102,126,234,0.2)" strokeWidth="1"/>
                       </pattern>
                       <radialGradient id="hologram" cx="50%" cy="50%" r="50%">
-                        <stop offset="0%" stopColor="rgba(0,191,174,0.4)"/>
-                        <stop offset="50%" stopColor="rgba(0,191,174,0.2)"/>
-                        <stop offset="100%" stopColor="rgba(0,191,174,0.1)"/>
+                        <stop offset="0%" stopColor="rgba(102,126,234,0.4)"/>
+                        <stop offset="50%" stopColor="rgba(102,126,234,0.2)"/>
+                        <stop offset="100%" stopColor="rgba(102,126,234,0.1)"/>
                       </radialGradient>
                     </defs>
                     <rect width="100%" height="100%" fill="url(#grid)"/>
@@ -2993,10 +2993,10 @@ export default function KampaioHome() {
                       <animate attributeName="r" values="80;90;80" dur="3s" repeatCount="indefinite"/>
                       <animate attributeName="opacity" values="0.6;0.8;0.6" dur="3s" repeatCount="indefinite"/>
                     </circle>
-                    <circle cx="200" cy="150" r="60" fill="none" stroke="rgba(0,191,174,0.3)" strokeWidth="2">
+                    <circle cx="200" cy="150" r="60" fill="none" stroke="rgba(102,126,234,0.3)" strokeWidth="2">
                       <animate attributeName="r" values="60;70;60" dur="2s" repeatCount="indefinite"/>
                     </circle>
-                    <circle cx="200" cy="150" r="40" fill="none" stroke="rgba(0,191,174,0.4)" strokeWidth="1">
+                    <circle cx="200" cy="150" r="40" fill="none" stroke="rgba(102,126,234,0.4)" strokeWidth="1">
                       <animate attributeName="r" values="40;50;40" dur="1.5s" repeatCount="indefinite"/>
                     </circle>
                   </svg>
@@ -3180,14 +3180,14 @@ export default function KampaioHome() {
               <h3 style={{
                 fontSize: '28px',
                 fontWeight: '600',
-                color: '#1a1a2e',
+                color: '#1e293b',
                 marginBottom: '12px'
               }}>
                 Supported Industries
               </h3>
               <p style={{
                 fontSize: '16px',
-                color: '#666',
+                color: '#64748b',
                 maxWidth: '600px',
                 margin: '0 auto',
                 lineHeight: '1.5'
