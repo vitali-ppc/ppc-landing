@@ -786,7 +786,7 @@ const ChatFormGPT: React.FC = () => {
           </div>
         )}
         <div style={{
-          padding: '12px 16px',
+          padding: '12px 12px',
           borderBottom: '1px solid #64748b',
         }}>
           <input
@@ -843,11 +843,21 @@ const ChatFormGPT: React.FC = () => {
                   e.currentTarget.style.background = '#64748b';
                   e.currentTarget.style.border = 'none';
                 }
+                // Показать кнопку меню при наведении
+                const menuButton = e.currentTarget.querySelector('.chat-menu button') as HTMLElement;
+                if (menuButton) {
+                  menuButton.style.opacity = '1';
+                }
               }}
               onMouseLeave={e => {
                 if (currentChatId !== chat.id) {
                   e.currentTarget.style.background = 'transparent';
                   e.currentTarget.style.border = 'none';
+                }
+                // Скрыть кнопку меню при уходе мыши
+                const menuButton = e.currentTarget.querySelector('.chat-menu button') as HTMLElement;
+                if (menuButton) {
+                  menuButton.style.opacity = '0';
                 }
               }}
             >
@@ -918,21 +928,16 @@ const ChatFormGPT: React.FC = () => {
                   style={{
                     background: 'none',
                     border: 'none',
-                    color: '#a0a0a0',
+                    color: '#ffffff',
                     fontSize: 16,
                     cursor: 'pointer',
                     padding: '4px 8px',
                     borderRadius: 4,
                     transition: 'all 0.2s',
                     marginLeft: 8,
+                    opacity: 0,
                   }}
                   title="More options"
-                  onMouseEnter={e => {
-                    e.currentTarget.style.color = '#00ffe7';
-                  }}
-                  onMouseLeave={e => {
-                    e.currentTarget.style.color = '#a0a0a0';
-                  }}
                 >
                   ⋯
                 </button>
@@ -1013,12 +1018,72 @@ const ChatFormGPT: React.FC = () => {
           ))}
         </div>
         
-        {/* Место для других кнопок после списка чатов */}
+        {/* Аватар пользователя после списка чатов */}
         <div style={{
           padding: '16px',
           borderTop: '1px solid #64748b',
-        }}>
-          {/* Здесь можно добавить другие кнопки */}
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'flex-start',
+          cursor: 'pointer',
+          transition: 'all 0.2s',
+        }}
+        onClick={() => {
+          // Здесь можно добавить логику открытия окна профиля
+          alert('Profile settings window would open here');
+        }}
+        onMouseEnter={e => {
+          e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
+        }}
+        onMouseLeave={e => {
+          e.currentTarget.style.background = 'transparent';
+        }}
+        >
+          <div style={{
+            width: '32px',
+            height: '32px',
+            borderRadius: '50%',
+            background: '#64748b',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: '#ffffff',
+            fontSize: '14px',
+            fontWeight: '600',
+            cursor: 'pointer',
+            transition: 'all 0.2s',
+            marginRight: '4px',
+          }}
+          onMouseEnter={e => {
+            e.currentTarget.style.background = '#475569';
+          }}
+          onMouseLeave={e => {
+            e.currentTarget.style.background = '#64748b';
+          }}
+          >
+            В
+          </div>
+                      <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'flex-start',
+              marginLeft: '0px',
+            }}>
+              <div style={{
+                color: '#ffffff',
+                fontSize: '14px',
+                fontWeight: '500',
+              }}>
+                Vitaly
+              </div>
+              <div style={{
+                color: '#a0a0a0',
+                fontSize: '12px',
+                fontWeight: '400',
+              }}>
+                Professional
+              </div>
+            </div>
         </div>
       </div>
 
