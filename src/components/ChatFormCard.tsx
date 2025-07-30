@@ -162,11 +162,11 @@ const ChatFormCard: React.FC = () => {
             flex: 1,
             padding: 14,
             borderRadius: 10,
-            border: '1.5px solid #cbd5e1',
+            border: '1.5px solid #e2e8f0',
             fontSize: 16,
             fontFamily: 'inherit',
             background: '#fff',
-            color: '#23272f',
+            color: '#1e293b',
             outline: 'none',
             boxShadow: '0 1px 2px rgba(0,0,0,0.01)'
           }}

@@ -88,7 +88,7 @@ export const ChatMessages: React.FC<ChatMessagesProps> = React.memo(({
           </div>
           <span style={{
             display: 'inline-block',
-            background: '#e6f7ff',
+            background: '#f8fafc',
             color: '#23272f',
             borderRadius: 16,
             padding: '14px 32px',
@@ -96,7 +96,7 @@ export const ChatMessages: React.FC<ChatMessagesProps> = React.memo(({
             wordBreak: 'break-word',
             fontSize: 18,
             boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
-            border: '1.5px solid #e6f7ff',
+            border: '1.5px solid #f8fafc',
             fontStyle: 'italic',
             letterSpacing: '0.5px',
           }}>

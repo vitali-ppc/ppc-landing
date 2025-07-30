@@ -1287,7 +1287,7 @@ const ChatFormGPT: React.FC = () => {
     overflowY: 'auto',
     padding: '8px 15px 40px 15px', // увеличенный отступ слева для текста
     borderRadius: '12px',
-    border: '1.2px solid #cbd5e1',
+                  border: '1.2px solid #e2e8f0',
     fontSize: 15,
     fontFamily: 'Inter, Segoe UI, Arial, sans-serif',
     lineHeight: 1.3,

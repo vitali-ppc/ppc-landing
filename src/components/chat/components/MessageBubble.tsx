@@ -45,7 +45,7 @@ export const MessageBubble: React.FC<MessageBubbleProps> = React.memo(({
       </div>
       <span style={{
         display: 'inline-block',
-        background: message.role === 'user' ? '#fff' : '#e6f7ff',
+        background: message.role === 'user' ? '#fff' : '#f8fafc',
         color: '#23272f',
         borderRadius: 12,
         padding: '10px 18px',
@@ -54,7 +54,7 @@ export const MessageBubble: React.FC<MessageBubbleProps> = React.memo(({
         fontSize: 15,
         lineHeight: 1.4,
         boxShadow: message.role === 'user' ? '0 2px 8px rgba(30, 144, 255, 0.04)' : '0 2px 8px rgba(0,0,0,0.03)',
-        border: message.role === 'user' ? '1.5px solid #e2e8f0' : '1.5px solid #e6f7ff',
+        border: message.role === 'user' ? '1.5px solid #e2e8f0' : '1.5px solid #f8fafc',
         transition: 'background 0.2s',
         position: 'relative',
       }}>
@@ -70,7 +70,7 @@ export const MessageBubble: React.FC<MessageBubbleProps> = React.memo(({
                         borderRadius: 6,
                         padding: '2px 6px',
                         fontSize: 16,
-                        color: '#0ea5e9',
+                        color: '#764ba2',
                       }}>{props.children}</code>
                     ) : (
                       <pre style={{
@@ -82,7 +82,7 @@ export const MessageBubble: React.FC<MessageBubbleProps> = React.memo(({
                         margin: '12px 0',
                       }}><code>{props.children}</code></pre>
                     ),
-                  a: ({node, ...props}) => <a style={{ color: '#0ea5e9', textDecoration: 'underline' }} {...props} />,
+                                      a: ({node, ...props}) => <a style={{ color: '#764ba2', textDecoration: 'underline' }} {...props} />,
                   li: ({node, ...props}) => <li style={{ marginLeft: 18, marginBottom: 4 }} {...props} />,
                 }}
               >
@@ -103,7 +103,7 @@ export const MessageBubble: React.FC<MessageBubbleProps> = React.memo(({
                           borderRadius: 6,
                           padding: '2px 6px',
                           fontSize: 16,
-                          color: '#0ea5e9',
+                          color: '#764ba2',
                         }}>{props.children}</code>
                       ) : (
                         <pre style={{
@@ -115,7 +115,7 @@ export const MessageBubble: React.FC<MessageBubbleProps> = React.memo(({
                           margin: '12px 0',
                         }}><code>{props.children}</code></pre>
                       ),
-                    a: ({node, ...props}) => <a style={{ color: '#0ea5e9', textDecoration: 'underline' }} {...props} />,
+                    a: ({node, ...props}) => <a style={{ color: '#764ba2', textDecoration: 'underline' }} {...props} />,
                     li: ({node, ...props}) => <li style={{ marginLeft: 18, marginBottom: 4 }} {...props} />,
                   }}
                 >
@@ -124,7 +124,7 @@ export const MessageBubble: React.FC<MessageBubbleProps> = React.memo(({
                 {/* Summary + Copy для AI-відповіді */}
                 {message.role === 'ai' && useAdsData && adsData && (
                   <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginTop: 10 }}>
-                    <span style={{ color: '#0ea5e9', fontSize: 14, fontWeight: 500 }}>
+                    <span style={{ color: '#764ba2', fontSize: 14, fontWeight: 500 }}>
                       Відповідь сформовано на основі ваших даних Google Ads
                     </span>
                   </div>
