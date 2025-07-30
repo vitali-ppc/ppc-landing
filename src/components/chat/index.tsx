@@ -126,11 +126,11 @@ const ChatFormGPT: React.FC = () => {
 
   const updateChatTitle = useCallback((chatId: string, title: string) => {
     setChats(prev => prev.map(c => 
-      c.id === chatId ? { ...c, title, updatedAt: new Date() } : c
+      c.id === chatId ? { ...c, title: title.trim(), updatedAt: new Date() } : c
     ));
     setEditingChatId(null);
     setEditingTitle('');
-  }, []);
+  }, [setChats, setEditingChatId, setEditingTitle]);
 
   // Typing эффект
   const startTypingEffect = useCallback((fullText: string) => {
@@ -576,7 +576,7 @@ const ChatFormGPT: React.FC = () => {
         justifyContent: 'center',
         background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
       }}>
-        <div style={{ fontSize: '18px', color: '#23272f' }}>Loading...</div>
+                      <div style={{ fontSize: '18px', color: '#1e293b' }}>Loading...</div>
       </div>
     );
   }
@@ -870,7 +870,13 @@ const ChatFormGPT: React.FC = () => {
                     onChange={(e) => setEditingTitle(e.target.value)}
                     onKeyDown={(e) => {
                       if (e.key === 'Enter') {
-                        updateChatTitle(chat.id, editingTitle);
+                        e.preventDefault();
+                        if (editingTitle.trim()) {
+                          updateChatTitle(chat.id, editingTitle);
+                        } else {
+                          setEditingChatId(null);
+                          setEditingTitle('');
+                        }
                       } else if (e.key === 'Escape') {
                         setEditingChatId(null);
                         setEditingTitle('');
@@ -887,12 +893,12 @@ const ChatFormGPT: React.FC = () => {
                     style={{
                       width: '100%',
                       padding: '4px 8px',
-                      border: '1px solid #7f9cf5',
+                      border: '1px solid #667eea',
                       borderRadius: 4,
                       fontSize: 14,
                       fontWeight: 600,
                       background: '#fff',
-                      color: '#23272f',
+                      color: '#1e293b',
                       outline: 'none',
                     }}
                     autoFocus
@@ -947,10 +953,10 @@ const ChatFormGPT: React.FC = () => {
                     position: 'absolute',
                     top: '100%',
                     right: 0,
-                    background: '#1a1a1a',
-                    border: '1px solid #7f9cf5',
+                    background: '#f8fafc',
+                    border: 'none',
                     borderRadius: 6,
-                    boxShadow: '0 4px 12px rgba(127, 156, 245, 0.3)',
+                    boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)',
                     zIndex: 1000,
                     minWidth: 120,
                     marginTop: 4,
@@ -969,17 +975,17 @@ const ChatFormGPT: React.FC = () => {
                         border: 'none',
                         textAlign: 'left',
                         fontSize: 14,
-                        color: '#fff',
+                        color: '#1e293b',
                         cursor: 'pointer',
                         transition: 'all 0.2s',
                       }}
                       onMouseEnter={e => {
-                        e.currentTarget.style.background = '#7f9cf5';
-                        e.currentTarget.style.color = '#fff';
+                        e.currentTarget.style.background = '#e2e8f0';
+                        e.currentTarget.style.color = '#1e293b';
                       }}
                       onMouseLeave={e => {
                         e.currentTarget.style.background = 'none';
-                        e.currentTarget.style.color = '#fff';
+                        e.currentTarget.style.color = '#1e293b';
                       }}
                     >
                       Rename
@@ -997,17 +1003,17 @@ const ChatFormGPT: React.FC = () => {
                         border: 'none',
                         textAlign: 'left',
                         fontSize: 14,
-                        color: '#ff6b6b',
+                        color: '#dc2626',
                         cursor: 'pointer',
                         transition: 'all 0.2s',
                       }}
                       onMouseEnter={e => {
-                        e.currentTarget.style.background = '#ff6b6b';
-                        e.currentTarget.style.color = '#fff';
+                        e.currentTarget.style.background = '#fef2f2';
+                        e.currentTarget.style.color = '#dc2626';
                       }}
                       onMouseLeave={e => {
                         e.currentTarget.style.background = 'none';
-                        e.currentTarget.style.color = '#ff6b6b';
+                        e.currentTarget.style.color = '#dc2626';
                       }}
                     >
                       Delete
@@ -1251,7 +1257,6 @@ const ChatFormGPT: React.FC = () => {
         display: 'flex',
         gap: 16,
         padding: '18px 24px 40px 24px', // більше місця знизу
-        borderTop: '1px solid #e2e8f0',
         background: 'transparent',
         borderBottomLeftRadius: 0,
         borderBottomRightRadius: 0,
@@ -1287,7 +1292,7 @@ const ChatFormGPT: React.FC = () => {
     overflowY: 'auto',
     padding: '8px 15px 40px 15px', // увеличенный отступ слева для текста
     borderRadius: '12px',
-                  border: '1.2px solid #e2e8f0',
+                  border: '1.2px solid rgba(30, 41, 59, 0.15)',
     fontSize: 15,
     fontFamily: 'Inter, Segoe UI, Arial, sans-serif',
     lineHeight: 1.3,
@@ -1318,7 +1323,7 @@ const ChatFormGPT: React.FC = () => {
               bottom: '6px', // отступ снизу для иконки
               background: 'none',
               border: 'none',
-              color: '#9ca3af',
+              color: '#64748b',
               cursor: 'pointer',
               padding: '8px',
               borderRadius: '4px',
@@ -1330,10 +1335,10 @@ const ChatFormGPT: React.FC = () => {
             }}
             title="Upload image"
             onMouseEnter={(e) => {
-              e.currentTarget.style.color = '#7f9cf5';
+              e.currentTarget.style.color = '#667eea';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.color = '#9ca3af';
+              e.currentTarget.style.color = '#64748b';
             }}
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -1356,7 +1361,7 @@ const ChatFormGPT: React.FC = () => {
               bottom: '6px', // отступ снизу для иконки
               background: 'none',
               border: 'none',
-              color: '#9ca3af',
+              color: '#64748b',
               cursor: 'pointer',
               padding: '8px',
               borderRadius: '4px',
@@ -1368,10 +1373,10 @@ const ChatFormGPT: React.FC = () => {
             }}
             title="Voice assistant"
             onMouseEnter={(e) => {
-              e.currentTarget.style.color = '#7f9cf5';
+              e.currentTarget.style.color = '#667eea';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.color = '#9ca3af';
+              e.currentTarget.style.color = '#64748b';
             }}
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -1911,8 +1916,8 @@ const ChatFormGPT: React.FC = () => {
           }}>
             <button onClick={() => setShowAccountModal(false)} style={{ position: 'absolute', top: 12, right: 16, background: 'none', border: 'none', fontSize: 22, color: '#888', cursor: 'pointer' }}>&times;</button>
             <svg width="48" height="48" viewBox="0 0 48 48" fill="none" style={{ marginBottom: 12 }}>
-              <circle cx="24" cy="24" r="22" stroke="#0ea5e9" strokeWidth="3" fill={accountConnected ? '#e6f7ff' : '#fff'} />
-              <path d="M16 24l6 6L36 16" stroke="#0ea5e9" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: accountConnected ? 1 : 0 }} />
+              <circle cx="24" cy="24" r="22" stroke="#667eea" strokeWidth="3" fill={accountConnected ? '#e6f7ff' : '#fff'} />
+              <path d="M16 24l6 6L36 16" stroke="#667eea" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: accountConnected ? 1 : 0 }} />
             </svg>
             <div style={{ fontWeight: 700, fontSize: 20, color: '#23272f', marginBottom: 10 }}>
               {accountConnected ? 'Google Ads account connected!' : 'Connect Google Ads account'}
@@ -1931,8 +1936,8 @@ const ChatFormGPT: React.FC = () => {
                 }}
                 style={{
                   background: '#fff',
-                  color: '#0ea5e9',
-                  border: '1.5px solid #0ea5e9',
+                  color: '#667eea',
+                  border: '1.5px solid #667eea',
                   borderRadius: 8,
                   padding: '10px 28px',
                   fontSize: 16,
@@ -1947,7 +1952,7 @@ const ChatFormGPT: React.FC = () => {
               <button
                 onClick={() => window.location.href = '/api/auth/login'}
                 style={{
-                  background: '#0ea5e9',
+                  background: '#667eea',
                   color: '#fff',
                   border: 'none',
                   borderRadius: 8,
@@ -1990,31 +1995,31 @@ const ChatFormGPT: React.FC = () => {
         [data-chat-theme="dark"] .chat-root textarea {
           background: #23272f !important;
           color: #fff !important;
-          border-color: #7f9cf5 !important;
+          border-color: #667eea !important;
         }
         [data-chat-theme="dark"] .chat-root textarea::placeholder {
           color: #a0a0a0 !important;
         }
         [data-chat-theme="dark"] .chat-root button {
           background: #23272f !important;
-          color: #7f9cf5 !important;
-          border: 1.5px solid #7f9cf5 !important;
+          color: #667eea !important;
+          border: 1.5px solid #667eea !important;
           box-shadow: none !important;
           transition: background 0.2s, color 0.2s, border 0.2s, box-shadow 0.2s;
         }
         [data-chat-theme="dark"] .chat-root button:hover, [data-chat-theme="dark"] .chat-root button:focus {
-          color: #00ffe7 !important;
-          border-color: #00ffe7 !important;
-          box-shadow: 0 0 8px #00ffe755 !important;
+          color: #667eea !important;
+          border-color: #667eea !important;
+          box-shadow: 0 0 8px rgba(102, 126, 234, 0.3) !important;
         }
         [data-chat-theme="dark"] .chat-root svg {
-          color: #7f9cf5 !important;
-          stroke: #7f9cf5 !important;
+          color: #667eea !important;
+          stroke: #667eea !important;
           transition: color 0.2s, stroke 0.2s;
         }
         [data-chat-theme="dark"] .chat-root button:hover svg, [data-chat-theme="dark"] .chat-root button:focus svg {
-          color: #00ffe7 !important;
-          stroke: #00ffe7 !important;
+          color: #667eea !important;
+          stroke: #667eea !important;
         }
         [data-chat-theme="dark"] .chat-root .ai-bubble {
           background: #23272f !important;
@@ -2042,18 +2047,20 @@ const ChatFormGPT: React.FC = () => {
           background: 'rgba(0,0,0,0.18)',
           zIndex: 1000,
           display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
+          alignItems: 'flex-start',
+          justifyContent: 'flex-start',
         }}>
           <div style={{
             background: '#fff',
-            borderRadius: 16,
+            borderRadius: 12,
             boxShadow: '0 8px 32px rgba(0,0,0,0.12)',
-            padding: '36px 32px',
-            minWidth: 340,
-            maxWidth: 420,
+            padding: '24px 20px',
+            minWidth: 230,
+            maxWidth: 270,
             textAlign: 'center',
-            position: 'relative',
+            position: 'absolute',
+            top: 'calc(100vh - 400px)',
+            left: '10px',
           }}>
             {/* Кнопка закрытия */}
             <button 
@@ -2085,17 +2092,17 @@ const ChatFormGPT: React.FC = () => {
 
             {/* Аватар пользователя */}
             <div style={{
-              width: '64px',
-              height: '64px',
+              width: '48px',
+              height: '48px',
               borderRadius: '50%',
               background: '#64748b',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               color: '#ffffff',
-              fontSize: '24px',
+              fontSize: '18px',
               fontWeight: '600',
-              margin: '0 auto 16px auto',
+              margin: '0 auto 12px auto',
             }}>
               В
             </div>
@@ -2103,9 +2110,9 @@ const ChatFormGPT: React.FC = () => {
             {/* Имя пользователя */}
             <div style={{ 
               fontWeight: 700, 
-              fontSize: 20, 
+              fontSize: 16, 
               color: '#23272f', 
-              marginBottom: 8 
+              marginBottom: 6 
             }}>
               Vitaly
             </div>
@@ -2113,86 +2120,39 @@ const ChatFormGPT: React.FC = () => {
             {/* Статус */}
             <div style={{ 
               color: '#64748b', 
-              fontSize: 14, 
-              marginBottom: 32 
+              fontSize: 12, 
+              marginBottom: 8 
             }}>
               Professional
+            </div>
+
+            {/* Email */}
+            <div style={{ 
+              color: '#64748b', 
+              fontSize: 11, 
+              marginBottom: 16 
+            }}>
+              chornyi.vitali@gmail.com
             </div>
 
             {/* Настройки профиля */}
             <div style={{
               display: 'flex',
               flexDirection: 'column',
-              gap: 12,
-              marginBottom: 24,
+              gap: 6,
+              marginBottom: 16,
             }}>
-              <button style={{
-                background: '#f8fafc',
-                color: '#374151',
-                border: '1px solid #e2e8f0',
-                borderRadius: 8,
-                padding: '12px 16px',
-                fontSize: 14,
-                fontWeight: 500,
-                cursor: 'pointer',
-                transition: 'all 0.2s',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = '#f1f5f9';
-                e.currentTarget.style.borderColor = '#cbd5e1';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = '#f8fafc';
-                e.currentTarget.style.borderColor = '#e2e8f0';
-              }}
-              >
-                <span>Edit Profile</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                  <path d="m18.5 2.5 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                </svg>
-              </button>
+
+
+
 
               <button style={{
                 background: '#f8fafc',
                 color: '#374151',
                 border: '1px solid #e2e8f0',
                 borderRadius: 8,
-                padding: '12px 16px',
-                fontSize: 14,
-                fontWeight: 500,
-                cursor: 'pointer',
-                transition: 'all 0.2s',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = '#f1f5f9';
-                e.currentTarget.style.borderColor = '#cbd5e1';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = '#f8fafc';
-                e.currentTarget.style.borderColor = '#e2e8f0';
-              }}
-              >
-                <span>Notifications</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
-                  <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
-                </svg>
-              </button>
-
-              <button style={{
-                background: '#f8fafc',
-                color: '#374151',
-                border: '1px solid #e2e8f0',
-                borderRadius: 8,
-                padding: '12px 16px',
-                fontSize: 14,
+                padding: '8px 12px',
+                fontSize: 13,
                 fontWeight: 500,
                 cursor: 'pointer',
                 transition: 'all 0.2s',
@@ -2215,31 +2175,65 @@ const ChatFormGPT: React.FC = () => {
                   <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1 1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
                 </svg>
               </button>
+
+              <button 
+                onClick={() => window.location.href = '/pricing'}
+                style={{
+                  background: '#f8fafc',
+                  color: '#374151',
+                  border: '1px solid #e2e8f0',
+                  borderRadius: 8,
+                  padding: '8px 12px',
+                  fontSize: 13,
+                  fontWeight: 500,
+                  cursor: 'pointer',
+                  transition: 'all 0.2s',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = '#f1f5f9';
+                  e.currentTarget.style.borderColor = '#cbd5e1';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = '#f8fafc';
+                  e.currentTarget.style.borderColor = '#e2e8f0';
+                }}
+                >
+                  <span>Pricing</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                    <line x1="12" y1="17" x2="12.01" y2="17"/>
+                  </svg>
+                </button>
             </div>
 
             {/* Кнопка выхода */}
             <button style={{
-              background: '#fef2f2',
-              color: '#dc2626',
-              border: '1px solid #fecaca',
+              background: '#f8fafc',
+              color: '#374151',
+              border: '1px solid #e2e8f0',
               borderRadius: 8,
-              padding: '12px 24px',
-              fontSize: 14,
+              padding: '8px 16px',
+              fontSize: 13,
               fontWeight: 500,
               cursor: 'pointer',
               transition: 'all 0.2s',
               width: '100%',
+              textAlign: 'left',
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.background = '#fee2e2';
-              e.currentTarget.style.borderColor = '#fca5a5';
+              e.currentTarget.style.background = '#f1f5f9';
+              e.currentTarget.style.borderColor = '#cbd5e1';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.background = '#fef2f2';
-              e.currentTarget.style.borderColor = '#fecaca';
+              e.currentTarget.style.background = '#f8fafc';
+              e.currentTarget.style.borderColor = '#e2e8f0';
             }}
             >
-              Sign Out
+              Log out
             </button>
           </div>
         </div>

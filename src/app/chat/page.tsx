@@ -16,7 +16,7 @@ export default function ChatPage() {
 
   return (
     <div style={{
-      background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
+      background: '#f8fafc',
       height: '100vh',
       width: '100vw',
       margin: 0,

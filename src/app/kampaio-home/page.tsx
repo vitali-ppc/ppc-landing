@@ -706,7 +706,7 @@ export default function KampaioHome() {
       `}</style>
     <div style={{
       minHeight: '100vh',
-      background: '#1a1a1a',
+      background: '#1e293b',
       color: 'white',
       fontFamily: 'system-ui, -apple-system, sans-serif'
     }}>
@@ -792,7 +792,7 @@ export default function KampaioHome() {
                   position: 'absolute',
                   width: '4px',
                   height: '4px',
-                  background: '#7f9cf5',
+                  background: '#667eea',
                   borderRadius: '50%',
                   top: '20%',
                   left: '15%',
@@ -802,7 +802,7 @@ export default function KampaioHome() {
                   position: 'absolute',
                   width: '3px',
                   height: '3px',
-                  background: '#00ffe7',
+                  background: '#667eea',
                   borderRadius: '50%',
                   top: '60%',
                   left: '80%',
@@ -813,7 +813,7 @@ export default function KampaioHome() {
                   position: 'absolute',
                   width: '4px',
                   height: '4px',
-                  background: '#7f9cf5',
+                  background: '#667eea',
                   borderRadius: '50%',
                   top: '80%',
                   left: '30%',
@@ -3513,7 +3513,7 @@ export default function KampaioHome() {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  background: 'linear-gradient(135deg, #7F9CF5, #667eea)',
+                  background: 'linear-gradient(135deg, #667eea, #764ba2)',
                   borderRadius: '12px',
                   padding: '16px'
                 }}>
@@ -3664,7 +3664,7 @@ export default function KampaioHome() {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  background: 'linear-gradient(135deg, #00FFE7, #00BFAE)',
+                  background: 'linear-gradient(135deg, #667eea, #764ba2)',
                   borderRadius: '12px',
                   padding: '16px'
                 }}>
@@ -3680,7 +3680,7 @@ export default function KampaioHome() {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  background: 'linear-gradient(135deg, #7F9CF5, #667eea)',
+                  background: 'linear-gradient(135deg, #667eea, #764ba2)',
                   borderRadius: '12px',
                   padding: '16px'
                 }}>
@@ -3696,7 +3696,7 @@ export default function KampaioHome() {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  background: 'linear-gradient(135deg, #00FFE7, #00BFAE)',
+                  background: 'linear-gradient(135deg, #667eea, #764ba2)',
                   borderRadius: '12px',
                   padding: '16px'
                 }}>
@@ -3712,7 +3712,7 @@ export default function KampaioHome() {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  background: 'linear-gradient(135deg, #7F9CF5, #667eea)',
+                  background: 'linear-gradient(135deg, #667eea, #764ba2)',
                   borderRadius: '12px',
                   padding: '16px'
                 }}>
@@ -3728,7 +3728,7 @@ export default function KampaioHome() {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  background: 'linear-gradient(135deg, #00FFE7, #00BFAE)',
+                  background: 'linear-gradient(135deg, #667eea, #764ba2)',
                   borderRadius: '12px',
                   padding: '16px'
                 }}>
@@ -3744,7 +3744,7 @@ export default function KampaioHome() {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  background: 'linear-gradient(135deg, #7F9CF5, #667eea)',
+                  background: 'linear-gradient(135deg, #667eea, #764ba2)',
                   borderRadius: '12px',
                   padding: '16px'
                 }}>
