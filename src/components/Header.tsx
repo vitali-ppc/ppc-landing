@@ -117,7 +117,7 @@ export default function Header({ variant = 'full' }: HeaderProps) {
             </Link>
           <div className="header__right">
             <a href="/login" className="header-btn header-btn-login">Login</a>
-            <a href="/demo" className="header-btn header-btn-demo">
+            <a href="/chat" className="header-btn header-btn-demo">
               Get Free
             </a>
           </div>
@@ -239,7 +239,7 @@ export default function Header({ variant = 'full' }: HeaderProps) {
           </div>
           <div className="header__right">
             <a href="/login" className="header-btn header-btn-login">Login</a>
-            <a href="/demo" className="header-btn header-btn-demo">
+            <a href="/chat" className="header-btn header-btn-demo">
               Get Free
             </a>
           </div>
@@ -264,7 +264,7 @@ export default function Header({ variant = 'full' }: HeaderProps) {
         </button>
         <div className="mobile-menu-buttons">
           <a href="/login" className="mobile-btn mobile-btn-login">Login</a>
-          <a href="/demo" className="mobile-btn mobile-btn-demo">
+          <a href="/chat" className="mobile-btn mobile-btn-demo">
             Get Free
           </a>
         </div>

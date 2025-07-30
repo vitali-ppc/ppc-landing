@@ -204,7 +204,7 @@ export default function AnimatedHero() {
                   position: 'relative',
                   overflow: 'hidden'
                 }}
-                onClick={() => console.log('Start Your Free Trial clicked')}
+                onClick={() => window.location.href = '/chat'}
               >
                 <motion.span
                   style={{ position: 'relative', zIndex: 1 }}

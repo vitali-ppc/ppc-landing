@@ -1410,6 +1410,7 @@ export default function KampaioHome() {
                 border: '2px solid #667eea',
                 marginTop: 'auto'
               }}
+              onClick={() => window.location.href = '/chat'}
               onMouseEnter={(e) => {
                 const target = e.target as HTMLElement;
                 target.style.background = 'rgba(102, 126, 234, 0.1)';
@@ -1575,6 +1576,7 @@ export default function KampaioHome() {
                 border: '2px solid #667eea',
                 marginTop: 'auto'
               }}
+              onClick={() => window.location.href = '/chat'}
               onMouseEnter={(e) => {
                 const target = e.target as HTMLElement;
                 target.style.background = 'rgba(102, 126, 234, 0.1)';
@@ -1741,6 +1743,7 @@ export default function KampaioHome() {
                 border: '2px solid #667eea',
                 marginTop: 'auto'
               }}
+              onClick={() => window.location.href = '/chat'}
               onMouseEnter={(e) => {
                 const target = e.target as HTMLElement;
                 target.style.background = 'rgba(102, 126, 234, 0.1)';
@@ -1825,7 +1828,8 @@ export default function KampaioHome() {
                 fontSize: '16px',
                 transition: 'all 0.3s ease',
                 boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)'
-              }}>
+              }}
+              onClick={() => window.location.href = '/chat'}>
                 Try for free
               </button>
             </div>
@@ -2137,7 +2141,8 @@ export default function KampaioHome() {
                         cursor: 'pointer',
                         transition: 'all 0.3s ease',
                         boxShadow: openQuestion === 1 ? '0 4px 12px rgba(102, 126, 234, 0.2)' : 'none'
-                      }}>
+                      }}
+                      onClick={() => window.location.href = '/chat'}>
                         Get Started
                       </button>
                     </div>
@@ -2258,7 +2263,8 @@ export default function KampaioHome() {
                         cursor: 'pointer',
                         transition: 'all 0.3s ease',
                         boxShadow: openQuestion === 2 ? '0 4px 12px rgba(102, 126, 234, 0.2)' : 'none'
-                      }}>
+                      }}
+                      onClick={() => window.location.href = '/chat'}>
                         Get Started
                       </button>
                     </div>
@@ -2379,7 +2385,8 @@ export default function KampaioHome() {
                         cursor: 'pointer',
                         transition: 'all 0.3s ease',
                         boxShadow: openQuestion === 3 ? '0 4px 12px rgba(102, 126, 234, 0.2)' : 'none'
-                      }}>
+                      }}
+                      onClick={() => window.location.href = '/chat'}>
                         Get Started
                       </button>
                     </div>
@@ -2500,7 +2507,8 @@ export default function KampaioHome() {
                         cursor: 'pointer',
                         transition: 'all 0.3s ease',
                         boxShadow: openQuestion === 4 ? '0 4px 12px rgba(102, 126, 234, 0.2)' : 'none'
-                      }}>
+                      }}
+                      onClick={() => window.location.href = '/chat'}>
                         Get Started
                       </button>
                     </div>
@@ -2621,7 +2629,8 @@ export default function KampaioHome() {
                         cursor: 'pointer',
                         transition: 'all 0.3s ease',
                         boxShadow: openQuestion === 5 ? '0 4px 12px rgba(102, 126, 234, 0.2)' : 'none'
-                      }}>
+                      }}
+                      onClick={() => window.location.href = '/chat'}>
                         Get Started
                       </button>
                     </div>
@@ -2742,7 +2751,8 @@ export default function KampaioHome() {
                         cursor: 'pointer',
                         transition: 'all 0.3s ease',
                         boxShadow: openQuestion === 6 ? '0 4px 12px rgba(102, 126, 234, 0.2)' : 'none'
-                      }}>
+                      }}
+                      onClick={() => window.location.href = '/chat'}>
                         Get Started
                       </button>
                     </div>
@@ -4550,7 +4560,7 @@ export default function KampaioHome() {
             justifyContent: 'center',
             flexWrap: 'wrap'
           }}>
-            <a href="https://replit.com/signup" style={{
+            <a href="/chat" style={{
               padding: '12px 24px',
               borderRadius: '8px',
               background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
@@ -4563,11 +4573,11 @@ export default function KampaioHome() {
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = 'translateY(-2px)';
-              e.currentTarget.style.boxShadow = '0 6px 16px rgba(0, 255, 231, 0.3)';
+              e.currentTarget.style.boxShadow = '0 6px 16px rgba(102, 126, 234, 0.4)';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 255, 231, 0.2)';
+              e.currentTarget.style.boxShadow = '0 4px 12px rgba(102, 126, 234, 0.3)';
             }}>
               Find My Leaks
             </a>
