@@ -195,9 +195,9 @@ export default function NicheCityPage({ params }: { params: { niche: string; cit
   return (
     <>
       <Header />
-      <main style={{ minHeight: '100vh', background: '#f7fafc', padding: '48px 0 0 0' }}>
+      <main style={{ minHeight: '100vh', background: '#f8fafc', padding: '48px 0 0 0' }}>
         <section style={{ maxWidth: 800, margin: '0 auto', padding: '0 24px' }}>
-          <h1 style={{ fontSize: '2.6rem', fontWeight: 900, color: '#23272f', textAlign: 'center', marginBottom: 12, letterSpacing: '-1px', lineHeight: 1.1 }}>
+          <h1 style={{ fontSize: '2.6rem', fontWeight: 900, color: '#1e293b', textAlign: 'center', marginBottom: 12, letterSpacing: '-1px', lineHeight: 1.1 }}>
             Google Ads для {formattedNiche} у {cityName}
           </h1>
           <p style={{ fontSize: '1.18rem', color: '#374151', textAlign: 'center', marginBottom: 32, lineHeight: 1.6, maxWidth: 600, marginLeft: 'auto', marginRight: 'auto' }}>
@@ -207,14 +207,14 @@ export default function NicheCityPage({ params }: { params: { niche: string; cit
 
         {/* Практичні поради */}
         <section style={{ maxWidth: 700, margin: '0 auto', marginBottom: 48, padding: '0 24px' }}>
-          <h2 style={{ fontSize: '1.35rem', fontWeight: 700, color: '#4f46e5', textAlign: 'center', marginBottom: 28, letterSpacing: '-0.5px' }}>
+          <h2 style={{ fontSize: '1.35rem', fontWeight: 700, color: '#667eea', textAlign: 'center', marginBottom: 28, letterSpacing: '-0.5px' }}>
             3 практичні поради для {formattedNiche.toLowerCase()} у {cityName}
           </h2>
           <ul style={{ display: 'flex', flexDirection: 'column', gap: 24, margin: 0, padding: 0, listStyle: 'none' }}>
             {tips.map((tip, i) => (
               <li key={i} style={{ background: '#fff', borderRadius: 14, boxShadow: '0 2px 16px rgba(80,100,180,0.07)', padding: '22px 28px', display: 'flex', alignItems: 'flex-start', gap: 18 }}>
-                <span style={{ minWidth: 38, height: 38, borderRadius: '50%', background: '#e0e7ff', color: '#4f46e5', fontWeight: 700, fontSize: 20, display: 'flex', alignItems: 'center', justifyContent: 'center', marginRight: 8 }}>{i + 1}</span>
-                <span style={{ fontSize: '1.08rem', color: '#23272f', lineHeight: 1.6 }}>{tip}</span>
+                <span style={{ minWidth: 38, height: 38, borderRadius: '50%', background: '#f8fafc', color: '#667eea', fontWeight: 700, fontSize: 20, display: 'flex', alignItems: 'center', justifyContent: 'center', marginRight: 8 }}>{i + 1}</span>
+                <span style={{ fontSize: '1.08rem', color: '#1e293b', lineHeight: 1.6 }}>{tip}</span>
               </li>
             ))}
           </ul>

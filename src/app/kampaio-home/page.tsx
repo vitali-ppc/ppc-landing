@@ -775,7 +775,7 @@ export default function KampaioHome() {
           }}>
             <div style={{
               position: 'relative',
-              background: 'linear-gradient(90deg, #eff6ff 0%, #ecfeff 50%, #faf5ff 100%)',
+              background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
               borderRadius: '24px',
               padding: '48px',
               boxShadow: '0 8px 32px rgba(0,0,0,0.08)',

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 export default function NotFound() {
   return (
     <div className="not-found-page" style={{
-      background: '#1a1a1a',
+      background: '#1e293b',
       color: '#fff',
       display: 'flex',
       alignItems: 'center',
@@ -33,18 +33,17 @@ export default function NotFound() {
         </div>
         <div style={{
           fontSize: '22px',
-          color: '#a0a0a0',
+          color: '#64748b',
           marginBottom: '32px'
         }}>
-          Sorry, the page you are looking for does not exist.<br />
-          Сторінка не знайдена або була видалена.
+          Sorry, the page you are looking for does not exist.
         </div>
         <Link href="/" style={{
           fontSize: '18px',
           padding: '14px 36px',
           borderRadius: '32px',
           background: '#fff',
-          color: '#23272f',
+          color: '#1e293b',
           fontWeight: '700',
           border: 'none',
           transition: 'background 0.2s, box-shadow 0.2s, transform 0.2s',

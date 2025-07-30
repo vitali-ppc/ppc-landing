@@ -51,7 +51,7 @@ export default function RealEstateAdsHubPage() {
             background: 'white',
             borderRadius: '16px',
             boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
-            border: '1px solid #e5e7eb',
+            border: '1px solid #e2e8f0',
             overflow: 'hidden'
           }}>
             <input
