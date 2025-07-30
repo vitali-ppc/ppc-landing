@@ -32,6 +32,7 @@ const ChatFormGPT: React.FC = () => {
 
   const [showHelpExamples, setShowHelpExamples] = useState(false);
   const [showBottomTemplates, setShowBottomTemplates] = useState(false);
+  const [showProfileModal, setShowProfileModal] = useState(false);
   
   // Чат состояния
   const [chats, setChats] = useLocalStorage<Chat[]>('ppcset-chats', []);
@@ -1029,8 +1030,7 @@ const ChatFormGPT: React.FC = () => {
           transition: 'all 0.2s',
         }}
         onClick={() => {
-          // Здесь можно добавить логику открытия окна профиля
-          alert('Profile settings window would open here');
+          setShowProfileModal(true);
         }}
         onMouseEnter={e => {
           e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
@@ -2030,6 +2030,221 @@ const ChatFormGPT: React.FC = () => {
           background: #1a1a1a !important;
         }
       `}</style>
+
+      {/* Модальное окно профиля */}
+      {showProfileModal && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100vw',
+          height: '100vh',
+          background: 'rgba(0,0,0,0.18)',
+          zIndex: 1000,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
+          <div style={{
+            background: '#fff',
+            borderRadius: 16,
+            boxShadow: '0 8px 32px rgba(0,0,0,0.12)',
+            padding: '36px 32px',
+            minWidth: 340,
+            maxWidth: 420,
+            textAlign: 'center',
+            position: 'relative',
+          }}>
+            {/* Кнопка закрытия */}
+            <button 
+              onClick={() => setShowProfileModal(false)} 
+              style={{ 
+                position: 'absolute', 
+                top: 12, 
+                right: 16, 
+                background: 'none', 
+                border: 'none', 
+                fontSize: 22, 
+                color: '#888', 
+                cursor: 'pointer',
+                padding: '4px',
+                borderRadius: '4px',
+                transition: 'all 0.2s'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = '#f1f5f9';
+                e.currentTarget.style.color = '#374151';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'transparent';
+                e.currentTarget.style.color = '#888';
+              }}
+            >
+              &times;
+            </button>
+
+            {/* Аватар пользователя */}
+            <div style={{
+              width: '64px',
+              height: '64px',
+              borderRadius: '50%',
+              background: '#64748b',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: '#ffffff',
+              fontSize: '24px',
+              fontWeight: '600',
+              margin: '0 auto 16px auto',
+            }}>
+              В
+            </div>
+
+            {/* Имя пользователя */}
+            <div style={{ 
+              fontWeight: 700, 
+              fontSize: 20, 
+              color: '#23272f', 
+              marginBottom: 8 
+            }}>
+              Vitaly
+            </div>
+
+            {/* Статус */}
+            <div style={{ 
+              color: '#64748b', 
+              fontSize: 14, 
+              marginBottom: 32 
+            }}>
+              Professional
+            </div>
+
+            {/* Настройки профиля */}
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 12,
+              marginBottom: 24,
+            }}>
+              <button style={{
+                background: '#f8fafc',
+                color: '#374151',
+                border: '1px solid #e2e8f0',
+                borderRadius: 8,
+                padding: '12px 16px',
+                fontSize: 14,
+                fontWeight: 500,
+                cursor: 'pointer',
+                transition: 'all 0.2s',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = '#f1f5f9';
+                e.currentTarget.style.borderColor = '#cbd5e1';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = '#f8fafc';
+                e.currentTarget.style.borderColor = '#e2e8f0';
+              }}
+              >
+                <span>Edit Profile</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                  <path d="m18.5 2.5 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                </svg>
+              </button>
+
+              <button style={{
+                background: '#f8fafc',
+                color: '#374151',
+                border: '1px solid #e2e8f0',
+                borderRadius: 8,
+                padding: '12px 16px',
+                fontSize: 14,
+                fontWeight: 500,
+                cursor: 'pointer',
+                transition: 'all 0.2s',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = '#f1f5f9';
+                e.currentTarget.style.borderColor = '#cbd5e1';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = '#f8fafc';
+                e.currentTarget.style.borderColor = '#e2e8f0';
+              }}
+              >
+                <span>Notifications</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
+                  <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
+                </svg>
+              </button>
+
+              <button style={{
+                background: '#f8fafc',
+                color: '#374151',
+                border: '1px solid #e2e8f0',
+                borderRadius: 8,
+                padding: '12px 16px',
+                fontSize: 14,
+                fontWeight: 500,
+                cursor: 'pointer',
+                transition: 'all 0.2s',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = '#f1f5f9';
+                e.currentTarget.style.borderColor = '#cbd5e1';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = '#f8fafc';
+                e.currentTarget.style.borderColor = '#e2e8f0';
+              }}
+              >
+                <span>Settings</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <circle cx="12" cy="12" r="3"/>
+                  <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1 1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                </svg>
+              </button>
+            </div>
+
+            {/* Кнопка выхода */}
+            <button style={{
+              background: '#fef2f2',
+              color: '#dc2626',
+              border: '1px solid #fecaca',
+              borderRadius: 8,
+              padding: '12px 24px',
+              fontSize: 14,
+              fontWeight: 500,
+              cursor: 'pointer',
+              transition: 'all 0.2s',
+              width: '100%',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = '#fee2e2';
+              e.currentTarget.style.borderColor = '#fca5a5';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = '#fef2f2';
+              e.currentTarget.style.borderColor = '#fecaca';
+            }}
+            >
+              Sign Out
+            </button>
+          </div>
+        </div>
+      )}
+
         </div>
       </div>
     </div>
