@@ -106,7 +106,6 @@ const ChatFormGPT: React.FC = () => {
       setMessages(chat.messages);
       setInput('');
       setError(null);
-      setShowSidebar(false);
     }
   }, [chats]);
 
@@ -686,7 +685,7 @@ const ChatFormGPT: React.FC = () => {
         background: '#1e293b',
         borderRight: '1px solid #64748b',
         transition: 'width 0.3s ease',
-        overflow: 'hidden',
+        overflow: 'visible',
         display: 'flex',
         flexDirection: 'column',
         position: 'fixed',
@@ -797,55 +796,58 @@ const ChatFormGPT: React.FC = () => {
             onChange={(e) => setSearchQuery(e.target.value)}
             style={{
               width: '100%',
-              padding: '8px 12px',
-              border: '1px solid #e2e8f0',
+              padding: '9px 12px',
+              border: 'none',
               borderRadius: 6,
               fontSize: 14,
-              background: '#f8fafc',
-              color: '#1e293b',
+              background: '#64748b',
+              color: '#ffffff',
               outline: 'none',
             }}
             onFocus={e => {
-              e.target.style.border = '1px solid #764ba2';
-              e.target.style.boxShadow = '0 0 0 2px rgba(118, 75, 162, 0.2)';
+              e.target.style.border = 'none';
+              e.target.style.boxShadow = 'none';
             }}
             onBlur={e => {
-              e.target.style.border = '1px solid #e2e8f0';
+              e.target.style.border = 'none';
               e.target.style.boxShadow = 'none';
             }}
           />
         </div>
         <div style={{
-          flex: 1,
+          height: '400px',
           overflowY: 'auto',
           padding: '8px',
+          scrollbarWidth: 'thin',
+          scrollbarColor: '#64748b transparent',
         }}>
-          {filteredChats.map((chat) => (
+          {filteredChats.map((chat, index) => (
             <div
               key={chat.id}
               style={{
-                padding: '12px 16px',
+                padding: '4px 16px',
                 margin: '4px 0',
                 borderRadius: 8,
-                background: currentChatId === chat.id ? '#1a1a1a' : 'transparent',
-                border: currentChatId === chat.id ? '1px solid #7f9cf5' : '1px solid transparent',
+                background: currentChatId === chat.id ? '#64748b' : 'transparent',
+                border: 'none',
                 cursor: 'pointer',
                 transition: 'all 0.2s',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
+                borderBottom: index === 9 ? '1px solid #64748b' : 'none',
               }}
               onClick={() => selectChat(chat.id)}
               onMouseEnter={e => {
                 if (currentChatId !== chat.id) {
-                  e.currentTarget.style.background = '#1a1a1a';
-                  e.currentTarget.style.border = '1px solid #00ffe7';
+                  e.currentTarget.style.background = '#64748b';
+                  e.currentTarget.style.border = 'none';
                 }
               }}
               onMouseLeave={e => {
                 if (currentChatId !== chat.id) {
                   e.currentTarget.style.background = 'transparent';
-                  e.currentTarget.style.border = '1px solid transparent';
+                  e.currentTarget.style.border = 'none';
                 }
               }}
             >
@@ -1009,6 +1011,14 @@ const ChatFormGPT: React.FC = () => {
               </div>
             </div>
           ))}
+        </div>
+        
+        {/* Место для других кнопок после списка чатов */}
+        <div style={{
+          padding: '16px',
+          borderTop: '1px solid #64748b',
+        }}>
+          {/* Здесь можно добавить другие кнопки */}
         </div>
       </div>
 

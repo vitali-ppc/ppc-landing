@@ -8,6 +8,30 @@ body {
   color: #333;
 }
 
+/* ===== Стилі для placeholder в чате ===== */
+input::placeholder {
+  color: #ffffff !important;
+  opacity: 0.7;
+}
+
+/* ===== Стилі для полоси прокрутки в сайдбарі ===== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #64748b;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
 /* ===== Стилі для юридичних сторінок ===== */
 .privacy-policy-page,
 .terms-of-service-page {
