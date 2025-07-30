@@ -81,7 +81,7 @@ export default function BlogPostPage() {
               Master the fundamentals of Quality Score and learn advanced techniques to improve your ad performance.
             </p>
             {/* Meta Info */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '24px', marginBottom: '40px', paddingBottom: '32px', borderBottom: '1px solid #e5e7eb' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '24px', marginBottom: '40px', paddingBottom: '32px', borderBottom: '1px solid #e2e8f0' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: '600', fontSize: '16px' }}>
                   K
@@ -94,7 +94,7 @@ export default function BlogPostPage() {
               </div>
             </div>
             {/* Table of Contents Toggle */}
-            <div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: '12px', padding: '20px', marginBottom: '40px' }}>
+            <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '12px', padding: '20px', marginBottom: '40px' }}>
               <button
                 onClick={() => setIsTableOfContentsOpen(!isTableOfContentsOpen)}
                 style={{ background: 'none', border: 'none', fontSize: '18px', fontWeight: '600', color: '#1e293b', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px', width: '100%', justifyContent: 'space-between' }}
@@ -103,7 +103,7 @@ export default function BlogPostPage() {
                 <span style={{ transform: isTableOfContentsOpen ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.3s ease' }}>▼</span>
               </button>
               {isTableOfContentsOpen && (
-                <div style={{ marginTop: '16px', paddingTop: '16px', borderTop: '1px solid #e5e7eb' }}>
+                <div style={{ marginTop: '16px', paddingTop: '16px', borderTop: '1px solid #e2e8f0' }}>
                   {tableOfContents.map((item) => (
                     <div
                       key={item.id}
@@ -156,7 +156,7 @@ export default function BlogPostPage() {
                   <text x="200" y="90" textAnchor="middle" fontSize="24" fontWeight="bold" fill="#1e293b">Quality Score</text>
                   {/* CTR */}
                   <g>
-                    <rect x="40" y="140" width="80" height="32" rx="10" fill="#e0e7ff" />
+                    <rect x="40" y="140" width="80" height="32" rx="10" fill="#f8fafc" />
                     <text x="80" y="162" textAnchor="middle" fontSize="15" fill="#3730a3">CTR</text>
                     <circle cx="80" cy="135" r="12" fill="#764ba2" />
                     <text x="80" y="140" textAnchor="middle" fontSize="13" fill="white" fontWeight="bold">%</text>
@@ -164,7 +164,7 @@ export default function BlogPostPage() {
                   </g>
                   {/* Ad Relevance */}
                   <g>
-                    <rect x="160" y="140" width="80" height="32" rx="10" fill="#e0e7ff" />
+                    <rect x="160" y="140" width="80" height="32" rx="10" fill="#f8fafc" />
                     <text x="200" y="162" textAnchor="middle" fontSize="15" fill="#3730a3">Ad Relevance</text>
                     <rect x="200" y="135" width="16" height="16" rx="3" fill="#764ba2" />
                     <text x="208" y="147" textAnchor="middle" fontSize="13" fill="white" fontWeight="bold">Ad</text>
@@ -172,7 +172,7 @@ export default function BlogPostPage() {
                   </g>
                   {/* Landing Page */}
                   <g>
-                    <rect x="280" y="140" width="80" height="32" rx="10" fill="#e0e7ff" />
+                    <rect x="280" y="140" width="80" height="32" rx="10" fill="#f8fafc" />
                     <text x="320" y="162" textAnchor="middle" fontSize="15" fill="#3730a3">Landing Page</text>
                     <rect x="320" y="135" width="18" height="12" rx="2" fill="#764ba2" />
                     <rect x="322" y="137" width="14" height="8" rx="1" fill="white" />

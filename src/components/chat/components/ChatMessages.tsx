@@ -55,7 +55,14 @@ export const ChatMessages: React.FC<ChatMessagesProps> = React.memo(({
           justifyContent: 'center',
           minHeight: '60vh',
         }}>
-          <div style={{ fontSize: '28px', fontWeight: '600', color: '#667eea' }}>
+          <div style={{ 
+            fontSize: '28px', 
+            fontWeight: '600', 
+            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text'
+          }}>
             Ready to boost your Google Ads performance?
           </div>
         </div>

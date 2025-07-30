@@ -11,9 +11,9 @@ export default function CTAButton({ cityName }: { cityName: string }) {
         padding: '18px 44px',
         borderRadius: 12,
         background: hover
-          ? 'linear-gradient(90deg, #764ba2 0%, #00ffe7 100%)'
-          : 'linear-gradient(90deg, #667eea 0%, #00ffe7 100%)',
-        color: '#23272f',
+          ? 'linear-gradient(90deg, #764ba2 0%, #667eea 100%)'
+          : 'linear-gradient(90deg, #667eea 0%, #764ba2 100%)',
+        color: '#1e293b',
         fontWeight: 800,
         fontSize: '1.18rem',
         boxShadow: '0 4px 24px rgba(80,100,180,0.10)',

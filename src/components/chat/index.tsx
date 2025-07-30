@@ -1221,8 +1221,8 @@ const ChatFormGPT: React.FC = () => {
           }}
         >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <circle cx="12" cy="12" r="10" stroke="#23272f" strokeWidth="2"/>
-            <path d="M15 9l-6 6M9 9l6 6" stroke="#23272f" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            <circle cx="12" cy="12" r="10" stroke="#1e293b" strokeWidth="2"/>
+            <path d="M15 9l-6 6M9 9l6 6" stroke="#1e293b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         </div>
       </div>
