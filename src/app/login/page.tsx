@@ -6,7 +6,9 @@ import Link from 'next/link';
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-     const [rememberMe, setRememberMe] = useState(true);
+  const [rememberMe, setRememberMe] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
+  const [suggestedPassword, setSuggestedPassword] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -14,60 +16,78 @@ export default function LoginPage() {
     window.location.href = '/api/auth/login';
   };
 
-  return (
-         <div style={{
-       minHeight: '100vh',
-       background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
-       display: 'flex',
-       alignItems: 'center',
-       justifyContent: 'center',
-       padding: '20px',
-       position: 'relative',
-       overflow: 'hidden'
-     }}>
-      {/* Animated Background Elements */}
-      <div style={{
-        position: 'absolute',
-        top: '10%',
-        left: '10%',
-        width: '200px',
-        height: '200px',
-        background: 'rgba(255, 255, 255, 0.1)',
-        borderRadius: '50%',
-        animation: 'float 6s ease-in-out infinite'
-      }}></div>
-      <div style={{
-        position: 'absolute',
-        bottom: '20%',
-        right: '15%',
-        width: '150px',
-        height: '150px',
-        background: 'rgba(255, 255, 255, 0.08)',
-        borderRadius: '50%',
-        animation: 'float 8s ease-in-out infinite reverse'
-      }}></div>
-      <div style={{
-        position: 'absolute',
-        top: '50%',
-        left: '5%',
-        width: '100px',
-        height: '100px',
-        background: 'rgba(255, 255, 255, 0.06)',
-        borderRadius: '50%',
-        animation: 'float 7s ease-in-out infinite'
-      }}></div>
+  // Генерация надежного пароля
+  const generateStrongPassword = () => {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{}|;:,.<>?';
+    let password = '';
+    for (let i = 0; i < 16; i++) {
+      password += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    setSuggestedPassword(password);
+    setPassword(password);
+  };
 
-      {/* Main Content */}
-      <div style={{
-        background: 'white',
-        borderRadius: '16px',
-        padding: '48px',
-        boxShadow: '0 20px 60px rgba(0, 0, 0, 0.15)',
-        width: '100%',
-        maxWidth: '480px',
+  // Обработка фокуса на поле пароля
+  const handlePasswordFocus = () => {
+    if (!suggestedPassword) {
+      generateStrongPassword();
+    }
+  };
+
+  return (
+                     <div style={{
+        minHeight: '100vh',
+        background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '20px',
         position: 'relative',
-        zIndex: 1
+        overflow: 'hidden'
       }}>
+       {/* Animated Background Elements */}
+       <div style={{
+         position: 'absolute',
+         top: '10%',
+         left: '10%',
+         width: '200px',
+         height: '200px',
+         background: 'rgba(255, 255, 255, 0.1)',
+         borderRadius: '50%',
+         animation: 'float 6s ease-in-out infinite'
+       }}></div>
+       <div style={{
+         position: 'absolute',
+         bottom: '20%',
+         right: '15%',
+         width: '150px',
+         height: '150px',
+         background: 'rgba(255, 255, 255, 0.08)',
+         borderRadius: '50%',
+         animation: 'float 8s ease-in-out infinite reverse'
+       }}></div>
+       <div style={{
+         position: 'absolute',
+         top: '50%',
+         left: '5%',
+         width: '100px',
+         height: '100px',
+         background: 'rgba(255, 255, 255, 0.06)',
+         borderRadius: '50%',
+         animation: 'float 7s ease-in-out infinite'
+       }}></div>
+
+       {/* Main Content */}
+       <div style={{
+         background: 'white',
+         borderRadius: '16px',
+         padding: '48px',
+         boxShadow: '0 20px 60px rgba(0, 0, 0, 0.15)',
+         width: '100%',
+         maxWidth: '480px',
+         position: 'relative',
+         zIndex: 1
+       }}>
         {/* Logo */}
         <div style={{
           textAlign: 'center',
@@ -152,6 +172,8 @@ export default function LoginPage() {
                onChange={(e) => setEmail(e.target.value)}
                placeholder="Enter your email"
                required
+               className="login-input"
+               autoComplete="username"
                style={{
                  width: '100%',
                  padding: '12px 16px',
@@ -160,14 +182,6 @@ export default function LoginPage() {
                  fontSize: '16px',
                  transition: 'all 0.2s ease',
                  boxSizing: 'border-box'
-               }}
-               onFocus={(e) => {
-                 e.target.style.borderColor = '#667eea';
-                 e.target.style.boxShadow = '0 0 0 3px rgba(102, 126, 234, 0.1)';
-               }}
-               onBlur={(e) => {
-                 e.target.style.borderColor = '#e2e8f0';
-                 e.target.style.boxShadow = 'none';
                }}
              />
           </div>
@@ -187,39 +201,108 @@ export default function LoginPage() {
               }}>
                 Password
               </label>
-              <Link href="#" style={{
+              <Link href="/reset" style={{
                 fontSize: '14px',
                 color: '#667eea',
                 textDecoration: 'none',
-                fontWeight: '500'
-              }}>
+                fontWeight: '500',
+                transition: 'color 0.2s ease'
+              }}
+              onMouseEnter={(e) => (e.target as HTMLElement).style.color = '#764ba2'}
+              onMouseLeave={(e) => (e.target as HTMLElement).style.color = '#667eea'}
+              >
                 Forgot your password?
               </Link>
             </div>
-                         <input
-               type="password"
-               value={password}
-               onChange={(e) => setPassword(e.target.value)}
-               placeholder="Enter your password"
-               required
-               style={{
-                 width: '100%',
-                 padding: '12px 16px',
-                 border: '1px solid #e2e8f0',
-                 borderRadius: '8px',
-                 fontSize: '16px',
-                 transition: 'all 0.2s ease',
-                 boxSizing: 'border-box'
-               }}
-               onFocus={(e) => {
-                 e.target.style.borderColor = '#667eea';
-                 e.target.style.boxShadow = '0 0 0 3px rgba(102, 126, 234, 0.1)';
-               }}
-               onBlur={(e) => {
-                 e.target.style.borderColor = '#e2e8f0';
-                 e.target.style.boxShadow = 'none';
-               }}
-             />
+            <div style={{ position: 'relative' }}>
+              <input
+                type={showPassword ? "text" : "password"}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter your password"
+                required
+                className="login-input"
+                autoComplete="current-password"
+                onFocus={handlePasswordFocus}
+                style={{
+                  width: '100%',
+                  padding: '12px 16px',
+                  paddingRight: '48px',
+                  border: '1px solid #e2e8f0',
+                  borderRadius: '8px',
+                  fontSize: '16px',
+                  transition: 'all 0.2s ease',
+                  boxSizing: 'border-box'
+                }}
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                style={{
+                  position: 'absolute',
+                  right: '12px',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  padding: '4px',
+                  color: '#64748b',
+                  transition: 'color 0.2s ease'
+                }}
+                                 onMouseEnter={(e) => (e.target as HTMLElement).style.color = '#764ba2'}
+                 onMouseLeave={(e) => (e.target as HTMLElement).style.color = '#64748b'}
+              >
+                {showPassword ? (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                    <circle cx="12" cy="12" r="3"/>
+                  </svg>
+                ) : (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
+                    <line x1="1" y1="1" x2="23" y2="23"/>
+                  </svg>
+                )}
+              </button>
+            </div>
+            
+            {/* Password Suggestion */}
+            {suggestedPassword && (
+              <div style={{
+                marginTop: '8px',
+                padding: '8px 12px',
+                background: '#f8fafc',
+                border: '1px solid #e2e8f0',
+                borderRadius: '6px',
+                fontSize: '12px',
+                color: '#64748b',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between'
+              }}>
+                <span>Suggested password: <strong>{suggestedPassword}</strong></span>
+                <button
+                  type="button"
+                  onClick={generateStrongPassword}
+                  style={{
+                    background: 'none',
+                    border: 'none',
+                    color: '#667eea',
+                    cursor: 'pointer',
+                    fontSize: '12px',
+                    fontWeight: '500',
+                    padding: '2px 6px',
+                    borderRadius: '4px',
+                    transition: 'background 0.2s ease'
+                  }}
+                                     onMouseEnter={(e) => (e.target as HTMLElement).style.background = 'rgba(102, 126, 234, 0.1)'}
+                   onMouseLeave={(e) => (e.target as HTMLElement).style.background = 'none'}
+                >
+                  Generate new
+                </button>
+              </div>
+            )}
           </div>
 
           {/* Remember Me */}
@@ -265,14 +348,14 @@ export default function LoginPage() {
               transition: 'all 0.2s ease',
               marginBottom: '24px'
             }}
-            onMouseEnter={(e) => {
-              e.target.style.transform = 'translateY(-1px)';
-              e.target.style.boxShadow = '0 8px 25px rgba(102, 126, 234, 0.3)';
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.transform = 'translateY(0)';
-              e.target.style.boxShadow = 'none';
-            }}
+                         onMouseEnter={(e) => {
+               (e.target as HTMLElement).style.transform = 'translateY(-1px)';
+               (e.target as HTMLElement).style.boxShadow = '0 8px 25px rgba(102, 126, 234, 0.3)';
+             }}
+             onMouseLeave={(e) => {
+               (e.target as HTMLElement).style.transform = 'translateY(0)';
+               (e.target as HTMLElement).style.boxShadow = 'none';
+             }}
           >
             Sign in
           </button>
@@ -330,12 +413,12 @@ export default function LoginPage() {
                gap: '8px'
              }}
              onMouseEnter={(e) => {
-               e.target.style.borderColor = '#667eea';
-               e.target.style.background = '#f8fafc';
+               (e.target as HTMLElement).style.borderColor = '#667eea';
+               (e.target as HTMLElement).style.background = '#f8fafc';
              }}
              onMouseLeave={(e) => {
-               e.target.style.borderColor = '#e2e8f0';
-               e.target.style.background = 'white';
+               (e.target as HTMLElement).style.borderColor = '#e2e8f0';
+               (e.target as HTMLElement).style.background = 'white';
              }}
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
@@ -349,18 +432,22 @@ export default function LoginPage() {
         </div>
 
         {/* Create Account Link */}
-                 <div style={{
-           textAlign: 'center',
-           fontSize: '14px',
-           color: '#64748b'
-         }}>
-           New to Kampaio?{' '}
-          <Link href="/chat" style={{
+        <div style={{
+          textAlign: 'center',
+          fontSize: '14px',
+          color: '#64748b'
+        }}>
+          New to Kampaio?{' '}
+          <Link href="/register" style={{
             color: '#667eea',
             textDecoration: 'none',
-            fontWeight: '500'
-          }}>
-            Start your free trial
+            fontWeight: '500',
+            transition: 'color 0.2s ease'
+          }}
+          onMouseEnter={(e) => (e.target as HTMLElement).style.color = '#764ba2'}
+          onMouseLeave={(e) => (e.target as HTMLElement).style.color = '#667eea'}
+          >
+            Create an account
           </Link>
         </div>
 
@@ -389,25 +476,36 @@ export default function LoginPage() {
             </div>
           </div>
         </div>
-      </div>
+             </div>
 
-      {/* Footer */}
-      <div style={{
-        position: 'absolute',
-        bottom: '20px',
-        left: '20px',
-        fontSize: '12px',
-        color: 'rgba(255, 255, 255, 0.8)'
-      }}>
-        © Kampaio Privacy & terms
-      </div>
+       {/* Footer */}
+       <div style={{
+         position: 'absolute',
+         bottom: '20px',
+         left: '20px',
+         fontSize: '12px',
+         color: 'rgba(255, 255, 255, 0.8)'
+       }}>
+         © Kampaio Privacy & terms
+       </div>
 
-      <style jsx>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-20px); }
-        }
-      `}</style>
-    </div>
-  );
+       <style jsx>{`
+         @keyframes float {
+           0%, 100% { transform: translateY(0px); }
+           50% { transform: translateY(-20px); }
+         }
+         
+         /* Специфичные стили для полей ввода на странице login */
+         .login-input:focus {
+           outline: none !important;
+           border-color: #764ba2 !important;
+           box-shadow: 0 0 0 3px rgba(118, 75, 162, 0.1) !important;
+         }
+         
+         .login-input:focus::placeholder {
+           color: #64748b !important;
+         }
+       `}</style>
+     </div>
+   );
 } 
