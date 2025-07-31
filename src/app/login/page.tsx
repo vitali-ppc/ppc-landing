@@ -15,16 +15,16 @@ export default function LoginPage() {
   };
 
   return (
-    <div style={{
-      minHeight: '100vh',
-      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      padding: '20px',
-      position: 'relative',
-      overflow: 'hidden'
-    }}>
+         <div style={{
+       minHeight: '100vh',
+       background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
+       display: 'flex',
+       alignItems: 'center',
+       justifyContent: 'center',
+       padding: '20px',
+       position: 'relative',
+       overflow: 'hidden'
+     }}>
       {/* Animated Background Elements */}
       <div style={{
         position: 'absolute',
@@ -365,15 +365,15 @@ export default function LoginPage() {
         </div>
 
         {/* Security Message */}
-        <div style={{
-          marginTop: '32px',
-          padding: '16px',
-          background: '#f8fafc',
-          borderRadius: '8px',
-          fontSize: '12px',
-          color: '#6b7280',
-          lineHeight: '1.5'
-        }}>
+                 <div style={{
+           marginTop: '32px',
+           padding: '16px',
+           background: '#f8fafc',
+           borderRadius: '8px',
+           fontSize: '12px',
+           color: '#64748b',
+           lineHeight: '1.5'
+         }}>
           <div style={{
             display: 'flex',
             alignItems: 'flex-start',
