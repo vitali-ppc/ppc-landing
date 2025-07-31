@@ -39,7 +39,8 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ 
       success: true, 
-      message: 'Password reset successfully' 
+      message: 'Password reset successfully',
+      newPassword: password // Возвращаем новый пароль для сохранения в localStorage
     });
 
   } catch (error) {

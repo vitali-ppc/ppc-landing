@@ -70,6 +70,9 @@ export default function RegisterPage() {
         throw new Error(data.error || 'Failed to create account');
       }
 
+      // Сохраняем email и пароль в localStorage после успешной регистрации
+      localStorage.setItem('userEmail', email);
+      localStorage.setItem('userCurrentPassword', password);
       setIsSuccess(true);
     } catch (error) {
       console.error('Registration error:', error);
@@ -282,7 +285,7 @@ export default function RegisterPage() {
   }
 
   return (
-    <div style={{
+    <div className="register-page" style={{
       minHeight: '100vh',
       background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
       display: 'flex',
@@ -290,7 +293,9 @@ export default function RegisterPage() {
       justifyContent: 'center',
       padding: '20px',
       position: 'relative',
-      overflow: 'hidden'
+      overflow: 'hidden',
+      margin: 0,
+      width: '100%'
     }}>
       {/* Animated Background Elements */}
       <div style={{
@@ -328,17 +333,17 @@ export default function RegisterPage() {
       <div style={{
         background: 'white',
         borderRadius: '16px',
-        padding: '48px',
+        padding: '24px',
         boxShadow: '0 20px 60px rgba(0, 0, 0, 0.15)',
         width: '100%',
-        maxWidth: '480px',
+        maxWidth: '380px',
         position: 'relative',
         zIndex: 1
       }}>
         {/* Logo */}
         <div style={{
           textAlign: 'center',
-          marginBottom: '32px'
+          marginBottom: '12px'
         }}>
           <Link href="/" style={{
             textDecoration: 'none',
@@ -390,11 +395,11 @@ export default function RegisterPage() {
 
         {/* Title */}
         <h1 style={{
-          fontSize: '28px',
+          fontSize: '20px',
           fontWeight: '700',
           color: '#1e293b',
           textAlign: 'center',
-          marginBottom: '16px',
+          marginBottom: '10px',
           marginTop: 0
         }}>
           Create your account
@@ -402,10 +407,10 @@ export default function RegisterPage() {
 
         {/* Description */}
         <p style={{
-          fontSize: '16px',
+          fontSize: '12px',
           color: '#64748b',
           textAlign: 'center',
-          marginBottom: '32px',
+          marginBottom: '14px',
           lineHeight: '1.5'
         }}>
           Get started with Kampaio and unlock powerful PPC optimization tools.
@@ -429,7 +434,7 @@ export default function RegisterPage() {
         {/* Registration Form */}
         <form onSubmit={handleSubmit}>
           {/* Email Field */}
-          <div style={{ marginBottom: '20px' }}>
+          <div style={{ marginBottom: '12px' }}>
             <label style={{
               display: 'block',
               fontSize: '14px',
@@ -448,21 +453,21 @@ export default function RegisterPage() {
               className="register-input"
               disabled={isLoading}
               autoComplete="username"
-              style={{
-                width: '100%',
-                padding: '12px 16px',
-                border: '1px solid #e2e8f0',
-                borderRadius: '8px',
-                fontSize: '16px',
-                transition: 'all 0.2s ease',
-                boxSizing: 'border-box',
-                opacity: isLoading ? 0.6 : 1
-              }}
+                              style={{
+                  width: '100%',
+                  padding: '9px 12px',
+                  border: '1px solid #e2e8f0',
+                  borderRadius: '8px',
+                  fontSize: '13px',
+                  transition: 'all 0.2s ease',
+                  boxSizing: 'border-box',
+                  opacity: isLoading ? 0.6 : 1
+                }}
             />
           </div>
 
           {/* Password Field */}
-          <div style={{ marginBottom: '20px' }}>
+          <div style={{ marginBottom: '12px' }}>
             <label style={{
               display: 'block',
               fontSize: '14px',
@@ -484,11 +489,11 @@ export default function RegisterPage() {
                 autoComplete="new-password"
                 style={{
                   width: '100%',
-                  padding: '12px 16px',
+                  padding: '9px 12px',
                   paddingRight: '48px',
                   border: '1px solid #e2e8f0',
                   borderRadius: '8px',
-                  fontSize: '16px',
+                  fontSize: '13px',
                   transition: 'all 0.2s ease',
                   boxSizing: 'border-box',
                   opacity: isLoading ? 0.6 : 1
@@ -599,7 +604,7 @@ export default function RegisterPage() {
           </div>
 
           {/* Confirm Password Field */}
-          <div style={{ marginBottom: '24px' }}>
+          <div style={{ marginBottom: '18px' }}>
             <label style={{
               display: 'block',
               fontSize: '14px',
@@ -621,11 +626,11 @@ export default function RegisterPage() {
                 autoComplete="new-password"
                 style={{
                   width: '100%',
-                  padding: '12px 16px',
+                  padding: '9px 12px',
                   paddingRight: '48px',
                   border: '1px solid #e2e8f0',
                   borderRadius: '8px',
-                  fontSize: '16px',
+                  fontSize: '13px',
                   transition: 'all 0.2s ease',
                   boxSizing: 'border-box',
                   opacity: isLoading ? 0.6 : 1
@@ -670,18 +675,18 @@ export default function RegisterPage() {
             disabled={isLoading}
             style={{
               width: '100%',
-              padding: '14px 24px',
+              padding: '11px 18px',
               background: isLoading 
                 ? 'linear-gradient(135deg, #94a3b8 0%, #64748b 100%)'
                 : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
               color: 'white',
               border: 'none',
               borderRadius: '8px',
-              fontSize: '16px',
+              fontSize: '13px',
               fontWeight: '600',
               cursor: isLoading ? 'not-allowed' : 'pointer',
               transition: 'all 0.2s ease',
-              marginBottom: '24px',
+              marginBottom: '12px',
               position: 'relative',
               overflow: 'hidden'
             }}
@@ -718,7 +723,7 @@ export default function RegisterPage() {
         <div style={{
           display: 'flex',
           alignItems: 'center',
-          marginBottom: '24px'
+          marginBottom: '12px'
         }}>
           <div style={{
             flex: 1,
@@ -745,16 +750,16 @@ export default function RegisterPage() {
           disabled={isLoading}
           style={{
             width: '100%',
-            padding: '14px 24px',
+            padding: '11px 18px',
             background: 'white',
             color: '#374151',
             border: '1px solid #e2e8f0',
             borderRadius: '8px',
-            fontSize: '16px',
+            fontSize: '13px',
             fontWeight: '500',
             cursor: isLoading ? 'not-allowed' : 'pointer',
             transition: 'all 0.2s ease',
-            marginBottom: '24px',
+            marginBottom: '12px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -785,7 +790,7 @@ export default function RegisterPage() {
         {/* Sign In Link */}
         <div style={{
           textAlign: 'center',
-          marginBottom: '24px'
+          marginBottom: '12px'
         }}>
           <span style={{
             fontSize: '14px',
@@ -809,11 +814,11 @@ export default function RegisterPage() {
 
         {/* Terms */}
         <div style={{
-          marginTop: '32px',
-          padding: '16px',
+          marginTop: '12px',
+          padding: '8px',
           background: '#f8fafc',
           borderRadius: '8px',
-          fontSize: '12px',
+          fontSize: '10px',
           color: '#64748b',
           lineHeight: '1.5'
         }}>
@@ -826,7 +831,7 @@ export default function RegisterPage() {
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
             </svg>
             <div>
-              By creating an account, you agree to our <Link href="/terms" style={{ color: '#667eea', textDecoration: 'none' }}>Terms of Service</Link> and <Link href="/privacy" style={{ color: '#667eea', textDecoration: 'none' }}>Privacy Policy</Link>.
+                             By creating an account, you agree to our <Link href="/terms-of-service" style={{ color: '#667eea', textDecoration: 'none' }}>Terms of Service</Link> and <Link href="/privacy-policy" style={{ color: '#667eea', textDecoration: 'none' }}>Privacy Policy</Link>.
             </div>
           </div>
         </div>

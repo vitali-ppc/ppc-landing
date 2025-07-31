@@ -56,6 +56,16 @@ export default function ResetPasswordPage() {
         throw new Error(data.error || 'Failed to reset password');
       }
 
+      // Сохраняем новый пароль в localStorage
+      if (data.newPassword) {
+        localStorage.setItem('userCurrentPassword', data.newPassword);
+      }
+      
+      // Также сохраняем email, если он есть
+      if (email) {
+        localStorage.setItem('userEmail', email);
+      }
+
       setIsSuccess(true);
     } catch (error) {
       console.error('Error resetting password:', error);
@@ -400,7 +410,7 @@ export default function ResetPasswordPage() {
   }
 
   return (
-    <div style={{
+    <div className="reset-password-page" style={{
       minHeight: '100vh',
       background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
       display: 'flex',
@@ -408,7 +418,9 @@ export default function ResetPasswordPage() {
       justifyContent: 'center',
       padding: '20px',
       position: 'relative',
-      overflow: 'hidden'
+      overflow: 'hidden',
+      margin: 0,
+      width: '100%'
     }}>
       {/* Animated Background Elements */}
       <div style={{
@@ -446,17 +458,17 @@ export default function ResetPasswordPage() {
       <div style={{
         background: 'white',
         borderRadius: '16px',
-        padding: '48px',
+        padding: '28px',
         boxShadow: '0 20px 60px rgba(0, 0, 0, 0.15)',
         width: '100%',
-        maxWidth: '480px',
+        maxWidth: '380px',
         position: 'relative',
         zIndex: 1
       }}>
         {/* Logo */}
         <div style={{
           textAlign: 'center',
-          marginBottom: '32px'
+          marginBottom: '20px'
         }}>
           <Link href="/" style={{
             textDecoration: 'none',
@@ -508,11 +520,11 @@ export default function ResetPasswordPage() {
 
         {/* Title */}
         <h1 style={{
-          fontSize: '28px',
+          fontSize: '24px',
           fontWeight: '700',
           color: '#1e293b',
           textAlign: 'center',
-          marginBottom: '16px',
+          marginBottom: '12px',
           marginTop: 0
         }}>
           Reset your password
@@ -520,10 +532,10 @@ export default function ResetPasswordPage() {
 
         {/* Description */}
         <p style={{
-          fontSize: '16px',
+          fontSize: '14px',
           color: '#64748b',
           textAlign: 'center',
-          marginBottom: '32px',
+          marginBottom: '20px',
           lineHeight: '1.5'
         }}>
           Enter your new password below. This link will expire after 24 hours.

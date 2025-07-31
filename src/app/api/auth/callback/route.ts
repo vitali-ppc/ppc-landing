@@ -40,7 +40,26 @@ export async function GET(request: NextRequest) {
     // In production, you should store these securely
     const { access_token, refresh_token } = tokenData;
 
-    // Redirect back to chat page with success
+    // Get user info from Google
+    try {
+      const userInfoResponse = await fetch('https://www.googleapis.com/oauth2/v2/userinfo', {
+        headers: {
+          'Authorization': `Bearer ${access_token}`,
+        },
+      });
+
+      if (userInfoResponse.ok) {
+        const userInfo = await userInfoResponse.json();
+        const userEmail = userInfo.email;
+        
+        // Redirect back to chat page with success and email
+        return NextResponse.redirect(`${process.env.NEXTAUTH_URL}/chat?auth=success&access_token=${access_token}&email=${encodeURIComponent(userEmail)}`);
+      }
+    } catch (error) {
+      console.error('Failed to get user info:', error);
+    }
+
+    // Fallback redirect without email
     return NextResponse.redirect(`${process.env.NEXTAUTH_URL}/chat?auth=success&access_token=${access_token}`);
 
   } catch (error) {

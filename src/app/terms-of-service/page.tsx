@@ -80,7 +80,25 @@ export default function TermsOfService() {
           </section>
 
           <section>
-            <h2>4. User Responsibilities</h2>
+            <h2>4. Account Registration and Authentication</h2>
+            <p>To access our AI service, you must create an account by providing accurate and complete information. You agree to:</p>
+            <ul>
+              <li>Provide a valid email address for account verification and communication</li>
+              <li>Create a strong password and keep it confidential</li>
+              <li>Complete the email verification process to activate your account</li>
+              <li>Notify us immediately of any unauthorized use of your account</li>
+              <li>Not share your account credentials with third parties</li>
+              <li>Log out of your account when using shared devices</li>
+              <li>Be responsible for all activities that occur under your account</li>
+            </ul>
+            <p>
+              We provide password reset functionality through email verification. You are responsible for maintaining 
+              the security of your email account and ensuring you can receive password reset emails.
+            </p>
+          </section>
+
+          <section>
+            <h2>5. User Responsibilities</h2>
             <p>As a user of our AI service, you agree to:</p>
             <ul>
               <li>Provide accurate and complete information for AI processing</li>
@@ -91,11 +109,13 @@ export default function TermsOfService() {
               <li>Not attempt to gain unauthorized access to our AI infrastructure</li>
               <li>Comply with all applicable laws and regulations</li>
               <li>Review and approve AI-generated recommendations before implementation</li>
+              <li>Not use automated systems to create multiple accounts</li>
+              <li>Not attempt to circumvent any security measures</li>
             </ul>
           </section>
 
           <section>
-            <h2>5. AI-Generated Content and Recommendations</h2>
+            <h2>6. AI-Generated Content and Recommendations</h2>
             <p>
               Our AI service generates insights, reports, and recommendations based on your Google Ads data. 
               While we strive for accuracy, you acknowledge that:
@@ -110,7 +130,7 @@ export default function TermsOfService() {
           </section>
 
           <section>
-            <h2>6. Intellectual Property Rights</h2>
+            <h2>7. Intellectual Property Rights</h2>
             <p>
               All content on this website, including but not limited to text, graphics, logos, images, software, 
               and AI algorithms, is the property of Kampaio and is protected by copyright and other intellectual property laws.
@@ -122,7 +142,7 @@ export default function TermsOfService() {
           </section>
 
           <section>
-            <h2>7. Privacy Policy and Data Protection</h2>
+            <h2>8. Privacy Policy and Data Protection</h2>
             <p>
               Your privacy and data protection are paramount. Please review our Privacy Policy, which governs 
               how we collect, process, and protect your information, including Google Ads data processed by our AI systems.
@@ -130,7 +150,7 @@ export default function TermsOfService() {
           </section>
 
           <section>
-            <h2>8. AI Service Availability</h2>
+            <h2>9. AI Service Availability</h2>
             <p>
               We strive to maintain high availability of our AI service, but we do not guarantee uninterrupted access. 
               Our AI systems may be temporarily unavailable for maintenance, updates, model training, or other technical reasons.
@@ -138,7 +158,7 @@ export default function TermsOfService() {
           </section>
 
           <section>
-            <h2>9. Limitation of Liability</h2>
+            <h2>10. Limitation of Liability</h2>
             <p>
               To the maximum extent permitted by law, Kampaio shall not be liable for any indirect, incidental, special, 
               consequential, or punitive damages, including but not limited to loss of profits, data, or use, 
@@ -147,7 +167,7 @@ export default function TermsOfService() {
           </section>
 
           <section>
-            <h2>10. Disclaimer of Warranties</h2>
+            <h2>11. Disclaimer of Warranties</h2>
             <p>
               Our AI service is provided "as is" and "as available" without any warranties of any kind, 
               either express or implied, including but not limited to warranties of merchantability, 
@@ -156,7 +176,7 @@ export default function TermsOfService() {
           </section>
 
           <section>
-            <h2>11. Indemnification</h2>
+            <h2>12. Indemnification</h2>
             <p>
               You agree to indemnify and hold harmless Kampaio from any claims, damages, losses, or expenses 
               arising out of or relating to your use of our AI service, violation of these terms, 
@@ -165,7 +185,7 @@ export default function TermsOfService() {
           </section>
 
           <section>
-            <h2>12. Termination</h2>
+            <h2>13. Termination</h2>
             <p>
               We may terminate or suspend your access to our AI service at any time, with or without cause, 
               with or without notice. Upon termination, your right to use our AI service will cease immediately, 
@@ -174,7 +194,7 @@ export default function TermsOfService() {
           </section>
 
           <section>
-            <h2>13. Governing Law</h2>
+            <h2>14. Governing Law</h2>
             <p>
               These terms shall be governed by and construed in accordance with the laws of the jurisdiction 
               in which Kampaio operates, without regard to its conflict of law provisions.
@@ -182,7 +202,7 @@ export default function TermsOfService() {
           </section>
 
           <section>
-            <h2>14. Changes to Terms</h2>
+            <h2>15. Changes to Terms</h2>
             <p>
               We reserve the right to modify these terms at any time, especially as our AI capabilities evolve. 
               We will notify users of any material changes by posting the new terms on this page and updating the "Last updated" date.
@@ -190,14 +210,15 @@ export default function TermsOfService() {
           </section>
 
           <section>
-            <h2>15. Contact Information</h2>
+            <h2>16. Contact Information</h2>
             <p>
               If you have any questions about these Terms of Service or our AI service, please contact us:
             </p>
             <div className="contact-info">
-              <p><strong>Email:</strong> <a href="mailto:legal@kampaio.com">legal@kampaio.com</a></p>
+              <p><strong>Legal Inquiries:</strong> <a href="mailto:legal@kampaio.com">legal@kampaio.com</a></p>
+              <p><strong>Account & Authentication Support:</strong> <a href="mailto:support@kampaio.com">support@kampaio.com</a></p>
+              <p><strong>AI Service Support:</strong> <a href="mailto:ai-support@kampaio.com">ai-support@kampaio.com</a></p>
               <p><strong>Website:</strong> <a href="https://kampaio.com">https://kampaio.com</a></p>
-              <p><strong>AI Support:</strong> <a href="mailto:support@kampaio.com">support@kampaio.com</a></p>
             </div>
           </section>
         </div>

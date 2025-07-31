@@ -111,6 +111,46 @@ html, body {
   background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
 }
 
+/* Дополнительные стили для полного сброса отступов */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Специально для страниц аутентификации */
+body {
+  margin: 0 !important;
+  padding: 0 !important;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* Убираем отступы у всех элементов на страницах аутентификации */
+.login-page,
+.reset-page,
+.register-page,
+.reset-password-page,
+.verify-email-page {
+  margin: 0 !important;
+  padding: 0 !important;
+  min-height: 100vh;
+  width: 100%;
+}
+
 /* Предотвращаем скролл на странице чата */
 body.chat-page {
   overflow: hidden;

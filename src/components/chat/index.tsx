@@ -33,6 +33,21 @@ const ChatFormGPT: React.FC = () => {
   const [showHelpExamples, setShowHelpExamples] = useState(false);
   const [showBottomTemplates, setShowBottomTemplates] = useState(false);
   const [showProfileModal, setShowProfileModal] = useState(false);
+  const [showSettingsModal, setShowSettingsModal] = useState(false);
+  const [activeSettingsTab, setActiveSettingsTab] = useState('profile');
+  const [emailNotifications, setEmailNotifications] = useState(true);
+  const [isEditingProfile, setIsEditingProfile] = useState(false);
+  const [editName, setEditName] = useState('');
+  const [editEmail, setEditEmail] = useState('');
+  const [isChangingPassword, setIsChangingPassword] = useState(false);
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmNewPassword, setConfirmNewPassword] = useState('');
+  const [showCurrentPassword, setShowCurrentPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [userCurrentPassword, setUserCurrentPassword] = useState(''); // Храним текущий пароль пользователя
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false); // Состояние для уведомления об успехе
   
   // Чат состояния
   const [chats, setChats] = useLocalStorage<Chat[]>('ppcset-chats', []);
@@ -53,6 +68,10 @@ const ChatFormGPT: React.FC = () => {
   const [copied, setCopied] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   
+  // Пользователь
+  const [userEmail, setUserEmail] = useState<string>('');
+  const [userName, setUserName] = useState<string>('');
+  
   // Конвертируем массив в Set для удобства работы
   const shownMessages = useMemo(() => new Set(shownMessagesArray), [shownMessagesArray]);
   const setShownMessages = useCallback((value: Set<string> | ((prev: Set<string>) => Set<string>)) => {
@@ -66,6 +85,160 @@ const ChatFormGPT: React.FC = () => {
   const typingTimeout = useRef<NodeJS.Timeout | null>(null);
   const typingIndex = useRef(0);
   const typingInterrupted = useRef(false);
+
+  // Получение данных пользователя
+  useEffect(() => {
+    // Получаем email из URL параметров или localStorage
+    const urlParams = new URLSearchParams(window.location.search);
+    const emailFromUrl = urlParams.get('email');
+    const storedEmail = localStorage.getItem('userEmail');
+    
+    const email = emailFromUrl || storedEmail || 'chornyi.vitali@gmail.com';
+    setUserEmail(email);
+    
+    // Извлекаем имя из email
+    const emailPart = email.split('@')[0];
+    
+    // Если есть точка, берем часть после точки (имя)
+    let name = emailPart;
+    if (emailPart.includes('.')) {
+      name = emailPart.split('.')[1] || emailPart.split('.')[0];
+    }
+    
+    // Проверяем, что имя не состоит только из цифр
+    if (/^\d+$/.test(name)) {
+      name = 'User'; // Если только цифры, используем "User"
+    }
+    
+    // Форматируем имя: первая буква заглавная, остальные строчные
+    let formattedName = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+    
+    // Специальная обработка для конкретных email
+    if (email === 'chornyi.vitali@gmail.com') {
+      formattedName = 'Vitaliy';
+    }
+    
+    // Если имя слишком короткое или странное, используем "User"
+    if (formattedName.length < 2 || /^[^a-zA-Z]/.test(formattedName)) {
+      formattedName = 'User';
+    }
+    
+    setUserName(formattedName);
+    
+    // Сохраняем email в localStorage
+             if (email) {
+           localStorage.setItem('userEmail', email);
+         }
+         
+         // Инициализируем текущий пароль пользователя из localStorage или дефолтный
+         const storedPassword = localStorage.getItem('userCurrentPassword');
+         setUserCurrentPassword(storedPassword || 'password123');
+       }, []);
+
+  // Функция выхода из системы
+  const handleLogout = () => {
+    // Очищаем данные пользователя, но НЕ удаляем userCurrentPassword
+    localStorage.removeItem('userEmail');
+    // localStorage.removeItem('userCurrentPassword'); // НЕ удаляем пароль при выходе
+    localStorage.removeItem('ppcset-chats');
+    localStorage.removeItem('ppcset-current-chat');
+    localStorage.removeItem('ppcset-shown-messages');
+    
+    // Перенаправляем на страницу входа
+    window.location.href = '/login';
+  };
+
+  // Функция начала редактирования профиля
+  const handleStartEditProfile = () => {
+    setEditName(userName);
+    setEditEmail(userEmail);
+    setIsEditingProfile(true);
+  };
+
+  // Функция сохранения профиля
+  const handleSaveProfile = () => {
+    // В реальном приложении здесь будет API запрос
+    // Пока просто обновляем локальные данные
+    if (editName.trim() && editEmail.includes('@')) {
+      // Обновляем userName и userEmail
+      // В реальном приложении нужно обновить localStorage и возможно API
+      setIsEditingProfile(false);
+      // Здесь можно добавить уведомление об успешном сохранении
+    }
+  };
+
+  // Функция отмены редактирования
+  const handleCancelEditProfile = () => {
+    setIsEditingProfile(false);
+    setEditName('');
+    setEditEmail('');
+  };
+
+  // Функция начала смены пароля
+  const handleStartChangePassword = () => {
+    setIsChangingPassword(true);
+    setCurrentPassword(userCurrentPassword); // Автоматически заполняем текущим паролем
+    setNewPassword('');
+    setConfirmNewPassword('');
+    setShowCurrentPassword(false);
+    setShowNewPassword(false);
+    setShowConfirmPassword(false);
+  };
+
+  // Функция сохранения нового пароля
+  const handleSavePassword = () => {
+    // Валидация
+    if (!currentPassword.trim()) {
+      alert('Please enter your current password');
+      return;
+    }
+    if (newPassword.length < 8) {
+      alert('New password must be at least 8 characters long');
+      return;
+    }
+    if (newPassword !== confirmNewPassword) {
+      alert('New passwords do not match');
+      return;
+    }
+
+    // Проверяем, что введенный текущий пароль совпадает с сохраненным
+    if (currentPassword !== userCurrentPassword) {
+      alert('Current password is incorrect');
+      return;
+    }
+
+    // СРАЗУ сохраняем новый пароль в состояние и localStorage
+    setUserCurrentPassword(newPassword);
+    localStorage.setItem('userCurrentPassword', newPassword);
+
+    // Закрываем форму и очищаем ВСЕ поля
+    setIsChangingPassword(false);
+    setCurrentPassword('');
+    setNewPassword('');
+    setConfirmNewPassword('');
+    setShowCurrentPassword(false);
+    setShowNewPassword(false);
+    setShowConfirmPassword(false);
+    
+    // ПОСЛЕ сохранения показываем уведомление
+    setShowSuccessMessage(true);
+    
+    // Автоматически скрываем уведомление через 3 секунды
+    setTimeout(() => {
+      setShowSuccessMessage(false);
+    }, 3000);
+  };
+
+  // Функция отмены смены пароля
+  const handleCancelChangePassword = () => {
+    setIsChangingPassword(false);
+    setCurrentPassword('');
+    setNewPassword('');
+    setConfirmNewPassword('');
+    setShowCurrentPassword(false);
+    setShowNewPassword(false);
+    setShowConfirmPassword(false);
+  };
 
   // Мемоизированные значения
   const dataToUse = useMemo(() => realAdsData || adsData, [realAdsData, adsData]);
@@ -1067,7 +1240,7 @@ const ChatFormGPT: React.FC = () => {
             e.currentTarget.style.background = '#64748b';
           }}
           >
-            В
+            {userName.charAt(0).toUpperCase()}
           </div>
                       <div style={{
               display: 'flex',
@@ -1080,7 +1253,7 @@ const ChatFormGPT: React.FC = () => {
                 fontSize: '14px',
                 fontWeight: '500',
               }}>
-                Vitaly
+                {userName}
               </div>
               <div style={{
                 color: '#a0a0a0',
@@ -2104,7 +2277,7 @@ const ChatFormGPT: React.FC = () => {
               fontWeight: '600',
               margin: '0 auto 12px auto',
             }}>
-              В
+              {userName.charAt(0).toUpperCase()}
             </div>
 
             {/* Имя пользователя */}
@@ -2114,7 +2287,7 @@ const ChatFormGPT: React.FC = () => {
               color: '#23272f', 
               marginBottom: 6 
             }}>
-              Vitaly
+              {userName}
             </div>
 
             {/* Статус */}
@@ -2132,7 +2305,7 @@ const ChatFormGPT: React.FC = () => {
               fontSize: 11, 
               marginBottom: 16 
             }}>
-              chornyi.vitali@gmail.com
+              {userEmail}
             </div>
 
             {/* Настройки профиля */}
@@ -2146,29 +2319,35 @@ const ChatFormGPT: React.FC = () => {
 
 
 
-              <button style={{
-                background: '#f8fafc',
-                color: '#374151',
-                border: '1px solid #e2e8f0',
-                borderRadius: 8,
-                padding: '8px 12px',
-                fontSize: 13,
-                fontWeight: 500,
-                cursor: 'pointer',
-                transition: 'all 0.2s',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = '#f1f5f9';
-                e.currentTarget.style.borderColor = '#cbd5e1';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = '#f8fafc';
-                e.currentTarget.style.borderColor = '#e2e8f0';
-              }}
-              >
+              <button 
+                onClick={() => {
+                  setShowProfileModal(false);
+                  setShowSettingsModal(true);
+                  setActiveSettingsTab('profile');
+                }}
+                style={{
+                  background: '#f8fafc',
+                  color: '#374151',
+                  border: '1px solid #e2e8f0',
+                  borderRadius: 8,
+                  padding: '8px 12px',
+                  fontSize: 13,
+                  fontWeight: 500,
+                  cursor: 'pointer',
+                  transition: 'all 0.2s',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = '#f1f5f9';
+                  e.currentTarget.style.borderColor = '#cbd5e1';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = '#f8fafc';
+                  e.currentTarget.style.borderColor = '#e2e8f0';
+                }}
+                >
                 <span>Settings</span>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <circle cx="12" cy="12" r="3"/>
@@ -2211,30 +2390,921 @@ const ChatFormGPT: React.FC = () => {
             </div>
 
             {/* Кнопка выхода */}
-            <button style={{
-              background: '#f8fafc',
-              color: '#374151',
-              border: '1px solid #e2e8f0',
-              borderRadius: 8,
-              padding: '8px 16px',
-              fontSize: 13,
-              fontWeight: 500,
-              cursor: 'pointer',
-              transition: 'all 0.2s',
-              width: '100%',
-              textAlign: 'left',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = '#f1f5f9';
-              e.currentTarget.style.borderColor = '#cbd5e1';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = '#f8fafc';
-              e.currentTarget.style.borderColor = '#e2e8f0';
-            }}
-            >
+            <button 
+              onClick={handleLogout}
+              style={{
+                background: '#f8fafc',
+                color: '#374151',
+                border: '1px solid #e2e8f0',
+                borderRadius: 8,
+                padding: '8px 16px',
+                fontSize: 13,
+                fontWeight: 500,
+                cursor: 'pointer',
+                transition: 'all 0.2s',
+                width: '100%',
+                textAlign: 'left',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = '#f1f5f9';
+                e.currentTarget.style.borderColor = '#cbd5e1';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = '#f8fafc';
+                e.currentTarget.style.borderColor = '#e2e8f0';
+              }}
+              >
               Log out
             </button>
+          </div>
+        </div>
+      )}
+
+              {/* Уведомление об успешном обновлении пароля */}
+        {showSuccessMessage && (
+          <div style={{
+            position: 'fixed',
+            top: '20px',
+            right: '20px',
+            background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+            color: 'white',
+            padding: '16px 20px',
+            borderRadius: '12px',
+            boxShadow: '0 10px 25px rgba(16, 185, 129, 0.3)',
+            zIndex: 10000,
+            display: 'flex',
+            alignItems: 'center',
+            gap: '12px',
+            minWidth: '300px',
+            animation: 'slideIn 0.3s ease-out',
+          }}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <polyline points="22,4 12,14.01 9,11.01"/>
+            </svg>
+            <div>
+              <div style={{ fontWeight: '600', fontSize: '14px' }}>Success!</div>
+              <div style={{ fontSize: '13px', opacity: 0.9 }}>Password updated successfully</div>
+            </div>
+            <button
+              onClick={() => setShowSuccessMessage(false)}
+              style={{
+                background: 'none',
+                border: 'none',
+                color: 'white',
+                cursor: 'pointer',
+                padding: '4px',
+                marginLeft: 'auto',
+                opacity: 0.7,
+                transition: 'opacity 0.2s',
+              }}
+              onMouseEnter={(e) => (e.target as HTMLElement).style.opacity = '1'}
+              onMouseLeave={(e) => (e.target as HTMLElement).style.opacity = '0.7'}
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <line x1="18" y1="6" x2="6" y2="18"/>
+                <line x1="6" y1="6" x2="18" y2="18"/>
+              </svg>
+            </button>
+          </div>
+        )}
+
+        {/* Модальное окно настроек */}
+        {showSettingsModal && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100vw',
+          height: '100vh',
+          background: 'rgba(0,0,0,0.18)',
+          zIndex: 1000,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
+          <div style={{
+            background: '#fff',
+            borderRadius: 16,
+            boxShadow: '0 20px 60px rgba(0,0,0,0.15)',
+            padding: '32px',
+            width: '95%',
+            maxWidth: 800,
+            maxHeight: '90vh',
+            overflow: 'hidden',
+            display: 'flex',
+            flexDirection: 'column',
+          }}>
+            {/* Заголовок */}
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              marginBottom: '24px',
+              borderBottom: '1px solid #e2e8f0',
+              paddingBottom: '16px',
+            }}>
+              <h2 style={{
+                fontSize: '24px',
+                fontWeight: '700',
+                color: '#1e293b',
+                margin: 0,
+              }}>
+                Settings
+              </h2>
+              <button 
+                onClick={() => setShowSettingsModal(false)} 
+                style={{ 
+                  background: 'none', 
+                  border: 'none', 
+                  fontSize: '24px', 
+                  color: '#64748b', 
+                  cursor: 'pointer',
+                  padding: '8px',
+                  borderRadius: '8px',
+                  transition: 'all 0.2s',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = '#f1f5f9';
+                  e.currentTarget.style.color = '#374151';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = 'transparent';
+                  e.currentTarget.style.color = '#64748b';
+                }}
+              >
+                &times;
+              </button>
+            </div>
+
+            {/* Вкладки */}
+            <div style={{
+              display: 'flex',
+              borderBottom: '1px solid #e2e8f0',
+              marginBottom: '24px',
+            }}>
+              {[
+                { 
+                  id: 'profile', 
+                  label: 'Profile', 
+                  icon: (
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                      <circle cx="12" cy="7" r="4"/>
+                    </svg>
+                  )
+                },
+                { 
+                  id: 'security', 
+                  label: 'Security', 
+                  icon: (
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                  )
+                },
+                { 
+                  id: 'preferences', 
+                  label: 'Preferences', 
+                  icon: (
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <circle cx="12" cy="12" r="3"/>
+                      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1 1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                    </svg>
+                  )
+                },
+              ].map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveSettingsTab(tab.id)}
+                  style={{
+                    background: 'none',
+                    border: 'none',
+                    padding: '12px 20px',
+                    fontSize: '14px',
+                    fontWeight: activeSettingsTab === tab.id ? '600' : '500',
+                    color: activeSettingsTab === tab.id ? '#667eea' : '#64748b',
+                    cursor: 'pointer',
+                    borderBottom: activeSettingsTab === tab.id ? '2px solid #667eea' : '2px solid transparent',
+                    transition: 'all 0.2s',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                  }}
+                  onMouseEnter={(e) => {
+                    if (activeSettingsTab !== tab.id) {
+                      e.currentTarget.style.color = '#374151';
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    if (activeSettingsTab !== tab.id) {
+                      e.currentTarget.style.color = '#64748b';
+                    }
+                  }}
+                >
+                  {tab.icon}
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+
+            {/* Контент вкладок */}
+            <div style={{
+              flex: 1,
+              overflow: 'auto',
+              paddingRight: '8px',
+            }}>
+                             {activeSettingsTab === 'profile' && (
+                 <div>
+                   <h3 style={{
+                     fontSize: '18px',
+                     fontWeight: '600',
+                     color: '#1e293b',
+                     marginBottom: '20px',
+                   }}>
+                     Profile Information
+                   </h3>
+                   
+                   {!isEditingProfile ? (
+                     <>
+                       <div style={{
+                         display: 'flex',
+                         alignItems: 'center',
+                         gap: '16px',
+                         marginBottom: '24px',
+                         padding: '20px',
+                         background: '#f8fafc',
+                         borderRadius: '12px',
+                       }}>
+                         <div style={{
+                           width: '64px',
+                           height: '64px',
+                           borderRadius: '50%',
+                           background: '#64748b',
+                           display: 'flex',
+                           alignItems: 'center',
+                           justifyContent: 'center',
+                           color: '#ffffff',
+                           fontSize: '24px',
+                           fontWeight: '600',
+                         }}>
+                           {userName.charAt(0).toUpperCase()}
+                         </div>
+                         <div>
+                           <div style={{
+                             fontSize: '18px',
+                             fontWeight: '600',
+                             color: '#1e293b',
+                             marginBottom: '4px',
+                           }}>
+                             {userName}
+                           </div>
+                           <div style={{
+                             fontSize: '14px',
+                             color: '#64748b',
+                             marginBottom: '4px',
+                           }}>
+                             {userEmail}
+                           </div>
+                           <div style={{
+                             fontSize: '12px',
+                             color: '#667eea',
+                             fontWeight: '500',
+                           }}>
+                             ✓ Email Verified
+                           </div>
+                         </div>
+                       </div>
+
+                       <div style={{
+                         display: 'grid',
+                         gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+                         gap: '16px',
+                         marginBottom: '24px',
+                       }}>
+                         <div style={{
+                           padding: '16px',
+                           background: '#f8fafc',
+                           borderRadius: '8px',
+                           border: '1px solid #e2e8f0',
+                         }}>
+                           <div style={{
+                             fontSize: '12px',
+                             color: '#64748b',
+                             marginBottom: '4px',
+                           }}>
+                             Member Since
+                           </div>
+                           <div style={{
+                             fontSize: '14px',
+                             fontWeight: '500',
+                             color: '#1e293b',
+                           }}>
+                             {new Date().toLocaleDateString()}
+                           </div>
+                         </div>
+                         <div style={{
+                           padding: '16px',
+                           background: '#f8fafc',
+                           borderRadius: '8px',
+                           border: '1px solid #e2e8f0',
+                         }}>
+                           <div style={{
+                             fontSize: '12px',
+                             color: '#64748b',
+                             marginBottom: '4px',
+                           }}>
+                             Account Type
+                           </div>
+                           <div style={{
+                             fontSize: '14px',
+                             fontWeight: '500',
+                             color: '#1e293b',
+                           }}>
+                             Professional
+                           </div>
+                         </div>
+                       </div>
+
+                       <button
+                         onClick={handleStartEditProfile}
+                         style={{
+                           background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                           color: 'white',
+                           border: 'none',
+                           borderRadius: '8px',
+                           padding: '12px 24px',
+                           fontSize: '14px',
+                           fontWeight: '500',
+                           cursor: 'pointer',
+                           transition: 'all 0.2s',
+                         }}
+                         onMouseEnter={(e) => {
+                           e.currentTarget.style.transform = 'translateY(-1px)';
+                           e.currentTarget.style.boxShadow = '0 8px 25px rgba(102, 126, 234, 0.3)';
+                         }}
+                         onMouseLeave={(e) => {
+                           e.currentTarget.style.transform = 'translateY(0)';
+                           e.currentTarget.style.boxShadow = 'none';
+                         }}
+                       >
+                         Edit Profile
+                       </button>
+                     </>
+                   ) : (
+                     <div style={{
+                       padding: '20px',
+                       background: '#f8fafc',
+                       borderRadius: '12px',
+                       marginBottom: '24px',
+                     }}>
+                       <h4 style={{
+                         fontSize: '16px',
+                         fontWeight: '600',
+                         color: '#1e293b',
+                         marginBottom: '16px',
+                       }}>
+                         Edit Profile
+                       </h4>
+                       
+                       <div style={{ marginBottom: '16px' }}>
+                         <label style={{
+                           display: 'block',
+                           fontSize: '14px',
+                           fontWeight: '500',
+                           color: '#374151',
+                           marginBottom: '8px',
+                         }}>
+                           Name
+                         </label>
+                         <input
+                           type="text"
+                           value={editName}
+                           onChange={(e) => setEditName(e.target.value)}
+                           style={{
+                             width: '100%',
+                             padding: '12px 16px',
+                             border: '1px solid #e2e8f0',
+                             borderRadius: '8px',
+                             fontSize: '16px',
+                             transition: 'all 0.2s ease',
+                             boxSizing: 'border-box',
+                           }}
+                           onFocus={(e) => {
+                             e.target.style.borderColor = '#667eea';
+                             e.target.style.boxShadow = '0 0 0 3px rgba(102, 126, 234, 0.1)';
+                           }}
+                           onBlur={(e) => {
+                             e.target.style.borderColor = '#e2e8f0';
+                             e.target.style.boxShadow = 'none';
+                           }}
+                         />
+                       </div>
+
+                       <div style={{ marginBottom: '20px' }}>
+                         <label style={{
+                           display: 'block',
+                           fontSize: '14px',
+                           fontWeight: '500',
+                           color: '#374151',
+                           marginBottom: '8px',
+                         }}>
+                           Email
+                         </label>
+                         <input
+                           type="email"
+                           value={editEmail}
+                           onChange={(e) => setEditEmail(e.target.value)}
+                           style={{
+                             width: '100%',
+                             padding: '12px 16px',
+                             border: '1px solid #e2e8f0',
+                             borderRadius: '8px',
+                             fontSize: '16px',
+                             transition: 'all 0.2s ease',
+                             boxSizing: 'border-box',
+                           }}
+                           onFocus={(e) => {
+                             e.target.style.borderColor = '#667eea';
+                             e.target.style.boxShadow = '0 0 0 3px rgba(102, 126, 234, 0.1)';
+                           }}
+                           onBlur={(e) => {
+                             e.target.style.borderColor = '#e2e8f0';
+                             e.target.style.boxShadow = 'none';
+                           }}
+                         />
+                       </div>
+
+                       <div style={{
+                         display: 'flex',
+                         gap: '12px',
+                       }}>
+                         <button
+                           onClick={handleSaveProfile}
+                           style={{
+                             background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                             color: 'white',
+                             border: 'none',
+                             borderRadius: '8px',
+                             padding: '12px 24px',
+                             fontSize: '14px',
+                             fontWeight: '500',
+                             cursor: 'pointer',
+                             transition: 'all 0.2s',
+                           }}
+                           onMouseEnter={(e) => {
+                             e.currentTarget.style.transform = 'translateY(-1px)';
+                             e.currentTarget.style.boxShadow = '0 8px 25px rgba(102, 126, 234, 0.3)';
+                           }}
+                           onMouseLeave={(e) => {
+                             e.currentTarget.style.transform = 'translateY(0)';
+                             e.currentTarget.style.boxShadow = 'none';
+                           }}
+                         >
+                           Save Changes
+                         </button>
+                         <button
+                           onClick={handleCancelEditProfile}
+                           style={{
+                             background: 'white',
+                             color: '#64748b',
+                             border: '1px solid #e2e8f0',
+                             borderRadius: '8px',
+                             padding: '12px 24px',
+                             fontSize: '14px',
+                             fontWeight: '500',
+                             cursor: 'pointer',
+                             transition: 'all 0.2s',
+                           }}
+                           onMouseEnter={(e) => {
+                             e.currentTarget.style.background = '#f8fafc';
+                             e.currentTarget.style.borderColor = '#cbd5e1';
+                           }}
+                           onMouseLeave={(e) => {
+                             e.currentTarget.style.background = 'white';
+                             e.currentTarget.style.borderColor = '#e2e8f0';
+                           }}
+                         >
+                           Cancel
+                         </button>
+                       </div>
+                     </div>
+                   )}
+                 </div>
+               )}
+
+                             {activeSettingsTab === 'security' && (
+                 <div>
+                   <h3 style={{
+                     fontSize: '18px',
+                     fontWeight: '600',
+                     color: '#1e293b',
+                     marginBottom: '20px',
+                   }}>
+                     Security Settings
+                   </h3>
+                   
+                   {!isChangingPassword ? (
+                     <div style={{
+                       padding: '20px',
+                       background: '#f8fafc',
+                       borderRadius: '12px',
+                     }}>
+                       <h4 style={{
+                         fontSize: '16px',
+                         fontWeight: '600',
+                         color: '#1e293b',
+                         marginBottom: '12px',
+                       }}>
+                         Change Password
+                       </h4>
+                       <p style={{
+                         fontSize: '14px',
+                         color: '#64748b',
+                         marginBottom: '16px',
+                       }}>
+                         Update your password to keep your account secure.
+                       </p>
+                       <button 
+                         onClick={handleStartChangePassword}
+                         style={{
+                           background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                           color: 'white',
+                           border: 'none',
+                           borderRadius: '8px',
+                           padding: '12px 24px',
+                           fontSize: '14px',
+                           fontWeight: '500',
+                           cursor: 'pointer',
+                           transition: 'all 0.2s',
+                         }}
+                         onMouseEnter={(e) => {
+                           e.currentTarget.style.transform = 'translateY(-1px)';
+                           e.currentTarget.style.boxShadow = '0 8px 25px rgba(102, 126, 234, 0.3)';
+                         }}
+                         onMouseLeave={(e) => {
+                           e.currentTarget.style.transform = 'translateY(0)';
+                           e.currentTarget.style.boxShadow = 'none';
+                         }}
+                         >
+                         Change Password
+                       </button>
+                     </div>
+                   ) : (
+                     <div style={{
+                       padding: '20px',
+                       background: '#f8fafc',
+                       borderRadius: '12px',
+                     }}>
+                       <h4 style={{
+                         fontSize: '16px',
+                         fontWeight: '600',
+                         color: '#1e293b',
+                         marginBottom: '16px',
+                       }}>
+                         Change Password
+                       </h4>
+                       
+                       <div style={{ marginBottom: '16px' }}>
+                         <label style={{
+                           display: 'block',
+                           fontSize: '14px',
+                           fontWeight: '500',
+                           color: '#374151',
+                           marginBottom: '8px',
+                         }}>
+                           Current Password
+                         </label>
+                         <div style={{ position: 'relative' }}>
+                           <input
+                             type={showCurrentPassword ? "text" : "password"}
+                             value={currentPassword}
+                             onChange={(e) => setCurrentPassword(e.target.value)}
+                             style={{
+                               width: '100%',
+                               padding: '12px 16px',
+                               paddingRight: '48px',
+                               border: '1px solid #e2e8f0',
+                               borderRadius: '8px',
+                               fontSize: '16px',
+                               transition: 'all 0.2s ease',
+                               boxSizing: 'border-box',
+                             }}
+                             onFocus={(e) => {
+                               e.target.style.borderColor = '#667eea';
+                               e.target.style.boxShadow = '0 0 0 3px rgba(102, 126, 234, 0.1)';
+                             }}
+                             onBlur={(e) => {
+                               e.target.style.borderColor = '#e2e8f0';
+                               e.target.style.boxShadow = 'none';
+                             }}
+                           />
+                           <button
+                             type="button"
+                             onClick={() => setShowCurrentPassword(!showCurrentPassword)}
+                             style={{
+                               position: 'absolute',
+                               right: '12px',
+                               top: '50%',
+                               transform: 'translateY(-50%)',
+                               background: 'none',
+                               border: 'none',
+                               cursor: 'pointer',
+                               padding: '4px',
+                               color: '#64748b',
+                               transition: 'color 0.2s ease'
+                             }}
+                             onMouseEnter={(e) => (e.target as HTMLElement).style.color = '#764ba2'}
+                             onMouseLeave={(e) => (e.target as HTMLElement).style.color = '#64748b'}
+                           >
+                             {showCurrentPassword ? (
+                               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                 <circle cx="12" cy="12" r="3"/>
+                               </svg>
+                             ) : (
+                               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                 <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
+                                 <line x1="1" y1="1" x2="23" y2="23"/>
+                               </svg>
+                             )}
+                           </button>
+                         </div>
+                       </div>
+
+                       <div style={{ marginBottom: '16px' }}>
+                         <label style={{
+                           display: 'block',
+                           fontSize: '14px',
+                           fontWeight: '500',
+                           color: '#374151',
+                           marginBottom: '8px',
+                         }}>
+                           New Password
+                         </label>
+                         <div style={{ position: 'relative' }}>
+                           <input
+                             type={showNewPassword ? "text" : "password"}
+                             value={newPassword}
+                             onChange={(e) => setNewPassword(e.target.value)}
+                             style={{
+                               width: '100%',
+                               padding: '12px 16px',
+                               paddingRight: '48px',
+                               border: '1px solid #e2e8f0',
+                               borderRadius: '8px',
+                               fontSize: '16px',
+                               transition: 'all 0.2s ease',
+                               boxSizing: 'border-box',
+                             }}
+                             onFocus={(e) => {
+                               e.target.style.borderColor = '#667eea';
+                               e.target.style.boxShadow = '0 0 0 3px rgba(102, 126, 234, 0.1)';
+                             }}
+                             onBlur={(e) => {
+                               e.target.style.borderColor = '#e2e8f0';
+                               e.target.style.boxShadow = 'none';
+                             }}
+                           />
+                           <button
+                             type="button"
+                             onClick={() => setShowNewPassword(!showNewPassword)}
+                             style={{
+                               position: 'absolute',
+                               right: '12px',
+                               top: '50%',
+                               transform: 'translateY(-50%)',
+                               background: 'none',
+                               border: 'none',
+                               cursor: 'pointer',
+                               padding: '4px',
+                               color: '#64748b',
+                               transition: 'color 0.2s ease'
+                             }}
+                             onMouseEnter={(e) => (e.target as HTMLElement).style.color = '#764ba2'}
+                             onMouseLeave={(e) => (e.target as HTMLElement).style.color = '#64748b'}
+                           >
+                             {showNewPassword ? (
+                               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                 <circle cx="12" cy="12" r="3"/>
+                               </svg>
+                             ) : (
+                               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                 <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
+                                 <line x1="1" y1="1" x2="23" y2="23"/>
+                               </svg>
+                             )}
+                           </button>
+                         </div>
+                       </div>
+
+                       <div style={{ marginBottom: '20px' }}>
+                         <label style={{
+                           display: 'block',
+                           fontSize: '14px',
+                           fontWeight: '500',
+                           color: '#374151',
+                           marginBottom: '8px',
+                         }}>
+                           Confirm New Password
+                         </label>
+                         <div style={{ position: 'relative' }}>
+                           <input
+                             type={showConfirmPassword ? "text" : "password"}
+                             value={confirmNewPassword}
+                             onChange={(e) => setConfirmNewPassword(e.target.value)}
+                             style={{
+                               width: '100%',
+                               padding: '12px 16px',
+                               paddingRight: '48px',
+                               border: '1px solid #e2e8f0',
+                               borderRadius: '8px',
+                               fontSize: '16px',
+                               transition: 'all 0.2s ease',
+                               boxSizing: 'border-box',
+                             }}
+                             onFocus={(e) => {
+                               e.target.style.borderColor = '#667eea';
+                               e.target.style.boxShadow = '0 0 0 3px rgba(102, 126, 234, 0.1)';
+                             }}
+                             onBlur={(e) => {
+                               e.target.style.borderColor = '#e2e8f0';
+                               e.target.style.boxShadow = 'none';
+                             }}
+                           />
+                           <button
+                             type="button"
+                             onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                             style={{
+                               position: 'absolute',
+                               right: '12px',
+                               top: '50%',
+                               transform: 'translateY(-50%)',
+                               background: 'none',
+                               border: 'none',
+                               cursor: 'pointer',
+                               padding: '4px',
+                               color: '#64748b',
+                               transition: 'color 0.2s ease'
+                             }}
+                             onMouseEnter={(e) => (e.target as HTMLElement).style.color = '#764ba2'}
+                             onMouseLeave={(e) => (e.target as HTMLElement).style.color = '#64748b'}
+                           >
+                             {showConfirmPassword ? (
+                               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                 <circle cx="12" cy="12" r="3"/>
+                               </svg>
+                             ) : (
+                               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                 <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
+                                 <line x1="1" y1="1" x2="23" y2="23"/>
+                               </svg>
+                             )}
+                           </button>
+                         </div>
+                       </div>
+
+                       <div style={{
+                         display: 'flex',
+                         gap: '12px',
+                       }}>
+                         <button
+                           onClick={handleSavePassword}
+                           style={{
+                             background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                             color: 'white',
+                             border: 'none',
+                             borderRadius: '8px',
+                             padding: '12px 24px',
+                             fontSize: '14px',
+                             fontWeight: '500',
+                             cursor: 'pointer',
+                             transition: 'all 0.2s',
+                           }}
+                           onMouseEnter={(e) => {
+                             e.currentTarget.style.transform = 'translateY(-1px)';
+                             e.currentTarget.style.boxShadow = '0 8px 25px rgba(102, 126, 234, 0.3)';
+                           }}
+                           onMouseLeave={(e) => {
+                             e.currentTarget.style.transform = 'translateY(0)';
+                             e.currentTarget.style.boxShadow = 'none';
+                           }}
+                         >
+                           Update Password
+                         </button>
+                         <button
+                           onClick={handleCancelChangePassword}
+                           style={{
+                             background: 'white',
+                             color: '#64748b',
+                             border: '1px solid #e2e8f0',
+                             borderRadius: '8px',
+                             padding: '12px 24px',
+                             fontSize: '14px',
+                             fontWeight: '500',
+                             cursor: 'pointer',
+                             transition: 'all 0.2s',
+                           }}
+                           onMouseEnter={(e) => {
+                             e.currentTarget.style.background = '#f8fafc';
+                             e.currentTarget.style.borderColor = '#cbd5e1';
+                           }}
+                           onMouseLeave={(e) => {
+                             e.currentTarget.style.background = 'white';
+                             e.currentTarget.style.borderColor = '#e2e8f0';
+                           }}
+                         >
+                           Cancel
+                         </button>
+                       </div>
+                     </div>
+                   )}
+                 </div>
+               )}
+
+                             {activeSettingsTab === 'preferences' && (
+                 <div>
+                   <h3 style={{
+                     fontSize: '18px',
+                     fontWeight: '600',
+                     color: '#1e293b',
+                     marginBottom: '20px',
+                   }}>
+                     Chat Preferences
+                   </h3>
+                   
+                   <div style={{
+                     padding: '20px',
+                     background: '#f8fafc',
+                     borderRadius: '12px',
+                   }}>
+                     <h4 style={{
+                       fontSize: '16px',
+                       fontWeight: '600',
+                       color: '#1e293b',
+                       marginBottom: '12px',
+                     }}>
+                       Notifications
+                     </h4>
+                     <div style={{
+                       display: 'flex',
+                       alignItems: 'center',
+                       justifyContent: 'space-between',
+                       padding: '12px 0',
+                       borderBottom: '1px solid #e2e8f0',
+                     }}>
+                       <div>
+                         <div style={{
+                           fontSize: '14px',
+                           fontWeight: '500',
+                           color: '#1e293b',
+                         }}>
+                           Email Notifications
+                         </div>
+                         <div style={{
+                           fontSize: '12px',
+                           color: '#64748b',
+                         }}>
+                           Receive updates about your account
+                         </div>
+                       </div>
+                       <button
+                         onClick={() => setEmailNotifications(!emailNotifications)}
+                         style={{
+                           width: '40px',
+                           height: '20px',
+                           background: emailNotifications ? '#667eea' : '#e2e8f0',
+                           borderRadius: '10px',
+                           position: 'relative',
+                           cursor: 'pointer',
+                           border: 'none',
+                           transition: 'all 0.2s',
+                         }}
+                       >
+                         <div style={{
+                           width: '16px',
+                           height: '16px',
+                           background: 'white',
+                           borderRadius: '50%',
+                           position: 'absolute',
+                           top: '2px',
+                           left: emailNotifications ? '22px' : '2px',
+                           transition: 'all 0.2s',
+                           boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
+                         }}></div>
+                       </button>
+                     </div>
+                   </div>
+                 </div>
+               )}
+
+              
+            </div>
           </div>
         </div>
       )}

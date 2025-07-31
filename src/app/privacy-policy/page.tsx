@@ -56,7 +56,19 @@ export default function PrivacyPolicy() {
               <li>Information provided through contact forms and support requests</li>
             </ul>
 
-            <h3>2.2 Google Ads Data (AI Processing)</h3>
+            <h3>2.2 Account Authentication Information</h3>
+            <p>When you create an account or use our authentication services, we collect:</p>
+            <ul>
+              <li>Email address for account creation and verification</li>
+              <li>Hashed passwords (we never store plain text passwords)</li>
+              <li>Account verification tokens and reset links</li>
+              <li>Login/logout timestamps and session data</li>
+              <li>IP addresses associated with account access</li>
+              <li>Device information for security purposes</li>
+              <li>Password reset requests and verification data</li>
+            </ul>
+
+            <h3>2.3 Google Ads Data (AI Processing)</h3>
             <p>With your explicit authorization, our AI service may access and process:</p>
             <ul>
               <li>Campaign performance data and metrics</li>
@@ -67,7 +79,7 @@ export default function PrivacyPolicy() {
               <li>Conversion tracking data</li>
             </ul>
 
-            <h3>2.3 Automatically Collected Information</h3>
+            <h3>2.4 Automatically Collected Information</h3>
             <p>When you use our service, we automatically collect certain information, including:</p>
             <ul>
               <li>IP address and device information</li>
@@ -138,7 +150,26 @@ export default function PrivacyPolicy() {
           </section>
 
           <section>
-            <h2>7. Data Security and AI Safety</h2>
+            <h2>7. Account Security and Authentication</h2>
+            <p>
+              We implement robust security measures to protect your account and authentication data:
+            </p>
+            <ul>
+              <li><strong>Password Security:</strong> All passwords are hashed using industry-standard algorithms (bcrypt) and never stored in plain text</li>
+              <li><strong>Email Verification:</strong> New accounts require email verification to prevent unauthorized access</li>
+              <li><strong>Password Reset:</strong> Secure token-based password reset process with time-limited verification links</li>
+              <li><strong>Session Management:</strong> Secure session handling with automatic timeout and logout capabilities</li>
+              <li><strong>Access Logging:</strong> Comprehensive logging of login attempts and account access for security monitoring</li>
+              <li><strong>Rate Limiting:</strong> Protection against brute force attacks and automated account creation</li>
+            </ul>
+            <p>
+              We use secure email delivery services (Resend) for account verification and password reset emails, 
+              ensuring reliable and secure communication for account management.
+            </p>
+          </section>
+
+          <section>
+            <h2>8. Data Security and AI Safety</h2>
             <p>
               We implement comprehensive security measures to protect your data, including:
             </p>
@@ -157,7 +188,7 @@ export default function PrivacyPolicy() {
           </section>
 
           <section>
-            <h2>8. Your Rights</h2>
+            <h2>9. Your Rights</h2>
             <p>Depending on your location, you may have the following rights:</p>
             <ul>
               <li>Access to your personal information and AI processing logs</li>
@@ -171,16 +202,22 @@ export default function PrivacyPolicy() {
           </section>
 
           <section>
-            <h2>9. Data Retention</h2>
+            <h2>10. Data Retention</h2>
             <p>
               We retain your personal information and Google Ads data only for as long as necessary 
               to provide our AI service and comply with legal obligations. AI processing logs are 
               retained for service improvement purposes and are anonymized where possible.
             </p>
+            <p>
+              <strong>Authentication Data Retention:</strong> Account authentication data is retained 
+              for the duration of your account's existence. Password reset tokens expire automatically 
+              after a limited time period. Login logs are retained for security monitoring purposes 
+              and may be kept for up to 12 months for fraud prevention and account security.
+            </p>
           </section>
 
           <section>
-            <h2>10. Children's Privacy</h2>
+            <h2>11. Children's Privacy</h2>
             <p>
               Our AI service is not intended for children under 13 years of age. We do not knowingly 
               collect personal information from children under 13.
@@ -188,7 +225,7 @@ export default function PrivacyPolicy() {
           </section>
 
           <section>
-            <h2>11. International Data Transfers</h2>
+            <h2>12. International Data Transfers</h2>
             <p>
               Your data may be processed in countries other than your own. We ensure that such transfers 
               comply with applicable data protection laws and implement appropriate safeguards to protect your information.
@@ -196,7 +233,7 @@ export default function PrivacyPolicy() {
           </section>
 
           <section>
-            <h2>12. Changes to This Privacy Policy</h2>
+            <h2>13. Changes to This Privacy Policy</h2>
             <p>
               We may update this Privacy Policy from time to time, especially as our AI capabilities evolve. 
               We will notify you of any significant changes by posting the new Privacy Policy on this page 
@@ -205,15 +242,16 @@ export default function PrivacyPolicy() {
           </section>
 
           <section>
-            <h2>13. Contact Us</h2>
+            <h2>14. Contact Us</h2>
             <p>
               If you have any questions about this Privacy Policy, our AI data practices, or would like to 
               exercise your rights, please contact us:
             </p>
             <div className="contact-info">
-              <p><strong>Email:</strong> <a href="mailto:privacy@kampaio.com">privacy@kampaio.com</a></p>
+              <p><strong>Privacy Inquiries:</strong> <a href="mailto:privacy@kampaio.com">privacy@kampaio.com</a></p>
+              <p><strong>Account & Authentication Support:</strong> <a href="mailto:support@kampaio.com">support@kampaio.com</a></p>
+              <p><strong>AI Service Support:</strong> <a href="mailto:ai-support@kampaio.com">ai-support@kampaio.com</a></p>
               <p><strong>Website:</strong> <a href="https://kampaio.com">https://kampaio.com</a></p>
-              <p><strong>AI Support:</strong> <a href="mailto:support@kampaio.com">support@kampaio.com</a></p>
             </div>
           </section>
         </div>

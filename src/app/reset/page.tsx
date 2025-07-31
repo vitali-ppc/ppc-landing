@@ -37,7 +37,7 @@ export default function ResetPasswordPage() {
   };
 
   return (
-    <div style={{
+    <div className="reset-page" style={{
       minHeight: '100vh',
       background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
       display: 'flex',
@@ -45,7 +45,9 @@ export default function ResetPasswordPage() {
       justifyContent: 'center',
       padding: '20px',
       position: 'relative',
-      overflow: 'hidden'
+      overflow: 'hidden',
+      margin: 0,
+      width: '100%'
     }}>
       {/* Animated Background Elements */}
       <div style={{

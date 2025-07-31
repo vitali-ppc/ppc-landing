@@ -10,12 +10,6 @@ export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [suggestedPassword, setSuggestedPassword] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Перенаправляем на OAuth2 процесс
-    window.location.href = '/api/auth/login';
-  };
-
   // Генерация надежного пароля
   const generateStrongPassword = () => {
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{}|;:,.<>?';
@@ -27,15 +21,45 @@ export default function LoginPage() {
     setPassword(password);
   };
 
-  // Обработка фокуса на поле пароля
-  const handlePasswordFocus = () => {
-    if (!suggestedPassword) {
-      generateStrongPassword();
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Проверяем, что email и пароль введены
+    if (!email.trim() || !password.trim()) {
+      alert('Please enter both email and password');
+      return;
     }
+    
+    // Получаем сохраненный пароль из localStorage
+    const storedPassword = localStorage.getItem('userCurrentPassword');
+    
+    // Список возможных паролей (включая дефолтный и сохраненный)
+    const possiblePasswords = ['password123'];
+    if (storedPassword) {
+      possiblePasswords.push(storedPassword);
+    }
+    
+    // Проверяем пароль против всех возможных вариантов
+    const isPasswordValid = possiblePasswords.includes(password);
+    
+    if (!isPasswordValid) {
+      alert('Incorrect password. Please try again.');
+      return;
+    }
+    
+    // Сохраняем email в localStorage для использования в чате
+    localStorage.setItem('userEmail', email);
+    
+    // Если пароль правильный, перенаправляем на OAuth2 процесс
+    window.location.href = '/api/auth/login';
   };
 
+
+
+
+
   return (
-                     <div style={{
+                     <div className="login-page" style={{
         minHeight: '100vh',
         background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
         display: 'flex',
@@ -43,7 +67,9 @@ export default function LoginPage() {
         justifyContent: 'center',
         padding: '20px',
         position: 'relative',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        margin: 0,
+        width: '100%'
       }}>
        {/* Animated Background Elements */}
        <div style={{
@@ -81,17 +107,17 @@ export default function LoginPage() {
        <div style={{
          background: 'white',
          borderRadius: '16px',
-         padding: '48px',
+         padding: '32px',
          boxShadow: '0 20px 60px rgba(0, 0, 0, 0.15)',
          width: '100%',
-         maxWidth: '480px',
+         maxWidth: '420px',
          position: 'relative',
          zIndex: 1
        }}>
         {/* Logo */}
         <div style={{
           textAlign: 'center',
-          marginBottom: '32px'
+          marginBottom: '20px'
         }}>
           <Link href="/" style={{
             textDecoration: 'none',
@@ -143,11 +169,11 @@ export default function LoginPage() {
 
         {/* Title */}
         <h1 style={{
-          fontSize: '28px',
+          fontSize: '24px',
           fontWeight: '700',
           color: '#1e293b',
           textAlign: 'center',
-          marginBottom: '32px',
+          marginBottom: '20px',
           marginTop: 0
         }}>
           Sign in to your account
@@ -156,7 +182,7 @@ export default function LoginPage() {
         {/* Login Form */}
         <form onSubmit={handleSubmit}>
           {/* Email Field */}
-          <div style={{ marginBottom: '20px' }}>
+          <div style={{ marginBottom: '16px' }}>
             <label style={{
               display: 'block',
               fontSize: '14px',
@@ -176,10 +202,10 @@ export default function LoginPage() {
                autoComplete="username"
                style={{
                  width: '100%',
-                 padding: '12px 16px',
+                 padding: '10px 14px',
                  border: '1px solid #e2e8f0',
                  borderRadius: '8px',
-                 fontSize: '16px',
+                 fontSize: '14px',
                  transition: 'all 0.2s ease',
                  boxSizing: 'border-box'
                }}
@@ -187,54 +213,90 @@ export default function LoginPage() {
           </div>
 
           {/* Password Field */}
-          <div style={{ marginBottom: '20px' }}>
-            <div style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              marginBottom: '8px'
-            }}>
-              <label style={{
-                fontSize: '14px',
-                fontWeight: '500',
-                color: '#374151'
-              }}>
-                Password
-              </label>
-              <Link href="/reset" style={{
-                fontSize: '14px',
-                color: '#667eea',
-                textDecoration: 'none',
-                fontWeight: '500',
-                transition: 'color 0.2s ease'
-              }}
-              onMouseEnter={(e) => (e.target as HTMLElement).style.color = '#764ba2'}
-              onMouseLeave={(e) => (e.target as HTMLElement).style.color = '#667eea'}
-              >
-                Forgot your password?
-              </Link>
-            </div>
+                      <div style={{ marginBottom: '16px' }}>
+                         <div style={{
+               display: 'flex',
+               justifyContent: 'space-between',
+               alignItems: 'center',
+               marginBottom: '8px'
+             }}>
+               <label style={{
+                 fontSize: '14px',
+                 fontWeight: '500',
+                 color: '#374151'
+               }}>
+                 Password
+               </label>
+               <div style={{
+                 display: 'flex',
+                 alignItems: 'center',
+                 gap: '12px'
+               }}>
+                 <button
+                   type="button"
+                   onClick={generateStrongPassword}
+                   style={{
+                     background: 'none',
+                     border: 'none',
+                     color: '#667eea',
+                     cursor: 'pointer',
+                     fontSize: '12px',
+                     fontWeight: '500',
+                     padding: '4px 8px',
+                     borderRadius: '4px',
+                     transition: 'all 0.2s ease',
+                     display: 'flex',
+                     alignItems: 'center',
+                     gap: '4px'
+                   }}
+                   onMouseEnter={(e) => {
+                     (e.target as HTMLElement).style.background = 'rgba(102, 126, 234, 0.1)';
+                     (e.target as HTMLElement).style.color = '#764ba2';
+                   }}
+                   onMouseLeave={(e) => {
+                     (e.target as HTMLElement).style.background = 'none';
+                     (e.target as HTMLElement).style.color = '#667eea';
+                   }}
+                 >
+                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                     <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+                   </svg>
+                   Generate
+                 </button>
+                 <Link href="/reset" style={{
+                   fontSize: '14px',
+                   color: '#667eea',
+                   textDecoration: 'none',
+                   fontWeight: '500',
+                   transition: 'color 0.2s ease'
+                 }}
+                 onMouseEnter={(e) => (e.target as HTMLElement).style.color = '#764ba2'}
+                 onMouseLeave={(e) => (e.target as HTMLElement).style.color = '#667eea'}
+                 >
+                   Forgot your password?
+                 </Link>
+               </div>
+             </div>
             <div style={{ position: 'relative' }}>
-              <input
-                type={showPassword ? "text" : "password"}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Enter your password"
-                required
-                className="login-input"
-                autoComplete="current-password"
-                onFocus={handlePasswordFocus}
-                style={{
-                  width: '100%',
-                  padding: '12px 16px',
-                  paddingRight: '48px',
-                  border: '1px solid #e2e8f0',
-                  borderRadius: '8px',
-                  fontSize: '16px',
-                  transition: 'all 0.2s ease',
-                  boxSizing: 'border-box'
-                }}
-              />
+                               <input
+                   type={showPassword ? "text" : "password"}
+                   value={password}
+                   onChange={(e) => setPassword(e.target.value)}
+                   placeholder="Enter your password"
+                   required
+                   className="login-input"
+                   autoComplete="off"
+                   style={{
+                     width: '100%',
+                     padding: '10px 14px',
+                     paddingRight: '48px',
+                     border: '1px solid #e2e8f0',
+                     borderRadius: '8px',
+                     fontSize: '14px',
+                     transition: 'all 0.2s ease',
+                     boxSizing: 'border-box'
+                   }}
+                 />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
@@ -264,52 +326,52 @@ export default function LoginPage() {
                     <line x1="1" y1="1" x2="23" y2="23"/>
                   </svg>
                 )}
-              </button>
-            </div>
-            
-            {/* Password Suggestion */}
-            {suggestedPassword && (
-              <div style={{
-                marginTop: '8px',
-                padding: '8px 12px',
-                background: '#f8fafc',
-                border: '1px solid #e2e8f0',
-                borderRadius: '6px',
-                fontSize: '12px',
-                color: '#64748b',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between'
-              }}>
-                <span>Suggested password: <strong>{suggestedPassword}</strong></span>
-                <button
-                  type="button"
-                  onClick={generateStrongPassword}
-                  style={{
-                    background: 'none',
-                    border: 'none',
-                    color: '#667eea',
-                    cursor: 'pointer',
-                    fontSize: '12px',
-                    fontWeight: '500',
-                    padding: '2px 6px',
-                    borderRadius: '4px',
-                    transition: 'background 0.2s ease'
-                  }}
-                                     onMouseEnter={(e) => (e.target as HTMLElement).style.background = 'rgba(102, 126, 234, 0.1)'}
+                             </button>
+             </div>
+             
+             {/* Password Suggestion */}
+             {suggestedPassword && (
+               <div style={{
+                 marginTop: '8px',
+                 padding: '8px 12px',
+                 background: '#f8fafc',
+                 border: '1px solid #e2e8f0',
+                 borderRadius: '6px',
+                 fontSize: '12px',
+                 color: '#64748b',
+                 display: 'flex',
+                 alignItems: 'center',
+                 justifyContent: 'space-between'
+               }}>
+                 <span>Suggested password: <strong>{suggestedPassword}</strong></span>
+                 <button
+                   type="button"
+                   onClick={generateStrongPassword}
+                   style={{
+                     background: 'none',
+                     border: 'none',
+                     color: '#667eea',
+                     cursor: 'pointer',
+                     fontSize: '12px',
+                     fontWeight: '500',
+                     padding: '2px 6px',
+                     borderRadius: '4px',
+                     transition: 'background 0.2s ease'
+                   }}
+                   onMouseEnter={(e) => (e.target as HTMLElement).style.background = 'rgba(102, 126, 234, 0.1)'}
                    onMouseLeave={(e) => (e.target as HTMLElement).style.background = 'none'}
-                >
-                  Generate new
-                </button>
-              </div>
-            )}
-          </div>
+                 >
+                   Generate new
+                 </button>
+               </div>
+             )}
+           </div>
 
           {/* Remember Me */}
           <div style={{
             display: 'flex',
             alignItems: 'center',
-            marginBottom: '24px'
+            marginBottom: '16px'
           }}>
             <input
               type="checkbox"
@@ -337,16 +399,16 @@ export default function LoginPage() {
             type="submit"
             style={{
               width: '100%',
-              padding: '14px 24px',
+              padding: '12px 20px',
               background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
               color: 'white',
               border: 'none',
               borderRadius: '8px',
-              fontSize: '16px',
+              fontSize: '14px',
               fontWeight: '600',
               cursor: 'pointer',
               transition: 'all 0.2s ease',
-              marginBottom: '24px'
+              marginBottom: '16px'
             }}
                          onMouseEnter={(e) => {
                (e.target as HTMLElement).style.transform = 'translateY(-1px)';
@@ -365,7 +427,7 @@ export default function LoginPage() {
                  <div style={{
            display: 'flex',
            alignItems: 'center',
-           marginBottom: '24px'
+           marginBottom: '16px'
          }}>
            <div style={{
              flex: 1,
@@ -392,7 +454,7 @@ export default function LoginPage() {
           display: 'flex',
           flexDirection: 'column',
           gap: '12px',
-          marginBottom: '24px'
+          marginBottom: '16px'
         }}>
           <button
             onClick={() => window.location.href = '/api/auth/login'}
@@ -453,13 +515,13 @@ export default function LoginPage() {
 
         {/* Security Message */}
                  <div style={{
-           marginTop: '32px',
-           padding: '16px',
+           marginTop: '20px',
+           padding: '12px',
            background: '#f8fafc',
            borderRadius: '8px',
-           fontSize: '12px',
+           fontSize: '11px',
            color: '#64748b',
-           lineHeight: '1.5'
+           lineHeight: '1.4'
          }}>
           <div style={{
             display: 'flex',
