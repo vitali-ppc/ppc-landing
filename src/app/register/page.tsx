@@ -76,7 +76,14 @@ export default function RegisterPage() {
       setIsSuccess(true);
     } catch (error) {
       console.error('Registration error:', error);
-      setError(error instanceof Error ? error.message : 'Failed to create account');
+      const errorMessage = error instanceof Error ? error.message : 'Failed to create account';
+      
+      // Если email уже существует, предлагаем войти
+      if (errorMessage.includes('already exists')) {
+        setError('An account with this email already exists. Please sign in instead.');
+      } else {
+        setError(errorMessage);
+      }
     } finally {
       setIsLoading(false);
     }

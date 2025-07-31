@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
+import { userExists, addUser } from '../utils/users';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -28,16 +29,25 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // В реальном приложении здесь нужно:
-    // 1. Проверить, не существует ли уже пользователь с таким email
-    // 2. Хешировать пароль
-    // 3. Создать пользователя в базе данных
-    // 4. Генерировать токен подтверждения email
-    // 5. Отправлять письмо подтверждения
+    // Проверяем, не существует ли уже пользователь с таким email
+    if (userExists(email)) {
+      return NextResponse.json(
+        { error: 'An account with this email address already exists. Please sign in instead.' },
+        { status: 409 }
+      );
+    }
 
     // Генерируем токен подтверждения
     const verificationToken = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
     const verificationLink = `${process.env.NEXT_PUBLIC_APP_URL}/verify-email?token=${verificationToken}&email=${encodeURIComponent(email)}`;
+
+    // Создаем пользователя в системе
+    addUser({
+      email,
+      password,
+      verified: false,
+      verificationToken
+    });
 
     // Отправляем письмо подтверждения
     try {

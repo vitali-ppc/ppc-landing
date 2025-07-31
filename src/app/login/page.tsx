@@ -21,7 +21,7 @@ export default function LoginPage() {
     setPassword(password);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Проверяем, что email и пароль введены
@@ -30,28 +30,38 @@ export default function LoginPage() {
       return;
     }
     
-    // Получаем сохраненный пароль из localStorage
-    const storedPassword = localStorage.getItem('userCurrentPassword');
-    
-    // Список возможных паролей (включая дефолтный и сохраненный)
-    const possiblePasswords = ['password123'];
-    if (storedPassword) {
-      possiblePasswords.push(storedPassword);
+    try {
+      const response = await fetch('/api/auth/check-user', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        if (response.status === 404) {
+          alert('No account found with this email address. Please check your email or create a new account.');
+        } else if (response.status === 401) {
+          alert('Incorrect password. Please try again.');
+        } else {
+          alert(data.error || 'Authentication failed. Please try again.');
+        }
+        return;
+      }
+
+      // Сохраняем email в localStorage для использования в чате
+      localStorage.setItem('userEmail', email);
+      
+      // Если аутентификация успешна, перенаправляем на OAuth2 процесс
+      window.location.href = '/api/auth/login';
+      
+    } catch (error) {
+      console.error('Authentication error:', error);
+      alert('Authentication failed. Please try again.');
     }
-    
-    // Проверяем пароль против всех возможных вариантов
-    const isPasswordValid = possiblePasswords.includes(password);
-    
-    if (!isPasswordValid) {
-      alert('Incorrect password. Please try again.');
-      return;
-    }
-    
-    // Сохраняем email в localStorage для использования в чате
-    localStorage.setItem('userEmail', email);
-    
-    // Если пароль правильный, перенаправляем на OAuth2 процесс
-    window.location.href = '/api/auth/login';
   };
 
 

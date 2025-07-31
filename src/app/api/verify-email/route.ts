@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { getUserByEmail, updateUserVerification } from '../utils/users';
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
@@ -14,13 +15,7 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    // TODO: В реальном приложении здесь будет:
-    // 1. Проверка токена в базе данных
-    // 2. Проверка срока действия токена
-    // 3. Обновление статуса пользователя на "verified"
-    // 4. Удаление использованного токена
-
-    // Для демонстрации просто проверяем базовую валидность
+    // Проверяем базовую валидность
     if (token.length < 10) {
       return NextResponse.json(
         { error: 'Invalid or expired verification token' },
@@ -35,9 +30,25 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    // TODO: Здесь будет код для обновления статуса пользователя
-    // await updateUserVerificationStatus(email, true);
-    // await deleteVerificationToken(token);
+    // Получаем пользователя из системы
+    const user = getUserByEmail(email);
+    if (!user) {
+      return NextResponse.json(
+        { error: 'User not found' },
+        { status: 404 }
+      );
+    }
+
+    // Проверяем токен верификации
+    if (user.verificationToken !== token) {
+      return NextResponse.json(
+        { error: 'Invalid or expired verification token' },
+        { status: 400 }
+      );
+    }
+
+    // Обновляем статус верификации пользователя
+    updateUserVerification(email, true);
 
     console.log(`Email verified successfully for: ${email}`);
 

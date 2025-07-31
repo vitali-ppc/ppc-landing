@@ -30,7 +30,14 @@ export default function ResetPasswordPage() {
       setIsSubmitted(true);
     } catch (error) {
       console.error('Error sending reset email:', error);
-      alert('Failed to send reset email. Please try again.');
+      const errorMessage = error instanceof Error ? error.message : 'Failed to send reset email';
+      
+      // Если аккаунт не найден, предлагаем зарегистрироваться
+      if (errorMessage.includes('No account found')) {
+        alert('No account found with this email address. Please check your email or create a new account.');
+      } else {
+        alert('Failed to send reset email. Please try again.');
+      }
     } finally {
       setIsLoading(false);
     }

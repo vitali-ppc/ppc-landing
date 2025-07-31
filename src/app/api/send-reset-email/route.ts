@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
+import { userExists } from '../utils/users';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -11,6 +12,14 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         { error: 'Email is required' },
         { status: 400 }
+      );
+    }
+
+    // Проверяем, существует ли пользователь с таким email
+    if (!userExists(email)) {
+      return NextResponse.json(
+        { error: 'No account found with this email address' },
+        { status: 404 }
       );
     }
 
