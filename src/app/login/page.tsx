@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 export default function LoginPage() {
@@ -9,6 +9,15 @@ export default function LoginPage() {
   const [rememberMe, setRememberMe] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [suggestedPassword, setSuggestedPassword] = useState('');
+
+  // Чтение email из URL параметров при загрузке страницы
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const emailFromUrl = urlParams.get('email');
+    if (emailFromUrl) {
+      setEmail(emailFromUrl);
+    }
+  }, []);
 
   // Генерация надежного пароля
   const generateStrongPassword = () => {

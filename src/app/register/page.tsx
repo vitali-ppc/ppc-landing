@@ -433,7 +433,7 @@ export default function RegisterPage() {
             {error.includes('sign in') ? (
               <>
                 An account with this email already exists. You can{' '}
-                <Link href="/login" style={{
+                <Link href={`/login?email=${encodeURIComponent(email)}`} style={{
                   color: '#667eea',
                   textDecoration: 'none',
                   fontWeight: '500',
