@@ -92,10 +92,10 @@ export default function ResetPasswordPage() {
       <div style={{
         background: 'white',
         borderRadius: '16px',
-        padding: '48px',
+        padding: '32px',
         boxShadow: '0 20px 60px rgba(0, 0, 0, 0.15)',
         width: '100%',
-        maxWidth: '480px',
+        maxWidth: '420px',
         position: 'relative',
         zIndex: 1
       }}>
@@ -200,10 +200,10 @@ export default function ResetPasswordPage() {
                 disabled={isLoading}
                 style={{
                   width: '100%',
-                  padding: '12px 16px',
+                  padding: '10px 14px',
                   border: '1px solid #e2e8f0',
                   borderRadius: '8px',
-                  fontSize: '16px',
+                  fontSize: '14px',
                   transition: 'all 0.2s ease',
                   boxSizing: 'border-box',
                   opacity: isLoading ? 0.6 : 1

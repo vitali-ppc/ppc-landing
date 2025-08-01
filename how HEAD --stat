@@ -1,0 +1,45 @@
+[33mcommit e8ef9ed4c6ddcf2112fb246d3db09cc66f1d8ce9[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: vitali-ppc <chornyi.vitali@gmail.com>
+Date:   Fri Aug 1 01:22:02 2025 +0300
+
+    головна удаляем
+
+.next/app-build-manifest.json
+.next/build-manifest.json
+.next/cache/webpack/client-development/0.pack.gz
+.next/cache/webpack/client-development/17.pack.gz
+.next/cache/webpack/client-development/18.pack.gz
+.next/cache/webpack/client-development/27.pack.gz
+.next/cache/webpack/client-development/29.pack.gz
+.next/cache/webpack/client-development/32.pack.gz
+.next/cache/webpack/client-development/37.pack.gz
+.next/cache/webpack/client-development/38.pack.gz
+.next/cache/webpack/client-development/40.pack.gz
+.next/cache/webpack/client-development/42.pack.gz
+.next/cache/webpack/client-development/6.pack.gz
+.next/cache/webpack/client-development/index.pack.gz
+.next/cache/webpack/client-development/index.pack.gz.old
+.next/cache/webpack/server-development/0.pack.gz
+.next/cache/webpack/server-development/11.pack.gz
+.next/cache/webpack/server-development/12.pack.gz
+.next/cache/webpack/server-development/14.pack.gz
+.next/cache/webpack/server-development/15.pack.gz
+.next/cache/webpack/server-development/20.pack.gz
+.next/cache/webpack/server-development/3.pack.gz
+.next/cache/webpack/server-development/35.pack.gz
+.next/cache/webpack/server-development/36.pack.gz
+.next/cache/webpack/server-development/37.pack.gz
+.next/cache/webpack/server-development/39.pack.gz
+.next/cache/webpack/server-development/44.pack.gz
+.next/cache/webpack/server-development/45.pack.gz
+.next/cache/webpack/server-development/46.pack.gz
+.next/cache/webpack/server-development/5.pack.gz
+.next/cache/webpack/server-development/8.pack.gz
+.next/cache/webpack/server-development/index.pack.gz
+.next/cache/webpack/server-development/index.pack.gz.old
+.next/react-loadable-manifest.json
+.next/server/app-paths-manifest.json
+.next/server/middleware-build-manifest.js
+.next/server/middleware-react-loadable-manifest.js
+.next/trace
+src/app/page.tsx

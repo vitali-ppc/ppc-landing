@@ -340,10 +340,10 @@ export default function RegisterPage() {
       <div style={{
         background: 'white',
         borderRadius: '16px',
-        padding: '24px',
+        padding: '32px',
         boxShadow: '0 20px 60px rgba(0, 0, 0, 0.15)',
         width: '100%',
-        maxWidth: '380px',
+        maxWidth: '420px',
         position: 'relative',
         zIndex: 1
       }}>
@@ -462,10 +462,10 @@ export default function RegisterPage() {
               autoComplete="username"
                               style={{
                   width: '100%',
-                  padding: '9px 12px',
+                  padding: '10px 14px',
                   border: '1px solid #e2e8f0',
                   borderRadius: '8px',
-                  fontSize: '13px',
+                  fontSize: '14px',
                   transition: 'all 0.2s ease',
                   boxSizing: 'border-box',
                   opacity: isLoading ? 0.6 : 1
@@ -496,11 +496,11 @@ export default function RegisterPage() {
                 autoComplete="new-password"
                 style={{
                   width: '100%',
-                  padding: '9px 12px',
+                  padding: '10px 14px',
                   paddingRight: '48px',
                   border: '1px solid #e2e8f0',
                   borderRadius: '8px',
-                  fontSize: '13px',
+                  fontSize: '14px',
                   transition: 'all 0.2s ease',
                   boxSizing: 'border-box',
                   opacity: isLoading ? 0.6 : 1
@@ -633,11 +633,11 @@ export default function RegisterPage() {
                 autoComplete="new-password"
                 style={{
                   width: '100%',
-                  padding: '9px 12px',
+                  padding: '10px 14px',
                   paddingRight: '48px',
                   border: '1px solid #e2e8f0',
                   borderRadius: '8px',
-                  fontSize: '13px',
+                  fontSize: '14px',
                   transition: 'all 0.2s ease',
                   boxSizing: 'border-box',
                   opacity: isLoading ? 0.6 : 1
