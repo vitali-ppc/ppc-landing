@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
     // Проверяем, не существует ли уже пользователь с таким email
     if (userExists(email)) {
       return NextResponse.json(
-        { error: 'An account with this email address already exists. Please sign in instead.' },
+        { error: 'An account with this email already exists. You can sign in with your existing account or use a different email to create a new one.' },
         { status: 409 }
       );
     }

@@ -185,9 +185,9 @@ export default function ResetPasswordPage() {
             margin: '0 auto 24px'
           }}>
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-              <circle cx="12" cy="12" r="10"/>
-              <line x1="15" y1="9" x2="9" y2="15"/>
-              <line x1="9" y1="9" x2="15" y2="15"/>
+              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+              <line x1="12" y1="9" x2="12" y2="13"/>
+              <line x1="12" y1="17" x2="12.01" y2="17"/>
             </svg>
           </div>
 
@@ -705,7 +705,7 @@ export default function ResetPasswordPage() {
               fontWeight: '600',
               cursor: isLoading ? 'not-allowed' : 'pointer',
               transition: 'all 0.2s ease',
-              marginBottom: '24px',
+              marginBottom: '16px',
               position: 'relative',
               overflow: 'hidden'
             }}
@@ -741,7 +741,7 @@ export default function ResetPasswordPage() {
         {/* Return to Sign In Link */}
         <div style={{
           textAlign: 'center',
-          marginBottom: '24px'
+          marginBottom: '16px'
         }}>
           <Link href="/login" style={{
             fontSize: '14px',

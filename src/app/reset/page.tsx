@@ -217,14 +217,14 @@ export default function ResetPasswordPage() {
               disabled={isLoading}
               style={{
                 width: '100%',
-                padding: '14px 24px',
+                padding: '12px 20px',
                 background: isLoading 
                   ? 'linear-gradient(135deg, #94a3b8 0%, #64748b 100%)'
                   : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                 color: 'white',
                 border: 'none',
                 borderRadius: '8px',
-                fontSize: '16px',
+                fontSize: '14px',
                 fontWeight: '600',
                 cursor: isLoading ? 'not-allowed' : 'pointer',
                 transition: 'all 0.2s ease',
@@ -310,12 +310,12 @@ export default function ResetPasswordPage() {
               onClick={() => window.open('https://mail.google.com', '_blank')}
               style={{
                 width: '100%',
-                padding: '12px 24px',
+                padding: '12px 20px',
                 background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                 color: 'white',
                 border: 'none',
                 borderRadius: '8px',
-                fontSize: '16px',
+                fontSize: '14px',
                 fontWeight: '600',
                 cursor: 'pointer',
                 transition: 'all 0.2s ease',

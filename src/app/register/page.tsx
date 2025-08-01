@@ -78,9 +78,9 @@ export default function RegisterPage() {
       console.error('Registration error:', error);
       const errorMessage = error instanceof Error ? error.message : 'Failed to create account';
       
-      // Если email уже существует, предлагаем войти
+      // Если email уже существует, показываем сообщение об ошибке
       if (errorMessage.includes('already exists')) {
-        setError('An account with this email already exists. Please sign in instead.');
+        setError(errorMessage);
       } else {
         setError(errorMessage);
       }
@@ -426,15 +426,29 @@ export default function RegisterPage() {
         {/* Error Message */}
         {error && (
           <div style={{
-            background: '#fef2f2',
-            border: '1px solid #fecaca',
-            borderRadius: '8px',
-            padding: '12px 16px',
             marginBottom: '24px',
             fontSize: '14px',
             color: '#dc2626'
           }}>
-            {error}
+            {error.includes('sign in') ? (
+              <>
+                An account with this email already exists. You can{' '}
+                <Link href="/login" style={{
+                  color: '#667eea',
+                  textDecoration: 'none',
+                  fontWeight: '500',
+                  transition: 'color 0.2s ease'
+                }}
+                onMouseEnter={(e) => (e.target as HTMLElement).style.color = '#764ba2'}
+                onMouseLeave={(e) => (e.target as HTMLElement).style.color = '#667eea'}
+                >
+                  sign in
+                </Link>
+                {' '}with your existing account or use a different email to create a new one.
+              </>
+            ) : (
+              error
+            )}
           </div>
         )}
 
@@ -682,14 +696,14 @@ export default function RegisterPage() {
             disabled={isLoading}
             style={{
               width: '100%',
-              padding: '11px 18px',
+              padding: '12px 20px',
               background: isLoading 
                 ? 'linear-gradient(135deg, #94a3b8 0%, #64748b 100%)'
                 : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
               color: 'white',
               border: 'none',
               borderRadius: '8px',
-              fontSize: '13px',
+              fontSize: '14px',
               fontWeight: '600',
               cursor: isLoading ? 'not-allowed' : 'pointer',
               transition: 'all 0.2s ease',
@@ -757,12 +771,12 @@ export default function RegisterPage() {
           disabled={isLoading}
           style={{
             width: '100%',
-            padding: '11px 18px',
+            padding: '12px 16px',
             background: 'white',
             color: '#374151',
             border: '1px solid #e2e8f0',
             borderRadius: '8px',
-            fontSize: '13px',
+            fontSize: '14px',
             fontWeight: '500',
             cursor: isLoading ? 'not-allowed' : 'pointer',
             transition: 'all 0.2s ease',
@@ -805,15 +819,15 @@ export default function RegisterPage() {
           }}>
             Already have an account?{' '}
           </span>
-          <Link href="/login" style={{
-            fontSize: '14px',
-            color: '#667eea',
-            textDecoration: 'none',
-            fontWeight: '500',
-            transition: 'color 0.2s ease'
-          }}
-          onMouseEnter={(e) => (e.target as HTMLElement).style.color = '#764ba2'}
-          onMouseLeave={(e) => (e.target as HTMLElement).style.color = '#667eea'}
+                     <Link href="/login" style={{
+             fontSize: '14px',
+             color: '#667eea',
+             textDecoration: 'none',
+             fontWeight: '500',
+             transition: 'color 0.2s ease'
+           }}
+           onMouseEnter={(e) => (e.target as HTMLElement).style.color = '#764ba2'}
+           onMouseLeave={(e) => (e.target as HTMLElement).style.color = '#667eea'}
           >
             Sign in
           </Link>
