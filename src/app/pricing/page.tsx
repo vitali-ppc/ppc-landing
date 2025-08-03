@@ -7,6 +7,13 @@ import Footer from '../../components/Footer';
 export default function PricingPage() {
   const [isAnnual, setIsAnnual] = useState(false);
   const [hoveredPlan, setHoveredPlan] = useState<string | null>(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  // Перевірка авторизації при завантаженні
+  useEffect(() => {
+    const userEmail = localStorage.getItem('userEmail');
+    setIsAuthenticated(!!userEmail);
+  }, []);
 
   const plans = [
     {
@@ -331,7 +338,12 @@ export default function PricingPage() {
                     if (plan.id === 'starter') {
                       window.location.href = '/chat';
                     } else {
-                      window.location.href = '/register';
+                      // Для платних планів: авторизовані → checkout, неавторизовані → register
+                      if (isAuthenticated) {
+                        window.location.href = '/checkout';
+                      } else {
+                        window.location.href = '/register';
+                      }
                     }
                   }}
                 >

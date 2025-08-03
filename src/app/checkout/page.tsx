@@ -1,8 +1,25 @@
 'use client';
 
 import { useState } from 'react';
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements, CardElement } from '@stripe/react-stripe-js';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
+// Test Stripe key (replace with real key later)
+const stripePromise = loadStripe('pk_test_51O...'); // Тестовый ключ
+
+// Stripe Elements options
+const cardElementOptions = {
+  style: {
+    base: {
+      fontSize: '16px',
+      color: '#1e293b',
+      '::placeholder': {
+        color: '#64748b',
+      },
+    },
+  },
+};
 
 export default function CheckoutPage() {
   const [selectedPlan, setSelectedPlan] = useState('professional');
@@ -59,18 +76,33 @@ export default function CheckoutPage() {
     e.preventDefault();
     setLoading(true);
     
-    // TODO: Integrate with payment processor (Stripe)
-    console.log('Processing payment for:', selectedPlanData?.name, 'at $' + selectedPlanData?.price);
-    
-    // Simulate payment processing
-    setTimeout(() => {
+    try {
+      // TODO: Create payment intent on server
+      // TODO: Confirm payment with Stripe
+      console.log('Processing payment for:', selectedPlanData?.name, 'at $' + selectedPlanData?.price);
+      
+      // For now, simulate success
+      setTimeout(() => {
+        setLoading(false);
+        alert('Payment processed successfully!');
+      }, 2000);
+    } catch (error) {
+      console.error('Payment error:', error);
       setLoading(false);
-      // TODO: Redirect to success page or dashboard
-      alert('Payment processed successfully!');
-    }, 2000);
+      alert('Payment failed. Please try again.');
+    }
   };
 
   return (
+    <Elements stripe={stripePromise} options={{ 
+      locale: 'en',
+      appearance: {
+        theme: 'stripe',
+        variables: {
+          colorPrimary: '#667eea',
+        },
+      },
+    }}>
     <div style={{
       minHeight: '100vh',
       background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)'
@@ -257,7 +289,7 @@ export default function CheckoutPage() {
                          fontSize: '14px',
                          color: '#64748b'
                        }}>
-                                                   {isAnnual ? '/ year' : '/month'}
+                                                   {isAnnual ? '/ year' : '/ month'}
                        </span>
                     </div>
                   </div>
@@ -311,14 +343,14 @@ export default function CheckoutPage() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
-                    style={{
-                      width: '100%',
-                      padding: '12px 16px',
-                      border: '1px solid #d1d5db',
-                      borderRadius: '8px',
-                      fontSize: '16px',
-                      transition: 'border-color 0.2s ease'
-                    }}
+                                         style={{
+                       width: '100%',
+                       padding: '12px 16px',
+                       border: '1px solid #e2e8f0',
+                       borderRadius: '8px',
+                       fontSize: '16px',
+                       transition: 'border-color 0.2s ease'
+                     }}
                     placeholder="your@email.com"
                   />
                 </div>
@@ -334,19 +366,7 @@ export default function CheckoutPage() {
                    }}>
                      Payment method
                   </label>
-                                     <div style={{
-                     padding: '12px 16px',
-                     border: '1px solid #d1d5db',
-                     borderRadius: '8px',
-                     background: '#f9fafb',
-                     color: '#6b7280',
-                     fontSize: '14px',
-                     minHeight: '44px',
-                     display: 'flex',
-                     alignItems: 'center'
-                   }}>
-                     
-                   </div>
+                  <CardElement options={cardElementOptions} />
                 </div>
 
                 {/* Order Summary */}
@@ -373,7 +393,7 @@ export default function CheckoutPage() {
                       {selectedPlanData?.name} Plan
                     </span>
                                          <span style={{ fontWeight: '500' }}>
-                                               ${isAnnual ? (selectedPlanData?.price || 0) * 12 : selectedPlanData?.price}{isAnnual ? '/ year' : '/month'}
+                                               ${isAnnual ? (selectedPlanData?.price || 0) * 12 : selectedPlanData?.price} {isAnnual ? '/ year' : '/ month'}
                      </span>
                   </div>
                   
@@ -400,7 +420,7 @@ export default function CheckoutPage() {
                     color: '#1e293b'
                   }}>
                                          <span>Total</span>
-                                           <span>${isAnnual ? (selectedPlanData?.price || 0) * 12 : selectedPlanData?.price}{isAnnual ? '/ year' : '/month'}</span>
+                                           <span>${isAnnual ? (selectedPlanData?.price || 0) * 12 : selectedPlanData?.price} {isAnnual ? '/ year' : '/ month'}</span>
                   </div>
                 </div>
 
@@ -422,16 +442,16 @@ export default function CheckoutPage() {
                     transition: 'all 0.3s ease'
                   }}
                 >
-                                     {loading ? 'Processing...' : `Pay $${isAnnual ? (selectedPlanData?.price || 0) * 12 : selectedPlanData?.price}${isAnnual ? '/ year' : '/month'}`}
+                                     {loading ? 'Processing...' : `Pay $${isAnnual ? (selectedPlanData?.price || 0) * 12 : selectedPlanData?.price} ${isAnnual ? '/ year' : '/ month'}`}
                 </button>
 
-                <p style={{
-                  fontSize: '12px',
-                  color: '#6b7280',
-                  textAlign: 'center',
-                  marginTop: '16px',
-                  lineHeight: '1.4'
-                }}>
+                                 <p style={{
+                   fontSize: '12px',
+                   color: '#64748b',
+                   textAlign: 'center',
+                   marginTop: '16px',
+                   lineHeight: '1.4'
+                 }}>
                   By completing your purchase, you agree to our Terms of Service and Privacy Policy.
                   You can cancel your subscription at any time.
                 </p>
@@ -443,5 +463,6 @@ export default function CheckoutPage() {
 
       <Footer compact={true} />
     </div>
-  );
+  </Elements>
+);
 } 
