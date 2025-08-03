@@ -9,6 +9,7 @@ import { AI_AVATAR, USER_AVATAR } from './components/Avatars';
 import { MessageBubble } from './components/MessageBubble';
 import { ChatSidebar } from './components/ChatSidebar';
 import { ChatMessages } from './components/ChatMessages';
+import AuthModal from './components/AuthModal';
 
 const ChatFormGPT: React.FC = () => {
   // Основные состояния
@@ -71,6 +72,10 @@ const ChatFormGPT: React.FC = () => {
   // Пользователь
   const [userEmail, setUserEmail] = useState<string>('');
   const [userName, setUserName] = useState<string>('');
+  
+  // Состояние для модального окна авторизации
+  const [showAuthModal, setShowAuthModal] = useState(false);
+  const [pendingMessage, setPendingMessage] = useState('');
   
   // Конвертируем массив в Set для удобства работы
   const shownMessages = useMemo(() => new Set(shownMessagesArray), [shownMessagesArray]);
@@ -240,6 +245,21 @@ const ChatFormGPT: React.FC = () => {
     setShowConfirmPassword(false);
   };
 
+  // Обработчики для модального окна авторизации
+  const handleSignUp = () => {
+    setShowAuthModal(false);
+    window.location.href = '/register';
+  };
+
+  const handleLogIn = () => {
+    setShowAuthModal(false);
+    window.location.href = '/login';
+  };
+
+  const handleCloseModal = () => {
+    setShowAuthModal(false);
+  };
+
   // Мемоизированные значения
   const dataToUse = useMemo(() => realAdsData || adsData, [realAdsData, adsData]);
   const hasData = useMemo(() => dataToUse && dataToUse.campaigns && dataToUse.campaigns.length > 0, [dataToUse]);
@@ -392,6 +412,19 @@ const ChatFormGPT: React.FC = () => {
   const handleSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
     if (!input.trim()) return;
+    
+    // Проверяем авторизацию пользователя
+    const userEmail = localStorage.getItem('userEmail');
+    const isAuthenticated = !!userEmail;
+    
+    if (!isAuthenticated) {
+      // Показываем модальное окно авторизации
+      setPendingMessage(input);
+      setShowAuthModal(true);
+      return; // Не отправляем сообщение на сервер
+    }
+    
+    // Продолжаем отправку сообщения на сервер
     
     setError(null);
     setLoading(true);
@@ -755,7 +788,8 @@ const ChatFormGPT: React.FC = () => {
   }
 
   return (
-          <div style={{
+    <>
+      <div style={{
         display: 'flex',
         height: '100vh',
         width: '100vw',
@@ -3312,6 +3346,16 @@ const ChatFormGPT: React.FC = () => {
         </div>
       </div>
     </div>
+
+    {/* Модальное окно авторизации */}
+    <AuthModal
+      isOpen={showAuthModal}
+      onClose={handleCloseModal}
+      onSignUp={handleSignUp}
+      onLogIn={handleLogIn}
+      pendingMessage={pendingMessage}
+    />
+    </>
   );
 };
 

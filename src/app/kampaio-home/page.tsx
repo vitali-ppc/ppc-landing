@@ -2142,7 +2142,7 @@ export default function KampaioHome() {
                         transition: 'all 0.3s ease',
                         boxShadow: openQuestion === 1 ? '0 4px 12px rgba(102, 126, 234, 0.2)' : 'none'
                       }}
-                      onClick={() => window.location.href = '/chat'}>
+                      onClick={() => window.location.href = '/register'}>
                         Get Started
                       </button>
                     </div>
@@ -2264,7 +2264,7 @@ export default function KampaioHome() {
                         transition: 'all 0.3s ease',
                         boxShadow: openQuestion === 2 ? '0 4px 12px rgba(102, 126, 234, 0.2)' : 'none'
                       }}
-                      onClick={() => window.location.href = '/chat'}>
+                      onClick={() => window.location.href = '/register'}>
                         Get Started
                       </button>
                     </div>
@@ -2386,7 +2386,7 @@ export default function KampaioHome() {
                         transition: 'all 0.3s ease',
                         boxShadow: openQuestion === 3 ? '0 4px 12px rgba(102, 126, 234, 0.2)' : 'none'
                       }}
-                      onClick={() => window.location.href = '/chat'}>
+                      onClick={() => window.location.href = '/register'}>
                         Get Started
                       </button>
                     </div>
@@ -2508,7 +2508,7 @@ export default function KampaioHome() {
                         transition: 'all 0.3s ease',
                         boxShadow: openQuestion === 4 ? '0 4px 12px rgba(102, 126, 234, 0.2)' : 'none'
                       }}
-                      onClick={() => window.location.href = '/chat'}>
+                      onClick={() => window.location.href = '/register'}>
                         Get Started
                       </button>
                     </div>
@@ -2630,7 +2630,7 @@ export default function KampaioHome() {
                         transition: 'all 0.3s ease',
                         boxShadow: openQuestion === 5 ? '0 4px 12px rgba(102, 126, 234, 0.2)' : 'none'
                       }}
-                      onClick={() => window.location.href = '/chat'}>
+                      onClick={() => window.location.href = '/register'}>
                         Get Started
                       </button>
                     </div>
@@ -2752,7 +2752,7 @@ export default function KampaioHome() {
                         transition: 'all 0.3s ease',
                         boxShadow: openQuestion === 6 ? '0 4px 12px rgba(102, 126, 234, 0.2)' : 'none'
                       }}
-                      onClick={() => window.location.href = '/chat'}>
+                      onClick={() => window.location.href = '/register'}>
                         Get Started
                       </button>
                     </div>

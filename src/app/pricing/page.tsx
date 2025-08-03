@@ -327,6 +327,13 @@ export default function PricingPage() {
                     e.currentTarget.style.transform = 'translateY(0)';
                     e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
                   }}
+                  onClick={() => {
+                    if (plan.id === 'starter') {
+                      window.location.href = '/chat';
+                    } else {
+                      window.location.href = '/register';
+                    }
+                  }}
                 >
                   Get Started
                 </button>

@@ -204,7 +204,7 @@ export default function AnimatedHero() {
                   position: 'relative',
                   overflow: 'hidden'
                 }}
-                onClick={() => window.location.href = '/chat'}
+                onClick={() => window.location.href = '/register'}
               >
                 <motion.span
                   style={{ position: 'relative', zIndex: 1 }}
