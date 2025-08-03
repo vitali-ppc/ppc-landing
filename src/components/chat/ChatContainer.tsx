@@ -14,6 +14,8 @@ const ChatContainer: React.FC = () => {
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const chatEndRef = useRef<HTMLDivElement>(null);
 
+
+
   // Custom hooks
   const chatState = useChatState();
   const { startTypingEffect, stopTypingEffect, cleanup } = useTypingEffect();
@@ -59,6 +61,8 @@ const ChatContainer: React.FC = () => {
       document.body.dataset.chatTheme = chatState.theme;
     }
   }, [chatState.theme]);
+
+
 
   // Загрузка данных Google Ads
   useEffect(() => {
@@ -389,6 +393,7 @@ const ChatContainer: React.FC = () => {
             onImageUpload={chatActions.handleImageUpload}
             onRemoveImage={chatActions.removeImage}
             onSubmit={chatActions.handleSubmit}
+
           />
 
           {/* Google Ads connection */}
