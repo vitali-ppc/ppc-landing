@@ -8,26 +8,26 @@ import { formatNiche } from '../../../utils/seo';
 import React from 'react';
 
 const niches = [
-  { slug: 'dentist', name: 'Dentist' },
-  { slug: 'lawyer', name: 'Lawyers' },
-  { slug: 'real-estate', name: 'Real Estate' },
-  { slug: 'saas', name: 'SaaS' },
-  { slug: 'plumber', name: 'Plumbers' },
-  { slug: 'roofer', name: 'Roofers' },
-  { slug: 'electrician', name: 'Electricians' },
-  { slug: 'gym', name: 'Gyms & Fitness Studios' },
-  { slug: 'therapist', name: 'Therapists & Counselors' },
-  { slug: 'ecommerce', name: 'Ecommerce Stores' },
-  { slug: 'wedding-photographer', name: 'Wedding Photographers' },
-  { slug: 'home-cleaning', name: 'Home Cleaning Services' },
-  { slug: 'digital-agency', name: 'Digital Agencies' },
-  { slug: 'auto-repair', name: 'Auto Repair Shops' },
-  { slug: 'pet-services', name: 'Pet Services' },
-  { slug: 'education-courses', name: 'Education Courses' },
-  { slug: 'cosmetic-clinic', name: 'Cosmetic Clinics' },
-  { slug: 'moving-company', name: 'Moving Companies' },
-  { slug: 'hvac', name: 'HVAC Services' },
-  { slug: 'chiropractor', name: 'Chiropractors' },
+  { slug: 'dentist', name: 'Dentist', hasPage: true },
+  { slug: 'lawyer', name: 'Lawyers', hasPage: true },
+  { slug: 'real-estate', name: 'Real Estate', hasPage: true },
+  { slug: 'saas', name: 'SaaS', hasPage: true },
+  { slug: 'plumber', name: 'Plumbers', hasPage: false },
+  { slug: 'roofer', name: 'Roofers', hasPage: false },
+  { slug: 'electrician', name: 'Electricians', hasPage: false },
+  { slug: 'gym', name: 'Gyms & Fitness Studios', hasPage: false },
+  { slug: 'therapist', name: 'Therapists & Counselors', hasPage: false },
+  { slug: 'ecommerce', name: 'Ecommerce Stores', hasPage: false },
+  { slug: 'wedding-photographer', name: 'Wedding Photographers', hasPage: false },
+  { slug: 'home-cleaning', name: 'Home Cleaning Services', hasPage: false },
+  { slug: 'digital-agency', name: 'Digital Agencies', hasPage: false },
+  { slug: 'auto-repair', name: 'Auto Repair Shops', hasPage: false },
+  { slug: 'pet-services', name: 'Pet Services', hasPage: false },
+  { slug: 'education-courses', name: 'Education Courses', hasPage: false },
+  { slug: 'cosmetic-clinic', name: 'Cosmetic Clinics', hasPage: false },
+  { slug: 'moving-company', name: 'Moving Companies', hasPage: false },
+  { slug: 'hvac', name: 'HVAC Services', hasPage: false },
+  { slug: 'chiropractor', name: 'Chiropractors', hasPage: false },
 ];
 
 // 2. IconLawyer как отдельный компонент
@@ -165,7 +165,7 @@ export default function AdsMainHubPage() {
           }}>
             {visibleNiches.map((niche, index) => {
               // icon = null для всех карточек
-              return (
+              return niche.hasPage ? (
                 <Link
                   key={niche.slug}
                   href={`/ads/${niche.slug}`}
@@ -190,6 +190,31 @@ export default function AdsMainHubPage() {
                   </div>
                   <div style={buttonStyle}>Explore</div>
                 </Link>
+              ) : (
+                <div
+                  key={niche.slug}
+                  style={{ 
+                    ...cardStyle, 
+                    opacity: 0.6,
+                    cursor: 'default',
+                    background: '#f8fafc',
+                    border: '2px solid #e2e8f0'
+                  }}
+                >
+                  <div>
+                    <h3 style={{ fontSize: '1.25rem', fontWeight: 600, color: '#64748b', marginBottom: 8 }}>
+                      {niche.name}
+                    </h3>
+                  </div>
+                  <div style={{ 
+                    ...buttonStyle, 
+                    background: '#cbd5e1',
+                    cursor: 'default',
+                    boxShadow: 'none'
+                  }}>
+                    Coming Soon
+                  </div>
+                </div>
               );
             })}
           </div>

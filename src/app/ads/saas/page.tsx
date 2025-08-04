@@ -8,11 +8,11 @@ import { useState } from 'react';
 import NichePromoBlock from '../../../components/NichePromoBlock';
 
 const cities = [
-  { slug: 'chicago', name: 'Chicago' },
-  { slug: 'miami', name: 'Miami' },
-  { slug: 'austin', name: 'Austin' },
-  { slug: 'phoenix', name: 'Phoenix' },
-  { slug: 'san-diego', name: 'San Diego' },
+  { slug: 'chicago', name: 'Chicago', hasPage: false },
+  { slug: 'miami', name: 'Miami', hasPage: false },
+  { slug: 'austin', name: 'Austin', hasPage: false },
+  { slug: 'phoenix', name: 'Phoenix', hasPage: false },
+  { slug: 'san-diego', name: 'San Diego', hasPage: false },
 ];
 
 export default function SaasAdsHubPage() {
@@ -209,7 +209,7 @@ export default function SaasAdsHubPage() {
               const currentTextColor = textColors[index] || textColors[0];
               const currentButtonStyle = buttonStyles[index] || buttonStyles[0];
 
-              return (
+              return city.hasPage ? (
                 <Link
                   key={city.slug}
                   href={`/ads/saas/${city.slug}`}
@@ -265,6 +265,55 @@ export default function SaasAdsHubPage() {
                     Explore
                   </div>
                 </Link>
+              ) : (
+                <div
+                  key={city.slug}
+                  style={{
+                    ...currentStyle,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-between',
+                    minHeight: 220,
+                    maxHeight: 220,
+                    width: '100%',
+                    position: 'relative',
+                    opacity: 0.6,
+                    cursor: 'default',
+                    background: '#f8fafc',
+                    border: '2px solid #e2e8f0'
+                  }}
+                >
+                  <div>
+                    <h3 style={{ 
+                      fontSize: '1.25rem', 
+                      fontWeight: 600, 
+                      color: '#64748b', 
+                      marginBottom: 8 
+                    }}>
+                      {city.name}
+                    </h3>
+ 
+                  </div>
+                  <div
+                    style={{
+                      display: 'inline-block',
+                      marginTop: 'auto',
+                      padding: '12px 28px',
+                      borderRadius: 12,
+                      background: '#cbd5e1',
+                      color: 'white',
+                      border: 'none',
+                      fontWeight: 700,
+                      fontSize: '1rem',
+                      textAlign: 'center',
+                      transition: 'all 0.2s',
+                      cursor: 'default',
+                      boxShadow: 'none'
+                    }}
+                  >
+                    Coming Soon
+                  </div>
+                </div>
               );
             })}
           </div>
