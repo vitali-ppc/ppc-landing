@@ -106,9 +106,10 @@ function normalizeNiche(niche: string): string {
 }
 
 // Генерация SEO metadata
-export async function generateMetadata({ params }: { params: { niche: string; city: string } }): Promise<Metadata> {
-  const niche = normalizeNiche(params.niche);
-  const cityName = formatCity(params.city);
+export async function generateMetadata({ params }: { params: Promise<{ niche: string; city: string }> }): Promise<Metadata> {
+  const { niche: nicheParam, city: cityParam } = await params;
+  const niche = normalizeNiche(nicheParam);
+  const cityName = formatCity(cityParam);
   const formattedNiche = formatNiche(niche);
   
   return {
@@ -143,9 +144,10 @@ export async function generateStaticParams() {
 export const dynamicParams = true;
 
 // Основний компонент сторінки
-export default function NicheCityPage({ params }: { params: { niche: string; city: string } }) {
-  const niche = normalizeNiche(params.niche);
-  const city = params.city?.toLowerCase();
+export default async function NicheCityPage({ params }: { params: Promise<{ niche: string; city: string }> }) {
+  const { niche: nicheParam, city: cityParam } = await params;
+  const niche = normalizeNiche(nicheParam);
+  const city = cityParam?.toLowerCase();
   
   // Валидация параметров
   if (!niche || !city || !allowedNiches.includes(niche) || !allowedCities.includes(city)) {

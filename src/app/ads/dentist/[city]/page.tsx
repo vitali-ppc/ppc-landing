@@ -53,8 +53,9 @@ function formatNichePlural(niche: string) {
 }
 
 // Динамічний SEO metadata
-export async function generateMetadata({ params }: { params: { city: string } }): Promise<Metadata> {
-  const cityName = formatCity(params.city);
+export async function generateMetadata({ params }: { params: Promise<{ city: string }> }): Promise<Metadata> {
+  const { city } = await params;
+  const cityName = formatCity(city);
   return {
     title: `Google Ads для стоматологів у ${cityName} | Локальні PPC стратегії`,
     description: `Дізнайтесь, як ефективно запускати Google Ads кампанії для стоматологів у ${cityName}. Поради, шаблони та рекомендації для максимального ROI.`,
@@ -62,8 +63,9 @@ export async function generateMetadata({ params }: { params: { city: string } })
 }
 
 // Основний компонент сторінки
-export default function DentistCityPage({ params }: { params: { city: string } }) {
-  const city = params.city?.toLowerCase();
+export default async function DentistCityPage({ params }: { params: Promise<{ city: string }> }) {
+  const { city: cityParam } = await params;
+  const city = cityParam?.toLowerCase();
   const niche = 'dentist'; // Фиксированная ниша для этой страницы
   if (!city || !allowedCities.includes(city)) {
     notFound();

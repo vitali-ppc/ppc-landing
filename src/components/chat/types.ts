@@ -86,7 +86,8 @@ export const EXPORT_ENDPOINTS = {
   txt: '/api/export-txt',
   csv: '/api/export-csv',
   pdf: '/api/export-pdf',
-  xlsx: '/api/export-xlsx'
+  xlsx: '/api/export-xlsx',
+  json: '/api/export-json'
 } as const;
 
 export type ExportFormat = keyof typeof EXPORT_ENDPOINTS; 

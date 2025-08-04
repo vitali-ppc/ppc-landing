@@ -61,7 +61,7 @@ export default function AdsMainHubPage() {
   const visibleNiches = showAllNiches ? filteredNiches : filteredNiches.slice(0, 4);
 
   // Стили карточек и кнопок как в SILO-хабах
-  const cardStyle = {
+  const cardStyle: React.CSSProperties = {
     background: 'white',
     border: '2px solid #667eea',
     boxShadow: '0 8px 32px rgba(102,126,234,0.3)',
@@ -178,8 +178,8 @@ export default function AdsMainHubPage() {
                   onMouseLeave={e => {
                     const target = e.currentTarget as HTMLElement;
                     target.style.transform = 'translateY(0) scale(1) rotate(0deg)';
-                    target.style.boxShadow = cardStyle.boxShadow;
-                    target.style.background = cardStyle.background;
+                    target.style.boxShadow = String(cardStyle.boxShadow || '');
+                    target.style.background = String(cardStyle.background || '');
                   }}
                 >
                   {/* Все иконки убраны */}
