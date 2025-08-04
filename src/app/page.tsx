@@ -417,8 +417,8 @@ export default function KampaioHome() {
                       animation: 'pulse 2s infinite'
                     }}>
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                    </svg>
-                  </div>
+          </svg>
+        </div>
                   <h4 style={{
                     fontSize: '20px',
                     fontWeight: '700',
@@ -435,8 +435,8 @@ export default function KampaioHome() {
                     <div>• Campaign metrics</div>
                     <div>• Keywords performance</div>
                     <div>• Historical data</div>
-                  </div>
-                </div>
+          </div>
+        </div>
                 
                 {/* ARROW 1 - УЛУЧШЕННАЯ АНИМАЦИЯ */}
                 <div style={{
@@ -518,7 +518,7 @@ export default function KampaioHome() {
                     }}>
                       <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.23 3 3 0 0 1-.34-5.58l.34-.03a2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"/>
                       <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.23 3 3 0 0 0 .34-5.58l-.34-.03a2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"/>
-                    </svg>
+          </svg>
                   </div>
                   <h4 style={{
                     fontSize: '20px',
@@ -1485,7 +1485,7 @@ export default function KampaioHome() {
                       }}
                       onClick={() => window.location.href = '/register'}>
                         Get Started
-                      </button>
+            </button>
                     </div>
                   </div>
                 </div>
@@ -1607,7 +1607,7 @@ export default function KampaioHome() {
                       }}
                       onClick={() => window.location.href = '/register'}>
                         Get Started
-                      </button>
+            </button>
                     </div>
                   </div>
                 </div>
@@ -1729,7 +1729,7 @@ export default function KampaioHome() {
                       }}
                       onClick={() => window.location.href = '/register'}>
                         Get Started
-                      </button>
+            </button>
                     </div>
                   </div>
                 </div>
@@ -1851,7 +1851,7 @@ export default function KampaioHome() {
                       }}
                       onClick={() => window.location.href = '/register'}>
                         Get Started
-                      </button>
+            </button>
                     </div>
                   </div>
                 </div>
@@ -1973,13 +1973,13 @@ export default function KampaioHome() {
                       }}
                       onClick={() => window.location.href = '/register'}>
                         Get Started
-                      </button>
+            </button>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-
+          </div>
+          
             {/* FAQ Item 6 */}
             <div style={{
               background: 'white',
@@ -2038,7 +2038,7 @@ export default function KampaioHome() {
                 </div>
                 
                 <svg 
-                  style={{
+                style={{
                     width: '20px',
                     height: '20px',
                     color: '#9ca3af',
@@ -2049,8 +2049,8 @@ export default function KampaioHome() {
                   viewBox="0 0 24 24"
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </div>
+                      </svg>
+                  </div>
               
               {/* Animated Answer */}
               <div id="faq-answer-6" style={{
@@ -2096,11 +2096,11 @@ export default function KampaioHome() {
                       onClick={() => window.location.href = '/register'}>
                         Get Started
                       </button>
-                    </div>
+                </div>
+                  </div>
                   </div>
                 </div>
-              </div>
-            </div>
+                  </div>
           </div>
         </div>
       </section>
@@ -2177,7 +2177,7 @@ export default function KampaioHome() {
                       {/* Стилизованная башня - Enterprise */}
                       <path d="M12 2L8 6v4h2v8h4v-8h2V6l-4-4z" fill="#374151"/>
                       <rect x="10" y="14" width="4" height="2" fill="#374151"/>
-                    </svg>
+                      </svg>
                   </div>
                   <p style={{
                     fontSize: '16px',
@@ -2222,7 +2222,7 @@ export default function KampaioHome() {
                       <circle cx="12" cy="12" r="8" fill="#374151"/>
                       <circle cx="12" cy="12" r="4" fill="white"/>
                       <circle cx="12" cy="12" r="2" fill="#374151"/>
-                    </svg>
+                      </svg>
                   </div>
                   <p style={{
                     fontSize: '16px',
@@ -2260,7 +2260,7 @@ export default function KampaioHome() {
                   }}>Lawyers</p>
                 </div>
               </div>
-              
+
               {/* Button */}
               <div>
                 <a href="/ads"
@@ -2292,7 +2292,7 @@ export default function KampaioHome() {
                     <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M1 8.28955H15" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"></path>
                       <path d="M9.27344 2.5625L15.0007 8.28977L9.27344 14.017" stroke="currentColor" strokeWidth="1.27273" strokeLinecap="round" strokeLinejoin="round"></path>
-                    </svg>
+                  </svg>
                   </div>
                 </a>
               </div>
@@ -2371,7 +2371,7 @@ export default function KampaioHome() {
                     <img 
                       src="https://img.icons8.com/color/48/google-ads.png" 
                       alt="Google Ads Official Partner" 
-                      style={{
+                  style={{
                         width: '32px',
                         height: '32px'
                       }}
@@ -2473,14 +2473,14 @@ export default function KampaioHome() {
                       <rect x="4" y="12" width="4" height="8" rx="1" fill="#FF9800"/>
                       <rect x="9" y="8" width="4" height="12" rx="1" fill="#FF5722"/>
                       <rect x="14" y="4" width="4" height="16" rx="1" fill="#F57C00"/>
-                    </svg>
+                  </svg>
                   </div>
                 </div>
               </a>
             </div>
           </div>
-        </div>
-        
+              </div>
+              
         <div style={{
           marginBottom: '80px'
         }}></div>
@@ -2544,7 +2544,7 @@ export default function KampaioHome() {
               }}>
                 Specialized AI solutions for different business industries
               </p>
-            </div>
+                </div>
             
             <div style={{
               display: 'flex',
@@ -2574,7 +2574,7 @@ export default function KampaioHome() {
                   }}>
                     Dentists
                   </span>
-                </div>
+              </div>
                 
                 {/* Real Estate Agents */}
                 <div style={{
@@ -2594,10 +2594,10 @@ export default function KampaioHome() {
                   }}>
                     Real Estate
                   </span>
-                </div>
-                
+            </div>
+
                 {/* SaaS Products */}
-                <div style={{
+            <div style={{
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
@@ -2625,7 +2625,7 @@ export default function KampaioHome() {
                 }}>
                   <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M24 4L8 12v12c0 8.837 7.163 16 16 16s16-7.163 16-16V12L24 4zm0 28c-6.627 0-12-5.373-12-12V16l12-8 12 8v4c0 6.627-5.373 12-12 12z" fill="#374151"/>
-                  </svg>
+                    </svg>
                   <span style={{
                     fontSize: '14px',
                     fontWeight: '500',
@@ -2656,7 +2656,7 @@ export default function KampaioHome() {
                   }}>
                     Plumbers
                   </span>
-                </div>
+              </div>
                 
                 {/* Roofers */}
                 <div style={{
@@ -2676,10 +2676,10 @@ export default function KampaioHome() {
                   }}>
                     Roofers
                   </span>
-                </div>
-                
+            </div>
+
                 {/* Electricians */}
-                <div style={{
+            <div style={{
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
@@ -2707,7 +2707,7 @@ export default function KampaioHome() {
                 }}>
                   <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M24 4c-5.514 0-10 4.486-10 10v20h20V14c0-5.514-4.486-10-10-10z" fill="#374151"/>
-                  </svg>
+                    </svg>
                   <span style={{
                     fontSize: '14px',
                     fontWeight: '500',
@@ -2737,7 +2737,7 @@ export default function KampaioHome() {
                   }}>
                     Therapists / Counselors
                   </span>
-                </div>
+              </div>
                 
                 {/* Ecommerce Stores */}
                 <div style={{
@@ -2757,10 +2757,10 @@ export default function KampaioHome() {
                   }}>
                     Ecommerce Stores
                   </span>
-                </div>
-                
+            </div>
+
                 {/* Wedding Photographers */}
-                <div style={{
+            <div style={{
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
@@ -2788,7 +2788,7 @@ export default function KampaioHome() {
                 }}>
                   <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M24 4L4 20h4v20h32V20h4L24 4zm-2 34V26h4v12h-4zm8 0V26h4v12h-4z" fill="#374151"/>
-                  </svg>
+                    </svg>
                   <span style={{
                     fontSize: '14px',
                     fontWeight: '500',
@@ -2837,16 +2837,16 @@ export default function KampaioHome() {
                   }}>
                     Auto Repair Shops
                   </span>
-                </div>
               </div>
-              
+            </div>
+
               <div className="g2-row-img-container-inner" style={{
                 display: 'flex',
                 alignItems: 'center',
                 gap: '40px'
               }}>
                 {/* Dentists */}
-                <div style={{
+            <div style={{
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center'
@@ -2870,7 +2870,7 @@ export default function KampaioHome() {
                 }}>
                   <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M24 4L4 20h4v20h32V20h4L24 4zm-2 34V26h4v12h-4zm8 0V26h4v12h-4z" fill="white"/>
-                  </svg>
+                    </svg>
                 </div>
                 
                 {/* SaaS Companies */}
@@ -2882,7 +2882,7 @@ export default function KampaioHome() {
                   <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M24 4L4 12v12c0 11.046 8.954 20 20 20s20-8.954 20-20V12L24 4zm0 32c-8.837 0-16-7.163-16-16V16l16-8 16 8v4c0 8.837-7.163 16-16 16z" fill="#374151"/>
                   </svg>
-                </div>
+              </div>
                 
                 {/* Lawyers / Attorneys */}
                 <div style={{
@@ -2893,7 +2893,7 @@ export default function KampaioHome() {
                   <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M24 4L8 12v12c0 8.837 7.163 16 16 16s16-7.163 16-16V12L24 4zm0 28c-6.627 0-12-5.373-12-12V16l12-8 12 8v4c0 6.627-5.373 12-12 12z" fill="#374151"/>
                   </svg>
-                </div>
+            </div>
                 
 
                 
@@ -2906,7 +2906,7 @@ export default function KampaioHome() {
                   <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M24 4c-5.514 0-10 4.486-10 10v4h20v-4c0-5.514-4.486-10-10-10zm-6 18v12h12V22H18z" fill="#374151"/>
                   </svg>
-                </div>
+          </div>
                 
                 {/* Roofers */}
                 <div style={{
@@ -2917,7 +2917,7 @@ export default function KampaioHome() {
                   <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M24 4L4 20h4v20h32V20h4L24 4zm-2 34V26h4v12h-4zm8 0V26h4v12h-4z" fill="#374151"/>
                   </svg>
-                </div>
+        </div>
                 
                 {/* Electricians */}
                 <div style={{
@@ -2927,8 +2927,8 @@ export default function KampaioHome() {
                 }}>
                   <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M24 4L12 20h6v20h12V20h6L24 4z" fill="#374151"/>
-                  </svg>
-                </div>
+          </svg>
+        </div>
                 
                 {/* Gyms & Fitness Studios */}
                 <div style={{
@@ -2938,8 +2938,8 @@ export default function KampaioHome() {
                 }}>
                   <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M24 4c-5.514 0-10 4.486-10 10v20h20V14c0-5.514-4.486-10-10-10z" fill="#374151"/>
-                  </svg>
-                </div>
+              </svg>
+            </div>
                 
                 {/* Therapists / Counselors */}
                 <div style={{
@@ -2950,8 +2950,8 @@ export default function KampaioHome() {
                   <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M24 4C12.954 4 4 12.954 4 24s8.954 20 20 20 20-8.954 20-20S35.046 4 24 4zm0 36c-8.837 0-16-7.163-16-16S15.163 8 24 8s16 7.163 16 16-7.163 16-16 16z" fill="#374151"/>
                     <path d="M18 20h12v2H18zm0 4h12v2H18zm0 4h8v2h-8z" fill="#374151"/>
-                  </svg>
-                </div>
+              </svg>
+            </div>
                 
                 {/* Ecommerce Stores */}
                 <div style={{
@@ -2961,8 +2961,8 @@ export default function KampaioHome() {
                 }}>
                   <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M24 4L4 12v12c0 11.046 8.954 20 20 20s20-8.954 20-20V12L24 4zm0 32c-8.837 0-16-7.163-16-16V16l16-8 16 8v4c0 8.837-7.163 16-16 16z" fill="#374151"/>
-                  </svg>
-                </div>
+              </svg>
+            </div>
                 
                 {/* Wedding Photographers */}
                 <div style={{
@@ -2972,8 +2972,8 @@ export default function KampaioHome() {
                 }}>
                   <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M24 4c-5.514 0-10 4.486-10 10v20h20V14c0-5.514-4.486-10-10-10z" fill="#374151"/>
-                  </svg>
-                </div>
+              </svg>
+            </div>
                 
                 {/* Home Cleaning Services */}
                 <div style={{
