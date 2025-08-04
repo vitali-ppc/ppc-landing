@@ -7,6 +7,7 @@ import ScrollToTop from '../components/ScrollToTop'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://ppcset.com'),
   title: {
     default: 'PPCSet - Digital Ecosystem',
     template: '%s | PPCSet'
@@ -26,7 +27,7 @@ export const metadata: Metadata = {
     description: 'Premium digital ecosystem: advertising, analytics, web development. For businesses that want more.',
     images: [
       {
-        url: 'https://ppcset.com/logo.png',
+        url: '/logo.png',
         width: 1200,
         height: 630,
         alt: 'PPCSet Logo',
@@ -37,7 +38,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'PPCSet - Digital Ecosystem',
     description: 'Premium digital ecosystem: advertising, analytics, web development. For businesses that want more.',
-    images: ['https://ppcset.com/logo.png'],
+    images: ['/logo.png'],
   },
   icons: {
     icon: [

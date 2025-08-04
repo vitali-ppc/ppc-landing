@@ -160,11 +160,12 @@ python main.py
 ## 📚 Documentation
 
 - `PRODUCT_DOCUMENTATION.md` - Detailed technical documentation
-- `CHAT_SYSTEM_DOCUMENTATION.md` - Chat system architecture
-- `COLOR_PALETTE_DOCUMENTATION.md` - Brand color system
-- `SEO_UX_GUIDE.md` - SEO and UX strategy
-- `BREADCRUMBS_SYSTEM.md` - Breadcrumbs system
-- `AI_SERVER_HETZNER_README.md` - Backend documentation
+- `docs/README.md` - Documentation overview and navigation
+- `docs/CHAT_SYSTEM_DOCUMENTATION.md` - Chat system architecture
+- `docs/COLOR_PALETTE_DOCUMENTATION.md` - Brand color system
+- `docs/SEO_UX_GUIDE.md` - SEO and UX strategy
+- `docs/BREADCRUMBS_SYSTEM.md` - Breadcrumbs system
+- `docs/AI_SERVER_HETZNER_README.md` - Backend documentation
 
 ## 🤝 Contributing
 

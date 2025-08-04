@@ -197,11 +197,12 @@ Kampaio - це AI-асистент для аналітики та стратег
 
 ### Документація
 - `README.md` - Загальний огляд
-- `CHAT_SYSTEM_DOCUMENTATION.md` - Деталі чат-системи
-- `COLOR_PALETTE_DOCUMENTATION.md` - Кольорова палітра
-- `SEO_UX_GUIDE.md` - SEO та UX стратегія
-- `BREADCRUMBS_SYSTEM.md` - Система breadcrumbs
-- `AI_SERVER_HETZNER_README.md` - Backend документація
+- `docs/README.md` - Огляд документації та навігація
+- `docs/CHAT_SYSTEM_DOCUMENTATION.md` - Деталі чат-системи
+- `docs/COLOR_PALETTE_DOCUMENTATION.md` - Кольорова палітра
+- `docs/SEO_UX_GUIDE.md` - SEO та UX стратегія
+- `docs/BREADCRUMBS_SYSTEM.md` - Система breadcrumbs
+- `docs/AI_SERVER_HETZNER_README.md` - Backend документація
 
 ### Deployment
 - **Frontend**: Vercel
