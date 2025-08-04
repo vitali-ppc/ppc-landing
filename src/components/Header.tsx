@@ -10,7 +10,7 @@ interface HeaderProps {
 
 export default function Header({ variant = 'full' }: HeaderProps) {
   const pathname = usePathname()
-  const [isTemplatesDropdownOpen, setIsTemplatesDropdownOpen] = useState(false)
+  const [isIndustriesDropdownOpen, setIsIndustriesDropdownOpen] = useState(false)
   
   const isActivePage = (path: string) => {
     if (path === '/') {
@@ -57,14 +57,14 @@ export default function Header({ variant = 'full' }: HeaderProps) {
         link.removeEventListener('click', closeMenu)
       })
     }
-  }, [variant])
+    }, [variant])
 
   // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as Element
-      if (!target.closest('.templates-dropdown')) {
-        setIsTemplatesDropdownOpen(false)
+      if (!target.closest('.industries-dropdown')) {
+        setIsIndustriesDropdownOpen(false)
       }
     }
 
@@ -170,49 +170,50 @@ export default function Header({ variant = 'full' }: HeaderProps) {
               <span style={{ color: '#1e293b', fontWeight: 'bold', fontSize: '20px' }}>Kampaio</span>
             </Link>
             <nav className="header__nav">
-              <div className="templates-dropdown">
-                <button 
-                  className="templates-dropdown-toggle"
-                  onClick={() => setIsTemplatesDropdownOpen(!isTemplatesDropdownOpen)}
-                  onMouseEnter={() => setIsTemplatesDropdownOpen(true)}
-                >
-                  Industries
-                  <svg 
-                    width="16" 
-                    height="16" 
-                    viewBox="0 0 24 24" 
-                    fill="none" 
-                    stroke="currentColor" 
-                    strokeWidth="2" 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round"
-                    style={{
-                      marginLeft: '4px',
-                      transition: 'transform 0.2s ease',
-                      transform: isTemplatesDropdownOpen ? 'rotate(180deg)' : 'rotate(0deg)'
-                    }}
+              <div className="industries-dropdown">
+                <div className="industries-dropdown-toggle">
+                  <a href="/ads" className="industries-link">Industries</a>
+                  <button 
+                    className="industries-dropdown-button"
+                    onClick={() => setIsIndustriesDropdownOpen(!isIndustriesDropdownOpen)}
+                    onMouseEnter={() => setIsIndustriesDropdownOpen(true)}
                   >
-                    <polyline points="6,9 12,15 18,9"></polyline>
-                  </svg>
-                </button>
+                    <svg 
+                      width="16" 
+                      height="16" 
+                      viewBox="0 0 24 24" 
+                      fill="none" 
+                      stroke="currentColor" 
+                      strokeWidth="2" 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round"
+                      style={{
+                        transition: 'transform 0.2s ease',
+                        transform: isIndustriesDropdownOpen ? 'rotate(180deg)' : 'rotate(0deg)'
+                      }}
+                    >
+                      <polyline points="6,9 12,15 18,9"></polyline>
+                    </svg>
+                  </button>
+                </div>
                 <div 
-                  className={`templates-dropdown-menu ${isTemplatesDropdownOpen ? 'show' : ''}`}
-                  onMouseLeave={() => setIsTemplatesDropdownOpen(false)}
+                  className={`industries-dropdown-menu ${isIndustriesDropdownOpen ? 'show' : ''}`}
+                  onMouseLeave={() => setIsIndustriesDropdownOpen(false)}
                 >
-                  <a href="/templates/dentist">
+                  <a href="/ads/dentist">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '8px' }}>
                       <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
                     </svg>
                     Dentist
                   </a>
-                  <a href="/templates/real-estate">
+                  <a href="/ads/real-estate">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '8px' }}>
                       <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
                       <polyline points="9,22 9,12 15,12 15,22"/>
                     </svg>
                     Real Estate
                   </a>
-                  <a href="/templates/saas">
+                  <a href="/ads/saas">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '8px' }}>
                       <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
                       <line x1="8" y1="21" x2="16" y2="21"/>
@@ -220,7 +221,7 @@ export default function Header({ variant = 'full' }: HeaderProps) {
                     </svg>
                     SaaS
                   </a>
-                  <a href="/templates/lawyer">
+                  <a href="/ads/lawyer">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '8px' }}>
                       <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
                       <polyline points="14,2 14,8 20,8"/>
@@ -267,56 +268,56 @@ export default function Header({ variant = 'full' }: HeaderProps) {
             Get Free
           </a>
         </div>
-        <ul className="mobile-menu-list">
-          <li>
-            <div className="mobile-templates-section">
-              <span className="mobile-templates-title">Industries</span>
-              <ul className="mobile-templates-submenu">
-                <li>
-                  <a href="/templates/dentist">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '8px' }}>
-                      <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-                    </svg>
-                    Dentist
-                  </a>
-                </li>
-                <li>
-                  <a href="/templates/real-estate">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '8px' }}>
-                      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                      <polyline points="9,22 9,12 15,12 15,22"/>
-                    </svg>
-                    Real Estate
-                  </a>
-                </li>
-                <li>
-                  <a href="/templates/saas">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '8px' }}>
-                      <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
-                      <line x1="8" y1="21" x2="16" y2="21"/>
-                      <line x1="12" y1="17" x2="12" y2="21"/>
-                    </svg>
-                    SaaS
-                  </a>
-                </li>
-                <li>
-                  <a href="/templates/lawyer">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '8px' }}>
-                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                      <polyline points="14,2 14,8 20,8"/>
-                      <line x1="16" y1="13" x2="8" y2="13"/>
-                      <line x1="16" y1="17" x2="8" y2="17"/>
-                      <polyline points="10,9 9,9 8,9"/>
-                    </svg>
-                    Lawyer
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li><a href="/blog">Blog</a></li>
-          <li><a href="/pricing">Pricing</a></li>
-        </ul>
+                          <ul className="mobile-menu-list">
+           <li>
+             <div className="mobile-industries-section">
+               <a href="/ads" className="mobile-industries-title">Industries</a>
+               <ul className="mobile-industries-submenu">
+                 <li>
+                   <a href="/ads/dentist">
+                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '8px' }}>
+                       <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                     </svg>
+                     Dentist
+                   </a>
+                 </li>
+                 <li>
+                   <a href="/ads/real-estate">
+                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '8px' }}>
+                       <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                       <polyline points="9,22 9,12 15,12 15,22"/>
+                     </svg>
+                     Real Estate
+                   </a>
+                 </li>
+                 <li>
+                   <a href="/ads/saas">
+                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '8px' }}>
+                       <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                       <line x1="8" y1="21" x2="16" y2="21"/>
+                       <line x1="12" y1="17" x2="12" y2="21"/>
+                     </svg>
+                     SaaS
+                   </a>
+                 </li>
+                 <li>
+                   <a href="/ads/lawyer">
+                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '8px' }}>
+                       <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                       <polyline points="14,2 14,8 20,8"/>
+                       <line x1="16" y1="13" x2="8" y2="13"/>
+                       <line x1="16" y1="17" x2="8" y2="17"/>
+                       <polyline points="10,9 9,9 8,9"/>
+                     </svg>
+                     Lawyer
+                   </a>
+                 </li>
+               </ul>
+             </div>
+           </li>
+           <li><a href="/blog">Blog</a></li>
+           <li><a href="/pricing">Pricing</a></li>
+         </ul>
       </nav>
     </>
   )

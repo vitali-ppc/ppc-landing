@@ -7205,3 +7205,217 @@ html {
 .internal-link-analytics {
   padding-top: 16px;
 }
+
+/* ===== Industries Dropdown Styles ===== */
+.industries-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.industries-dropdown-toggle {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  color: #23272f;
+  font-size: 15px;
+  font-weight: 500;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  padding: 12px 16px;
+  transition: all 0.2s ease;
+  margin-left: 8px;
+  border-radius: 6px;
+  position: relative;
+}
+
+.industries-link {
+  color: #23272f;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  transition: all 0.2s ease;
+  margin-right: 4px;
+}
+
+.industries-link:hover {
+  color: #000000;
+  text-decoration: none;
+}
+
+.industries-dropdown-button {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  color: #23272f;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.industries-dropdown-button:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.industries-dropdown-button svg {
+  transition: transform 0.2s ease;
+}
+
+.industries-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.08);
+  min-width: 200px;
+  z-index: 1001;
+  padding: 8px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-50%) translateY(-8px);
+  transition: all 0.2s ease;
+}
+
+.industries-dropdown-menu.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.industries-dropdown-menu::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 12px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: none;
+  border-right: none;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.industries-dropdown-menu a {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  color: #23272f;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  margin: 0;
+  border-radius: 8px;
+  position: relative;
+}
+
+.industries-dropdown-menu a:hover {
+  background-color: #f8f9fa;
+  color: #000000;
+  text-decoration: none;
+  transform: translateX(4px);
+}
+
+.industries-dropdown-menu a::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 0;
+  background: #764ba2;
+  border-radius: 0 2px 2px 0;
+  transition: height 0.2s ease;
+}
+
+.industries-dropdown-menu a:hover::before {
+  height: 20px;
+}
+
+/* Mobile Industries Styles */
+.mobile-industries-section {
+  margin-bottom: 16px;
+}
+
+.mobile-industries-title {
+  display: block;
+  color: #23272f;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.mobile-industries-title:hover {
+  color: #000000;
+  text-decoration: none;
+}
+
+.mobile-industries-submenu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mobile-industries-submenu li {
+  margin-bottom: 4px;
+}
+
+.mobile-industries-submenu a {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  color: #23272f;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border-radius: 8px;
+  position: relative;
+}
+
+.mobile-industries-submenu a:hover {
+  background-color: #f8f9fa;
+  color: #000000;
+  text-decoration: none;
+  transform: translateX(4px);
+}
+
+.mobile-industries-submenu a::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 0;
+  background: #764ba2;
+  border-radius: 0 2px 2px 0;
+  transition: height 0.2s ease;
+}
+
+.mobile-industries-submenu a:hover::before {
+  height: 20px;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .industries-dropdown-menu {
+    display: none;
+  }
+  
+  .industries-dropdown-toggle {
+    display: none;
+  }
+}
