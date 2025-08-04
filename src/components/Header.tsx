@@ -176,7 +176,7 @@ export default function Header({ variant = 'full' }: HeaderProps) {
                   onClick={() => setIsTemplatesDropdownOpen(!isTemplatesDropdownOpen)}
                   onMouseEnter={() => setIsTemplatesDropdownOpen(true)}
                 >
-                  Templates
+                  Industries
                   <svg 
                     width="16" 
                     height="16" 
@@ -232,7 +232,6 @@ export default function Header({ variant = 'full' }: HeaderProps) {
                   </a>
                 </div>
               </div>
-              <a href="/use-cases">Use Cases</a>
               <a href="/blog">Blog</a>
               <a href="/pricing">Pricing</a>
             </nav>
@@ -271,7 +270,7 @@ export default function Header({ variant = 'full' }: HeaderProps) {
         <ul className="mobile-menu-list">
           <li>
             <div className="mobile-templates-section">
-              <span className="mobile-templates-title">Templates</span>
+              <span className="mobile-templates-title">Industries</span>
               <ul className="mobile-templates-submenu">
                 <li>
                   <a href="/templates/dentist">
@@ -315,7 +314,6 @@ export default function Header({ variant = 'full' }: HeaderProps) {
               </ul>
             </div>
           </li>
-          <li><a href="/use-cases">Use Cases</a></li>
           <li><a href="/blog">Blog</a></li>
           <li><a href="/pricing">Pricing</a></li>
         </ul>
