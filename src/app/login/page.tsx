@@ -64,8 +64,8 @@ export default function LoginPage() {
       // Сохраняем email в localStorage для использования в чате
       localStorage.setItem('userEmail', email);
       
-      // Если аутентификация успешна, перенаправляем на OAuth2 процесс
-      window.location.href = '/api/auth/login';
+      // Если аутентификация успешна, перенаправляем на главную страницу
+      window.location.href = '/';
       
     } catch (error) {
       console.error('Authentication error:', error);
