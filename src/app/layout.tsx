@@ -7,36 +7,36 @@ import ScrollToTop from '../components/ScrollToTop'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://ppcset.com'),
+  metadataBase: new URL('https://kampaio.com'),
   title: {
-    default: 'PPCSet - Digital Ecosystem',
-    template: '%s | PPCSet'
+    default: 'Kampaio - Digital Ecosystem',
+    template: '%s | Kampaio'
   },
   description: 'Premium digital ecosystem: advertising, analytics, web development. For businesses that want more.',
   keywords: 'PPC, Google Ads, analytics, Node.js development, digital marketing, SEO, web development',
-  authors: [{ name: 'PPCSet' }],
-  creator: 'PPCSet',
-  publisher: 'PPCSet',
+  authors: [{ name: 'Kampaio' }],
+  creator: 'Kampaio',
+  publisher: 'Kampaio',
   robots: 'index, follow',
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://ppcset.com',
-    siteName: 'PPCSet',
-    title: 'PPCSet - Digital Ecosystem',
+    url: 'https://kampaio.com',
+    siteName: 'Kampaio',
+    title: 'Kampaio - Digital Ecosystem',
     description: 'Premium digital ecosystem: advertising, analytics, web development. For businesses that want more.',
     images: [
       {
         url: '/logo.png',
         width: 1200,
         height: 630,
-        alt: 'PPCSet Logo',
+        alt: 'Kampaio Logo',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'PPCSet - Digital Ecosystem',
+    title: 'Kampaio - Digital Ecosystem',
     description: 'Premium digital ecosystem: advertising, analytics, web development. For businesses that want more.',
     images: ['/logo.png'],
   },
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     google: 'your-google-verification-code',
   },
   alternates: {
-    canonical: 'https://ppcset.com',
+    canonical: 'https://kampaio.com',
   },
 }
 

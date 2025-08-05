@@ -87,7 +87,7 @@ export default function ProfessionalContactSection({ title, description }: Profe
               </div>
               <div>
                 <h3>Email</h3>
-                <p>info@ppcset.com</p>
+                <p>info@kampaio.com</p>
               </div>
             </div>
             <div className="professional-contact-item">
@@ -110,7 +110,7 @@ export default function ProfessionalContactSection({ title, description }: Profe
               </div>
               <div>
                 <h3>LinkedIn</h3>
-                <p><a href="https://www.linkedin.com/in/vitali-ppc%E2%9C%94-26b294b4/" target="_blank" rel="noopener noreferrer" style={{color: 'inherit', textDecoration: 'none'}} aria-label="Visit our LinkedIn profile">linkedin.com/in/ppcset</a></p>
+                <p><a href="https://www.linkedin.com/in/vitali-ppc%E2%9C%94-26b294b4/" target="_blank" rel="noopener noreferrer" style={{color: 'inherit', textDecoration: 'none'}} aria-label="Visit our LinkedIn profile">linkedin.com/in/kampaio</a></p>
               </div>
             </div>
           </div>

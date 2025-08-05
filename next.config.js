@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['ppcset.com'],
+    domains: ['kampaio.com'],
   },
   async headers() {
     return [

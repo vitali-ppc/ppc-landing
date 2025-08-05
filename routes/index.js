@@ -85,7 +85,7 @@ router.post('/contact', async (req, res) => {
 
   // Формуємо повідомлення для Telegram
   const telegramMessage = `
-<b>🆕 New Inquiry from PPCSet Website</b>
+        <b>🆕 New Inquiry from Kampaio Website</b>
 
 👤 <b>Name:</b> ${name}
 📧 <b>Email:</b> ${email}

@@ -37,7 +37,7 @@ export async function POST(req: NextRequest) {
       method: 'POST',
       headers: { 
         'Content-Type': 'application/json',
-        'User-Agent': 'PPCSet-AI-Client/1.0'
+        'User-Agent': 'Kampaio-AI-Client/1.0'
       },
       body: JSON.stringify(requestBody),
       // Timeout 30 секунд

@@ -326,7 +326,7 @@ const ChatContainer: React.FC = () => {
           }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
               <span style={{ fontWeight: 700, fontSize: 20, color: '#fff', letterSpacing: '-0.5px' }}>
-                PPCSet AI
+                Kampaio AI
               </span>
             </div>
           </div>

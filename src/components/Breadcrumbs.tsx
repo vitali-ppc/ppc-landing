@@ -98,13 +98,13 @@ export default function Breadcrumbs() {
                 "@type": "ListItem",
                 "position": 1,
                 "name": "Home",
-                "item": "https://ppcset.com"
+                "item": "https://kampaio.com"
               },
               ...breadcrumbs.map((breadcrumb, index) => ({
                 "@type": "ListItem",
                 "position": index + 2,
                 "name": breadcrumb.title,
-                "item": `https://ppcset.com${breadcrumb.path}`
+                "item": `https://kampaio.com${breadcrumb.path}`
               }))
             ]
           })
