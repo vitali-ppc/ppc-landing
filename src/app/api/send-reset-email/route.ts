@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
     const resetToken = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
     
     // Создаем ссылку для сброса пароля
-    const resetLink = `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3002'}/reset-password?token=${resetToken}&email=${encodeURIComponent(email)}`;
+    const resetLink = `${process.env.NEXT_PUBLIC_APP_URL || 'https://kampaio.com'}/reset-password?token=${resetToken}&email=${encodeURIComponent(email)}`;
 
     const { data, error } = await resend.emails.send({
       from: 'Kampaio <noreply@kampaio.com>',
