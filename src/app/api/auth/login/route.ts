@@ -5,7 +5,7 @@ export async function GET(request: NextRequest) {
   console.log('GOOGLE_CLIENT_ID:', process.env.GOOGLE_CLIENT_ID);
 
   const clientId = process.env.GOOGLE_CLIENT_ID;
-  const redirectUri = `${process.env.NEXTAUTH_URL}/api/auth/callback`;
+  const redirectUri = `${process.env.NEXT_PUBLIC_APP_URL || 'https://kampaio.com'}/api/auth/callback`;
   
   // Debug logging
   console.log('Debug - GOOGLE_CLIENT_ID:', clientId);
