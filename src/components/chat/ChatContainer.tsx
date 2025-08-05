@@ -44,6 +44,7 @@ const ChatContainer: React.FC = () => {
     imagePreview: chatState.imagePreview,
     setImagePreview: chatState.setImagePreview,
     inputRef: inputRef as React.RefObject<HTMLTextAreaElement>,
+    accessToken: chatState.accessToken,
   });
 
   // Placeholders

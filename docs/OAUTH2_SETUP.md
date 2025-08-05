@@ -13,7 +13,7 @@
 1. Перейдіть до "APIs & Services" → "OAuth consent screen"
 2. Виберіть "External" як User Type
 3. Заповніть обов'язкові поля:
-   - App name: "PPC Landing"
+   - App name: "Kampaio" (НЕ "PPCSet" або "PPC Landing")
    - User support email: ваш email
    - Developer contact information: ваш email
 4. Додайте scopes:
@@ -28,11 +28,13 @@
 2. Натисніть "Create Credentials" → "OAuth client ID"
 3. Виберіть "Web application"
 4. Заповніть поля:
-   - Name: "PPC Landing OAuth Client"
-   - Authorized JavaScript origins: `http://localhost:3002`
+   - Name: "Kampaio OAuth Client"
+   - Authorized JavaScript origins:
+     - `https://kampaio.com`
+     - `https://www.kampaio.com`
    - Authorized redirect URIs:
-     - `http://localhost:3002/api/auth/callback`
-     - `http://localhost:3002/api/auth/callback/google`
+     - `https://kampaio.com/api/auth/callback`
+     - `https://www.kampaio.com/api/auth/callback`
 5. Натисніть "Create"
 6. Запишіть Client ID та Client Secret
 
@@ -40,37 +42,67 @@
 
 1. Перейдіть до [Google Ads API Center](https://developers.google.com/google-ads/api/docs/first-call/dev-token)
 2. Заповніть форму для отримання Developer Token
-3. Дочекайтеся схвалення (може зайняти кілька днів)
-4. Запишіть Developer Token
+3. **ВАЖЛИВО**: В полі "Company Website URL" вкажіть `https://www.kampaio.com/`
+4. Дочекайтеся схвалення (може зайняти кілька днів)
+5. Запишіть Developer Token
 
 ## Крок 5: Налаштування Environment Variables
 
-Оновіть файл `kluch.env`:
+### Для Vercel (Frontend):
+
+Додайте в Vercel Environment Variables:
 
 ```env
 # Google OAuth2 Credentials
 GOOGLE_CLIENT_ID=ваш_client_id
 GOOGLE_CLIENT_SECRET=ваш_client_secret
 
-# Google Ads API
-GOOGLE_ADS_DEVELOPER_TOKEN=ваш_developer_token
+# App URL
+NEXT_PUBLIC_APP_URL=https://kampaio.com
 
-# Next.js
-NEXTAUTH_URL=http://localhost:3002
-NEXTAUTH_SECRET=випадковий_секрет_для_nextauth
-
-# Backend API
-BACKEND_URL=http://localhost:8000
-
-# OpenAI (якщо використовуєте)
-OPENAI_API_KEY=ваш_openai_api_key
+# Email Service
+RESEND_API_KEY=ваш_resend_api_key
 ```
 
-## Крок 6: Запуск додатку
+### Для AI Server (Hetzner):
 
-1. Перезапустіть Next.js сервер
-2. Перейдіть до `/chat`
-3. Натисніть "Підключити Google Ads акаунт"
+Оновіть файл `ai-server/.env`:
+
+```env
+# OpenAI API
+OPENAI_API_KEY=ваш_openai_api_key
+
+# Google Ads API
+GOOGLE_ADS_DEVELOPER_TOKEN=ваш_developer_token
+GOOGLE_ADS_CUSTOMER_ID=ваш_customer_id
+
+# Email налаштування
+EMAIL_USER=ваш_email@gmail.com
+EMAIL_PASS=ваш_app_password
+```
+
+## Крок 6: Важливі зауваження
+
+### ❌ НЕ використовуйте:
+- `NEXTAUTH_URL` (не потрібен для нашого OAuth2 flow)
+- `localhost` URLs в production
+- Старі домени (`ppcset.com`)
+
+### ✅ Використовуйте:
+- `NEXT_PUBLIC_APP_URL` для redirect URIs
+- `https://kampaio.com` як основний домен
+- Правильні environment variables в Vercel
+
+## Крок 7: Запуск додатку
+
+1. Перезапустіть Docker контейнер на Hetzner:
+   ```bash
+   docker-compose down
+   docker-compose up -d
+   ```
+
+2. Перейдіть до `https://kampaio.com/chat`
+3. Натисніть "Sign in with Google"
 4. Пройдіть OAuth2 flow
 5. Після успішної авторизації ви зможете використовувати реальні дані Google Ads
 
@@ -82,21 +114,43 @@ OPENAI_API_KEY=ваш_openai_api_key
 
 ## Безпека
 
-- Ніколи не комітьте `kluch.env` в git
+- Ніколи не комітьте `.env` файли в git
 - Використовуйте HTTPS в production
 - Зберігайте tokens в безпечному місці
 - Регулярно оновлюйте tokens
 
 ## Troubleshooting
 
-### Помилка "Invalid redirect URI"
+### Помилка "Error 400: invalid_request"
 - Перевірте, чи правильно налаштовані Authorized redirect URIs в Google Cloud Console
-- Переконайтеся, що порт співпадає (3002)
+- Переконайтеся, що використовується `NEXT_PUBLIC_APP_URL` замість `NEXTAUTH_URL`
+- Перевірте, чи App name в OAuth Consent Screen = "Kampaio"
+
+### Помилка "Google Client ID not configured"
+- Перевірте, чи правильно встановлені `GOOGLE_CLIENT_ID` та `GOOGLE_CLIENT_SECRET` в Vercel
+- Переконайтеся, що environment variables доступні в production
 
 ### Помилка "Developer token not found"
 - Дочекайтеся схвалення Developer Token
-- Перевірте, чи правильно встановлений GOOGLE_ADS_DEVELOPER_TOKEN
+- Перевірте, чи правильно встановлений `GOOGLE_ADS_DEVELOPER_TOKEN` в AI server
 
 ### Помилка "No Google Ads accounts found"
 - Переконайтеся, що у вас є активний Google Ads акаунт
-- Перевірте права доступу до акаунту 
+- Перевірте права доступу до акаунту
+- Перевірте `GOOGLE_ADS_CUSTOMER_ID` в AI server
+
+## Виправлення відомих проблем
+
+### Проблема з redirect URI (виправлена):
+```typescript
+// ❌ Неправильно:
+const redirectUri = `${process.env.NEXTAUTH_URL}/api/auth/callback`;
+
+// ✅ Правильно:
+const redirectUri = `${process.env.NEXT_PUBLIC_APP_URL || 'https://kampaio.com'}/api/auth/callback`;
+```
+
+### Міграція з ppcset.com на kampaio.com:
+- Оновлено всі посилання в коді
+- Змінено домен в Google Cloud Console
+- Оновлено environment variables 

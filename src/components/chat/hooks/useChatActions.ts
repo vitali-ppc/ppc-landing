@@ -27,6 +27,7 @@ interface UseChatActionsProps {
   imagePreview: string | null;
   setImagePreview: (preview: string | null) => void;
   inputRef: React.RefObject<HTMLTextAreaElement>;
+  accessToken: string | null;
 }
 
 export const useChatActions = ({
@@ -53,6 +54,7 @@ export const useChatActions = ({
   imagePreview,
   setImagePreview,
   inputRef,
+  accessToken,
 }: UseChatActionsProps) => {
 
   // Функции экспорта
@@ -144,16 +146,38 @@ export const useChatActions = ({
     if (!hasData && useAdsData && !accountConnected) {
       setUseAdsData(true);
       setAccountConnected(true);
-      fetch('/api/ads-data')
+      
+      if (accessToken) {
+        // Fetch real Google Ads data
+        fetch('/api/ads-data-real', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ accessToken }),
+        })
         .then(res => res.json())
         .then(data => {
+          setRealAdsData(data);
           setAdsData(data);
           setLoading(false);
         })
         .catch(() => {
           setAdsData(null);
+          setRealAdsData(null);
           setLoading(false);
         });
+      } else {
+        // Fallback to test data
+        fetch('/api/ads-data')
+          .then(res => res.json())
+          .then(data => {
+            setAdsData(data);
+            setLoading(false);
+          })
+          .catch(() => {
+            setAdsData(null);
+            setLoading(false);
+          });
+      }
       return;
     }
 
