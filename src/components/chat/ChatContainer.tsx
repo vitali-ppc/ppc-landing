@@ -80,7 +80,10 @@ const ChatContainer: React.FC = () => {
     const token = urlParams.get('access_token');
     const error = urlParams.get('error');
 
+    console.log('OAuth callback - authStatus:', authStatus, 'token:', token ? token.substring(0, 20) + '...' : 'null');
+
     if (authStatus === 'success' && token) {
+      console.log('OAuth success, token found:', token.substring(0, 20) + '...');
       chatState.setAccessToken(token);
       chatState.setAccountConnected(true);
       chatState.setShowAccountModal(false);
@@ -91,12 +94,26 @@ const ChatContainer: React.FC = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ accessToken: token }),
       })
-      .then(res => res.json())
-      .then(data => chatState.setRealAdsData(data))
-      .catch(error => console.error('Error fetching real Google Ads data:', error));
+      .then(res => {
+        console.log('ads-data-real response status:', res.status);
+        return res.json();
+      })
+      .then(data => {
+        console.log('ads-data-real data received:', data);
+        chatState.setRealAdsData(data);
+      })
+      .catch(error => {
+        console.error('Error fetching real Google Ads data:', error);
+        chatState.setRealAdsData(null);
+      });
       
-      window.history.replaceState({}, document.title, window.location.pathname);
+      // Очищаем URL только после обработки токена
+      setTimeout(() => {
+        console.log('Clearing URL parameters...');
+        window.history.replaceState({}, document.title, window.location.pathname);
+      }, 500); // Увеличили задержку с 100ms до 500ms
     } else if (error) {
+      console.error('OAuth error:', error);
       chatState.setError(`Помилка авторизації: ${error}`);
       window.history.replaceState({}, document.title, window.location.pathname);
     }
