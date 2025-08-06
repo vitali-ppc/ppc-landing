@@ -54,6 +54,10 @@ async def refresh_access_token(refresh_token: str) -> str:
         client_id = os.getenv("GOOGLE_CLIENT_ID")
         client_secret = os.getenv("GOOGLE_CLIENT_SECRET")
         
+        # Додаємо логування для діагностики
+        logger.info(f"GOOGLE_CLIENT_ID: {'present' if client_id else 'None'}")
+        logger.info(f"GOOGLE_CLIENT_SECRET: {'present' if client_secret else 'None'}")
+        
         if not client_id or not client_secret:
             logger.error("Google OAuth credentials not configured")
             raise Exception("Google OAuth credentials not configured")
