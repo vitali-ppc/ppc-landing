@@ -625,11 +625,24 @@ const ChatFormGPT: React.FC = () => {
       setAccountConnected(true);
       setShowAccountModal(false);
       
+      // ДЕТАЛЬНЕ ЛОГУВАННЯ ПЕРЕД FETCH
+      console.log('=== ДЕТАЛЬНЕ ЛОГУВАННЯ ===');
+      console.log('refreshToken from URL:', refreshToken);
+      console.log('refreshToken type:', typeof refreshToken);
+      console.log('refreshToken length:', refreshToken ? refreshToken.length : 'null');
+      console.log('Sending to backend:', {
+        accessToken: token ? token.substring(0, 20) + '...' : 'null',
+        refreshToken: refreshToken ? 'present' : 'null'
+      });
+      
       // Получение реальных данных Google Ads
       fetch('/api/ads-data-real', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ accessToken: token }),
+        body: JSON.stringify({ 
+          accessToken: token,
+          refreshToken: refreshToken 
+        }),
       })
       .then(res => {
         console.log('ads-data-real response status:', res.status);

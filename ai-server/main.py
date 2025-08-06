@@ -386,6 +386,16 @@ async def get_real_ads_data(request: Request):
         access_token = body.get("accessToken")
         refresh_token = body.get("refreshToken")
         
+        # ДЕТАЛЬНЕ ЛОГУВАННЯ
+        logger.info("=== ДЕТАЛЬНЕ ЛОГУВАННЯ ===")
+        logger.info(f"Full request body: {body}")
+        logger.info(f"Body keys: {list(body.keys())}")
+        logger.info(f"accessToken present: {'yes' if body.get('accessToken') else 'no'}")
+        logger.info(f"refreshToken present: {'yes' if body.get('refreshToken') else 'no'}")
+        logger.info(f"refreshToken value: {refresh_token}")
+        logger.info(f"refreshToken type: {type(refresh_token)}")
+        logger.info(f"refreshToken length: {len(refresh_token) if refresh_token else 'None'}")
+        
         logger.info(f"Received access token: {access_token[:20] if access_token else 'None'}...")
         logger.info(f"Received refresh token: {'present' if refresh_token else 'None'}")
         
@@ -425,7 +435,7 @@ async def get_real_ads_data(request: Request):
             async with httpx.AsyncClient() as client:
                 # Крок 1: Отримуємо список доступних акаунтів через listAccessibleCustomers
                 accounts_response = await client.get(
-                    "https://googleads.googleapis.com/v14/customers:listAccessibleCustomers",
+                    "https://googleads.googleapis.com/v15/customers:listAccessibleCustomers",
                     headers={
                         "Authorization": f"Bearer {valid_access_token}",
                         "developer-token": developer_token,
@@ -469,7 +479,7 @@ async def get_real_ads_data(request: Request):
         # Запит до Google Ads API для отримання даних по кампаніях
         async with httpx.AsyncClient() as client:
             campaigns_response = await client.post(
-                f"https://googleads.googleapis.com/v14/customers/{child_account_id}/googleAds:searchStream",
+                f"https://googleads.googleapis.com/v15/customers/{child_account_id}/googleAds:searchStream",
                 headers={
                     "Authorization": f"Bearer {valid_access_token}",
                     "developer-token": developer_token,
@@ -503,7 +513,7 @@ async def get_real_ads_data(request: Request):
                 
                 # Повторюємо запит з новим токеном
                 campaigns_response = await client.post(
-                    f"https://googleads.googleapis.com/v14/customers/{child_account_id}/googleAds:searchStream",
+                    f"https://googleads.googleapis.com/v15/customers/{child_account_id}/googleAds:searchStream",
                     headers={
                         "Authorization": f"Bearer {new_access_token}",
                         "developer-token": developer_token,
