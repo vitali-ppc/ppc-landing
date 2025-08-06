@@ -54,6 +54,7 @@ async def root():
             "chat": "/chat",
             "health": "/health",
             "ads-data": "/ads-data",
+            "ads-data-real": "/ads-data-real",
             "cache": "/cache/stats"
         }
     }
@@ -303,6 +304,12 @@ def get_ads_data():
             }
         ]
     }
+
+@app.post("/ads-data-real")
+async def get_real_ads_data(request: Request):
+    """Отримання реальних даних Google Ads через API"""
+    return {"message": "ads-data-real endpoint added"}
+
 @app.get("/health")
 async def health_check():
     """Детальна перевірка здоров'я сервера"""
