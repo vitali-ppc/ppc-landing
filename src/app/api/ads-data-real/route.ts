@@ -2,8 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(request: NextRequest) {
   try {
-    // Получаем accessToken из тела запроса
-    const { accessToken } = await request.json();
+    // Получаем accessToken и refreshToken из тела запроса
+    const { accessToken, refreshToken } = await request.json();
 
     if (!accessToken) {
       return NextResponse.json({ error: 'Access token required' }, { status: 400 });
@@ -13,14 +13,18 @@ export async function POST(request: NextRequest) {
     const aiServerUrl = process.env.BACKEND_URL || 'http://91.99.225.211:8000';
 
     console.log('Proxying request to AI server:', aiServerUrl);
+    console.log('Sending accessToken and refreshToken to AI server');
 
-    // Проксируем запрос к AI серверу
+    // Проксируем запрос к AI серверу с refresh token
     const aiResponse = await fetch(`${aiServerUrl}/ads-data-real`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ accessToken }),
+      body: JSON.stringify({ 
+        accessToken,
+        refreshToken // Добавляем refresh token
+      }),
     });
 
     if (!aiResponse.ok) {

@@ -45,6 +45,75 @@ client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 # Простий кеш для зберігання відповідей
 response_cache: Dict[str, Dict[str, Any]] = {}
 
+# Кеш для зберігання токенів користувачів (в продакшені використовуйте Redis або DB)
+token_cache: Dict[str, Dict[str, Any]] = {}
+
+async def refresh_access_token(refresh_token: str) -> str:
+    """Оновлення access token через refresh token"""
+    try:
+        client_id = os.getenv("GOOGLE_CLIENT_ID")
+        client_secret = os.getenv("GOOGLE_CLIENT_SECRET")
+        
+        if not client_id or not client_secret:
+            logger.error("Google OAuth credentials not configured")
+            raise Exception("Google OAuth credentials not configured")
+        
+        async with httpx.AsyncClient() as client:
+            response = await client.post(
+                "https://oauth2.googleapis.com/token",
+                data={
+                    "client_id": client_id,
+                    "client_secret": client_secret,
+                    "refresh_token": refresh_token,
+                    "grant_type": "refresh_token"
+                }
+            )
+            
+            if response.status_code == 200:
+                token_data = response.json()
+                new_access_token = token_data.get("access_token")
+                if new_access_token:
+                    logger.info("Successfully refreshed access token")
+                    return new_access_token
+                else:
+                    raise Exception("No access_token in refresh response")
+            else:
+                logger.error(f"Failed to refresh token: {response.status_code} - {response.text}")
+                raise Exception(f"Token refresh failed: {response.status_code}")
+                
+    except Exception as e:
+        logger.error(f"Error refreshing access token: {e}")
+        raise e
+
+async def get_valid_access_token(access_token: str, refresh_token: str) -> str:
+    """Отримання дійсного access token з автоматичним оновленням"""
+    if not refresh_token:
+        return access_token
+    
+    # Створюємо ключ для кешування токенів
+    token_key = hashlib.md5(refresh_token.encode()).hexdigest()
+    
+    # Перевіряємо чи є збережений токен
+    if token_key in token_cache:
+        cached_token = token_cache[token_key]
+        # Токен дійсний 1 годину, перевіряємо чи не прострочився
+        if datetime.now().timestamp() - cached_token.get("timestamp", 0) < 3600:
+            logger.info("Using cached access token")
+            return cached_token["access_token"]
+    
+    # Якщо токен прострочився або відсутній, оновлюємо
+    try:
+        new_access_token = await refresh_access_token(refresh_token)
+        token_cache[token_key] = {
+            "access_token": new_access_token,
+            "timestamp": datetime.now().timestamp()
+        }
+        logger.info("Stored new access token in cache")
+        return new_access_token
+    except Exception as e:
+        logger.error(f"Failed to refresh token, using original: {e}")
+        return access_token
+
 @app.get("/")
 async def root():
     """Кореневий endpoint"""
@@ -315,14 +384,27 @@ async def get_real_ads_data(request: Request):
         # Отримуємо дані запиту
         body = await request.json()
         access_token = body.get("accessToken")
+        refresh_token = body.get("refreshToken")
         
         logger.info(f"Received access token: {access_token[:20] if access_token else 'None'}...")
+        logger.info(f"Received refresh token: {'present' if refresh_token else 'None'}")
         
         if not access_token:
             logger.error("No access token provided")
             return JSONResponse(
                 status_code=400,
                 content={"error": "Access token required"}
+            )
+        
+        # Отримуємо дійсний access token (з автоматичним оновленням)
+        try:
+            valid_access_token = await get_valid_access_token(access_token, refresh_token)
+            logger.info(f"Using valid access token: {valid_access_token[:20]}...")
+        except Exception as e:
+            logger.error(f"Failed to get valid access token: {e}")
+            return JSONResponse(
+                status_code=401,
+                content={"error": "Failed to validate access token"}
             )
 
         # Отримуємо customer_id з змінних середовища
@@ -345,7 +427,7 @@ async def get_real_ads_data(request: Request):
                 accounts_response = await client.get(
                     "https://googleads.googleapis.com/v14/customers:listAccessibleCustomers",
                     headers={
-                        "Authorization": f"Bearer {access_token}",
+                        "Authorization": f"Bearer {valid_access_token}",
                         "developer-token": developer_token,
                         "Content-Type": "application/json",
                     }
@@ -389,7 +471,7 @@ async def get_real_ads_data(request: Request):
             campaigns_response = await client.post(
                 f"https://googleads.googleapis.com/v14/customers/{child_account_id}/googleAds:searchStream",
                 headers={
-                    "Authorization": f"Bearer {access_token}",
+                    "Authorization": f"Bearer {valid_access_token}",
                     "developer-token": developer_token,
                     "login-customer-id": customer_id.replace('-', ''),  # MCC ID без дефісів
                     "Content-Type": "application/json",
@@ -411,7 +493,61 @@ async def get_real_ads_data(request: Request):
                 }
             )
 
-        if campaigns_response.status_code != 200:
+        # Обробка помилок з автоматичним оновленням токена
+        if campaigns_response.status_code in [401, 403] and refresh_token:
+            logger.warning(f"Token expired (status {campaigns_response.status_code}), attempting refresh...")
+            try:
+                # Оновлюємо токен і повторюємо запит
+                new_access_token = await refresh_access_token(refresh_token)
+                logger.info("Token refreshed, retrying request...")
+                
+                # Повторюємо запит з новим токеном
+                campaigns_response = await client.post(
+                    f"https://googleads.googleapis.com/v14/customers/{child_account_id}/googleAds:searchStream",
+                    headers={
+                        "Authorization": f"Bearer {new_access_token}",
+                        "developer-token": developer_token,
+                        "login-customer-id": customer_id.replace('-', ''),
+                        "Content-Type": "application/json",
+                    },
+                    json={
+                        "query": """
+                            SELECT 
+                                campaign.id,
+                                campaign.name,
+                                campaign.status,
+                                metrics.impressions,
+                                metrics.clicks,
+                                metrics.cost_micros,
+                                metrics.conversions,
+                                metrics.average_cpc
+                            FROM campaign 
+                            WHERE segments.date DURING LAST_30_DAYS
+                        """
+                    }
+                )
+                
+                if campaigns_response.status_code != 200:
+                    error_text = campaigns_response.text
+                    logger.error(f"Google Ads API error after token refresh: {campaigns_response.status_code} - {error_text}")
+                    return JSONResponse(
+                        status_code=500,
+                        content={
+                            "error": "Failed to fetch campaign data after token refresh",
+                            "details": error_text
+                        }
+                    )
+                    
+            except Exception as e:
+                logger.error(f"Failed to refresh token and retry: {e}")
+                return JSONResponse(
+                    status_code=401,
+                    content={
+                        "error": "Token expired and refresh failed",
+                        "details": str(e)
+                    }
+                )
+        elif campaigns_response.status_code != 200:
             error_text = campaigns_response.text
             logger.error(f"Google Ads API error: {campaigns_response.status_code} - {error_text}")
             return JSONResponse(

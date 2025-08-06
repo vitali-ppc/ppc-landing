@@ -45,6 +45,7 @@ const ChatContainer: React.FC = () => {
     setImagePreview: chatState.setImagePreview,
     inputRef: inputRef as React.RefObject<HTMLTextAreaElement>,
     accessToken: chatState.accessToken,
+    refreshToken: chatState.refreshToken,
   });
 
   // Placeholders
@@ -92,7 +93,10 @@ const ChatContainer: React.FC = () => {
       fetch('/api/ads-data-real', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ accessToken: token }),
+        body: JSON.stringify({ 
+          accessToken: token,
+          refreshToken: chatState.refreshToken 
+        }),
       })
       .then(res => {
         console.log('ads-data-real response status:', res.status);

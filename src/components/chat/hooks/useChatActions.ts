@@ -28,6 +28,7 @@ interface UseChatActionsProps {
   setImagePreview: (preview: string | null) => void;
   inputRef: React.RefObject<HTMLTextAreaElement>;
   accessToken: string | null;
+  refreshToken: string | null;
 }
 
 export const useChatActions = ({
@@ -55,6 +56,7 @@ export const useChatActions = ({
   setImagePreview,
   inputRef,
   accessToken,
+  refreshToken,
 }: UseChatActionsProps) => {
 
   // Функции экспорта
@@ -152,7 +154,10 @@ export const useChatActions = ({
         fetch('/api/ads-data-real', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ accessToken }),
+          body: JSON.stringify({ 
+            accessToken,
+            refreshToken 
+          }),
         })
         .then(res => res.json())
         .then(data => {
