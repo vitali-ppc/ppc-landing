@@ -341,37 +341,57 @@ async def get_real_ads_data(request: Request):
         # Спочатку перевіряємо чи це MCC акаунт і отримуємо дочірні акаунти
         try:
             async with httpx.AsyncClient() as client:
-                accounts_response = await client.post(
-                    f"https://googleads.googleapis.com/v14/customers/{customer_id}/googleAds:searchStream",
+                # Спробуємо отримати дочірні акаунти через CustomerService API
+                accounts_response = await client.get(
+                    f"https://googleads.googleapis.com/v14/customers/{customer_id}",
                     headers={
                         "Authorization": f"Bearer {access_token}",
                         "developer-token": developer_token,
                         "Content-Type": "application/json",
-                    },
-                    json={
-                        "query": f"""
-                            SELECT 
-                                customer.id,
-                                customer.descriptive_name
-                            FROM customer 
-                            WHERE customer.id != {customer_id}
-                        """
                     }
                 )
                 
-            if accounts_response.status_code == 200:
-                accounts_data = accounts_response.json()
-                logger.info(f"Found {len(accounts_data.get('results', []))} child accounts")
-                
-                if accounts_data.get('results'):
-                    child_account_id = accounts_data['results'][0]['customer']['id']
-                    logger.info(f"Using child account: {child_account_id}")
+                # Якщо це MCC, спробуємо знайти дочірні акаунти
+                if accounts_response.status_code == 200:
+                    customer_data = accounts_response.json()
+                    if customer_data.get('manager', False):
+                        # Це MCC, шукаємо дочірні акаунти
+                        child_accounts_response = await client.get(
+                            f"https://googleads.googleapis.com/v14/customers/{customer_id}/googleAds:search",
+                            headers={
+                                "Authorization": f"Bearer {access_token}",
+                                "developer-token": developer_token,
+                                "Content-Type": "application/json",
+                            },
+                            params={
+                                "query": """
+                                    SELECT 
+                                        customer.id,
+                                        customer.descriptive_name
+                                    FROM customer 
+                                    WHERE customer.manager = false
+                                """
+                            }
+                        )
+                        
+                        if child_accounts_response.status_code == 200:
+                            child_accounts_data = child_accounts_response.json()
+                            if child_accounts_data.get('results'):
+                                child_account_id = child_accounts_data['results'][0]['customer']['id']
+                                logger.info(f"Found child account: {child_account_id}")
+                            else:
+                                child_account_id = customer_id
+                                logger.info(f"No child accounts found, using MCC: {child_account_id}")
+                        else:
+                            child_account_id = customer_id
+                            logger.info(f"Failed to get child accounts, using MCC: {child_account_id}")
+                    else:
+                        # Це не MCC, використовуємо як є
+                        child_account_id = customer_id
+                        logger.info(f"Not an MCC account, using: {child_account_id}")
                 else:
                     child_account_id = customer_id
-                    logger.info(f"No child accounts found, using MCC: {child_account_id}")
-            else:
-                child_account_id = customer_id
-                logger.info(f"Failed to get accounts list, using MCC: {child_account_id}")
+                    logger.info(f"Failed to get customer info, using: {child_account_id}")
                 
         except Exception as e:
             logger.error(f"Error getting accounts list: {e}")
