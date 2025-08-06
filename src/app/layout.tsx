@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     apple: '/logo.png',
   },
   verification: {
-    google: 'your-google-verification-code',
+    google: 'rfakIoGZslX3ywBADcoRGc73d3zofSCJwY5X9UKyifI',
   },
   alternates: {
     canonical: 'https://kampaio.com',
