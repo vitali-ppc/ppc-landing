@@ -26,14 +26,16 @@ export const useLocalStorage = <T,>(key: string, initialValue: T) => {
   const setValue = useCallback((value: T | ((val: T) => T)) => {
     try {
       const valueToStore = value instanceof Function ? value(storedValue) : value;
+      console.log(`useLocalStorage: Setting ${key} to:`, valueToStore);
       setStoredValue(valueToStore);
       if (typeof window !== 'undefined') {
         // Для строк сохраняем как есть, для объектов - как JSON
         const valueToSave = typeof valueToStore === 'string' ? valueToStore : JSON.stringify(valueToStore);
         window.localStorage.setItem(key, valueToSave);
+        console.log(`useLocalStorage: Saved ${key} to localStorage:`, valueToSave);
       }
     } catch (error) {
-      console.error(error);
+      console.error('useLocalStorage setValue error:', error);
     }
   }, [storedValue, key]);
 
