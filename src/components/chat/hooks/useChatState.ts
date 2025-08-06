@@ -14,7 +14,7 @@ export const useChatState = () => {
   const [useAdsData, setUseAdsData] = useState(false);
   const [realAdsData, setRealAdsData] = useState<GoogleAdsData | null>(null);
   const [accountConnected, setAccountConnected] = useState(false);
-  const [accessToken, setAccessToken] = useLocalStorage<string | null>('ppcset-access-token', null);
+  const [accessToken, setAccessToken] = useLocalStorage<string | null>('kampaio-access-token', null);
   
   // UI состояния
   const [showAccountModal, setShowAccountModal] = useState(false);

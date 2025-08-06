@@ -50,8 +50,8 @@ const ChatFormGPT: React.FC = () => {
   const [showSuccessMessage, setShowSuccessMessage] = useState(false); // Состояние для уведомления об успехе
   
   // Чат состояния
-  const [chats, setChats] = useLocalStorage<Chat[]>('ppcset-chats', []);
-  const [currentChatId, setCurrentChatId] = useLocalStorage<string | null>('ppcset-current-chat', null);
+  const [chats, setChats] = useLocalStorage<Chat[]>('kampaio-chats', []);
+  const [currentChatId, setCurrentChatId] = useLocalStorage<string | null>('kampaio-current-chat', null);
   const [showSidebar, setShowSidebar] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [openMenuId, setOpenMenuId] = useState<string | null>(null);
@@ -64,7 +64,7 @@ const ChatFormGPT: React.FC = () => {
   
   // Typing эффект
   const [typingText, setTypingText] = useState<string | null>(null);
-  const [shownMessagesArray, setShownMessagesArray] = useLocalStorage<string[]>('ppcset-shown-messages', []);
+  const [shownMessagesArray, setShownMessagesArray] = useLocalStorage<string[]>('kampaio-shown-messages', []);
   const [copied, setCopied] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   
@@ -140,9 +140,9 @@ const ChatFormGPT: React.FC = () => {
     // Очищаем данные пользователя, но НЕ удаляем userCurrentPassword
     localStorage.removeItem('userEmail');
     // localStorage.removeItem('userCurrentPassword'); // НЕ удаляем пароль при выходе
-    localStorage.removeItem('ppcset-chats');
-    localStorage.removeItem('ppcset-current-chat');
-    localStorage.removeItem('ppcset-shown-messages');
+          localStorage.removeItem('kampaio-chats');
+          localStorage.removeItem('kampaio-current-chat');
+      localStorage.removeItem('kampaio-shown-messages');
     
     // Перенаправляем на страницу входа
     window.location.href = '/login';
@@ -626,7 +626,10 @@ const ChatFormGPT: React.FC = () => {
       .then(data => setRealAdsData(data))
       .catch(error => console.error('Error fetching real Google Ads data:', error));
       
-      window.history.replaceState({}, document.title, window.location.pathname);
+      // Очищаем URL только после обработки токена
+      setTimeout(() => {
+        window.history.replaceState({}, document.title, window.location.pathname);
+      }, 100);
     } else if (error) {
       setError(`Помилка авторизації: ${error}`);
       window.history.replaceState({}, document.title, window.location.pathname);
