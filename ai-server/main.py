@@ -310,11 +310,16 @@ def get_ads_data():
 async def get_real_ads_data(request: Request):
     """Отримання реальних даних Google Ads через API"""
     try:
+        logger.info("Starting /ads-data-real request")
+        
         # Отримуємо дані запиту
         body = await request.json()
         access_token = body.get("accessToken")
         
+        logger.info(f"Received access token: {access_token[:20] if access_token else 'None'}...")
+        
         if not access_token:
+            logger.error("No access token provided")
             return JSONResponse(
                 status_code=400,
                 content={"error": "Access token required"}
@@ -324,7 +329,10 @@ async def get_real_ads_data(request: Request):
         customer_id = os.getenv("GOOGLE_ADS_CUSTOMER_ID")
         developer_token = os.getenv("GOOGLE_ADS_DEVELOPER_TOKEN")
         
+        logger.info(f"Customer ID: {customer_id}, Developer Token: {developer_token[:10] if developer_token else 'None'}...")
+        
         if not customer_id or not developer_token:
+            logger.error("Google Ads credentials not configured")
             return JSONResponse(
                 status_code=500,
                 content={"error": "Google Ads credentials not configured"}
@@ -483,6 +491,9 @@ async def get_real_ads_data(request: Request):
         
     except Exception as e:
         logger.error(f"Error in get_real_ads_data: {e}")
+        logger.error(f"Error type: {type(e)}")
+        import traceback
+        logger.error(f"Traceback: {traceback.format_exc()}")
         return JSONResponse(
             status_code=500,
             content={
