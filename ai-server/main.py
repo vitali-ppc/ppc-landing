@@ -17,6 +17,7 @@ import io
 import csv
 from openpyxl import Workbook
 from openpyxl.styles import Font, Alignment
+import httpx
 
 # Налаштування логування
 logging.basicConfig(level=logging.INFO)
@@ -308,7 +309,187 @@ def get_ads_data():
 @app.post("/ads-data-real")
 async def get_real_ads_data(request: Request):
     """Отримання реальних даних Google Ads через API"""
-    return {"message": "ads-data-real endpoint added"}
+    try:
+        # Отримуємо дані запиту
+        body = await request.json()
+        access_token = body.get("accessToken")
+        
+        if not access_token:
+            return JSONResponse(
+                status_code=400,
+                content={"error": "Access token required"}
+            )
+
+        # Отримуємо customer_id з змінних середовища
+        customer_id = os.getenv("GOOGLE_ADS_CUSTOMER_ID")
+        developer_token = os.getenv("GOOGLE_ADS_DEVELOPER_TOKEN")
+        
+        if not customer_id or not developer_token:
+            return JSONResponse(
+                status_code=500,
+                content={"error": "Google Ads credentials not configured"}
+            )
+
+        # Спочатку перевіряємо чи це MCC акаунт і отримуємо дочірні акаунти
+        try:
+            async with httpx.AsyncClient() as client:
+                accounts_response = await client.post(
+                    f"https://googleads.googleapis.com/v14/customers/{customer_id}/googleAds:searchStream",
+                    headers={
+                        "Authorization": f"Bearer {access_token}",
+                        "developer-token": developer_token,
+                        "Content-Type": "application/json",
+                    },
+                    json={
+                        "query": f"""
+                            SELECT 
+                                customer.id,
+                                customer.descriptive_name
+                            FROM customer 
+                            WHERE customer.id != {customer_id}
+                        """
+                    }
+                )
+                
+            if accounts_response.status_code == 200:
+                accounts_data = accounts_response.json()
+                logger.info(f"Found {len(accounts_data.get('results', []))} child accounts")
+                
+                if accounts_data.get('results'):
+                    child_account_id = accounts_data['results'][0]['customer']['id']
+                    logger.info(f"Using child account: {child_account_id}")
+                else:
+                    child_account_id = customer_id
+                    logger.info(f"No child accounts found, using MCC: {child_account_id}")
+            else:
+                child_account_id = customer_id
+                logger.info(f"Failed to get accounts list, using MCC: {child_account_id}")
+                
+        except Exception as e:
+            logger.error(f"Error getting accounts list: {e}")
+            child_account_id = customer_id
+
+        # Запит до Google Ads API для отримання даних по кампаніях
+        async with httpx.AsyncClient() as client:
+            campaigns_response = await client.post(
+                f"https://googleads.googleapis.com/v14/customers/{child_account_id}/googleAds:searchStream",
+                headers={
+                    "Authorization": f"Bearer {access_token}",
+                    "developer-token": developer_token,
+                    "Content-Type": "application/json",
+                },
+                json={
+                    "query": """
+                        SELECT 
+                            campaign.id,
+                            campaign.name,
+                            campaign.status,
+                            metrics.impressions,
+                            metrics.clicks,
+                            metrics.cost_micros,
+                            metrics.conversions,
+                            metrics.average_cpc
+                        FROM campaign 
+                        WHERE segments.date DURING LAST_30_DAYS
+                    """
+                }
+            )
+
+        if campaigns_response.status_code != 200:
+            error_text = campaigns_response.text
+            logger.error(f"Google Ads API error: {campaigns_response.status_code} - {error_text}")
+            return JSONResponse(
+                status_code=500,
+                content={
+                    "error": "Failed to fetch campaign data",
+                    "details": error_text
+                }
+            )
+
+        campaigns_data = campaigns_response.json()
+        
+        # Обробляємо дані кампаній
+        campaigns = []
+        total_cost = 0
+        total_clicks = 0
+        total_impressions = 0
+        total_conversions = 0
+        
+        for result in campaigns_data.get('results', []):
+            campaign = result.get('campaign', {})
+            metrics = result.get('metrics', {})
+            
+            cost_micros = metrics.get('cost_micros', 0)
+            cost = cost_micros / 1000000  # Конвертуємо з мікроцентів
+            
+            clicks = metrics.get('clicks', 0)
+            impressions = metrics.get('impressions', 0)
+            conversions = metrics.get('conversions', 0)
+            avg_cpc = metrics.get('average_cpc', 0)
+            
+            if impressions > 0:
+                ctr = (clicks / impressions) * 100
+            else:
+                ctr = 0
+                
+            if clicks > 0:
+                cpc = avg_cpc / 1000000  # Конвертуємо з мікроцентів
+            else:
+                cpc = 0
+                
+            if clicks > 0:
+                conversion_rate = (conversions / clicks) * 100
+            else:
+                conversion_rate = 0
+            
+            campaign_data = {
+                "name": campaign.get('name', 'Unknown'),
+                "status": campaign.get('status', 'UNKNOWN'),
+                "cost": round(cost, 2),
+                "clicks": clicks,
+                "impressions": impressions,
+                "conversions": conversions,
+                "ctr": round(ctr, 2),
+                "cpc": round(cpc, 2),
+                "conversion_rate": round(conversion_rate, 2)
+            }
+            
+            campaigns.append(campaign_data)
+            
+            total_cost += cost
+            total_clicks += clicks
+            total_impressions += impressions
+            total_conversions += conversions
+        
+        # Розраховуємо загальні метрики
+        total_ctr = (total_clicks / total_impressions * 100) if total_impressions > 0 else 0
+        total_cpc = (total_cost / total_clicks) if total_clicks > 0 else 0
+        total_conversion_rate = (total_conversions / total_clicks * 100) if total_clicks > 0 else 0
+        
+        return {
+            "account_id": child_account_id,
+            "date_range": "Last 30 days",
+            "campaigns": campaigns,
+            "total": {
+                "cost": round(total_cost, 2),
+                "clicks": total_clicks,
+                "impressions": total_impressions,
+                "conversions": total_conversions,
+                "ctr": round(total_ctr, 2),
+                "cpc": round(total_cpc, 2),
+                "conversion_rate": round(total_conversion_rate, 2)
+            }
+        }
+        
+    except Exception as e:
+        logger.error(f"Error in get_real_ads_data: {e}")
+        return JSONResponse(
+            status_code=500,
+            content={
+                "error": "Failed to fetch campaign data",
+                "details": str(e)
+            }
+        )
 
 @app.get("/health")
 async def health_check():
