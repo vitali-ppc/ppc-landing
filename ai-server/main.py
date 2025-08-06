@@ -439,7 +439,7 @@ async def get_real_ads_data(request: Request):
             async with httpx.AsyncClient() as client:
                 # Крок 1: Отримуємо список доступних акаунтів через listAccessibleCustomers
                 accounts_response = await client.get(
-                    "https://googleads.googleapis.com/v14/customers:listAccessibleCustomers",
+                    "https://googleads.googleapis.com/v20/customers:listAccessibleCustomers",
                     headers={
                         "Authorization": f"Bearer {valid_access_token}",
                         "developer-token": developer_token,
@@ -483,7 +483,7 @@ async def get_real_ads_data(request: Request):
         # Запит до Google Ads API для отримання даних по кампаніях
         async with httpx.AsyncClient() as client:
             campaigns_response = await client.post(
-                f"https://googleads.googleapis.com/v14/customers/{child_account_id}/googleAds:searchStream",
+                f"https://googleads.googleapis.com/v20/customers/{child_account_id}/googleAds:searchStream",
                 headers={
                     "Authorization": f"Bearer {valid_access_token}",
                     "developer-token": developer_token,
@@ -517,7 +517,7 @@ async def get_real_ads_data(request: Request):
                 
                 # Повторюємо запит з новим токеном
                 campaigns_response = await client.post(
-                    f"https://googleads.googleapis.com/v14/customers/{child_account_id}/googleAds:searchStream",
+                    f"https://googleads.googleapis.com/v20/customers/{child_account_id}/googleAds:searchStream",
                     headers={
                         "Authorization": f"Bearer {new_access_token}",
                         "developer-token": developer_token,
