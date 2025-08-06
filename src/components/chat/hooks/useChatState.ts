@@ -15,6 +15,7 @@ export const useChatState = () => {
   const [realAdsData, setRealAdsData] = useState<GoogleAdsData | null>(null);
   const [accountConnected, setAccountConnected] = useState(false);
   const [accessToken, setAccessToken] = useLocalStorage<string | null>('kampaio-access-token', null);
+  const [refreshToken, setRefreshToken] = useLocalStorage<string | null>('kampaio-refresh-token', null);
   
   // UI состояния
   const [showAccountModal, setShowAccountModal] = useState(false);
@@ -117,6 +118,7 @@ export const useChatState = () => {
     realAdsData, setRealAdsData,
     accountConnected, setAccountConnected,
     accessToken, setAccessToken,
+    refreshToken, setRefreshToken,
     showAccountModal, setShowAccountModal,
     openExportDropdownIdx, setOpenExportDropdownIdx,
     theme, setTheme,

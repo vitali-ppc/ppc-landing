@@ -23,6 +23,7 @@ const ChatFormGPT: React.FC = () => {
   const [realAdsData, setRealAdsData] = useState<GoogleAdsData | null>(null);
   const [accountConnected, setAccountConnected] = useState(false);
   const [accessToken, setAccessToken] = useLocalStorage<string | null>('kampaio-access-token', null);
+  const [refreshToken, setRefreshToken] = useLocalStorage<string | null>('kampaio-refresh-token', null);
   
   // UI состояния
   const [showAccountModal, setShowAccountModal] = useState(false);
@@ -609,13 +610,18 @@ const ChatFormGPT: React.FC = () => {
     const urlParams = new URLSearchParams(window.location.search);
     const authStatus = urlParams.get('auth');
     const token = urlParams.get('access_token');
+    const refreshToken = urlParams.get('refresh_token');
     const error = urlParams.get('error');
 
-    console.log('OAuth callback - authStatus:', authStatus, 'token:', token ? token.substring(0, 20) + '...' : 'null');
+    console.log('OAuth callback - authStatus:', authStatus, 'token:', token ? token.substring(0, 20) + '...' : 'null', 'refreshToken:', refreshToken ? 'present' : 'null');
 
     if (authStatus === 'success' && token) {
       console.log('OAuth success, token found:', token.substring(0, 20) + '...');
       setAccessToken(token);
+      if (refreshToken) {
+        setRefreshToken(refreshToken);
+        console.log('Refresh token saved');
+      }
       setAccountConnected(true);
       setShowAccountModal(false);
       

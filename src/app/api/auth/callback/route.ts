@@ -52,8 +52,12 @@ export async function GET(request: NextRequest) {
         const userInfo = await userInfoResponse.json();
         const userEmail = userInfo.email;
         
-        // Redirect back to chat page with success and email
-        return NextResponse.redirect(`${process.env.NEXT_PUBLIC_APP_URL || 'https://kampaio.com'}/chat?auth=success&access_token=${access_token}&email=${encodeURIComponent(userEmail)}`);
+        // Redirect back to chat page with success, email, and refresh token
+        const redirectUrl = refresh_token 
+          ? `${process.env.NEXT_PUBLIC_APP_URL || 'https://kampaio.com'}/chat?auth=success&access_token=${access_token}&refresh_token=${refresh_token}&email=${encodeURIComponent(userEmail)}`
+          : `${process.env.NEXT_PUBLIC_APP_URL || 'https://kampaio.com'}/chat?auth=success&access_token=${access_token}&email=${encodeURIComponent(userEmail)}`;
+        
+        return NextResponse.redirect(redirectUrl);
       }
     } catch (error) {
       console.error('Failed to get user info:', error);
