@@ -569,6 +569,10 @@ async def get_real_ads_data(request: Request):
 
         campaigns_data = campaigns_response.json()
         
+        # Логуємо структуру даних для діагностики
+        logger.info(f"Campaigns data type: {type(campaigns_data)}")
+        logger.info(f"Campaigns data structure: {campaigns_data}")
+        
         # Обробляємо дані кампаній
         campaigns = []
         total_cost = 0
@@ -576,7 +580,10 @@ async def get_real_ads_data(request: Request):
         total_impressions = 0
         total_conversions = 0
         
-        for result in campaigns_data.get('results', []):
+        # Google Ads API v20 повертає дані як список
+        results = campaigns_data if isinstance(campaigns_data, list) else campaigns_data.get('results', [])
+        
+        for result in results:
             campaign = result.get('campaign', {})
             metrics = result.get('metrics', {})
             
