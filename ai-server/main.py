@@ -444,6 +444,14 @@ async def get_real_ads_data(request: Request):
                     resource_names = accounts_data.get('resourceNames', [])
                     logger.info(f"Found {len(resource_names)} accessible accounts:")
                     
+                    # Перевіряємо, чи є nextPageToken (ознака того, що є більше акаунтів)
+                    next_page_token = accounts_data.get('nextPageToken')
+                    if next_page_token:
+                        logger.info(f"⚠️  Є більше акаунтів! nextPageToken: {next_page_token}")
+                        logger.info(f"⚠️  Поточний список обмежений до {len(resource_names)} акаунтів")
+                    else:
+                        logger.info(f"✅ Це всі доступні акаунти ({len(resource_names)} штук)")
+                    
                     for resource_name in resource_names:
                         if resource_name.startswith('customers/'):
                             account_id = resource_name.replace('customers/', '')
@@ -453,6 +461,51 @@ async def get_real_ads_data(request: Request):
                     
         except Exception as e:
             logger.error(f"Error getting accounts list: {e}")
+
+        # Додаткова діагностика: спробуємо отримати всі акаунти з пагінацією
+        try:
+            logger.info("=== ДОДАТКОВА ДІАГНОСТИКА: Отримання всіх акаунтів ===")
+            all_accounts = []
+            page_token = None
+            
+            while True:
+                url = "https://googleads.googleapis.com/v20/customers:listAccessibleCustomers"
+                if page_token:
+                    url += f"?pageToken={page_token}"
+                
+                async with httpx.AsyncClient() as pagination_client:
+                    pagination_response = await pagination_client.get(
+                        url,
+                        headers={
+                            "Authorization": f"Bearer {valid_access_token}",
+                            "developer-token": os.getenv("GOOGLE_ADS_DEVELOPER_TOKEN", ""),
+                            "Content-Type": "application/json",
+                        }
+                    )
+                
+                if pagination_response.status_code == 200:
+                    page_data = pagination_response.json()
+                    page_resource_names = page_data.get('resourceNames', [])
+                    all_accounts.extend(page_resource_names)
+                    
+                    logger.info(f"Отримано сторінку з {len(page_resource_names)} акаунтами")
+                    
+                    # Перевіряємо наступну сторінку
+                    page_token = page_data.get('nextPageToken')
+                    if not page_token:
+                        break
+                else:
+                    logger.error(f"Помилка пагінації: {pagination_response.status_code}")
+                    break
+            
+            logger.info(f"🎯 ВСЬОГО знайдено акаунтів: {len(all_accounts)}")
+            for i, resource_name in enumerate(all_accounts, 1):
+                if resource_name.startswith('customers/'):
+                    account_id = resource_name.replace('customers/', '')
+                    logger.info(f"  {i:2d}. Account ID: {account_id}")
+                    
+        except Exception as e:
+            logger.error(f"Error getting all accounts with pagination: {e}")
 
         # Отримуємо MCC ID (login_customer_id) та конкретний customer_id
         mcc_id = os.getenv("GOOGLE_ADS_CUSTOMER_ID")  # MCC ID: 852-476-3350
