@@ -437,6 +437,38 @@ async def get_real_ads_data(request: Request):
                 content={"error": "Google Ads credentials not configured"}
             )
 
+        # Діагностичний запит: отримуємо список доступних акаунтів
+        try:
+            logger.info("=== ДІАГНОСТИКА: Отримання списку доступних акаунтів ===")
+            accounts_response = await client.get(
+                "https://googleads.googleapis.com/v20/customers:listAccessibleCustomers",
+                headers={
+                    "Authorization": f"Bearer {valid_access_token}",
+                    "developer-token": developer_token,
+                    "Content-Type": "application/json",
+                }
+            )
+            
+            logger.info(f"listAccessibleCustomers response status: {accounts_response.status_code}")
+            
+            if accounts_response.status_code == 200:
+                accounts_data = accounts_response.json()
+                logger.info(f"Available accounts: {accounts_data}")
+                
+                # Отримуємо resourceNames (список доступних акаунтів)
+                resource_names = accounts_data.get('resourceNames', [])
+                logger.info(f"Found {len(resource_names)} accessible accounts:")
+                
+                for resource_name in resource_names:
+                    if resource_name.startswith('customers/'):
+                        account_id = resource_name.replace('customers/', '')
+                        logger.info(f"  - Account ID: {account_id}")
+            else:
+                logger.error(f"Failed to get accessible customers: {accounts_response.status_code} - {accounts_response.text}")
+                
+        except Exception as e:
+            logger.error(f"Error getting accounts list: {e}")
+
         # Використовуємо конкретний customer_id замість спроби отримати список
         child_account_id = customer_id.replace('-', '')  # 7024764145
         logger.info(f"Using specific customer_id: {child_account_id}")
