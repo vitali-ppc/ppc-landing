@@ -705,6 +705,7 @@ async def cache_stats():
         "cache_keys": list(response_cache.keys())[:10],
         "timestamp": datetime.now().isoformat()
     }
+
 # Функції експорту
 def parse_text_to_rows(text: str) -> list:
     """Парсинг тексту в рядки для експорту"""
@@ -718,7 +719,6 @@ def parse_text_to_rows(text: str) -> list:
                 cells = [line.strip()]
             rows.append(cells)
     return rows if rows else [["AI Response", text]]
-
 
 # Функції експорту
 def generate_pdf_html(text: str) -> str:
@@ -775,7 +775,6 @@ def generate_pdf_html(text: str) -> str:
     </body>
     </html>
     """
-
 
 def generate_pdf_with_reportlab(text: str) -> bytes:
     """Найпростіший PDF"""
@@ -987,11 +986,10 @@ async def export_pdf(request: Request):
         logger.error(f"PDF export error: {e}")
         return JSONResponse({"error": str(e)}, status_code=500)
 
-
 if __name__ == "__main__":
     try:
         import uvicorn
         uvicorn.run(app, host="0.0.0.0", port=8000)  # Порт 8000
     except ImportError:
         print("Uvicorn not installed. Install with: pip install uvicorn")
-        print("Or run with: python -m uvicorn main:app --host 0.0.0.0 --port 8000")
+        print("Or run with: python -m uvicorn main:app --host 0.0.0.0 --port 8000") 
