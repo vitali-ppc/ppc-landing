@@ -421,64 +421,25 @@ async def get_real_ads_data(request: Request):
                 content={"error": "Failed to validate access token"}
             )
 
-        # Отримуємо customer_id з змінних середовища
-        customer_id = os.getenv("GOOGLE_ADS_CUSTOMER_ID")
+        # Отримуємо MCC ID (login_customer_id) та конкретний customer_id
+        mcc_id = os.getenv("GOOGLE_ADS_CUSTOMER_ID")  # MCC ID: 852-476-3350
+        customer_id = os.getenv("GOOGLE_ADS_CLIENT_CUSTOMER_ID")  # Конкретний клієнтський акаунт: 702-476-4145
         developer_token = os.getenv("GOOGLE_ADS_DEVELOPER_TOKEN")
         
-        logger.info(f"Customer ID: {customer_id}, Developer Token: {developer_token[:10] if developer_token else 'None'}...")
+        logger.info(f"MCC ID (login_customer_id): {mcc_id}")
+        logger.info(f"Customer ID: {customer_id}")
+        logger.info(f"Developer Token: {developer_token[:10] if developer_token else 'None'}...")
         
-        if not customer_id or not developer_token:
+        if not mcc_id or not developer_token:
             logger.error("Google Ads credentials not configured")
             return JSONResponse(
                 status_code=500,
                 content={"error": "Google Ads credentials not configured"}
             )
 
-        # Спочатку отримуємо список доступних дочірніх акаунтів MCC
-        try:
-            async with httpx.AsyncClient() as client:
-                # Крок 1: Отримуємо список доступних акаунтів через listAccessibleCustomers
-                accounts_response = await client.get(
-                    "https://googleads.googleapis.com/v20/customers:listAccessibleCustomers",
-                    headers={
-                        "Authorization": f"Bearer {valid_access_token}",
-                        "developer-token": developer_token,
-                        "Content-Type": "application/json",
-                    }
-                )
-                
-                logger.info(f"listAccessibleCustomers response status: {accounts_response.status_code}")
-                
-                if accounts_response.status_code == 200:
-                    accounts_data = accounts_response.json()
-                    logger.info(f"Available accounts: {accounts_data}")
-                    
-                    # Отримуємо resourceNames (список дочірніх акаунтів)
-                    resource_names = accounts_data.get('resourceNames', [])
-                    child_accounts = []
-                    
-                    for resource_name in resource_names:
-                        # Видаляємо префікс "customers/" щоб отримати ID
-                        if resource_name.startswith('customers/'):
-                            account_id = resource_name.replace('customers/', '')
-                            if account_id != customer_id.replace('-', ''):  # Порівнюємо без дефісів
-                                child_accounts.append(account_id)
-                                logger.info(f"Found child account: {account_id}")
-                    
-                    if child_accounts:
-                        child_account_id = child_accounts[0]  # Беремо перший дочірній акаунт
-                        logger.info(f"Using child account: {child_account_id}")
-                    else:
-                        child_account_id = customer_id.replace('-', '')  # Видаляємо дефіси
-                        logger.info(f"No child accounts found, using MCC: {child_account_id}")
-                else:
-                    logger.error(f"Failed to get accessible customers: {accounts_response.status_code} - {accounts_response.text}")
-                    child_account_id = customer_id.replace('-', '')  # Видаляємо дефіси
-                    logger.info(f"Using MCC as fallback: {child_account_id}")
-                
-        except Exception as e:
-            logger.error(f"Error getting accounts list: {e}")
-            child_account_id = customer_id
+        # Використовуємо конкретний customer_id замість спроби отримати список
+        child_account_id = customer_id.replace('-', '')  # 7024764145
+        logger.info(f"Using specific customer_id: {child_account_id}")
 
         # Запит до Google Ads API для отримання даних по кампаніях
         async with httpx.AsyncClient() as client:
@@ -487,7 +448,7 @@ async def get_real_ads_data(request: Request):
                 headers={
                     "Authorization": f"Bearer {valid_access_token}",
                     "developer-token": developer_token,
-                    "login-customer-id": customer_id.replace('-', ''),  # MCC ID без дефісів
+                    "login-customer-id": mcc_id.replace('-', ''),  # MCC ID (8524763350) як login_customer_id
                     "Content-Type": "application/json",
                 },
                 json={
@@ -521,7 +482,7 @@ async def get_real_ads_data(request: Request):
                     headers={
                         "Authorization": f"Bearer {new_access_token}",
                         "developer-token": developer_token,
-                        "login-customer-id": customer_id.replace('-', ''),
+                        "login-customer-id": mcc_id.replace('-', ''),  # MCC ID (8524763350) як login_customer_id
                         "Content-Type": "application/json",
                     },
                     json={
