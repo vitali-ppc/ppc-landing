@@ -663,9 +663,19 @@ async def get_real_ads_data_internal(access_token: str, refresh_token: str):
         # Google Ads API v20 повертає дані як список
         results = campaigns_data if isinstance(campaigns_data, list) else campaigns_data.get('results', [])
         
+        # Додаткова діагностика структури даних
+        logger.info(f"Processing {len(results)} results")
+        for i, result in enumerate(results):
+            logger.info(f"Result {i}: {result}")
+        
         for result in results:
             campaign = result.get('campaign', {})
             metrics = result.get('metrics', {})
+            
+            # Додаткова діагностика кампанії
+            logger.info(f"Campaign data: {campaign}")
+            logger.info(f"Campaign name: {campaign.get('name', 'NOT_FOUND')}")
+            logger.info(f"Metrics data: {metrics}")
             
             cost_micros = metrics.get('cost_micros', 0)
             cost = cost_micros / 1000000  # Конвертуємо з мікроцентів
