@@ -25,12 +25,13 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // ТИМЧАСОВО ВИМКНЕНО КЕШ ДЛЯ ДІАГНОСТИКИ
     // Перевіряємо кеш
-    const cacheKey = `${question}${image || ''}${JSON.stringify(adsData) || ''}`;
-    const cached = cache.get(cacheKey);
-    if (cached && Date.now() - cached.timestamp < CACHE_TTL) {
-      return NextResponse.json(cached.data);
-    }
+    // const cacheKey = `${question}${image || ''}${JSON.stringify(adsData) || ''}`;
+    // const cached = cache.get(cacheKey);
+    // if (cached && Date.now() - cached.timestamp < CACHE_TTL) {
+    //   return NextResponse.json(cached.data);
+    // }
 
     // Адреса Python AI-сервера (можна налаштувати через env)
     const aiServerUrl = process.env.AI_SERVER_URL || 'http://91.99.225.211:8000/chat';

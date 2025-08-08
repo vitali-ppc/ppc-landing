@@ -111,6 +111,7 @@ export const useChatActions = ({
 
   // Основная функция отправки
   const handleSubmit = useCallback(async (e: React.FormEvent) => {
+    console.log("=== HANDLE SUBMIT ВИКЛИКАНО ===");
     e.preventDefault();
     if (!input.trim()) return;
     

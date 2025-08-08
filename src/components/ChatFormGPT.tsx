@@ -13,6 +13,8 @@ import { MessageBubble } from './chat/components/MessageBubble';
 import { ChatMessages } from './chat/components/ChatMessages';
 
 const ChatFormGPT: React.FC = () => {
+  console.log("=== CHATFORMGPT: КОМПОНЕНТ ЗАВАНТАЖЕНО ===");
+  
   // Основные состояния
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
@@ -182,6 +184,7 @@ const ChatFormGPT: React.FC = () => {
 
   // Основная функция отправки
   const handleSubmit = useCallback(async (e: React.FormEvent) => {
+    console.log("=== CHATFORMGPT: HANDLE SUBMIT ВИКЛИКАНО ===");
     e.preventDefault();
     if (!input.trim()) return;
     
@@ -268,16 +271,28 @@ const ChatFormGPT: React.FC = () => {
     }
 
     try {
+      // ДЕТАЛЬНЕ ЛОГУВАННЯ CHATFORMGPT
+      console.log("=== CHATFORMGPT: Дані перед відправкою ===");
+      console.log("dataToUse:", dataToUse);
+      console.log("accessToken:", accessToken ? "present" : "null");
+      console.log("refreshToken:", refreshToken ? "present" : "null");
+      console.log("question:", question);
+      
+      const requestBody = { 
+        question,
+        image: imagePreview,
+        adsData: dataToUse,
+        accessToken,
+        refreshToken
+      };
+      
+      console.log("=== CHATFORMGPT: Request body ===");
+      console.log(JSON.stringify(requestBody, null, 2));
+      
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-          question,
-          image: imagePreview,
-          adsData: dataToUse, // Додаємо adsData в body
-          accessToken,
-          refreshToken
-        }),
+        body: JSON.stringify(requestBody),
       });
       
       if (!res.ok) throw new Error('Помилка відповіді від AI');
@@ -408,6 +423,7 @@ const ChatFormGPT: React.FC = () => {
 
   // Effects
   useEffect(() => {
+    console.log("=== CHATFORMGPT: useEffect theme ===");
     if (typeof window !== 'undefined') {
       document.body.dataset.chatTheme = theme;
       window.localStorage.setItem('chatTheme', theme);
