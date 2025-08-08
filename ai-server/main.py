@@ -1009,8 +1009,8 @@ async def get_real_ads_data(request: Request):
         result = await get_real_ads_data_internal(access_token, refresh_token)
         
         if "error" in result:
-        return JSONResponse(
-            status_code=500,
+            return JSONResponse(
+                status_code=500,
                 content=result
             )
         return result

@@ -11,6 +11,8 @@ import { ChatSidebar } from './components/ChatSidebar';
 import { ChatMessages } from './components/ChatMessages';
 
 const ChatFormGPT: React.FC = () => {
+  console.log("=== CHATFORMGPT INDEX: КОМПОНЕНТ ЗАВАНТАЖЕНО ===");
+  
   // Основные состояния
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
@@ -89,6 +91,7 @@ const ChatFormGPT: React.FC = () => {
 
   // Получение данных пользователя
   useEffect(() => {
+    console.log("=== CHATFORMGPT INDEX: useEffect user data ===");
     // Получаем email из URL параметров или localStorage
     const urlParams = new URLSearchParams(window.location.search);
     const emailFromUrl = urlParams.get('email');
@@ -242,7 +245,23 @@ const ChatFormGPT: React.FC = () => {
   };
 
   // Мемоизированные значения
-  const dataToUse = useMemo(() => realAdsData || adsData, [realAdsData, adsData]);
+  const dataToUse = useMemo(() => {
+    console.log("=== CHATFORMGPT INDEX: dataToUse calculation ===");
+    console.log("realAdsData:", realAdsData ? "present" : "null");
+    console.log("adsData:", adsData ? "present" : "null");
+    
+    const result = realAdsData || adsData;
+    console.log("dataToUse result:", result ? "present" : "null");
+    
+    if (result) {
+      console.log("dataToUse campaigns count:", result.campaigns?.length || 0);
+      if (result.campaigns && result.campaigns.length > 0) {
+        console.log("First campaign:", result.campaigns[0].name);
+      }
+    }
+    
+    return result;
+  }, [realAdsData, adsData]);
   const hasData = useMemo(() => dataToUse && dataToUse.campaigns && dataToUse.campaigns.length > 0, [dataToUse]);
   const filteredChats = useMemo(() => 
     chats.filter(chat => chat.title.toLowerCase().includes(searchQuery.toLowerCase())),
@@ -391,6 +410,7 @@ const ChatFormGPT: React.FC = () => {
 
   // Основная функция отправки
   const handleSubmit = useCallback(async (e: React.FormEvent) => {
+    console.log("=== CHATFORMGPT INDEX: HANDLE SUBMIT ВИКЛИКАНО ===");
     e.preventDefault();
     if (!input.trim()) return;
     
@@ -426,18 +446,53 @@ const ChatFormGPT: React.FC = () => {
 
     // Auto-connect logic
     if (!hasData && useAdsData && !accountConnected) {
+      console.log("=== CHATFORMGPT INDEX: Auto-connect logic ===");
       setUseAdsData(true);
       setAccountConnected(true);
-      fetch('/api/ads-data')
+      
+      // Если есть токены, загружаем реальные данные
+      if (accessToken && refreshToken) {
+        console.log("=== CHATFORMGPT INDEX: Auto-connect з реальними даними ===");
+        fetch('/api/ads-data-real', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ 
+            accessToken: accessToken,
+            refreshToken: refreshToken 
+          }),
+        })
         .then(res => res.json())
         .then(data => {
-          setAdsData(data);
+          console.log('Auto-connect real data received:', data);
+          setRealAdsData(data);
           setLoading(false);
         })
         .catch(() => {
-          setAdsData(null);
-          setLoading(false);
+          console.log('Auto-connect real data failed, loading test data');
+          fetch('/api/ads-data')
+            .then(res => res.json())
+            .then(data => {
+              setAdsData(data);
+              setLoading(false);
+            })
+            .catch(() => {
+              setAdsData(null);
+              setLoading(false);
+            });
         });
+      } else {
+        console.log("=== CHATFORMGPT INDEX: Auto-connect з тестовими даними ===");
+        fetch('/api/ads-data')
+          .then(res => res.json())
+          .then(data => {
+            setAdsData(data);
+            setLoading(false);
+          })
+          .catch(() => {
+            setAdsData(null);
+            setLoading(false);
+          });
+      }
       return;
     }
 
@@ -477,15 +532,27 @@ const ChatFormGPT: React.FC = () => {
     }
 
     try {
+      // ДЕТАЛЬНЕ ЛОГУВАННЯ CHATFORMGPT INDEX
+      console.log("=== CHATFORMGPT INDEX: Дані перед відправкою ===");
+      console.log("dataToUse:", dataToUse);
+      console.log("accessToken:", accessToken ? "present" : "null");
+      console.log("refreshToken:", refreshToken ? "present" : "null");
+      console.log("question:", question);
+      
+      const requestBody = { 
+        question,
+        adsData: dataToUse,
+        accessToken,
+        refreshToken
+      };
+      
+      console.log("=== CHATFORMGPT INDEX: Request body ===");
+      console.log(JSON.stringify(requestBody, null, 2));
+      
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-          question,
-          adsData: dataToUse, // Додаємо adsData в body
-          accessToken,
-          refreshToken
-        }),
+        body: JSON.stringify(requestBody),
       });
       
       if (!res.ok) throw new Error('Помилка відповіді від AI');
@@ -601,11 +668,50 @@ const ChatFormGPT: React.FC = () => {
 
   // Загрузка данных Google Ads
   useEffect(() => {
-    fetch('/api/ads-data')
-      .then(res => res.json())
-      .then(data => setAdsData(data))
-      .catch(() => setAdsData(null));
-  }, []);
+    console.log("=== CHATFORMGPT INDEX: Завантаження даних Google Ads ===");
+    console.log("accessToken:", accessToken ? "present" : "null");
+    console.log("refreshToken:", refreshToken ? "present" : "null");
+    
+    // Если есть токены, загружаем реальные данные
+    if (accessToken && refreshToken) {
+      console.log("=== CHATFORMGPT INDEX: Завантаження реальних даних ===");
+      setAccountConnected(true);
+      
+      fetch('/api/ads-data-real', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          accessToken: accessToken,
+          refreshToken: refreshToken 
+        }),
+      })
+      .then(res => {
+        console.log('ads-data-real response status:', res.status);
+        return res.json();
+      })
+      .then(data => {
+        console.log('ads-data-real data received:', data);
+        setRealAdsData(data);
+        setAdsData(null); // Очищаем тестовые данные
+      })
+      .catch(error => {
+        console.error('Error fetching real Google Ads data:', error);
+        setRealAdsData(null);
+        // Если не удалось загрузить реальные данные, загружаем тестовые
+        fetch('/api/ads-data')
+          .then(res => res.json())
+          .then(data => setAdsData(data))
+          .catch(() => setAdsData(null));
+      });
+    } else {
+      console.log("=== CHATFORMGPT INDEX: Токенів немає, завантаження тестових даних ===");
+      // Если токенов нет, загружаем тестовые данные
+      fetch('/api/ads-data')
+        .then(res => res.json())
+        .then(data => setAdsData(data))
+        .catch(() => setAdsData(null));
+    }
+  }, [accessToken, refreshToken]);
 
   // OAuth2 callback обработка
   useEffect(() => {
