@@ -664,8 +664,14 @@ async def get_real_ads_data_internal(access_token: str, refresh_token: str):
         total_impressions = 0
         total_conversions = 0
         
-        # Google Ads API v20 повертає дані як список
-        results = campaigns_data if isinstance(campaigns_data, list) else campaigns_data.get('results', [])
+        # Google Ads API v20 повертає дані як список з одним елементом, який містить results
+        if isinstance(campaigns_data, list) and len(campaigns_data) > 0:
+            # Якщо це список, беремо перший елемент і його results
+            first_item = campaigns_data[0]
+            results = first_item.get('results', [])
+        else:
+            # Якщо це об'єкт, беремо його results
+            results = campaigns_data.get('results', [])
         
         # Додаткова діагностика структури даних
         logger.info(f"Processing {len(results)} results")
