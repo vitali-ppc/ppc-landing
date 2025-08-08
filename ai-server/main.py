@@ -137,6 +137,9 @@ async def root():
 async def chat(request: Request):
     """Обробка чат-запитів з AI (старий endpoint)"""
     try:
+        # ДОДАТКОВЕ ЛОГУВАННЯ ДЛЯ ДІАГНОСТИКИ
+        logger.info("=== CHAT FUNCTION STARTED ===")
+        
         # Отримуємо дані запиту
         body = await request.json()
         question = body.get("question", "")
