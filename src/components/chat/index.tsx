@@ -482,7 +482,9 @@ const ChatFormGPT: React.FC = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
           question,
-          image: imagePreview
+          adsData: dataToUse, // Додаємо adsData в body
+          accessToken,
+          refreshToken
         }),
       });
       
@@ -506,7 +508,7 @@ const ChatFormGPT: React.FC = () => {
     } finally {
       setLoading(false);
     }
-  }, [input, hasData, useAdsData, accountConnected, dataToUse, realAdsData, currentChatId, messages, imagePreview]);
+  }, [input, hasData, useAdsData, accountConnected, dataToUse, realAdsData, currentChatId, messages, imagePreview, accessToken, refreshToken]);
 
   // Функция генерации отчета по шаблону
   const generateReport = useCallback(async (templateKey: string) => {

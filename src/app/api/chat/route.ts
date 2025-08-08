@@ -7,7 +7,7 @@ const CACHE_TTL = 24 * 60 * 60 * 1000; // 24 години
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { question, image } = body;
+    const { question, image, adsData, accessToken, refreshToken } = body;
 
     if (!question) {
       return NextResponse.json(
@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Перевіряємо кеш
-    const cacheKey = `${question}${image || ''}`;
+    const cacheKey = `${question}${image || ''}${JSON.stringify(adsData) || ''}`;
     const cached = cache.get(cacheKey);
     if (cached && Date.now() - cached.timestamp < CACHE_TTL) {
       return NextResponse.json(cached.data);
@@ -30,6 +30,9 @@ export async function POST(req: NextRequest) {
     const requestBody = {
       question: `${question}\n\nIMPORTANT: Respond in the same language as the user's question. If the user writes in Russian, respond in Russian. If the user writes in English, respond in English.`,
       image: image || null, // Додаємо підтримку зображень
+      adsData: adsData || null, // Додаємо adsData
+      accessToken: accessToken || null, // Додаємо accessToken
+      refreshToken: refreshToken || null, // Додаємо refreshToken
       timestamp: new Date().toISOString()
     };
 

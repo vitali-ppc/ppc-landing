@@ -227,7 +227,10 @@ export const useChatActions = ({
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
           question,
-          image: imagePreview
+          image: imagePreview,
+          adsData: dataToUse, // Додаємо adsData в body
+          accessToken,
+          refreshToken
         }),
       });
       
@@ -310,7 +313,12 @@ export const useChatActions = ({
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ question }),
+        body: JSON.stringify({ 
+          question,
+          adsData: dataToUse, // Додаємо adsData в body
+          accessToken,
+          refreshToken
+        }),
       });
       
       if (!res.ok) throw new Error('Помилка відповіді від AI');

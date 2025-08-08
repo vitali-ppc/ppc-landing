@@ -26,7 +26,8 @@ const ChatFormGPT: React.FC = () => {
     realAdsData, setRealAdsData,
     accountConnected, setAccountConnected,
     accessToken, setAccessToken,
-    dataToUse, hasData
+    dataToUse, hasData,
+    refreshToken
   } = useGoogleAdsData();
   
   // UI состояния
@@ -272,7 +273,10 @@ const ChatFormGPT: React.FC = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
           question,
-          image: imagePreview
+          image: imagePreview,
+          adsData: dataToUse, // Додаємо adsData в body
+          accessToken,
+          refreshToken
         }),
       });
       
@@ -296,7 +300,7 @@ const ChatFormGPT: React.FC = () => {
     } finally {
       setLoading(false);
     }
-  }, [input, hasData, useAdsData, accountConnected, dataToUse, realAdsData, currentChatId, messages, imagePreview]);
+  }, [input, hasData, useAdsData, accountConnected, dataToUse, realAdsData, currentChatId, messages, imagePreview, accessToken, refreshToken]);
 
   // Функция генерации отчета по шаблону
   const generateReport = useCallback(async (templateKey: string) => {
@@ -355,7 +359,12 @@ const ChatFormGPT: React.FC = () => {
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ question }),
+        body: JSON.stringify({ 
+          question,
+          adsData: dataToUse, // Додаємо adsData в body
+          accessToken,
+          refreshToken
+        }),
       });
       
       if (!res.ok) throw new Error('Помилка відповіді від AI');

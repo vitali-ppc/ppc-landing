@@ -10,6 +10,7 @@ export const useGoogleAdsData = () => {
   const [realAdsData, setRealAdsData] = useState<GoogleAdsData | null>(null);
   const [accountConnected, setAccountConnected] = useState(false);
   const [accessToken, setAccessToken] = useState<string | null>(null);
+  const [refreshToken, setRefreshToken] = useState<string | null>(null);
 
   // Мемоизированные значения
   const dataToUse = useMemo(() => realAdsData || adsData, [realAdsData, adsData]);
@@ -22,6 +23,7 @@ export const useGoogleAdsData = () => {
     realAdsData,
     accountConnected,
     accessToken,
+    refreshToken,
     dataToUse,
     hasData,
     
@@ -31,5 +33,6 @@ export const useGoogleAdsData = () => {
     setRealAdsData,
     setAccountConnected,
     setAccessToken,
+    setRefreshToken,
   };
 }; 
