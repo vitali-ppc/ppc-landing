@@ -222,16 +222,28 @@ export const useChatActions = ({
     }
 
     try {
+      // ДЕТАЛЬНЕ ЛОГУВАННЯ ФРОНТЕНДУ
+      console.log("=== ФРОНТЕНД: Дані перед відправкою ===");
+      console.log("dataToUse:", dataToUse);
+      console.log("accessToken:", accessToken ? "present" : "null");
+      console.log("refreshToken:", refreshToken ? "present" : "null");
+      console.log("question:", question);
+      
+      const requestBody = { 
+        question,
+        image: imagePreview,
+        adsData: dataToUse,
+        accessToken,
+        refreshToken
+      };
+      
+      console.log("=== ФРОНТЕНД: Request body ===");
+      console.log(JSON.stringify(requestBody, null, 2));
+      
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-          question,
-          image: imagePreview,
-          adsData: dataToUse, // Додаємо adsData в body
-          accessToken,
-          refreshToken
-        }),
+        body: JSON.stringify(requestBody),
       });
       
       if (!res.ok) throw new Error('Помилка відповіді від AI');

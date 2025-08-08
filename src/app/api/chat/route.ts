@@ -6,8 +6,17 @@ const CACHE_TTL = 24 * 60 * 60 * 1000; // 24 години
 
 export async function POST(req: NextRequest) {
   try {
+    console.log("=== NEXT.JS API: Отримано запит ===");
     const body = await req.json();
+    console.log("=== NEXT.JS API: Request body ===");
+    console.log(JSON.stringify(body, null, 2));
+    
     const { question, image, adsData, accessToken, refreshToken } = body;
+    
+    console.log("=== NEXT.JS API: Розпарсені дані ===");
+    console.log("adsData present:", !!adsData);
+    console.log("accessToken present:", !!accessToken);
+    console.log("refreshToken present:", !!refreshToken);
 
     if (!question) {
       return NextResponse.json(
