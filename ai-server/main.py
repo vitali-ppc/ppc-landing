@@ -655,6 +655,7 @@ async def get_real_ads_data_internal(access_token: str, refresh_token: str):
         
         # Додаткова діагностика - перевіряємо чи доходимо до обробки
         logger.info("=== ПОЧАТОК ОБРОБКИ ДАНИХ ===")
+        logger.info("Доходимо до обробки даних - це добре!")
         
         # Обробляємо дані кампаній
         campaigns = []
@@ -726,6 +727,10 @@ async def get_real_ads_data_internal(access_token: str, refresh_token: str):
         total_ctr = (total_clicks / total_impressions * 100) if total_impressions > 0 else 0
         total_cpc = (total_cost / total_clicks) if total_clicks > 0 else 0
         total_conversion_rate = (total_conversions / total_clicks * 100) if total_clicks > 0 else 0
+        
+        logger.info("=== ЗАВЕРШЕННЯ ОБРОБКИ ДАНИХ ===")
+        logger.info(f"Оброблено кампаній: {len(campaigns)}")
+        logger.info(f"Перша кампанія: {campaigns[0] if campaigns else 'Немає кампаній'}")
         
         return {
             "account_id": child_account_id,
