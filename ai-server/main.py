@@ -133,9 +133,9 @@ async def root():
         }
     }
 
-@app.post("/chat")
-async def chat(request: Request):
-    """Обробка чат-запитів з AI"""
+@app.post("/chat-with-ads")
+async def chat_with_ads(request: Request):
+    """Обробка чат-запитів з AI з автоматичним отриманням Google Ads даних"""
     try:
         # Отримуємо дані запиту
         body = await request.json()
@@ -144,10 +144,22 @@ async def chat(request: Request):
         access_token = body.get("accessToken", "")
         refresh_token = body.get("refreshToken", "")
         
-        # Додаємо логування для діагностики
-        logger.info(f"Chat request - Question: {question[:50]}...")
-        logger.info(f"Chat request - Has access token: {bool(access_token)}")
-        logger.info(f"Chat request - Has refresh token: {bool(refresh_token)}")
+        # ДЕТАЛЬНЕ ЛОГУВАННЯ ОТРИМАНИХ ДАНИХ
+        logger.info("=== CHAT-WITH-ADS: Отримані дані від фронтенду ===")
+        logger.info(f"Question: {question[:100]}...")
+        logger.info(f"Has access token: {bool(access_token)}")
+        logger.info(f"Has refresh token: {bool(refresh_token)}")
+        logger.info(f"Full request body keys: {list(body.keys())}")
+        logger.info(f"Full request body: {body}")
+        
+        # Перевіряємо, чи є adsData в запиті
+        ads_data_from_frontend = body.get("adsData")
+        if ads_data_from_frontend:
+            logger.info(f"=== CHAT-WITH-ADS: Отримано adsData з фронтенду ===")
+            logger.info(f"adsData type: {type(ads_data_from_frontend)}")
+            logger.info(f"adsData content: {ads_data_from_frontend}")
+        else:
+            logger.info("=== CHAT-WITH-ADS: adsData НЕ передано з фронтенду ===")
         
         if not question:
             return JSONResponse(
@@ -159,17 +171,25 @@ async def chat(request: Request):
         google_ads_data = None
         if access_token and refresh_token:
             try:
-                logger.info("Attempting to fetch Google Ads data for chat...")
+                logger.info("=== CHAT-WITH-ADS: Отримання даних Google Ads ===")
                 # Викликаємо функцію отримання даних Google Ads
                 ads_response = await get_real_ads_data_internal(access_token, refresh_token)
+                logger.info(f"=== CHAT-WITH-ADS: Ads response type: {type(ads_response)} ===")
+                logger.info(f"=== CHAT-WITH-ADS: Ads response keys: {list(ads_response.keys()) if isinstance(ads_response, dict) else 'Not a dict'} ===")
+                
                 if isinstance(ads_response, dict) and "error" not in ads_response:
                     google_ads_data = ads_response
-                    logger.info(f"Successfully fetched Google Ads data: {len(ads_response.get('campaigns', []))} campaigns")
+                    logger.info(f"=== CHAT-WITH-ADS: Успішно отримано дані Google Ads: {len(ads_response.get('campaigns', []))} кампаній ===")
+                    if ads_response.get('campaigns'):
+                        first_campaign = ads_response['campaigns'][0]
+                        logger.info(f"=== CHAT-WITH-ADS: Перша кампанія: {first_campaign.get('name', 'Unknown')} ===")
                 else:
-                    logger.warning(f"Failed to fetch Google Ads data: {ads_response}")
+                    logger.warning(f"=== CHAT-WITH-ADS: Помилка отримання даних Google Ads: {ads_response} ===")
             except Exception as e:
-                logger.error(f"Error fetching Google Ads data for chat: {e}")
+                logger.error(f"=== CHAT-WITH-ADS: Помилка отримання даних Google Ads: {e} ===")
                 google_ads_data = None
+        else:
+            logger.info("=== CHAT-WITH-ADS: Токени не надано, пропускаємо дані Google Ads ===")
 
         # Створюємо ключ кешу (включаємо дані Google Ads для унікальності)
         cache_data = f"{question}{image or ''}"
@@ -465,7 +485,7 @@ async def get_real_ads_data_internal(access_token: str, refresh_token: str):
     """Внутрішня функція для отримання даних Google Ads"""
     try:
         # Отримуємо валідний access token
-        valid_access_token = await get_valid_access_token(access_token, refresh_token)
+            valid_access_token = await get_valid_access_token(access_token, refresh_token)
         if not valid_access_token:
             return {"error": "Failed to validate access token"}
 
@@ -795,8 +815,8 @@ async def get_real_ads_data(request: Request):
         result = await get_real_ads_data_internal(access_token, refresh_token)
         
         if "error" in result:
-            return JSONResponse(
-                status_code=500,
+        return JSONResponse(
+            status_code=500,
                 content=result
             )
         return result
