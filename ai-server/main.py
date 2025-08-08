@@ -283,6 +283,23 @@ async def chat(request: Request):
         if google_ads_data:
             logger.info(f"Google Ads data includes {len(google_ads_data.get('campaigns', []))} campaigns")
 
+        # ДЕТАЛЬНЕ ЛОГУВАННЯ PROMPT ПЕРЕД ВІДПРАВКОЮ В AI
+        logger.info("=== ДЕТАЛЬНЕ ЛОГУВАННЯ PROMPT ===")
+        logger.info(f"System message length: {len(system_content)}")
+        logger.info(f"User message: {question}")
+        logger.info(f"Google Ads data present: {'Yes' if google_ads_data else 'No'}")
+        
+        if google_ads_data:
+            campaigns = google_ads_data.get('campaigns', [])
+            logger.info(f"Number of campaigns in prompt: {len(campaigns)}")
+            for i, campaign in enumerate(campaigns[:3]):  # Логуємо перші 3 кампанії
+                logger.info(f"Campaign {i+1}: {campaign.get('name', 'Unknown')} - {campaign.get('clicks', 0)} clicks, ${campaign.get('cost', 0):.2f} cost")
+        
+        # Логуємо повний prompt для діагностики
+        logger.info("=== КІНЕЦЬ SYSTEM PROMPT ===")
+        logger.info(system_content)
+        logger.info("=== КІНЕЦЬ SYSTEM PROMPT ===")
+
         # Викликаємо OpenAI API
         response = client.chat.completions.create(
             model="gpt-4-turbo",
@@ -293,6 +310,27 @@ async def chat(request: Request):
         )
 
         answer = response.choices[0].message.content
+
+        # ДЕТАЛЬНЕ ЛОГУВАННЯ ВІДПОВІДІ AI
+        logger.info("=== ДЕТАЛЬНЕ ЛОГУВАННЯ ВІДПОВІДІ AI ===")
+        logger.info(f"AI Response length: {len(answer)}")
+        logger.info(f"AI Response contains 'Unknown': {'Yes' if 'Unknown' in answer else 'No'}")
+        logger.info(f"AI Response contains 'unknown': {'Yes' if 'unknown' in answer.lower() else 'No'}")
+        
+        # Перевіряємо чи AI згадує реальні кампанії
+        if google_ads_data:
+            campaigns = google_ads_data.get('campaigns', [])
+            for campaign in campaigns:
+                campaign_name = campaign.get('name', '')
+                if campaign_name in answer:
+                    logger.info(f"✅ AI згадує кампанію: {campaign_name}")
+                else:
+                    logger.info(f"❌ AI НЕ згадує кампанію: {campaign_name}")
+        
+        # Логуємо повну відповідь AI
+        logger.info("=== ПОВНА ВІДПОВІДЬ AI ===")
+        logger.info(answer)
+        logger.info("=== КІНЕЦЬ ВІДПОВІДІ AI ===")
 
         # Логуємо запит
         logger.info(f"Chat request processed - tokens used: {response.usage.total_tokens if response.usage else 'unknown'}")
@@ -477,6 +515,23 @@ async def chat_with_ads(request: Request):
         if google_ads_data:
             logger.info(f"Google Ads data includes {len(google_ads_data.get('campaigns', []))} campaigns")
 
+        # ДЕТАЛЬНЕ ЛОГУВАННЯ PROMPT ПЕРЕД ВІДПРАВКОЮ В AI
+        logger.info("=== CHAT-WITH-ADS: ДЕТАЛЬНЕ ЛОГУВАННЯ PROMPT ===")
+        logger.info(f"System message length: {len(system_content)}")
+        logger.info(f"User message: {question}")
+        logger.info(f"Google Ads data present: {'Yes' if google_ads_data else 'No'}")
+        
+        if google_ads_data:
+            campaigns = google_ads_data.get('campaigns', [])
+            logger.info(f"Number of campaigns in prompt: {len(campaigns)}")
+            for i, campaign in enumerate(campaigns[:3]):  # Логуємо перші 3 кампанії
+                logger.info(f"Campaign {i+1}: {campaign.get('name', 'Unknown')} - {campaign.get('clicks', 0)} clicks, ${campaign.get('cost', 0):.2f} cost")
+        
+        # Логуємо повний prompt для діагностики
+        logger.info("=== CHAT-WITH-ADS: ПОВНИЙ SYSTEM PROMPT ===")
+        logger.info(system_content)
+        logger.info("=== CHAT-WITH-ADS: КІНЕЦЬ SYSTEM PROMPT ===")
+
         # Викликаємо OpenAI API
         response = client.chat.completions.create(
             model="gpt-4-turbo",
@@ -487,6 +542,27 @@ async def chat_with_ads(request: Request):
         )
 
         answer = response.choices[0].message.content
+
+        # ДЕТАЛЬНЕ ЛОГУВАННЯ ВІДПОВІДІ AI
+        logger.info("=== CHAT-WITH-ADS: ДЕТАЛЬНЕ ЛОГУВАННЯ ВІДПОВІДІ AI ===")
+        logger.info(f"AI Response length: {len(answer)}")
+        logger.info(f"AI Response contains 'Unknown': {'Yes' if 'Unknown' in answer else 'No'}")
+        logger.info(f"AI Response contains 'unknown': {'Yes' if 'unknown' in answer.lower() else 'No'}")
+        
+        # Перевіряємо чи AI згадує реальні кампанії
+        if google_ads_data:
+            campaigns = google_ads_data.get('campaigns', [])
+            for campaign in campaigns:
+                campaign_name = campaign.get('name', '')
+                if campaign_name in answer:
+                    logger.info(f"✅ AI згадує кампанію: {campaign_name}")
+                else:
+                    logger.info(f"❌ AI НЕ згадує кампанію: {campaign_name}")
+        
+        # Логуємо повну відповідь AI
+        logger.info("=== CHAT-WITH-ADS: ПОВНА ВІДПОВІДЬ AI ===")
+        logger.info(answer)
+        logger.info("=== CHAT-WITH-ADS: КІНЕЦЬ ВІДПОВІДІ AI ===")
 
         # Логуємо запит
         logger.info(f"Chat request processed - tokens used: {response.usage.total_tokens if response.usage else 'unknown'}")
@@ -871,6 +947,12 @@ async def get_real_ads_data_internal(access_token: str, refresh_token: str):
         logger.info("=== ПОЧАТОК ОБРОБКИ ДАНИХ ===")
         logger.info("Доходимо до обробки даних - це добре!")
         
+        # ДЕТАЛЬНЕ ЛОГУВАННЯ СТРУКТУРИ ДАНИХ GOOGLE ADS
+        logger.info("=== ДЕТАЛЬНЕ ЛОГУВАННЯ СТРУКТУРИ ДАНИХ ===")
+        logger.info(f"Campaigns data type: {type(campaigns_data)}")
+        logger.info(f"Campaigns data keys: {list(campaigns_data.keys()) if isinstance(campaigns_data, dict) else 'Not a dict'}")
+        logger.info(f"Campaigns data structure: {campaigns_data}")
+        
         # Обробляємо дані кампаній
         campaigns = []
         total_cost = 0
@@ -883,14 +965,17 @@ async def get_real_ads_data_internal(access_token: str, refresh_token: str):
             # Якщо це список, беремо перший елемент і його results
             first_item = campaigns_data[0]
             results = first_item.get('results', [])
+            logger.info(f"Data is a list, first item keys: {list(first_item.keys())}")
         else:
             # Якщо це об'єкт, беремо його results
             results = campaigns_data.get('results', [])
+            logger.info(f"Data is an object, results key present: {'Yes' if 'results' in campaigns_data else 'No'}")
         
         # Додаткова діагностика структури даних
         logger.info(f"Processing {len(results)} results")
         for i, result in enumerate(results):
             logger.info(f"Result {i}: {result}")
+            logger.info(f"Result {i} keys: {list(result.keys()) if isinstance(result, dict) else 'Not a dict'}")
         
         for result in results:
             campaign = result.get('campaign', {})
@@ -899,7 +984,9 @@ async def get_real_ads_data_internal(access_token: str, refresh_token: str):
             # Додаткова діагностика кампанії
             logger.info(f"Campaign data: {campaign}")
             logger.info(f"Campaign name: {campaign.get('name', 'NOT_FOUND')}")
+            logger.info(f"Campaign keys: {list(campaign.keys()) if isinstance(campaign, dict) else 'Not a dict'}")
             logger.info(f"Metrics data: {metrics}")
+            logger.info(f"Metrics keys: {list(metrics.keys()) if isinstance(metrics, dict) else 'Not a dict'}")
             
             cost_micros = metrics.get('cost_micros', 0)
             cost = cost_micros / 1000000  # Конвертуємо з мікроцентів
@@ -908,6 +995,9 @@ async def get_real_ads_data_internal(access_token: str, refresh_token: str):
             impressions = metrics.get('impressions', 0)
             conversions = metrics.get('conversions', 0)
             avg_cpc = metrics.get('average_cpc', 0)
+            
+            logger.info(f"Raw metrics - cost_micros: {cost_micros}, clicks: {clicks}, impressions: {impressions}, conversions: {conversions}")
+            logger.info(f"Processed metrics - cost: ${cost:.2f}, clicks: {clicks}, impressions: {impressions}, conversions: {conversions}")
             
             if impressions > 0:
                 ctr = (clicks / impressions) * 100
@@ -936,6 +1026,7 @@ async def get_real_ads_data_internal(access_token: str, refresh_token: str):
                 "conversion_rate": round(conversion_rate, 2)
             }
             
+            logger.info(f"Final campaign data: {campaign_data}")
             campaigns.append(campaign_data)
             
             total_cost += cost
@@ -952,7 +1043,8 @@ async def get_real_ads_data_internal(access_token: str, refresh_token: str):
         logger.info(f"Оброблено кампаній: {len(campaigns)}")
         logger.info(f"Перша кампанія: {campaigns[0] if campaigns else 'Немає кампаній'}")
         
-        return {
+        # ДЕТАЛЬНЕ ЛОГУВАННЯ ФІНАЛЬНОГО РЕЗУЛЬТАТУ
+        final_result = {
             "account_id": child_account_id,
             "date_range": "Last 30 days",
             "campaigns": campaigns,
@@ -966,6 +1058,16 @@ async def get_real_ads_data_internal(access_token: str, refresh_token: str):
                 "conversion_rate": round(total_conversion_rate, 2)
             }
         }
+        
+        logger.info("=== ФІНАЛЬНИЙ РЕЗУЛЬТАТ ===")
+        logger.info(f"Final result type: {type(final_result)}")
+        logger.info(f"Final result keys: {list(final_result.keys())}")
+        logger.info(f"Number of campaigns in final result: {len(final_result.get('campaigns', []))}")
+        logger.info(f"Total metrics: {final_result.get('total', {})}")
+        logger.info(f"First campaign in final result: {final_result.get('campaigns', [{}])[0] if final_result.get('campaigns') else 'No campaigns'}")
+        logger.info("=== КІНЕЦЬ ФІНАЛЬНОГО РЕЗУЛЬТАТУ ===")
+        
+        return final_result
         
     except Exception as e:
         logger.error(f"Error in get_real_ads_data_internal: {e}")
