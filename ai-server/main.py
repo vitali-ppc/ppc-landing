@@ -141,6 +141,13 @@ async def chat(request: Request):
         body = await request.json()
         question = body.get("question", "")
         image = body.get("image", None)
+        access_token = body.get("accessToken", "")
+        refresh_token = body.get("refreshToken", "")
+        
+        # Додаємо логування для діагностики
+        logger.info(f"Chat request - Question: {question[:50]}...")
+        logger.info(f"Chat request - Has access token: {bool(access_token)}")
+        logger.info(f"Chat request - Has refresh token: {bool(refresh_token)}")
         
         if not question:
             return JSONResponse(
@@ -148,8 +155,27 @@ async def chat(request: Request):
                 content={"answer": "❌ **Помилка**: Питання не може бути порожнім"}
             )
 
-        # Створюємо ключ кешу
-        cache_key = hashlib.md5(f"{question}{image or ''}".encode()).hexdigest()
+        # Отримуємо дані Google Ads, якщо є токени
+        google_ads_data = None
+        if access_token and refresh_token:
+            try:
+                logger.info("Attempting to fetch Google Ads data for chat...")
+                # Викликаємо функцію отримання даних Google Ads
+                ads_response = await get_real_ads_data_internal(access_token, refresh_token)
+                if isinstance(ads_response, dict) and "error" not in ads_response:
+                    google_ads_data = ads_response
+                    logger.info(f"Successfully fetched Google Ads data: {len(ads_response.get('campaigns', []))} campaigns")
+                else:
+                    logger.warning(f"Failed to fetch Google Ads data: {ads_response}")
+            except Exception as e:
+                logger.error(f"Error fetching Google Ads data for chat: {e}")
+                google_ads_data = None
+
+        # Створюємо ключ кешу (включаємо дані Google Ads для унікальності)
+        cache_data = f"{question}{image or ''}"
+        if google_ads_data:
+            cache_data += f"{google_ads_data.get('account_id', '')}{len(google_ads_data.get('campaigns', []))}"
+        cache_key = hashlib.md5(cache_data.encode()).hexdigest()
         timestamp = datetime.now().isoformat()
 
         # Перевіряємо кеш
@@ -159,10 +185,61 @@ async def chat(request: Request):
                 logger.info(f"Cache hit for question: {question[:50]}...")
                 return cached_response
 
-        # Формуємо сучасний англійський системний промпт 2025 року
+        # Формуємо сучасний англійський системний промпт 2025 року з даними Google Ads
+        system_content = "You are a Google Ads expert with cutting-edge knowledge of 2025 PPC strategies and AI-powered advertising tools. Your role is to provide professional, structured recommendations for Google Ads campaign optimization using the latest AI-driven approaches.\n\n"
+        
+        # Додаємо дані Google Ads до системного промпту, якщо є
+        if google_ads_data:
+            system_content += f"**CURRENT GOOGLE ADS DATA (Last 30 days):**\n"
+            system_content += f"Account ID: {google_ads_data.get('account_id', 'Unknown')}\n"
+            system_content += f"Date Range: {google_ads_data.get('date_range', 'Unknown')}\n\n"
+            
+            # Додаємо загальні метрики
+            total_metrics = google_ads_data.get('total', {})
+            system_content += f"**OVERALL PERFORMANCE:**\n"
+            system_content += f"- Total Cost: ${total_metrics.get('cost', 0):.2f}\n"
+            system_content += f"- Total Clicks: {total_metrics.get('clicks', 0):,}\n"
+            system_content += f"- Total Impressions: {total_metrics.get('impressions', 0):,}\n"
+            system_content += f"- Total Conversions: {total_metrics.get('conversions', 0):,}\n"
+            system_content += f"- Overall CTR: {total_metrics.get('ctr', 0):.2f}%\n"
+            system_content += f"- Overall CPC: ${total_metrics.get('cpc', 0):.2f}\n"
+            system_content += f"- Overall Conversion Rate: {total_metrics.get('conversion_rate', 0):.2f}%\n\n"
+            
+            # Додаємо дані кампаній
+            campaigns = google_ads_data.get('campaigns', [])
+            if campaigns:
+                system_content += f"**CAMPAIGNS ({len(campaigns)} total):**\n"
+                for i, campaign in enumerate(campaigns[:5], 1):  # Показуємо перші 5 кампаній
+                    system_content += f"{i}. **{campaign.get('name', 'Unknown')}** ({campaign.get('status', 'Unknown')})\n"
+                    system_content += f"   - Cost: ${campaign.get('cost', 0):.2f}\n"
+                    system_content += f"   - Clicks: {campaign.get('clicks', 0):,}\n"
+                    system_content += f"   - Impressions: {campaign.get('impressions', 0):,}\n"
+                    system_content += f"   - CTR: {campaign.get('ctr', 0):.2f}%\n"
+                    system_content += f"   - CPC: ${campaign.get('cpc', 0):.2f}\n"
+                    system_content += f"   - Conversions: {campaign.get('conversions', 0):,}\n"
+                    system_content += f"   - Conv. Rate: {campaign.get('conversion_rate', 0):.2f}%\n"
+                
+                if len(campaigns) > 5:
+                    system_content += f"   ... and {len(campaigns) - 5} more campaigns\n"
+                system_content += "\n"
+        
+        system_content += "**RESPONSE STRUCTURE:**\n1. **QUICK ANALYSIS** - main problems/opportunities considering current trends\n2. **STEP-BY-STEP PLAN** - specific actions with priorities (High/Medium/Low)\n3. **EXPECTED RESULTS** - metrics and KPIs for 2025\n4. **RECOMMENDATIONS** - detailed advice with numbers and modern tools\n5. **MONITORING** - what to track and how to analyze\n\n"
+        
+        system_content += "**MODERN TOOLS 2025:**\n🔥 **Performance Max (PMax)** - AI-optimized automated campaigns across all Google channels\n🎯 **Demand Gen** - demand generation through YouTube Shorts, Discover, Gmail\n🧠 **AI-powered bidding** - tCPA, tROAS, Maximize Conversions, Maximize Conversion Value\n👥 **Modern audiences** - Custom Segments, In-Market, Customer Match, Lookalike\n📝 **Adaptive ads** - RSA, RDA with automatic testing\n⚙️ **Automated strategies** - Auto Assets, DSA, Smart Bidding\n🔄 **Cross-channel optimization** - integration of all Google channels\n\n"
+        
+        system_content += "**PRINCIPLES 2025:**\n- Maximize AI usage: PMax, automated bidding, adaptive ads\n- Leverage 1st-party data: Customer Match, CRM integrations\n- Focus on creatives: video, interactive, UGC\n- GA4 + Enhanced Conversions - must-have\n- Test: A/B headlines, audiences, creatives\n- Automate but control: don't rely 100% on AI\n- Use Audience Signals for PMax\n- Segment campaigns by product type/sales cycle\n\n"
+        
+        system_content += "**METRICS 2025:**\n- Conversion Value/Cost (ROAS) - most important for eCommerce\n- Engagement Rate (Demand Gen) - reach + interaction\n- Video View Rate - in video campaigns\n- New Customer Acquisition - new users\n- Ad Strength (RSA, RDA) - quality of adaptive ads\n- Data-driven Attribution (DDA) - attribution across all touchpoints\n\n"
+        
+        system_content += "**EXPERTISE:**\n- Performance Max campaigns and optimization\n- Demand Gen strategies and creatives\n- AI-powered bidding and automation\n- Modern audiences and segmentation\n- Adaptive ads and optimization\n- Cross-channel strategies\n- GA4 and Enhanced Conversions\n- 1st-party data and Customer Match\n- Google's automated strategies\n- Conversions and attribution 2025\n\n"
+        
+        system_content += "**RESPONSE FORMAT:**\n- Use markdown formatting for structure\n- Provide specific numbers and percentages\n- Include actionable recommendations\n- Always complete thoughts and give actionable advice\n- Use real Google Ads metrics (CTR, CPC, CR, ROAS)\n- Include expected results with timeframes\n- Use professional English terminology\n- Provide concrete examples and case studies\n- Include industry best practices and benchmarks\n- Focus on data-driven insights and measurable outcomes\n- When user says 'continue', 'carry on', 'more', 'expand' - continue the previous topic with additional details\n- Always assume context from previous conversation\n- Don't ask for clarification unless absolutely necessary\n\n"
+        
+        system_content += "**IMPORTANT:** When analyzing the provided Google Ads data, always reference specific campaigns, metrics, and performance indicators. Provide recommendations based on the actual data shown above."
+        
         system_message = {
             "role": "system", 
-            "content": "You are a Google Ads expert with cutting-edge knowledge of 2025 PPC strategies and AI-powered advertising tools. Your role is to provide professional, structured recommendations for Google Ads campaign optimization using the latest AI-driven approaches.\n\nRESPONSE STRUCTURE:\n1. **QUICK ANALYSIS** - main problems/opportunities considering current trends\n2. **STEP-BY-STEP PLAN** - specific actions with priorities (High/Medium/Low)\n3. **EXPECTED RESULTS** - metrics and KPIs for 2025\n4. **RECOMMENDATIONS** - detailed advice with numbers and modern tools\n5. **MONITORING** - what to track and how to analyze\n\nMODERN TOOLS 2025:\n🔥 **Performance Max (PMax)** - AI-optimized automated campaigns across all Google channels\n🎯 **Demand Gen** - demand generation through YouTube Shorts, Discover, Gmail\n🧠 **AI-powered bidding** - tCPA, tROAS, Maximize Conversions, Maximize Conversion Value\n👥 **Modern audiences** - Custom Segments, In-Market, Customer Match, Lookalike\n📝 **Adaptive ads** - RSA, RDA with automatic testing\n⚙️ **Automated strategies** - Auto Assets, DSA, Smart Bidding\n🔄 **Cross-channel optimization** - integration of all Google channels\n\nPRINCIPLES 2025:\n- Maximize AI usage: PMax, automated bidding, adaptive ads\n- Leverage 1st-party data: Customer Match, CRM integrations\n- Focus on creatives: video, interactive, UGC\n- GA4 + Enhanced Conversions - must-have\n- Test: A/B headlines, audiences, creatives\n- Automate but control: don't rely 100% on AI\n- Use Audience Signals for PMax\n- Segment campaigns by product type/sales cycle\n\nMETRICS 2025:\n- Conversion Value/Cost (ROAS) - most important for eCommerce\n- Engagement Rate (Demand Gen) - reach + interaction\n- Video View Rate - in video campaigns\n- New Customer Acquisition - new users\n- Ad Strength (RSA, RDA) - quality of adaptive ads\n- Data-driven Attribution (DDA) - attribution across all touchpoints\n\nEXPERTISE:\n- Performance Max campaigns and optimization\n- Demand Gen strategies and creatives\n- AI-powered bidding and automation\n- Modern audiences and segmentation\n- Adaptive ads and optimization\n- Cross-channel strategies\n- GA4 and Enhanced Conversions\n- 1st-party data and Customer Match\n- Google's automated strategies\n- Conversions and attribution 2025\n\nRESPONSE FORMAT:\n- Use markdown formatting for structure\n- Provide specific numbers and percentages\n- Include actionable recommendations\n- Always complete thoughts and give actionable advice\n- Use real Google Ads metrics (CTR, CPC, CR, ROAS)\n- Include expected results with timeframes\n- Use professional English terminology\n- Provide concrete examples and case studies\n- Include industry best practices and benchmarks\n- Focus on data-driven insights and measurable outcomes\n- When user says 'continue', 'carry on', 'more', 'expand' - continue the previous topic with additional details\n- Always assume context from previous conversation\n- Don't ask for clarification unless absolutely necessary"
+            "content": system_content
         }
 
         user_message = {
@@ -181,6 +258,11 @@ async def chat(request: Request):
             except Exception as e:
                 logger.warning(f"Failed to process image: {e}")
 
+        # Логуємо інформацію про запит
+        logger.info(f"Calling OpenAI API with Google Ads data: {'Yes' if google_ads_data else 'No'}")
+        if google_ads_data:
+            logger.info(f"Google Ads data includes {len(google_ads_data.get('campaigns', []))} campaigns")
+        
         # Викликаємо OpenAI API
         response = client.chat.completions.create(
             model="gpt-4-turbo",
@@ -379,47 +461,13 @@ def get_ads_data():
         ]
     }
 
-@app.post("/ads-data-real")
-async def get_real_ads_data(request: Request):
-    """Отримання реальних даних Google Ads через API"""
+async def get_real_ads_data_internal(access_token: str, refresh_token: str):
+    """Внутрішня функція для отримання даних Google Ads"""
     try:
-        logger.info("Starting /ads-data-real request")
-        
-        # Отримуємо дані запиту
-        body = await request.json()
-        access_token = body.get("accessToken")
-        refresh_token = body.get("refreshToken")
-        
-        # ДЕТАЛЬНЕ ЛОГУВАННЯ
-        logger.info("=== ДЕТАЛЬНЕ ЛОГУВАННЯ ===")
-        logger.info(f"Full request body: {body}")
-        logger.info(f"Body keys: {list(body.keys())}")
-        logger.info(f"accessToken present: {'yes' if body.get('accessToken') else 'no'}")
-        logger.info(f"refreshToken present: {'yes' if body.get('refreshToken') else 'no'}")
-        logger.info(f"refreshToken value: {refresh_token}")
-        logger.info(f"refreshToken type: {type(refresh_token)}")
-        logger.info(f"refreshToken length: {len(refresh_token) if refresh_token else 'None'}")
-        
-        logger.info(f"Received access token: {access_token[:20] if access_token else 'None'}...")
-        logger.info(f"Received refresh token: {'present' if refresh_token else 'None'}")
-        
-        if not access_token:
-            logger.error("No access token provided")
-            return JSONResponse(
-                status_code=400,
-                content={"error": "Access token required"}
-            )
-        
-        # Отримуємо дійсний access token (з автоматичним оновленням)
-        try:
-            valid_access_token = await get_valid_access_token(access_token, refresh_token)
-            logger.info(f"Using valid access token: {valid_access_token[:20]}...")
-        except Exception as e:
-            logger.error(f"Failed to get valid access token: {e}")
-            return JSONResponse(
-                status_code=401,
-                content={"error": "Failed to validate access token"}
-            )
+        # Отримуємо валідний access token
+        valid_access_token = await get_valid_access_token(access_token, refresh_token)
+        if not valid_access_token:
+            return {"error": "Failed to validate access token"}
 
         # Діагностичний запит: отримуємо список доступних акаунтів (ВИКОНУЄТЬСЯ ЗАВЖДИ)
         try:
@@ -518,10 +566,7 @@ async def get_real_ads_data(request: Request):
         
         if not mcc_id or not developer_token:
             logger.error("Google Ads credentials not configured")
-            return JSONResponse(
-                status_code=500,
-                content={"error": "Google Ads credentials not configured"}
-            )
+            return {"error": "Google Ads credentials not configured"}
 
         # Використовуємо конкретний customer_id замість спроби отримати список
         child_account_id = customer_id.replace('-', '')  # 7024764145
@@ -592,33 +637,15 @@ async def get_real_ads_data(request: Request):
                 if campaigns_response.status_code != 200:
                     error_text = campaigns_response.text
                     logger.error(f"Google Ads API error after token refresh: {campaigns_response.status_code} - {error_text}")
-                    return JSONResponse(
-                        status_code=500,
-                        content={
-                            "error": "Failed to fetch campaign data after token refresh",
-                            "details": error_text
-                        }
-                    )
+                    return {"error": "Failed to fetch campaign data after token refresh"}
                     
             except Exception as e:
                 logger.error(f"Failed to refresh token and retry: {e}")
-                return JSONResponse(
-                    status_code=401,
-                    content={
-                        "error": "Token expired and refresh failed",
-                        "details": str(e)
-                    }
-                )
+                return {"error": "Token expired and refresh failed"}
         elif campaigns_response.status_code != 200:
             error_text = campaigns_response.text
             logger.error(f"Google Ads API error: {campaigns_response.status_code} - {error_text}")
-            return JSONResponse(
-                status_code=500,
-                content={
-                    "error": "Failed to fetch campaign data",
-                    "details": error_text
-                }
-            )
+            return {"error": "Failed to fetch campaign data"}
 
         campaigns_data = campaigns_response.json()
         
@@ -703,16 +730,58 @@ async def get_real_ads_data(request: Request):
         }
         
     except Exception as e:
-        logger.error(f"Error in get_real_ads_data: {e}")
+        logger.error(f"Error in get_real_ads_data_internal: {e}")
         logger.error(f"Error type: {type(e)}")
         import traceback
         logger.error(f"Traceback: {traceback.format_exc()}")
+        return {"error": "Failed to fetch campaign data"}
+
+@app.post("/ads-data-real")
+async def get_real_ads_data(request: Request):
+    """Отримання реальних даних Google Ads через API"""
+    try:
+        logger.info("Starting /ads-data-real request")
+        
+        # Отримуємо дані запиту
+        body = await request.json()
+        access_token = body.get("accessToken")
+        refresh_token = body.get("refreshToken")
+        
+        # ДЕТАЛЬНЕ ЛОГУВАННЯ
+        logger.info("=== ДЕТАЛЬНЕ ЛОГУВАННЯ ===")
+        logger.info(f"Full request body: {body}")
+        logger.info(f"Body keys: {list(body.keys())}")
+        logger.info(f"accessToken present: {'yes' if body.get('accessToken') else 'no'}")
+        logger.info(f"refreshToken present: {'yes' if body.get('refreshToken') else 'no'}")
+        logger.info(f"refreshToken value: {refresh_token}")
+        logger.info(f"refreshToken type: {type(refresh_token)}")
+        logger.info(f"refreshToken length: {len(refresh_token) if refresh_token else 'None'}")
+        
+        logger.info(f"Received access token: {access_token[:20] if access_token else 'None'}...")
+        logger.info(f"Received refresh token: {'present' if refresh_token else 'None'}")
+        
+        if not access_token:
+            logger.error("No access token provided")
+            return JSONResponse(
+                status_code=400,
+                content={"error": "Access token required"}
+            )
+        
+        # Використовуємо внутрішню функцію для отримання даних
+        result = await get_real_ads_data_internal(access_token, refresh_token)
+        
+        if "error" in result:
+            return JSONResponse(
+                status_code=500,
+                content=result
+            )
+        return result
+        
+    except Exception as e:
+        logger.error(f"Error in get_real_ads_data: {e}")
         return JSONResponse(
             status_code=500,
-            content={
-                "error": "Failed to fetch campaign data",
-                "details": str(e)
-            }
+            content={"error": "Failed to fetch campaign data"}
         )
 
 @app.get("/health")
