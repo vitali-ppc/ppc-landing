@@ -133,6 +133,200 @@ async def root():
         }
     }
 
+@app.post("/chat")
+async def chat(request: Request):
+    """Обробка чат-запитів з AI (старий endpoint)"""
+    try:
+        # Отримуємо дані запиту
+        body = await request.json()
+        question = body.get("question", "")
+        image = body.get("image", None)
+        access_token = body.get("accessToken", "")
+        refresh_token = body.get("refreshToken", "")
+        
+        # ДЕТАЛЬНЕ ЛОГУВАННЯ СТАРОГО CHAT ENDPOINT
+        logger.info("=== OLD CHAT: Отримані дані від фронтенду ===")
+        logger.info(f"Question: {question[:100]}...")
+        logger.info(f"Has access token: {bool(access_token)}")
+        logger.info(f"Has refresh token: {bool(refresh_token)}")
+        logger.info(f"Full request body keys: {list(body.keys())}")
+        logger.info(f"Full request body: {body}")
+        
+        # Перевіряємо, чи є adsData в запиті
+        ads_data_from_frontend = body.get("adsData")
+        if ads_data_from_frontend:
+            logger.info(f"=== OLD CHAT: Отримано adsData з фронтенду ===")
+            logger.info(f"adsData type: {type(ads_data_from_frontend)}")
+            logger.info(f"adsData content: {ads_data_from_frontend}")
+        else:
+            logger.info("=== OLD CHAT: adsData НЕ передано з фронтенду ===")
+        
+        if not question:
+            return JSONResponse(
+                status_code=400,
+                content={"answer": "❌ **Помилка**: Питання не може бути порожнім"}
+            )
+
+        # Отримуємо дані Google Ads, якщо є токени
+        google_ads_data = None
+        if access_token and refresh_token:
+            try:
+                logger.info("=== OLD CHAT: Отримання даних Google Ads ===")
+                # Викликаємо функцію отримання даних Google Ads
+                ads_response = await get_real_ads_data_internal(access_token, refresh_token)
+                logger.info(f"=== OLD CHAT: Ads response type: {type(ads_response)} ===")
+                logger.info(f"=== OLD CHAT: Ads response keys: {list(ads_response.keys()) if isinstance(ads_response, dict) else 'Not a dict'} ===")
+                
+                if isinstance(ads_response, dict) and "error" not in ads_response:
+                    google_ads_data = ads_response
+                    logger.info(f"=== OLD CHAT: Успішно отримано дані Google Ads: {len(ads_response.get('campaigns', []))} кампаній ===")
+                    if ads_response.get('campaigns'):
+                        first_campaign = ads_response['campaigns'][0]
+                        logger.info(f"=== OLD CHAT: Перша кампанія: {first_campaign.get('name', 'Unknown')} ===")
+                else:
+                    logger.warning(f"=== OLD CHAT: Помилка отримання даних Google Ads: {ads_response} ===")
+            except Exception as e:
+                logger.error(f"=== OLD CHAT: Помилка отримання даних Google Ads: {e} ===")
+                google_ads_data = None
+        else:
+            logger.info("=== OLD CHAT: Токени не надано, пропускаємо дані Google Ads ===")
+
+        # Створюємо ключ кешу (включаємо дані Google Ads для унікальності)
+        cache_data = f"{question}{image or ''}"
+        if google_ads_data:
+            cache_data += f"{google_ads_data.get('account_id', '')}{len(google_ads_data.get('campaigns', []))}"
+        cache_key = hashlib.md5(cache_data.encode()).hexdigest()
+        timestamp = datetime.now().isoformat()
+
+        # Перевіряємо кеш
+        if cache_key in response_cache:
+            cached_response = response_cache[cache_key]
+            if (datetime.now() - datetime.fromisoformat(cached_response["timestamp"])).days < 1:
+                logger.info(f"Cache hit for question: {question[:50]}...")
+                return cached_response
+
+        # Формуємо сучасний англійський системний промпт 2025 року з даними Google Ads
+        system_content = "You are a Google Ads expert with cutting-edge knowledge of 2025 PPC strategies and AI-powered advertising tools. Your role is to provide professional, structured recommendations for Google Ads campaign optimization using the latest AI-driven approaches.\n\n"
+        
+        # Додаємо дані Google Ads до системного промпту, якщо є
+        if google_ads_data:
+            system_content += f"**CURRENT GOOGLE ADS DATA (Last 30 days):**\n"
+            system_content += f"Account ID: {google_ads_data.get('account_id', 'Unknown')}\n"
+            system_content += f"Date Range: {google_ads_data.get('date_range', 'Unknown')}\n\n"
+            
+            # Додаємо загальні метрики
+            total_metrics = google_ads_data.get('total', {})
+            system_content += f"**OVERALL PERFORMANCE:**\n"
+            system_content += f"- Total Cost: ${total_metrics.get('cost', 0):.2f}\n"
+            system_content += f"- Total Clicks: {total_metrics.get('clicks', 0):,}\n"
+            system_content += f"- Total Impressions: {total_metrics.get('impressions', 0):,}\n"
+            system_content += f"- Total Conversions: {total_metrics.get('conversions', 0):,}\n"
+            system_content += f"- Overall CTR: {total_metrics.get('ctr', 0):.2f}%\n"
+            system_content += f"- Overall CPC: ${total_metrics.get('cpc', 0):.2f}\n"
+            system_content += f"- Overall Conversion Rate: {total_metrics.get('conversion_rate', 0):.2f}%\n\n"
+            
+            # Додаємо дані кампаній
+            campaigns = google_ads_data.get('campaigns', [])
+            if campaigns:
+                system_content += f"**CAMPAIGNS ({len(campaigns)} total):**\n"
+                for i, campaign in enumerate(campaigns[:5], 1):  # Показуємо перші 5 кампаній
+                    system_content += f"{i}. **{campaign.get('name', 'Unknown')}** ({campaign.get('status', 'Unknown')})\n"
+                    system_content += f"   - Cost: ${campaign.get('cost', 0):.2f}\n"
+                    system_content += f"   - Clicks: {campaign.get('clicks', 0):,}\n"
+                    system_content += f"   - Impressions: {campaign.get('impressions', 0):,}\n"
+                    system_content += f"   - CTR: {campaign.get('ctr', 0):.2f}%\n"
+                    system_content += f"   - CPC: ${campaign.get('cpc', 0):.2f}\n"
+                    system_content += f"   - Conversions: {campaign.get('conversions', 0):,}\n"
+                    system_content += f"   - Conv. Rate: {campaign.get('conversion_rate', 0):.2f}%\n"
+                
+                if len(campaigns) > 5:
+                    system_content += f"   ... and {len(campaigns) - 5} more campaigns\n"
+                system_content += "\n"
+        
+        system_content += "**RESPONSE STRUCTURE:**\n1. **QUICK ANALYSIS** - main problems/opportunities considering current trends\n2. **STEP-BY-STEP PLAN** - specific actions with priorities (High/Medium/Low)\n3. **EXPECTED RESULTS** - metrics and KPIs for 2025\n4. **RECOMMENDATIONS** - detailed advice with numbers and modern tools\n5. **MONITORING** - what to track and how to analyze\n\n"
+        
+        system_content += "**MODERN TOOLS 2025:**\n🔥 **Performance Max (PMax)** - AI-optimized automated campaigns across all Google channels\n🎯 **Demand Gen** - demand generation through YouTube Shorts, Discover, Gmail\n🧠 **AI-powered bidding** - tCPA, tROAS, Maximize Conversions, Maximize Conversion Value\n👥 **Modern audiences** - Custom Segments, In-Market, Customer Match, Lookalike\n📝 **Adaptive ads** - RSA, RDA with automatic testing\n⚙️ **Automated strategies** - Auto Assets, DSA, Smart Bidding\n🔄 **Cross-channel optimization** - integration of all Google channels\n\n"
+        
+        system_content += "**PRINCIPLES 2025:**\n- Maximize AI usage: PMax, automated bidding, adaptive ads\n- Leverage 1st-party data: Customer Match, CRM integrations\n- Focus on creatives: video, interactive, UGC\n- GA4 + Enhanced Conversions - must-have\n- Test: A/B headlines, audiences, creatives\n- Automate but control: don't rely 100% on AI\n- Use Audience Signals for PMax\n- Segment campaigns by product type/sales cycle\n\n"
+        
+        system_content += "**METRICS 2025:**\n- Conversion Value/Cost (ROAS) - most important for eCommerce\n- Engagement Rate (Demand Gen) - reach + interaction\n- Video View Rate - in video campaigns\n- New Customer Acquisition - new users\n- Ad Strength (RSA, RDA) - quality of adaptive ads\n- Data-driven Attribution (DDA) - attribution across all touchpoints\n\n"
+        
+        system_content += "**EXPERTISE:**\n- Performance Max campaigns and optimization\n- Demand Gen strategies and creatives\n- AI-powered bidding and automation\n- Modern audiences and segmentation\n- Adaptive ads and optimization\n- Cross-channel strategies\n- GA4 and Enhanced Conversions\n- 1st-party data and Customer Match\n- Google's automated strategies\n- Conversions and attribution 2025\n\n"
+        
+        system_content += "**RESPONSE FORMAT:**\n- Use markdown formatting for structure\n- Provide specific numbers and percentages\n- Include actionable recommendations\n- Always complete thoughts and give actionable advice\n- Use real Google Ads metrics (CTR, CPC, CR, ROAS)\n- Include expected results with timeframes\n- Use professional English terminology\n- Provide concrete examples and case studies\n- Include industry best practices and benchmarks\n- Focus on data-driven insights and measurable outcomes\n- When user says 'continue', 'carry on', 'more', 'expand' - continue the previous topic with additional details\n- Always assume context from previous conversation\n- Don't ask for clarification unless absolutely necessary\n\n"
+        
+        system_content += "**IMPORTANT:** When analyzing the provided Google Ads data, always reference specific campaigns, metrics, and performance indicators. Provide recommendations based on the actual data shown above."
+        
+        system_message = {
+            "role": "system", 
+            "content": system_content
+        }
+
+        user_message = {
+            "role": "user",
+            "content": question
+        }
+
+        # Додаємо зображення до промпту якщо є
+        if image:
+            try:
+                if image.startswith('data:image'):
+                    image_data = image.split(',')[1]
+                else:
+                    image_data = image
+                user_message["content"] = f"Analyze this image and answer the question: {question}\n[Image: {image_data[:100]}...]"
+            except Exception as e:
+                logger.warning(f"Failed to process image: {e}")
+
+        # Логуємо інформацію про запит
+        logger.info(f"Calling OpenAI API with Google Ads data: {'Yes' if google_ads_data else 'No'}")
+        if google_ads_data:
+            logger.info(f"Google Ads data includes {len(google_ads_data.get('campaigns', []))} campaigns")
+
+        # Викликаємо OpenAI API
+        response = client.chat.completions.create(
+            model="gpt-4-turbo",
+            messages=[system_message, user_message],  # type: ignore
+            max_tokens=1200,  # Збільшено для повних відповідей
+            temperature=0.3,
+            timeout=60  # 60 секунд таймаут
+        )
+
+        answer = response.choices[0].message.content
+
+        # Логуємо запит
+        logger.info(f"Chat request processed - tokens used: {response.usage.total_tokens if response.usage else 'unknown'}")
+
+        # Зберігаємо в кеш
+        response_data = {
+            "answer": answer,
+            "timestamp": timestamp,
+            "model": "gpt-4-turbo",
+            "tokens_used": response.usage.total_tokens if response.usage else None
+        }
+        response_cache[cache_key] = response_data
+
+        return response_data
+
+    except openai.AuthenticationError:
+        logger.error("OpenAI authentication failed")
+        return JSONResponse(
+            status_code=500,
+            content={"answer": "❌ **Помилка авторизації AI-сервісу**\n\nПеревірте налаштування API ключа."}
+        )
+    except openai.RateLimitError:
+        logger.error("OpenAI rate limit exceeded")
+        return JSONResponse(
+            status_code=429,
+            content={"answer": "❌ **Перевищено ліміт запитів до AI-сервісу**\n\nСпробуйте через кілька хвилин."}
+        )
+    except Exception as e:
+        logger.error(f"Error in chat: {e}")
+        return JSONResponse(
+            status_code=500,
+            content={"answer": "❌ **Помилка обробки запиту**\n\nСпробуйте ще раз або зверніться до підтримки."}
+        )
+
 @app.post("/chat-with-ads")
 async def chat_with_ads(request: Request):
     """Обробка чат-запитів з AI з автоматичним отриманням Google Ads даних"""
