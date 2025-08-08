@@ -262,7 +262,7 @@ async def chat(request: Request):
         logger.info(f"Calling OpenAI API with Google Ads data: {'Yes' if google_ads_data else 'No'}")
         if google_ads_data:
             logger.info(f"Google Ads data includes {len(google_ads_data.get('campaigns', []))} campaigns")
-        
+
         # Викликаємо OpenAI API
         response = client.chat.completions.create(
             model="gpt-4-turbo",
@@ -506,7 +506,7 @@ async def get_real_ads_data_internal(access_token: str, refresh_token: str):
                             logger.info(f"  - Account ID: {account_id}")
                 else:
                     logger.error(f"Failed to get accessible customers: {accounts_response.status_code} - {accounts_response.text}")
-                    
+                
         except Exception as e:
             logger.error(f"Error getting accounts list: {e}")
 
@@ -610,29 +610,29 @@ async def get_real_ads_data_internal(access_token: str, refresh_token: str):
                 # Повторюємо запит з новим токеном (створюємо новий клієнт)
                 async with httpx.AsyncClient() as retry_client:
                     campaigns_response = await retry_client.post(
-                        f"https://googleads.googleapis.com/v20/customers/{child_account_id}/googleAds:searchStream",
-                        headers={
-                            "Authorization": f"Bearer {new_access_token}",
-                            "developer-token": developer_token,
+                    f"https://googleads.googleapis.com/v20/customers/{child_account_id}/googleAds:searchStream",
+                    headers={
+                        "Authorization": f"Bearer {new_access_token}",
+                        "developer-token": developer_token,
                             "login-customer-id": mcc_id.replace('-', ''),  # MCC ID (8524763350) як login_customer_id
-                            "Content-Type": "application/json",
-                        },
-                        json={
-                            "query": """
-                                SELECT 
-                                    campaign.id,
-                                    campaign.name,
-                                    campaign.status,
-                                    metrics.impressions,
-                                    metrics.clicks,
-                                    metrics.cost_micros,
-                                    metrics.conversions,
-                                    metrics.average_cpc
-                                FROM campaign 
-                                WHERE segments.date DURING LAST_30_DAYS
-                            """
-                        }
-                    )
+                        "Content-Type": "application/json",
+                    },
+                    json={
+                        "query": """
+                            SELECT 
+                                campaign.id,
+                                campaign.name,
+                                campaign.status,
+                                metrics.impressions,
+                                metrics.clicks,
+                                metrics.cost_micros,
+                                metrics.conversions,
+                                metrics.average_cpc
+                            FROM campaign 
+                            WHERE segments.date DURING LAST_30_DAYS
+                        """
+                    }
+                )
                 
                 if campaigns_response.status_code != 200:
                     error_text = campaigns_response.text
@@ -652,6 +652,9 @@ async def get_real_ads_data_internal(access_token: str, refresh_token: str):
         # Логуємо структуру даних для діагностики
         logger.info(f"Campaigns data type: {type(campaigns_data)}")
         logger.info(f"Campaigns data structure: {campaigns_data}")
+        
+        # Додаткова діагностика - перевіряємо чи доходимо до обробки
+        logger.info("=== ПОЧАТОК ОБРОБКИ ДАНИХ ===")
         
         # Обробляємо дані кампаній
         campaigns = []
