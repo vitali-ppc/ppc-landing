@@ -25,13 +25,12 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // ТИМЧАСОВО ВИМКНЕНО КЕШ ДЛЯ ДІАГНОСТИКИ
-    // Перевіряємо кеш
-    // const cacheKey = `${question}${image || ''}${JSON.stringify(adsData) || ''}`;
-    // const cached = cache.get(cacheKey);
-    // if (cached && Date.now() - cached.timestamp < CACHE_TTL) {
-    //   return NextResponse.json(cached.data);
-    // }
+    // Ключ кешу враховує питання, наявність зображення та контекст Ads
+    const cacheKey = `${question}|${image ? 'img' : ''}|${adsData ? JSON.stringify(adsData).slice(0,500) : ''}`;
+    const cached = cache.get(cacheKey);
+    if (cached && Date.now() - cached.timestamp < CACHE_TTL) {
+      return NextResponse.json(cached.data);
+    }
 
     // Адреса Python AI-сервера (можна налаштувати через env)
     const aiServerUrl = process.env.AI_SERVER_URL || 'http://91.99.225.211:8000/chat';
@@ -45,6 +44,28 @@ export async function POST(req: NextRequest) {
       refreshToken: refreshToken || null, // Додаємо refreshToken
       timestamp: new Date().toISOString()
     };
+
+    // ДЕТАЛЬНЕ ЛОГУВАННЯ JSON ДЛЯ ДІАГНОСТИКИ
+    console.log("=== NEXT.JS API: ДЕТАЛЬНЕ ЛОГУВАННЯ JSON ===");
+    console.log("Request body before JSON.stringify:");
+    console.log(requestBody);
+    
+    const jsonString = JSON.stringify(requestBody);
+    console.log("JSON string after JSON.stringify:");
+    console.log(jsonString);
+    console.log("JSON string length:", jsonString.length);
+    
+    // Перевіряємо на наявність проблемних символів
+    const problematicChars = jsonString.match(/\\[^"\\\/bfnrtu]/g);
+    if (problematicChars) {
+      console.log("⚠️ ЗНАЙДЕНО ПРОБЛЕМНІ СИМВОЛИ:", problematicChars);
+    }
+    
+    // Перевіряємо на наявність неекранованих лапок
+    const unescapedQuotes = jsonString.match(/[^\\]"/g);
+    if (unescapedQuotes) {
+      console.log("⚠️ ЗНАЙДЕНО НЕЕКРАНОВАНІ ЛАПКИ:", unescapedQuotes.length);
+    }
 
     const aiRes = await fetch(aiServerUrl, {
       method: 'POST',
@@ -74,7 +95,15 @@ export async function POST(req: NextRequest) {
     return NextResponse.json(aiData);
 
   } catch (error: any) {
-    console.error('Chat API error:', error);
+    console.error('=== NEXT.JS API: ПОМИЛКА ===');
+    console.error('Error type:', error.constructor.name);
+    console.error('Error message:', error.message);
+    console.error('Error stack:', error.stack);
+    
+    // Додаткова діагностика для JSON помилок
+    if (error.message.includes('JSON') || error.message.includes('parse')) {
+      console.error('🔍 Це схоже на JSON помилку!');
+    }
 
     // Fallback відповідь якщо AI-сервер недоступний
     if (error.name === 'AbortError' || error.message.includes('fetch')) {
