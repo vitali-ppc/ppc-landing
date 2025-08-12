@@ -23,9 +23,35 @@ const ChatFormGPT: React.FC = () => {
   const [adsData, setAdsData] = useState<GoogleAdsData | null>(null);
   const [useAdsData, setUseAdsData] = useState(false);
   const [realAdsData, setRealAdsData] = useState<GoogleAdsData | null>(null);
-  const [accountConnected, setAccountConnected] = useState(false);
+  const [accountConnected, setAccountConnected] = useState(() => {
+    // Відновлюємо accountConnected з localStorage при ініціалізації
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('kampaio-account-connected');
+      console.log("=== CHATFORMGPT INDEX: accountConnected from localStorage:", saved);
+      return saved === 'true';
+    }
+    return false;
+  });
   const [accessToken, setAccessToken] = useLocalStorage<string | null>('kampaio-access-token', null);
   const [refreshToken, setRefreshToken] = useLocalStorage<string | null>('kampaio-refresh-token', null);
+  const [customerId, setCustomerId] = useLocalStorage<string | null>('kampaio-customer-id', '7024764145');
+  
+  // Устанавливаем customerId если он null
+  useEffect(() => {
+    if (!customerId) {
+      console.log("=== CHATFORMGPT INDEX: Setting default customerId ===");
+      setCustomerId('7024764145');
+    }
+  }, [customerId, setCustomerId]);
+  const [dateRange, setDateRange] = useLocalStorage<{preset: string} | null>('kampaio-date-range', {preset: 'last_30_days'});
+  
+  // Отладка токенов при инициализации
+  useEffect(() => {
+    console.log("=== CHATFORMGPT INDEX: Токены при инициализации ===");
+    console.log("accessToken:", accessToken ? "present" : "null");
+    console.log("refreshToken:", refreshToken ? "present" : "null");
+    console.log("accountConnected:", accountConnected);
+  }, [accessToken, refreshToken, accountConnected]);
   
   // UI состояния
   const [showAccountModal, setShowAccountModal] = useState(false);
@@ -671,47 +697,56 @@ const ChatFormGPT: React.FC = () => {
     console.log("=== CHATFORMGPT INDEX: Завантаження даних Google Ads ===");
     console.log("accessToken:", accessToken ? "present" : "null");
     console.log("refreshToken:", refreshToken ? "present" : "null");
+    console.log("accessToken value:", accessToken);
+    console.log("refreshToken value:", refreshToken);
+    console.log("dateRange:", dateRange);
+    console.log("accountConnected before:", accountConnected);
     
-    // Если есть токены, загружаем реальные данные
+    // Скидаємо accountConnected якщо токени відсутні
+    if (!accessToken && !refreshToken) {
+      console.log("=== ТОКЕНИ ВІДСУТНІ - СКИДАЄМО accountConnected ===");
+      setAccountConnected(false);
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem('kampaio-account-connected');
+      }
+    } else {
+      console.log("=== ТОКЕНИ Є - ЗАЛИШАЄМО accountConnected ===");
+    }
+    
+    // Загружаем данные в зависимости от наличия токенов
     if (accessToken && refreshToken) {
-      console.log("=== CHATFORMGPT INDEX: Завантаження реальних даних ===");
-      setAccountConnected(true);
-      
+      console.log("=== CHATFORMGPT INDEX: Завантаження реальних даних Google Ads ===");
       fetch('/api/ads-data-real', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
           accessToken: accessToken,
-          refreshToken: refreshToken 
+          refreshToken: refreshToken,
+          customerId: customerId,
+          dateRange: dateRange
         }),
       })
-      .then(res => {
-        console.log('ads-data-real response status:', res.status);
-        return res.json();
-      })
+      .then(res => res.json())
       .then(data => {
-        console.log('ads-data-real data received:', data);
+        console.log('Real Google Ads data received:', data);
         setRealAdsData(data);
-        setAdsData(null); // Очищаем тестовые данные
       })
       .catch(error => {
         console.error('Error fetching real Google Ads data:', error);
-        setRealAdsData(null);
-        // Если не удалось загрузить реальные данные, загружаем тестовые
+        console.log('Falling back to test data');
         fetch('/api/ads-data')
           .then(res => res.json())
           .then(data => setAdsData(data))
           .catch(() => setAdsData(null));
       });
     } else {
-      console.log("=== CHATFORMGPT INDEX: Токенів немає, завантаження тестових даних ===");
-      // Если токенов нет, загружаем тестовые данные
+      console.log("=== CHATFORMGPT INDEX: Завантаження тестових даних ===");
       fetch('/api/ads-data')
         .then(res => res.json())
         .then(data => setAdsData(data))
         .catch(() => setAdsData(null));
     }
-  }, [accessToken, refreshToken]);
+  }, [accessToken, refreshToken, customerId, dateRange]);
 
   // OAuth2 callback обработка
   useEffect(() => {
@@ -721,17 +756,47 @@ const ChatFormGPT: React.FC = () => {
     const refreshToken = urlParams.get('refresh_token');
     const error = urlParams.get('error');
 
+    console.log('=== OAuth CALLBACK START ===');
     console.log('OAuth callback - authStatus:', authStatus, 'token:', token ? token.substring(0, 20) + '...' : 'null', 'refreshToken:', refreshToken ? 'present' : 'null');
+    console.log('Current accountConnected state:', accountConnected);
+    console.log('Current localStorage state:', {
+      accessToken: typeof window !== 'undefined' ? (localStorage.getItem('googleAdsAccessToken') ? 'present' : 'null') : 'SSR',
+      refreshToken: typeof window !== 'undefined' ? (localStorage.getItem('googleAdsRefreshToken') ? 'present' : 'null') : 'SSR',
+      customerId: typeof window !== 'undefined' ? (localStorage.getItem('googleAdsCustomerId') ? 'present' : 'null') : 'SSR'
+    });
 
     if (authStatus === 'success' && token) {
       console.log('OAuth success, token found:', token.substring(0, 20) + '...');
+      console.log('Setting accessToken to localStorage...');
       setAccessToken(token);
       if (refreshToken) {
+        console.log('Setting refreshToken to localStorage...');
         setRefreshToken(refreshToken);
         console.log('Refresh token saved');
       }
       setAccountConnected(true);
       setShowAccountModal(false);
+      
+      // Зберігаємо accountConnected в localStorage
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('kampaio-account-connected', 'true');
+        console.log('=== SAVED accountConnected TO LOCALSTORAGE ===');
+      }
+      
+      // Логування після встановлення стану
+      console.log('=== AFTER SETTING STATE ===');
+      console.log('accountConnected set to true');
+      console.log('showAccountModal set to false');
+      
+      // Перевірка localStorage після встановлення
+      setTimeout(() => {
+        console.log('=== CHECKING LOCALSTORAGE AFTER SET ===');
+        console.log('localStorage after set:', {
+          accessToken: typeof window !== 'undefined' ? (localStorage.getItem('googleAdsAccessToken') ? 'present' : 'null') : 'SSR',
+          refreshToken: typeof window !== 'undefined' ? (localStorage.getItem('googleAdsRefreshToken') ? 'present' : 'null') : 'SSR',
+          customerId: typeof window !== 'undefined' ? (localStorage.getItem('googleAdsCustomerId') ? 'present' : 'null') : 'SSR'
+        });
+      }, 100);
       
       // ДЕТАЛЬНЕ ЛОГУВАННЯ ПЕРЕД FETCH
       console.log('=== ДЕТАЛЬНЕ ЛОГУВАННЯ ===');
@@ -749,7 +814,9 @@ const ChatFormGPT: React.FC = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
           accessToken: token,
-          refreshToken: refreshToken 
+          refreshToken: refreshToken,
+          customerId: customerId,
+          dateRange: dateRange
         }),
       })
       .then(res => {
@@ -775,6 +842,21 @@ const ChatFormGPT: React.FC = () => {
       setError(`Помилка авторизації: ${error}`);
       window.history.replaceState({}, document.title, window.location.pathname);
     }
+  }, []);
+
+  // Загрузка тестовых данных при монтировании компонента
+  useEffect(() => {
+    console.log("=== CHATFORMGPT INDEX: Завантаження тестових даних при монтировании ===");
+    fetch('/api/ads-data')
+      .then(res => res.json())
+      .then(data => {
+        console.log("Тестовые данные загружены:", data);
+        setAdsData(data);
+      })
+      .catch(error => {
+        console.error("Ошибка загрузки тестовых данных:", error);
+        setAdsData(null);
+      });
   }, []);
 
   // Focus на input
@@ -1051,7 +1133,7 @@ const ChatFormGPT: React.FC = () => {
         </div>
         
         {/* Smart Mode Toggle */}
-        {(adsData || realAdsData) && (
+        {(
                   <div style={{
           padding: '12px 16px',
           borderBottom: '1px solid #64748b',
@@ -1103,6 +1185,65 @@ const ChatFormGPT: React.FC = () => {
             </div>
           </div>
         )}
+        
+        {/* Google Ads Settings */}
+        {accountConnected && (
+          <div style={{
+            padding: '12px 12px',
+            borderBottom: '1px solid #64748b',
+            background: '#f8f9fa',
+          }}>
+            <div style={{ fontWeight: 600, fontSize: 12, color: '#23272f', marginBottom: 8 }}>
+              Google Ads Settings
+            </div>
+            
+            {/* Customer ID */}
+            <div style={{ marginBottom: 8 }}>
+              <label style={{ display: 'block', fontSize: 10, color: '#666', marginBottom: 2 }}>
+                Customer ID:
+              </label>
+              <input
+                type="text"
+                value={customerId || ''}
+                onChange={(e) => setCustomerId(e.target.value)}
+                placeholder="Enter Customer ID"
+                style={{
+                  width: '100%',
+                  padding: '6px 8px',
+                  border: '1px solid #ddd',
+                  borderRadius: 4,
+                  fontSize: 11,
+                  outline: 'none',
+                }}
+              />
+            </div>
+            
+            {/* Date Range */}
+            <div style={{ marginBottom: 8 }}>
+              <label style={{ display: 'block', fontSize: 10, color: '#666', marginBottom: 2 }}>
+                Date Range:
+              </label>
+              <select
+                value={dateRange?.preset || 'last_30_days'}
+                onChange={(e) => setDateRange({preset: e.target.value})}
+                style={{
+                  width: '100%',
+                  padding: '6px 8px',
+                  border: '1px solid #ddd',
+                  borderRadius: 4,
+                  fontSize: 11,
+                  outline: 'none',
+                  background: 'white',
+                }}
+              >
+                <option value="last_7_days">Last 7 days</option>
+                <option value="last_30_days">Last 30 days</option>
+                <option value="last_90_days">Last 90 days</option>
+              </select>
+            </div>
+          </div>
+        )}
+        
         <div style={{
           padding: '12px 12px',
           borderBottom: '1px solid #64748b',
@@ -2282,6 +2423,60 @@ const ChatFormGPT: React.FC = () => {
                   transition: 'background 0.2s',
                 }}
               >Connect</button>
+            )}
+            
+            {/* Google Ads Settings */}
+            {accountConnected && (
+              <div style={{ marginTop: 20, padding: '16px', background: '#f8f9fa', borderRadius: 8, border: '1px solid #e9ecef' }}>
+                <div style={{ fontWeight: 600, fontSize: 14, color: '#23272f', marginBottom: 12 }}>
+                  Google Ads Settings
+                </div>
+                
+                {/* Customer ID */}
+                <div style={{ marginBottom: 12 }}>
+                  <label style={{ display: 'block', fontSize: 12, color: '#666', marginBottom: 4 }}>
+                    Customer ID:
+                  </label>
+                  <input
+                    type="text"
+                    value={customerId || ''}
+                    onChange={(e) => setCustomerId(e.target.value)}
+                    placeholder="Enter Customer ID"
+                    style={{
+                      width: '100%',
+                      padding: '8px 12px',
+                      border: '1px solid #ddd',
+                      borderRadius: 4,
+                      fontSize: 14,
+                      outline: 'none',
+                    }}
+                  />
+                </div>
+                
+                {/* Date Range */}
+                <div style={{ marginBottom: 12 }}>
+                  <label style={{ display: 'block', fontSize: 12, color: '#666', marginBottom: 4 }}>
+                    Date Range:
+                  </label>
+                  <select
+                    value={dateRange?.preset || 'last_30_days'}
+                    onChange={(e) => setDateRange({preset: e.target.value})}
+                    style={{
+                      width: '100%',
+                      padding: '8px 12px',
+                      border: '1px solid #ddd',
+                      borderRadius: 4,
+                      fontSize: 14,
+                      outline: 'none',
+                      background: 'white',
+                    }}
+                  >
+                    <option value="last_7_days">Last 7 days</option>
+                    <option value="last_30_days">Last 30 days</option>
+                    <option value="last_90_days">Last 90 days</option>
+                  </select>
+                </div>
+              </div>
             )}
           </div>
         </div>

@@ -11,7 +11,7 @@ export async function POST(req: NextRequest) {
     console.log("=== NEXT.JS API: Request body ===");
     console.log(JSON.stringify(body, null, 2));
     
-    const { question, image, adsData, accessToken, refreshToken } = body;
+    const { question, image, adsData, accessToken, refreshToken, customerId, dateRange } = body;
     
     console.log("=== NEXT.JS API: Розпарсені дані ===");
     console.log("adsData present:", !!adsData);
@@ -26,7 +26,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Ключ кешу враховує питання, наявність зображення та контекст Ads
-    const cacheKey = `${question}|${image ? 'img' : ''}|${adsData ? JSON.stringify(adsData).slice(0,500) : ''}`;
+    const cacheKey = `${question}|${image ? 'img' : ''}|${customerId || ''}|${dateRange ? JSON.stringify(dateRange) : ''}|${adsData ? JSON.stringify(adsData).slice(0,500) : ''}`;
     const cached = cache.get(cacheKey);
     if (cached && Date.now() - cached.timestamp < CACHE_TTL) {
       return NextResponse.json(cached.data);
@@ -42,6 +42,8 @@ export async function POST(req: NextRequest) {
       adsData: adsData || null, // Додаємо adsData
       accessToken: accessToken || null, // Додаємо accessToken
       refreshToken: refreshToken || null, // Додаємо refreshToken
+      customerId: customerId || null,
+      dateRange: dateRange || null,
       timestamp: new Date().toISOString()
     };
 

@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 export async function POST(request: NextRequest) {
   try {
     // Получаем accessToken и refreshToken из тела запроса
-    const { accessToken, refreshToken } = await request.json();
+    const { accessToken, refreshToken, customerId, dateRange } = await request.json();
 
     // ДЕТАЛЬНЕ ЛОГУВАННЯ
     console.log('=== ПРОКСІ ЛОГУВАННЯ ===');
@@ -23,7 +23,9 @@ export async function POST(request: NextRequest) {
     console.log('Sending accessToken and refreshToken to AI server');
     console.log('Sending body:', JSON.stringify({ 
       accessToken: accessToken ? accessToken.substring(0, 20) + '...' : 'null',
-      refreshToken: refreshToken ? 'present' : 'null'
+      refreshToken: refreshToken ? 'present' : 'null',
+      customerId: customerId || 'null',
+      dateRange: dateRange || 'null'
     }));
 
     // Проксируем запрос к AI серверу с refresh token
@@ -34,7 +36,9 @@ export async function POST(request: NextRequest) {
       },
       body: JSON.stringify({ 
         accessToken,
-        refreshToken // Добавляем refresh token
+        refreshToken,
+        customerId,
+        dateRange
       }),
     });
 

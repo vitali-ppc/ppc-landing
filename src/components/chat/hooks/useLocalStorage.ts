@@ -8,17 +8,21 @@ export const useLocalStorage = <T,>(key: string, initialValue: T) => {
     
     try {
       const item = window.localStorage.getItem(key);
+      console.log(`useLocalStorage: Reading ${key} from localStorage:`, item ? 'present' : 'null');
       if (!item) return initialValue;
       
       // Пробуем распарсить как JSON, если не получается - возвращаем как есть
       try {
-        return JSON.parse(item);
+        const parsed = JSON.parse(item);
+        console.log(`useLocalStorage: Parsed ${key}:`, parsed);
+        return parsed;
       } catch {
         // Если не JSON, возвращаем как строку (для theme)
+        console.log(`useLocalStorage: Using ${key} as string:`, item);
         return item as T;
       }
     } catch (error) {
-      console.error(error);
+      console.error(`useLocalStorage: Error reading ${key}:`, error);
       return initialValue;
     }
   });

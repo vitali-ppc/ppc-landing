@@ -16,6 +16,8 @@ export const useChatState = () => {
   const [accountConnected, setAccountConnected] = useState(false);
   const [accessToken, setAccessToken] = useLocalStorage<string | null>('kampaio-access-token', null);
   const [refreshToken, setRefreshToken] = useLocalStorage<string | null>('kampaio-refresh-token', null);
+  const [customerId, setCustomerId] = useLocalStorage<string | null>('kampaio-customer-id', null);
+  const [dateRange, setDateRange] = useLocalStorage<any>('kampaio-date-range', { preset: 'last_30_days' });
   
   // UI состояния
   const [showAccountModal, setShowAccountModal] = useState(false);
@@ -119,6 +121,8 @@ export const useChatState = () => {
     accountConnected, setAccountConnected,
     accessToken, setAccessToken,
     refreshToken, setRefreshToken,
+    customerId, setCustomerId,
+    dateRange, setDateRange,
     showAccountModal, setShowAccountModal,
     openExportDropdownIdx, setOpenExportDropdownIdx,
     theme, setTheme,
