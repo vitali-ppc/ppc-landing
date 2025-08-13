@@ -52,32 +52,55 @@ token_cache: Dict[str, Dict[str, Any]] = {}
 date_range = None
 
 
-async def get_account_timezone(
+async def get_account_info(
     access_token: str,
     customer_id: str,
     developer_token: str,
     mcc_id: str
-) -> Optional[str]:
-    """Получить часовой пояс аккаунта из Google Ads API"""
+) -> Optional[Dict[str, Any]]:
+    """Получить информацию об аккаунте из Google Ads API (timezone, currency)"""
     try:
         async with httpx.AsyncClient() as http:
-            response = await http.get(
-                f"https://googleads.googleapis.com/v20/customers/{customer_id}",
+            # Use GAQL to get account info
+            gaql_query = "SELECT customer.id, customer.descriptive_name, customer.currency_code, customer.time_zone FROM customer LIMIT 1"
+            
+            response = await http.post(
+                f"https://googleads.googleapis.com/v20/customers/{customer_id}/googleAds:searchStream",
                 headers={
                     "Authorization": f"Bearer {access_token}",
                     "developer-token": developer_token,
                     "login-customer-id": mcc_id.replace("-", ""),
+                    "Content-Type": "application/json",
+                },
+                json={
+                    "query": gaql_query
                 }
             )
+
             if response.status_code == 200:
-                customer_data = response.json()
-                timezone = customer_data.get("timeZone")
-                logger.info(f"Account timezone: {timezone}")
-                return timezone
+                data = response.json()
+                if data and len(data) > 0 and "results" in data[0] and len(data[0]["results"]) > 0:
+                    customer_data = data[0]["results"][0]["customer"]
+                    timezone = customer_data.get("timeZone")
+                    currency = customer_data.get("currencyCode", "USD")  # Default to USD
+                    logger.info(f"Account timezone: {timezone}, currency: {currency}")
+                    return {
+                        "timezone": timezone,
+                        "currencyCode": currency
+                    }
+                else:
+                    logger.warning("No customer data found in GAQL response")
+                    return None
             else:
-                logger.warning(f"Failed to get account timezone: {response.status_code} - {response.text}")
+                logger.warning(f"Failed to get account info: {response.status_code} - {response.text}")
                 return None
     except Exception as e:
+        logger.error(f"Error getting account info: {e}")
+    except Exception as e:
+        logger.error(f"Error getting account info: {e}")
+        return None
+
+
         logger.error(f"Error getting account timezone: {e}")
         return None
 
@@ -127,8 +150,10 @@ async def get_real_ads_data_with_date_range(
             date_filter_clause = "segments.date DURING LAST_30_DAYS"
         elif preset == "last_14_days":
             print(f"=== DEBUG: ENTERING last_14_days BLOCK ===")
-            account_timezone = await get_account_timezone(valid_access_token, child_account_id, developer_token, mcc_id)
-            print(f"=== DEBUG: ABOUT TO CALL get_account_timezone ===")
+            account_info = await get_account_info(valid_access_token, child_account_id, developer_token, mcc_id)
+            account_timezone = account_info.get("timeZone") if account_info else None
+            account_name = account_info.get("descriptiveName") if account_info else None
+            print(f"=== DEBUG: Processing account: {account_name} with timezone: {account_timezone} ===")
             
             if account_timezone:
                 try:
@@ -166,6 +191,10 @@ async def get_real_ads_data_with_date_range(
     logger.info("Using date filter: {}".format(date_filter_clause))
     
     # Build final GAQL query
+    # Get account info including currency
+    account_info = await get_account_info(valid_access_token, child_account_id, developer_token, mcc_id)
+    account_currency = account_info.get("currencyCode") if account_info else None
+    print(f"=== DEBUG: Account currency: {account_currency} ===")
     gaql_query = f"""SELECT 
         campaign.id,
         campaign.name,
@@ -313,7 +342,7 @@ async def get_real_ads_data_with_date_range(
         "conversion_rate": round((total_conversions / total_clicks * 100) if total_clicks else 0, 2)
     }
 
-    return {"account_id": child_account_id, "date_range": date_range_label, "campaigns": campaigns, "total": total}
+    return {"account_id": child_account_id, "date_range": date_range_label, "campaigns": campaigns, "total": total, "currency": account_currency}
 
 
 def summarize_ads_data(ads_data: Dict[str, Any]) -> str:
@@ -324,20 +353,20 @@ def summarize_ads_data(ads_data: Dict[str, Any]) -> str:
     total = ads_data.get("total") or {}
     campaigns = ads_data.get("campaigns") or []
     account_id = ads_data.get("account_id", "Unknown")
+    currency = ads_data.get("currency", "USD")
 
     # Топ-5 кампаній за кліками
     top = sorted(campaigns, key=lambda c: (c.get("clicks") or 0), reverse=True)[:5]
     range_label = ads_data.get("date_range") or "Last 30 days"
-    
     lines = [
         "GOOGLE ADS DATA (" + range_label + "):",
         "Account ID: " + str(account_id),
-        "TOTAL — cost: $" + str(total.get('cost', 0)) + ", clicks: " + str(total.get('clicks', 0)) + ", impressions: " + str(total.get('impressions', 0)) + ", conv: " + str(total.get('conversions', 0)) + ", CTR: " + str(total.get('ctr', 0)) + "%, CPC: $" + str(total.get('cpc', 0)) + ", CR: " + str(total.get('conversion_rate', 0)) + "%",
+        "TOTAL — cost: " + currency + " " + str(total.get("cost", 0)) + ", clicks: " + str(total.get("clicks", 0)) + ", impressions: " + str(total.get("impressions", 0)) + ", conv: " + str(total.get("conversions", 0)) + ", CTR: " + str(total.get("ctr", 0)) + "%, CPC: " + currency + " " + str(total.get("cpc", 0)) + ", CR: " + str(total.get("conversion_rate", 0)) + "%",
         "Top campaigns by clicks:"
     ]
-    
+
     for c in top:
-        campaign_line = "- " + str(c.get('name', 'Unknown')) + " [" + str(c.get('status', 'UNKNOWN')) + "] — cost $" + str(c.get('cost', 0)) + ", clicks " + str(c.get('clicks', 0)) + ", conv " + str(c.get('conversions', 0)) + ", CTR " + str(c.get('ctr', 0)) + "%, CPC $" + str(c.get('cpc', 0)) + ", CR " + str(c.get('conversion_rate', 0)) + "%"
+        campaign_line = "- " + str(c.get("name", "Unknown")) + " [" + str(c.get("status", "UNKNOWN")) + "] — cost " + currency + " " + str(c.get("cost", 0)) + ", clicks " + str(c.get("clicks", 0)) + ", conv " + str(c.get("conversions", 0)) + ", CTR " + str(c.get("ctr", 0)) + "%, CPC " + currency + " " + str(c.get("cpc", 0)) + ", CR " + str(c.get("conversion_rate", 0)) + "%"
         lines.append(campaign_line)
     
     return "\n".join(lines)
@@ -450,6 +479,7 @@ async def chat(request: Request):
         ads_data = body.get("adsData")
 
         ads_summary = ""
+        account_currency = "USD"  # Default currency
         try:
             logger.info("=== CHAT DATA PROCESSING ===")
             logger.info("ads_data present: " + ('yes' if ads_data else 'no'))
@@ -461,6 +491,9 @@ async def chat(request: Request):
             if isinstance(ads_data, dict) and ads_data.get("campaigns"):
                 logger.info("Using cached ads_data")
                 ads_summary = summarize_ads_data(ads_data)
+                # Extract currency from cached data
+                account_currency = ads_data.get("currency", "USD")
+                logger.info(f"Using cached currency: {account_currency}")
             elif access_token:
                 logger.info("Fetching fresh data from Google Ads API")
                 real_ads = await get_real_ads_data_with_date_range(
@@ -470,16 +503,20 @@ async def chat(request: Request):
                     date_range=date_range
                 )
                 ads_summary = summarize_ads_data(real_ads)
+                # Extract currency from fresh data
+                account_currency = real_ads.get("currency", "USD")
+                logger.info(f"Using fresh currency: {account_currency}")
             else:
                 logger.info("No ads data available")
         except Exception as e:
             logger.warning("Failed to enrich with Google Ads data: " + str(e))
         finally:
             logger.info("Ads summary present: " + ('yes' if ads_summary else 'no'))
+            logger.info(f"Account currency: {account_currency}")
 
         # Створюємо ключ кешу (з урахуванням контексту)
         date_range_str = str(date_range) if date_range else ''
-        cache_key = hashlib.md5(f"{question}{image or ''}{ads_summary}{customer_id or ''}{date_range_str}".encode()).hexdigest()
+        cache_key = hashlib.md5(f"{question}{image or ''}{ads_summary}{customer_id or ''}{date_range_str}{account_currency}".encode()).hexdigest()
         timestamp = datetime.now().isoformat()
 
         # Перевіряємо кеш
@@ -489,10 +526,14 @@ async def chat(request: Request):
                 logger.info("Cache hit for question: {}...".format(question[:50]))
                 return cached_response
 
+        # Формуємо сучасний англійський системний промпт 2025 року з валютою
+        currency_instruction = f"\n\nCURRENCY CRITICAL: The account currency is {account_currency}. ALWAYS use {account_currency} currency in your response. Do NOT use USD or any other currency. Use the correct currency symbol for {account_currency}."
+        
         # Формуємо сучасний англійський системний промпт 2025 року
         system_message = {
-            "role": "system", 
-            "content": "You are a Google Ads expert with cutting-edge knowledge of 2025 PPC strategies and AI-powered advertising tools. Your role is to provide professional, structured recommendations for Google Ads campaign optimization using the latest AI-driven approaches.\n\nRESPONSE STRUCTURE:\n1. **QUICK ANALYSIS** - main problems/opportunities considering current trends\n2. **STEP-BY-STEP PLAN** - specific actions with priorities (High/Medium/Low)\n3. **EXPECTED RESULTS** - metrics and KPIs for 2025\n4. **RECOMMENDATIONS** - detailed advice with numbers and modern tools\n5. **MONITORING** - what to track and how to analyze\n\nMODERN TOOLS 2025:\n🔥 **Performance Max (PMax)** - AI-optimized automated campaigns across all Google channels\n🎯 **Demand Gen** - demand generation through YouTube Shorts, Discover, Gmail\n🧠 **AI-powered bidding** - tCPA, tROAS, Maximize Conversions, Maximize Conversion Value\n👥 **Modern audiences** - Custom Segments, In-Market, Customer Match, Lookalike\n📝 **Adaptive ads** - RSA, RDA with automatic testing\n⚙️ **Automated strategies** - Auto Assets, DSA, Smart Bidding\n🔄 **Cross-channel optimization** - integration of all Google channels\n\nPRINCIPLES 2025:\n- Maximize AI usage: PMax, automated bidding, adaptive ads\n- Leverage 1st-party data: Customer Match, CRM integrations\n- Focus on creatives: video, interactive, UGC\n- GA4 + Enhanced Conversions - must-have\n- Test: A/B headlines, audiences, creatives\n- Automate but control: don't rely 100% on AI\n- Use Audience Signals for PMax\n- Segment campaigns by product type/sales cycle\n\nMETRICS 2025:\n- Conversion Value/Cost (ROAS) - most important for eCommerce\n- Engagement Rate (Demand Gen) - reach + interaction\n- Video View Rate - in video campaigns\n- New Customer Acquisition - new users\n- Ad Strength (RSA, RDA) - quality of adaptive ads\n- Data-driven Attribution (DDA) - attribution across all touchpoints\n\nEXPERTISE:\n- Performance Max campaigns and optimization\n- Demand Gen strategies and creatives\n- AI-powered bidding and automation\n- Modern audiences and segmentation\n- Adaptive ads and optimization\n- Cross-channel strategies\n- GA4 and Enhanced Conversions\n- 1st-party data and Customer Match\n- Google's automated strategies\n- Conversions and attribution 2025\n\nRESPONSE FORMAT:\n- Use markdown formatting for structure\n- Provide specific numbers and percentages\n- Include actionable recommendations\n- Always complete thoughts and give actionable advice\n- Use real Google Ads metrics (CTR, CPC, CR, ROAS)\n- Include expected results with timeframes\n- Use professional English terminology\n- Provide concrete examples and case studies\n- Include industry best practices and benchmarks\n- Focus on data-driven insights and measurable outcomes\n- When user says 'continue', 'carry on', 'more', 'expand' - continue the previous topic with additional details\n- Always assume context from previous conversation\n- Don't ask for clarification unless absolutely necessary\n\nIMPORTANT: When Google Ads data is provided, analyze the specific campaigns and metrics to give personalized recommendations based on the actual performance data."
+            "role": "system",
+            "content": "You are a Google Ads expert with cutting-edge knowledge of 2025 PPC strategies and AI-powered advertising tools. Your role is to provide professional, structured recommendations for Google Ads campaign optimization using the latest AI-driven approaches.\n\nRESPONSE STRUCTURE:\n1. **QUICK ANALYSIS** - main problems/opportunities considering current trends\n2. **STEP-BY-STEP PLAN** - specific actions with priorities (High/Medium/Low)\n3. **EXPECTED RESULTS** - metrics and KPIs for 2025\n4. **RECOMMENDATIONS** - detailed advice with numbers and modern tools\n5. **MONITORING** - what to track and how to analyze\n\nMODERN TOOLS 2025:\n🔥 **Performance Max (PMax)** - AI-optimized automated campaigns across all Google channels\n🎯 **Demand Gen** - demand generation through YouTube Shorts, Discover, Gmail\n🧠 **AI-powered bidding** - tCPA, tROAS, Maximize Conversions, Maximize Conversion Value\n👥 **Modern audiences** - Custom Segments, In-Market, Customer Match, Lookalike\n📝 **Adaptive ads** - RSA, RDA with automatic testing\n⚙️ **Automated strategies** - Auto Assets, DSA, Smart Bidding\n🔄 **Cross-channel optimization** - integration of all Google channels\n\nPRINCIPLES 2025:\n- Maximize AI usage: PMax, automated bidding, adaptive ads\n- Leverage 1st-party data: Customer Match, CRM integrations\n- Focus on creatives: video, interactive, UGC\n- GA4 + Enhanced Conversions - must-have\n- Test: A/B headlines, audiences, creatives\n- Automate but control: don't rely 100% on AI\n- Use Audience Signals for PMax\n- Segment campaigns by product type/sales cycle\n\nMETRICS 2025:\n- Conversion Value/Cost (ROAS) - most important for eCommerce\n- Engagement Rate (Demand Gen) - reach + interaction\n- Video View Rate - in video campaigns\n- New Customer Acquisition - new users\n- Ad Strength (RSA, RDA) - quality of adaptive ads\n- Data-driven Attribution (DDA) - attribution across all touchpoints\n\nEXPERTISE:\n- Performance Max campaigns and optimization\n- Demand Gen strategies and creatives\n- AI-powered bidding and automation\n- Modern audiences and segmentation\n- Adaptive ads and optimization\n- Cross-channel strategies\n- GA4 and Enhanced Conversions\n- 1st-party data and Customer Match\n- Google's automated strategies\n- Conversions and attribution 2025\n\nRESPONSE FORMAT:\n- Use markdown formatting for structure\n- Provide specific numbers and percentages\n- Include actionable recommendations\n- Always complete thoughts and give actionable advice\n- Use real Google Ads metrics (CTR, CPC, CR, ROAS)\n- Include expected results with timeframes\n- Use professional English terminology\n- Provide concrete examples and case studies\n- Include industry best practices and benchmarks\n- Focus on data-driven insights and measurable outcomes\n- When user says 'continue', 'carry on', 'more', 'expand' - continue the previous topic with additional details\n- Always assume context from previous conversation\n- Don't ask for clarification unless absolutely necessary\n\nCURRENCY IMPORTANT: When Google Ads data is provided with currency information (e.g., \"Currency: UAH\"), ALWAYS use that specific currency in your response. Do NOT default to USD. Use the exact currency symbol and format provided in the data.\n\nIMPORTANT: When Google Ads data is provided, analyze the specific campaigns and metrics to give personalized recommendations based on the actual performance data." + currency_instruction + ""
+
         }
 
         user_message = {
@@ -836,6 +877,7 @@ async def get_real_ads_data(request: Request):
             logger.info("=== РЕЗУЛЬТАТ get_real_ads_data_with_date_range ===")
             logger.info("Returned data keys: {}".format(list(data.keys()) if isinstance(data, dict) else 'Not a dict'))
             logger.info("Returned date_range: {}".format(data.get('date_range') if isinstance(data, dict) else 'No date_range'))
+            logger.info("Returned currency: {}".format(data.get("currency") if isinstance(data, dict) else "No currency"))
             
             return data
         except Exception as e:
