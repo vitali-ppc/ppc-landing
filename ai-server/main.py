@@ -10,7 +10,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, StreamingResponse
 from dotenv import load_dotenv
 import openai
-from datetime import datetime
+from datetime import datetime, timedelta
 import logging
 import io
 
@@ -51,6 +51,35 @@ token_cache: Dict[str, Dict[str, Any]] = {}
 # Глобальна змінна для уникнення помилки date_range
 date_range = None
 
+
+async def get_account_timezone(
+    access_token: str,
+    customer_id: str,
+    developer_token: str,
+    mcc_id: str
+) -> Optional[str]:
+    """Получить часовой пояс аккаунта из Google Ads API"""
+    try:
+        async with httpx.AsyncClient() as http:
+            response = await http.get(
+                f"https://googleads.googleapis.com/v20/customers/{customer_id}",
+                headers={
+                    "Authorization": f"Bearer {access_token}",
+                    "developer-token": developer_token,
+                    "login-customer-id": mcc_id.replace("-", ""),
+                }
+            )
+            if response.status_code == 200:
+                customer_data = response.json()
+                timezone = customer_data.get("timeZone")
+                logger.info(f"Account timezone: {timezone}")
+                return timezone
+            else:
+                logger.warning(f"Failed to get account timezone: {response.status_code} - {response.text}")
+                return None
+    except Exception as e:
+        logger.error(f"Error getting account timezone: {e}")
+        return None
 
 async def get_real_ads_data_with_date_range(
     access_token: str,
@@ -96,11 +125,40 @@ async def get_real_ads_data_with_date_range(
         elif preset == "last_30_days":
             date_range_label = "Last 30 days"
             date_filter_clause = "segments.date DURING LAST_30_DAYS"
-        elif preset == "last_90_days":
-            date_range_label = "Last 90 days"
-            date_filter_clause = "segments.date DURING LAST_90_DAYS"
-        else:
-            print(f"=== UNKNOWN PRESET: {preset}, USING DEFAULT 30 DAYS ===")
+        elif preset == "last_14_days":
+            print(f"=== DEBUG: ENTERING last_14_days BLOCK ===")
+            account_timezone = await get_account_timezone(valid_access_token, child_account_id, developer_token, mcc_id)
+            print(f"=== DEBUG: ABOUT TO CALL get_account_timezone ===")
+            
+            if account_timezone:
+                try:
+                    # Используем часовой пояс аккаунта
+                    tz = pytz.timezone(account_timezone)
+                    now_in_account_tz = datetime.now(tz)
+                    end_date = now_in_account_tz - timedelta(days=1)  # Вчера по времени аккаунта
+                    start_date = end_date - timedelta(days=13)     # 14 дней назад от вчера
+                    print(f"=== DEBUG: ACCOUNT TIMEZONE: {account_timezone} ===")
+                    print(f"=== DEBUG: NOW IN ACCOUNT TZ: {now_in_account_tz} ===")
+                    print(f"=== DEBUG: END DATE: {end_date} ===")
+                    print(f"=== DEBUG: START DATE: {start_date} ===")
+                except Exception as e:
+                    logger.error(f"Error with timezone calculation: {e}")
+                    # Fallback to UTC
+                    end_date = datetime.utcnow() - timedelta(days=1)
+                    start_date = end_date - timedelta(days=13)
+                    print(f"=== DEBUG: FALLBACK TO UTC - END DATE: {end_date} ===")
+                    print(f"=== DEBUG: FALLBACK TO UTC - START DATE: {start_date} ===")
+            else:
+                # Fallback to UTC if timezone not available
+                end_date = datetime.utcnow() - timedelta(days=1)
+                start_date = end_date - timedelta(days=13)
+                print(f"=== DEBUG: NO TIMEZONE - USING UTC - END DATE: {end_date} ===")
+                print(f"=== DEBUG: NO TIMEZONE - USING UTC - START DATE: {start_date} ===")
+            
+            date_range_label = "Last 14 days"
+            start_date_str = start_date.strftime("%Y-%m-%d")
+            end_date_str = end_date.strftime("%Y-%m-%d")
+            date_filter_clause = f"segments.date BETWEEN '{start_date_str}' AND '{end_date_str}'"
     
     print(f"=== FINAL DATE RANGE: {date_range_label} ===")
     print(f"=== FINAL FILTER: {date_filter_clause} ===")
