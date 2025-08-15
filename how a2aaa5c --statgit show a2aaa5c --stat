@@ -1,0 +1,149 @@
+[33mcommit a2aaa5cdc2b861eeca13e021580b83a4b1f0b4f4[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: vitali-ppc <chornyi.vitali@gmail.com>
+Date:   Sat Aug 9 03:13:02 2025 +0300
+
+    frontend(chat): enable response cache via stable cacheKey and minor fixes
+
+[1mdiff --git a/ai-server/__pycache__/main.cpython-313.pyc b/ai-server/__pycache__/main.cpython-313.pyc[m
+[1mindex d903855..4eb986c 100644[m
+Binary files a/ai-server/__pycache__/main.cpython-313.pyc and b/ai-server/__pycache__/main.cpython-313.pyc differ
+[1mdiff --git a/ai-server/main.py b/ai-server/main.py[m
+[1mindex 7e93532..5473d29 100644[m
+[1m--- a/ai-server/main.py[m
+[1m+++ b/ai-server/main.py[m
+[36m@@ -4,7 +4,7 @@[m [mimport hashlib[m
+ from fastapi.responses import StreamingResponse[m
+ [m
+ import io[m
+[31m-from typing import Dict, Any[m
+[32m+[m[32mfrom typing import Dict, Any, Optional, List[m
+ from fastapi import FastAPI, Request[m
+ from fastapi.middleware.cors import CORSMiddleware[m
+ from fastapi.responses import JSONResponse, StreamingResponse[m
+[36m@@ -48,6 +48,170 @@[m [mresponse_cache: Dict[str, Dict[str, Any]] = {}[m
+ # Кеш для зберігання токенів користувачів (в продакшені використовуйте Redis або DB)[m
+ token_cache: Dict[str, Dict[str, Any]] = {}[m
+ [m
+[32m+[m
+[32m+[m[32masync def get_real_ads_data_internal(access_token: str, refresh_token: Optional[str]) -> Dict[str, Any]:[m
+[32m+[m[32m    """Отримати реальні дані Google Ads. Повертає об'єкт з campaign'ами та total.[m
+[32m+[m
+[32m+[m[32m    Використовує ті самі змінні середовища, що і /ads-data-real.[m
+[32m+[m[32m    """[m
+[32m+[m[32m    # Отримуємо дійсний access token (з автоматичним оновленням)[m
+[32m+[m[32m    valid_access_token = await get_valid_access_token(access_token, refresh_token or "")[m
+[32m+[m
+[32m+[m[32m    mcc_id = os.getenv("GOOGLE_ADS_CUSTOMER_ID")[m
+[32m+[m[32m    customer_id = os.getenv("GOOGLE_ADS_CLIENT_CUSTOMER_ID")[m
+[32m+[m[32m    developer_token = os.getenv("GOOGLE_ADS_DEVELOPER_TOKEN")[m
+[32m+[m
+[32m+[m[32m    if not (valid_access_token and mcc_id and customer_id and developer_token):[m
+[32m+[m[32m        raise RuntimeError("Google Ads credentials or tokens are missing")[m
+[32m+[m
+[32m+[m[32m    child_account_id = customer_id.replace('-', '')[m
+[32m+[m
+[32m+[m[32m    async with httpx.AsyncClient() as http:[m
+[32m+[m[32m        campaigns_response = await http.post([m
+[32m+[m[32m            f"https://googleads.googleapis.com/v20/customers/{child_account_id}/googleAds:searchStream",[m
+[32m+[m[32m            headers={[m
+[32m+[m[32m                "Authorization": f"Bearer {valid_access_token}",[m
+[32m+[m[32m                "developer-token": developer_token,[m
+[32m+[m[32m                "login-customer-id": mcc_id.replace('-', ''),[m
+[32m+[m[32m                "Content-Type": "application/json",[m
+[32m+[m[32m            },[m
+[32m+[m[32m            json={[m
+[32m+[m[32m                "query": """[m
+[32m+[m[32m                    SELECT[m[41m [m
+[32m+[m[32m                        campaign.id,[m
+[32m+[m[32m                        campaign.name,[m
+[32m+[m[32m                        campaign.status,[m
+[32m+[m[32m                        metrics.impressions,[m
+[32m+[m[32m                        metrics.clicks,[m
+[32m+[m[32m                        metrics.cost_micros,[m
+[32m+[m[32m                        metrics.conversions,[m
+[32m+[m[32m                        metrics.average_cpc[m
+[32m+[m[32m                    FROM campaign[m[41m [m
+[32m+[m[32m                    WHERE segments.date DURING LAST_30_DAYS[m
+[32m+[m[32m                """[m
+[32m+[m[32m            }[m
+[32m+[m[32m        )[m
+[32m+[m
+[32m+[m[32m    if campaigns_response.status_code != 200:[m
+[32m+[m[32m        raise RuntimeError(f"Google Ads API error: {campaigns_response.status_code} - {campaigns_response.text}")[m
+[32m+[m
+[32m+[m[32m    campaigns_data = campaigns_response.json()[m
+[32m+[m
+[32m+[m[32m    # Підтримка обох форматів відповіді: список чанків (searchStream) або один об'єкт[m
+[32m+[m[32m    results_rows: List[Dict[str, Any]] = [][m
+[32m+[m[32m    if isinstance(campaigns_data, list):[m
+[32m+[m[32m        for chunk in campaigns_data:[m
+[32m+[m[32m            results_rows.extend(chunk.get('results', []))[m
+[32m+[m[32m    elif isinstance(campaigns_data, dict):[m
+[32m+[m[32m        results_rows = campaigns_data.get('results', [])[m
+[32m+[m
+[32m+[m[32m    def to_int(value: Any) -> int:[m
+[32m+[m[32m        try:[m
+[32m+[m[32m            if value is None:[m
+[32m+[m[32m                return 0[m
+[32m+[m[32m            if isinstance(value, (int,)):[m
+[32m+[m[32m                return value[m
+[32m+[m[32m            if isinstance(value, float):[m
+[32m+[m[32m                return int(value)[m
+[32m+[m[32m            # strings like '381'[m
+[32m+[m[32m            return int(str(value).strip())[m
+[32m+[m[32m        except Exception:[m
+[32m+[m[32m            return 0[m
+[32m+[m
+[32m+[m[32m    def micros_to_currency(value: Any) -> float:[m
+[32m+[m[32m        try:[m
+[32m+[m[32m            return to_int(value) / 1_000_000[m
+[32m+[m[32m        except Exception:[m
+[32m+[m[32m            return 0.0[m
+[32m+[m
+[32m+[m[32m    campaigns: List[Dict[str, Any]] = [][m
+[32m+[m[32m    total_cost = 0.0[m
+[32m+[m[32m    total_clicks = 0[m
+[32m+[m[32m    total_impressions = 0[m
+[32m+[m[32m    total_conversions = 0[m
+[32m+[m
+[32m+[m[32m    for result in results_rows:[m
+[32m+[m[32m        try:[m
+[32m+[m[32m            campaign = result.get('campaign', {})[m
+[32m+[m[32m            metrics = result.get('metrics', {})[m
+[32m+[m
+[32m+[m[32m            # Поля можуть бути в різних кейсах: costMicros/averageCpc vs cost_micros/average_cpc[m
+[32m+[m[32m            cost_micros_raw = ([m
+[32m+[m[32m                metrics.get('cost_micros')[m
+[32m+[m[32m                or metrics.get('costMicros')[m
+[32m+[m[32m                or 0[m
+[32m+[m[32m            )[m
+[32m+[m[32m            avg_cpc_micros_raw = ([m
+[32m+[m[32m                metrics.get('average_cpc')[m
+[32m+[m[32m                or metrics.get('averageCpc')[m
+[32m+[m[32m                or 0[m
+[32m+[m[32m            )[m
+[32m+[m
+[32m+[m[32m            clicks = to_int(metrics.get('clicks', 0))[m
+[32m+[m[32m            impressions = to_int(metrics.get('impressions', 0))[m
+[32m+[m[32m            conversions = to_int(metrics.get('conversions', 0))[m
+[32m+[m
+[32m+[m[32m            cost = micros_to_currency(cost_micros_raw)[m
+[32m+[m[32m            avg_cpc_currency = micros_to_currency(avg_cpc_micros_raw)[m
+[32m+[m
+[32m+[m[32m            ctr = (clicks / impressions * 100) if impressions > 0 else 0[m
+[32m+[m[32m            cpc = avg_cpc_currency if clicks > 0 else 0[m
+[32m+[m[32m            conversion_rate = (conversions / clicks * 100) if clicks > 0 else 0[m
+[32m+[m
+[32m+[m[32m            campaigns.append({[m
+[32m+[m[32m                "name": campaign.get('name', 'Unknown'),[m
+[32m+[m[32m                "status": campaign.get('status', 'UNKNOWN'),[m
+[32m+[m[32m                "cost": round(cost, 2),[m
+[32m+[m[32m                "clicks": clicks,[m
+[32m+[m[32m                "impressions": impressions,[m
+[32m+[m[32m                "conversions": conversions,[m
+[32m+[m[32m                "ctr": round(ctr, 2),[m
+[32m+[m[32m                "cpc": round(cpc, 2),[m
+[32m+[m[32m                "conversion_rate": round(conversion_rate, 2)[m
+[32m+[m[32m            })[m
+[32m+[m
+[32m+[m[32m            total_cost += cost
