@@ -1237,8 +1237,8 @@ const ChatFormGPT: React.FC = () => {
                 }}
               >
                 <option value="last_7_days">Last 7 days</option>
+                <option value="last_14_days">Last 14 days</option>
                 <option value="last_30_days">Last 30 days</option>
-                <option value="last_90_days">Last 90 days</option>
               </select>
             </div>
           </div>
@@ -2472,8 +2472,8 @@ const ChatFormGPT: React.FC = () => {
                     }}
                   >
                     <option value="last_7_days">Last 7 days</option>
+                    <option value="last_14_days">Last 14 days</option>
                     <option value="last_30_days">Last 30 days</option>
-                    <option value="last_90_days">Last 90 days</option>
                   </select>
                 </div>
               </div>
