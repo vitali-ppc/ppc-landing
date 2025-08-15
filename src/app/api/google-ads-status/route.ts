@@ -1,5 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+interface Account {
+  id: string;
+  name: string;
+  customerId: string;
+}
+
 export async function POST(request: NextRequest) {
   try {
     console.log('=== GOOGLE ADS STATUS API ===');
@@ -41,7 +47,7 @@ export async function POST(request: NextRequest) {
         // Визначаємо поточний аккаунт (перший в списку або з localStorage)
         const currentAccountId = localStorage.getItem('currentGoogleAdsAccountId');
         const currentAccount = currentAccountId 
-          ? accounts.find(acc => acc.id === currentAccountId) || accounts[0]
+          ? accounts.find((acc: Account) => acc.id === currentAccountId) || accounts[0]
           : accounts[0];
 
         console.log('Google Ads connected successfully');
