@@ -1249,6 +1249,79 @@ async def debug_call(request: Request):
         return {"ok": True, "result_preview": str(result)[:200]}
     except Exception as e:
         return {"ok": False, "error": str(e)}
+@app.post("/dashboard-data")
+async def get_dashboard_data(request: Request):
+    """Получение данных для дашборда в формате, подходящем для UI"""
+    try:
+        logger.info("🚀 ВХОД В /dashboard-data")
+        body = await request.json()
+        access_token = body.get("accessToken")
+        refresh_token = body.get("refreshToken")
+        customer_id_override = body.get("customerId")
+        date_range = body.get("dateRange", None)
+        
+        logger.info(f"Dashboard data request - customerId: {customer_id_override}, dateRange: {date_range}")
+        
+        if not access_token:
+            logger.error("No access token provided")
+            return JSONResponse(status_code=400, content={"success": False, "error": "Access token is required"})
+        
+        data = await get_real_ads_data_with_date_range(
+            access_token,
+            refresh_token,
+            customer_id_override=customer_id_override,
+            date_range=date_range,
+        )
+        
+        campaigns = data.get('campaigns', [])
+        total = data.get('total', {})
+        currency = data.get('currency', 'USD')
+        
+        # Transform campaigns data for dashboard
+        for campaign in campaigns:
+            campaign['id'] = campaign.get('name', '').replace(' ', '_').lower()
+            campaign['type'] = 'Search'  # Placeholder, can be expanded later
+            if campaign.get('conversions', 0) > 0:
+                campaign['cpa'] = round(campaign.get('cost', 0) / campaign.get('conversions', 1), 2)
+            else:
+                campaign['cpa'] = 0
+        
+        # Prepare KPI data with mock trends (can be replaced with real trends later)
+        kpi_data = {
+            "spend": { "value": total.get('cost', 0), "trend": "+12.5%", "trend_direction": "up" },
+            "clicks": { "value": total.get('clicks', 0), "trend": "+8.3%", "trend_direction": "up" },
+            "conversions": { "value": total.get('conversions', 0), "trend": "+15.2%", "trend_direction": "up" },
+            "cpa": { "value": round(total.get('cost', 0) / total.get('conversions', 1), 2) if total.get('conversions', 0) > 0 else 0, "trend": "-5.1%", "trend_direction": "down" },
+            "impressions": { "value": total.get('impressions', 0), "trend": "+6.7%", "trend_direction": "up" }
+        }
+        
+        # Prepare summary data
+        dashboard_response = {
+            "success": True,
+            "data": {
+                "campaigns": campaigns,
+                "kpi": kpi_data,
+                "summary": {
+                    "total_campaigns": len(campaigns),
+                    "active_campaigns": len([c for c in campaigns if c.get('status') == 'ENABLED']),
+                    "total_cost": total.get('cost', 0),
+                    "average_cpc": total.get('cpc', 0),
+                    "average_ctr": total.get('ctr', 0),
+                    "total_conversions": total.get('conversions', 0)
+                },
+                "currency": currency,
+                "date_range": data.get('date_range', 'Last 30 days'),
+                "account_id": data.get('account_id', '')
+            },
+            "timestamp": datetime.now().isoformat()
+        }
+        
+        logger.info(f"Dashboard data response prepared - campaigns: {len(campaigns)}, total cost: {total.get('cost', 0)}")
+        return JSONResponse(content=dashboard_response)
+        
+    except Exception as e:
+        logger.error("Unexpected error in dashboard endpoint: {}".format(e))
+        return JSONResponse(status_code=500, content={"success": False, "error": "Internal server error", "details": str(e)})
 
 if __name__ == "__main__":
     try:
