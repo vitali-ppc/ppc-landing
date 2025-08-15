@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import GoogleAdsStatus from './GoogleAdsStatus'
 
 interface HeaderProps {
   variant?: 'home' | 'full'
@@ -238,6 +239,7 @@ export default function Header({ variant = 'full' }: HeaderProps) {
             </nav>
           </div>
           <div className="header__right">
+            <GoogleAdsStatus className="header-google-ads-status" />
             <a href="/login" className="header-btn header-btn-login">Login</a>
             <a href="/chat" className="header-btn header-btn-demo">
               Get Free
@@ -263,6 +265,7 @@ export default function Header({ variant = 'full' }: HeaderProps) {
           </svg>
         </button>
         <div className="mobile-menu-buttons">
+          <GoogleAdsStatus className="mobile-google-ads-status" />
           <a href="/login" className="mobile-btn mobile-btn-login">Login</a>
           <a href="/chat" className="mobile-btn mobile-btn-demo">
             Get Free

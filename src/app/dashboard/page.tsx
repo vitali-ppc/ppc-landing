@@ -1,6 +1,150 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
+
+// Google Ads Connection Status Component
+const GoogleAdsConnectionStatus: React.FC = () => {
+  const [isConnected, setIsConnected] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [currentAccount, setCurrentAccount] = useState<any>(null);
+
+  useEffect(() => {
+    loadGoogleAdsStatus();
+  }, []);
+
+  const loadGoogleAdsStatus = async () => {
+    try {
+      setIsLoading(true);
+      
+      const accessToken = localStorage.getItem('googleAccessToken');
+      const refreshToken = localStorage.getItem('googleRefreshToken');
+      
+      if (!accessToken || !refreshToken) {
+        setIsConnected(false);
+        setIsLoading(false);
+        return;
+      }
+
+      const response = await fetch('/api/google-ads-status', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ accessToken, refreshToken })
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setIsConnected(data.connected);
+        setCurrentAccount(data.currentAccount);
+      } else {
+        setIsConnected(false);
+      }
+    } catch (error) {
+      console.error('Error loading Google Ads status:', error);
+      setIsConnected(false);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleConnect = () => {
+    // Відкриваємо модальне вікно авторизації через глобальний компонент
+    const event = new CustomEvent('openGoogleAdsAuth');
+    window.dispatchEvent(event);
+  };
+
+  if (isLoading) {
+    return (
+      <div style={{
+        padding: '12px 24px',
+        background: '#f8fafc',
+        borderBottom: '1px solid #e2e8f0',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <div style={{
+            width: 12,
+            height: 12,
+            borderRadius: '50%',
+            background: '#9ca3af',
+            animation: 'pulse 2s infinite',
+          }} />
+          <span style={{ fontSize: 14, color: '#6b7280' }}>Checking connection...</span>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div style={{
+      padding: '12px 24px',
+      background: '#f8fafc',
+      borderBottom: '1px solid #e2e8f0',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+    }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+        <div style={{
+          width: 12,
+          height: 12,
+          borderRadius: '50%',
+          background: isConnected ? '#10b981' : '#ef4444',
+        }} />
+        <span style={{ 
+          fontSize: 14, 
+          color: isConnected ? '#059669' : '#dc2626',
+          fontWeight: 500,
+        }}>
+          {isConnected ? 'Google Ads Connected' : 'Google Ads Not Connected'}
+        </span>
+        {isConnected && currentAccount && (
+          <span style={{ 
+            fontSize: 12, 
+            color: '#64748b',
+            backgroundColor: '#f1f5f9',
+            padding: '2px 6px',
+            borderRadius: '4px'
+          }}>
+            {currentAccount.name}
+          </span>
+        )}
+      </div>
+      
+      <button
+        onClick={handleConnect}
+        style={{
+          background: isConnected ? '#f3f4f6' : '#667eea',
+          color: isConnected ? '#374151' : '#fff',
+          border: 'none',
+          borderRadius: 6,
+          padding: '8px 16px',
+          fontSize: 13,
+          fontWeight: 500,
+          cursor: 'pointer',
+          transition: 'all 0.2s',
+          display: 'flex',
+          alignItems: 'center',
+          gap: 6,
+        }}
+        onMouseEnter={e => {
+          e.currentTarget.style.background = isConnected ? '#e5e7eb' : '#5a67d8';
+        }}
+        onMouseLeave={e => {
+          e.currentTarget.style.background = isConnected ? '#f3f4f6' : '#667eea';
+        }}
+      >
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+          <polyline points="15 3 21 3 21 9"/>
+          <line x1="10" y1="14" x2="21" y2="3"/>
+        </svg>
+        {isConnected ? 'Change Account' : 'Connect Google Ads'}
+      </button>
+    </div>
+  );
+};
 
 // Types
 interface Campaign {
@@ -39,6 +183,11 @@ const mockAccounts = [
   { id: 'account-a', name: 'Account A', customerId: '123456789' },
   { id: 'account-b', name: 'Account B', customerId: '987654321' },
   { id: 'account-c', name: 'Account C', customerId: '456789123' },
+  { id: 'account-d', name: 'Digital Marketing Pro', customerId: '789123456' },
+  { id: 'account-e', name: 'E-commerce Solutions', customerId: '321654987' },
+  { id: 'account-f', name: 'Startup Growth', customerId: '654321987' },
+  { id: 'account-g', name: 'Enterprise Solutions', customerId: '147258369' },
+  { id: 'account-h', name: 'Local Business Hub', customerId: '963852741' },
 ];
 
 export default function DashboardPage() {
@@ -46,7 +195,7 @@ export default function DashboardPage() {
   const [campaigns, setCampaigns] = useState<Campaign[]>([]);
   const [filteredCampaigns, setFilteredCampaigns] = useState<Campaign[]>([]);
   const [loading, setLoading] = useState(true);
-  const [selectedAccount, setSelectedAccount] = useState(mockAccounts[0]);
+  const [selectedAccount, setSelectedAccount] = useState<{id: string, name: string, customerId: string} | null>(null);
   const [dateFrom, setDateFrom] = useState('');
   const [dateTo, setDateTo] = useState('');
   const [selectedCampaigns, setSelectedCampaigns] = useState<number[]>([]);
@@ -59,16 +208,165 @@ export default function DashboardPage() {
    });
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
+  
+  // Account dropdown state
+  const [isAccountDropdownOpen, setIsAccountDropdownOpen] = useState(false);
+  const [accountSearchTerm, setAccountSearchTerm] = useState('');
+  const [focusedAccountIndex, setFocusedAccountIndex] = useState(-1);
+  
+  // Real accounts state
+  const [accounts, setAccounts] = useState<Array<{id: string, name: string, customerId: string}>>([]);
+  const [accountsLoading, setAccountsLoading] = useState(false);
+  const [accountsError, setAccountsError] = useState<string | null>(null);
 
-  // Simulate loading
+  // Load accounts from Google Ads API
+  const loadAccounts = async () => {
+    try {
+      setAccountsLoading(true);
+      setAccountsError(null);
+      
+      // Получаем токены из localStorage (или из другого места где они хранятся)
+      const accessToken = localStorage.getItem('googleAccessToken');
+      const refreshToken = localStorage.getItem('googleRefreshToken');
+      
+      if (!accessToken || !refreshToken) {
+        console.log('No Google Ads tokens found, using mock accounts');
+        setAccounts(mockAccounts);
+        if (!selectedAccount) {
+          setSelectedAccount(mockAccounts[0]);
+        }
+        setAccountsLoading(false);
+        return;
+      }
+      
+      const response = await fetch('/api/accounts', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          accessToken,
+          refreshToken
+        }),
+      });
+      
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to load accounts');
+      }
+      
+      const data = await response.json();
+      
+      // Преобразуем данные в нужный формат
+      const formattedAccounts = data.accounts?.map((account: any, index: number) => ({
+        id: account.customerId || `account-${index}`,
+        name: account.descriptiveName || account.name || `Account ${index + 1}`,
+        customerId: account.customerId || `CID-${index + 1}`
+      })) || [];
+      
+      setAccounts(formattedAccounts);
+      
+      // Если есть аккаунты, выбираем первый
+      if (formattedAccounts.length > 0 && !selectedAccount) {
+        setSelectedAccount(formattedAccounts[0]);
+      }
+      
+    } catch (error) {
+      console.error('Error loading accounts:', error);
+      setAccountsError(error instanceof Error ? error.message : 'Failed to load accounts');
+      
+      // Fallback to mock accounts if API fails
+      setAccounts(mockAccounts);
+      if (!selectedAccount) {
+        setSelectedAccount(mockAccounts[0]);
+      }
+    } finally {
+      setAccountsLoading(false);
+    }
+  };
+
+  // Load accounts on component mount
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setCampaigns(mockCampaigns);
-      setLoading(false);
-    }, 1500);
-
-    return () => clearTimeout(timer);
+    loadAccounts();
   }, []);
+
+  // Load dashboard data
+  const loadDashboardData = async () => {
+    try {
+      setLoading(true);
+      
+      const accessToken = localStorage.getItem('googleAccessToken');
+      const refreshToken = localStorage.getItem('googleRefreshToken');
+      
+      if (!accessToken || !refreshToken || !selectedAccount) {
+        // Fallback to mock data if no tokens or account selected
+        console.log('No Google Ads tokens found, using mock data');
+        setCampaigns(mockCampaigns);
+        setLoading(false);
+        return;
+      }
+      
+      const response = await fetch('/api/dashboard-data', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          accessToken,
+          refreshToken,
+          customerId: selectedAccount.customerId,
+          dateRange: {
+            from: dateFrom,
+            to: dateTo
+          }
+        }),
+      });
+      
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error('Dashboard data error:', errorData);
+        // Fallback to mock data on error
+        setCampaigns(mockCampaigns);
+        setLoading(false);
+        return;
+      }
+      
+      const data = await response.json();
+      
+      if (data.success && data.data) {
+        // Transform API data to match our interface
+        const transformedCampaigns = data.data.campaigns.map((campaign: any, index: number) => ({
+          id: index + 1,
+          name: campaign.name,
+          status: campaign.status,
+          type: campaign.type || 'Search',
+          cost: campaign.cost,
+          cpc: campaign.cpc,
+          ctr: campaign.ctr,
+          conversions: campaign.conversions
+        }));
+        
+        setCampaigns(transformedCampaigns);
+      } else {
+        // Fallback to mock data
+        setCampaigns(mockCampaigns);
+      }
+      
+    } catch (error) {
+      console.error('Error loading dashboard data:', error);
+      // Fallback to mock data on error
+      setCampaigns(mockCampaigns);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Load dashboard data when account or date range changes
+  useEffect(() => {
+    if (selectedAccount) {
+      loadDashboardData();
+    }
+  }, [selectedAccount, dateFrom, dateTo]);
 
   // Force English locale for date inputs
   useEffect(() => {
@@ -78,6 +376,77 @@ export default function DashboardPage() {
       input.setAttribute('data-date-format', 'dd.mm.yyyy');
     });
   }, []);
+
+  // Close account dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Element;
+      if (!target.closest('[data-account-dropdown]')) {
+        setIsAccountDropdownOpen(false);
+        setAccountSearchTerm('');
+        setFocusedAccountIndex(-1);
+      }
+    };
+
+    if (isAccountDropdownOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isAccountDropdownOpen]);
+
+  // Keyboard navigation for account dropdown
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (!isAccountDropdownOpen) return;
+
+      const currentAccounts = accounts.length > 0 ? accounts : mockAccounts;
+      const filteredAccounts = currentAccounts.filter(account => 
+        account.name.toLowerCase().includes(accountSearchTerm.toLowerCase()) ||
+        account.customerId.includes(accountSearchTerm)
+      );
+
+      switch (event.key) {
+        case 'ArrowDown':
+          event.preventDefault();
+          setFocusedAccountIndex(prev => 
+            prev < filteredAccounts.length - 1 ? prev + 1 : 0
+          );
+          break;
+        case 'ArrowUp':
+          event.preventDefault();
+          setFocusedAccountIndex(prev => 
+            prev > 0 ? prev - 1 : filteredAccounts.length - 1
+          );
+          break;
+        case 'Enter':
+          event.preventDefault();
+          if (focusedAccountIndex >= 0 && focusedAccountIndex < filteredAccounts.length) {
+            setSelectedAccount(filteredAccounts[focusedAccountIndex]);
+            setIsAccountDropdownOpen(false);
+            setAccountSearchTerm('');
+            setFocusedAccountIndex(-1);
+          }
+          break;
+        case 'Escape':
+          event.preventDefault();
+          setIsAccountDropdownOpen(false);
+          setAccountSearchTerm('');
+          setFocusedAccountIndex(-1);
+          break;
+      }
+    };
+
+    if (isAccountDropdownOpen) {
+      document.addEventListener('keydown', handleKeyDown);
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isAccountDropdownOpen, accountSearchTerm, focusedAccountIndex]);
 
   // Filter and sort campaigns
   useEffect(() => {
@@ -242,11 +611,21 @@ export default function DashboardPage() {
       margin: 0,
       padding: 0
     }}>
-             <div style={{
-         maxWidth: '1200px',
-         margin: '0 auto',
-         padding: '32px 16px'
-       }} className="dashboard-container">
+      <style jsx>{`
+        @keyframes pulse {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.5; }
+        }
+      `}</style>
+      
+      {/* Google Ads Connection Status */}
+      <GoogleAdsConnectionStatus />
+      
+      <div style={{
+        maxWidth: '1200px',
+        margin: '0 auto',
+        padding: '32px 16px'
+      }} className="dashboard-container">
         {/* Header */}
         <div style={{
           background: 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)',
@@ -293,31 +672,314 @@ export default function DashboardPage() {
               gap: '16px'
             }}>
               {/* Account Dropdown */}
-              <div style={{ display: 'flex', flexDirection: 'column' }}>
-                                   <label style={{
+              <div style={{ display: 'flex', flexDirection: 'column', position: 'relative' }} data-account-dropdown>
+                                 <div style={{
+                   display: 'flex',
+                   alignItems: 'center',
+                   justifyContent: 'space-between',
+                   marginBottom: '4px'
+                 }}>
+                   <label style={{
                      fontSize: '14px',
                      fontWeight: '500',
-                     color: '#667eea',
-                     marginBottom: '4px'
+                     color: '#667eea'
                    }}>Account</label>
-                <select
-                  value={selectedAccount.id}
-                  onChange={(e) => setSelectedAccount(mockAccounts.find(a => a.id === e.target.value) || mockAccounts[0])}
-                  style={{
-                    border: '1px solid #e2e8f0',
-                    borderRadius: '8px',
-                    padding: '8px 12px',
-                    fontSize: '14px',
-                    outline: 'none',
-                    color: '#1e293b'
-                  }}
-                >
-                  {mockAccounts.map(account => (
-                    <option key={account.id} value={account.id}>
-                      {account.name}
-                    </option>
-                  ))}
-                </select>
+                   <button
+                     onClick={(e) => {
+                       e.stopPropagation();
+                       loadAccounts();
+                     }}
+                     disabled={accountsLoading}
+                     style={{
+                       background: 'none',
+                       border: 'none',
+                       cursor: accountsLoading ? 'not-allowed' : 'pointer',
+                       padding: '4px',
+                       borderRadius: '4px',
+                       color: '#667eea',
+                       opacity: accountsLoading ? 0.5 : 1,
+                       transition: 'all 0.2s ease'
+                     }}
+                     title="Refresh accounts"
+                   >
+                     <svg 
+                       width="14" 
+                       height="14" 
+                       viewBox="0 0 24 24" 
+                       fill="none"
+                       style={{
+                         transform: accountsLoading ? 'rotate(360deg)' : 'rotate(0deg)',
+                         transition: 'transform 0.5s ease'
+                       }}
+                     >
+                       <path d="M1 4v6h6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                       <path d="M23 20v-6h-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                       <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                     </svg>
+                   </button>
+                 </div>
+                
+                {/* Custom Dropdown */}
+                <div style={{ position: 'relative' }}>
+                  {/* Selected Account Display */}
+                                     <button
+                     onClick={() => {
+                       if (accounts.length === 0 && !accountsLoading) {
+                         loadAccounts();
+                       }
+                       setIsAccountDropdownOpen(!isAccountDropdownOpen);
+                     }}
+                    style={{
+                      width: '100%',
+                      border: '1px solid #e2e8f0',
+                      borderRadius: '8px',
+                      padding: '12px 16px',
+                      fontSize: '14px',
+                      outline: 'none',
+                      color: '#1e293b',
+                      backgroundColor: 'white',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      transition: 'all 0.2s ease',
+                      boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.borderColor = '#667eea';
+                      e.currentTarget.style.boxShadow = '0 2px 8px rgba(102, 126, 234, 0.15)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.borderColor = '#e2e8f0';
+                      e.currentTarget.style.boxShadow = '0 1px 3px rgba(0,0,0,0.1)';
+                    }}
+                  >
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <div style={{
+                        width: '8px',
+                        height: '8px',
+                        borderRadius: '50%',
+                        backgroundColor: '#667eea'
+                      }}></div>
+                                             <span style={{ fontWeight: '500' }}>
+                         {accountsLoading ? 'Loading...' : selectedAccount?.name || 'No account selected'}
+                       </span>
+                       <span style={{ 
+                         fontSize: '12px', 
+                         color: '#64748b',
+                         backgroundColor: '#f1f5f9',
+                         padding: '2px 6px',
+                         borderRadius: '4px'
+                       }}>
+                         {selectedAccount?.customerId || 'N/A'}
+                       </span>
+                    </div>
+                    <svg 
+                      width="16" 
+                      height="16" 
+                      viewBox="0 0 24 24" 
+                      fill="none" 
+                      style={{ 
+                        color: '#667eea',
+                        transform: isAccountDropdownOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+                        transition: 'transform 0.2s ease'
+                      }}
+                    >
+                      <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </button>
+
+                  {/* Dropdown Menu */}
+                  {isAccountDropdownOpen && (
+                    <div style={{
+                      position: 'absolute',
+                      top: '100%',
+                      left: 0,
+                      right: 0,
+                      backgroundColor: 'white',
+                      border: '1px solid #e2e8f0',
+                      borderRadius: '8px',
+                      boxShadow: '0 10px 25px rgba(0,0,0,0.15)',
+                      zIndex: 1000,
+                      marginTop: '4px',
+                      maxHeight: '300px',
+                      overflow: 'hidden'
+                    }}>
+                      {/* Search Input */}
+                      <div style={{
+                        padding: '12px',
+                        borderBottom: '1px solid #e2e8f0',
+                        position: 'relative'
+                      }}>
+                        <input
+                          type="text"
+                          placeholder="Search accounts..."
+                          value={accountSearchTerm}
+                          onChange={(e) => setAccountSearchTerm(e.target.value)}
+                          style={{
+                            width: '100%',
+                            border: '1px solid #e2e8f0',
+                            borderRadius: '6px',
+                            padding: '8px 12px 8px 36px',
+                            fontSize: '14px',
+                            outline: 'none',
+                            color: '#1e293b'
+                          }}
+                          onFocus={(e) => {
+                            e.target.style.borderColor = '#667eea';
+                            e.target.style.boxShadow = '0 0 0 3px rgba(102, 126, 234, 0.1)';
+                          }}
+                          onBlur={(e) => {
+                            e.target.style.borderColor = '#e2e8f0';
+                            e.target.style.boxShadow = 'none';
+                          }}
+                        />
+                        <svg 
+                          width="16" 
+                          height="16" 
+                          viewBox="0 0 24 24" 
+                          fill="none" 
+                          style={{ 
+                            position: 'absolute',
+                            left: '20px',
+                            top: '50%',
+                            transform: 'translateY(-50%)',
+                            color: '#9ca3af',
+                            pointerEvents: 'none'
+                          }}
+                        >
+                          <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </div>
+
+                                             {/* Account List */}
+                       <div style={{
+                         maxHeight: '200px',
+                         overflowY: 'auto'
+                       }}>
+                         {(() => {
+                           const currentAccounts = accounts.length > 0 ? accounts : mockAccounts;
+                           const filteredAccounts = currentAccounts.filter(account => 
+                             account.name.toLowerCase().includes(accountSearchTerm.toLowerCase()) ||
+                             account.customerId.includes(accountSearchTerm)
+                           );
+                           
+                           if (accountsLoading) {
+                             return (
+                               <div style={{
+                                 padding: '16px',
+                                 textAlign: 'center',
+                                 color: '#64748b',
+                                 fontSize: '14px'
+                               }}>
+                                 Loading accounts...
+                               </div>
+                             );
+                           }
+                           
+                           if (accountsError) {
+                             return (
+                               <div style={{
+                                 padding: '16px',
+                                 textAlign: 'center',
+                                 color: '#dc2626',
+                                 fontSize: '14px'
+                               }}>
+                                 {accountsError}
+                               </div>
+                             );
+                           }
+                           
+                           if (filteredAccounts.length === 0) {
+                             return (
+                               <div style={{
+                                 padding: '16px',
+                                 textAlign: 'center',
+                                 color: '#64748b',
+                                 fontSize: '14px'
+                               }}>
+                                 No accounts found
+                               </div>
+                             );
+                           }
+                           
+                           return filteredAccounts.map((account, index) => (
+                            <button
+                              key={account.id}
+                                                             onClick={() => {
+                                 setSelectedAccount(account);
+                                 setIsAccountDropdownOpen(false);
+                                 setAccountSearchTerm('');
+                                 setFocusedAccountIndex(-1);
+                               }}
+                                                             style={{
+                                 width: '100%',
+                                 padding: '12px 16px',
+                                 border: 'none',
+                                 backgroundColor: selectedAccount?.id === account.id ? 'rgba(102, 126, 234, 0.1)' : 
+                                                   focusedAccountIndex === index ? 'rgba(102, 126, 234, 0.05)' : 'transparent',
+                                 color: selectedAccount?.id === account.id ? '#667eea' : '#1e293b',
+                                 fontSize: '14px',
+                                 cursor: 'pointer',
+                                 display: 'flex',
+                                 alignItems: 'center',
+                                 justifyContent: 'space-between',
+                                 transition: 'all 0.2s ease',
+                                 borderBottom: '1px solid #f1f5f9',
+                                 outline: focusedAccountIndex === index ? '2px solid #667eea' : 'none',
+                                 outlineOffset: '-2px'
+                               }}
+                                                             onMouseEnter={(e) => {
+                                 if (selectedAccount?.id !== account.id) {
+                                   e.currentTarget.style.backgroundColor = '#f8fafc';
+                                 }
+                                 setFocusedAccountIndex(index);
+                               }}
+                               onMouseLeave={(e) => {
+                                 if (selectedAccount?.id !== account.id) {
+                                   e.currentTarget.style.backgroundColor = 'transparent';
+                                 }
+                                 setFocusedAccountIndex(-1);
+                               }}
+                            >
+                              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                <div style={{
+                                  width: '8px',
+                                  height: '8px',
+                                  borderRadius: '50%',
+                                  backgroundColor: selectedAccount?.id === account.id ? '#667eea' : '#cbd5e1'
+                                }}></div>
+                                                                 <span style={{ fontWeight: selectedAccount?.id === account.id ? '600' : '400' }}>
+                                   {account.name}
+                                 </span>
+                                <span style={{ 
+                                  fontSize: '12px', 
+                                  color: '#64748b',
+                                  backgroundColor: '#f1f5f9',
+                                  padding: '2px 6px',
+                                  borderRadius: '4px'
+                                }}>
+                                  {account.customerId}
+                                </span>
+                              </div>
+                                                             {selectedAccount?.id === account.id && (
+                                <svg 
+                                  width="16" 
+                                  height="16" 
+                                  viewBox="0 0 24 24" 
+                                  fill="none" 
+                                  style={{ color: '#667eea' }}
+                                >
+                                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                </svg>
+                              )}
+                            </button>
+                          ));
+                         })()}
+                      </div>
+                    </div>
+                  )}
+                </div>
               </div>
 
                              {/* Date Range */}

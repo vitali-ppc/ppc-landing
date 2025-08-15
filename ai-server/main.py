@@ -460,6 +460,37 @@ async def refresh_access_token(refresh_token: str) -> str:
         logger.error("Error refreshing access token: {}".format(e))
         raise e
 
+async def get_google_ads_accounts_list(access_token: str, refresh_token: str) -> dict:
+    """Отримання списку доступних Google Ads аккаунтів"""
+    try:
+        logger.info("Getting Google Ads accounts list...")
+        
+        # Використовуємо існуючу логіку для отримання аккаунтів
+        # Це може бути адаптовано з існуючої функції get_real_ads_data_with_date_range
+        
+        # Тимчасово повертаємо mock дані для тестування
+        mock_accounts = [
+            {
+                "customerId": "123456789",
+                "descriptiveName": "Test Account 1",
+                "name": "Test Account 1"
+            },
+            {
+                "customerId": "987654321", 
+                "descriptiveName": "Test Account 2",
+                "name": "Test Account 2"
+            }
+        ]
+        
+        return {
+            "success": True,
+            "accounts": mock_accounts
+        }
+        
+    except Exception as e:
+        logger.error("Error getting accounts list: {}".format(e))
+        raise e
+
 async def get_valid_access_token(access_token: str, refresh_token: str) -> str:
     """Отримання дійсного access token з автоматичним оновленням"""
     if not refresh_token:
@@ -870,6 +901,215 @@ def get_ads_data():
         ]
     }
 
+@app.post("/accounts")
+async def get_google_ads_accounts(request: Request):
+    """Отримання списку доступних Google Ads аккаунтів"""
+    try:
+        logger.info("🚀 ВХОД В /accounts")
+        
+        # Отримуємо дані запиту
+        body = await request.json()
+        access_token = body.get("accessToken")
+        refresh_token = body.get("refreshToken")
+        
+        logger.info("=== ДЕТАЛЬНЕ ЛОГУВАННЯ ACCOUNTS ===")
+        logger.info("accessToken present: {}".format('yes' if access_token else 'no'))
+        logger.info("refreshToken present: {}".format('yes' if refresh_token else 'no'))
+        
+        if not access_token:
+            logger.error("No access token provided")
+            return JSONResponse(
+                status_code=400,
+                content={"error": "Access token required"}
+            )
+        
+        # Отримуємо дійсний access token
+        try:
+            valid_access_token = await get_valid_access_token(access_token, refresh_token)
+            logger.info("Using valid access token: {}...".format(valid_access_token[:20]))
+        except Exception as e:
+            logger.error("Failed to get valid access token: {}".format(e))
+            return JSONResponse(
+                status_code=401,
+                content={"error": "Failed to validate access token"}
+            )
+
+        # Отримуємо список аккаунтів
+        try:
+            logger.info("=== ОТРИМАННЯ СПИСКУ АККАУНТІВ ===")
+            
+            # Використовуємо існуючу функцію для отримання аккаунтів
+            accounts_data = await get_google_ads_accounts_list(valid_access_token, refresh_token)
+            
+            logger.info("=== РЕЗУЛЬТАТ ОТРИМАННЯ АККАУНТІВ ===")
+            logger.info("Accounts found: {}".format(len(accounts_data.get('accounts', []))))
+            
+            return JSONResponse(content=accounts_data)
+            
+        except Exception as e:
+            logger.error("Error getting accounts: {}".format(e))
+            return JSONResponse(
+                status_code=500,
+                content={
+                    "error": "Failed to fetch accounts",
+                    "details": str(e)
+                }
+            )
+            
+    except Exception as e:
+        logger.error("Unexpected error in accounts endpoint: {}".format(e))
+        return JSONResponse(
+            status_code=500,
+            content={
+                "error": "Internal server error",
+                "details": str(e)
+            }
+        )
+
+@app.post("/dashboard-data")
+async def get_dashboard_data(request: Request):
+    """Получение данных для дашборда в формате, подходящем для UI"""
+    try:
+        logger.info("🚀 ВХОД В /dashboard-data")
+        
+        # Получаем данные запроса
+        body = await request.json()
+        access_token = body.get("accessToken")
+        refresh_token = body.get("refreshToken")
+        customer_id_override = body.get("customerId")
+        date_range = body.get("dateRange", None)
+        
+        logger.info("=== ДЕТАЛЬНОЕ ЛОГИРОВАНИЕ DASHBOARD ===")
+        logger.info("accessToken present: {}".format('yes' if access_token else 'no'))
+        logger.info("refreshToken present: {}".format('yes' if refresh_token else 'no'))
+        logger.info("customerId: {}".format(customer_id_override))
+        logger.info("dateRange: {}".format(date_range))
+        
+        if not access_token:
+            logger.error("No access token provided")
+            return JSONResponse(
+                status_code=400,
+                content={"error": "Access token required"}
+            )
+        
+        # Получаем действительный access token
+        try:
+            valid_access_token = await get_valid_access_token(access_token, refresh_token)
+            logger.info("Using valid access token: {}...".format(valid_access_token[:20]))
+        except Exception as e:
+            logger.error("Failed to get valid access token: {}".format(e))
+            return JSONResponse(
+                status_code=401,
+                content={"error": "Failed to validate access token"}
+            )
+
+        # Получаем данные кампаний
+        try:
+            logger.info("=== ПОЛУЧЕНИЕ ДАННЫХ КАМПАНИЙ ===")
+            
+            data = await get_real_ads_data_with_date_range(
+                access_token,
+                refresh_token,
+                customer_id_override=customer_id_override,
+                date_range=date_range,
+            )
+            
+            logger.info("=== РЕЗУЛЬТАТ ПОЛУЧЕНИЯ ДАННЫХ ===")
+            logger.info("Returned data keys: {}".format(list(data.keys()) if isinstance(data, dict) else 'Not a dict'))
+            
+            # Формируем ответ для дашборда
+            campaigns = data.get('campaigns', [])
+            total = data.get('total', {})
+            currency = data.get('currency', 'USD')
+            
+            # Добавляем дополнительные поля для дашборда
+            for campaign in campaigns:
+                # Добавляем id для идентификации
+                campaign['id'] = campaign.get('name', '').replace(' ', '_').lower()
+                
+                # Добавляем тип кампании (можно расширить логику)
+                campaign['type'] = 'Search'  # По умолчанию, можно добавить логику определения
+                
+                # Добавляем CPA если есть конверсии
+                if campaign.get('conversions', 0) > 0:
+                    campaign['cpa'] = round(campaign.get('cost', 0) / campaign.get('conversions', 1), 2)
+                else:
+                    campaign['cpa'] = 0
+            
+            # Формируем KPI данные
+            kpi_data = {
+                "spend": {
+                    "value": total.get('cost', 0),
+                    "trend": "+12.5%",  # Можно добавить логику расчета тренда
+                    "trend_direction": "up"
+                },
+                "clicks": {
+                    "value": total.get('clicks', 0),
+                    "trend": "+8.3%",
+                    "trend_direction": "up"
+                },
+                "conversions": {
+                    "value": total.get('conversions', 0),
+                    "trend": "+15.2%",
+                    "trend_direction": "up"
+                },
+                "cpa": {
+                    "value": round(total.get('cost', 0) / total.get('conversions', 1), 2) if total.get('conversions', 0) > 0 else 0,
+                    "trend": "-5.1%",
+                    "trend_direction": "down"
+                },
+                "impressions": {
+                    "value": total.get('impressions', 0),
+                    "trend": "+6.7%",
+                    "trend_direction": "up"
+                }
+            }
+            
+            # Формируем итоговый ответ
+            dashboard_response = {
+                "success": True,
+                "data": {
+                    "campaigns": campaigns,
+                    "kpi": kpi_data,
+                    "summary": {
+                        "total_campaigns": len(campaigns),
+                        "active_campaigns": len([c for c in campaigns if c.get('status') == 'ENABLED']),
+                        "total_cost": total.get('cost', 0),
+                        "average_cpc": total.get('cpc', 0),
+                        "average_ctr": total.get('ctr', 0),
+                        "total_conversions": total.get('conversions', 0)
+                    },
+                    "currency": currency,
+                    "date_range": data.get('date_range', 'Last 30 days'),
+                    "account_id": data.get('account_id', '')
+                },
+                "timestamp": datetime.now().isoformat()
+            }
+            
+            return JSONResponse(content=dashboard_response)
+            
+        except Exception as e:
+            logger.error("Error getting dashboard data: {}".format(e))
+            return JSONResponse(
+                status_code=500,
+                content={
+                    "success": False,
+                    "error": "Failed to fetch dashboard data",
+                    "details": str(e)
+                }
+            )
+            
+    except Exception as e:
+        logger.error("Unexpected error in dashboard endpoint: {}".format(e))
+        return JSONResponse(
+            status_code=500,
+            content={
+                "success": False,
+                "error": "Internal server error",
+                "details": str(e)
+            }
+        )
+
 @app.post("/ads-data-real")
 async def get_real_ads_data(request: Request):
     """Отримання реальних даних Google Ads через API"""
@@ -1010,6 +1250,71 @@ async def get_real_ads_data(request: Request):
             status_code=500,
             content={
                 "error": "Failed to fetch campaign data",
+                "details": str(e)
+            }
+        )
+
+@app.post("/accounts")
+async def get_google_ads_accounts(request: Request):
+    """Отримання списку доступних Google Ads аккаунтів"""
+    try:
+        logger.info("🚀 ВХОД В /accounts")
+        
+        # Отримуємо дані запиту
+        body = await request.json()
+        access_token = body.get("accessToken")
+        refresh_token = body.get("refreshToken")
+        
+        logger.info("=== ДЕТАЛЬНЕ ЛОГУВАННЯ ACCOUNTS ===")
+        logger.info("accessToken present: {}".format('yes' if access_token else 'no'))
+        logger.info("refreshToken present: {}".format('yes' if refresh_token else 'no'))
+        
+        if not access_token:
+            logger.error("No access token provided")
+            return JSONResponse(
+                status_code=400,
+                content={"error": "Access token required"}
+            )
+        
+        # Отримуємо дійсний access token
+        try:
+            valid_access_token = await get_valid_access_token(access_token, refresh_token)
+            logger.info("Using valid access token: {}...".format(valid_access_token[:20]))
+        except Exception as e:
+            logger.error("Failed to get valid access token: {}".format(e))
+            return JSONResponse(
+                status_code=401,
+                content={"error": "Failed to validate access token"}
+            )
+
+        # Отримуємо список аккаунтів
+        try:
+            logger.info("=== ОТРИМАННЯ СПИСКУ АККАУНТІВ ===")
+            
+            # Використовуємо існуючу функцію для отримання аккаунтів
+            accounts_data = await get_google_ads_accounts_list(valid_access_token, refresh_token)
+            
+            logger.info("=== РЕЗУЛЬТАТ ОТРИМАННЯ АККАУНТІВ ===")
+            logger.info("Accounts found: {}".format(len(accounts_data.get('accounts', []))))
+            
+            return JSONResponse(content=accounts_data)
+            
+        except Exception as e:
+            logger.error("Error getting accounts: {}".format(e))
+            return JSONResponse(
+                status_code=500,
+                content={
+                    "error": "Failed to fetch accounts",
+                    "details": str(e)
+                }
+            )
+            
+    except Exception as e:
+        logger.error("Unexpected error in accounts endpoint: {}".format(e))
+        return JSONResponse(
+            status_code=500,
+            content={
+                "error": "Internal server error",
                 "details": str(e)
             }
         )
@@ -1360,6 +1665,158 @@ async def debug_call(request: Request):
         return {"ok": True, "result_preview": str(result)[:200]}
     except Exception as e:
         return {"ok": False, "error": str(e)}
+
+# ===== GLOBAL GOOGLE ADS ARCHITECTURE ENDPOINTS =====
+
+@app.get("/auth-url")
+async def get_auth_url():
+    """Генерація URL для OAuth2 авторизації Google Ads"""
+    try:
+        logger.info("=== GENERATING AUTH URL ===")
+        
+        # Отримуємо credentials з environment
+        client_id = os.getenv("GOOGLE_CLIENT_ID")
+        client_secret = os.getenv("GOOGLE_CLIENT_SECRET")
+        redirect_uri = os.getenv("GOOGLE_REDIRECT_URI", "https://kampaio.com/api/auth/callback")
+        
+        if not client_id or not client_secret:
+            logger.error("Missing Google OAuth credentials")
+            return JSONResponse({"error": "OAuth credentials not configured"}, status_code=500)
+        
+        # Генеруємо state для безпеки
+        import secrets
+        state = secrets.token_urlsafe(32)
+        
+        # Створюємо URL для авторизації
+        auth_url = (
+            f"https://accounts.google.com/o/oauth2/v2/auth?"
+            f"client_id={client_id}&"
+            f"redirect_uri={redirect_uri}&"
+            f"response_type=code&"
+            f"scope=https://www.googleapis.com/auth/adwords&"
+            f"state={state}&"
+            f"access_type=offline&"
+            f"prompt=consent"
+        )
+        
+        logger.info(f"Generated auth URL with state: {state}")
+        
+        return JSONResponse({
+            "authUrl": auth_url,
+            "state": state
+        })
+        
+    except Exception as e:
+        logger.error(f"Error generating auth URL: {e}")
+        return JSONResponse({"error": str(e)}, status_code=500)
+
+@app.post("/token-refresh")
+async def refresh_google_token(request: Request):
+    """Оновлення Google OAuth токена"""
+    try:
+        logger.info("=== TOKEN REFRESH ===")
+        body = await request.json()
+        refresh_token = body.get("refreshToken")
+        
+        if not refresh_token:
+            return JSONResponse({"error": "Refresh token is required"}, status_code=400)
+        
+        # Отримуємо credentials
+        client_id = os.getenv("GOOGLE_CLIENT_ID")
+        client_secret = os.getenv("GOOGLE_CLIENT_SECRET")
+        
+        if not client_id or not client_secret:
+            return JSONResponse({"error": "OAuth credentials not configured"}, status_code=500)
+        
+        # Оновлюємо токен через Google API
+        async with httpx.AsyncClient() as http:
+            response = await http.post(
+                "https://oauth2.googleapis.com/token",
+                data={
+                    "client_id": client_id,
+                    "client_secret": client_secret,
+                    "refresh_token": refresh_token,
+                    "grant_type": "refresh_token"
+                }
+            )
+            
+            if response.status_code == 200:
+                token_data = response.json()
+                logger.info("Token refreshed successfully")
+                
+                return JSONResponse({
+                    "accessToken": token_data.get("access_token"),
+                    "expiresIn": token_data.get("expires_in"),
+                    "tokenType": token_data.get("token_type")
+                })
+            else:
+                logger.error(f"Token refresh failed: {response.status_code} - {response.text}")
+                return JSONResponse({"error": "Token refresh failed"}, status_code=400)
+                
+    except Exception as e:
+        logger.error(f"Error refreshing token: {e}")
+        return JSONResponse({"error": str(e)}, status_code=500)
+
+@app.post("/validate-tokens")
+async def validate_tokens(request: Request):
+    """Валідація Google OAuth токенів"""
+    try:
+        logger.info("=== VALIDATING TOKENS ===")
+        body = await request.json()
+        access_token = body.get("accessToken")
+        refresh_token = body.get("refreshToken")
+        
+        if not access_token or not refresh_token:
+            return JSONResponse({
+                "valid": False,
+                "reason": "Missing tokens"
+            })
+        
+        # Перевіряємо токени через Google API
+        async with httpx.AsyncClient() as http:
+            response = await http.get(
+                "https://www.googleapis.com/oauth2/v1/tokeninfo",
+                params={"access_token": access_token}
+            )
+            
+            if response.status_code == 200:
+                logger.info("Tokens are valid")
+                return JSONResponse({"valid": True})
+            else:
+                logger.info("Tokens are invalid, attempting refresh")
+                
+                # Спроба оновити токен
+                refresh_response = await http.post(
+                    "https://oauth2.googleapis.com/token",
+                    data={
+                        "client_id": os.getenv("GOOGLE_CLIENT_ID"),
+                        "client_secret": os.getenv("GOOGLE_CLIENT_SECRET"),
+                        "refresh_token": refresh_token,
+                        "grant_type": "refresh_token"
+                    }
+                )
+                
+                if refresh_response.status_code == 200:
+                    token_data = refresh_response.json()
+                    logger.info("Token refreshed successfully")
+                    return JSONResponse({
+                        "valid": True,
+                        "newAccessToken": token_data.get("access_token"),
+                        "expiresIn": token_data.get("expires_in")
+                    })
+                else:
+                    logger.info("Token refresh failed")
+                    return JSONResponse({
+                        "valid": False,
+                        "reason": "Invalid tokens and refresh failed"
+                    })
+                    
+    except Exception as e:
+        logger.error(f"Error validating tokens: {e}")
+        return JSONResponse({
+            "valid": False,
+            "reason": str(e)
+        })
 
 if __name__ == "__main__":
     try:
