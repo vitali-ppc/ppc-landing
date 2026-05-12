@@ -5,10 +5,29 @@
 > Архитектура системы: [`ARCHITECTURE.md`](./ARCHITECTURE.md)
 > История изменений: [`CHANGELOG.md`](./CHANGELOG.md)
 
-**Дата последнего обновления**: 2026-05-12 (Sprint 3 — full docs refresh)
+**Дата последнего обновления**: 2026-05-12 (🚀 LAUNCH DAY)
 **Текущая ветка**: `v2-autonomous-agents`
 **Прогресс кода**: **100%** (все 7 агентов работают, production stack готов)
-**Статус**: 🚀 **LAUNCH-READY** — код собирается, контейнеры готовы, ждут deployment
+**Статус**: ✅ **LIVE В PRODUCTION**
+
+## 🌍 Production URLs
+
+| | URL | Статус |
+|---|---|---|
+| **Лендинг** | https://www.kampaio.com | ✅ HTTP 200 |
+| **Dashboard** | https://www.kampaio.com/b6 | ✅ HTTP 200 |
+| **Backend API** | https://api.kampaio.com | ✅ HTTPS, valid LE cert (until Aug 10 2026) |
+| **Health** | https://api.kampaio.com/health | ✅ `{"status":"ok","mock_mode":"true","model":"claude-sonnet-4-6","socketio":true}` |
+| **Swagger UI** | https://api.kampaio.com/docs | ✅ 22 endpoints |
+| **Socket.IO** | wss://api.kampaio.com/socket.io/ | ✅ Handshake OK |
+
+**Infrastructure:**
+- Frontend: Vercel (Hobby tier, free) — project `ppc-landing`, deployed from `v2-autonomous-agents` branch
+- Backend: **Hetzner CPX22** ($9.49/mo) — Nuremberg, Ubuntu 24.04, IP `178.104.124.150`
+- DNS: GoDaddy — `kampaio.com` apex + `www` CNAME → Vercel, `api` A → Hetzner
+- SSL: Let's Encrypt via Caddy (auto-renew)
+- Stack: Docker compose (Postgres 16 + Redis 7 + b6-api FastAPI + Caddy)
+- Hetzner account: **K0514922126** (new, after old K0742311825 was cancelled 02/2025 for unpaid $5.09)
 
 ---
 
