@@ -5,9 +5,11 @@
 > AI agents that manage your Google Ads autonomously — bidding, budget, creative, reporting.
 
 [![Built with Claude](https://img.shields.io/badge/Built%20with-Claude%20Sonnet%204.6-FF8E53)](https://www.anthropic.com)
-[![Next.js](https://img.shields.io/badge/Next.js-15.3-black)](https://nextjs.org)
+[![Next.js](https://img.shields.io/badge/Next.js-15.5-black)](https://nextjs.org)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.104-009688)](https://fastapi.tiangolo.com)
-[![Status](https://img.shields.io/badge/Status-Launch%20Ready-brightgreen)]()
+[![Status](https://img.shields.io/badge/Status-Live%20in%20Production-brightgreen)](https://www.kampaio.com)
+
+🌍 **Live at**: [https://www.kampaio.com](https://www.kampaio.com) · API: `https://api.kampaio.com`
 
 ---
 
@@ -63,7 +65,7 @@ B6 — это **multi-agent AI-агентство** для управления 
 - **Payments**: Stripe (subscriptions L1/L2/L3)
 - **Email**: Resend (welcome + weekly digest)
 - **Image gen** (Mira): fal.ai / Flux
-- **Hosting**: Vercel (frontend) + Hetzner VPS (backend)
+- **Hosting**: Vercel Hobby (`www.kampaio.com`) + Hetzner CPX22 ($9.49/mo, Nuremberg, Ubuntu 24.04) для `api.kampaio.com`
 - **Container**: Docker compose с Postgres + Redis + B6 API + Caddy
 - **CI**: Pre-commit checks через standard tooling
 
@@ -247,22 +249,22 @@ Full OpenAPI spec → `http://localhost:8000/docs` после запуска.
 
 ## 🎯 Roadmap
 
-Текущий статус: **Sprint 1 MVP + Sprint 2 complete** (все 7 агентов работают).
+Текущий статус: **🚀 Live в production** на [https://www.kampaio.com](https://www.kampaio.com).
 
 Следующие вехи:
-- ⏳ **Production deploy** на Hetzner + Vercel (готов к выполнению)
-- ⏳ **Google Ads Production Token** (подана заявка, 4-8 нед approval)
+- ⏳ **Активировать `ANTHROPIC_API_KEY` в prod** — без него агенты в проде молчат (5 минут SSH-работы)
+- ⏳ **Google Ads Production Token** (заявка подана, 4-8 нед approval) — после этого выходим из mock-режима
 - ⏳ **First 30 beta users** через waitlist
 - ⏳ **Multi-tenancy + auth** (сейчас single dev-user)
-- ⏳ **Real Stripe billing** (test mode → live)
+- ⏳ **Real Stripe billing** (test mode → live при первом платящем)
 
 ---
 
 ## 🤝 Built with
 
-Built solo by [vitali-ppc](https://github.com/vitali-ppc) using **Claude Code** в течение ~7 дней + Sprint 2 итерации.
+Built solo by [vitali-ppc](https://github.com/vitali-ppc) using **Claude Code** за ~25 часов работы (Sprint 1 → 3 → Launch Day).
 
-~8,200 строк production кода. 22 HTTP endpoints. 7 AI-агентов. Production-ready Docker stack.
+~8,500 строк production кода. 22 HTTP endpoints. 7 AI-агентов. Docker production stack live на Hetzner + Vercel.
 
 ---
 

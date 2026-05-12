@@ -10,8 +10,8 @@
 │                            │                                        │
 │                            ▼                                        │
 │              ┌───────────────────────────┐                          │
-│              │   https://kampaio.com     │                          │
-│              │   (Vercel, Next.js 15)    │                          │
+│              │   https://www.kampaio.com │                          │
+│              │   (Vercel, Next.js 15.5)  │                          │
 │              └─────────────┬─────────────┘                          │
 │                            │  HTTPS + WSS (Socket.IO)               │
 │                            ▼                                        │
@@ -22,7 +22,8 @@
 │                       │                                             │
 │                       ▼ HTTP                                        │
 │        ┌──────────────────────────────────────┐                     │
-│        │       Hetzner VPS (Ubuntu)            │                    │
+│        │  Hetzner CPX22 (178.104.124.150)      │                    │
+│        │  Ubuntu 24.04, Nuremberg              │                    │
 │        │                                       │                    │
 │        │   ┌──────────────────────────────┐    │                    │
 │        │   │     b6-api (FastAPI)         │◄───┼─── Socket.IO       │
@@ -419,12 +420,12 @@ services:
 - ~1 Vox + 1 Sage + 1 Mira per week × $0.50 = $2.00
 - **Total: ~$10 LLM API cost per active user/month**
 
-### Infrastructure (fixed costs)
-- Hetzner CX22: $6/mo
-- Vercel hobby: $0
+### Infrastructure (fixed costs, реальные на 2026-05-12)
+- Hetzner **CPX22**: **$9.49/mo** (4 GB RAM, 2 vCPU AMD, 80 GB SSD — нужно для Docker stack с Postgres + Redis + FastAPI + Caddy)
+- Vercel Hobby: $0
 - Domain: $1/mo amortized
 - Resend: $0 (free tier 3K emails)
-- **Total infra: $7/mo**
+- **Total infra: ~$11/mo**
 
 ### При 50 paying users
 - LLM: $500/mo
@@ -461,10 +462,13 @@ services:
 
 ## TL;DR
 
-- **Frontend**: Next.js 15 на Vercel
-- **Backend**: FastAPI + Socket.IO на Hetzner Docker
+- **Status**: 🚀 LIVE на https://www.kampaio.com + https://api.kampaio.com
+- **Frontend**: Next.js 15.5 на Vercel Hobby
+- **Backend**: FastAPI + Socket.IO в Docker на Hetzner CPX22 (`178.104.124.150`, Nuremberg)
+- **DNS**: GoDaddy (`api` A → Hetzner, `www` CNAME → Vercel)
+- **SSL**: Caddy + Let's Encrypt prod (auto-renew, until 2026-08-10)
 - **Agents**: 7 шт. на Claude Sonnet 4.6 через нативный SDK
-- **DB**: SQLite (dev) / Postgres (prod)
+- **DB**: SQLite (dev) / Postgres 16 (prod)
 - **Real-time**: Socket.IO одним endpoint'ом
 - **Safety**: 4 layers (caps + Aegis + Maximus + audit)
-- **Cost**: ~$650/mo на 50 paying users = ~87% margin
+- **Cost**: ~$10/mo infra + ~$10/mo LLM на активного юзера = ~85% margin на L1 $99 tier

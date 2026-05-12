@@ -35,58 +35,70 @@
 
 | | |
 |---|---|
-| Что есть | 7 AI-агентов + multi-tier autonomy + live theatre UI + 22 endpoints + Docker prod stack |
+| Что есть | 7 AI-агентов + multi-tier autonomy + live theatre UI + 22 endpoints + Docker prod stack, **всё в проде** |
 | Что не сделано **в коде** | Multi-tenancy auth (single dev-user), real Stripe live mode, Google Ads write ops |
-| Что не сделано **в deployment** | Не задеплоено на Hetzner, не задеплоено на Vercel, домен не указывает на сервера |
-| **Главный блокер** | Google Ads production token — 4-8 недель approval. До этого работаем в `GOOGLE_ADS_USE_MOCK=true` |
+| Что осталось из deployment | `ANTHROPIC_API_KEY` не вставлен в `.env.prod` (агенты молчат пока) |
+| **Главный блокер реального value** | Google Ads production token — 4-8 недель approval. Пока работаем в `GOOGLE_ADS_USE_MOCK=true` |
+| Второй блокер | `ANTHROPIC_API_KEY` ротейтнуть и `sed`-вставить через SSH |
 
 ---
 
 ## 📦 Состояние Git
 
-**Локальная ветка `v2-autonomous-agents`** содержит 4 свежих коммита поверх `main`:
+**Ветка `v2-autonomous-agents` запушена в `origin`** (это production-ветка Vercel'а).
+
+История launch day (~3 часа работы 2026-05-12):
 
 ```
+30d6b8a B6 LAUNCH: production live on kampaio.com
+5bb3afe B6 fix: upgrade Next.js 15.3.5 → 15.5.18 (security patches)
+181efe6 B6 fix: add psycopg2-binary for Postgres in production
+f547a2d B6 brand: add BRAND-BRIEF.md + update Hetzner status
+9e35766 B6 docs: full documentation refresh (Sprint 3 final)
 528590f B6 production prep: Docker + Caddy + docs + launch kit
 c22bcdf B6 frontend: dashboard /b6 + new landing + Stripe webhook
 59442b1 B6 backend: HTTP routers + new app.py
 d8873de B6 backend: agents + DB + services + Socket.IO
 ```
 
-**Не запушено в origin** — нужен `git push` от пользователя (требует PAT/SSH ключа GitHub).
-
-Команда для push:
-```bash
-cd /Users/vitaly/Vit+/projects/ppc-landing && git push origin v2-autonomous-agents
-```
+GitHub auth настроена через PAT в macOS Keychain — `git push` работает без интерактивного логина.
 
 ---
 
 ## 🔥 Быстрый старт (если зашёл в новую сессию)
 
-### Проверь что серверы живы (локально)
+### Проверь что прод жив
 ```bash
-curl -s http://localhost:8000/health | python3 -m json.tool   # backend
-curl -s -o /dev/null -w "%{http_code}\n" http://localhost:3002/b6   # frontend
+curl -s https://api.kampaio.com/health | python3 -m json.tool        # backend
+curl -s -o /dev/null -w "%{http_code}\n" https://www.kampaio.com/    # landing
+curl -s -o /dev/null -w "%{http_code}\n" https://www.kampaio.com/b6  # dashboard
 ```
 
-### Если backend упал
+Ожидаем 200/JSON OK на всех трёх.
+
+### SSH к prod backend (Hetzner)
 ```bash
+ssh -i ~/.ssh/id_ed25519 root@178.104.124.150
+cd ~/ppc-landing
+docker compose -f docker-compose.prod.yml --env-file .env.prod ps        # статус контейнеров
+docker compose -f docker-compose.prod.yml --env-file .env.prod logs b6-api --tail=50  # логи
+```
+
+### Запустить локально (dev режим)
+```bash
+# Backend (Терминал 1)
 cd /Users/vitaly/Vit+/projects/ppc-landing/ai-server
 source venv/bin/activate
 GOOGLE_ADS_USE_MOCK=true uvicorn app:socket_app --port 8000 --reload &
-```
 
-### Если frontend упал
-```bash
+# Frontend (Терминал 2)
 cd /Users/vitaly/Vit+/projects/ppc-landing
 npm run dev &  # port 3002
+
+# Открыть: http://localhost:3002/b6
 ```
 
-### Открыть продукт
-http://localhost:3002/b6
-
-### Логи
+### Логи (локально)
 - Backend: `tail -f /tmp/b6-server.log`
 - Frontend: `tail -f /tmp/b6-next.log`
 
@@ -170,11 +182,13 @@ http://localhost:3002/b6
 
 ## 🚧 Что в работе
 
-**Текущий блокер**: push в origin не сделан — у меня (Claude) нет GitHub auth. Нужен один из вариантов:
-- Юзер пушит сам (`git push origin v2-autonomous-agents`)
-- Юзер даёт SSH разрешение → я заливаю через `scp` напрямую на сервер
+Launch завершён. Активные хвосты:
 
-**⚠️ Hetzner старый сервер мёртв (обнаружено 2026-05-12)**: account `K0742311825` cancelled 02/2025 за $5.09 unpaid invoice. IP `91.99.225.211` больше не наш. Для deploy нужен **новый VPS** (новый Hetzner аккаунт или Vultr/DO/Linode, все ~$5-6/мес). Долг $5.09 закрывается банковским переводом на IBAN из cancellation letter — отдельная задача от deploy.
+1. **`ANTHROPIC_API_KEY` пустой в `.env.prod`** — backend работает, /health отдаёт OK, но любая попытка запустить агента (Buzz/Aegis/etc) вернёт ошибку. Когда юзер ротейтнет ключ в console.anthropic.com — один SSH-вход + `nano` + `docker compose restart b6-api` и агенты оживут.
+
+2. **Старый долг Hetzner $5.09** на cancelled аккаунте `K0742311825`. Bank transfer на `IBAN DE47 7655 1540 0000 1758 02` (`BIC BYLADEM1GUN`). Не блокирует prod (новый аккаунт `K0514922126` отдельный), но если не закрыть — уйдёт в коллекторов.
+
+3. **Косметические хвосты**: `<title>` в `src/app/layout.tsx` остался `"Kampaio - Digital Ecosystem"` от старого Kampaio v1 — нужно сменить на B6-релевантный (e.g. `"B6 — Your PPC Agency in a Cabinet"`).
 
 ---
 
@@ -214,16 +228,13 @@ http://localhost:3002/b6
 
 ## 🎯 Что попробовать в браузере
 
-1. Открыть http://localhost:3002 → лендинг с маскотами и pricing
-2. Открыть http://localhost:3002/b6 → дашборд
-3. Нажать «🐝 Run Buzz now» — увидеть live theatre 60-90 сек
-4. Видеть 🐝 Buzz летает между кампаний с speech bubbles
-5. После — 3 proposed actions с Aegis-бейджами
-6. Toggle autonomy в Maximus panel → L3
-7. «Запустить cycle» в Maximus → видеть auto-approved
-8. Нажать «🎨 Сгенерировать» в Mira → 3 ad variants с Google Ads preview
-9. Нажать «Запустить research» в Sage → 9 keywords + 3 audiences
-10. Нажать «Сгенерировать» в Echo → weekly digest
+**В продакшене** (`https://www.kampaio.com`):
+1. Открой лендинг — маскоты, pricing, waitlist
+2. Submit свой email в waitlist → `Got you, position #N`
+3. Открой `/b6` → dashboard загружается, видишь 3 кампании, Stats bar, панели Maximus/Echo/Mira/Sage
+4. ⚠️ **Кнопки агентов пока не работают** — нужен `ANTHROPIC_API_KEY` в `.env.prod`
+
+**Локально (full flow с агентами)**: см. секцию выше «Запустить локально (dev режим)». В dev .env Anthropic ключ установлен, поэтому Buzz/Aegis/Mira/Sage/Echo отрабатывают полностью.
 
 ---
 
@@ -231,26 +242,24 @@ http://localhost:3002/b6
 
 ### Если пользователь говорит «продолжаем» / «дальше»
 
-**1. Deployment** (главное сейчас):
-- Push в origin: `git push origin v2-autonomous-agents`
-- SSH к Hetzner: `ssh root@91.99.225.211`
-- На сервере: `cd /home/vitaliy/ppc-landing && git pull origin v2-autonomous-agents`
-- Stop old: `cd ai-server && docker compose down`
-- Setup: `cd .. && cp .env.prod.example .env.prod && nano .env.prod`
-- Start: `docker compose -f docker-compose.prod.yml --env-file .env.prod up -d`
-- Vercel deploy frontend (отдельно)
-- Smoke test: `./scripts/smoke-prod.sh`
+**1. Активировать AI-агентов** (5 минут):
+- Ротейтнуть `ANTHROPIC_API_KEY` на https://console.anthropic.com/settings/keys
+- SSH к prod: `ssh -i ~/.ssh/id_ed25519 root@178.104.124.150`
+- Открыть редактор: `nano ~/ppc-landing/.env.prod`
+- Заменить `ANTHROPIC_API_KEY=` на `ANTHROPIC_API_KEY=sk-ant-...`
+- Перезапустить: `cd ~/ppc-landing && docker compose -f docker-compose.prod.yml --env-file .env.prod restart b6-api`
+- Проверить: `curl https://api.kampaio.com/health` всё ещё 200; зайти в `https://www.kampaio.com/b6` и нажать «Run Buzz»
 
-**2. Если deployment упёрся в кредентилы** — попросить пользователя:
-- PAT для GitHub push, ИЛИ
-- SSH разрешение к серверу для scp deploy, ИЛИ
-- ssh-key access setup
-
-**3. После deployment**:
-- Marketing post в Twitter тред (текст готов в LAUNCH-CONTENT.md)
-- Reddit post в r/PPC (текст готов)
-- Hacker News Show HN (текст готов)
+**2. Marketing** (тексты готовы в [`LAUNCH-CONTENT.md`](./LAUNCH-CONTENT.md)):
+- Twitter тред
+- Reddit r/PPC, r/SmallBusiness
+- LinkedIn post
+- Hacker News «Show HN»
 - Цель недели: 30+ waitlist signups, 5+ demo calls
+
+**3. Старый долг Hetzner $5.09**: bank transfer на IBAN `DE47 7655 1540 0000 1758 02` чтобы не уйти в коллекторов.
+
+**4. Косметика**: `<title>` в `src/app/layout.tsx` сменить с `"Kampaio - Digital Ecosystem"` на B6-релевантное.
 
 ---
 
@@ -258,7 +267,7 @@ http://localhost:3002/b6
 
 - Не начинай новую работу. Сначала ответь на вопрос.
 - Если просит summary — посмотри сюда + в [`README.md`](./README.md)
-- Если хочет показать продукт — самое быстрое: `localhost:3002/b6` (если серверы живы)
+- Если хочет показать продукт — `https://www.kampaio.com/b6` (или локально `localhost:3002/b6` если серверы запущены).
 
 ---
 
@@ -293,7 +302,9 @@ http://localhost:3002/b6
 | **Sprint 2.4** | Mira (Creative Agent) + image gen | ~800 | 2 часа |
 | **Sprint 2.5** | Sage (Research Agent) — финальный | ~700 | 1.5 часа |
 | **Sprint 3** | Launch prep + full docs refresh | ~400 | 1 час |
+| **Sprint 3.5** | BRAND-BRIEF.md (audience, voice, AI visibility rules, taboos) | ~300 | 1.5 часа |
+| **Launch Day** (2026-05-12) | Hetzner CPX22 + DNS + Caddy SSL + Vercel deploy + smoke 8/8 ✅ | ~30 (только фиксы: psycopg2 + Next.js bump) | ~3 часа |
 
-**Total**: ~8,200 строк, ~22 часа продуктивной работы.
+**Total**: ~8,500 строк, ~25 часов продуктивной работы.
 
 Подробнее → [`CHANGELOG.md`](./CHANGELOG.md).

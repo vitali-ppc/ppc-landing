@@ -37,7 +37,7 @@
 | 🎨 | Mira | Creative (ad copy + images) | ✅ LIVE |
 | 🦉 | Sage | Research (keywords + audiences) | ✅ LIVE |
 
-**Главное состояние сейчас**: 100% feature complete, **launch-ready**, ждём только deployment на Hetzner + Vercel. Подробно → [`HANDOFF.md`](./HANDOFF.md).
+**Главное состояние сейчас**: 🚀 **LIVE В PRODUCTION** на https://www.kampaio.com (Vercel frontend) + https://api.kampaio.com (Hetzner CPX22 backend, IP `178.104.124.150`). Осталось вставить `ANTHROPIC_API_KEY` в `.env.prod` на сервере чтобы AI-агенты заработали в проде. Подробно → [`HANDOFF.md`](./HANDOFF.md).
 
 ---
 
@@ -115,7 +115,9 @@ Frontend (Next.js 15 / TypeScript)              Backend (FastAPI / Python 3.9+)
 - **LLM**: **Claude Sonnet 4.6** (модель по умолчанию)
 - **DB**: SQLite в dev (`b6_dev.db`), Postgres в prod (планируется)
 - **Real-time**: Socket.IO (REST + WS на одном порту 8000)
-- **Hosting (планируется)**: Vercel (frontend) + Hetzner VPS (backend)
+- **Hosting**: Vercel Hobby (frontend, `www.kampaio.com`) + **Hetzner CPX22** ($9.49/mo, `178.104.124.150`, Nuremberg, account `K0514922126`) для backend (`api.kampaio.com`)
+- **SSL**: Caddy + Let's Encrypt prod (auto-renew, valid до 2026-08-10)
+- **DNS**: GoDaddy (`api` A → Hetzner; `www` CNAME → Vercel)
 
 ---
 
@@ -193,9 +195,9 @@ http://localhost:8000/docs
 
 См. секцию «Open Decisions» в [`HANDOFF.md`](./HANDOFF.md).
 Основные:
-1. **Google Ads Production Token** — статус? (Главный блокер запуска)
-2. **Domain** — `kampaio.com` (existing) или новый?
-3. **Production DB** — Hetzner managed Postgres / Supabase / self-hosted?
+1. **Google Ads Production Token** — статус заявки? (Главный блокер реального value, mock-режим пока)
+2. **`ANTHROPIC_API_KEY` в проде** — ротейтнуть + вставить через SSH (5 минут работы)
+3. **Multi-tenancy auth** — JWT registration vs. ручной `INSERT INTO users` для первых beta-юзеров
 
 ---
 

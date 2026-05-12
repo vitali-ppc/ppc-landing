@@ -1,19 +1,39 @@
 # B6 — Deployment Guide
 
+> ✅ **Развёрнуто 2026-05-12** на следующей конкретной конфигурации:
+> - **Frontend**: Vercel (`www.kampaio.com`, project `ppc-landing`, branch `v2-autonomous-agents`)
+> - **Backend**: Hetzner CPX22 (`178.104.124.150`, Nuremberg, Ubuntu 24.04)
+> - **Account**: Hetzner `K0514922126` (новый, старый K0742311825 cancelled 02/2025)
+> - **SSL**: Caddy + Let's Encrypt prod (auto-renew, until 2026-08-10)
+>
+> Этот документ — **исторический референс** + чек-лист для повторного развёртывания на новом сервере.
+
 Этот документ — **пошаговая инструкция** деплоя B6 в production. Все файлы уже подготовлены ([`docker-compose.prod.yml`](./docker-compose.prod.yml), [`Caddyfile`](./Caddyfile), [`ai-server/Dockerfile.b6`](./ai-server/Dockerfile.b6), [`.env.prod.example`](./.env.prod.example)).
 
 ## Архитектура production
 
 ```
-[ Vercel (Frontend) ]          [ Hetzner VPS (Backend) ]
+[ Vercel (Frontend) ]          [ Hetzner CPX22 (Backend) ]
        │                              │
        ▼                              ▼
-  kampaio.com         ◄─HTTPS─►  api.kampaio.com
-  (Next.js)                          (Caddy → FastAPI :8000)
+  www.kampaio.com    ◄─HTTPS─►  api.kampaio.com (178.104.124.150)
+  (Next.js 15.5)                    (Caddy → FastAPI :8000)
                                       │
-                                      ├── Postgres :5432
-                                      └── Redis :6379
+                                      ├── Postgres 16 :5432
+                                      └── Redis 7 :6379
 ```
+
+## Gotchas замеченные в реальном launch
+
+1. **Vercel блокирует уязвимые версии Next.js** — `15.3.5` в момент деплоя был помечен vulnerable, и Vercel задеплоить отказывался («Vulnerable version of Next.js detected, please update immediately»). Билд при этом компилировался. Фикс: bump до последней stable в 15.x line (на момент launch — `15.5.18`).
+
+2. **`psycopg2-binary` обязателен в проде** — в `requirements.txt` строка была закомментирована «не нужен на dev» (SQLite). В проде с Postgres URL `postgresql://...` SQLAlchemy автоматически пытается импортировать `psycopg2`, контейнер крашится при старте на миграциях.
+
+3. **Vercel env vars баст в build-time** — после добавления `NEXT_PUBLIC_*` нужно **триггернуть Redeploy**, иначе старый билд продолжает использовать дефолтное значение из кода (`localhost:8000`).
+
+4. **Hetzner verification для новых аккаунтов** обычно ~часы-сутки, но в этот раз прошла за ~5 минут (после регистрации и подтверждения email).
+
+5. **Caddy fall-back на staging Let's Encrypt** если первые попытки получить prod cert провалились (5+ failed retries на NXDOMAIN). Лечится `docker compose restart caddy` после того как DNS пропагирован.
 
 ## Чек-лист подготовки (~1 час)
 

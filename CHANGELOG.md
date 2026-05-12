@@ -6,6 +6,63 @@
 
 ---
 
+## [🚀 Launch Day] — 2026-05-12 — Production live на kampaio.com
+
+После долгого пути из «launch-ready» в реально-в-проде. ~3 часа работы.
+
+### Production stack
+- **Frontend**: Vercel Hobby tier, `www.kampaio.com`, branch `v2-autonomous-agents`. Env vars `NEXT_PUBLIC_B6_API_BASE` + `B6_API_BASE` = `https://api.kampaio.com`.
+- **Backend**: Hetzner CPX22 ($9.49/mo, 2 vCPU AMD, 4 GB RAM, Nuremberg, Ubuntu 24.04), IP `178.104.124.150`, account `K0514922126` (новый, после cancellation старого `K0742311825`).
+- **DNS**: GoDaddy — `api.kampaio.com` A → Hetzner IP; `www.kampaio.com` CNAME → Vercel.
+- **SSL**: Caddy 2 + Let's Encrypt production cert (E8 issuer). Valid 2026-05-12 → 2026-08-10. Auto-renew enabled.
+- **Stack**: Docker compose prod — Postgres 16-alpine + Redis 7-alpine + b6-api (FastAPI + Socket.IO) + Caddy.
+
+### Process highlights
+- Создан новый Hetzner аккаунт после того как старый был cancelled 02/2025 за неоплаченный invoice $5.09. KYC verification прошла за ~5 минут.
+- GitHub Personal Access Token настроен в macOS Keychain → `git push` теперь без интерактивного ввода.
+- `.env.prod` сгенерирован на сервере (POSTGRES_PASSWORD + B6_INTERNAL_SECRET через `openssl rand`) — секреты не попали в чат и не покинули сервер.
+
+### Smoke test results (8/8 ✅)
+- Backend `/health` → `{"status":"ok","mock_mode":"true","model":"claude-sonnet-4-6","socketio":true}`
+- Frontend `/` + `/b6` → HTTP 200
+- Waitlist signup + dedup работает
+- Socket.IO handshake OK
+- `/docs` Swagger UI → 22 endpoints зарегистрировано
+- SSL cert валидный (до 2026-08-10)
+
+### Fixed (live deploy revealed)
+- `ai-server/requirements.txt`: добавлен `psycopg2-binary>=2.9.9`. Был закомментирован «не нужен на dev» — но в проде с Postgres URL `postgresql://` SQLAlchemy требует psycopg2.
+- `package.json`: bumped `next` `15.3.5 → 15.5.18` — Vercel блокирует деплои уязвимых версий Next.js, build шёл но deployment failed на security check.
+
+### Tail (после launch — не критично)
+- `ANTHROPIC_API_KEY` в `.env.prod` пустой — backend стартует, /health OK, но любая попытка запустить агента вернёт ошибку. Ротация ключа + `sed` через SSH — задача 5 минут когда юзер готов.
+- `<title>` в `src/app/layout.tsx` остался `"Kampaio - Digital Ecosystem"` от старого Kampaio v1 — cosmetic, заменить на B6-релевантное.
+- Старый долг Hetzner $5.09 на `K0742311825` — bank transfer на IBAN `DE47 7655 1540 0000 1758 02` чтобы не уйти в коллекторов.
+
+### Git (Launch Day commits)
+- `f547a2d` — B6 brand: add BRAND-BRIEF.md + update Hetzner status
+- `181efe6` — B6 fix: add psycopg2-binary for Postgres in production
+- `5bb3afe` — B6 fix: upgrade Next.js 15.3.5 → 15.5.18 (security patches)
+- `30d6b8a` — B6 LAUNCH: production live on kampaio.com
+
+---
+
+## [Sprint 3.5] — 2026-05-12 — Brand voice playbook
+
+### Added
+- `BRAND-BRIEF.md` (276 lines) — 7-block playbook собранный в коллаборации:
+  - Mission & Voice (прямой / эксперт / разговорный через маскотов)
+  - Audience (3 персоны: panicked DIY / tool-shopper / agency-burnt, tech-level 3.5)
+  - Writing style (1200-1800 слов default, scannable, hybrid persona с mascot speech bubbles)
+  - AI Visibility rules (front-load, flexible H2, definitive "X is Y", aggressive entity richness, analyst voice ≈0.47)
+  - References (Patio11, Julian Shapiro, Backlinko, Aleyda Solis, PPC Mastery)
+  - Hard rules / Taboos (запретные темы, competitor engagement, format rules, cringe-flags)
+  - 12-point Quick-Reference Checklist для прогона перед публикацией
+
+Designed as system prompt source для Mira (Creative Agent) и future blog-writer agent.
+
+---
+
 ## [Sprint 3] — 2026-05-12 — Launch prep + documentation refresh
 
 ### Added
