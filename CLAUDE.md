@@ -2,7 +2,17 @@
 
 > **Этот файл автоматически читается Claude Code на старте каждой сессии в этом проекте.**
 > Это **постоянные правила**. Текущее состояние работы → [`HANDOFF.md`](./HANDOFF.md).
-> Полный архитектурный план → [`/Users/vitaly/.claude/plans/noble-waddling-sparkle.md`](/Users/vitaly/.claude/plans/noble-waddling-sparkle.md).
+>
+> **Связанные документы**:
+> - [`README.md`](./README.md) — public overview
+> - [`HANDOFF.md`](./HANDOFF.md) — operational truth (что сейчас работает)
+> - [`ARCHITECTURE.md`](./ARCHITECTURE.md) — system diagrams + tech details
+> - [`CHANGELOG.md`](./CHANGELOG.md) — sprint history
+> - [`LAUNCH.md`](./LAUNCH.md) — 2-hour deployment quickstart
+> - [`DEPLOY.md`](./DEPLOY.md) — full deployment manual
+> - [`LAUNCH-CONTENT.md`](./LAUNCH-CONTENT.md) — social media launch kit
+>
+> Полный архитектурный план: [`/Users/vitaly/.claude/plans/noble-waddling-sparkle.md`](/Users/vitaly/.claude/plans/noble-waddling-sparkle.md)
 
 ---
 
@@ -14,17 +24,19 @@
 - Целевая аудитория: SMB и e-com магазины с $3-50K/мес рекламного бюджета
 - Цена: L1 $99 / L2 $199 / L3 $399 / мес — три уровня автономности
 
-**Текущая команда AI-агентов:**
+**Текущая команда AI-агентов** (все 7 LIVE на 2026-05-12):
 
-| Маскот | Имя | Роль | Статус |
+| Маскот | Имя | Роль | Status |
 |--------|-----|------|--------|
-| 🐝 | Buzz | Bidding Agent — управляет ставками | ✅ Работает (Day 1) |
-| 🛡️ | Aegis | Risk Agent — ревьюит решения Buzz | ✅ Работает (Day 5) |
-| 🐻 | Maximus | Orchestrator | ⏳ Не сделан |
-| 🦊 | Vox | Strategy (бюджеты) | ⏳ Не сделан |
-| 🎨 | Mira | Creative (ad copy + картинки) | ⏳ Не сделан |
-| 🦉 | Sage | Research (ключи/аудитории) | ⏳ Не сделан |
-| 📊 | Echo | Reporting (weekly digest) | ⏳ Не сделан |
+| 🐝 | Buzz | Bidding (single-campaign) | ✅ LIVE |
+| 🛡️ | Aegis | Risk review of Buzz/Vox | ✅ LIVE |
+| 📊 | Echo | Weekly digest + advice | ✅ LIVE |
+| 🦊 | Vox | Strategy (cross-campaign budget) | ✅ LIVE |
+| 🐻 | Maximus | Orchestrator (rules engine for autonomy) | ✅ LIVE |
+| 🎨 | Mira | Creative (ad copy + images) | ✅ LIVE |
+| 🦉 | Sage | Research (keywords + audiences) | ✅ LIVE |
+
+**Главное состояние сейчас**: 100% feature complete, **launch-ready**, ждём только deployment на Hetzner + Vercel. Подробно → [`HANDOFF.md`](./HANDOFF.md).
 
 ---
 
