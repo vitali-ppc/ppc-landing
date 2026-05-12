@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState, useEffect, useCallback, useMemo } from "react";
-import { listActions, listAgents, listCampaigns } from "@/lib/b6-api";
-import type { AgentAction, Agent, CampaignFromAPI } from "@/lib/b6-api";
+import { listActions, listAgents, listCampaigns, listConnectedAccounts } from "@/lib/b6-api";
+import type { AgentAction, Agent, CampaignFromAPI, ConnectedAccount } from "@/lib/b6-api";
 import { CampaignCard, type CampaignMetrics } from "@/components/b6/CampaignCard";
 import { ActivityFeed } from "@/components/b6/ActivityFeed";
 import { ApprovalQueue } from "@/components/b6/ApprovalQueue";
@@ -16,7 +16,7 @@ import { SagePanel } from "@/components/b6/SagePanel";
 import { GoogleAdsConnect } from "@/components/b6/GoogleAdsConnect";
 import { useB6Events } from "@/lib/b6-socket";
 
-const CUSTOMER_ID = "1234567890"; // mock dev customer ID
+const MOCK_activeCustomerId = "1234567890"; // fallback if no real connections
 const REFRESH_INTERVAL_MS = 5000; // poll actions/agents (live events приходят через socket)
 
 const apiToCampaignMetrics = (c: CampaignFromAPI): CampaignMetrics => ({
@@ -39,9 +39,21 @@ export default function B6Dashboard() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [stats, setStats] = useState<{ iterations?: number; tool_calls?: number }>({});
+  const [activeCustomerId, setActiveCustomerId] = useState<string>(MOCK_activeCustomerId);
 
   // Live events через Socket.IO
   const { events: liveEvents, connected, clear: clearEvents } = useB6Events();
+
+  // Pick active customer_id from user's connected accounts (first is_active=true).
+  // Falls back to MOCK_activeCustomerId if no connections yet.
+  useEffect(() => {
+    listConnectedAccounts()
+      .then((accounts) => {
+        const active = accounts.find((a) => a.is_active);
+        if (active) setActiveCustomerId(active.google_customer_id);
+      })
+      .catch((e) => console.warn("Failed to load active customer_id:", e));
+  }, []);
 
   // Подсветка активной кампании по последнему live event с campaign_id
   const highlightedCampaign = useMemo(() => {
@@ -66,7 +78,7 @@ export default function B6Dashboard() {
       const [actRes, agRes, campRes] = await Promise.all([
         listActions({ limit: 30 }),
         listAgents(),
-        listCampaigns(CUSTOMER_ID).catch((e) => {
+        listCampaigns(activeCustomerId).catch((e) => {
           console.warn("Campaigns fetch failed", e);
           return { count: 0, campaigns: [] };
         }),
@@ -82,7 +94,7 @@ export default function B6Dashboard() {
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [activeCustomerId]);
 
   useEffect(() => {
     refresh();
@@ -123,7 +135,7 @@ export default function B6Dashboard() {
               🤖 B6 — Your AI PPC Cabinet
             </h1>
             <div style={{ color: "#A0A0A0", fontSize: "13px", marginTop: "4px" }}>
-              Customer <code style={{ color: "#7F9CF5" }}>{CUSTOMER_ID}</code> · mock mode ·{" "}
+              Customer <code style={{ color: "#7F9CF5" }}>{activeCustomerId}</code> · mock mode ·{" "}
               {agents.length === 0
                 ? "Buzz ещё не запускался"
                 : `${agents.length} агент${agents.length === 1 ? "" : "ов"} · последний запуск: ${
@@ -150,7 +162,7 @@ export default function B6Dashboard() {
               clear feed
             </button>
             <RunBuzzButton
-              customerId={CUSTOMER_ID}
+              customerId={activeCustomerId}
               onComplete={(r) => {
                 setStats({ iterations: r.iterations, tool_calls: r.tool_calls });
                 refresh();
@@ -242,7 +254,7 @@ export default function B6Dashboard() {
         <section style={{ marginBottom: "20px" }}>
           <MiraPanel
             campaigns={rawCampaigns}
-            customerId={CUSTOMER_ID}
+            customerId={activeCustomerId}
             onChange={refresh}
           />
         </section>
@@ -251,7 +263,7 @@ export default function B6Dashboard() {
         <section style={{ marginBottom: "20px" }}>
           <SagePanel
             campaigns={rawCampaigns}
-            customerId={CUSTOMER_ID}
+            customerId={activeCustomerId}
             onChange={refresh}
           />
         </section>
