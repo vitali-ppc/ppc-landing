@@ -99,12 +99,12 @@ async def list_accessible_customers(refresh_token: str) -> list[str]:
     Returns list of customer_id strings (10-digit, no dashes). The user's Google account
     may have access to multiple Ads accounts (own + MCC-managed).
 
+    NOTE: This ALWAYS calls the real Google API regardless of GOOGLE_ADS_USE_MOCK,
+    because the OAuth flow requires real customer IDs to be useful. The mock flag
+    only affects campaign/metric data queries.
+
     See: https://developers.google.com/google-ads/api/rest/auth#listaccessiblecustomers
     """
-    if use_mock():
-        # mock — single test account
-        return ["1234567890"]
-
     access_token = await refresh_access_token(refresh_token)
     async with httpx.AsyncClient(timeout=20.0) as client:
         r = await client.get(
