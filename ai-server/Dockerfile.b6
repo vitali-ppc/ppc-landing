@@ -1,0 +1,39 @@
+# B6 production Dockerfile
+# Python 3.11 для Postgres async + claude-agent-sdk совместимости
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# System deps для psycopg + grpc (google-ads)
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    libpq-dev \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Зависимости — отдельный слой для кеша
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+# Production extras
+RUN pip install --no-cache-dir "psycopg[binary]>=3.1.0" "pydantic[email]>=2.6.0"
+
+# Код приложения
+COPY . .
+
+# Не root юзером
+RUN useradd -m -u 1000 b6 && chown -R b6:b6 /app
+USER b6
+
+ENV PYTHONUNBUFFERED=1 \
+    LOG_LEVEL=INFO \
+    AI_SERVER_HOST=0.0.0.0 \
+    AI_SERVER_PORT=8000
+
+EXPOSE 8000
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
+    CMD curl -fsS http://localhost:8000/health || exit 1
+
+# Запуск через socket_app (с Socket.IO)
+CMD ["uvicorn", "app:socket_app", "--host", "0.0.0.0", "--port", "8000", "--proxy-headers"]

@@ -1,0 +1,102 @@
+# B6 — production docker compose
+# Deploy на Hetzner VPS:
+#   docker compose -f docker-compose.prod.yml --env-file .env.prod up -d
+#
+# Required ENV переменные (см. .env.prod.example):
+#   ANTHROPIC_API_KEY
+#   POSTGRES_PASSWORD
+#   GOOGLE_ADS_DEVELOPER_TOKEN / GOOGLE_CLIENT_ID / GOOGLE_CLIENT_SECRET
+#   STRIPE_SECRET_KEY / STRIPE_WEBHOOK_SECRET
+#   RESEND_API_KEY
+#   B6_INTERNAL_SECRET
+#
+# После запуска: миграции применятся автоматически на старте (b6-api → entrypoint).
+
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: b6
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: b6
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U b6"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks: [b6_net]
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+    networks: [b6_net]
+
+  b6-api:
+    build:
+      context: ./ai-server
+      dockerfile: Dockerfile.b6
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://b6:${POSTGRES_PASSWORD}@postgres:5432/b6
+      REDIS_URL: redis://redis:6379/0
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
+      ANTHROPIC_DEFAULT_MODEL: ${ANTHROPIC_DEFAULT_MODEL:-claude-sonnet-4-6}
+      GOOGLE_ADS_USE_MOCK: ${GOOGLE_ADS_USE_MOCK:-false}
+      GOOGLE_ADS_DEVELOPER_TOKEN: ${GOOGLE_ADS_DEVELOPER_TOKEN}
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
+      STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY}
+      RESEND_API_KEY: ${RESEND_API_KEY}
+      B6_INTERNAL_SECRET: ${B6_INTERNAL_SECRET}
+      CORS_ORIGINS: ${CORS_ORIGINS:-https://kampaio.com,https://www.kampaio.com}
+      ENVIRONMENT: production
+      LOG_LEVEL: INFO
+    ports:
+      - "8000:8000"
+    networks: [b6_net]
+    # На запуске: миграции → потом сервер
+    command: >
+      sh -c "
+        alembic upgrade head &&
+        uvicorn app:socket_app --host 0.0.0.0 --port 8000 --proxy-headers --forwarded-allow-ips='*'
+      "
+
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - b6-api
+    networks: [b6_net]
+
+volumes:
+  postgres_data:
+  redis_data:
+  caddy_data:
+  caddy_config:
+
+networks:
+  b6_net:

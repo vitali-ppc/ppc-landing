@@ -1,0 +1,91 @@
+# docker-compose для B6 — Autonomous PPC Cabinet
+# Использование на production (Hetzner VPS) и опционально локально.
+# Для локальной разработки сейчас НЕ требуется — используется SQLite.
+#
+# Запуск (когда понадобится Postgres+Redis):
+#   docker-compose up -d postgres redis
+#
+# Запуск всего стека (включая ai-server):
+#   docker-compose up -d --build
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: b6-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-b6}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+      POSTGRES_DB: ${POSTGRES_DB:-b6}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-b6}"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: b6-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  ai-server:
+    build:
+      context: ./ai-server
+      dockerfile: Dockerfile
+    container_name: b6-ai-server
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
+      ANTHROPIC_DEFAULT_MODEL: ${ANTHROPIC_DEFAULT_MODEL:-claude-sonnet-4-6}
+      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-b6}:${POSTGRES_PASSWORD:-changeme}@postgres:5432/${POSTGRES_DB:-b6}
+      REDIS_URL: redis://redis:6379/0
+      GOOGLE_ADS_DEVELOPER_TOKEN: ${GOOGLE_ADS_DEVELOPER_TOKEN}
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
+      GOOGLE_ADS_MCC_ID: ${GOOGLE_ADS_MCC_ID:-}
+      STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY}
+      STRIPE_WEBHOOK_SECRET: ${STRIPE_WEBHOOK_SECRET}
+      RESEND_API_KEY: ${RESEND_API_KEY}
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+      ENVIRONMENT: production
+    ports:
+      - "8000:8000"
+
+  # Celery worker — раскомментить когда подключим background tasks (Week 2)
+  # celery:
+  #   build:
+  #     context: ./ai-server
+  #     dockerfile: Dockerfile
+  #   container_name: b6-celery
+  #   restart: unless-stopped
+  #   depends_on:
+  #     - postgres
+  #     - redis
+  #   environment:
+  #     ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
+  #     DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-b6}:${POSTGRES_PASSWORD:-changeme}@postgres:5432/${POSTGRES_DB:-b6}
+  #     REDIS_URL: redis://redis:6379/0
+  #   command: celery -A workers.celery_app worker --loglevel=info
+
+volumes:
+  postgres_data:
+  redis_data:

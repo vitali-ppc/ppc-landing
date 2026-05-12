@@ -1,0 +1,37 @@
+# Caddy reverse proxy для B6 API на Hetzner VPS.
+# Auto-HTTPS через Let's Encrypt.
+#
+# Замени api.kampaio.com на свой домен в Cloudflare DNS:
+#   api.kampaio.com → A → IP_твоего_Hetzner_VPS
+#
+# Frontend (Next.js) хостится отдельно на Vercel, обращается сюда по HTTPS.
+
+api.kampaio.com {
+    # Socket.IO + WebSocket support
+    @websocket {
+        header Connection *Upgrade*
+        header Upgrade websocket
+    }
+    reverse_proxy @websocket b6-api:8000
+
+    reverse_proxy b6-api:8000 {
+        header_up X-Real-IP {remote_host}
+        header_up X-Forwarded-For {remote_host}
+        header_up X-Forwarded-Proto {scheme}
+    }
+
+    # Логирование
+    log {
+        output stdout
+        format console
+    }
+
+    # Базовая защита
+    header {
+        Strict-Transport-Security "max-age=31536000;"
+        X-Content-Type-Options "nosniff"
+        X-Frame-Options "DENY"
+        Referrer-Policy "strict-origin-when-cross-origin"
+        -Server
+    }
+}
