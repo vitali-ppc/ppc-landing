@@ -98,6 +98,16 @@ export default function BlogPage() {
       date: '2026-05-12',
       readTime: '10 min read',
       slug: 'google-ads-roas-dropped-suddenly'
+    },
+    {
+      id: 10,
+      title: 'Google Ads Without an Agency: When DIY Works, When It Doesn\'t, and the Third Option',
+      excerpt: 'Can you manage Google Ads without paying an agency $2K/month? Yes, if your spend is under $20K and you use the right tools. Here is a realistic framework for SMB owners.',
+      category: 'strategy',
+      author: 'By B6 Team',
+      date: '2026-05-13',
+      readTime: '12 min read',
+      slug: 'google-ads-without-agency'
     }
   ];
 
