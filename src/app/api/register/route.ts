@@ -2,7 +2,16 @@ import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { userExists, addUser } from '../utils/users';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Lazy init — иначе build падает если RESEND_API_KEY не установлен
+let _resend: Resend | null = null;
+function getResend(): Resend {
+  if (!_resend) {
+    _resend = new Resend(process.env.RESEND_API_KEY || "re_build_placeholder");
+  }
+  return _resend;
+}
+// Backward compat — старый код использует `resend.emails.send(...)` напрямую
+const resend = { emails: { send: (...args: Parameters<Resend['emails']['send']>) => getResend().emails.send(...args) } };
 
 export async function POST(request: NextRequest) {
   try {

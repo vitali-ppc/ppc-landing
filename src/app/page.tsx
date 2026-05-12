@@ -1,3934 +1,497 @@
-'use client';
+"use client";
 
-import { useState, useEffect, useRef } from 'react';
-import Header from '../components/Header';
-import AnimatedHero from '../components/AnimatedHero';
-import FeatureCard from '../components/InteractiveFeatureCard';
-import Footer from '../components/Footer';
+import React, { useState } from "react";
 
+const API_BASE =
+  process.env.NEXT_PUBLIC_B6_API_BASE || "http://localhost:8000";
 
-
-// Компонент для анимированных счетчиков
-function AnimatedCounter({ 
-  endValue, 
-  duration = 2000, 
-  delay = 0,
-  suffix = '',
-  prefix = ''
-}: { 
-  endValue: number; 
-  duration?: number; 
-  delay?: number;
-  suffix?: string;
-  prefix?: string;
-}) {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      const startTime = Date.now();
-      const startValue = 0;
-      
-      const updateCounter = () => {
-        const currentTime = Date.now();
-        const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        
-        // Easing function for smooth animation
-        const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-        const currentValue = Math.floor(startValue + (endValue - startValue) * easeOutQuart);
-        
-        setCount(currentValue);
-        
-        if (progress < 1) {
-          requestAnimationFrame(updateCounter);
-        }
-      };
-      
-      updateCounter();
-    }, delay);
-
-    return () => clearTimeout(timer);
-  }, [endValue, duration, delay]);
-
+export default function Landing() {
   return (
-    <span style={{
-      fontSize: '28px',
-      fontWeight: '700',
-      color: '#1e293b',
-      animation: 'countUp 1s ease-out',
-      animationDelay: `${delay}ms`
-    }}>
-      {prefix}{count}{suffix}
-    </span>
+    <div
+      style={{
+        background: "#0F1116",
+        color: "#FFFFFF",
+        fontFamily: "system-ui, -apple-system, sans-serif",
+        minHeight: "100vh",
+      }}
+    >
+      <Hero />
+      <HowItWorks />
+      <MeetTheTeam />
+      <Pricing />
+      <CTA />
+      <Footer />
+    </div>
   );
 }
 
-// Компонент для анимированного счетчика с валютой
-function AnimatedCurrencyCounter({ 
-  endValue, 
-  duration = 2000, 
-  delay = 0
-}: { 
-  endValue: number; 
-  duration?: number; 
-  delay?: number;
-}) {
-  const [count, setCount] = useState(0);
+const Hero: React.FC = () => (
+  <section
+    style={{
+      padding: "80px 24px 60px",
+      background: "linear-gradient(180deg, #15181D 0%, #0F1116 100%)",
+      borderBottom: "1px solid #1F232B",
+    }}
+  >
+    <div style={{ maxWidth: "1100px", margin: "0 auto", textAlign: "center" }}>
+      <div
+        style={{
+          display: "inline-block",
+          padding: "6px 14px",
+          background: "#00FFE71A",
+          border: "1px solid #00FFE744",
+          borderRadius: "999px",
+          color: "#00FFE7",
+          fontSize: "12px",
+          fontWeight: 600,
+          textTransform: "uppercase",
+          letterSpacing: "1px",
+          marginBottom: "24px",
+        }}
+      >
+        🚀 Private Beta · Limited Spots
+      </div>
+      <h1
+        style={{
+          fontSize: "56px",
+          fontWeight: 800,
+          lineHeight: 1.1,
+          margin: "0 0 20px",
+          background: "linear-gradient(135deg, #FFFFFF, #00FFE7)",
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+          letterSpacing: "-1px",
+        }}
+      >
+        Your PPC agency.
+        <br />
+        In a cabinet.
+      </h1>
+      <p
+        style={{
+          fontSize: "20px",
+          color: "#A0A0A0",
+          maxWidth: "680px",
+          margin: "0 auto 36px",
+          lineHeight: 1.5,
+        }}
+      >
+        AI agents that manage your Google Ads autonomously — bidding, budget,
+        creative, reporting. You see{" "}
+        <strong style={{ color: "#FFFFFF" }}>everything</strong> they do in real-time.
+        Approve big calls, the rest runs while you sleep.
+      </p>
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      const startTime = Date.now();
-      const startValue = 0;
-      
-      const updateCounter = () => {
-        const currentTime = Date.now();
-        const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        
-        // Easing function for smooth animation
-        const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-        const currentValue = startValue + (endValue - startValue) * easeOutQuart;
-        
-        setCount(currentValue);
-        
-        if (progress < 1) {
-          requestAnimationFrame(updateCounter);
-        }
-      };
-      
-      updateCounter();
-    }, delay);
+      <WaitlistForm source="hero" />
 
-    return () => clearTimeout(timer);
-  }, [endValue, duration, delay]);
-
-  return (
-    <span style={{
-      fontSize: '28px',
-      fontWeight: '700',
-      color: '#1e293b',
-      animation: 'countUp 1s ease-out',
-      animationDelay: `${delay}ms`
-    }}>
-      ${count.toFixed(2)}
-    </span>
-  );
-}
-
-
-
-
-
-
-
-export default function KampaioHome() {
-  const [openQuestion, setOpenQuestion] = useState<number | null>(null);
-  const sliderRef = useRef<HTMLDivElement>(null);
-
-  const scrollLeft = () => {
-    if (sliderRef.current) {
-      sliderRef.current.scrollBy({ left: -400, behavior: 'smooth' });
-    }
-  };
-
-  const scrollRight = () => {
-    if (sliderRef.current) {
-      sliderRef.current.scrollBy({ left: 400, behavior: 'smooth' });
-    }
-  };
-
-  const handleFAQClick = (questionId: number) => {
-    setOpenQuestion(openQuestion === questionId ? null : questionId);
-  };
-
-  return (
-    <>
-      <style jsx>{`
-        @keyframes aiPulse {
-          0%, 100% { 
-            transform: scale(1);
-            box-shadow: 0 8px 40px rgba(26,26,26,0.15);
-          }
-          50% { 
-            transform: scale(1.05);
-            box-shadow: 0 12px 50px rgba(26,26,26,0.25);
-          }
-        }
-        
-        @keyframes rotate {
-          from { transform: translate(-50%,-50%) rotate(0deg); }
-          to { transform: translate(-50%,-50%) rotate(360deg); }
-        }
-        
-        @keyframes flow {
-          0% { transform: translateX(-100%); opacity: 0; }
-          50% { opacity: 1; }
-          100% { transform: translateX(100%); opacity: 0; }
-        }
-        
-        @keyframes pulse {
-          0%, 100% { opacity: 0.6; }
-          50% { opacity: 1; }
-        }
-        
-        @keyframes countUp {
-          from { transform: translateY(20px); opacity: 0; }
-          to { transform: translateY(0); opacity: 1; }
-        }
-        
-        @keyframes dataFlow {
-          0% { transform: translateX(-100%); }
-          100% { transform: translateX(100%); }
-        }
-        
-        @keyframes fadeInUp {
-          from { 
-            transform: translateY(30px); 
-            opacity: 0; 
-          }
-          to { 
-            transform: translateY(0); 
-            opacity: 1; 
-          }
-        }
-        
-        @keyframes gridMove {
-          0% { transform: translate(0, 0); }
-          100% { transform: translate(50px, 50px); }
-        }
-        
-        @keyframes dataFloat {
-          0%, 100% { 
-            transform: translateY(0px) translateX(0px);
-            opacity: 0.3;
-          }
-          25% { 
-            transform: translateY(-20px) translateX(10px);
-            opacity: 0.8;
-          }
-          50% { 
-            transform: translateY(-10px) translateX(-5px);
-            opacity: 1;
-          }
-          75% { 
-            transform: translateY(-30px) translateX(15px);
-            opacity: 0.6;
-          }
-        }
-        
-        @keyframes hubPulse {
-          0%, 100% { 
-            transform: translate(-50%, -50%) scale(1);
-            box-shadow: 0 0 40px rgba(102, 126, 234, 0.3);
-          }
-          50% { 
-            transform: translate(-50%, -50%) scale(1.1);
-            box-shadow: 0 0 60px rgba(102, 126, 234, 0.5);
-          }
-        }
-        
-        @keyframes phaseActive {
-          0%, 100% { 
-            opacity: 0.3;
-            transform: scale(1);
-          }
-          50% { 
-            opacity: 1;
-            transform: scale(1.05);
-          }
-        }
-        
-        @keyframes phasePulse {
-          0%, 100% { 
-            transform: scale(1);
-            box-shadow: 0 0 15px currentColor;
-          }
-          50% { 
-            transform: scale(1.1);
-            box-shadow: 0 0 25px currentColor;
-          }
-        }
-      `}</style>
-    <div style={{
-      minHeight: '100vh',
-      background: '#1e293b',
-      color: 'white',
-      fontFamily: 'system-ui, -apple-system, sans-serif'
-    }}>
-
-
-      {/* Header */}
-      <Header variant="full" />
-
-      {/* Interactive AI Hero */}
-      <AnimatedHero />
-
-      {/* How Kampaio Helps You Run Smarter Ads */}
-      <section style={{
-        padding: '120px 0',
-        background: 'linear-gradient(180deg, #f8fafc 0%, #ffffff 100%)',
-        position: 'relative',
-        overflow: 'hidden'
-      }}>
-        {/* Gradient Transition from Previous Section */}
-        <div style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          height: '100px',
-          background: 'linear-gradient(180deg, rgba(26,26,26,0.1) 0%, transparent 100%)',
-          pointerEvents: 'none'
-        }}></div>
-
-        <div style={{
-          maxWidth: '1200px',
-          margin: '0 auto',
-          padding: '0 24px',
-          position: 'relative',
-          zIndex: 1
-        }}>
-          {/* Section Header */}
-          <div style={{
-            textAlign: 'center',
-            marginBottom: '80px'
-          }}>
-            <h2 style={{
-              fontSize: 'clamp(36px, 4vw, 48px)',
-              fontWeight: '700',
-              color: '#1e293b',
-              marginBottom: '24px',
-              lineHeight: '1.2'
-            }}>
-              How Kampaio Helps You Run Smarter Ads
-            </h2>
-            <p style={{
-              fontSize: 'clamp(18px, 2vw, 20px)',
-              color: '#64748b',
-              maxWidth: '600px',
-              margin: '0 auto',
-              lineHeight: '1.6'
-            }}>
-              From AI-powered insights to automated optimizations — discover how our platform transforms your Google Ads management
-            </p>
-          </div>
-
-          {/* AI ENGINE VISUALIZATION */}
-          <div style={{
-            maxWidth: '1200px',
-            margin: '0 auto 80px auto'
-          }}>
-            <div style={{
-              position: 'relative',
-              background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
-              borderRadius: '24px',
-              padding: '48px',
-              boxShadow: '0 8px 32px rgba(0,0,0,0.08)',
-              overflow: 'hidden'
-            }}>
-              {/* BACKGROUND PARTICLES */}
-              <div style={{
-                position: 'absolute',
-                inset: 0,
-                overflow: 'hidden',
-                pointerEvents: 'none'
-              }}>
-                <div style={{
-                  position: 'absolute',
-                  width: '4px',
-                  height: '4px',
-                  background: '#667eea',
-                  borderRadius: '50%',
-                  top: '20%',
-                  left: '15%',
-                  animation: 'float 6s ease-in-out infinite'
-                }}></div>
-                <div style={{
-                  position: 'absolute',
-                  width: '3px',
-                  height: '3px',
-                  background: '#667eea',
-                  borderRadius: '50%',
-                  top: '60%',
-                  left: '80%',
-                  animation: 'float 6s ease-in-out infinite',
-                  animationDelay: '2s'
-                }}></div>
-                <div style={{
-                  position: 'absolute',
-                  width: '4px',
-                  height: '4px',
-                  background: '#667eea',
-                  borderRadius: '50%',
-                  top: '80%',
-                  left: '30%',
-                  animation: 'float 6s ease-in-out infinite',
-                  animationDelay: '4s'
-                }}></div>
-              </div>
-
-              <div style={{
-                textAlign: 'center',
-                marginBottom: '24px'
-              }}>
-                <h3 style={{
-                  fontSize: '32px',
-                  fontWeight: '700',
-                  color: '#1e293b',
-                  marginBottom: '12px'
-                }}>
-                  AI Engine Under the Hood
-                </h3>
-                <p style={{
-                  fontSize: '18px',
-                  color: '#64748b'
-                }}>
-                  See how your data transforms into intelligent insights
-                </p>
-              </div>
-              
-              {/* PROCESS FLOW */}
-              <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                marginBottom: '32px'
-              }}>
-                
-                {/* INPUT */}
-                <div style={{
-                  textAlign: 'center',
-                  flex: 1
-                }}>
-                  <div style={{
-                    width: '80px',
-                    height: '80px',
-                    background: 'white',
-                    borderRadius: '16px',
-                    boxShadow: '0 4px 16px rgba(0,0,0,0.1)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    margin: '0 auto 16px auto',
-                    animation: 'pulse 2s infinite'
-                  }}>
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#64748b" strokeWidth="2" style={{
-                      animation: 'pulse 2s infinite'
-                    }}>
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-          </svg>
+      <a
+        href="/b6"
+        style={{
+          marginTop: "60px",
+          display: "block",
+          maxWidth: "900px",
+          margin: "60px auto 0",
+          padding: "60px 20px",
+          background: "linear-gradient(135deg, #15181D, #1F232B)",
+          borderRadius: "16px",
+          color: "#FFFFFF",
+          textDecoration: "none",
+          border: "1px solid #2D3340",
+        }}
+      >
+        <div style={{ color: "#A0A0A0", fontSize: "12px", marginBottom: "8px" }}>
+          🎬 Live demo (no signup)
         </div>
-                  <h4 style={{
-                    fontSize: '20px',
-                    fontWeight: '700',
-                    color: '#1e293b',
-                    marginBottom: '6px'
-                  }}>
-                    Your Data
-                  </h4>
-                  <div style={{
-                    fontSize: '15px',
-                    color: '#64748b',
-                    lineHeight: '1.5'
-                  }}>
-                    <div>• Campaign metrics</div>
-                    <div>• Keywords performance</div>
-                    <div>• Historical data</div>
-          </div>
+        <div style={{ fontSize: "32px", marginBottom: "12px" }}>🐝🛡️</div>
+        <div style={{ fontSize: "20px", fontWeight: 600, marginBottom: "8px" }}>
+          Watch Buzz &amp; Aegis work →
         </div>
-                
-                {/* ARROW 1 - УЛУЧШЕННАЯ АНИМАЦИЯ */}
-                <div style={{
-                  margin: '0 32px',
-                  position: 'relative'
-                }}>
-                  <div style={{
-                    display: 'flex',
-                    alignItems: 'center'
-                  }}>
-                    <div style={{
-                      width: '60px',
-                      height: '2px',
-                      background: 'linear-gradient(90deg, #667eea, rgba(102, 126, 234, 0.3))',
-                      position: 'relative',
-                      overflow: 'hidden',
-                      borderRadius: '1px'
-                    }}>
-                      <div style={{
-                        position: 'absolute',
-                        inset: 0,
-                        background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent)',
-                        width: '20px',
-                        animation: 'dataFlow 2s ease-in-out infinite'
-                      }}></div>
-                    </div>
-                    <div style={{
-                      width: '0',
-                      height: '0',
-                      borderLeft: '8px solid #667eea',
-                      borderTop: '5px solid transparent',
-                      borderBottom: '5px solid transparent',
-                      marginLeft: '2px',
-                      animation: 'pulse 3s infinite'
-                    }}></div>
-                  </div>
-                  <div style={{
-                    fontSize: '11px',
-                    color: '#667eea',
-                    marginTop: '6px',
-                    fontWeight: '500',
-                    opacity: 0.8
-                  }}>
-                    Analyzing...
-                  </div>
-                  {/* Одна движущаяся точка данных */}
-                  <div style={{
-                    position: 'absolute',
-                    top: '50%',
-                    left: '0',
-                    width: '6px',
-                    height: '6px',
-                    background: '#667eea',
-                    borderRadius: '50%',
-                    animation: 'dataFlow 2s ease-in-out infinite',
-                    boxShadow: '0 0 8px rgba(102, 126, 234, 0.4)'
-                  }}></div>
-                </div>
-                
-                {/* AI BRAIN - УСИЛЕННАЯ АНИМАЦИЯ */}
-                <div style={{
-                  textAlign: 'center',
-                  flex: 1
-                }}>
-                  <div style={{
-                    width: '100px',
-                    height: '100px',
-                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                    borderRadius: '16px',
-                    boxShadow: '0 8px 24px rgba(102, 126, 234, 0.3)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    margin: '0 auto 16px auto',
-                    animation: 'aiEnginePulse 3s ease-in-out infinite, spin-slow 8s linear infinite'
-                  }}>
-                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" style={{
-                      animation: 'aiEngineGlow 2s ease-in-out infinite alternate'
-                    }}>
-                      <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.23 3 3 0 0 1-.34-5.58l.34-.03a2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"/>
-                      <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.23 3 3 0 0 0 .34-5.58l-.34-.03a2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"/>
-          </svg>
-                  </div>
-                  <h4 style={{
-                    fontSize: '20px',
-                    fontWeight: '700',
-                    color: '#1e293b',
-                    marginBottom: '6px'
-                  }}>
-                    AI Engine
-                  </h4>
-                  <div style={{
-                    fontSize: '15px',
-                    color: '#64748b',
-                    lineHeight: '1.5'
-                  }}>
-                    <div>• Analysis</div>
-                    <div>• Optimization</div>
-                    <div>• Predictions</div>
-                  </div>
-                </div>
-                
-                {/* ARROW 2 - УЛУЧШЕННАЯ АНИМАЦИЯ */}
-                <div style={{
-                  margin: '0 32px',
-                  position: 'relative'
-                }}>
-                  <div style={{
-                    display: 'flex',
-                    alignItems: 'center'
-                  }}>
-                    <div style={{
-                      width: '60px',
-                      height: '2px',
-                      background: 'linear-gradient(90deg, #764ba2, rgba(118, 75, 162, 0.3))',
-                      position: 'relative',
-                      overflow: 'hidden',
-                      borderRadius: '1px'
-                    }}>
-                      <div style={{
-                        position: 'absolute',
-                        inset: 0,
-                        background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent)',
-                        width: '20px',
-                        animation: 'dataFlow 2s ease-in-out infinite'
-                      }}></div>
-                    </div>
-                    <div style={{
-                      width: '0',
-                      height: '0',
-                      borderLeft: '8px solid #764ba2',
-                      borderTop: '5px solid transparent',
-                      borderBottom: '5px solid transparent',
-                      marginLeft: '2px',
-                      animation: 'pulse 3s infinite'
-                    }}></div>
-                  </div>
-                  <div style={{
-                    fontSize: '11px',
-                    color: '#764ba2',
-                    marginTop: '6px',
-                    fontWeight: '500',
-                    opacity: 0.8
-                  }}>
-                    Optimizing...
-                  </div>
-                  {/* Одна движущаяся точка данных */}
-                  <div style={{
-                    position: 'absolute',
-                    top: '50%',
-                    left: '0',
-                    width: '6px',
-                    height: '6px',
-                    background: '#764ba2',
-                    borderRadius: '50%',
-                    animation: 'dataFlow 2s ease-in-out infinite',
-                    boxShadow: '0 0 8px rgba(118, 75, 162, 0.4)'
-                  }}></div>
-                </div>
-                
-                {/* OUTPUT */}
-                <div style={{
-                  textAlign: 'center',
-                  flex: 1
-                }}>
-                  <div style={{
-                    width: '80px',
-                    height: '80px',
-                    background: 'white',
-                    borderRadius: '16px',
-                    boxShadow: '0 4px 16px rgba(0,0,0,0.1)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    margin: '0 auto 16px auto',
-                    animation: 'pulse 2s infinite'
-                  }}>
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#764ba2" strokeWidth="2" style={{
-                      animation: 'pulse 2s infinite'
-                    }}>
-                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                      <polyline points="22,4 12,14.01 9,11.01"/>
-                    </svg>
-                  </div>
-                  <h4 style={{
-                    fontSize: '20px',
-                    fontWeight: '700',
-                    color: '#1e293b',
-                    marginBottom: '6px'
-                  }}>
-                    Smart Results
-                  </h4>
-                  <div style={{
-                    fontSize: '15px',
-                    color: '#64748b',
-                    lineHeight: '1.5'
-                  }}>
-                    <div>• Issues detected</div>
-                    <div>• Costs optimized</div>
-                    <div>• Future predicted</div>
-                  </div>
-                </div>
-              </div>
-              
-              {/* METRICS BAR - УЛУЧШЕННЫЕ АНИМИРОВАННЫЕ СЧЕТЧИКИ */}
-              <div style={{
-                background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
-                borderRadius: '16px',
-                padding: '32px 24px',
-                boxShadow: '0 8px 32px rgba(0,0,0,0.08), 0 4px 16px rgba(102, 126, 234, 0.05)',
-                border: '1px solid rgba(102, 126, 234, 0.1)'
-              }}>
-                <div style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  textAlign: 'center',
-                  gap: '20px'
-                }}>
-                  <div style={{
-                    flex: 1,
-                    animation: 'fadeInUp 1s ease-out'
-                  }}>
-                    <div style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      gap: '8px',
-                      marginBottom: '8px'
-                    }}>
-                      <div style={{
-                        width: '24px',
-                        height: '24px',
-                        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                        borderRadius: '6px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center'
-                      }}>
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                          <circle cx="12" cy="12" r="10"/>
-                          <polyline points="12,6 12,12 16,14"/>
-                        </svg>
-                    </div>
-                    <div style={{
-                        animation: 'countUp 1.5s ease-out'
-                      }}>
-                        <AnimatedCounter endValue={85} suffix="%" delay={800} />
-                      </div>
-                    </div>
-                    <div style={{
-                      fontSize: '15px',
-                      color: '#1e293b',
-                      fontWeight: '600',
-                      marginBottom: '4px'
-                    }}>
-                      Faster Detection
-                    </div>
-
-                  </div>
-                  
-                  <div style={{
-                    width: '1px',
-                    height: '60px',
-                    background: 'linear-gradient(180deg, transparent, rgba(102, 126, 234, 0.2), transparent)'
-                  }}></div>
-                  
-                  <div style={{
-                    flex: 1,
-                    animation: 'fadeInUp 1s ease-out',
-                    animationDelay: '0.2s'
-                  }}>
-                    <div style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      gap: '8px',
-                      marginBottom: '8px'
-                    }}>
-                      <div style={{
-                        width: '24px',
-                        height: '24px',
-                        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                        borderRadius: '6px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center'
-                      }}>
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                          <path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-                        </svg>
-                      </div>
-                      <div style={{
-                        animation: 'countUp 1.5s ease-out',
-                      animationDelay: '0.2s'
-                    }}>
-                        <AnimatedCurrencyCounter endValue={1.30} delay={1000} />
-                      </div>
-                    </div>
-                    <div style={{
-                      fontSize: '15px',
-                      color: '#1e293b',
-                      fontWeight: '600',
-                      marginBottom: '4px'
-                    }}>
-                      Saved Per Click
-                    </div>
-
-                  </div>
-                  
-                  <div style={{
-                    width: '1px',
-                    height: '60px',
-                    background: 'linear-gradient(180deg, transparent, rgba(118, 75, 162, 0.2), transparent)'
-                  }}></div>
-                  
-                  <div style={{
-                    flex: 1,
-                    animation: 'fadeInUp 1s ease-out',
-                    animationDelay: '0.4s'
-                  }}>
-                    <div style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      gap: '8px',
-                      marginBottom: '8px'
-                    }}>
-                      <div style={{
-                        width: '24px',
-                        height: '24px',
-                        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                        borderRadius: '6px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center'
-                      }}>
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                          <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.23 3 3 0 0 1-.34-5.58l.34-.03a2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"/>
-                          <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.23 3 3 0 0 0 .34-5.58l-.34-.03a2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"/>
-                        </svg>
-                      </div>
-                      <div style={{
-                        animation: 'countUp 1.5s ease-out',
-                      animationDelay: '0.4s'
-                    }}>
-                        <AnimatedCounter endValue={87} suffix="%" delay={1200} />
-                      </div>
-                    </div>
-                    <div style={{
-                      fontSize: '15px',
-                      color: '#1e293b',
-                      fontWeight: '600',
-                      marginBottom: '4px'
-                    }}>
-                      Prediction Accuracy
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Features Grid */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
-            gap: '40px',
-            marginBottom: '80px',
-            alignItems: 'stretch'
-          }}>
-            {/* Feature 1: AI-Powered Analysis */}
-            <div style={{
-              background: 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)',
-              borderRadius: '20px',
-              padding: '40px',
-              border: '1px solid rgba(102, 126, 234, 0.1)',
-              boxShadow: '0 8px 32px rgba(0,0,0,0.08), 0 4px 16px rgba(102, 126, 234, 0.05)',
-              transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-              position: 'relative',
-              overflow: 'hidden',
-              cursor: 'pointer',
-              display: 'flex',
-              flexDirection: 'column'
-            }}
-            onMouseEnter={(e) => {
-              const target = e.target as HTMLElement;
-              target.style.transform = 'translateY(-4px) scale(1.02)';
-              target.style.boxShadow = '0 20px 40px rgba(102, 126, 234, 0.12), 0 8px 24px rgba(0,0,0,0.1)';
-              target.style.borderColor = 'rgba(102, 126, 234, 0.2)';
-            }}
-            onMouseLeave={(e) => {
-              const target = e.target as HTMLElement;
-              target.style.transform = 'translateY(0) scale(1)';
-              target.style.boxShadow = '0 8px 32px rgba(0,0,0,0.08), 0 4px 16px rgba(102, 126, 234, 0.05)';
-              target.style.borderColor = 'rgba(102, 126, 234, 0.1)';
-            }}>
-              {/* Subtle background pattern */}
-              <div style={{
-                position: 'absolute',
-                top: 0,
-                right: 0,
-                width: '100px',
-                height: '100px',
-                background: 'radial-gradient(circle, rgba(102, 126, 234, 0.03) 0%, transparent 70%)',
-                borderRadius: '50%',
-                transform: 'translate(30px, -30px)',
-                pointerEvents: 'none'
-              }}></div>
-              
-              <div style={{
-                width: '60px',
-                height: '60px',
-                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                borderRadius: '16px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                marginBottom: '24px',
-                boxShadow: '0 8px 24px rgba(102, 126, 234, 0.2)',
-                transition: 'all 0.3s ease'
-              }}>
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                  <path d="M9 11H1l8-8 8 8h-8v8z"/>
-                  <path d="M3 15h6"/>
-                  <path d="M3 19h6"/>
-                </svg>
-              </div>
-              <h3 style={{
-                fontSize: '24px',
-                fontWeight: '700',
-                color: '#1e293b',
-                marginBottom: '16px',
-                whiteSpace: 'nowrap'
-              }}>
-                AI-Powered Analysis
-              </h3>
-              <p style={{
-                fontSize: '16px',
-                color: '#64748b',
-                lineHeight: '1.6',
-                marginBottom: '24px',
-                minHeight: '140px'
-              }}>
-                Our advanced AI analyzes your campaigns in real-time, identifying performance patterns, detecting anomalies, and uncovering hidden opportunities that traditional analysis might miss.
-              </p>
-              <div style={{
-                marginBottom: '24px'
-              }}>
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '12px',
-                  marginBottom: '12px',
-                  fontSize: '15px',
-                  color: '#1e293b',
-                  fontWeight: '500'
-                }}>
-                  <div style={{
-                    width: '8px',
-                    height: '8px',
-                    background: '#667eea',
-                    borderRadius: '50%',
-                    flexShrink: 0
-                  }}></div>
-                  <span>Real-time performance monitoring & alerts</span>
-                </div>
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '12px',
-                  marginBottom: '12px',
-                  fontSize: '15px',
-                  color: '#1e293b',
-                  fontWeight: '500'
-                }}>
-                  <div style={{
-                    width: '8px',
-                    height: '8px',
-                    background: '#667eea',
-                    borderRadius: '50%',
-                    flexShrink: 0
-                  }}></div>
-                  <span>Anomaly detection & alerts</span>
-                </div>
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '12px',
-                  fontSize: '15px',
-                  color: '#1e293b',
-                  fontWeight: '500'
-                }}>
-                  <div style={{
-                    width: '8px',
-                    height: '8px',
-                    background: '#667eea',
-                    borderRadius: '50%',
-                    flexShrink: 0
-                  }}></div>
-                  <span>Hidden opportunity identification</span>
-                </div>
-              </div>
-              <button style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-                fontSize: '15px',
-                color: '#667eea',
-                fontWeight: '600',
-                background: 'transparent',
-                cursor: 'pointer',
-                padding: '12px 20px',
-                borderRadius: '10px',
-                transition: 'all 0.3s ease',
-                border: '2px solid #667eea',
-                marginTop: 'auto'
-              }}
-              onClick={() => window.location.href = '/chat'}
-              onMouseEnter={(e) => {
-                const target = e.target as HTMLElement;
-                target.style.background = 'rgba(102, 126, 234, 0.1)';
-              }}
-              onMouseLeave={(e) => {
-                const target = e.target as HTMLElement;
-                target.style.background = 'transparent';
-              }}>
-                <span>Learn more</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{
-                  transition: 'transform 0.3s ease'
-                }}>
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                  <polyline points="12,5 19,12 12,19"></polyline>
-                </svg>
-              </button>
-            </div>
-
-            {/* Feature 2: Automated Optimization */}
-            <div style={{
-              background: 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)',
-              borderRadius: '20px',
-              padding: '40px',
-              border: '1px solid rgba(102, 126, 234, 0.1)',
-              boxShadow: '0 8px 32px rgba(0,0,0,0.08), 0 4px 16px rgba(102, 126, 234, 0.05)',
-              transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-              position: 'relative',
-              overflow: 'hidden',
-              cursor: 'pointer',
-              display: 'flex',
-              flexDirection: 'column'
-            }}
-            onMouseEnter={(e) => {
-              const target = e.target as HTMLElement;
-              target.style.transform = 'translateY(-4px) scale(1.02)';
-              target.style.boxShadow = '0 20px 40px rgba(102, 126, 234, 0.12), 0 8px 24px rgba(0,0,0,0.1)';
-              target.style.borderColor = 'rgba(102, 126, 234, 0.2)';
-            }}
-            onMouseLeave={(e) => {
-              const target = e.target as HTMLElement;
-              target.style.transform = 'translateY(0) scale(1)';
-              target.style.boxShadow = '0 8px 32px rgba(0,0,0,0.08), 0 4px 16px rgba(102, 126, 234, 0.05)';
-              target.style.borderColor = 'rgba(102, 126, 234, 0.1)';
-            }}>
-              {/* Subtle background pattern */}
-              <div style={{
-                position: 'absolute',
-                top: 0,
-                right: 0,
-                width: '100px',
-                height: '100px',
-                background: 'radial-gradient(circle, rgba(102, 126, 234, 0.03) 0%, transparent 70%)',
-                borderRadius: '50%',
-                transform: 'translate(30px, -30px)',
-                pointerEvents: 'none'
-              }}></div>
-              
-              <div style={{
-                width: '60px',
-                height: '60px',
-                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                borderRadius: '16px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                marginBottom: '24px',
-                boxShadow: '0 8px 24px rgba(102, 126, 234, 0.2)',
-                transition: 'all 0.3s ease'
-              }}>
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                  <path d="M9 11H1l8-8 8 8h-8v8z"/>
-                  <path d="M3 15h6"/>
-                  <path d="M3 19h6"/>
-                </svg>
-              </div>
-              <h3 style={{
-                fontSize: '24px',
-                fontWeight: '700',
-                color: '#1e293b',
-                marginBottom: '16px',
-                whiteSpace: 'nowrap'
-              }}>
-                Automated Optimization
-              </h3>
-              <p style={{
-                fontSize: '16px',
-                color: '#64748b',
-                lineHeight: '1.6',
-                marginBottom: '24px',
-                minHeight: '140px'
-              }}>
-                Set your goals and watch our AI work 24/7. Automatically adjust bids, pause underperforming keywords, and optimize ad copy - all based on real-time performance data.
-              </p>
-              <div style={{
-                marginBottom: '24px'
-              }}>
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '12px',
-                  marginBottom: '12px',
-                  fontSize: '15px',
-                  color: '#1e293b',
-                  fontWeight: '500'
-                }}>
-                  <div style={{
-                    width: '8px',
-                    height: '8px',
-                    background: '#667eea',
-                    borderRadius: '50%',
-                    flexShrink: 0
-                  }}></div>
-                  <span>Smart bid adjustments for maximum ROI</span>
-                </div>
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '12px',
-                  marginBottom: '12px',
-                  fontSize: '15px',
-                  color: '#1e293b',
-                  fontWeight: '500'
-                }}>
-                  <div style={{
-                    width: '8px',
-                    height: '8px',
-                    background: '#667eea',
-                    borderRadius: '50%',
-                    flexShrink: 0
-                  }}></div>
-                  <span>Keyword performance management</span>
-                </div>
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '12px',
-                  fontSize: '15px',
-                  color: '#1e293b',
-                  fontWeight: '500'
-                }}>
-                  <div style={{
-                    width: '8px',
-                    height: '8px',
-                    background: '#667eea',
-                    borderRadius: '50%',
-                    flexShrink: 0
-                  }}></div>
-                  <span>Ad copy optimization</span>
-                </div>
-              </div>
-              <button style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-                fontSize: '15px',
-                color: '#667eea',
-                fontWeight: '600',
-                background: 'transparent',
-                cursor: 'pointer',
-                padding: '12px 20px',
-                borderRadius: '10px',
-                transition: 'all 0.3s ease',
-                border: '2px solid #667eea',
-                marginTop: 'auto'
-              }}
-              onClick={() => window.location.href = '/chat'}
-              onMouseEnter={(e) => {
-                const target = e.target as HTMLElement;
-                target.style.background = 'rgba(102, 126, 234, 0.1)';
-              }}
-              onMouseLeave={(e) => {
-                const target = e.target as HTMLElement;
-                target.style.background = 'transparent';
-              }}>
-                <span>Learn more</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{
-                  transition: 'transform 0.3s ease'
-                }}>
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                  <polyline points="12,5 19,12 12,19"></polyline>
-                </svg>
-              </button>
-            </div>
-
-            {/* Feature 3: Predictive Insights */}
-            <div style={{
-              background: 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)',
-              borderRadius: '20px',
-              padding: '40px',
-              border: '1px solid rgba(139,92,246,0.1)',
-              boxShadow: '0 8px 32px rgba(0,0,0,0.08), 0 4px 16px rgba(139,92,246,0.05)',
-              transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-              position: 'relative',
-              overflow: 'hidden',
-              cursor: 'pointer',
-              display: 'flex',
-              flexDirection: 'column'
-            }}
-            onMouseEnter={(e) => {
-              const target = e.target as HTMLElement;
-              target.style.transform = 'translateY(-4px) scale(1.02)';
-              target.style.boxShadow = '0 20px 40px rgba(139,92,246,0.12), 0 8px 24px rgba(0,0,0,0.1)';
-              target.style.borderColor = 'rgba(139,92,246,0.2)';
-            }}
-            onMouseLeave={(e) => {
-              const target = e.target as HTMLElement;
-              target.style.transform = 'translateY(0) scale(1)';
-              target.style.boxShadow = '0 8px 32px rgba(0,0,0,0.08), 0 4px 16px rgba(139,92,246,0.05)';
-              target.style.borderColor = 'rgba(139,92,246,0.1)';
-            }}>
-              {/* Subtle background pattern */}
-              <div style={{
-                position: 'absolute',
-                top: 0,
-                right: 0,
-                width: '100px',
-                height: '100px',
-                background: 'radial-gradient(circle, rgba(139,92,246,0.03) 0%, transparent 70%)',
-                borderRadius: '50%',
-                transform: 'translate(30px, -30px)',
-                pointerEvents: 'none'
-              }}></div>
-              
-              <div style={{
-                width: '60px',
-                height: '60px',
-                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                borderRadius: '16px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                marginBottom: '24px',
-                boxShadow: '0 8px 24px rgba(102, 126, 234, 0.2)',
-                transition: 'all 0.3s ease'
-              }}>
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                  <path d="M12 2v4m0 12v4"/>
-                  <path d="M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83"/>
-                  <path d="M19.07 4.93l-2.83 2.83m-8.48 8.48l-2.83 2.83"/>
-                  <circle cx="12" cy="12" r="3"/>
-                </svg>
-              </div>
-              <h3 style={{
-                fontSize: '24px',
-                fontWeight: '700',
-                color: '#1e293b',
-                marginBottom: '16px',
-                whiteSpace: 'nowrap'
-              }}>
-                Predictive Insights
-              </h3>
-              <p style={{
-                fontSize: '16px',
-                color: '#64748b',
-                lineHeight: '1.6',
-                marginBottom: '24px',
-                minHeight: '140px'
-              }}>
-                Stay ahead of the competition with predictive analytics. Our AI forecasts campaign performance up to 30 days ahead, identifies seasonal trends, and recommends proactive strategies before your competitors catch on.
-              </p>
-              <div style={{
-                marginBottom: '24px'
-              }}>
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '12px',
-                  marginBottom: '12px',
-                  fontSize: '15px',
-                  color: '#1e293b',
-                  fontWeight: '500'
-                }}>
-                  <div style={{
-                    width: '8px',
-                    height: '8px',
-                    background: '#667eea',
-                    borderRadius: '50%',
-                    flexShrink: 0
-                  }}></div>
-                  <span>Performance forecasting</span>
-                </div>
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '12px',
-                  marginBottom: '12px',
-                  fontSize: '15px',
-                  color: '#1e293b',
-                  fontWeight: '500'
-                }}>
-                  <div style={{
-                    width: '8px',
-                    height: '8px',
-                    background: '#667eea',
-                    borderRadius: '50%',
-                    flexShrink: 0
-                  }}></div>
-                  <span>Seasonal trend analysis</span>
-                </div>
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '12px',
-                  fontSize: '15px',
-                  color: '#1e293b',
-                  fontWeight: '500'
-                }}>
-                  <div style={{
-                    width: '8px',
-                    height: '8px',
-                    background: '#667eea',
-                    borderRadius: '50%',
-                    flexShrink: 0
-                  }}></div>
-                  <span>Proactive strategy recommendations</span>
-                </div>
-              </div>
-              <button style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-                fontSize: '15px',
-                color: '#667eea',
-                fontWeight: '600',
-                background: 'transparent',
-                cursor: 'pointer',
-                padding: '12px 20px',
-                borderRadius: '10px',
-                transition: 'all 0.3s ease',
-                border: '2px solid #667eea',
-                marginTop: 'auto'
-              }}
-              onClick={() => window.location.href = '/chat'}
-              onMouseEnter={(e) => {
-                const target = e.target as HTMLElement;
-                target.style.background = 'rgba(102, 126, 234, 0.1)';
-              }}
-              onMouseLeave={(e) => {
-                const target = e.target as HTMLElement;
-                target.style.background = 'transparent';
-              }}>
-                <span>Learn more</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{
-                  transition: 'transform 0.3s ease'
-                }}>
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                  <polyline points="12,5 19,12 12,19"></polyline>
-                </svg>
-              </button>
-            </div>
-          </div>
-
-
+        <div style={{ color: "#A0A0A0", fontSize: "13px" }}>
+          See 2 AI agents analyse 3 campaigns and propose changes in real-time
         </div>
-      </section>
+      </a>
+    </div>
+  </section>
+);
 
+const HowItWorks: React.FC = () => (
+  <section style={{ padding: "80px 24px", background: "#0F1116" }}>
+    <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+      <SectionHeader title="How it works" subtitle="From sign-up to AI-on-autopilot in 3 steps" />
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "20px" }}>
+        <Step
+          n={1}
+          title="Connect Google Ads"
+          body="OAuth, read-only at first. We see your campaigns, you stay in control of the account."
+        />
+        <Step
+          n={2}
+          title="Pick autonomy level"
+          body="L1 Co-pilot (AI suggests, you approve) → L2 (AI acts on small changes) → L3 (full autopilot)."
+        />
+        <Step
+          n={3}
+          title="Watch agents work"
+          body="Real-time dashboard. Mascots show what each agent is doing. Every action logged with reasoning."
+        />
+      </div>
+    </div>
+  </section>
+);
 
+const Step: React.FC<{ n: number; title: string; body: string }> = ({ n, title, body }) => (
+  <div
+    style={{
+      padding: "28px",
+      background: "#15181D",
+      border: "1px solid #1F232B",
+      borderRadius: "16px",
+    }}
+  >
+    <div
+      style={{
+        width: "40px",
+        height: "40px",
+        borderRadius: "10px",
+        background: "#00FFE7",
+        color: "#0F1116",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        fontSize: "20px",
+        fontWeight: 800,
+        marginBottom: "16px",
+      }}
+    >
+      {n}
+    </div>
+    <h3 style={{ fontSize: "18px", fontWeight: 700, margin: "0 0 8px" }}>{title}</h3>
+    <p style={{ color: "#A0A0A0", lineHeight: 1.6, margin: 0, fontSize: "14px" }}>{body}</p>
+  </div>
+);
 
+const TEAM = [
+  { emoji: "🐝", name: "Buzz", role: "Bidding Agent", desc: "Корректирует ставки по перформансу. Объясняет каждое решение.", status: "live" },
+  { emoji: "🛡️", name: "Aegis", role: "Risk Agent", desc: "Ревьюит решения Buzz. Блокирует опасные. Поясняет почему.", status: "live" },
+  { emoji: "🐻", name: "Maximus", role: "Orchestrator", desc: "Координирует команду. Эскалирует тебе только важное.", status: "coming" },
+  { emoji: "🦊", name: "Vox", role: "Strategy", desc: "Распределяет бюджет между кампаниями и платформами.", status: "coming" },
+  { emoji: "🎨", name: "Mira", role: "Creative", desc: "Генерит ad copy + картинки. Запускает A/B тесты.", status: "coming" },
+  { emoji: "🦉", name: "Sage", role: "Research", desc: "Ищет новые ключи, аудитории, конкурентов.", status: "coming" },
+  { emoji: "📊", name: "Echo", role: "Reporting", desc: "Weekly digest по email/Telegram человеческим языком.", status: "coming" },
+];
 
-
-
-
-      
-
-      {/* === ВАРІАНТ 1: Professional Code Editor === */}
-
-
-
-
-
-
-      {/* Interactive FAQ Section */}
-      <section style={{
-        padding: '120px 0',
-        background: 'linear-gradient(180deg, #f8fafc 0%, #ffffff 100%)',
-        position: 'relative'
-      }}>
-        <div style={{
-          maxWidth: '1000px',
-          margin: '0 auto',
-          padding: '0 24px'
-        }}>
-          {/* Section Header */}
-          <div style={{
-            textAlign: 'center',
-            marginBottom: '80px'
-          }}>
-            <h2 style={{
-              fontSize: 'clamp(36px, 4vw, 48px)',
-              fontWeight: '800',
-              color: '#1e293b',
-              marginBottom: '24px',
-              lineHeight: '1.2'
-            }}>
-              Frequently Asked Questions
-            </h2>
-            <p style={{
-              fontSize: 'clamp(16px, 2vw, 18px)',
-              color: '#64748b',
-              maxWidth: '600px',
-              margin: '0 auto',
-              lineHeight: '1.6'
-            }}>
-              Everything you need to know about Kampaio
-            </p>
-          </div>
-
-          {/* Interactive FAQ Items */}
-          <div style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '16px'
-          }}>
-            {/* FAQ Item 1 */}
-            <div style={{
-              background: 'white',
-              borderRadius: '16px',
-              boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
-              border: '1px solid #f3f4f6',
-              overflow: 'hidden',
-              transition: 'all 0.3s ease',
-              cursor: 'pointer'
-            }} onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-2px)';
-              e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
-            }} onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,0,0,0.06)';
-            }} onClick={() => handleFAQClick(1)}>
-              <div style={{
-                padding: '24px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                transition: 'background-color 0.3s ease'
-              }} onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = '#f9fafb';
-              }} onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = 'transparent';
-              }}>
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '16px'
-                }}>
-                  <div id="faq-icon-1" style={{
-                    width: '40px',
-                    height: '40px',
-                    borderRadius: '8px',
-                    backgroundColor: openQuestion === 1 ? '#667eea' : '#E5E7EB',
-                    color: openQuestion === 1 ? 'white' : '#6B7280',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontSize: '18px',
-                    fontWeight: 'bold',
-                    transition: 'all 0.3s ease'
-                  }}>
-                    {openQuestion === 1 ? '−' : '+'}
-                  </div>
-                  <h3 style={{
-                    fontSize: '18px',
-                    fontWeight: '600',
-                    color: '#1e293b',
-                    margin: 0
-                  }}>
-                    What is Kampaio?
-                  </h3>
-                </div>
-                
-                <svg 
-                  style={{
-                    width: '20px',
-                    height: '20px',
-                    color: '#9ca3af',
-                    transition: 'transform 0.3s ease'
-                  }}
-                  fill="none" 
-                  stroke="currentColor" 
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </div>
-              
-              {/* Animated Answer */}
-              <div id="faq-answer-1" style={{
-                maxHeight: openQuestion === 1 ? '200px' : '0px',
-                opacity: openQuestion === 1 ? '1' : '0',
-                overflow: 'hidden',
-                transition: 'all 0.3s ease-in-out'
-              }}>
-                <div style={{
-                  padding: '0 24px 24px 24px'
-                }}>
-                  <div style={{
-                    paddingLeft: '56px',
-                    borderLeft: '4px solid #667eea',
-                    paddingTop: '16px',
-                    paddingBottom: '16px'
-                  }}>
-                    <p style={{
-                      color: '#64748b',
-                      lineHeight: '1.6',
-                      margin: '0 0 16px 0'
-                    }}>
-                      Kampaio is an AI assistant for Google Ads that analyzes your campaigns, generates reports, and suggests data-driven strategies and improvements.
-                    </p>
-                    
-                    {/* Action Buttons */}
-                    <div style={{
-                      display: 'flex',
-                      gap: '12px'
-                    }}>
-                      <button id="faq-button-1" style={{
-                        padding: '8px 16px',
-                        fontSize: '14px',
-                        fontWeight: '500',
-                        color: openQuestion === 1 ? 'white' : '#6B7280',
-                        background: openQuestion === 1 ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' : '#E5E7EB',
-                        border: 'none',
-                        borderRadius: '8px',
-                        cursor: 'pointer',
-                        transition: 'all 0.3s ease',
-                        boxShadow: openQuestion === 1 ? '0 4px 12px rgba(102, 126, 234, 0.2)' : 'none'
-                      }}
-                      onClick={() => window.location.href = '/register'}>
-                        Get Started
-            </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* FAQ Item 2 */}
-            <div style={{
-              background: 'white',
-              borderRadius: '16px',
-              boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
-              border: '1px solid #f3f4f6',
-              overflow: 'hidden',
-              transition: 'all 0.3s ease',
-              cursor: 'pointer'
-            }} onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-2px)';
-              e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
-            }} onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,0,0,0.06)';
-            }} onClick={() => handleFAQClick(2)}>
-              <div style={{
-                padding: '24px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                transition: 'background-color 0.3s ease'
-              }} onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = '#f9fafb';
-              }} onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = 'transparent';
-              }}>
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '16px'
-                }}>
-                  <div id="faq-icon-2" style={{
-                    width: '40px',
-                    height: '40px',
-                    borderRadius: '8px',
-                    backgroundColor: openQuestion === 2 ? '#667eea' : '#E5E7EB',
-                    color: openQuestion === 2 ? 'white' : '#6B7280',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontSize: '18px',
-                    fontWeight: 'bold',
-                    transition: 'all 0.3s ease'
-                  }}>
-                    {openQuestion === 2 ? '−' : '+'}
-                  </div>
-                  <h3 style={{
-                    fontSize: '18px',
-                    fontWeight: '600',
-                    color: '#1e293b',
-                    margin: 0
-                  }}>
-                    How is Kampaio different from other tools?
-                  </h3>
-                </div>
-                
-                <svg 
-                  style={{
-                    width: '20px',
-                    height: '20px',
-                    color: '#9ca3af',
-                    transition: 'transform 0.3s ease'
-                  }}
-                  fill="none" 
-                  stroke="currentColor" 
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </div>
-              
-              {/* Animated Answer */}
-              <div id="faq-answer-2" style={{
-                maxHeight: openQuestion === 2 ? '200px' : '0px',
-                opacity: openQuestion === 2 ? '1' : '0',
-                overflow: 'hidden',
-                transition: 'all 0.3s ease-in-out'
-              }}>
-                <div style={{
-                  padding: '0 24px 24px 24px'
-                }}>
-                  <div style={{
-                    paddingLeft: '56px',
-                    borderLeft: '4px solid #667eea',
-                    paddingTop: '16px',
-                    paddingBottom: '16px'
-                  }}>
-                    <p style={{
-                      color: '#64748b',
-                      lineHeight: '1.6',
-                      margin: '0 0 16px 0'
-                    }}>
-                      Unlike generic tools, Kampaio combines GPT-4, Google Ads API, and RAG to deliver precise, personalized recommendations — not just templates.
-                    </p>
-                    
-                    {/* Action Buttons */}
-                    <div style={{
-                      display: 'flex',
-                      gap: '12px'
-                    }}>
-                      <button id="faq-button-2" style={{
-                        padding: '8px 16px',
-                        fontSize: '14px',
-                        fontWeight: '500',
-                        color: openQuestion === 2 ? 'white' : '#6B7280',
-                        background: openQuestion === 2 ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' : '#E5E7EB',
-                        border: 'none',
-                        borderRadius: '8px',
-                        cursor: 'pointer',
-                        transition: 'all 0.3s ease',
-                        boxShadow: openQuestion === 2 ? '0 4px 12px rgba(102, 126, 234, 0.2)' : 'none'
-                      }}
-                      onClick={() => window.location.href = '/register'}>
-                        Get Started
-            </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* FAQ Item 3 */}
-            <div style={{
-              background: 'white',
-              borderRadius: '16px',
-              boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
-              border: '1px solid #f3f4f6',
-              overflow: 'hidden',
-              transition: 'all 0.3s ease',
-              cursor: 'pointer'
-            }} onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-2px)';
-              e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
-            }} onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,0,0,0.06)';
-            }} onClick={() => handleFAQClick(3)}>
-              <div style={{
-                padding: '24px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                transition: 'background-color 0.3s ease'
-              }} onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = '#f9fafb';
-              }} onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = 'transparent';
-              }}>
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '16px'
-                }}>
-                  <div id="faq-icon-3" style={{
-                    width: '40px',
-                    height: '40px',
-                    borderRadius: '8px',
-                    backgroundColor: openQuestion === 3 ? '#667eea' : '#E5E7EB',
-                    color: openQuestion === 3 ? 'white' : '#6B7280',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontSize: '18px',
-                    fontWeight: 'bold',
-                    transition: 'all 0.3s ease'
-                  }}>
-                    {openQuestion === 3 ? '−' : '+'}
-                  </div>
-                  <h3 style={{
-                    fontSize: '18px',
-                    fontWeight: '600',
-                    color: '#1e293b',
-                    margin: 0
-                  }}>
-                    Do I need to give access to my Google Ads account?
-                  </h3>
-                </div>
-                
-                <svg 
-                  style={{
-                    width: '20px',
-                    height: '20px',
-                    color: '#9ca3af',
-                    transition: 'transform 0.3s ease'
-                  }}
-                  fill="none" 
-                  stroke="currentColor" 
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </div>
-              
-              {/* Animated Answer */}
-              <div id="faq-answer-3" style={{
-                maxHeight: openQuestion === 3 ? '200px' : '0px',
-                opacity: openQuestion === 3 ? '1' : '0',
-                overflow: 'hidden',
-                transition: 'all 0.3s ease-in-out'
-              }}>
-                <div style={{
-                  padding: '0 24px 24px 24px'
-                }}>
-                  <div style={{
-                    paddingLeft: '56px',
-                    borderLeft: '4px solid #667eea',
-                    paddingTop: '16px',
-                    paddingBottom: '16px'
-                  }}>
-                                         <p style={{
-                       color: '#64748b',
-                       lineHeight: '1.6',
-                       margin: '0 0 16px 0'
-                     }}>
-                       Yes, but only read-only access. You stay in full control. Kampaio never makes automatic changes unless you explicitly approve them.
-                     </p>
-                    
-                    {/* Action Buttons */}
-                    <div style={{
-                      display: 'flex',
-                      gap: '12px'
-                    }}>
-                      <button id="faq-button-3" style={{
-                        padding: '8px 16px',
-                        fontSize: '14px',
-                        fontWeight: '500',
-                        color: openQuestion === 3 ? 'white' : '#6B7280',
-                        background: openQuestion === 3 ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' : '#E5E7EB',
-                        border: 'none',
-                        borderRadius: '8px',
-                        cursor: 'pointer',
-                        transition: 'all 0.3s ease',
-                        boxShadow: openQuestion === 3 ? '0 4px 12px rgba(102, 126, 234, 0.2)' : 'none'
-                      }}
-                      onClick={() => window.location.href = '/register'}>
-                        Get Started
-            </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* FAQ Item 4 */}
-            <div style={{
-              background: 'white',
-              borderRadius: '16px',
-              boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
-              border: '1px solid #f3f4f6',
-              overflow: 'hidden',
-              transition: 'all 0.3s ease',
-              cursor: 'pointer'
-            }} onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-2px)';
-              e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
-            }} onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,0,0,0.06)';
-            }} onClick={() => handleFAQClick(4)}>
-              <div style={{
-                padding: '24px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                transition: 'background-color 0.3s ease'
-              }} onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = '#f9fafb';
-              }} onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = 'transparent';
-              }}>
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '16px'
-                }}>
-                  <div id="faq-icon-4" style={{
-                    width: '40px',
-                    height: '40px',
-                    borderRadius: '8px',
-                    backgroundColor: openQuestion === 4 ? '#667eea' : '#E5E7EB',
-                    color: openQuestion === 4 ? 'white' : '#6B7280',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontSize: '18px',
-                    fontWeight: 'bold',
-                    transition: 'all 0.3s ease'
-                  }}>
-                    {openQuestion === 4 ? '−' : '+'}
-                  </div>
-                                     <h3 style={{
-                     fontSize: '18px',
-                     fontWeight: '600',
-                     color: '#1e293b',
-                     margin: 0
-                   }}>
-                     Can I try it for free?
-                   </h3>
-                </div>
-                
-                <svg 
-                  style={{
-                    width: '20px',
-                    height: '20px',
-                    color: '#9ca3af',
-                    transition: 'transform 0.3s ease'
-                  }}
-                  fill="none" 
-                  stroke="currentColor" 
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </div>
-              
-              {/* Animated Answer */}
-              <div id="faq-answer-4" style={{
-                maxHeight: openQuestion === 4 ? '200px' : '0px',
-                opacity: openQuestion === 4 ? '1' : '0',
-                overflow: 'hidden',
-                transition: 'all 0.3s ease-in-out'
-              }}>
-                <div style={{
-                  padding: '0 24px 24px 24px'
-                }}>
-                  <div style={{
-                    paddingLeft: '56px',
-                    borderLeft: '4px solid #667eea',
-                    paddingTop: '16px',
-                    paddingBottom: '16px'
-                  }}>
-                                         <p style={{
-                       color: '#64748b',
-                       lineHeight: '1.6',
-                       margin: '0 0 16px 0'
-                     }}>
-                       Yes! You get a 7-day free trial, no credit card required. Try Kampaio on your own ad campaigns and see the results yourself.
-                     </p>
-                    
-                    {/* Action Buttons */}
-                    <div style={{
-                      display: 'flex',
-                      gap: '12px'
-                    }}>
-                      <button id="faq-button-4" style={{
-                        padding: '8px 16px',
-                        fontSize: '14px',
-                        fontWeight: '500',
-                        color: openQuestion === 4 ? 'white' : '#6B7280',
-                        background: openQuestion === 4 ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' : '#E5E7EB',
-                        border: 'none',
-                        borderRadius: '8px',
-                        cursor: 'pointer',
-                        transition: 'all 0.3s ease',
-                        boxShadow: openQuestion === 4 ? '0 4px 12px rgba(102, 126, 234, 0.2)' : 'none'
-                      }}
-                      onClick={() => window.location.href = '/register'}>
-                        Get Started
-            </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* FAQ Item 5 */}
-            <div style={{
-              background: 'white',
-              borderRadius: '16px',
-              boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
-              border: '1px solid #f3f4f6',
-              overflow: 'hidden',
-              transition: 'all 0.3s ease',
-              cursor: 'pointer'
-            }} onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-2px)';
-              e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
-            }} onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,0,0,0.06)';
-            }} onClick={() => handleFAQClick(5)}>
-              <div style={{
-                padding: '24px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                transition: 'background-color 0.3s ease'
-              }} onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = '#f9fafb';
-              }} onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = 'transparent';
-              }}>
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '16px'
-                }}>
-                  <div id="faq-icon-5" style={{
-                    width: '40px',
-                    height: '40px',
-                    borderRadius: '8px',
-                    backgroundColor: openQuestion === 5 ? '#667eea' : '#E5E7EB',
-                    color: openQuestion === 5 ? 'white' : '#6B7280',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontSize: '18px',
-                    fontWeight: 'bold',
-                    transition: 'all 0.3s ease'
-                  }}>
-                    {openQuestion === 5 ? '−' : '+'}
-                  </div>
-                                     <h3 style={{
-                     fontSize: '18px',
-                     fontWeight: '600',
-                     color: '#1e293b',
-                     margin: 0
-                   }}>
-                     Is my Google Ads data secure?
-                   </h3>
-                </div>
-                
-                <svg 
-                  style={{
-                    width: '20px',
-                    height: '20px',
-                    color: '#9ca3af',
-                    transition: 'transform 0.3s ease'
-                  }}
-                  fill="none" 
-                  stroke="currentColor" 
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </div>
-              
-              {/* Animated Answer */}
-              <div id="faq-answer-5" style={{
-                maxHeight: openQuestion === 5 ? '200px' : '0px',
-                opacity: openQuestion === 5 ? '1' : '0',
-                overflow: 'hidden',
-                transition: 'all 0.3s ease-in-out'
-              }}>
-                <div style={{
-                  padding: '0 24px 24px 24px'
-                }}>
-                  <div style={{
-                    paddingLeft: '56px',
-                    borderLeft: '4px solid #667eea',
-                    paddingTop: '16px',
-                    paddingBottom: '16px'
-                  }}>
-                                         <p style={{
-                       color: '#64748b',
-                       lineHeight: '1.6',
-                       margin: '0 0 16px 0'
-                     }}>
-                       Yes, your data is completely secure. We use bank-level 256-bit SSL encryption, are SOC 2 Type II compliant, and follow GDPR regulations. We never share your data with third parties and only access what's necessary to optimize your campaigns.
-                     </p>
-                    
-                    {/* Action Buttons */}
-                    <div style={{
-                      display: 'flex',
-                      gap: '12px'
-                    }}>
-                      <button id="faq-button-5" style={{
-                        padding: '8px 16px',
-                        fontSize: '14px',
-                        fontWeight: '500',
-                        color: openQuestion === 5 ? 'white' : '#6B7280',
-                        background: openQuestion === 5 ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' : '#E5E7EB',
-                        border: 'none',
-                        borderRadius: '8px',
-                        cursor: 'pointer',
-                        transition: 'all 0.3s ease',
-                        boxShadow: openQuestion === 5 ? '0 4px 12px rgba(102, 126, 234, 0.2)' : 'none'
-                      }}
-                      onClick={() => window.location.href = '/register'}>
-                        Get Started
-            </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-          </div>
-          
-            {/* FAQ Item 6 */}
-            <div style={{
-              background: 'white',
-              borderRadius: '16px',
-              boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
-              border: '1px solid #f3f4f6',
-              overflow: 'hidden',
-              transition: 'all 0.3s ease',
-              cursor: 'pointer'
-            }} onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-2px)';
-              e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
-            }} onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,0,0,0.06)';
-            }} onClick={() => handleFAQClick(6)}>
-              <div style={{
-                padding: '24px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                transition: 'background-color 0.3s ease'
-              }} onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = '#f9fafb';
-              }} onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = 'transparent';
-              }}>
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '16px'
-                }}>
-                  <div id="faq-icon-6" style={{
-                    width: '40px',
-                    height: '40px',
-                    borderRadius: '8px',
-                    backgroundColor: openQuestion === 6 ? '#667eea' : '#E5E7EB',
-                    color: openQuestion === 6 ? 'white' : '#6B7280',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontSize: '18px',
-                    fontWeight: 'bold',
-                    transition: 'all 0.3s ease'
-                  }}>
-                    {openQuestion === 6 ? '−' : '+'}
-                  </div>
-                  <h3 style={{
-                    fontSize: '18px',
-                    fontWeight: '600',
-                    color: '#1e293b',
-                    margin: 0
-                  }}>
-                    Is it difficult to set up and get started?
-                  </h3>
-                </div>
-                
-                <svg 
-                style={{
-                    width: '20px',
-                    height: '20px',
-                    color: '#9ca3af',
-                    transition: 'transform 0.3s ease'
-                  }}
-                  fill="none" 
-                  stroke="currentColor" 
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                      </svg>
-                  </div>
-              
-              {/* Animated Answer */}
-              <div id="faq-answer-6" style={{
-                maxHeight: openQuestion === 6 ? '200px' : '0px',
-                opacity: openQuestion === 6 ? '1' : '0',
-                overflow: 'hidden',
-                transition: 'all 0.3s ease-in-out'
-              }}>
-                <div style={{
-                  padding: '0 24px 24px 24px'
-                }}>
-                  <div style={{
-                    paddingLeft: '56px',
-                    borderLeft: '4px solid #667eea',
-                    paddingTop: '16px',
-                    paddingBottom: '16px'
-                  }}>
-                    <p style={{
-                      color: '#64748b',
-                      lineHeight: '1.6',
-                      margin: '0 0 16px 0'
-                    }}>
-                      Not at all. Setup takes about 5 minutes - just connect your Google Ads account and we'll do the rest. We provide pre-built templates for your industry and step-by-step guides to get you started quickly.
-                    </p>
-                    
-                    {/* Action Buttons */}
-                    <div style={{
-                      display: 'flex',
-                      gap: '12px'
-                    }}>
-                      <button id="faq-button-6" style={{
-                        padding: '8px 16px',
-                        fontSize: '14px',
-                        fontWeight: '500',
-                        color: openQuestion === 6 ? 'white' : '#6B7280',
-                        background: openQuestion === 6 ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' : '#E5E7EB',
-                        border: 'none',
-                        borderRadius: '8px',
-                        cursor: 'pointer',
-                        transition: 'all 0.3s ease',
-                        boxShadow: openQuestion === 6 ? '0 4px 12px rgba(102, 126, 234, 0.2)' : 'none'
-                      }}
-                      onClick={() => window.location.href = '/register'}>
-                        Get Started
-                      </button>
-                </div>
-                  </div>
-                  </div>
-                </div>
-                  </div>
-          </div>
-        </div>
-      </section>
-
-
-
-      {/* G2 Grid Section */}
-      <section style={{
-        padding: '80px 20px',
-        background: 'white'
-      }}>
-        <div style={{
-          maxWidth: '1200px',
-          margin: '0 auto'
-        }}>
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(12, 1fr)',
-            gap: '0rem',
-            alignItems: 'center'
-          }}>
-            {/* Left side - Text content */}
-            <div style={{
-              gridColumn: 'span 6',
-              paddingRight: '40px'
-            }}>
-              <div style={{
-                color: '#1e293b'
-              }}>
-                <h2 style={{
-                  fontSize: 'clamp(2rem, 4vw, 3rem)',
-                  fontWeight: '700',
-                  marginBottom: '16px',
-                  lineHeight: '1.2'
-                }}>
-                  <span style={{
-                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    backgroundClip: 'text'
-                  }}>Works </span>
-                  <span>with Your Tools, Optimizes for Your Industry</span>
-                </h2>
-              </div>
-              <div style={{
-                marginBottom: '16px'
-              }}></div>
-              <div style={{
-                fontSize: 'clamp(1.125rem, 2vw, 1.25rem)',
-                color: '#64748b',
-                marginBottom: '40px',
-                lineHeight: '1.6'
-              }}>
-                <p>From dentists to SaaS companies - get AI-powered Google Ads optimization that integrates with your existing workflow and understands your business</p>
-              </div>
-              
-              {/* Badges grid */}
-              <div style={{
-                display: 'grid',
-                gridTemplateColumns: '1fr 1fr',
-                gap: '16px',
-                marginBottom: '40px'
-              }}>
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '8px'
-                }}>
-                  <div style={{
-                    width: '20px',
-                    height: '20px'
-                  }}>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      {/* Стилизованная башня - Enterprise */}
-                      <path d="M12 2L8 6v4h2v8h4v-8h2V6l-4-4z" fill="#374151"/>
-                      <rect x="10" y="14" width="4" height="2" fill="#374151"/>
-                      </svg>
-                  </div>
-                  <p style={{
-                    fontSize: '16px',
-                    fontWeight: '500',
-                    color: '#374151',
-                    margin: 0
-                  }}>Dentists</p>
-                </div>
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '8px'
-                }}>
-                  <div style={{
-                    width: '20px',
-                    height: '20px'
-                  }}>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      {/* Волновая линия - Mid-Market */}
-                      <path d="M3 12c2-4 4-6 6-6s4 2 6 6 4 6 6 6" stroke="#374151" strokeWidth="2" fill="none" strokeLinecap="round"/>
-                      <circle cx="12" cy="12" r="2" fill="#374151"/>
-                    </svg>
-                  </div>
-                  <p style={{
-                    fontSize: '16px',
-                    fontWeight: '500',
-                    color: '#374151',
-                    margin: 0
-                  }}>Real Estate</p>
-                </div>
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '8px'
-                }}>
-                  <div style={{
-                    width: '20px',
-                    height: '20px'
-                  }}>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      {/* Пульсирующий круг - User Satisfaction */}
-                      <circle cx="12" cy="12" r="8" fill="#374151"/>
-                      <circle cx="12" cy="12" r="4" fill="white"/>
-                      <circle cx="12" cy="12" r="2" fill="#374151"/>
-                      </svg>
-                  </div>
-                  <p style={{
-                    fontSize: '16px',
-                    fontWeight: '500',
-                    color: '#374151',
-                    margin: 0
-                  }}>SaaS Companies</p>
-                </div>
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '8px'
-                }}>
-                  <div style={{
-                    width: '20px',
-                    height: '20px'
-                  }}>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      {/* Соединенные точки - Small Business */}
-                      <circle cx="8" cy="8" r="2" fill="#374151"/>
-                      <circle cx="16" cy="8" r="2" fill="#374151"/>
-                      <circle cx="8" cy="16" r="2" fill="#374151"/>
-                      <circle cx="16" cy="16" r="2" fill="#374151"/>
-                      <line x1="8" y1="8" x2="16" y2="8" stroke="#374151" strokeWidth="1"/>
-                      <line x1="8" y1="16" x2="16" y2="16" stroke="#374151" strokeWidth="1"/>
-                      <line x1="8" y1="8" x2="8" y2="16" stroke="#374151" strokeWidth="1"/>
-                      <line x1="16" y1="8" x2="16" y2="16" stroke="#374151" strokeWidth="1"/>
-                    </svg>
-                  </div>
-                  <p style={{
-                    fontSize: '16px',
-                    fontWeight: '500',
-                    color: '#374151',
-                    margin: 0
-                  }}>Lawyers</p>
-                </div>
-              </div>
-
-              {/* Button */}
-              <div>
-                <a href="/ads"
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '8px',
-                    padding: '16px 32px',
-                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                    color: 'white',
-                    textDecoration: 'none',
-                    borderRadius: '12px',
-                    fontWeight: '600',
-                    fontSize: '16px',
-                    transition: 'all 0.3s ease',
-                    boxShadow: '0 8px 24px rgba(102, 126, 234, 0.3)'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = 'translateY(-2px)';
-                    e.currentTarget.style.boxShadow = '0 12px 32px rgba(102, 126, 234, 0.4)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = 'translateY(0)';
-                    e.currentTarget.style.boxShadow = '0 8px 24px rgba(102, 126, 234, 0.3)';
-                  }}
-                >
-                  <div>Find Your Industry</div>
-                  <div style={{ width: '16px', height: '16px' }}>
-                    <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M1 8.28955H15" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"></path>
-                      <path d="M9.27344 2.5625L15.0007 8.28977L9.27344 14.017" stroke="currentColor" strokeWidth="1.27273" strokeLinecap="round" strokeLinejoin="round"></path>
-                  </svg>
-                  </div>
-                </a>
-              </div>
-            </div>
-            
-            {/* Right side - Image */}
-            <div style={{
-              gridColumn: 'span 6',
-              display: 'flex',
-              justifyContent: 'flex-end'
-            }}>
-              <a aria-label="Image displaying Synthesia as the leader in AI Video Generator on G2" href="https://www.g2.com/categories/video-communications?utf8=%E2%9C%93&amp;selected_view=trending&amp;segment=enterprise#grid" target="_blank" style={{
-                position: 'relative',
-                display: 'block',
-                width: '100%',
-                maxWidth: '500px'
-              }}>
-                <div style={{
-                  borderRadius: '16px',
-                  border: '2px solid #667eea',
-                  boxShadow: '0 4px 12px rgba(102, 126, 234, 0.15)',
-                  overflow: 'hidden',
-                  position: 'relative',
-                  background: '#F8FAFC',
-                  aspectRatio: '493/437',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}>
-                  {/* Голографическая сетка */}
-                  <svg width="100%" height="100%" viewBox="0 0 400 300" style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0
-                  }}>
-                    <defs>
-                      <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
-                        <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(102,126,234,0.2)" strokeWidth="1"/>
-                      </pattern>
-                      <radialGradient id="hologram" cx="50%" cy="50%" r="50%">
-                        <stop offset="0%" stopColor="rgba(102,126,234,0.4)"/>
-                        <stop offset="50%" stopColor="rgba(102,126,234,0.2)"/>
-                        <stop offset="100%" stopColor="rgba(102,126,234,0.1)"/>
-                      </radialGradient>
-                    </defs>
-                    <rect width="100%" height="100%" fill="url(#grid)"/>
-                    <circle cx="200" cy="150" r="80" fill="url(#hologram)" opacity="0.6">
-                      <animate attributeName="r" values="80;90;80" dur="3s" repeatCount="indefinite"/>
-                      <animate attributeName="opacity" values="0.6;0.8;0.6" dur="3s" repeatCount="indefinite"/>
-                    </circle>
-                    <circle cx="200" cy="150" r="60" fill="none" stroke="rgba(102,126,234,0.3)" strokeWidth="2">
-                      <animate attributeName="r" values="60;70;60" dur="2s" repeatCount="indefinite"/>
-                    </circle>
-                    <circle cx="200" cy="150" r="40" fill="none" stroke="rgba(102,126,234,0.4)" strokeWidth="1">
-                      <animate attributeName="r" values="40;50;40" dur="1.5s" repeatCount="indefinite"/>
-                    </circle>
-                  </svg>
-                  
-                                    {/* Google Services Badges Overlay - ближе к кругу */}
-                  {/* Google Ads Badge - хаотично размещен */}
-                  <div style={{
-                    position: 'absolute',
-                    top: '25%',
-                    left: '20%',
-                    transform: 'translate(-50%, -50%)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    width: '48px',
-                    height: '48px',
-                    background: 'white',
-                    borderRadius: '50%',
-                    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1)',
-                    padding: '8px'
-                  }}>
-                    <img 
-                      src="https://img.icons8.com/color/48/google-ads.png" 
-                      alt="Google Ads Official Partner" 
-                  style={{
-                        width: '32px',
-                        height: '32px'
-                      }}
-                    />
-                  </div>
-                  
-                  {/* Google Sheets Badge - хаотично размещен */}
-                  <div style={{
-                    position: 'absolute',
-                    top: '15%',
-                    right: '25%',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    width: '48px',
-                    height: '48px',
-                    background: 'white',
-                    borderRadius: '50%',
-                    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1)',
-                    padding: '8px'
-                  }}>
-                    <img 
-                      src="https://img.icons8.com/color/48/google-sheets.png" 
-                      alt="Google Sheets Integration" 
-                      style={{
-                        width: '32px',
-                        height: '32px'
-                      }}
-                    />
-                  </div>
-                  
-                  {/* PDF Export Badge - хаотично размещен */}
-                  <div style={{
-                    position: 'absolute',
-                    top: '65%',
-                    left: '15%',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    width: '48px',
-                    height: '48px',
-                    background: 'white',
-                    borderRadius: '50%',
-                    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1)',
-                    padding: '8px'
-                  }}>
-                    <img 
-                      src="https://img.icons8.com/color/48/pdf.png" 
-                      alt="PDF Export" 
-                      style={{
-                        width: '32px',
-                        height: '32px'
-                      }}
-                    />
-                  </div>
-                  
-                  {/* OpenAI Badge - хаотично размещен */}
-                  <div style={{
-                    position: 'absolute',
-                    top: '45%',
-                    right: '15%',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    width: '48px',
-                    height: '48px',
-                    background: 'white',
-                    borderRadius: '50%',
-                    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1)',
-                    padding: '8px'
-                  }}>
-                    <img 
-                      src="https://img.icons8.com/color/48/chatgpt.png" 
-                      alt="OpenAI Integration" 
-                      style={{
-                        width: '32px',
-                        height: '32px'
-                      }}
-                    />
-                  </div>
-                  
-                  {/* Google Analytics Badge - хаотично размещен */}
-                  <div style={{
-                    position: 'absolute',
-                    bottom: '25%',
-                    right: '20%',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    width: '48px',
-                    height: '48px',
-                    background: 'white',
-                    borderRadius: '50%',
-                    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1)',
-                    padding: '8px'
-                  }}>
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      {/* Google Analytics logo без белого фона */}
-                      <rect x="4" y="12" width="4" height="8" rx="1" fill="#FF9800"/>
-                      <rect x="9" y="8" width="4" height="12" rx="1" fill="#FF5722"/>
-                      <rect x="14" y="4" width="4" height="16" rx="1" fill="#F57C00"/>
-                  </svg>
-                  </div>
-                </div>
-              </a>
-            </div>
-          </div>
-              </div>
-              
-        <div style={{
-          marginBottom: '80px'
-        }}></div>
-        
-        <div style={{
-          maxWidth: '1200px',
-          margin: '0 auto'
-        }}>
-          <style dangerouslySetInnerHTML={{
-            __html: `
-              /* Fade container on desktop */
-              @media screen and (min-width: 991px) {
-                .g2-logo-row-container {
-                  -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 1) 5%, rgba(0, 0, 0, 1) 95%, transparent 100%);
-                }
-              }
-
-              /* Slide animation */
-              @keyframes g2-logo-slides {
-                from {transform: translateX(0);}
-                to {transform: translateX(-71rem);}
-              }
-              .g2-row-img-container-inner {
-                animation: 35s g2-logo-slides infinite linear;
-              }
-              .g2-logo-row-container,
-              .g2-row-img-container-inner,
-              .g2-row-img-container-inner img {
-                will-change: transform;
-              }
-              .g2-slider-image-container {
-                width: 100%;
-                height: 100%;
-              }
-            `
-          }} />
-          
-          <div style={{
-            overflow: 'hidden',
-            position: 'relative'
-          }}>
-            {/* Заголовок блока */}
-            <div style={{
-              textAlign: 'center',
-              marginBottom: '30px'
-            }}>
-              <h3 style={{
-                fontSize: '28px',
-                fontWeight: '600',
-                color: '#1e293b',
-                marginBottom: '12px'
-              }}>
-                Supported Industries
-              </h3>
-              <p style={{
-                fontSize: '16px',
-                color: '#64748b',
-                maxWidth: '600px',
-                margin: '0 auto',
-                lineHeight: '1.5'
-              }}>
-                Specialized AI solutions for different business industries
-              </p>
-                </div>
-            
-            <div style={{
-              display: 'flex',
-              whiteSpace: 'nowrap'
-            }}>
-              <div className="g2-row-img-container-inner" style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '40px'
-              }}>
-                {/* Dentists */}
-                <div style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  gap: '12px'
-                }}>
-                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M24 4C12.954 4 4 12.954 4 24s8.954 20 20 20 20-8.954 20-20S35.046 4 24 4zm0 36c-8.837 0-16-7.163-16-16S15.163 8 24 8s16 7.163 16 16-7.163 16-16 16z" fill="#374151"/>
-                    <path d="M18 20h12v2H18zm0 4h12v2H18zm0 4h8v2h-8z" fill="#374151"/>
-                  </svg>
-                  <span style={{
-                    fontSize: '14px',
-                    fontWeight: '500',
-                    color: '#374151',
-                    textAlign: 'center'
-                  }}>
-                    Dentists
-                  </span>
-              </div>
-                
-                {/* Real Estate Agents */}
-                <div style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  gap: '12px'
-                }}>
-                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M24 4L4 20h4v20h32V20h4L24 4zm-2 34V26h4v12h-4zm8 0V26h4v12h-4z" fill="#374151"/>
-                  </svg>
-                  <span style={{
-                    fontSize: '14px',
-                    fontWeight: '500',
-                    color: '#374151',
-                    textAlign: 'center'
-                  }}>
-                    Real Estate
-                  </span>
-            </div>
-
-                {/* SaaS Products */}
-            <div style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  gap: '12px'
-                }}>
-                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M24 4L4 12v12c0 11.046 8.954 20 20 20s20-8.954 20-20V12L24 4zm0 32c-8.837 0-16-7.163-16-16V16l16-8 16 8v4c0 8.837-7.163 16-16 16z" fill="#374151"/>
-                  </svg>
-                  <span style={{
-                    fontSize: '14px',
-                    fontWeight: '500',
-                    color: '#374151',
-                    textAlign: 'center'
-                  }}>
-                    SaaS Companies
-                  </span>
-                </div>
-                
-                {/* Lawyers / Attorneys */}
-                <div style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  gap: '12px'
-                }}>
-                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M24 4L8 12v12c0 8.837 7.163 16 16 16s16-7.163 16-16V12L24 4zm0 28c-6.627 0-12-5.373-12-12V16l12-8 12 8v4c0 6.627-5.373 12-12 12z" fill="#374151"/>
-                    </svg>
-                  <span style={{
-                    fontSize: '14px',
-                    fontWeight: '500',
-                    color: '#374151',
-                    textAlign: 'center'
-                  }}>
-                    Lawyers
-                  </span>
-                </div>
-                
-
-                
-                {/* Plumbers */}
-                <div style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  gap: '12px'
-                }}>
-                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M24 4c-5.514 0-10 4.486-10 10v4h20v-4c0-5.514-4.486-10-10-10zm-6 18v12h12V22H18z" fill="#374151"/>
-                  </svg>
-                  <span style={{
-                    fontSize: '14px',
-                    fontWeight: '500',
-                    color: '#374151',
-                    textAlign: 'center'
-                  }}>
-                    Plumbers
-                  </span>
-              </div>
-                
-                {/* Roofers */}
-                <div style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  gap: '12px'
-                }}>
-                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M24 4L4 20h4v20h32V20h4L24 4zm-2 34V26h4v12h-4zm8 0V26h4v12h-4z" fill="#374151"/>
-                  </svg>
-                  <span style={{
-                    fontSize: '14px',
-                    fontWeight: '500',
-                    color: '#374151',
-                    textAlign: 'center'
-                  }}>
-                    Roofers
-                  </span>
-            </div>
-
-                {/* Electricians */}
-            <div style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  gap: '12px'
-                }}>
-                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M24 4L12 20h6v20h12V20h6L24 4z" fill="#374151"/>
-                  </svg>
-                  <span style={{
-                    fontSize: '14px',
-                    fontWeight: '500',
-                    color: '#374151',
-                    textAlign: 'center'
-                  }}>
-                    Electricians
-                  </span>
-                </div>
-                
-                {/* Gyms & Fitness Studios */}
-                <div style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  gap: '12px'
-                }}>
-                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M24 4c-5.514 0-10 4.486-10 10v20h20V14c0-5.514-4.486-10-10-10z" fill="#374151"/>
-                    </svg>
-                  <span style={{
-                    fontSize: '14px',
-                    fontWeight: '500',
-                    color: '#374151',
-                    textAlign: 'center'
-                  }}>
-                    Gyms & Fitness Studios
-                  </span>
-                </div>
-                
-                {/* Therapists / Counselors */}
-                <div style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  gap: '12px'
-                }}>
-                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M24 4C12.954 4 4 12.954 4 24s8.954 20 20 20 20-8.954 20-20S35.046 4 24 4zm0 36c-8.837 0-16-7.163-16-16S15.163 8 24 8s16 7.163 16 16-7.163 16-16 16z" fill="#374151"/>
-                    <path d="M18 20h12v2H18zm0 4h12v2H18zm0 4h8v2h-8z" fill="#374151"/>
-                  </svg>
-                  <span style={{
-                    fontSize: '14px',
-                    fontWeight: '500',
-                    color: '#374151',
-                    textAlign: 'center'
-                  }}>
-                    Therapists / Counselors
-                  </span>
-              </div>
-                
-                {/* Ecommerce Stores */}
-                <div style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  gap: '12px'
-                }}>
-                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M24 4L4 12v12c0 11.046 8.954 20 20 20s20-8.954 20-20V12L24 4zm0 32c-8.837 0-16-7.163-16-16V16l16-8 16 8v4c0 8.837-7.163 16-16 16z" fill="#374151"/>
-                  </svg>
-                  <span style={{
-                    fontSize: '14px',
-                    fontWeight: '500',
-                    color: '#374151',
-                    textAlign: 'center'
-                  }}>
-                    Ecommerce Stores
-                  </span>
-            </div>
-
-                {/* Wedding Photographers */}
-            <div style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  gap: '12px'
-                }}>
-                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M24 4c-5.514 0-10 4.486-10 10v20h20V14c0-5.514-4.486-10-10-10z" fill="#374151"/>
-                  </svg>
-                  <span style={{
-                    fontSize: '14px',
-                    fontWeight: '500',
-                    color: '#374151',
-                    textAlign: 'center'
-                  }}>
-                    Wedding Photographers
-                  </span>
-                </div>
-                
-                {/* Home Cleaning Services */}
-                <div style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  gap: '12px'
-                }}>
-                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M24 4L4 20h4v20h32V20h4L24 4zm-2 34V26h4v12h-4zm8 0V26h4v12h-4z" fill="#374151"/>
-                    </svg>
-                  <span style={{
-                    fontSize: '14px',
-                    fontWeight: '500',
-                    color: '#374151',
-                    textAlign: 'center'
-                  }}>
-                    Home Cleaning Services
-                  </span>
-                </div>
-                
-                {/* Digital Agencies */}
-                <div style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  gap: '12px'
-                }}>
-                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M24 4L8 12v12c0 8.837 7.163 16 16 16s16-7.163 16-16V12L24 4zm0 28c-6.627 0-12-5.373-12-12V16l12-8 12 8v4c0 6.627-5.373 12-12 12z" fill="#374151"/>
-                  </svg>
-                  <span style={{
-                    fontSize: '14px',
-                    fontWeight: '500',
-                    color: '#374151',
-                    textAlign: 'center'
-                  }}>
-                    Digital Agencies
-                  </span>
-                </div>
-                
-                {/* Auto Repair Shops */}
-                <div style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  gap: '12px'
-                }}>
-                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M24 4c-5.514 0-10 4.486-10 10v4h20v-4c0-5.514-4.486-10-10-10zm-6 18v12h12V22H18z" fill="#374151"/>
-                  </svg>
-                  <span style={{
-                    fontSize: '14px',
-                    fontWeight: '500',
-                    color: '#374151',
-                    textAlign: 'center'
-                  }}>
-                    Auto Repair Shops
-                  </span>
-              </div>
-            </div>
-
-              <div className="g2-row-img-container-inner" style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '40px'
-              }}>
-                {/* Dentists */}
-            <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}>
-                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M24 4C12.954 4 4 12.954 4 24s8.954 20 20 20 20-8.954 20-20S35.046 4 24 4zm0 36c-8.837 0-16-7.163-16-16S15.163 8 24 8s16 7.163 16 16-7.163 16-16 16z" fill="#374151"/>
-                    <path d="M18 20h12v2H18zm0 4h12v2H18zm0 4h8v2h-8z" fill="#374151"/>
-                  </svg>
-                </div>
-                
-                {/* Real Estate */}
-                <div style={{
-                  width: '200px',
-                  height: '80px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  background: 'linear-gradient(135deg, #667eea, #764ba2)',
-                  borderRadius: '12px',
-                  padding: '16px'
-                }}>
-                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M24 4L4 20h4v20h32V20h4L24 4zm-2 34V26h4v12h-4zm8 0V26h4v12h-4z" fill="white"/>
-                    </svg>
-                </div>
-                
-                {/* SaaS Companies */}
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}>
-                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M24 4L4 12v12c0 11.046 8.954 20 20 20s20-8.954 20-20V12L24 4zm0 32c-8.837 0-16-7.163-16-16V16l16-8 16 8v4c0 8.837-7.163 16-16 16z" fill="#374151"/>
-                  </svg>
-              </div>
-                
-                {/* Lawyers / Attorneys */}
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}>
-                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M24 4L8 12v12c0 8.837 7.163 16 16 16s16-7.163 16-16V12L24 4zm0 28c-6.627 0-12-5.373-12-12V16l12-8 12 8v4c0 6.627-5.373 12-12 12z" fill="#374151"/>
-                  </svg>
-            </div>
-                
-
-                
-                {/* Plumbers */}
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}>
-                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M24 4c-5.514 0-10 4.486-10 10v4h20v-4c0-5.514-4.486-10-10-10zm-6 18v12h12V22H18z" fill="#374151"/>
-                  </svg>
-          </div>
-                
-                {/* Roofers */}
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}>
-                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M24 4L4 20h4v20h32V20h4L24 4zm-2 34V26h4v12h-4zm8 0V26h4v12h-4z" fill="#374151"/>
-                  </svg>
-        </div>
-                
-                {/* Electricians */}
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}>
-                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M24 4L12 20h6v20h12V20h6L24 4z" fill="#374151"/>
-          </svg>
-        </div>
-                
-                {/* Gyms & Fitness Studios */}
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}>
-                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M24 4c-5.514 0-10 4.486-10 10v20h20V14c0-5.514-4.486-10-10-10z" fill="#374151"/>
-              </svg>
-            </div>
-                
-                {/* Therapists / Counselors */}
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}>
-                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M24 4C12.954 4 4 12.954 4 24s8.954 20 20 20 20-8.954 20-20S35.046 4 24 4zm0 36c-8.837 0-16-7.163-16-16S15.163 8 24 8s16 7.163 16 16-7.163 16-16 16z" fill="#374151"/>
-                    <path d="M18 20h12v2H18zm0 4h12v2H18zm0 4h8v2h-8z" fill="#374151"/>
-              </svg>
-            </div>
-                
-                {/* Ecommerce Stores */}
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}>
-                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M24 4L4 12v12c0 11.046 8.954 20 20 20s20-8.954 20-20V12L24 4zm0 32c-8.837 0-16-7.163-16-16V16l16-8 16 8v4c0 8.837-7.163 16-16 16z" fill="#374151"/>
-              </svg>
-            </div>
-                
-                {/* Wedding Photographers */}
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}>
-                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M24 4c-5.514 0-10 4.486-10 10v20h20V14c0-5.514-4.486-10-10-10z" fill="#374151"/>
-              </svg>
-            </div>
-                
-                {/* Home Cleaning Services */}
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}>
-                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M24 4L4 20h4v20h32V20h4L24 4zm-2 34V26h4v12h-4zm8 0V26h4v12h-4z" fill="#374151"/>
-                  </svg>
-                </div>
-                
-                {/* Digital Agencies */}
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}>
-                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M24 4L8 12v12c0 8.837 7.163 16 16 16s16-7.163 16-16V12L24 4zm0 28c-6.627 0-12-5.373-12-12V16l12-8 12 8v4c0 6.627-5.373 12-12 12z" fill="#374151"/>
-                  </svg>
-                </div>
-                
-                {/* Auto Repair Shops */}
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}>
-                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M24 4c-5.514 0-10 4.486-10 10v4h20v-4c0-5.514-4.486-10-10-10zm-6 18v12h12V22H18z" fill="#374151"/>
-                  </svg>
-                </div>
-                
-                {/* Pet Services */}
-                <div style={{
-                  width: '200px',
-                  height: '80px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  background: 'linear-gradient(135deg, #667eea, #764ba2)',
-                  borderRadius: '12px',
-                  padding: '16px'
-                }}>
-                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M24 4C12.954 4 4 12.954 4 24s8.954 20 20 20 20-8.954 20-20S35.046 4 24 4zm0 36c-8.837 0-16-7.163-16-16S15.163 8 24 8s16 7.163 16 16-7.163 16-16 16z" fill="white"/>
-                  </svg>
-                </div>
-                
-                {/* Education Courses */}
-                <div style={{
-                  width: '200px',
-                  height: '80px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  background: 'linear-gradient(135deg, #667eea, #764ba2)',
-                  borderRadius: '12px',
-                  padding: '16px'
-                }}>
-                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M24 4L4 12v12c0 11.046 8.954 20 20 20s20-8.954 20-20V12L24 4zm0 32c-8.837 0-16-7.163-16-16V16l16-8 16 8v4c0 8.837-7.163 16-16 16z" fill="white"/>
-                  </svg>
-                </div>
-                
-                {/* Cosmetic Clinics */}
-                <div style={{
-                  width: '200px',
-                  height: '80px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  background: 'linear-gradient(135deg, #667eea, #764ba2)',
-                  borderRadius: '12px',
-                  padding: '16px'
-                }}>
-                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M24 4C12.954 4 4 12.954 4 24s8.954 20 20 20 20-8.954 20-20S35.046 4 24 4zm0 36c-8.837 0-16-7.163-16-16S15.163 8 24 8s16 7.163 16 16-7.163 16-16 16z" fill="white"/>
-                  </svg>
-                </div>
-                
-                {/* Moving Companies */}
-                <div style={{
-                  width: '200px',
-                  height: '80px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  background: 'linear-gradient(135deg, #667eea, #764ba2)',
-                  borderRadius: '12px',
-                  padding: '16px'
-                }}>
-                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M24 4L4 20h4v20h32V20h4L24 4zm-2 34V26h4v12h-4zm8 0V26h4v12h-4z" fill="white"/>
-                  </svg>
-                </div>
-                
-                {/* HVAC Services */}
-                <div style={{
-                  width: '200px',
-                  height: '80px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  background: 'linear-gradient(135deg, #667eea, #764ba2)',
-                  borderRadius: '12px',
-                  padding: '16px'
-                }}>
-                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M24 4c-5.514 0-10 4.486-10 10v4h20v-4c0-5.514-4.486-10-10-10zm-6 18v12h12V22H18z" fill="white"/>
-                  </svg>
-                </div>
-                
-                {/* Chiropractors */}
-                <div style={{
-                  width: '200px',
-                  height: '80px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  background: 'linear-gradient(135deg, #667eea, #764ba2)',
-                  borderRadius: '12px',
-                  padding: '16px'
-                }}>
-                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M24 4C12.954 4 4 12.954 4 24s8.954 20 20 20 20-8.954 20-20S35.046 4 24 4zm0 36c-8.837 0-16-7.163-16-16S15.163 8 24 8s16 7.163 16 16-7.163 16-16 16z" fill="white"/>
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-
-
-
-      {/* GTM AI Strategy Section */}
-      <section id="why-gtm-ai" style={{
-        padding: '120px 0',
-        background: 'white',
-        position: 'relative',
-        overflow: 'hidden'
-      }}>
-        <div style={{
-          maxWidth: '1200px',
-          margin: '0 auto',
-          padding: '0 24px'
-        }}>
-          <div style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'flex-start',
-            marginBottom: '60px'
-          }}>
-            <div>
-              <h2 style={{
-                fontSize: 'clamp(36px, 4vw, 48px)',
-                fontWeight: '800',
-                color: '#1e293b',
-                lineHeight: '1.2',
-                marginBottom: '16px'
-              }}>
-                Expert Insights from PPC Professionals
-              </h2>
-              <p style={{
-                fontSize: 'clamp(18px, 2vw, 20px)',
-                color: '#64748b',
-                lineHeight: '1.5',
-                maxWidth: '600px'
-              }}>
-                Stay ahead with proven strategies and AI-powered insights
-              </p>
-            </div>
-            <div style={{
-              display: 'flex',
-              gap: '16px'
-            }}>
-              <button 
-                onClick={scrollLeft}
-                style={{
-                  width: '48px',
-                  height: '48px',
-                  borderRadius: '50%',
-                  border: '1px solid #e5e7eb',
-                  background: 'white',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  cursor: 'pointer',
-                  transition: 'all 0.3s ease'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = '#1e293b';
-                  e.currentTarget.style.background = '#f8f9fa';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = '#e5e7eb';
-                  e.currentTarget.style.background = 'white';
-                }}>
-                <svg width="16" height="11" viewBox="0 0 16 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path fillRule="evenodd" clipRule="evenodd" d="M9.6 0L0 5.5L9.6 11V6.45263H16V4.54737H9.6V0Z" fill="currentColor"></path>
-                </svg>
-              </button>
-              <button 
-                onClick={scrollRight}
-                style={{
-                  width: '48px',
-                  height: '48px',
-                  borderRadius: '50%',
-                  border: '1px solid #e5e7eb',
-                  background: 'white',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  cursor: 'pointer',
-                  transition: 'all 0.3s ease'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = '#1e293b';
-                  e.currentTarget.style.background = '#f8f9fa';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = '#e5e7eb';
-                  e.currentTarget.style.background = 'white';
-                }}>
-                <svg width="16" height="11" viewBox="0 0 16 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path fillRule="evenodd" clipRule="evenodd" d="M6.4 0L16 5.5L6.4 11V6.45263H0V4.54737H6.4V0Z" fill="currentColor"></path>
-                </svg>
-              </button>
-            </div>
-          </div>
-          
-          <div 
-            ref={sliderRef}
+const MeetTheTeam: React.FC = () => (
+  <section style={{ padding: "80px 24px", background: "#15181D" }}>
+    <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+      <SectionHeader title="Meet your agency" subtitle="Каждый агент — специалист со своей экспертизой" />
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "16px" }}>
+        {TEAM.map((m) => (
+          <div
+            key={m.name}
             style={{
-              display: 'flex',
-              gap: '40px',
-              overflowX: 'auto',
-              paddingBottom: '20px'
-            }}>
-            {/* Blog Card 1 */}
-            <div style={{
-              minWidth: '360px',
-              background: 'white',
-              borderRadius: '16px',
-              overflow: 'hidden',
-              boxShadow: '0 8px 32px rgba(0,0,0,0.08)',
-              transition: 'all 0.3s ease',
-              cursor: 'pointer'
+              padding: "20px",
+              background: "#0F1116",
+              border: m.status === "live" ? "1px solid #4ECDC444" : "1px solid #2D3340",
+              borderRadius: "14px",
+              opacity: m.status === "live" ? 1 : 0.6,
             }}
-            onClick={() => window.location.href = '/blog/what-ceos-want-google-ads-reports'}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-8px)';
-              e.currentTarget.style.boxShadow = '0 20px 40px rgba(0,0,0,0.12)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 8px 32px rgba(0,0,0,0.08)';
-            }}>
-              <div style={{
-                width: '100%',
-                height: '200px',
-                background: 'linear-gradient(135deg, #764ba2 0%, #667eea 100%)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                position: 'relative',
-                overflow: 'hidden'
-              }}>
-                {/* Grid Pattern */}
-                <div style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  backgroundImage: `
-                    linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)
-                  `,
-                  backgroundSize: '20px 20px',
-                  pointerEvents: 'none'
-                }} />
-                
-                {/* Simple Neural Network - CEO Card */}
-                <svg style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  width: '100%',
-                  height: '100%',
-                  pointerEvents: 'none'
-                }} viewBox="0 0 360 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  {/* Input Layer - 3 nodes */}
-                  <circle cx="40" cy="60" r="5" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.25)" strokeWidth="1"/>
-                  <circle cx="40" cy="100" r="5" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.25)" strokeWidth="1"/>
-                  <circle cx="40" cy="140" r="5" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.25)" strokeWidth="1"/>
-                  
-                  {/* Hidden Layer 1 - 4 nodes */}
-                  <circle cx="120" cy="50" r="6" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.22)" strokeWidth="1"/>
-                  <circle cx="120" cy="85" r="6" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.22)" strokeWidth="1"/>
-                  <circle cx="120" cy="120" r="6" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.22)" strokeWidth="1"/>
-                  <circle cx="120" cy="155" r="6" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.22)" strokeWidth="1"/>
-                  
-                  {/* Hidden Layer 2 - 3 nodes */}
-                  <circle cx="200" cy="70" r="7" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" strokeWidth="1"/>
-                  <circle cx="200" cy="100" r="7" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" strokeWidth="1"/>
-                  <circle cx="200" cy="130" r="7" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" strokeWidth="1"/>
-                  
-                  {/* Output Layer - 1 node */}
-                  <circle cx="280" cy="100" r="8" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.35)" strokeWidth="1.5"/>
-                  
-                  {/* Connections - Input to Hidden 1 */}
-                  <line x1="45" y1="60" x2="114" y2="50" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8"/>
-                  <line x1="45" y1="60" x2="114" y2="85" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8"/>
-                  <line x1="45" y1="60" x2="114" y2="120" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8"/>
-                  <line x1="45" y1="60" x2="114" y2="155" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8"/>
-                  
-                  <line x1="45" y1="100" x2="114" y2="50" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8"/>
-                  <line x1="45" y1="100" x2="114" y2="85" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8"/>
-                  <line x1="45" y1="100" x2="114" y2="120" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8"/>
-                  <line x1="45" y1="100" x2="114" y2="155" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8"/>
-                  
-                  <line x1="45" y1="140" x2="114" y2="50" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8"/>
-                  <line x1="45" y1="140" x2="114" y2="85" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8"/>
-                  <line x1="45" y1="140" x2="114" y2="120" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8"/>
-                  <line x1="45" y1="140" x2="114" y2="155" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8"/>
-                  
-                  {/* Connections - Hidden 1 to Hidden 2 */}
-                  <line x1="126" y1="50" x2="193" y2="70" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8"/>
-                  <line x1="126" y1="50" x2="193" y2="100" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8"/>
-                  <line x1="126" y1="50" x2="193" y2="130" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8"/>
-                  
-                  <line x1="126" y1="85" x2="193" y2="70" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8"/>
-                  <line x1="126" y1="85" x2="193" y2="100" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8"/>
-                  <line x1="126" y1="85" x2="193" y2="130" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8"/>
-                  
-                  <line x1="126" y1="120" x2="193" y2="70" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8"/>
-                  <line x1="126" y1="120" x2="193" y2="100" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8"/>
-                  <line x1="126" y1="120" x2="193" y2="130" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8"/>
-                  
-                  <line x1="126" y1="155" x2="193" y2="70" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8"/>
-                  <line x1="126" y1="155" x2="193" y2="100" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8"/>
-                  <line x1="126" y1="155" x2="193" y2="130" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8"/>
-                  
-                  {/* Connections - Hidden 2 to Output */}
-                  <line x1="207" y1="70" x2="272" y2="100" stroke="rgba(255,255,255,0.15)" strokeWidth="1"/>
-                  <line x1="207" y1="100" x2="272" y2="100" stroke="rgba(255,255,255,0.15)" strokeWidth="1"/>
-                  <line x1="207" y1="130" x2="272" y2="100" stroke="rgba(255,255,255,0.15)" strokeWidth="1"/>
-                  
-                  {/* Data Flow Animation */}
-                  <circle cx="50" cy="100" r="2" fill="rgba(255,255,255,0.8)">
-                    <animate attributeName="cx" values="50;120;200;280" dur="3s" repeatCount="indefinite"/>
-                    <animate attributeName="cy" values="100;85;100;100" dur="3s" repeatCount="indefinite"/>
-                  </circle>
-                </svg>
-
-              </div>
-              <div style={{
-                padding: '24px'
-              }}>
-                <h3 style={{
-                  fontSize: '20px',
-                  fontWeight: '700',
-                  color: '#1e293b',
-                  marginBottom: '12px',
-                  lineHeight: '1.3'
-                }}>
-                  What CEOs Want to See in Google Ads Reports
-                </h3>
-                <p style={{
-                  fontSize: '15px',
-                  color: '#64748b',
-                  lineHeight: '1.5'
-                }}>
-                  Learn which Google Ads metrics CEOs care about (hint: it's not clicks) and get the exact reporting template that secures bigger budgets.
-                </p>
-              </div>
+          >
+            <div style={{ fontSize: "40px", marginBottom: "10px" }}>{m.emoji}</div>
+            <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "4px" }}>
+              <span style={{ fontSize: "18px", fontWeight: 700 }}>{m.name}</span>
+              {m.status === "live" ? (
+                <span style={{ fontSize: "10px", padding: "2px 6px", background: "#4ECDC422", color: "#4ECDC4", borderRadius: "4px", fontWeight: 600 }}>LIVE</span>
+              ) : (
+                <span style={{ fontSize: "10px", padding: "2px 6px", background: "#FFA72622", color: "#FFA726", borderRadius: "4px", fontWeight: 600 }}>SOON</span>
+              )}
             </div>
-
-            {/* Blog Card 2 */}
-            <div style={{
-              minWidth: '360px',
-              background: 'white',
-              borderRadius: '16px',
-              overflow: 'hidden',
-              boxShadow: '0 8px 32px rgba(0,0,0,0.08)',
-              transition: 'all 0.3s ease',
-              cursor: 'pointer'
-            }}
-            onClick={() => window.location.href = '/blog/5-tips-for-working-with-ai-ppc-tools'}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-8px)';
-              e.currentTarget.style.boxShadow = '0 20px 40px rgba(0,0,0,0.12)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 8px 32px rgba(0,0,0,0.08)';
-            }}>
-              <div style={{
-                width: '100%',
-                height: '200px',
-                background: 'linear-gradient(135deg, #764ba2 0%, #667eea 100%)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                position: 'relative',
-                overflow: 'hidden'
-              }}>
-                {/* Grid Pattern */}
-                <div style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  backgroundImage: `
-                    linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)
-                  `,
-                  backgroundSize: '20px 20px',
-                  pointerEvents: 'none'
-                }} />
-                
-                {/* Deep Neural Network - AI Tools Card */}
-                <svg style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  width: '100%',
-                  height: '100%',
-                  pointerEvents: 'none'
-                }} viewBox="0 0 360 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  {/* Input Layer - 3 nodes */}
-                  <circle cx="30" cy="60" r="4" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.25)" strokeWidth="1"/>
-                  <circle cx="30" cy="100" r="4" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.25)" strokeWidth="1"/>
-                  <circle cx="30" cy="140" r="4" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.25)" strokeWidth="1"/>
-                  
-                  {/* Hidden Layer 1 - 6 nodes */}
-                  <circle cx="80" cy="40" r="5" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.22)" strokeWidth="1"/>
-                  <circle cx="80" cy="65" r="5" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.22)" strokeWidth="1"/>
-                  <circle cx="80" cy="90" r="5" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.22)" strokeWidth="1"/>
-                  <circle cx="80" cy="115" r="5" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.22)" strokeWidth="1"/>
-                  <circle cx="80" cy="140" r="5" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.22)" strokeWidth="1"/>
-                  <circle cx="80" cy="165" r="5" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.22)" strokeWidth="1"/>
-                  
-                  {/* Hidden Layer 2 - 5 nodes */}
-                  <circle cx="130" cy="50" r="6" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" strokeWidth="1"/>
-                  <circle cx="130" cy="75" r="6" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" strokeWidth="1"/>
-                  <circle cx="130" cy="100" r="6" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" strokeWidth="1"/>
-                  <circle cx="130" cy="125" r="6" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" strokeWidth="1"/>
-                  <circle cx="130" cy="150" r="6" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" strokeWidth="1"/>
-                  
-                  {/* Hidden Layer 3 - 4 nodes */}
-                  <circle cx="180" cy="60" r="7" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.18)" strokeWidth="1"/>
-                  <circle cx="180" cy="85" r="7" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.18)" strokeWidth="1"/>
-                  <circle cx="180" cy="110" r="7" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.18)" strokeWidth="1"/>
-                  <circle cx="180" cy="135" r="7" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.18)" strokeWidth="1"/>
-                  
-                  {/* Hidden Layer 4 - 3 nodes */}
-                  <circle cx="230" cy="70" r="7" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.18)" strokeWidth="1"/>
-                  <circle cx="230" cy="100" r="7" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.18)" strokeWidth="1"/>
-                  <circle cx="230" cy="130" r="7" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.18)" strokeWidth="1"/>
-                  
-                  {/* Hidden Layer 5 - 2 nodes */}
-                  <circle cx="280" cy="85" r="8" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" strokeWidth="1"/>
-                  <circle cx="280" cy="115" r="8" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" strokeWidth="1"/>
-                  
-                  {/* Output Layer - 1 node */}
-                  <circle cx="320" cy="100" r="8" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.35)" strokeWidth="1.5"/>
-                  
-                  {/* Connections - Input to Hidden 1 */}
-                  <line x1="34" y1="60" x2="75" y2="40" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="34" y1="60" x2="75" y2="65" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="34" y1="60" x2="75" y2="90" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="34" y1="60" x2="75" y2="115" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="34" y1="60" x2="75" y2="140" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="34" y1="60" x2="75" y2="165" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  
-                  <line x1="34" y1="100" x2="75" y2="40" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="34" y1="100" x2="75" y2="65" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="34" y1="100" x2="75" y2="90" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="34" y1="100" x2="75" y2="115" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="34" y1="100" x2="75" y2="140" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="34" y1="100" x2="75" y2="165" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  
-                  <line x1="34" y1="140" x2="75" y2="40" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="34" y1="140" x2="75" y2="65" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="34" y1="140" x2="75" y2="90" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="34" y1="140" x2="75" y2="115" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="34" y1="140" x2="75" y2="140" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="34" y1="140" x2="75" y2="165" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  
-                  {/* Connections - Hidden 1 to Hidden 2 */}
-                  <line x1="85" y1="40" x2="124" y2="50" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="85" y1="40" x2="124" y2="75" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="85" y1="40" x2="124" y2="100" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="85" y1="40" x2="124" y2="125" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="85" y1="40" x2="124" y2="150" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  
-                  <line x1="85" y1="65" x2="124" y2="50" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="85" y1="65" x2="124" y2="75" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="85" y1="65" x2="124" y2="100" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="85" y1="65" x2="124" y2="125" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="85" y1="65" x2="124" y2="150" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  
-                  <line x1="85" y1="90" x2="124" y2="50" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="85" y1="90" x2="124" y2="75" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="85" y1="90" x2="124" y2="100" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="85" y1="90" x2="124" y2="125" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="85" y1="90" x2="124" y2="150" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  
-                  <line x1="85" y1="115" x2="124" y2="50" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="85" y1="115" x2="124" y2="75" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="85" y1="115" x2="124" y2="100" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="85" y1="115" x2="124" y2="125" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="85" y1="115" x2="124" y2="150" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  
-                  <line x1="85" y1="140" x2="124" y2="50" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="85" y1="140" x2="124" y2="75" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="85" y1="140" x2="124" y2="100" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="85" y1="140" x2="124" y2="125" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="85" y1="140" x2="124" y2="150" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  
-                  <line x1="85" y1="165" x2="124" y2="50" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="85" y1="165" x2="124" y2="75" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="85" y1="165" x2="124" y2="100" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="85" y1="165" x2="124" y2="125" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="85" y1="165" x2="124" y2="150" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  
-                  {/* Connections - Hidden 2 to Hidden 3 */}
-                  <line x1="136" y1="50" x2="173" y2="60" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="136" y1="50" x2="173" y2="85" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="136" y1="50" x2="173" y2="110" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="136" y1="50" x2="173" y2="135" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  
-                  <line x1="136" y1="75" x2="173" y2="60" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="136" y1="75" x2="173" y2="85" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="136" y1="75" x2="173" y2="110" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="136" y1="75" x2="173" y2="135" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  
-                  <line x1="136" y1="100" x2="173" y2="60" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="136" y1="100" x2="173" y2="85" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="136" y1="100" x2="173" y2="110" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="136" y1="100" x2="173" y2="135" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  
-                  <line x1="136" y1="125" x2="173" y2="60" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="136" y1="125" x2="173" y2="85" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="136" y1="125" x2="173" y2="110" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="136" y1="125" x2="173" y2="135" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  
-                  <line x1="136" y1="150" x2="173" y2="60" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="136" y1="150" x2="173" y2="85" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="136" y1="150" x2="173" y2="110" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="136" y1="150" x2="173" y2="135" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  
-                  {/* Connections - Hidden 3 to Hidden 4 */}
-                  <line x1="187" y1="60" x2="223" y2="70" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="187" y1="60" x2="223" y2="100" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="187" y1="60" x2="223" y2="130" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  
-                  <line x1="187" y1="85" x2="223" y2="70" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="187" y1="85" x2="223" y2="100" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="187" y1="85" x2="223" y2="130" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  
-                  <line x1="187" y1="110" x2="223" y2="70" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="187" y1="110" x2="223" y2="100" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="187" y1="110" x2="223" y2="130" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  
-                  <line x1="187" y1="135" x2="223" y2="70" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="187" y1="135" x2="223" y2="100" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="187" y1="135" x2="223" y2="130" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  
-                  {/* Connections - Hidden 4 to Hidden 5 */}
-                  <line x1="237" y1="70" x2="272" y2="85" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="237" y1="70" x2="272" y2="115" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  
-                  <line x1="237" y1="100" x2="272" y2="85" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="237" y1="100" x2="272" y2="115" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  
-                  <line x1="237" y1="130" x2="272" y2="85" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  <line x1="237" y1="130" x2="272" y2="115" stroke="rgba(255,255,255,0.1)" strokeWidth="0.6"/>
-                  
-                  {/* Connections - Hidden 5 to Output */}
-                  <line x1="288" y1="85" x2="312" y2="100" stroke="rgba(255,255,255,0.15)" strokeWidth="1"/>
-                  <line x1="288" y1="115" x2="312" y2="100" stroke="rgba(255,255,255,0.15)" strokeWidth="1"/>
-                  
-                  {/* Data Flow Animation */}
-                  <circle cx="50" cy="100" r="2" fill="rgba(255,255,255,0.8)">
-                    <animate attributeName="cx" values="50;80;130;180;230;280;320" dur="4s" repeatCount="indefinite"/>
-                    <animate attributeName="cy" values="100;90;100;85;100;100;100" dur="4s" repeatCount="indefinite"/>
-                  </circle>
-                </svg>
-
-              </div>
-              <div style={{
-                padding: '24px'
-              }}>
-                <h3 style={{
-                  fontSize: '20px',
-                  fontWeight: '700',
-                  color: '#1e293b',
-                  marginBottom: '12px',
-                  lineHeight: '1.3'
-                }}>
-                  5 Tips for Working with AI-Powered PPC Tools
-                </h3>
-                <p style={{
-                  fontSize: '15px',
-                  color: '#64748b',
-                  lineHeight: '1.5'
-                }}>
-                  While competitors struggle with AI, you'll master it. Discover prompts and workflows top PPC pros use to 10x your productivity.
-                </p>
-              </div>
-            </div>
-
-            {/* Blog Card 3 */}
-            <div style={{
-              minWidth: '360px',
-              background: 'white',
-              borderRadius: '16px',
-              overflow: 'hidden',
-              boxShadow: '0 8px 32px rgba(0,0,0,0.08)',
-              transition: 'all 0.3s ease',
-              cursor: 'pointer'
-            }}
-            onClick={() => window.location.href = '/blog/performance-max-problems-b2b-marketing'}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-8px)';
-              e.currentTarget.style.boxShadow = '0 20px 40px rgba(0,0,0,0.12)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 8px 32px rgba(0,0,0,0.08)';
-            }}>
-              <div style={{
-                width: '100%',
-                height: '200px',
-                background: 'linear-gradient(135deg, #764ba2 0%, #667eea 100%)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                position: 'relative',
-                overflow: 'hidden'
-              }}>
-                {/* Grid Pattern */}
-                <div style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  backgroundImage: `
-                    linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)
-                  `,
-                  backgroundSize: '20px 20px',
-                  pointerEvents: 'none'
-                }} />
-                
-                {/* Neural Network with Advertising Metrics */}
-                <svg style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  width: '100%',
-                  height: '100%',
-                  pointerEvents: 'none'
-                }} viewBox="0 0 360 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  {/* Neural Nodes - Layer 1 */}
-                  <circle cx="40" cy="50" r="4" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.25)" strokeWidth="1"/>
-                  <circle cx="40" cy="100" r="4" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.2)" strokeWidth="1"/>
-                  <circle cx="40" cy="150" r="4" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.3)" strokeWidth="1"/>
-                  
-                  {/* Neural Nodes - Layer 2 */}
-                  <circle cx="120" cy="40" r="5" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" strokeWidth="1"/>
-                  <circle cx="120" cy="80" r="5" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.25)" strokeWidth="1"/>
-                  <circle cx="120" cy="120" r="5" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.18)" strokeWidth="1"/>
-                  <circle cx="120" cy="160" r="5" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.22)" strokeWidth="1"/>
-                  
-                  {/* Neural Nodes - Layer 3 */}
-                  <circle cx="200" cy="60" r="6" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.18)" strokeWidth="1"/>
-                  <circle cx="200" cy="100" r="6" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.25)" strokeWidth="1"/>
-                  <circle cx="200" cy="140" r="6" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" strokeWidth="1"/>
-                  
-                  {/* Neural Nodes - Layer 4 */}
-                  <circle cx="280" cy="80" r="7" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.22)" strokeWidth="1"/>
-                  <circle cx="280" cy="120" r="7" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.18)" strokeWidth="1"/>
-                  
-                  {/* Neural Nodes - Output */}
-                  <circle cx="320" cy="100" r="8" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.35)" strokeWidth="1.5"/>
-                  
-                  {/* Neural Connections */}
-                  <line x1="44" y1="50" x2="115" y2="40" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8"/>
-                  <line x1="44" y1="50" x2="115" y2="80" stroke="rgba(255,255,255,0.08)" strokeWidth="0.6"/>
-                  <line x1="44" y1="100" x2="115" y2="80" stroke="rgba(255,255,255,0.12)" strokeWidth="0.8"/>
-                  <line x1="44" y1="100" x2="115" y2="120" stroke="rgba(255,255,255,0.1)" strokeWidth="0.7"/>
-                  <line x1="44" y1="150" x2="115" y2="120" stroke="rgba(255,255,255,0.15)" strokeWidth="0.9"/>
-                  <line x1="44" y1="150" x2="115" y2="160" stroke="rgba(255,255,255,0.08)" strokeWidth="0.6"/>
-                  <line x1="125" y1="40" x2="194" y2="60" stroke="rgba(255,255,255,0.1)" strokeWidth="0.7"/>
-                  <line x1="125" y1="80" x2="194" y2="60" stroke="rgba(255,255,255,0.12)" strokeWidth="0.8"/>
-                  <line x1="125" y1="80" x2="194" y2="100" stroke="rgba(255,255,255,0.1)" strokeWidth="0.7"/>
-                  <line x1="125" y1="120" x2="194" y2="100" stroke="rgba(255,255,255,0.15)" strokeWidth="0.9"/>
-                  <line x1="125" y1="160" x2="194" y2="100" stroke="rgba(255,255,255,0.1)" strokeWidth="0.7"/>
-                  <line x1="206" y1="60" x2="273" y2="80" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8"/>
-                  <line x1="206" y1="100" x2="273" y2="80" stroke="rgba(255,255,255,0.12)" strokeWidth="0.9"/>
-                  <line x1="206" y1="100" x2="273" y2="120" stroke="rgba(255,255,255,0.1)" strokeWidth="0.7"/>
-                  <line x1="287" y1="80" x2="312" y2="100" stroke="rgba(255,255,255,0.15)" strokeWidth="1"/>
-                  <line x1="287" y1="120" x2="312" y2="100" stroke="rgba(255,255,255,0.12)" strokeWidth="0.9"/>
-                  
-
-                  
-
-                  
-                  {/* Data Flow Animation */}
-                  <circle cx="50" cy="100" r="2" fill="rgba(255,255,255,0.8)">
-                    <animate attributeName="cx" values="50;120;200;280;320" dur="3s" repeatCount="indefinite"/>
-                    <animate attributeName="cy" values="100;80;100;100;100" dur="3s" repeatCount="indefinite"/>
-                  </circle>
-                </svg>
-
-              </div>
-              <div style={{
-                padding: '24px'
-              }}>
-                <h3 style={{
-                  fontSize: '20px',
-                  fontWeight: '700',
-                  color: '#1e293b',
-                  marginBottom: '12px',
-                  lineHeight: '1.3'
-                }}>
-                  Why Performance Max Fails in B2B Marketing
-                </h3>
-                <p style={{
-                  fontSize: '15px',
-                  color: '#64748b',
-                  lineHeight: '1.5'
-                }}>
-                  The dirty secret Google won't tell you: Performance Max is built for B2C, not B2B. Learn why it fails and get the alternative strategy that actually works.
-                </p>
-              </div>
-            </div>
-
-            {/* Blog Card 4 */}
-            <div style={{
-              minWidth: '360px',
-              background: 'white',
-              borderRadius: '16px',
-              overflow: 'hidden',
-              boxShadow: '0 8px 32px rgba(0,0,0,0.08)',
-              transition: 'all 0.3s ease',
-              cursor: 'pointer'
-            }}
-            onClick={() => window.location.href = '/blog/how-ai-is-transforming-google-ads-in-2025'}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-8px)';
-              e.currentTarget.style.boxShadow = '0 20px 40px rgba(0,0,0,0.12)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 8px 32px rgba(0,0,0,0.08)';
-            }}>
-              <div style={{
-                width: '100%',
-                height: '200px',
-                background: 'linear-gradient(135deg, #764ba2 0%, #667eea 100%)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                position: 'relative',
-                overflow: 'hidden'
-              }}>
-                {/* Grid Pattern */}
-                <div style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  backgroundImage: `
-                    linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)
-                  `,
-                  backgroundSize: '20px 20px',
-                  pointerEvents: 'none'
-                }} />
-                
-                {/* Neural Network with Futuristic Elements */}
-                <svg style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  width: '100%',
-                  height: '100%',
-                  pointerEvents: 'none'
-                }} viewBox="0 0 360 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  {/* Neural Nodes - Layer 1 */}
-                  <circle cx="40" cy="50" r="4" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.25)" strokeWidth="1"/>
-                  <circle cx="40" cy="100" r="4" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.2)" strokeWidth="1"/>
-                  <circle cx="40" cy="150" r="4" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.3)" strokeWidth="1"/>
-                  
-                  {/* Neural Nodes - Layer 2 */}
-                  <circle cx="120" cy="40" r="5" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" strokeWidth="1"/>
-                  <circle cx="120" cy="80" r="5" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.25)" strokeWidth="1"/>
-                  <circle cx="120" cy="120" r="5" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.18)" strokeWidth="1"/>
-                  <circle cx="120" cy="160" r="5" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.22)" strokeWidth="1"/>
-                  
-                  {/* Neural Nodes - Layer 3 */}
-                  <circle cx="200" cy="60" r="6" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.18)" strokeWidth="1"/>
-                  <circle cx="200" cy="100" r="6" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.25)" strokeWidth="1"/>
-                  <circle cx="200" cy="140" r="6" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" strokeWidth="1"/>
-                  
-                  {/* Neural Nodes - Layer 4 */}
-                  <circle cx="280" cy="80" r="7" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.22)" strokeWidth="1"/>
-                  <circle cx="280" cy="120" r="7" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.18)" strokeWidth="1"/>
-                  
-                  {/* Neural Nodes - Output */}
-                  <circle cx="320" cy="100" r="8" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.35)" strokeWidth="1.5"/>
-                  
-                  {/* Neural Connections */}
-                  <line x1="44" y1="50" x2="115" y2="40" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8"/>
-                  <line x1="44" y1="50" x2="115" y2="80" stroke="rgba(255,255,255,0.08)" strokeWidth="0.6"/>
-                  <line x1="44" y1="100" x2="115" y2="80" stroke="rgba(255,255,255,0.12)" strokeWidth="0.8"/>
-                  <line x1="44" y1="100" x2="115" y2="120" stroke="rgba(255,255,255,0.1)" strokeWidth="0.7"/>
-                  <line x1="44" y1="150" x2="115" y2="120" stroke="rgba(255,255,255,0.15)" strokeWidth="0.9"/>
-                  <line x1="44" y1="150" x2="115" y2="160" stroke="rgba(255,255,255,0.08)" strokeWidth="0.6"/>
-                  <line x1="125" y1="40" x2="194" y2="60" stroke="rgba(255,255,255,0.1)" strokeWidth="0.7"/>
-                  <line x1="125" y1="80" x2="194" y2="60" stroke="rgba(255,255,255,0.12)" strokeWidth="0.8"/>
-                  <line x1="125" y1="80" x2="194" y2="100" stroke="rgba(255,255,255,0.1)" strokeWidth="0.7"/>
-                  <line x1="125" y1="120" x2="194" y2="100" stroke="rgba(255,255,255,0.15)" strokeWidth="0.9"/>
-                  <line x1="125" y1="160" x2="194" y2="100" stroke="rgba(255,255,255,0.1)" strokeWidth="0.7"/>
-                  <line x1="206" y1="60" x2="273" y2="80" stroke="rgba(255,255,255,0.1)" strokeWidth="0.8"/>
-                  <line x1="206" y1="100" x2="273" y2="80" stroke="rgba(255,255,255,0.12)" strokeWidth="0.9"/>
-                  <line x1="206" y1="100" x2="273" y2="120" stroke="rgba(255,255,255,0.1)" strokeWidth="0.7"/>
-                  <line x1="287" y1="80" x2="312" y2="100" stroke="rgba(255,255,255,0.15)" strokeWidth="1"/>
-                  <line x1="287" y1="120" x2="312" y2="100" stroke="rgba(255,255,255,0.12)" strokeWidth="0.9"/>
-                  
-                  {/* Futuristic Elements - Holographic Rings */}
-                  <circle cx="180" cy="100" r="25" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="1" strokeDasharray="5,5"/>
-                  <circle cx="180" cy="100" r="35" fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="0.8" strokeDasharray="3,7"/>
-                  
-                  {/* Futuristic Elements - Energy Particles */}
-                  <circle cx="50" cy="30" r="1.5" fill="rgba(255,255,255,0.6)">
-                    <animate attributeName="opacity" values="0.6;0.2;0.6" dur="2s" repeatCount="indefinite"/>
-                  </circle>
-                  <circle cx="300" cy="170" r="1.5" fill="rgba(255,255,255,0.6)">
-                    <animate attributeName="opacity" values="0.6;0.2;0.6" dur="2.5s" repeatCount="indefinite"/>
-                  </circle>
-                  <circle cx="320" cy="40" r="1.5" fill="rgba(255,255,255,0.6)">
-                    <animate attributeName="opacity" values="0.6;0.2;0.6" dur="1.8s" repeatCount="indefinite"/>
-                  </circle>
-                  
-
-                  
-                  {/* Data Flow Animation */}
-                  <circle cx="50" cy="100" r="2" fill="rgba(255,255,255,0.8)">
-                    <animate attributeName="cx" values="50;120;200;280;320" dur="3s" repeatCount="indefinite"/>
-                    <animate attributeName="cy" values="100;80;100;100;100" dur="3s" repeatCount="indefinite"/>
-                  </circle>
-                </svg>
-
-              </div>
-              <div style={{
-                padding: '24px'
-              }}>
-                <h3 style={{
-                  fontSize: '20px',
-                  fontWeight: '700',
-                  color: '#1e293b',
-                  marginBottom: '12px',
-                  lineHeight: '1.3'
-                }}>
-                  How AI is Transforming Google Ads in 2025
-                </h3>
-                <p style={{
-                  fontSize: '15px',
-                  color: '#64748b',
-                  lineHeight: '1.5'
-                }}>
-                  It's 2025 — AI is already transforming Google Ads. Discover the new rules of PPC and get instant, personalized insights to boost your campaigns today.
-                </p>
-              </div>
-            </div>
+            <div style={{ color: "#A0A0A0", fontSize: "12px", marginBottom: "10px" }}>{m.role}</div>
+            <div style={{ color: "#C0C6D7", fontSize: "13px", lineHeight: 1.5 }}>{m.desc}</div>
           </div>
-        </div>
-      </section>
+        ))}
+      </div>
+    </div>
+  </section>
+);
 
-      {/* Pre-Footer CTA Block */}
-      <div style={{
-        background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
-        padding: '40px 20px',
-        textAlign: 'center',
-        color: '#1e293b'
-      }}>
-        <div style={{
-          maxWidth: '1200px',
-          margin: '0 auto'
-        }}>
-          <h2 style={{
-            fontSize: 'clamp(2rem, 4vw, 3rem)',
-            fontWeight: '700',
-            marginBottom: '16px',
-            color: '#1e293b'
-          }}>
-            Tired of wasting money on Google Ads?
-          </h2>
-          <p style={{
-            fontSize: 'clamp(1rem, 2vw, 1.25rem)',
-            marginBottom: '24px',
-            color: '#64748b',
-            maxWidth: '800px',
-            margin: '0 auto 24px auto',
-            lineHeight: '1.6'
-          }}>
-            Stop guessing and start winning. Our AI identifies exactly where your budget is bleeding and shows you how to fix it in minutes.
-          </p>
-          <div style={{
-            display: 'flex',
-            gap: '16px',
-            justifyContent: 'center',
-            flexWrap: 'wrap'
-          }}>
-            <a href="/chat" style={{
-              padding: '12px 24px',
-              borderRadius: '8px',
-              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-              color: 'white',
-              textDecoration: 'none',
-              fontWeight: '500',
-              transition: 'all 0.3s ease',
-              boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)',
-              display: 'inline-block'
+const TIERS = [
+  {
+    name: "L1 Co-pilot",
+    price: "$99",
+    period: "/month",
+    desc: "AI предлагает — ты апруваешь каждое действие",
+    features: ["Buzz + Aegis активны", "1 Google Ads аккаунт", "Approve every change", "Weekly digest", "Email support"],
+    highlight: false,
+  },
+  {
+    name: "L2 Approval",
+    price: "$199",
+    period: "/month",
+    desc: "AI действует, апрув только на крупное",
+    features: ["Всё из L1", "Auto-apply small changes", "Risk Agent enforcement", "Real-time alerts", "Priority support"],
+    highlight: true,
+  },
+  {
+    name: "L3 Autonomous",
+    price: "$399",
+    period: "/month",
+    desc: "Полный автопилот — AI ведёт сам",
+    features: ["Всё из L2", "Full autonomy", "Creative Agent (генерация креативов)", "Multi-platform (Meta, TikTok)", "Dedicated onboarding"],
+    highlight: false,
+  },
+];
+
+const Pricing: React.FC = () => (
+  <section style={{ padding: "80px 24px", background: "#0F1116" }}>
+    <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+      <SectionHeader
+        title="Pricing"
+        subtitle="Гибкая 3-уровневая модель: начинай с co-pilot, переходи к автопилоту"
+      />
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "20px" }}>
+        {TIERS.map((t) => (
+          <div
+            key={t.name}
+            style={{
+              padding: "32px",
+              background: "#15181D",
+              border: t.highlight ? "2px solid #00FFE7" : "1px solid #1F232B",
+              borderRadius: "16px",
+              position: "relative",
             }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-2px)';
-              e.currentTarget.style.boxShadow = '0 6px 16px rgba(102, 126, 234, 0.4)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 4px 12px rgba(102, 126, 234, 0.3)';
-            }}>
-              Find My Leaks
+          >
+            {t.highlight && (
+              <div
+                style={{
+                  position: "absolute",
+                  top: "-12px",
+                  left: "50%",
+                  transform: "translateX(-50%)",
+                  background: "#00FFE7",
+                  color: "#0F1116",
+                  padding: "4px 12px",
+                  borderRadius: "999px",
+                  fontSize: "11px",
+                  fontWeight: 700,
+                  textTransform: "uppercase",
+                  letterSpacing: "1px",
+                }}
+              >
+                Most Popular
+              </div>
+            )}
+            <h3 style={{ fontSize: "18px", fontWeight: 700, margin: "0 0 8px" }}>{t.name}</h3>
+            <div style={{ marginBottom: "12px" }}>
+              <span style={{ fontSize: "44px", fontWeight: 800 }}>{t.price}</span>
+              <span style={{ color: "#A0A0A0", fontSize: "16px" }}>{t.period}</span>
+            </div>
+            <p style={{ color: "#A0A0A0", margin: "0 0 24px", fontSize: "14px", minHeight: "40px" }}>
+              {t.desc}
+            </p>
+            <ul style={{ listStyle: "none", padding: 0, margin: "0 0 28px" }}>
+              {t.features.map((f) => (
+                <li
+                  key={f}
+                  style={{
+                    color: "#C0C6D7",
+                    fontSize: "14px",
+                    marginBottom: "10px",
+                    paddingLeft: "22px",
+                    position: "relative",
+                  }}
+                >
+                  <span style={{ position: "absolute", left: 0, color: "#4ECDC4" }}>✓</span>
+                  {f}
+                </li>
+              ))}
+            </ul>
+            <a
+              href="#waitlist"
+              style={{
+                display: "block",
+                padding: "12px",
+                background: t.highlight ? "linear-gradient(135deg, #00FFE7, #00BFAE)" : "transparent",
+                border: t.highlight ? "none" : "1px solid #2D3340",
+                color: t.highlight ? "#0F1116" : "#FFFFFF",
+                borderRadius: "8px",
+                fontSize: "14px",
+                fontWeight: 700,
+                textAlign: "center",
+                textDecoration: "none",
+              }}
+            >
+              Get on waitlist
             </a>
           </div>
-        </div>
+        ))}
       </div>
-
-      {/* Footer */}
-      <Footer compact={true} />
+      <p style={{ textAlign: "center", color: "#666", fontSize: "12px", marginTop: "32px" }}>
+        Free 14-day trial · No credit card · Cancel anytime
+      </p>
     </div>
-    </>
+  </section>
+);
+
+const CTA: React.FC = () => (
+  <section
+    id="waitlist"
+    style={{
+      padding: "100px 24px",
+      background: "linear-gradient(180deg, #0F1116 0%, #15181D 100%)",
+    }}
+  >
+    <div style={{ maxWidth: "640px", margin: "0 auto", textAlign: "center" }}>
+      <h2 style={{ fontSize: "36px", fontWeight: 800, marginBottom: "16px" }}>
+        Ready to fire your agency?
+      </h2>
+      <p style={{ color: "#A0A0A0", fontSize: "18px", marginBottom: "32px", lineHeight: 1.5 }}>
+        Join the private beta. We&apos;re opening to{" "}
+        <strong style={{ color: "#FFFFFF" }}>30 first SMB owners</strong> who want their Google Ads
+        run by AI agents, not consultants.
+      </p>
+      <WaitlistForm source="cta-bottom" />
+    </div>
+  </section>
+);
+
+const WaitlistForm: React.FC<{ source: string }> = ({ source }) => {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [message, setMessage] = useState("");
+  const [position, setPosition] = useState<number | null>(null);
+
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email.trim()) return;
+    setStatus("loading");
+    try {
+      const res = await fetch(`${API_BASE}/api/waitlist/signup`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: email.trim(), source }),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        setStatus("success");
+        setMessage(data.message);
+        setPosition(data.position);
+      } else {
+        setStatus("error");
+        setMessage(data.detail || "Something went wrong");
+      }
+    } catch {
+      setStatus("error");
+      setMessage("Server unreachable. Try again later.");
+    }
+  };
+
+  if (status === "success") {
+    return (
+      <div
+        style={{
+          padding: "20px 24px",
+          background: "#4ECDC422",
+          border: "1px solid #4ECDC466",
+          borderRadius: "12px",
+          color: "#4ECDC4",
+          maxWidth: "480px",
+          margin: "0 auto",
+          fontSize: "15px",
+        }}
+      >
+        ✅ {message} {position && <strong>You&apos;re #{position}</strong>}
+      </div>
+    );
+  }
+
+  return (
+    <form
+      onSubmit={submit}
+      style={{
+        display: "flex",
+        gap: "10px",
+        maxWidth: "480px",
+        margin: "0 auto",
+        flexWrap: "wrap",
+        justifyContent: "center",
+      }}
+    >
+      <input
+        type="email"
+        required
+        placeholder="you@company.com"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        style={{
+          flex: 1,
+          minWidth: "240px",
+          padding: "14px 16px",
+          fontSize: "15px",
+          background: "#1F232B",
+          border: "1px solid #2D3340",
+          borderRadius: "10px",
+          color: "#FFFFFF",
+          outline: "none",
+        }}
+      />
+      <button
+        type="submit"
+        disabled={status === "loading"}
+        style={{
+          padding: "14px 24px",
+          fontSize: "15px",
+          fontWeight: 700,
+          background: status === "loading" ? "#00BFAE" : "linear-gradient(135deg, #00FFE7, #00BFAE)",
+          color: "#0F1116",
+          border: "none",
+          borderRadius: "10px",
+          cursor: status === "loading" ? "wait" : "pointer",
+        }}
+      >
+        {status === "loading" ? "Adding..." : "Join waitlist →"}
+      </button>
+      {status === "error" && (
+        <div style={{ width: "100%", color: "#FF6B6B", fontSize: "13px", marginTop: "8px" }}>
+          ⚠️ {message}
+        </div>
+      )}
+    </form>
   );
-} 
+};
+
+const Footer: React.FC = () => (
+  <footer
+    style={{
+      padding: "40px 24px",
+      borderTop: "1px solid #1F232B",
+      background: "#0F1116",
+      textAlign: "center",
+      color: "#666",
+      fontSize: "13px",
+    }}
+  >
+    <div style={{ marginBottom: "8px" }}>
+      🐝 B6 — Autonomous PPC Cabinet · Private beta · 2026
+    </div>
+    <div>
+      <a href="/b6" style={{ color: "#7F9CF5", textDecoration: "none", margin: "0 8px" }}>
+        Live demo
+      </a>
+      ·
+      <a href="/privacy-policy" style={{ color: "#7F9CF5", textDecoration: "none", margin: "0 8px" }}>
+        Privacy
+      </a>
+      ·
+      <a href="/terms-of-service" style={{ color: "#7F9CF5", textDecoration: "none", margin: "0 8px" }}>
+        Terms
+      </a>
+    </div>
+  </footer>
+);
+
+const SectionHeader: React.FC<{ title: string; subtitle: string }> = ({ title, subtitle }) => (
+  <div style={{ textAlign: "center", marginBottom: "48px" }}>
+    <h2 style={{ fontSize: "36px", fontWeight: 800, margin: "0 0 12px" }}>{title}</h2>
+    <p style={{ color: "#A0A0A0", fontSize: "16px", margin: 0 }}>{subtitle}</p>
+  </div>
+);

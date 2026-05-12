@@ -1,0 +1,163 @@
+"use client";
+
+import React, { useState } from "react";
+import type { AgentAction } from "@/lib/b6-api";
+import { approveAction, rejectAction } from "@/lib/b6-api";
+import { AegisBadge } from "./AegisBadge";
+
+export const ApprovalQueue: React.FC<{
+  pending: AgentAction[];
+  onActionChange: () => void;
+}> = ({ pending, onActionChange }) => {
+  if (pending.length === 0) {
+    return (
+      <div
+        style={{
+          padding: "20px",
+          textAlign: "center",
+          color: "#A0A0A0",
+          fontSize: "13px",
+          background: "#1F232B",
+          borderRadius: "10px",
+          border: "1px dashed #2D3340",
+        }}
+      >
+        ✅ Нет действий, ожидающих апрува
+      </div>
+    );
+  }
+
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+      {pending.map((a) => (
+        <ApprovalRow key={a.id} action={a} onActionChange={onActionChange} />
+      ))}
+    </div>
+  );
+};
+
+const ApprovalRow: React.FC<{
+  action: AgentAction;
+  onActionChange: () => void;
+}> = ({ action, onActionChange }) => {
+  const [busy, setBusy] = useState<"approve" | "reject" | null>(null);
+
+  const campaign = action.target?.campaign_id;
+  const newBid = action.target?.new_bid_usd;
+  const actionLabel =
+    action.action_type === "update_bid"
+      ? `Повысить ставку до $${newBid}`
+      : action.action_type === "pause_campaign"
+      ? "Поставить паузу"
+      : action.action_type;
+
+  const onApprove = async () => {
+    setBusy("approve");
+    try {
+      await approveAction(action.id);
+      onActionChange();
+    } catch (e) {
+      console.error(e);
+      alert(`Ошибка: ${e}`);
+    } finally {
+      setBusy(null);
+    }
+  };
+
+  const onReject = async () => {
+    const reason = prompt("Причина отклонения (опционально):") || undefined;
+    setBusy("reject");
+    try {
+      await rejectAction(action.id, reason);
+      onActionChange();
+    } catch (e) {
+      console.error(e);
+      alert(`Ошибка: ${e}`);
+    } finally {
+      setBusy(null);
+    }
+  };
+
+  // Border-color подсвечивается по Aegis-recommendation
+  const review = action.risk_review;
+  const borderColor = review
+    ? review.recommendation === "block"
+      ? "#FF6B6B66"
+      : review.recommendation === "review"
+      ? "#FFA72666"
+      : "#4ECDC466"
+    : "#FFA72644";
+
+  return (
+    <div
+      style={{
+        padding: "14px 16px",
+        background: "#1F232B",
+        borderRadius: "10px",
+        border: `1px solid ${borderColor}`,
+      }}
+    >
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "12px" }}>
+        <div style={{ flex: 1 }}>
+          <div style={{ color: "#FFFFFF", fontSize: "14px", fontWeight: 600, marginBottom: "4px", display: "flex", alignItems: "center", gap: "8px" }}>
+            <span>🐝 Buzz предлагает: <span style={{ color: "#00FFE7" }}>{actionLabel}</span></span>
+            <AegisBadge review={review} compact />
+          </div>
+          <div style={{ color: "#A0A0A0", fontSize: "12px", marginBottom: "8px" }}>
+            Кампания <code style={{ color: "#7F9CF5" }}>{campaign}</code> · confidence {Math.round(action.confidence * 100)}%
+          </div>
+          <div
+            style={{
+              color: "#C0C6D7",
+              fontSize: "12px",
+              lineHeight: "1.5",
+              background: "#15181D",
+              padding: "8px 10px",
+              borderRadius: "6px",
+            }}
+          >
+            {action.reasoning}
+          </div>
+          <AegisBadge review={review} />
+        </div>
+
+        <div style={{ display: "flex", flexDirection: "column", gap: "8px", minWidth: "100px" }}>
+          <button
+            onClick={onApprove}
+            disabled={busy !== null}
+            style={{
+              padding: "8px 14px",
+              borderRadius: "6px",
+              border: "none",
+              background: busy === "approve" ? "#4ECDC488" : "#4ECDC4",
+              color: "#0F1116",
+              fontSize: "13px",
+              fontWeight: 600,
+              cursor: busy !== null ? "wait" : "pointer",
+              transition: "background 150ms",
+            }}
+          >
+            {busy === "approve" ? "..." : "✓ Approve"}
+          </button>
+          <button
+            onClick={onReject}
+            disabled={busy !== null}
+            style={{
+              padding: "8px 14px",
+              borderRadius: "6px",
+              border: "1px solid #FF6B6B66",
+              background: "transparent",
+              color: "#FF6B6B",
+              fontSize: "13px",
+              fontWeight: 600,
+              cursor: busy !== null ? "wait" : "pointer",
+              transition: "background 150ms",
+            }}
+          >
+            {busy === "reject" ? "..." : "✕ Reject"}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
