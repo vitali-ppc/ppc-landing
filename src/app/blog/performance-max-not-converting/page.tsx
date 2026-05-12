@@ -13,7 +13,7 @@ export default function BlogPostPage() {
     "@context": "https://schema.org",
     "@type": "Article",
     "headline": "Performance Max Not Converting? 9 Fixes That Actually Work (2026 Playbook)",
-    "description": "Performance Max burning budget without conversions? 9 diagnostic steps from conversion tracking to bid strategy to landing pages — with thresholds and timelines.",
+    "description": "Performance Max burning budget without conversions? 9 diagnostic steps from conversion tracking to bid strategy to landing pages - with thresholds and timelines.",
     "image": "https://kampaio.com/logo.png",
     "author": {
       "@type": "Organization",
@@ -38,7 +38,7 @@ export default function BlogPostPage() {
   };
 
   const tableOfContents = [
-    { id: 'tldr', title: 'TL;DR — Top 5 Fixes in 30 Seconds', level: 1 },
+    { id: 'tldr', title: 'TL;DR - Top 5 Fixes in 30 Seconds', level: 1 },
     { id: 'why-pmax-stops', title: 'Why Performance Max Stops Converting', level: 1 },
     { id: 'diagnostic-checklist', title: 'The 9-Step Diagnostic Checklist', level: 1 },
     { id: 'verify-tracking', title: '1. Verify Conversion Tracking', level: 2 },
@@ -96,7 +96,7 @@ export default function BlogPostPage() {
             </h1>
             {/* Subtitle */}
             <p style={{ fontSize: '20px', color: '#64748b', marginBottom: '32px', lineHeight: '1.6', fontWeight: '500' }}>
-              A systematic 9-step diagnostic checklist — with concrete thresholds and timelines — for when pMax is burning budget without conversions.
+              A systematic 9-step diagnostic checklist - with concrete thresholds and timelines - for when pMax is burning budget without conversions.
             </p>
             {/* Meta Info */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '24px', marginBottom: '40px', paddingBottom: '32px', borderBottom: '1px solid #e5e7eb' }}>
@@ -150,7 +150,7 @@ export default function BlogPostPage() {
 
             {/* TL;DR */}
             <section id="tldr">
-              <h2 style={h2Style}>TL;DR — Top 5 Fixes in 30 Seconds</h2>
+              <h2 style={h2Style}>TL;DR - Top 5 Fixes in 30 Seconds</h2>
               <p style={pStyle}>
                 If your Performance Max campaign is spending without converting, the cause is almost always one of five things. Run these checks in order.
               </p>
@@ -220,7 +220,7 @@ export default function BlogPostPage() {
                 <li style={liStyle}>Wait three to four weeks between significant adjustments.</li>
               </ul>
               <p style={pStyle}>
-                After 14 days with zero conversions, move to the next step. After 14 days with 1-5 conversions, the system is learning — give it another seven days before intervening.
+                After 14 days with zero conversions, move to the next step. After 14 days with 1-5 conversions, the system is learning - give it another seven days before intervening.
               </p>
 
               {/* Step 3 */}
@@ -353,7 +353,7 @@ export default function BlogPostPage() {
                 <strong>Can Performance Max work for small budgets under $1,000/month?</strong> Usually no. Smart Bidding needs ~30 conversions per month, which at a typical $40 CPA requires $1,200+ budget. Below that, use Search or Standard Shopping with manual bidding.
               </p>
               <p style={pStyle}>
-                <strong>Should I use Maximize Conversions or Target ROAS for Performance Max?</strong> Start with Maximize Conversion Value (no target) for the first 30 days to find your real baseline. Once you have 30+ conversions, switch to Target ROAS at ~80% of the baseline you observed. Don&apos;t set targets based on aspiration — set them based on observed performance.
+                <strong>Should I use Maximize Conversions or Target ROAS for Performance Max?</strong> Start with Maximize Conversion Value (no target) for the first 30 days to find your real baseline. Once you have 30+ conversions, switch to Target ROAS at ~80% of the baseline you observed. Don&apos;t set targets based on aspiration - set them based on observed performance.
               </p>
             </section>
 
@@ -364,10 +364,10 @@ export default function BlogPostPage() {
                 Connect your Google Ads account and <a href="/b6#aegis" style={linkStyle}>Aegis runs a Monday risk review</a>: Diagnostic Insights, spend curve, conversion tracking status, asset coverage. Buzz adjusts bid strategy based on your actual historical ROAS, not an aspirational target. Echo sends you a weekly summary so you always know what changed and why.
               </p>
               <MascotQuote mascot="echo">
-                Each Monday at 9am I send you the weekend pMax report — what Aegis flagged, what Buzz adjusted, what&apos;s queued for your approval. Two minutes of reading, decisions in your inbox.
+                Each Monday at 9am I send you the weekend pMax report - what Aegis flagged, what Buzz adjusted, what&apos;s queued for your approval. Two minutes of reading, decisions in your inbox.
               </MascotQuote>
               <p style={pStyle}>
-                <a href="/chat" style={linkStyle}>Start a B6 free trial</a>. No commitment, no card on file. (See <a href="/pricing" style={linkStyle}>pricing tiers</a> — Co-pilot, Approval, and Autonomous modes.)
+                <a href="/chat" style={linkStyle}>Start a B6 free trial</a>. No commitment, no card on file. (See <a href="/pricing" style={linkStyle}>pricing tiers</a> - Co-pilot, Approval, and Autonomous modes.)
               </p>
 
               <div style={{
