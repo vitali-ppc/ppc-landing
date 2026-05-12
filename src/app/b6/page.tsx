@@ -13,6 +13,7 @@ import { DigestPanel } from "@/components/b6/DigestPanel";
 import { MaximusPanel } from "@/components/b6/MaximusPanel";
 import { MiraPanel } from "@/components/b6/MiraPanel";
 import { SagePanel } from "@/components/b6/SagePanel";
+import { GoogleAdsConnect } from "@/components/b6/GoogleAdsConnect";
 import { useB6Events } from "@/lib/b6-socket";
 
 const CUSTOMER_ID = "1234567890"; // mock dev customer ID
@@ -157,6 +158,9 @@ export default function B6Dashboard() {
             />
           </div>
         </header>
+
+        {/* Google Ads connection status */}
+        <GoogleAdsConnect onChange={refresh} />
 
         {/* Stats bar */}
         <div

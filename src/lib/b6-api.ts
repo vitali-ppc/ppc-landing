@@ -270,6 +270,52 @@ export function formatActionShortId(id: string): string {
   return id.slice(0, 8);
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// Google Ads OAuth + connections
+// ─────────────────────────────────────────────────────────────────────────────
+
+export type ConnectedAccount = {
+  id: string;
+  google_customer_id: string;
+  timezone: string | null;
+  currency: string | null;
+  is_active: boolean;
+  connected_at: string;
+};
+
+/** Returns the URL where browser should be redirected to start Google OAuth. */
+export async function startGoogleAdsOAuth(
+  userId = DEV_USER_ID,
+): Promise<{ auth_url: string; state: string }> {
+  const res = await fetch(
+    `${API_BASE}/api/google-ads/oauth/start?user_id=${encodeURIComponent(userId)}`,
+  );
+  if (!res.ok) throw new Error(`oauth/start failed: ${res.status} ${await res.text()}`);
+  return await res.json();
+}
+
+export async function listConnectedAccounts(
+  userId = DEV_USER_ID,
+): Promise<ConnectedAccount[]> {
+  const res = await fetch(
+    `${API_BASE}/api/google-ads/accounts?user_id=${encodeURIComponent(userId)}`,
+  );
+  if (!res.ok) throw new Error(`accounts list failed: ${res.status}`);
+  return await res.json();
+}
+
+export async function disconnectGoogleAdsAccount(
+  accountId: string,
+  userId = DEV_USER_ID,
+): Promise<{ success: boolean; google_customer_id: string }> {
+  const res = await fetch(
+    `${API_BASE}/api/google-ads/accounts/${encodeURIComponent(accountId)}?user_id=${encodeURIComponent(userId)}`,
+    { method: "DELETE" },
+  );
+  if (!res.ok) throw new Error(`disconnect failed: ${res.status}`);
+  return await res.json();
+}
+
 export function statusBadgeColor(status: AgentAction["status"]): string {
   switch (status) {
     case "proposed":

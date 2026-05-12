@@ -42,6 +42,7 @@ from routers import waitlist as waitlist_router
 from routers import internal as internal_router
 from routers import digest as digest_router
 from routers import orchestrator as orchestrator_router
+from routers import google_ads as google_ads_router
 from ws.events import sio
 
 app = FastAPI(
@@ -67,6 +68,7 @@ app.include_router(waitlist_router.router)
 app.include_router(internal_router.router)
 app.include_router(digest_router.router)
 app.include_router(orchestrator_router.router)
+app.include_router(google_ads_router.router)
 
 
 @app.get("/")

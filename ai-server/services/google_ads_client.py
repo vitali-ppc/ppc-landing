@@ -58,6 +58,71 @@ async def refresh_access_token(refresh_token: str) -> str:
         return access_token
 
 
+async def exchange_code_for_tokens(code: str, redirect_uri: str) -> dict[str, Any]:
+    """Initial OAuth code exchange — converts auth code (one-time) into refresh_token + access_token.
+
+    Used in the OAuth callback flow after user authorizes our app on Google.
+    Returns: {access_token, refresh_token, expires_in, scope, token_type, id_token?}.
+    """
+    client_id = os.getenv("GOOGLE_CLIENT_ID")
+    client_secret = os.getenv("GOOGLE_CLIENT_SECRET")
+
+    if not client_id or not client_secret:
+        raise RuntimeError("Google OAuth credentials not configured")
+
+    async with httpx.AsyncClient(timeout=20.0) as client:
+        response = await client.post(
+            "https://oauth2.googleapis.com/token",
+            data={
+                "client_id": client_id,
+                "client_secret": client_secret,
+                "code": code,
+                "redirect_uri": redirect_uri,
+                "grant_type": "authorization_code",
+            },
+        )
+        response.raise_for_status()
+        data = response.json()
+        if not data.get("refresh_token"):
+            # If user previously authorized without prompt=consent, Google won't return refresh_token.
+            # We force prompt=consent on the auth URL to avoid this.
+            raise RuntimeError(
+                "No refresh_token in exchange response. "
+                "Ensure auth URL uses access_type=offline AND prompt=consent."
+            )
+        return data
+
+
+async def list_accessible_customers(refresh_token: str) -> list[str]:
+    """List Google Ads customer IDs the user has access to via OAuth.
+
+    Returns list of customer_id strings (10-digit, no dashes). The user's Google account
+    may have access to multiple Ads accounts (own + MCC-managed).
+
+    See: https://developers.google.com/google-ads/api/rest/auth#listaccessiblecustomers
+    """
+    if use_mock():
+        # mock — single test account
+        return ["1234567890"]
+
+    access_token = await refresh_access_token(refresh_token)
+    async with httpx.AsyncClient(timeout=20.0) as client:
+        r = await client.get(
+            f"{GOOGLE_ADS_API_BASE}/customers:listAccessibleCustomers",
+            headers={
+                "Authorization": f"Bearer {access_token}",
+                "developer-token": os.getenv("GOOGLE_ADS_DEVELOPER_TOKEN", ""),
+            },
+        )
+        if r.status_code != 200:
+            logger.warning("listAccessibleCustomers -> %s: %s", r.status_code, r.text[:300])
+            r.raise_for_status()
+        data = r.json()
+        # Response format: {"resourceNames": ["customers/1234567890", "customers/9876543210", ...]}
+        resource_names = data.get("resourceNames", []) or []
+        return [rn.split("/")[-1] for rn in resource_names]
+
+
 async def get_valid_access_token(refresh_token: str) -> str:
     """Кеширует access_token на 1 час по хешу refresh_token."""
     if not refresh_token:
