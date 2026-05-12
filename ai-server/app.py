@@ -1,0 +1,100 @@
+"""B6 — Autonomous PPC Cabinet FastAPI приложение.
+
+Это новое приложение для B6 (агенты + actions + dashboard API).
+Старый `main.py` остаётся параллельно (для Kampaio v1 endpoints) — его рефакторинг
+завершится на Day 3-4.
+
+Запуск (dev):
+    cd ai-server
+    source venv/bin/activate
+    uvicorn app:app --reload --port 8000
+
+Полезные endpoints:
+- POST /api/agents/run       — запустить Buzz
+- GET  /api/agents           — список агентов
+- GET  /api/actions          — список proposed actions
+- POST /api/actions/{id}/approve
+- POST /api/actions/{id}/reject
+- GET  /health
+"""
+from __future__ import annotations
+
+import logging
+import os
+
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from dotenv import load_dotenv
+
+load_dotenv(override=True)
+
+logging.basicConfig(
+    level=os.getenv("LOG_LEVEL", "INFO"),
+    format="%(asctime)s %(levelname)s %(name)s: %(message)s",
+)
+
+import socketio
+
+from routers import agents as agents_router
+from routers import actions as actions_router
+from routers import campaigns as campaigns_router
+from routers import waitlist as waitlist_router
+from routers import internal as internal_router
+from routers import digest as digest_router
+from routers import orchestrator as orchestrator_router
+from ws.events import sio
+
+app = FastAPI(
+    title="B6 — Autonomous PPC Cabinet",
+    description="AI agents that manage Google Ads campaigns autonomously",
+    version="0.3.0-day4",
+)
+
+# CORS — для локальной разработки фронта
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=os.getenv("CORS_ORIGINS", "*").split(","),
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# Routers
+app.include_router(agents_router.router)
+app.include_router(actions_router.router)
+app.include_router(campaigns_router.router)
+app.include_router(waitlist_router.router)
+app.include_router(internal_router.router)
+app.include_router(digest_router.router)
+app.include_router(orchestrator_router.router)
+
+
+@app.get("/")
+async def root():
+    return {
+        "service": "B6 Autonomous PPC Cabinet",
+        "version": app.version,
+        "endpoints": {
+            "agents": "/api/agents",
+            "actions": "/api/actions",
+            "health": "/health",
+            "docs": "/docs",
+        },
+    }
+
+
+@app.get("/health")
+async def health():
+    return {
+        "status": "ok",
+        "mock_mode": os.getenv("GOOGLE_ADS_USE_MOCK", "false"),
+        "model": os.getenv("ANTHROPIC_DEFAULT_MODEL", "claude-sonnet-4-6"),
+        "socketio": True,
+    }
+
+
+# Mount Socket.IO ASGI app
+# Это оборачивает FastAPI в socketio.ASGIApp — Socket.IO будет на /socket.io/, REST остаётся как был
+socket_app = socketio.ASGIApp(sio, other_asgi_app=app, socketio_path="/socket.io")
+# Замечание: для запуска через uvicorn используется `app:socket_app` вместо `app:app`
+# См. start.py / docker-compose
