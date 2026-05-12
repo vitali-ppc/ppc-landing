@@ -155,7 +155,7 @@ http://localhost:3002/b6
 - Юзер пушит сам (`git push origin v2-autonomous-agents`)
 - Юзер даёт SSH разрешение → я заливаю через `scp` напрямую на сервер
 
-Также **ждёт явного разрешения**: SSH-доступ к `91.99.225.211` (server IP вытащен из `AI_SERVER_HETZNER_README.md`, не из user input — нужна explicit confirmation).
+**⚠️ Hetzner старый сервер мёртв (обнаружено 2026-05-12)**: account `K0742311825` cancelled 02/2025 за $5.09 unpaid invoice. IP `91.99.225.211` больше не наш. Для deploy нужен **новый VPS** (новый Hetzner аккаунт или Vultr/DO/Linode, все ~$5-6/мес). Долг $5.09 закрывается банковским переводом на IBAN из cancellation letter — отдельная задача от deploy.
 
 ---
 

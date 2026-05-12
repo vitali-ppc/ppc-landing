@@ -11,6 +11,7 @@
 > - [`LAUNCH.md`](./LAUNCH.md) — 2-hour deployment quickstart
 > - [`DEPLOY.md`](./DEPLOY.md) — full deployment manual
 > - [`LAUNCH-CONTENT.md`](./LAUNCH-CONTENT.md) — social media launch kit
+> - [`BRAND-BRIEF.md`](./BRAND-BRIEF.md) — brand voice, audience, style rules, taboos (system prompt source for content agents)
 >
 > Полный архитектурный план: [`/Users/vitaly/.claude/plans/noble-waddling-sparkle.md`](/Users/vitaly/.claude/plans/noble-waddling-sparkle.md)
 
