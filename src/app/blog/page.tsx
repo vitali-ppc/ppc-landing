@@ -78,6 +78,16 @@ export default function BlogPage() {
       date: '2025-07-24',
       readTime: '10 min read',
       slug: 'how-ai-is-transforming-google-ads-in-2025'
+    },
+    {
+      id: 8,
+      title: 'Performance Max Not Converting? 9 Fixes That Actually Work (2026 Playbook)',
+      excerpt: 'Performance Max burning budget without conversions? 9 diagnostic steps from conversion tracking to bid strategy to landing pages — with thresholds and timelines.',
+      category: 'google-ads',
+      author: 'By B6 Team',
+      date: '2026-05-12',
+      readTime: '10 min read',
+      slug: 'performance-max-not-converting'
     }
   ];
 
