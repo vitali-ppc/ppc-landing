@@ -243,6 +243,9 @@ http://localhost:8000/docs
 - **Цель года 1**: $10-30K MRR на 50-100 платящих клиентах
 - **Главная угроза**: Synter (universal ad MCP, $199/мес) + большие игроки (Optmyzr/Madgicx) пивотят в ту же сторону. **Окно ~6-12 месяцев** чтобы захватить позицию
 
+### Связанные проекты (sister projects)
+- **SEO Agent Team** — `/Users/vitaly/Vit+/projects/seo-agent-team/` — отдельный Python-pipeline который генерит SEO-статьи для блога B6. Output ложится в `src/app/blog/<slug>/page.tsx` обычными git-коммитами, Vercel автодеплоит. **Не часть B6 backend**, не объединяем. На 2026-05-12: 2 статьи опубликованы (`/blog/performance-max-not-converting`, `/blog/google-ads-roas-dropped-suddenly`). Pipeline на L2 автономии (keyword → published TSX за ~15 мин).
+
 ### Что делает нас отличными
 1. **Multi-agent с visualization** (mascots + live stream) — у конкурентов нет
 2. **Глубина по Google Ads** (vs Synter universal-but-shallow)
