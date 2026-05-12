@@ -23,6 +23,7 @@ alembic>=1.13.0
 greenlet>=3.0.0
 # psycopg для prod — Postgres driver. На dev SQLite, не требуется.
 # psycopg[binary]>=3.1.0
+psycopg2-binary>=2.9.9
 # aiosqlite — async-driver для SQLite в dev
 aiosqlite>=0.19.0
 
