@@ -1,12 +1,49 @@
+# =============================================================================
+# B6 — Autonomous PPC Cabinet dependencies
+# =============================================================================
+# Совместимо с Python 3.9+
+# Установка: python3 -m venv venv && source venv/bin/activate && pip install -r requirements.txt
+
+# ---- Web framework ------------------------------------------------------
 fastapi==0.104.1
 uvicorn[standard]==0.24.0
-openai>=1.12.0
-python-dotenv==1.0.0
 python-multipart==0.0.6
 pydantic>=2.6.0
-requests==2.31.0
-aiofiles==23.2.1
+
+# ---- LLM (Claude) -------------------------------------------------------
+# Используем low-level anthropic SDK (claude-agent-sdk требует Python 3.10+).
+# Agent loop пишем сами поверх Messages API + tool use.
+anthropic>=0.40.0
+
+# ---- Database (SQLAlchemy + Alembic) ----------------------------------
+# SQLAlchemy 2.x async-friendly, работает с SQLite (dev) и Postgres (prod).
+sqlalchemy>=2.0.0
+alembic>=1.13.0
+# greenlet нужен для SQLAlchemy async session.get/close
+greenlet>=3.0.0
+# psycopg для prod — Postgres driver. На dev SQLite, не требуется.
+# psycopg[binary]>=3.1.0
+# aiosqlite — async-driver для SQLite в dev
+aiosqlite>=0.19.0
+
+# ---- Google Ads --------------------------------------------------------
+google-ads>=22.0.0
 httpx>=0.25.0
+requests==2.31.0
+
+# ---- Real-time (Socket.IO) ---------------------------------------------
+python-socketio>=5.11.0
+
+# ---- Background tasks (Week 2+) ----------------------------------------
+# Закомментировано до Week 2 — требует Redis локально
+# celery>=5.3.0
+# redis>=5.0.0
+
+# ---- Exports (carried over from Kampaio v1) ----------------------------
 openpyxl>=3.1.0
 reportlab>=4.0.0
+aiofiles==23.2.1
+
+# ---- Misc -------------------------------------------------------------
+python-dotenv==1.0.0
 pytz>=2023.3
