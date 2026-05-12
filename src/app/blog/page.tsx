@@ -88,6 +88,16 @@ export default function BlogPage() {
       date: '2026-05-12',
       readTime: '10 min read',
       slug: 'performance-max-not-converting'
+    },
+    {
+      id: 9,
+      title: 'Google Ads ROAS Dropped Suddenly? 8 Diagnostic Steps That Find the Real Cause (2026 Playbook)',
+      excerpt: 'Google Ads ROAS dropped overnight? Most "ROAS drops" are tracking problems in disguise. An 8-step diagnostic checklist with thresholds and timelines for SMB owners.',
+      category: 'google-ads',
+      author: 'By B6 Team',
+      date: '2026-05-12',
+      readTime: '10 min read',
+      slug: 'google-ads-roas-dropped-suddenly'
     }
   ];
 
