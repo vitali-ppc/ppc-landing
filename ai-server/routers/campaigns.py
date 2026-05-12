@@ -35,14 +35,29 @@ def _cache_set(key: str, value):
     _cache[key] = (time.time(), value)
 
 
-async def _get_access_token() -> str:
-    """В dev/mock — фейковый токен. В prod — из БД по user_id."""
+async def _get_access_token(customer_id: str) -> str:
+    """В dev/mock — фейковый токен. В prod — refresh_token из БД по customer_id."""
     if gads.use_mock():
         return "mock-access-token"
-    refresh = os.getenv("DEV_REFRESH_TOKEN", "")
-    if not refresh:
-        raise HTTPException(503, "Google Ads not configured. Set GOOGLE_ADS_USE_MOCK=true for dev.")
-    return await gads.get_valid_access_token(refresh)
+
+    # Production: load refresh_token from DB (saved during OAuth flow)
+    from sqlalchemy import select
+    from db.models import GoogleAdsAccount
+    from db.session import AsyncSessionLocal
+
+    async with AsyncSessionLocal() as session:
+        result = await session.execute(
+            select(GoogleAdsAccount)
+            .where(GoogleAdsAccount.google_customer_id == customer_id)
+            .where(GoogleAdsAccount.is_active == True)
+        )
+        conn = result.scalar_one_or_none()
+        if conn is None or not conn.oauth_refresh_token:
+            raise HTTPException(
+                503,
+                f"Customer {customer_id} not connected. User must complete Google Ads OAuth first.",
+            )
+        return await gads.get_valid_access_token(conn.oauth_refresh_token)
 
 
 @router.get("")
@@ -57,7 +72,7 @@ async def list_campaigns_endpoint(
     if cached is not None:
         return cached
 
-    access_token = await _get_access_token()
+    access_token = await _get_access_token(customer_id)
     campaigns = await gads.list_campaigns(access_token, customer_id)
 
     if include_metrics:
@@ -91,7 +106,7 @@ async def get_campaign_metrics_endpoint(
     """Подробные метрики одной кампании."""
     if not campaign_id:
         raise HTTPException(400, "campaign_id required")
-    access_token = await _get_access_token()
+    access_token = await _get_access_token(customer_id)
     try:
         metrics = await gads.get_campaign_metrics(access_token, customer_id, campaign_id, days=days)
         metrics["spend_usd"] = round(metrics["spend_micros"] / 1_000_000, 2)

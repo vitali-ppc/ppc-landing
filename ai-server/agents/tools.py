@@ -22,16 +22,33 @@ logger = logging.getLogger(__name__)
 # ---------------------------------------------------------------------------
 
 async def _get_access_token_for(user_id: str, customer_id: Optional[str] = None) -> str:
-    """В Day 1 — заглушка. На неделе 2 — лезет в google_ads_accounts по user_id."""
+    """В non-mock режиме лезет в google_ads_accounts по customer_id (приоритет) или user_id.
+
+    Customer_id — основной ключ (если задан), потому что у одного user может быть много
+    подключённых аккаунтов. Без customer_id берёт первый is_active=true для user_id.
+    """
     if gads.use_mock():
         return "mock-access-token"
-    refresh_token = os.getenv("DEV_REFRESH_TOKEN", "")
-    if not refresh_token:
-        raise RuntimeError(
-            "В non-mock режиме нужен refresh token. Установи GOOGLE_ADS_USE_MOCK=true для dev "
-            "или DEV_REFRESH_TOKEN для real Google Ads API."
-        )
-    return await gads.get_valid_access_token(refresh_token)
+
+    from sqlalchemy import select
+    from db.models import GoogleAdsAccount
+    from db.session import AsyncSessionLocal
+
+    async with AsyncSessionLocal() as session:
+        query = select(GoogleAdsAccount).where(GoogleAdsAccount.is_active == True)
+        if customer_id:
+            query = query.where(GoogleAdsAccount.google_customer_id == customer_id)
+        else:
+            query = query.where(GoogleAdsAccount.user_id == user_id)
+
+        result = await session.execute(query)
+        conn = result.scalars().first()
+        if conn is None or not conn.oauth_refresh_token:
+            raise RuntimeError(
+                f"No active Google Ads connection (user={user_id}, customer={customer_id}). "
+                "User must complete OAuth flow first."
+            )
+        return await gads.get_valid_access_token(conn.oauth_refresh_token)
 
 
 # ---------------------------------------------------------------------------

@@ -79,8 +79,8 @@ class ResearchAgent(BaseAgent):
         if gads.use_mock():
             access_token = "mock-access-token"
         else:
-            refresh = os.getenv("DEV_REFRESH_TOKEN", "")
-            access_token = await gads.get_valid_access_token(refresh)
+            from agents.tools import _get_access_token_for
+            access_token = await _get_access_token_for(self.user_id, self.customer_id)
 
         # Кампания + её текущие ключи
         campaigns = await gads.list_campaigns(access_token, self.customer_id)
