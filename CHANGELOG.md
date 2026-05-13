@@ -6,6 +6,86 @@
 
 ---
 
+## [Sprint 5 close — Live Validation] — 2026-05-13 — Buzz/Aegis протестированы на реальном клиентском аккаунте
+
+После того как OAuth flow собрался и backend стал читать реальные данные, оставалось доказать end-to-end что **AI-агенты реально работают на production-данных**. Этот sub-sprint закрыл этот gap.
+
+### Live test #1 — Buzz + Aegis на Goodevas It (3133506664)
+
+Curl trigger:
+```bash
+curl -X POST https://api.kampaio.com/api/agents/run \
+  -d '{"user_id":"dev-user-001","agent_type":"bidding","customer_id":"3133506664"}'
+```
+
+Результат за 87 секунд:
+- **Buzz**: 5 iterations, 9 tool_calls (list_campaigns → get_campaign_metrics × 2 → get_keyword_metrics × 2 → check_safety_cap × 2 → propose_pause_campaign × 2)
+- **Aegis**: 2 iterations, 8 risk_reviews
+- **Proposed actions**: 2 stored in DB (pause Pmax_Goodevas_It_All-Products, bid_decrease SN_Goodevas_It_Brand)
+- **Aegis flags обнаружены**: brand_campaign_pause, low_budget_vulnerability, conflicting_action (обнаружил конкурирующий action на одну кампанию!), zero_roas_brand_suspicion, bid_change_28pct
+- **Risk score range**: 35 → 82 (BLOCK threshold 75+)
+- **2 действия BLOCKED** на risk_score 82 (brand pause без верификации tracking)
+
+Это уровень senior PPC analyst. Buzz нашёл реальную проблему (ROAS 0.07 в Pmax с $838 spend за 7 дней), Aegis грамотно отметил что nil-conversion на бренд-кампании скорее всего сломанный tracking, а не реальная неэффективность.
+
+### Live theatre validated
+
+Socket.IO события визуально показывают каждый tool call в `/b6 → Live от агентов` секции в real-time:
+```
+11:39:24  🐝 calling list_campaigns(3133506664)
+11:39:29  🐝 calling get_campaign_metrics(22932954882, days=7)
+11:39:34  🐝 calling get_keyword_metrics(22932954882)
+11:39:34  🐝 calling check_safety_cap(bid_change_pct_max, 50)
+11:39:52  🐝 calling propose_pause_campaign(22932954882)
+11:40:51  🛡️ calling submit_review(risk_score=82)
+11:41:05  ✓ Session complete — 2 proposed, 8 reviewed
+```
+
+### Vercel Production Branch fix
+
+Все commit'ы Sprint 5 деплоились как **Preview**, не Production. Причина: Production Branch в Vercel project settings был `main`, а наша работа на `v2-autonomous-agents`. Промоут руками работал, но auto-deploy ломался.
+
+**Фикс**: Vercel → Settings → Environments → Production → Branch Tracking: `main → v2-autonomous-agents`. Save. После этого все push'и в `v2-autonomous-agents` идут в Production автоматически без ручного Promote.
+
+### Database cleanup
+
+После переключения на real data в БД остались 2 leftover proposed_actions с mock customer_id (`1234567890`) и mock campaign_ids (`100001`, `100002`, `100003`). DELETE не работает из-за FK constraint от `audit_log`, поэтому помечены как `rejected` (status update). Audit trail сохранён.
+
+```sql
+UPDATE agent_actions SET status = 'rejected'
+WHERE status = 'proposed'
+  AND (target->>'customer_id' = '1234567890'
+       OR target->>'campaign_id' IN ('100001', '100002', '100003'));
+-- UPDATE 2
+```
+
+### Verified end-to-end на проде
+
+- ✅ Frontend `/b6` показывает header `Customer 3133506664 · prod data`
+- ✅ 10 реальных Goodevas кампаний отображаются с правильными цветами (ROAS 0.07 = красный, CTR 24% = cyan)
+- ✅ Stats bar: Pending 5, Rejected 3, Blocks 3, High-risk 3, Tool calls 9
+- ✅ Live от агентов показывает Socket.IO события в реальном времени
+- ✅ Approval Queue содержит 5 реальных предложений с Aegis-бейджами (risk_score 45-82)
+- ✅ Mira / Sage dropdowns показывают реальные campaign имена (Pmax_Goodevas_It_All-Products)
+
+### Git (Sprint 5 close commits)
+
+- `beeb36d` — chore: trigger Vercel redeploy (latest commits queued)
+- `580a6bd` — B6 docs: Sprint 5 refresh — Google Ads OAuth + real data
+
+### Operational changes (not in git)
+
+- `.env.prod`: `GOOGLE_ADS_USE_MOCK=true → false`
+- DB: 33 GoogleAdsAccount rows, 32 marked is_active=false, only `3133506664` is_active=true
+- DB: 2 mock-leftover actions marked `rejected`
+- Vercel: Production Branch `main → v2-autonomous-agents`
+
+### Sprint 5 = ОФИЦИАЛЬНО ЗАКРЫТ
+
+B6 теперь не demo / mock / launch-ready. **Это работающий SaaS продукт на реальных клиентских данных**.
+
+---
+
 ## [Sprint 5] — 2026-05-13 — Google Ads OAuth + real data integration
 
 После launch'а агенты в проде работали на mock-кампаниях. Этот sprint подключил **реальный Google Ads API** через OAuth flow.

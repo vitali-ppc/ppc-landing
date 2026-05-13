@@ -249,28 +249,31 @@ Full OpenAPI spec → `http://localhost:8000/docs` после запуска.
 
 ## 🎯 Roadmap
 
-Текущий статус: **🚀 Live в production с реальными Google Ads данными** на [https://www.kampaio.com](https://www.kampaio.com).
+Текущий статус: **🚀 Live в production, Buzz+Aegis протестированы на реальном клиентском аккаунте** на [https://www.kampaio.com](https://www.kampaio.com).
 
 Что закрыто:
 - ✅ Production deploy (Vercel + Hetzner CPX22)
 - ✅ ANTHROPIC_API_KEY активирован → AI-агенты отвечают
-- ✅ **Google Ads OAuth flow построен** → 33 реальных аккаунта подключены, GOOGLE_ADS_USE_MOCK=false
-- ✅ Backend читает реальные campaigns из Google Ads API
+- ✅ Google Ads OAuth flow → 33 реальных аккаунта подключены
+- ✅ Backend читает реальные campaigns (GOOGLE_ADS_USE_MOCK=false)
+- ✅ **Live validation**: Buzz 5 итераций / 9 tool calls на реальных Goodevas данных, Aegis BLOCK 2 actions на risk_score 82
+- ✅ Vercel Production Branch fixed (auto-deploy на каждый push)
 
 Следующие вехи:
-- ⏳ **Тестирование Buzz/Aegis** на реальном аккаунте (готовы по коду, ждут безопасный тест)
-- ⏳ **Multi-tenancy + auth** — сейчас single dev-user-001, нельзя онбордить клиентов без ручного INSERT
+- ⏳ **Sprint 6 — Multi-tenancy + JWT auth** — главный блокер платящих клиентов (1-2 дня)
+- ⏳ Live test остальных агентов (Vox/Echo/Sage/Mira) на real Goodevas данных
 - ⏳ **First 30 beta users** через waitlist
-- ⏳ **Google Ads Standard Access** (запросить когда дорастём до 100+ юзеров, сейчас Basic = 15K ops/day)
-- ⏳ **Real Stripe billing** (test mode → live при первом платящем)
+- ⏳ Real `apply_to_google_ads=true` test — реально применить одно Buzz предложение к Goodevas (рискованно — реальные деньги клиента)
+- ⏳ Google Ads Standard Access (запросить когда дорастём до 100+ юзеров, сейчас Basic = 15K ops/day)
+- ⏳ Real Stripe billing (test mode → live при первом платящем)
 
 ---
 
 ## 🤝 Built with
 
-Built solo by [vitali-ppc](https://github.com/vitali-ppc) using **Claude Code** за ~28 часов работы (Sprint 1 → 5).
+Built solo by [vitali-ppc](https://github.com/vitali-ppc) using **Claude Code** за ~29 часов работы (Sprint 1 → 5 close).
 
-~9,000 строк production кода. 26 HTTP endpoints. 7 AI-агентов. OAuth интеграция с Google Ads. Docker production stack live на Hetzner + Vercel.
+~9,200 строк production кода. 26 HTTP endpoints. 7 AI-агентов. OAuth интеграция с Google Ads. Live validated на реальном клиентском аккаунте.
 
 ---
 

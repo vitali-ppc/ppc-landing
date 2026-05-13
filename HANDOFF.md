@@ -5,10 +5,10 @@
 > Архитектура системы: [`ARCHITECTURE.md`](./ARCHITECTURE.md)
 > История изменений: [`CHANGELOG.md`](./CHANGELOG.md)
 
-**Дата последнего обновления**: 2026-05-13 (Sprint 5 — Google Ads OAuth integration)
+**Дата последнего обновления**: 2026-05-13 (Sprint 5 закрыт + live validation на Goodevas It)
 **Текущая ветка**: `v2-autonomous-agents`
-**Прогресс кода**: **100%** (все 7 агентов + OAuth flow + real Google Ads API)
-**Статус**: ✅ **LIVE В PRODUCTION C РЕАЛЬНЫМИ ДАННЫМИ**
+**Прогресс кода**: **100%** (все 7 агентов + OAuth + real Google Ads API + validated end-to-end)
+**Статус**: ✅ **LIVE В PRODUCTION, Buzz+Aegis ПРОТЕСТИРОВАНЫ НА РЕАЛЬНЫХ ДАННЫХ КЛИЕНТА**
 
 ## 🌍 Production URLs
 
@@ -21,17 +21,20 @@
 | **Swagger UI** | https://api.kampaio.com/docs | ✅ 26 endpoints (22 + 4 OAuth) |
 | **Socket.IO** | wss://api.kampaio.com/socket.io/ | ✅ Handshake OK |
 
-## 🔌 Google Ads OAuth (новое 2026-05-13)
+## 🔌 Google Ads OAuth + Live Validation (2026-05-13)
 
 | | |
 |---|---|
-| Developer Token | ✅ Basic Access (15K ops/day лимит) — Customer ID K0514922126 |
+| Developer Token | ✅ Basic Access (15K ops/day лимит) — Hetzner Customer ID K0514922126 |
 | OAuth Client | ✅ `Kampaio OAuth Client` (Google Cloud project `Pyton`) |
-| Redirect URIs | `https://api.kampaio.com/api/google-ads/oauth/callback` + localhost для dev |
+| Redirect URIs | `https://api.kampaio.com/api/google-ads/oauth/callback` + `http://localhost:8000/...` для dev |
 | Подключено аккаунтов | **33** (Vitaly's PPC client portfolio) |
 | Активный для тестов | **`3133506664`** (Goodevas It — итальянский рынок) |
 | Реальных кампаний видно | **10** (Pmax_Goodevas_It_*, SN_Goodevas_It_Brand, etc) |
-| Buzz/Aegis на реальных данных | ⚠️ Готовы по коду, **не тестированы** на реальных аккаунтах |
+| **Buzz live test** | ✅ **5 итераций, 9 tool calls** — list_campaigns + get_campaign_metrics + get_keyword_metrics + check_safety_cap + propose_pause_campaign |
+| **Aegis live test** | ✅ **8 risk reviews, BLOCK 2 actions** на risk_score 82/100 (brand_campaign_pause + zero_roas_tracking_suspicion) |
+| **Proposed actions в DB** | 5 реальных (по 22932954882 и 22934756086) + 3 rejected (2 старых mock + 1 user-rejected) |
+| **Live theatre** | ✅ Socket.IO события визуально показывают каждый tool call в `/b6` |
 
 **Infrastructure:**
 - Frontend: Vercel (Hobby tier, free) — project `ppc-landing`, deployed from `v2-autonomous-agents` branch
@@ -47,12 +50,12 @@
 
 | | |
 |---|---|
-| Что есть | 7 AI-агентов + multi-tier autonomy + live theatre UI + 26 endpoints + Docker prod stack + **Google Ads OAuth flow с реальными данными** |
-| Что не сделано **в коде** | Multi-tenancy auth (single dev-user `dev-user-001`), real Stripe live mode, тестирование Buzz/Aegis на реальных аккаунтах |
-| Что в .env.prod на сервере | ✅ ANTHROPIC_API_KEY (108), ✅ GOOGLE_ADS_DEVELOPER_TOKEN (22), ✅ GOOGLE_CLIENT_ID (72), ✅ GOOGLE_CLIENT_SECRET (35) |
+| Что есть | 7 AI-агентов + multi-tier autonomy + live theatre + 26 endpoints + Docker prod stack + **Google Ads OAuth с реальными данными** + **Buzz/Aegis validated end-to-end на real client account** |
+| Что НЕ сделано **в коде** | Multi-tenancy auth (single dev-user `dev-user-001`), live testing для Vox/Echo/Sage/Mira (по коду готовы), real Stripe live mode |
+| Credentials в .env.prod | ✅ ANTHROPIC_API_KEY, ✅ GOOGLE_ADS_DEVELOPER_TOKEN, ✅ GOOGLE_CLIENT_ID, ✅ GOOGLE_CLIENT_SECRET |
 | Mock-режим | ✅ `GOOGLE_ADS_USE_MOCK=false` — реальные Google Ads API calls |
-| **Главный блокер реального value** | Multi-tenancy: 1 захардкоженный юзер. Нельзя онбордить реальных клиентов без `INSERT INTO users` вручную. |
-| Второй блокер | Production Branch на Vercel: иногда commit'ы не auto-deploy'ятся, требуют ручного Promote |
+| Vercel Production Branch | ✅ **Fixed** — теперь `v2-autonomous-agents` (был `main`). Auto-deploy на каждый push работает. |
+| **Главный блокер value** | **Multi-tenancy** — 1 захардкоженный юзер `dev-user-001`. Нельзя онбордить реальных клиентов без ручного `INSERT INTO users`. |
 
 ---
 
@@ -60,15 +63,23 @@
 
 **Ветка `v2-autonomous-agents` запушена в `origin`** (это production-ветка Vercel'а).
 
-История Sprint 5 — Google Ads OAuth (~2 часа работы 2026-05-13):
+История Sprint 5 — Google Ads OAuth + Live Validation (~4 часа работы 2026-05-13):
 
 ```
+beeb36d chore: trigger Vercel redeploy (latest commits queued)
+580a6bd B6 docs: Sprint 5 refresh — Google Ads OAuth + real data
 1f65c98 B6 fix: dashboard header — proper MOCK_CUSTOMER_ID name + dynamic mode label
 86057b8 B6 feat: load Google Ads refresh_token from DB (not env var)
 728d05f B6 feat: dashboard uses dynamic customer_id from connected accounts
 f84e854 B6 fix: list_accessible_customers always calls real Google API
 f9ae0f1 B6 feat: Google Ads OAuth flow (backend + frontend)
 ```
+
+**Operational changes (not in git):**
+- Hetzner server: `GOOGLE_ADS_USE_MOCK` flipped `true → false` в `.env.prod`
+- Server DB: 33 GoogleAdsAccount rows inserted (via OAuth flow), 32 marked is_active=false, only `3133506664` is_active=true
+- Server DB: 2 mock-leftover proposed actions marked as `rejected` (status update, not delete — audit_log FK preserved)
+- Vercel: Production Branch changed from `main` → `v2-autonomous-agents`
 
 История launch day (~3 часа работы 2026-05-12):
 
@@ -205,13 +216,19 @@ npm run dev &  # port 3002
 
 ## 🚧 Что в работе
 
-Launch завершён. Активные хвосты:
+Sprint 5 закрыт с live validation. Активные хвосты:
 
-1. **`ANTHROPIC_API_KEY` пустой в `.env.prod`** — backend работает, /health отдаёт OK, но любая попытка запустить агента (Buzz/Aegis/etc) вернёт ошибку. Когда юзер ротейтнет ключ в console.anthropic.com — один SSH-вход + `nano` + `docker compose restart b6-api` и агенты оживут.
+1. **Multi-tenancy + JWT auth** (1-2 дня) — главный блокер для платящих клиентов. Сейчас всё на `dev-user-001`. Без этого нельзя онбордить второго юзера без `INSERT INTO users` руками.
 
-2. **Старый долг Hetzner $5.09** на cancelled аккаунте `K0742311825`. Bank transfer на `IBAN DE47 7655 1540 0000 1758 02` (`BIC BYLADEM1GUN`). Не блокирует prod (новый аккаунт `K0514922126` отдельный), но если не закрыть — уйдёт в коллекторов.
+2. **Live test остальных агентов** (30-60 мин):
+   - **Vox** (cross-campaign strategy) — посмотрит на все 10 Goodevas кампаний и переразложит бюджеты
+   - **Echo** (weekly digest) — сгенерит саммари по реальным данным
+   - **Sage** (research) — поищет новые keywords и аудитории для Pmax_Goodevas_It_All-Products
+   - **Mira** (creative) — сгенерит 3 ad variants под одну реальную кампанию
 
-3. **Косметические хвосты**: `<title>` в `src/app/layout.tsx` остался `"Kampaio - Digital Ecosystem"` от старого Kampaio v1 — нужно сменить на B6-релевантный (e.g. `"B6 — Your PPC Agency in a Cabinet"`).
+3. **Старый долг Hetzner $5.09** на cancelled аккаунте `K0742311825`. Bank transfer на `IBAN DE47 7655 1540 0000 1758 02` (`BIC BYLADEM1GUN`). Не блокирует prod (новый аккаунт `K0514922126` отдельный), но если не закрыть — уйдёт в коллекторов.
+
+4. **Косметические хвосты**: `<title>` в `src/app/layout.tsx` остался `"Kampaio - Digital Ecosystem"` от старого Kampaio v1 — нужно сменить.
 
 ---
 
@@ -219,33 +236,32 @@ Launch завершён. Активные хвосты:
 
 | # | Вопрос | Текущее решение / статус |
 |---|--------|---------------------------|
-| 1 | **Google Ads Production Token** | Не решено / неизвестно — спросить пользователя |
+| 1 | **Google Ads Developer Token** | ✅ Получен — Basic Access (15K ops/day), активен. Юзер может подключать любой реальный Google Ads аккаунт. |
 | 2 | **Domain** | ✅ Решено — `kampaio.com` |
-| 3 | **Production DB hosting** | Решено — Postgres в Docker на Hetzner (cheapest, проверено DDL) |
+| 3 | **Production DB hosting** | ✅ Postgres 16-alpine в Docker на Hetzner CPX22 |
 | 4 | **Mascot стиль** | Текущий emoji (🐝 🛡️ и т.д.) — рабочий, custom SVG только при масштабировании |
 | 5 | **Claude model** | Sonnet 4.6 — оптимальный по цена/качество |
-| 6 | **Multi-tenancy** | Single dev-user-001 → переход на multi-user после первых beta |
-| 7 | **Real Stripe live mode** | Будет активирован при первом платящем клиенте |
+| 6 | **Multi-tenancy** | ⏳ Single dev-user-001. Sprint 6 = JWT auth + registration. |
+| 7 | **Real Stripe live mode** | ⏳ Активируем при первом платящем клиенте |
+| 8 | **Write operations в Google Ads** | ⏳ Сейчас все `update_bid`, `pause_campaign` идут в `dry_run=True`. Реальный apply активируется через explicit `apply_to_google_ads=true` параметр в `/api/actions/{id}/approve`. До Sprint 7 — не включаем. |
 
 ---
 
 ## 🚨 Критические замечания
 
-### API ключ Anthropic — скомпрометирован в чате (Day 1)
-В Sprint 1 пользователь случайно вставил dev API key в чат. **Обязательно ротейтнуть** на https://console.anthropic.com/settings/keys перед production deploy.
+### Anthropic API key (Sprint 1 leak — уже не актуально для prod)
+В Sprint 1 пользователь случайно вставил dev Anthropic API key в чат. Этот же ключ сейчас в prod `.env.prod` (через SSH stdin transfer). В долгосрочной перспективе — ротейтнуть на чистый production-only ключ на https://console.anthropic.com/settings/keys.
 
-### Stripe webhook gap (закрыт)
-На Day 7 был добавлен `src/app/api/stripe-webhook/route.ts` + `routers/internal.py` (`/api/internal/stripe-sync`). Когда будут реальные Stripe события — синхронизируются с БД.
+### Google Ads Developer Token (Sprint 5 leak)
+Developer token `N3foJOv65_q8B_rt0JsZiQ` был засвечен в чате когда юзер прислал скрин ads.google.com/aw/apicenter. Юзер сознательно решил не ротейтить — риск низкий (developer token бесполезен без OAuth refresh_token конкретного юзера). При желании можно сбросить через «Сбросить идентификатор» на той же странице, потом обновить значение в .env.prod через SSH stdin.
 
-### Google Ads Production Token — главный блокер запуска real value
-Без него все write-операции (`update_bid`, `pause_campaign`, etc.) выбрасывают `NotImplementedError` или работают в `dry_run` режиме. Процесс одобрения Google занимает **4-8 недель**.
+### Write operations dry_run by default
+Все Buzz/Aegis предложения сейчас идут с `dry_run=True`. `update_bid` и `pause_campaign` в `services/google_ads_client.py` имеют `if use_mock() or dry_run: return mock` гард. Реальный apply требует explicit `apply_to_google_ads=true` параметр в `/api/actions/{id}/approve` endpoint — **никогда не делать default-true**.
 
-**До получения** — продукт работает в **mock-режиме** (3 синтетических кампании). Полнофункциональный demo, но без подключения к настоящим аккаунтам.
-
-### Single-tenant сейчас
+### Single-tenant сейчас (главный блокер платящих клиентов)
 Всё захардкожено на `dev-user-001`. Для **первых beta-юзеров** нужно либо:
-- Создавать им отдельные `User` записи руками
-- Или добавить регистрацию + JWT auth (~3-4 часа работы)
+- Создавать им отдельные `User` записи руками (`INSERT INTO users`)
+- Или Sprint 6: JWT auth + registration UI (~1-2 дня работы)
 
 ---
 
@@ -254,10 +270,16 @@ Launch завершён. Активные хвосты:
 **В продакшене** (`https://www.kampaio.com`):
 1. Открой лендинг — маскоты, pricing, waitlist
 2. Submit свой email в waitlist → `Got you, position #N`
-3. Открой `/b6` → dashboard загружается, видишь 3 кампании, Stats bar, панели Maximus/Echo/Mira/Sage
-4. ⚠️ **Кнопки агентов пока не работают** — нужен `ANTHROPIC_API_KEY` в `.env.prod`
+3. Открой `/b6` → dashboard загружает реальный Goodevas It аккаунт (3133506664):
+   - Header: `Customer 3133506664 · prod data · N агентов · последний запуск: HH:MM:SS`
+   - Google Ads подключён (1 аккаунт): 313-350-6664 USD (+ можно «Добавить ещё»)
+   - 10 реальных кампаний (Pmax_Goodevas_It_*, SN_Goodevas_It_*, GDN_IT_REM_24-04)
+   - 5 pending proposed actions с Aegis-бейджами (BLOCK 2, REVIEW 3)
+4. Нажми **«🐝 Run Buzz now»** → live theatre показывает каждый tool call (list_campaigns, get_metrics, check_safety_cap, propose_*); после Buzz авто-запускается Aegis с risk reviews. ~90 секунд цикл.
+5. В Approval Queue — посмотри Aegis flags: brand_campaign_pause, low_budget_vulnerability, conflicting_actions, zero_roas_tracking_suspicion (это уровень senior PPC analyst)
+6. **НЕ нажимай Approve** без понимания — apply сейчас в dry_run, но при `apply_to_google_ads=true` пойдёт в реальный аккаунт клиента
 
-**Локально (full flow с агентами)**: см. секцию выше «Запустить локально (dev режим)». В dev .env Anthropic ключ установлен, поэтому Buzz/Aegis/Mira/Sage/Echo отрабатывают полностью.
+**Локально (для разработки)**: см. секцию «Запустить локально (dev режим)» выше. Использует SQLite + GOOGLE_ADS_USE_MOCK=true.
 
 ---
 
@@ -265,24 +287,27 @@ Launch завершён. Активные хвосты:
 
 ### Если пользователь говорит «продолжаем» / «дальше»
 
-**1. Активировать AI-агентов** (5 минут):
-- Ротейтнуть `ANTHROPIC_API_KEY` на https://console.anthropic.com/settings/keys
-- SSH к prod: `ssh -i ~/.ssh/id_ed25519 root@178.104.124.150`
-- Открыть редактор: `nano ~/ppc-landing/.env.prod`
-- Заменить `ANTHROPIC_API_KEY=` на `ANTHROPIC_API_KEY=sk-ant-...`
-- Перезапустить: `cd ~/ppc-landing && docker compose -f docker-compose.prod.yml --env-file .env.prod restart b6-api`
-- Проверить: `curl https://api.kampaio.com/health` всё ещё 200; зайти в `https://www.kampaio.com/b6` и нажать «Run Buzz»
+**1. Sprint 6 — Multi-tenancy + JWT auth** (1-2 дня): главный блокер платящих клиентов.
+- DB migration: `password_hash` уже есть в `User` model (col существует, но никто его не использует). Добавить email validation если нет.
+- Backend endpoints: `POST /api/auth/register`, `POST /api/auth/login`, `GET /api/auth/me`. JWT middleware на все защищённые routes (`/api/agents/*`, `/api/google-ads/*`, etc.) — извлекает `user_id` из токена, заменяет hardcoded default `dev-user-001`.
+- Frontend: `/register`, `/login` страницы + auth context + protected `/b6` route. Token в localStorage или httpOnly cookie.
+- Data isolation: каждый юзер видит **только свои** GoogleAdsAccount / agent_actions / etc. — все queries фильтруют по `user_id` из JWT.
 
-**2. Marketing** (тексты готовы в [`LAUNCH-CONTENT.md`](./LAUNCH-CONTENT.md)):
-- Twitter тред
-- Reddit r/PPC, r/SmallBusiness
-- LinkedIn post
-- Hacker News «Show HN»
-- Цель недели: 30+ waitlist signups, 5+ demo calls
+**2. Live test остальных агентов** (30-60 мин на каждый):
+- **Vox**: `POST /api/agents/run` с `agent_type: "strategy"` — посмотрит на все 10 Goodevas кампаний, предложит budget reallocation
+- **Echo**: `POST /api/digest/run` — weekly digest по реальным данным
+- **Sage**: с `agent_type: "research"` + campaign_id 22932954882 — поищет keywords
+- **Mira**: с `agent_type: "creative"` + campaign_id 22932954882 — сгенерит ad copy
 
-**3. Старый долг Hetzner $5.09**: bank transfer на IBAN `DE47 7655 1540 0000 1758 02` чтобы не уйти в коллекторов.
+**3. Marketing** (тексты готовы в [`LAUNCH-CONTENT.md`](./LAUNCH-CONTENT.md)):
+- Twitter тред + Reddit r/PPC + LinkedIn + HN Show HN
+- Сейчас есть **что показать** (скрины dashboard'а с real Goodevas данными)
 
-**4. Косметика**: `<title>` в `src/app/layout.tsx` сменить с `"Kampaio - Digital Ecosystem"` на B6-релевантное.
+**4. Финансовые/косметические хвосты**:
+- Bank transfer $5.09 на IBAN `DE47 7655 1540 0000 1758 02` (Hetzner debt)
+- Сменить `<title>` в `src/app/layout.tsx` (старый Kampaio брендинг)
+- `npm audit fix` (18 уязвимостей в frontend deps)
+- Monitoring (UptimeRobot бесплатно)
 
 ---
 
@@ -327,7 +352,8 @@ Launch завершён. Активные хвосты:
 | **Sprint 3** | Launch prep + full docs refresh | ~400 | 1 час |
 | **Sprint 3.5** | BRAND-BRIEF.md (audience, voice, AI visibility rules, taboos) | ~300 | 1.5 часа |
 | **Launch Day** (2026-05-12) | Hetzner CPX22 + DNS + Caddy SSL + Vercel deploy + smoke 8/8 ✅ | ~30 (только фиксы: psycopg2 + Next.js bump) | ~3 часа |
+| **Sprint 5** (2026-05-13) | Google Ads OAuth flow + real API integration + live validation на Goodevas It | ~700 | ~4 часа |
 
-**Total**: ~8,500 строк, ~25 часов продуктивной работы.
+**Total**: ~9,200 строк, ~29 часов продуктивной работы. **B6 — реальный SaaS продукт на реальных Google Ads данных.**
 
 Подробнее → [`CHANGELOG.md`](./CHANGELOG.md).

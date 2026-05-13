@@ -37,7 +37,7 @@
 | 🎨 | Mira | Creative (ad copy + images) | ✅ LIVE |
 | 🦉 | Sage | Research (keywords + audiences) | ✅ LIVE |
 
-**Главное состояние сейчас**: 🚀 **LIVE В PRODUCTION C РЕАЛЬНЫМИ ДАННЫМИ** на https://www.kampaio.com (Vercel frontend) + https://api.kampaio.com (Hetzner CPX22 backend, IP `178.104.124.150`). `ANTHROPIC_API_KEY`, `GOOGLE_ADS_DEVELOPER_TOKEN`, `GOOGLE_CLIENT_ID/SECRET` все в .env.prod. **GOOGLE_ADS_USE_MOCK=false** — backend читает реальные Google Ads campaigns. OAuth flow построен (`routers/google_ads.py` + `components/b6/GoogleAdsConnect.tsx`), 33 реальных Google Ads аккаунта подключены, активный для тестов `3133506664` (Goodevas It). Подробно → [`HANDOFF.md`](./HANDOFF.md).
+**Главное состояние сейчас**: 🚀 **LIVE В PRODUCTION, BUZZ/AEGIS ПРОТЕСТИРОВАНЫ НА РЕАЛЬНОМ КЛИЕНТСКОМ АККАУНТЕ** на https://www.kampaio.com + https://api.kampaio.com (Vercel + Hetzner CPX22 `178.104.124.150`). Все credentials в .env.prod, `GOOGLE_ADS_USE_MOCK=false`. 33 реальных Google Ads аккаунта подключены через OAuth, активный `3133506664` (Goodevas It). Buzz отрабатывает 5 итераций / 9 tool calls за 90 секунд, Aegis делает 8 risk reviews с BLOCK на risk_score 82/100 (brand_campaign_pause + zero_roas_tracking_suspicion). Vercel Production Branch fixed → `v2-autonomous-agents` (auto-deploy). Подробно → [`HANDOFF.md`](./HANDOFF.md).
 
 ---
 
@@ -63,10 +63,10 @@
 - Новое B6-приложение в `ai-server/app.py` — **там вся новая работа**
 - Архивная ветка: `archive/kampaio-v1` (снимок состояния перед v2)
 
-### 3. Mock-режим по умолчанию для dev
-- `GOOGLE_ADS_USE_MOCK=true` в env → агенты работают на синтетических кампаниях
-- Это позволяет работать **без Google Ads Production Token** (который заблокирован на 4-8 недель approval)
-- Реальные кампании активируются только при `GOOGLE_ADS_USE_MOCK=false` + наличии `DEV_REFRESH_TOKEN`
+### 3. Mock-режим vs real Google Ads
+- **Local dev** (SQLite, `ai-server/.env`): `GOOGLE_ADS_USE_MOCK=true` → агенты работают на 3 синтетических кампаниях. Безопасно ломать.
+- **Production** (Hetzner, `.env.prod`): `GOOGLE_ADS_USE_MOCK=false` → агенты читают реальные Google Ads campaigns через OAuth refresh_token из БД (`GoogleAdsAccount` table). На 2026-05-13 активный customer_id = `3133506664` (Goodevas It).
+- Refresh_token берётся из БД по `customer_id` (см. `routers/campaigns.py` → `_get_access_token(customer_id)` и `agents/tools.py` → `_get_access_token_for(user_id, customer_id)`). Legacy `DEV_REFRESH_TOKEN` env var больше **не используется**.
 
 ### 4. Dry-run все write-операции до production
 - Любые `update_bid`, `pause_campaign` сейчас **только pretend** — не пишут в Google Ads API
@@ -194,10 +194,10 @@ http://localhost:8000/docs
 ## ⚠️ Open Decisions (требуют решения от Виталия)
 
 См. секцию «Open Decisions» в [`HANDOFF.md`](./HANDOFF.md).
-Основные:
-1. **Google Ads Production Token** — статус заявки? (Главный блокер реального value, mock-режим пока)
-2. **`ANTHROPIC_API_KEY` в проде** — ротейтнуть + вставить через SSH (5 минут работы)
-3. **Multi-tenancy auth** — JWT registration vs. ручной `INSERT INTO users` для первых beta-юзеров
+Главные на 2026-05-13:
+1. **Sprint 6 — Multi-tenancy auth** — JWT registration vs. ручной `INSERT INTO users` для первых beta-юзеров. **Главный блокер платящих**.
+2. **Live test остальных агентов** (Vox/Echo/Sage/Mira) на real Goodevas данных — готовы по коду, не запускались на real account.
+3. **Когда включать real `apply_to_google_ads=true`** — сейчас все Buzz предложения dry_run. Один из 5 текущих proposed actions нужно реально применить к Goodevas чтобы проверить write path end-to-end. Рискованно: реальные деньги клиента.
 
 ---
 
