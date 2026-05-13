@@ -5,6 +5,8 @@ import Header from '../../../components/Header';
 import Footer from '../../../components/Footer';
 import Breadcrumbs from '../../../components/Breadcrumbs';
 import MascotQuote from '../../../components/blog/MascotQuote';
+import MermaidDiagram from '../../../components/blog/MermaidDiagram';
+import ComparisonTable from '../../../components/blog/ComparisonTable';
 
 export default function BlogPostPage() {
   const [isTableOfContentsOpen, setIsTableOfContentsOpen] = useState(false);
@@ -211,8 +213,28 @@ export default function BlogPostPage() {
                 When DIY Google Ads Actually Works
               </h2>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
-                Three scenarios where self-management makes sense.
+                Three scenarios where self-management makes sense. Use the decision tree below to find yours.
               </p>
+
+              <MermaidDiagram
+                chart={`
+flowchart TD
+  Start[Monthly Google Ads spend?] --> Q1{Under $5K?}
+  Q1 -->|Yes| Sc1[Scenario 1: DIY pure<br/>3-5h/week learning]
+  Q1 -->|No| Q2{$5K - $20K?}
+  Q2 -->|Yes| Q3{PPC experience?}
+  Q3 -->|Yes| Sc2[Scenario 2: DIY + automation tool<br/>You strategy, tool executes]
+  Q3 -->|No| Sc3[Scenario 3: AI-managed<br/>B6 + 3-5h/week review]
+  Q2 -->|No - over 20K| Agency[Keep or hire agency<br/>Complexity justifies cost]
+
+  style Sc1 fill:#eef2ff,stroke:#667eea,stroke-width:2px
+  style Sc2 fill:#eef2ff,stroke:#667eea,stroke-width:2px
+  style Sc3 fill:#f5f3ff,stroke:#764ba2,stroke-width:3px
+  style Agency fill:#fef3c7,stroke:#f59e0b,stroke-width:2px
+                `}
+                caption="When DIY works: pick your scenario by monthly spend and PPC experience"
+              />
+
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
                 <strong>Scenario 1: Low spend, simple structure.</strong> You&apos;re running 1-3 campaigns, spending under $5K/month, targeting local customers or a narrow niche. Campaign structure is straightforward (one Brand campaign, one Generic Search campaign). You can learn the fundamentals in 2-3 weeks using <a href="https://skillshop.withgoogle.com/" style={{ color: '#764ba2', textDecoration: 'underline' }}>Google Skillshop certifications</a> and YouTube tutorials. Maintenance is 3-5 hours/week. At this scale, the agency minimum ($1-1.5K/month) costs 20-30% of your ad budget. DIY saves real money.
               </p>
@@ -263,6 +285,18 @@ export default function BlogPostPage() {
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
                 <strong>Autonomous tools</strong> (B6 and a small handful of competitors) execute changes with your approval or fully autonomously. You connect your account, set guardrails (max CPC, daily budget limits, approval requirements), and the AI handles bid updates, budget pacing, negative keyword additions, and anomaly detection. Pricing: $99-399/month depending on autonomy level.
               </p>
+
+              <ComparisonTable
+                headers={['Option', 'Monthly cost', 'Time commitment', 'What you actually do']}
+                rows={[
+                  { cells: ['Full agency', '$1,500–3,000', '0–2 h/week', 'Approve monthly report, sometimes ignored'] },
+                  { cells: ['Pure DIY', '$0 (tool cost)', '10–15 h/week', 'Manual bid management in Google Ads UI'] },
+                  { cells: ['Recommendation tool (Optmyzr, Madgicx)', '$499–899', '5–8 h/week', 'Review AI suggestions, execute manually'] },
+                  { cells: ['B6 (autonomous tool)', '$99–399', '3–5 h/week', 'Set guardrails, review weekly digest from Echo'], highlight: true },
+                ]}
+                caption="Cost vs time for a $10K/month Google Ads spend — B6 sits between DIY and agency at fraction of agency cost"
+              />
+
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
                 B6 runs seven specialized AI agents: Buzz for bid management, Aegis for risk detection, Echo for reporting, Vox for strategy, Maximus for orchestration, Mira for creative analysis, and Sage for competitive research. Three pricing tiers:
               </p>
