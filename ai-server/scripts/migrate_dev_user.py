@@ -77,6 +77,13 @@ async def migrate(email: str, dry_run: bool) -> int:
             n = len(count_q.scalars().all())
             print(f"  {name}: {n} rows")
 
+        # Also count AgentAction.approved_by refs (separate FK back to users)
+        approved_by_q = await session.execute(
+            select(AgentAction).where(AgentAction.approved_by == DEV_USER_ID)
+        )
+        approved_by_n = len(approved_by_q.scalars().all())
+        print(f"  agent_actions.approved_by: {approved_by_n} rows")
+
         if dry_run:
             print("[dry-run] no changes made.")
             return 0
@@ -86,6 +93,14 @@ async def migrate(email: str, dry_run: bool) -> int:
                 update(model).where(model.user_id == DEV_USER_ID).values(user_id=real_user.id)
             )
             print(f"  [done] reassigned {name}")
+
+        # Reassign AgentAction.approved_by (nullable FK to users.id)
+        await session.execute(
+            update(AgentAction)
+            .where(AgentAction.approved_by == DEV_USER_ID)
+            .values(approved_by=real_user.id)
+        )
+        print(f"  [done] reassigned agent_actions.approved_by")
 
         # Now safe to remove dev-user-001 (all FK refs moved)
         await session.execute(delete(User).where(User.id == DEV_USER_ID))
