@@ -11,7 +11,7 @@ from __future__ import annotations
 import logging
 from typing import Optional
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel, Field
 from sqlalchemy import select
 
@@ -20,8 +20,9 @@ from agents.risk_agent import AegisAgent
 from agents.strategy_agent import StrategyAgent
 from agents.creative_agent import CreativeAgent
 from agents.research_agent import ResearchAgent
-from db.models import Agent
+from db.models import Agent, User
 from db.session import AsyncSessionLocal
+from dependencies import get_current_user
 from ws.events import make_publisher, publish_event
 
 logger = logging.getLogger(__name__)
@@ -30,7 +31,6 @@ router = APIRouter(prefix="/api/agents", tags=["agents"])
 
 
 class RunAgentRequest(BaseModel):
-    user_id: str = Field(default="dev-user-001", description="ID пользователя (потом из сессии)")
     agent_type: str = Field(default="bidding", description="Тип агента: bidding | strategy | creative")
     customer_id: str = Field(..., description="Google Ads customer ID")
     campaign_id: Optional[str] = Field(default=None, description="Обязательно для 'creative' агента")
@@ -50,7 +50,7 @@ class RunAgentResponse(BaseModel):
 
 
 @router.post("/run", response_model=RunAgentResponse)
-async def run_agent(payload: RunAgentRequest):
+async def run_agent(payload: RunAgentRequest, current_user: User = Depends(get_current_user)):
     """Запустить один цикл агента и вернуть результат.
 
     Поддерживаемые agent_type:
@@ -62,34 +62,35 @@ async def run_agent(payload: RunAgentRequest):
     if payload.agent_type in ("creative", "research") and not payload.campaign_id:
         raise HTTPException(400, f"campaign_id required for '{payload.agent_type}' agent")
 
-    publisher = make_publisher(payload.user_id)
-    await publish_event(payload.user_id, "session.start", {
+    user_id = current_user.id
+    publisher = make_publisher(user_id)
+    await publish_event(user_id, "session.start", {
         "customer_id": payload.customer_id, "agent_type": payload.agent_type,
     })
 
     # Маршрутизация по agent_type
     if payload.agent_type == "bidding":
         main_agent = BiddingAgent(
-            user_id=payload.user_id,
+            user_id=user_id,
             customer_id=payload.customer_id,
             event_publisher=publisher,
         )
     elif payload.agent_type == "strategy":
         main_agent = StrategyAgent(
-            user_id=payload.user_id,
+            user_id=user_id,
             customer_id=payload.customer_id,
             event_publisher=publisher,
         )
     elif payload.agent_type == "creative":
         main_agent = CreativeAgent(
-            user_id=payload.user_id,
+            user_id=user_id,
             customer_id=payload.customer_id,
             campaign_id=payload.campaign_id,
             event_publisher=publisher,
         )
     else:  # research
         main_agent = ResearchAgent(
-            user_id=payload.user_id,
+            user_id=user_id,
             customer_id=payload.customer_id,
             campaign_id=payload.campaign_id,
             event_publisher=publisher,
@@ -115,7 +116,7 @@ async def run_agent(payload: RunAgentRequest):
     risk_iterations = 0
     if proposed_ids:
         try:
-            aegis = AegisAgent(user_id=payload.user_id, event_publisher=publisher)
+            aegis = AegisAgent(user_id=user_id, event_publisher=publisher)
             aegis_result = await aegis.run()
             risk_reviews = list(aegis.reviews)
             risk_iterations = aegis_result.iterations
@@ -124,7 +125,7 @@ async def run_agent(payload: RunAgentRequest):
         except Exception:
             logger.exception("Aegis review failed (continuing)")
 
-    await publish_event(payload.user_id, "session.complete", {
+    await publish_event(user_id, "session.complete", {
         "proposed_ids": proposed_ids, "reviews": risk_reviews,
     })
 
@@ -142,13 +143,13 @@ async def run_agent(payload: RunAgentRequest):
 
 
 @router.get("")
-async def list_agents(user_id: str = "dev-user-001"):
+async def list_agents(current_user: User = Depends(get_current_user)):
     """Список агентов пользователя."""
     async with AsyncSessionLocal() as session:
-        stmt = select(Agent).where(Agent.user_id == user_id)
+        stmt = select(Agent).where(Agent.user_id == current_user.id)
         agents_list = (await session.execute(stmt)).scalars().all()
         return {
-            "user_id": user_id,
+            "user_id": current_user.id,
             "count": len(agents_list),
             "agents": [
                 {
@@ -164,26 +165,26 @@ async def list_agents(user_id: str = "dev-user-001"):
 
 
 @router.post("/{agent_type}/pause")
-async def pause_agent(agent_type: str, user_id: str = "dev-user-001"):
+async def pause_agent(agent_type: str, current_user: User = Depends(get_current_user)):
     """Поставить агента на паузу."""
     async with AsyncSessionLocal() as session:
-        stmt = select(Agent).where(Agent.user_id == user_id, Agent.type == agent_type)
+        stmt = select(Agent).where(Agent.user_id == current_user.id, Agent.type == agent_type)
         agent = (await session.execute(stmt)).scalar_one_or_none()
         if not agent:
-            raise HTTPException(404, f"Agent {agent_type} not found for user {user_id}")
+            raise HTTPException(404, f"Agent {agent_type} not found")
         agent.status = "paused"
         await session.commit()
         return {"agent_id": agent.id, "type": agent_type, "status": agent.status}
 
 
 @router.post("/{agent_type}/resume")
-async def resume_agent(agent_type: str, user_id: str = "dev-user-001"):
+async def resume_agent(agent_type: str, current_user: User = Depends(get_current_user)):
     """Возобновить работу агента."""
     async with AsyncSessionLocal() as session:
-        stmt = select(Agent).where(Agent.user_id == user_id, Agent.type == agent_type)
+        stmt = select(Agent).where(Agent.user_id == current_user.id, Agent.type == agent_type)
         agent = (await session.execute(stmt)).scalar_one_or_none()
         if not agent:
-            raise HTTPException(404, f"Agent {agent_type} not found for user {user_id}")
+            raise HTTPException(404, f"Agent {agent_type} not found")
         agent.status = "active"
         await session.commit()
         return {"agent_id": agent.id, "type": agent_type, "status": agent.status}

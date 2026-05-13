@@ -9,13 +9,12 @@ from __future__ import annotations
 import logging
 from typing import Optional
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel, EmailStr
-from sqlalchemy import select
 
 from agents.reporting_agent import EchoAgent, get_latest_digest
 from db.models import User
-from db.session import AsyncSessionLocal
+from dependencies import get_current_user
 from services import emailer
 
 logger = logging.getLogger(__name__)
@@ -24,7 +23,6 @@ router = APIRouter(prefix="/api/digest", tags=["digest"])
 
 
 class RunDigestRequest(BaseModel):
-    user_id: str = "dev-user-001"
     period_days: int = 7
     send_email: bool = False
     email_override: Optional[EmailStr] = None
@@ -38,9 +36,9 @@ class RunDigestResponse(BaseModel):
 
 
 @router.post("/run", response_model=RunDigestResponse)
-async def run_digest(payload: RunDigestRequest):
+async def run_digest(payload: RunDigestRequest, current_user: User = Depends(get_current_user)):
     """Запустить Echo и сгенерить новый digest."""
-    echo = EchoAgent(user_id=payload.user_id, period_days=payload.period_days)
+    echo = EchoAgent(user_id=current_user.id, period_days=payload.period_days)
     result = await echo.run()
 
     if result.error or not echo.digest:
@@ -54,14 +52,7 @@ async def run_digest(payload: RunDigestRequest):
     # Опционально шлём email
     email_result = None
     if payload.send_email:
-        to_email = payload.email_override
-        if not to_email:
-            # Берём из БД
-            async with AsyncSessionLocal() as session:
-                user = await session.get(User, payload.user_id)
-                if user:
-                    to_email = user.email
-
+        to_email = payload.email_override or current_user.email
         if not to_email:
             email_result = {"success": False, "message": "No email known for user"}
         else:
@@ -77,9 +68,9 @@ async def run_digest(payload: RunDigestRequest):
 
 
 @router.get("/latest")
-async def latest_digest(user_id: str = "dev-user-001"):
-    """Последний сохранённый digest пользователя."""
-    digest = await get_latest_digest(user_id)
+async def latest_digest(current_user: User = Depends(get_current_user)):
+    """Последний сохранённый digest текущего пользователя."""
+    digest = await get_latest_digest(current_user.id)
     if not digest:
         raise HTTPException(404, "No digest yet — run /api/digest/run first")
     return digest

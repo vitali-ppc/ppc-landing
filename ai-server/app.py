@@ -37,6 +37,7 @@ import socketio
 
 from routers import agents as agents_router
 from routers import actions as actions_router
+from routers import auth as auth_router
 from routers import campaigns as campaigns_router
 from routers import waitlist as waitlist_router
 from routers import internal as internal_router
@@ -51,16 +52,19 @@ app = FastAPI(
     version="0.3.0-day4",
 )
 
-# CORS — для локальной разработки фронта
+# CORS — explicit origins; locked down from wildcard in Sprint 6.
+_default_origins = "https://www.kampaio.com,https://kampaio.com,http://localhost:3002,http://localhost:3000"
+_cors_origins = [o.strip() for o in os.getenv("CORS_ORIGINS", _default_origins).split(",") if o.strip()]
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=os.getenv("CORS_ORIGINS", "*").split(","),
+    allow_origins=_cors_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
 # Routers
+app.include_router(auth_router.router)
 app.include_router(agents_router.router)
 app.include_router(actions_router.router)
 app.include_router(campaigns_router.router)

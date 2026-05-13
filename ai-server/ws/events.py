@@ -14,17 +14,23 @@
 from __future__ import annotations
 
 import logging
+import os
 from datetime import datetime
 from typing import Any
 
 import socketio
 
+from services.auth import extract_user_id
+
 logger = logging.getLogger(__name__)
+
+_default_origins = "https://www.kampaio.com,https://kampaio.com,http://localhost:3002,http://localhost:3000"
+_socket_origins = [o.strip() for o in os.getenv("CORS_ORIGINS", _default_origins).split(",") if o.strip()]
 
 # ASGI mode (для FastAPI)
 sio = socketio.AsyncServer(
     async_mode="asgi",
-    cors_allowed_origins="*",  # dev — open
+    cors_allowed_origins=_socket_origins,
     logger=False,
     engineio_logger=False,
 )
@@ -32,8 +38,18 @@ sio = socketio.AsyncServer(
 
 @sio.event
 async def connect(sid: str, environ: dict, auth: dict | None = None):
-    """Клиент подключился. Опционально передаёт user_id в auth → join room."""
-    user_id = (auth or {}).get("user_id", "dev-user-001")
+    """Клиент подключился. Требует JWT в auth.token — иначе reject.
+
+    Sprint 6: JWT validation; rooms scoped per user so live theatre is tenant-isolated.
+    """
+    token = (auth or {}).get("token")
+    user_id = extract_user_id(token)
+    if not user_id:
+        logger.warning("Socket.IO connect rejected: missing or invalid token (sid=%s)", sid)
+        # Returning False makes python-socketio refuse the connection.
+        return False
+
+    await sio.save_session(sid, {"user_id": user_id})
     await sio.enter_room(sid, f"user:{user_id}")
     logger.info("Socket.IO connected: sid=%s, user_id=%s", sid, user_id)
     await sio.emit(
@@ -41,6 +57,7 @@ async def connect(sid: str, environ: dict, auth: dict | None = None):
         {"sid": sid, "user_id": user_id, "ts": datetime.utcnow().isoformat()},
         to=sid,
     )
+    return True
 
 
 @sio.event

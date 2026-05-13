@@ -14,9 +14,11 @@ import { MaximusPanel } from "@/components/b6/MaximusPanel";
 import { MiraPanel } from "@/components/b6/MiraPanel";
 import { SagePanel } from "@/components/b6/SagePanel";
 import { GoogleAdsConnect } from "@/components/b6/GoogleAdsConnect";
+import AuthGuard from "@/components/AuthGuard";
+import { useAuth } from "@/lib/useAuth";
 import { useB6Events } from "@/lib/b6-socket";
 
-const MOCK_CUSTOMER_ID = "1234567890"; // fallback if no real connections
+const NO_CUSTOMER_PLACEHOLDER = "—"; // shown until user connects a Google Ads account
 const REFRESH_INTERVAL_MS = 5000; // poll actions/agents (live events приходят через socket)
 
 const apiToCampaignMetrics = (c: CampaignFromAPI): CampaignMetrics => ({
@@ -31,7 +33,16 @@ const apiToCampaignMetrics = (c: CampaignFromAPI): CampaignMetrics => ({
   conversions: c.conversions,
 });
 
-export default function B6Dashboard() {
+export default function B6DashboardPage() {
+  return (
+    <AuthGuard>
+      <B6Dashboard />
+    </AuthGuard>
+  );
+}
+
+function B6Dashboard() {
+  const { user, logout } = useAuth();
   const [actions, setActions] = useState<AgentAction[]>([]);
   const [agents, setAgents] = useState<Agent[]>([]);
   const [campaigns, setCampaigns] = useState<CampaignMetrics[]>([]);
@@ -39,13 +50,13 @@ export default function B6Dashboard() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [stats, setStats] = useState<{ iterations?: number; tool_calls?: number }>({});
-  const [activeCustomerId, setActiveCustomerId] = useState<string>(MOCK_CUSTOMER_ID);
+  const [activeCustomerId, setActiveCustomerId] = useState<string>("");
 
   // Live events через Socket.IO
   const { events: liveEvents, connected, clear: clearEvents } = useB6Events();
 
   // Pick active customer_id from user's connected accounts (first is_active=true).
-  // Falls back to MOCK_CUSTOMER_ID if no connections yet.
+  // Empty if no connections yet — UI shows the onboarding CTA from GoogleAdsConnect.
   useEffect(() => {
     listConnectedAccounts()
       .then((accounts) => {
@@ -78,10 +89,12 @@ export default function B6Dashboard() {
       const [actRes, agRes, campRes] = await Promise.all([
         listActions({ limit: 30 }),
         listAgents(),
-        listCampaigns(activeCustomerId).catch((e) => {
-          console.warn("Campaigns fetch failed", e);
-          return { count: 0, campaigns: [] };
-        }),
+        activeCustomerId
+          ? listCampaigns(activeCustomerId).catch((e) => {
+              console.warn("Campaigns fetch failed", e);
+              return { count: 0, campaigns: [] };
+            })
+          : Promise.resolve({ count: 0, campaigns: [] }),
       ]);
       setActions(actRes.actions);
       setAgents(agRes.agents);
@@ -135,7 +148,9 @@ export default function B6Dashboard() {
               🤖 B6 — Your AI PPC Cabinet
             </h1>
             <div style={{ color: "#A0A0A0", fontSize: "13px", marginTop: "4px" }}>
-              Customer <code style={{ color: "#7F9CF5" }}>{activeCustomerId}</code>{activeCustomerId === MOCK_CUSTOMER_ID ? " · mock mode" : " · prod data"} ·{" "}
+              {user?.email && <span style={{ marginRight: 8 }}>{user.email} ·</span>}
+              Customer <code style={{ color: "#7F9CF5" }}>{activeCustomerId || NO_CUSTOMER_PLACEHOLDER}</code>
+              {activeCustomerId ? " · prod data" : " · no Google Ads connected yet"} ·{" "}
               {agents.length === 0
                 ? "Buzz ещё не запускался"
                 : `${agents.length} агент${agents.length === 1 ? "" : "ов"} · последний запуск: ${
@@ -160,6 +175,21 @@ export default function B6Dashboard() {
               }}
             >
               clear feed
+            </button>
+            <button
+              onClick={() => logout("/")}
+              title="Sign out"
+              style={{
+                padding: "8px 12px",
+                background: "transparent",
+                border: "1px solid #2D3340",
+                color: "#A0A0A0",
+                borderRadius: "6px",
+                fontSize: "12px",
+                cursor: "pointer",
+              }}
+            >
+              sign out
             </button>
             <RunBuzzButton
               customerId={activeCustomerId}

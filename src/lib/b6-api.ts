@@ -3,12 +3,18 @@
  *
  * Backend по умолчанию на http://localhost:8000.
  * Переопределяется через NEXT_PUBLIC_B6_API_BASE.
+ *
+ * Sprint 6: все protected endpoints требуют JWT в Authorization header.
+ * Токен читается из localStorage("b6_token") через getStoredToken().
+ * На 401 клиент очищает токен и редиректит на /auth/login.
  */
+
+import { clearStoredAuth, getStoredToken } from "./auth";
 
 const API_BASE =
   process.env.NEXT_PUBLIC_B6_API_BASE || "http://localhost:8000";
 
-const DEV_USER_ID = "dev-user-001"; // На MVP — single user, потом из auth
+export const B6_API_BASE = API_BASE;
 
 export type RiskReview = {
   action_id: string;
@@ -58,17 +64,43 @@ export type RunAgentResponse = {
   error: string | null;
 };
 
+export class UnauthorizedError extends Error {
+  constructor() {
+    super("Unauthorized");
+    this.name = "UnauthorizedError";
+  }
+}
+
+function authHeaders(): Record<string, string> {
+  const token = getStoredToken();
+  return token ? { Authorization: `Bearer ${token}` } : {};
+}
+
+function handleUnauthorized() {
+  clearStoredAuth();
+  if (typeof window !== "undefined" && !window.location.pathname.startsWith("/auth/")) {
+    window.location.assign("/auth/login");
+  }
+}
+
 async function jsonRequest<T>(
   method: string,
   path: string,
-  body?: unknown
+  body?: unknown,
 ): Promise<T> {
   const res = await fetch(`${API_BASE}${path}`, {
     method,
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      ...authHeaders(),
+    },
     body: body ? JSON.stringify(body) : undefined,
     cache: "no-store",
   });
+  if (res.status === 401) {
+    handleUnauthorized();
+    throw new UnauthorizedError();
+  }
   if (!res.ok) {
     const text = await res.text();
     throw new Error(`B6 API ${method} ${path} → ${res.status}: ${text}`);
@@ -78,22 +110,20 @@ async function jsonRequest<T>(
 
 // ---------- Agents ----------
 
-export async function listAgents(userId = DEV_USER_ID): Promise<{
+export async function listAgents(): Promise<{
   user_id: string;
   count: number;
   agents: Agent[];
 }> {
-  return jsonRequest("GET", `/api/agents?user_id=${userId}`);
+  return jsonRequest("GET", `/api/agents`);
 }
 
 export async function runAgent(opts: {
-  userId?: string;
   agentType?: string;
   customerId: string;
   campaignId?: string;
 }): Promise<RunAgentResponse> {
   return jsonRequest("POST", `/api/agents/run`, {
-    user_id: opts.userId || DEV_USER_ID,
     agent_type: opts.agentType || "bidding",
     customer_id: opts.customerId,
     campaign_id: opts.campaignId,
@@ -103,12 +133,10 @@ export async function runAgent(opts: {
 // ---------- Actions ----------
 
 export async function listActions(opts: {
-  userId?: string;
   status?: AgentAction["status"];
   limit?: number;
 }): Promise<{ count: number; actions: AgentAction[] }> {
   const params = new URLSearchParams({
-    user_id: opts.userId || DEV_USER_ID,
     limit: String(opts.limit ?? 50),
   });
   if (opts.status) params.set("status", opts.status);
@@ -117,25 +145,21 @@ export async function listActions(opts: {
 
 export async function approveAction(
   actionId: string,
-  applyToGoogleAds = false
+  applyToGoogleAds = false,
 ): Promise<{ status: string; after_state: unknown }> {
   return jsonRequest("POST", `/api/actions/${actionId}/approve`, {
-    approver_user_id: DEV_USER_ID,
     apply_to_google_ads: applyToGoogleAds,
   });
 }
 
 export async function rejectAction(
   actionId: string,
-  reason?: string
+  reason?: string,
 ): Promise<{ status: string }> {
   return jsonRequest("POST", `/api/actions/${actionId}/reject`, {
-    approver_user_id: DEV_USER_ID,
     reason: reason || null,
   });
 }
-
-// ---------- Helpers ----------
 
 // ---------- Campaigns ----------
 
@@ -153,7 +177,7 @@ export type CampaignFromAPI = {
 
 export async function listCampaigns(
   customerId: string,
-  includeMetrics = true
+  includeMetrics = true,
 ): Promise<{ count: number; campaigns: CampaignFromAPI[] }> {
   const params = new URLSearchParams({
     customer_id: customerId,
@@ -185,36 +209,27 @@ export type OrchestrationCycle = {
 };
 
 export async function runOrchestratorCycle(opts: {
-  userId?: string;
   autonomyLevelOverride?: AutonomyLevel;
 }): Promise<OrchestrationCycle> {
   return jsonRequest("POST", "/api/orchestrator/cycle", {
-    user_id: opts.userId || DEV_USER_ID,
     dry_run: false,
     autonomy_level_override: opts.autonomyLevelOverride,
   });
 }
 
-export async function getLatestOrchestration(
-  userId = DEV_USER_ID
-): Promise<OrchestrationCycle | null> {
+export async function getLatestOrchestration(): Promise<OrchestrationCycle | null> {
   try {
-    const res = await fetch(`${API_BASE}/api/orchestrator/latest?user_id=${userId}`, {
-      cache: "no-store",
-    });
-    if (!res.ok) return null;
-    return res.json();
-  } catch {
+    return await jsonRequest<OrchestrationCycle>("GET", "/api/orchestrator/latest");
+  } catch (e) {
+    if (e instanceof UnauthorizedError) throw e;
     return null;
   }
 }
 
 export async function setAutonomy(
   level: AutonomyLevel,
-  userId = DEV_USER_ID
 ): Promise<{ autonomy_level: AutonomyLevel; subscription_tier: string | null }> {
   return jsonRequest("POST", "/api/orchestrator/autonomy", {
-    user_id: userId,
     autonomy_level: level,
   });
 }
@@ -238,26 +253,21 @@ export type EchoDigest = {
   generated_at: string;
 };
 
-export async function getLatestDigest(userId = DEV_USER_ID): Promise<EchoDigest | null> {
+export async function getLatestDigest(): Promise<EchoDigest | null> {
   try {
-    const res = await fetch(`${API_BASE}/api/digest/latest?user_id=${userId}`, {
-      cache: "no-store",
-    });
-    if (!res.ok) return null;
-    return res.json();
-  } catch {
+    return await jsonRequest<EchoDigest>("GET", "/api/digest/latest");
+  } catch (e) {
+    if (e instanceof UnauthorizedError) throw e;
     return null;
   }
 }
 
 export async function runDigest(opts: {
-  userId?: string;
   periodDays?: number;
   sendEmail?: boolean;
   emailOverride?: string;
 }): Promise<{ success: boolean; digest?: EchoDigest; email_result?: unknown; error?: string }> {
   return jsonRequest("POST", `/api/digest/run`, {
-    user_id: opts.userId || DEV_USER_ID,
     period_days: opts.periodDays ?? 7,
     send_email: opts.sendEmail ?? false,
     email_override: opts.emailOverride,
@@ -284,36 +294,18 @@ export type ConnectedAccount = {
 };
 
 /** Returns the URL where browser should be redirected to start Google OAuth. */
-export async function startGoogleAdsOAuth(
-  userId = DEV_USER_ID,
-): Promise<{ auth_url: string; state: string }> {
-  const res = await fetch(
-    `${API_BASE}/api/google-ads/oauth/start?user_id=${encodeURIComponent(userId)}`,
-  );
-  if (!res.ok) throw new Error(`oauth/start failed: ${res.status} ${await res.text()}`);
-  return await res.json();
+export async function startGoogleAdsOAuth(): Promise<{ auth_url: string; state: string }> {
+  return jsonRequest("GET", `/api/google-ads/oauth/start`);
 }
 
-export async function listConnectedAccounts(
-  userId = DEV_USER_ID,
-): Promise<ConnectedAccount[]> {
-  const res = await fetch(
-    `${API_BASE}/api/google-ads/accounts?user_id=${encodeURIComponent(userId)}`,
-  );
-  if (!res.ok) throw new Error(`accounts list failed: ${res.status}`);
-  return await res.json();
+export async function listConnectedAccounts(): Promise<ConnectedAccount[]> {
+  return jsonRequest("GET", `/api/google-ads/accounts`);
 }
 
 export async function disconnectGoogleAdsAccount(
   accountId: string,
-  userId = DEV_USER_ID,
 ): Promise<{ success: boolean; google_customer_id: string }> {
-  const res = await fetch(
-    `${API_BASE}/api/google-ads/accounts/${encodeURIComponent(accountId)}?user_id=${encodeURIComponent(userId)}`,
-    { method: "DELETE" },
-  );
-  if (!res.ok) throw new Error(`disconnect failed: ${res.status}`);
-  return await res.json();
+  return jsonRequest("DELETE", `/api/google-ads/accounts/${encodeURIComponent(accountId)}`);
 }
 
 export function statusBadgeColor(status: AgentAction["status"]): string {

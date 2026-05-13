@@ -41,6 +41,9 @@ class User(Base):
     password_hash: Mapped[str] = mapped_column(Text, nullable=False)
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
 
+    is_active: Mapped[bool] = mapped_column(Boolean, default=True, nullable=False)
+    email_verified: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
+
     stripe_customer_id: Mapped[Optional[str]] = mapped_column(String(255), nullable=True)
     subscription_tier: Mapped[Optional[str]] = mapped_column(String(50), nullable=True)  # 'l1' | 'l2' | 'l3'
     autonomy_level: Mapped[str] = mapped_column(String(10), default="l0")  # 'l0' | 'l1' | 'l2' | 'l3'

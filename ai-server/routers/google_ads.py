@@ -24,13 +24,14 @@ from datetime import datetime
 from typing import Optional
 
 import httpx
-from fastapi import APIRouter, HTTPException, Query
+from fastapi import APIRouter, Depends, HTTPException, Query
 from fastapi.responses import RedirectResponse
 from pydantic import BaseModel
 from sqlalchemy import select
 
 from db.models import GoogleAdsAccount, User
 from db.session import AsyncSessionLocal
+from dependencies import get_current_user
 from services.google_ads_client import (
     exchange_code_for_tokens,
     get_account_info,
@@ -99,7 +100,7 @@ class ConnectedAccount(BaseModel):
 # ─────────────────────────────────────────────────────────────────────────────
 
 @router.get("/oauth/start", response_model=OAuthStartResponse)
-async def oauth_start(user_id: str = Query(default="dev-user-001")):
+async def oauth_start(current_user: User = Depends(get_current_user)):
     """Generate the Google OAuth URL.
 
     Frontend should redirect the browser to the returned auth_url. The user authorizes
@@ -112,12 +113,7 @@ async def oauth_start(user_id: str = Query(default="dev-user-001")):
     if not client_id:
         raise HTTPException(500, "GOOGLE_CLIENT_ID not configured")
 
-    # Validate user exists (otherwise FK fails on callback)
-    async with AsyncSessionLocal() as session:
-        user = await session.get(User, user_id)
-        if user is None:
-            raise HTTPException(404, f"User {user_id} not found")
-
+    user_id = current_user.id
     _cleanup_expired_states()
     state = secrets.token_urlsafe(32)
     _oauth_state_store[state] = (user_id, datetime.utcnow())
@@ -246,12 +242,12 @@ async def oauth_callback(
 
 
 @router.get("/accounts", response_model=list[ConnectedAccount])
-async def list_accounts(user_id: str = Query(default="dev-user-001")):
-    """List all Google Ads accounts connected by a user."""
+async def list_accounts(current_user: User = Depends(get_current_user)):
+    """List all Google Ads accounts connected by the current user."""
     async with AsyncSessionLocal() as session:
         result = await session.execute(
             select(GoogleAdsAccount)
-            .where(GoogleAdsAccount.user_id == user_id)
+            .where(GoogleAdsAccount.user_id == current_user.id)
             .order_by(GoogleAdsAccount.connected_at.desc())
         )
         accounts = result.scalars().all()
@@ -269,13 +265,13 @@ async def list_accounts(user_id: str = Query(default="dev-user-001")):
 
 
 @router.delete("/accounts/{account_id}")
-async def disconnect_account(account_id: str, user_id: str = Query(default="dev-user-001")):
+async def disconnect_account(account_id: str, current_user: User = Depends(get_current_user)):
     """Soft-disconnect: set is_active=False. Does not revoke OAuth at Google
     (user can do that on https://myaccount.google.com/permissions).
     """
     async with AsyncSessionLocal() as session:
         acc = await session.get(GoogleAdsAccount, account_id)
-        if acc is None or acc.user_id != user_id:
+        if acc is None or acc.user_id != current_user.id:
             raise HTTPException(404, "Account not found")
         acc.is_active = False
         await session.commit()

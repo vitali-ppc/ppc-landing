@@ -11,9 +11,11 @@ from __future__ import annotations
 import logging
 from typing import Optional
 
-from fastapi import APIRouter, HTTPException, Query
+from fastapi import APIRouter, Depends, HTTPException, Query
 from pydantic import BaseModel
 
+from db.models import User
+from dependencies import get_current_user
 from services import audit, google_ads_client as gads
 
 logger = logging.getLogger(__name__)
@@ -22,40 +24,49 @@ router = APIRouter(prefix="/api/actions", tags=["actions"])
 
 
 class ApproveRequest(BaseModel):
-    approver_user_id: str = "dev-user-001"
     apply_to_google_ads: bool = False  # Day 2 default: dry_run
 
 
 class RejectRequest(BaseModel):
-    approver_user_id: str = "dev-user-001"
     reason: Optional[str] = None
+
+
+def _assert_owner(action: dict, user_id: str) -> None:
+    """Return 404 (not 403) if user doesn't own — avoid leaking action existence."""
+    if action.get("user_id") != user_id:
+        raise HTTPException(404, f"Action not found")
 
 
 @router.get("")
 async def list_actions_endpoint(
-    user_id: str = "dev-user-001",
     status: Optional[str] = Query(None, description="Filter: proposed | approved | applied | rejected"),
     limit: int = Query(50, ge=1, le=500),
+    current_user: User = Depends(get_current_user),
 ):
-    """Список действий пользователя."""
-    items = await audit.list_actions(user_id=user_id, status=status, limit=limit)
-    return {"user_id": user_id, "status_filter": status, "count": len(items), "actions": items}
+    """Список действий текущего пользователя."""
+    items = await audit.list_actions(user_id=current_user.id, status=status, limit=limit)
+    return {"user_id": current_user.id, "status_filter": status, "count": len(items), "actions": items}
 
 
 @router.get("/{action_id}")
-async def get_action_endpoint(action_id: str):
+async def get_action_endpoint(action_id: str, current_user: User = Depends(get_current_user)):
     """Деталь одного действия (включает risk_review от Aegis)."""
     item = await audit.get_action(action_id)
     if item is None:
         raise HTTPException(404, f"Action {action_id} not found")
+    _assert_owner(item, current_user.id)
     review = await audit.get_risk_review(action_id)
     item["risk_review"] = review
     return item
 
 
 @router.get("/{action_id}/review")
-async def get_action_review(action_id: str):
+async def get_action_review(action_id: str, current_user: User = Depends(get_current_user)):
     """Только risk-review от Aegis для конкретного action."""
+    item = await audit.get_action(action_id)
+    if item is None:
+        raise HTTPException(404, f"Action {action_id} not found")
+    _assert_owner(item, current_user.id)
     review = await audit.get_risk_review(action_id)
     if review is None:
         raise HTTPException(404, f"No review found for {action_id}")
@@ -63,7 +74,7 @@ async def get_action_review(action_id: str):
 
 
 @router.post("/{action_id}/approve")
-async def approve_action(action_id: str, body: ApproveRequest):
+async def approve_action(action_id: str, body: ApproveRequest, current_user: User = Depends(get_current_user)):
     """Апрувнуть действие.
 
     Если apply_to_google_ads=True — сразу выполняем через google_ads_client.
@@ -72,14 +83,16 @@ async def approve_action(action_id: str, body: ApproveRequest):
     action = await audit.get_action(action_id)
     if action is None:
         raise HTTPException(404, f"Action {action_id} not found")
+    _assert_owner(action, current_user.id)
     if action["status"] not in ("proposed", "pending_approval"):
         raise HTTPException(400, f"Action is in status '{action['status']}' — cannot approve")
 
     target = action["target"] or {}
+    approver_id = current_user.id
 
     # Mark approved
     await audit.update_action_status(
-        action_id, "approved", approved_by_user_id=body.approver_user_id
+        action_id, "approved", approved_by_user_id=approver_id
     )
 
     # Apply (dry-run для Day 2)
@@ -107,22 +120,23 @@ async def approve_action(action_id: str, body: ApproveRequest):
         after_state = {"dry_run": True, "note": str(e)}
 
     result = await audit.update_action_status(
-        action_id, "applied", approved_by_user_id=body.approver_user_id, after_state=after_state
+        action_id, "applied", approved_by_user_id=approver_id, after_state=after_state
     )
     return {"status": "applied", "action_id": action_id, "after_state": after_state, **(result or {})}
 
 
 @router.post("/{action_id}/reject")
-async def reject_action(action_id: str, body: RejectRequest):
+async def reject_action(action_id: str, body: RejectRequest, current_user: User = Depends(get_current_user)):
     """Отклонить действие."""
     action = await audit.get_action(action_id)
     if action is None:
         raise HTTPException(404, f"Action {action_id} not found")
+    _assert_owner(action, current_user.id)
     if action["status"] not in ("proposed", "pending_approval"):
         raise HTTPException(400, f"Action is in status '{action['status']}' — cannot reject")
 
     result = await audit.update_action_status(
-        action_id, "rejected", approved_by_user_id=body.approver_user_id,
+        action_id, "rejected", approved_by_user_id=current_user.id,
         after_state={"rejection_reason": body.reason} if body.reason else None,
     )
     return {"status": "rejected", "action_id": action_id, **(result or {})}

@@ -84,8 +84,40 @@ const Hero: React.FC = () => (
 
       <WaitlistForm source="hero" />
 
+      <div style={{ marginTop: 20, display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
+        <a
+          href="/auth/register"
+          style={{
+            padding: "10px 18px",
+            background: "#3B82F6",
+            color: "#FFFFFF",
+            textDecoration: "none",
+            borderRadius: 8,
+            fontSize: 14,
+            fontWeight: 600,
+          }}
+        >
+          Get started — free
+        </a>
+        <a
+          href="/auth/login"
+          style={{
+            padding: "10px 18px",
+            background: "transparent",
+            color: "#A0A0A0",
+            textDecoration: "none",
+            borderRadius: 8,
+            fontSize: 14,
+            fontWeight: 500,
+            border: "1px solid #2D3340",
+          }}
+        >
+          Sign in
+        </a>
+      </div>
+
       <a
-        href="/b6"
+        href="/auth/register"
         style={{
           marginTop: "60px",
           display: "block",
@@ -100,7 +132,7 @@ const Hero: React.FC = () => (
         }}
       >
         <div style={{ color: "#A0A0A0", fontSize: "12px", marginBottom: "8px" }}>
-          🎬 Live demo (no signup)
+          🎬 Live demo (free signup)
         </div>
         <div style={{ fontSize: "32px", marginBottom: "12px" }}>🐝🛡️</div>
         <div style={{ fontSize: "20px", fontWeight: 600, marginBottom: "8px" }}>

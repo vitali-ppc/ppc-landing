@@ -22,10 +22,14 @@ logger = logging.getLogger(__name__)
 # ---------------------------------------------------------------------------
 
 async def _get_access_token_for(user_id: str, customer_id: Optional[str] = None) -> str:
-    """В non-mock режиме лезет в google_ads_accounts по customer_id (приоритет) или user_id.
+    """Resolve access token for (user_id, customer_id). ALWAYS enforces ownership.
 
-    Customer_id — основной ключ (если задан), потому что у одного user может быть много
-    подключённых аккаунтов. Без customer_id берёт первый is_active=true для user_id.
+    Sprint 6 hardening: previously the query filtered by customer_id without checking user_id,
+    which let any caller fetch any tenant's refresh_token if they knew the customer_id.
+    Now both filters are always applied — without a matching (user_id, customer_id, is_active)
+    row, we raise PermissionError.
+
+    Without customer_id we fall back to the user's first active account (legacy callers).
     """
     if gads.use_mock():
         return "mock-access-token"
@@ -35,18 +39,20 @@ async def _get_access_token_for(user_id: str, customer_id: Optional[str] = None)
     from db.session import AsyncSessionLocal
 
     async with AsyncSessionLocal() as session:
-        query = select(GoogleAdsAccount).where(GoogleAdsAccount.is_active == True)
+        query = (
+            select(GoogleAdsAccount)
+            .where(GoogleAdsAccount.user_id == user_id)
+            .where(GoogleAdsAccount.is_active == True)
+        )
         if customer_id:
             query = query.where(GoogleAdsAccount.google_customer_id == customer_id)
-        else:
-            query = query.where(GoogleAdsAccount.user_id == user_id)
 
         result = await session.execute(query)
         conn = result.scalars().first()
         if conn is None or not conn.oauth_refresh_token:
-            raise RuntimeError(
-                f"No active Google Ads connection (user={user_id}, customer={customer_id}). "
-                "User must complete OAuth flow first."
+            raise PermissionError(
+                f"No active Google Ads connection for user={user_id} customer={customer_id}. "
+                "User must complete OAuth flow first or does not own this customer."
             )
         return await gads.get_valid_access_token(conn.oauth_refresh_token)
 
