@@ -5,21 +5,33 @@
 > Архитектура системы: [`ARCHITECTURE.md`](./ARCHITECTURE.md)
 > История изменений: [`CHANGELOG.md`](./CHANGELOG.md)
 
-**Дата последнего обновления**: 2026-05-12 (🚀 LAUNCH DAY)
+**Дата последнего обновления**: 2026-05-13 (Sprint 5 — Google Ads OAuth integration)
 **Текущая ветка**: `v2-autonomous-agents`
-**Прогресс кода**: **100%** (все 7 агентов работают, production stack готов)
-**Статус**: ✅ **LIVE В PRODUCTION**
+**Прогресс кода**: **100%** (все 7 агентов + OAuth flow + real Google Ads API)
+**Статус**: ✅ **LIVE В PRODUCTION C РЕАЛЬНЫМИ ДАННЫМИ**
 
 ## 🌍 Production URLs
 
 | | URL | Статус |
 |---|---|---|
 | **Лендинг** | https://www.kampaio.com | ✅ HTTP 200 |
-| **Dashboard** | https://www.kampaio.com/b6 | ✅ HTTP 200 |
+| **Dashboard** | https://www.kampaio.com/b6 | ✅ HTTP 200, отображает реальные Google Ads данные |
 | **Backend API** | https://api.kampaio.com | ✅ HTTPS, valid LE cert (until Aug 10 2026) |
-| **Health** | https://api.kampaio.com/health | ✅ `{"status":"ok","mock_mode":"true","model":"claude-sonnet-4-6","socketio":true}` |
-| **Swagger UI** | https://api.kampaio.com/docs | ✅ 22 endpoints |
+| **Health** | https://api.kampaio.com/health | ✅ `{"status":"ok","mock_mode":"false","model":"claude-sonnet-4-6","socketio":true}` |
+| **Swagger UI** | https://api.kampaio.com/docs | ✅ 26 endpoints (22 + 4 OAuth) |
 | **Socket.IO** | wss://api.kampaio.com/socket.io/ | ✅ Handshake OK |
+
+## 🔌 Google Ads OAuth (новое 2026-05-13)
+
+| | |
+|---|---|
+| Developer Token | ✅ Basic Access (15K ops/day лимит) — Customer ID K0514922126 |
+| OAuth Client | ✅ `Kampaio OAuth Client` (Google Cloud project `Pyton`) |
+| Redirect URIs | `https://api.kampaio.com/api/google-ads/oauth/callback` + localhost для dev |
+| Подключено аккаунтов | **33** (Vitaly's PPC client portfolio) |
+| Активный для тестов | **`3133506664`** (Goodevas It — итальянский рынок) |
+| Реальных кампаний видно | **10** (Pmax_Goodevas_It_*, SN_Goodevas_It_Brand, etc) |
+| Buzz/Aegis на реальных данных | ⚠️ Готовы по коду, **не тестированы** на реальных аккаунтах |
 
 **Infrastructure:**
 - Frontend: Vercel (Hobby tier, free) — project `ppc-landing`, deployed from `v2-autonomous-agents` branch
@@ -35,17 +47,28 @@
 
 | | |
 |---|---|
-| Что есть | 7 AI-агентов + multi-tier autonomy + live theatre UI + 22 endpoints + Docker prod stack, **всё в проде** |
-| Что не сделано **в коде** | Multi-tenancy auth (single dev-user), real Stripe live mode, Google Ads write ops |
-| Что осталось из deployment | `ANTHROPIC_API_KEY` не вставлен в `.env.prod` (агенты молчат пока) |
-| **Главный блокер реального value** | Google Ads production token — 4-8 недель approval. Пока работаем в `GOOGLE_ADS_USE_MOCK=true` |
-| Второй блокер | `ANTHROPIC_API_KEY` ротейтнуть и `sed`-вставить через SSH |
+| Что есть | 7 AI-агентов + multi-tier autonomy + live theatre UI + 26 endpoints + Docker prod stack + **Google Ads OAuth flow с реальными данными** |
+| Что не сделано **в коде** | Multi-tenancy auth (single dev-user `dev-user-001`), real Stripe live mode, тестирование Buzz/Aegis на реальных аккаунтах |
+| Что в .env.prod на сервере | ✅ ANTHROPIC_API_KEY (108), ✅ GOOGLE_ADS_DEVELOPER_TOKEN (22), ✅ GOOGLE_CLIENT_ID (72), ✅ GOOGLE_CLIENT_SECRET (35) |
+| Mock-режим | ✅ `GOOGLE_ADS_USE_MOCK=false` — реальные Google Ads API calls |
+| **Главный блокер реального value** | Multi-tenancy: 1 захардкоженный юзер. Нельзя онбордить реальных клиентов без `INSERT INTO users` вручную. |
+| Второй блокер | Production Branch на Vercel: иногда commit'ы не auto-deploy'ятся, требуют ручного Promote |
 
 ---
 
 ## 📦 Состояние Git
 
 **Ветка `v2-autonomous-agents` запушена в `origin`** (это production-ветка Vercel'а).
+
+История Sprint 5 — Google Ads OAuth (~2 часа работы 2026-05-13):
+
+```
+1f65c98 B6 fix: dashboard header — proper MOCK_CUSTOMER_ID name + dynamic mode label
+86057b8 B6 feat: load Google Ads refresh_token from DB (not env var)
+728d05f B6 feat: dashboard uses dynamic customer_id from connected accounts
+f84e854 B6 fix: list_accessible_customers always calls real Google API
+f9ae0f1 B6 feat: Google Ads OAuth flow (backend + frontend)
+```
 
 История launch day (~3 часа работы 2026-05-12):
 

@@ -249,22 +249,28 @@ Full OpenAPI spec → `http://localhost:8000/docs` после запуска.
 
 ## 🎯 Roadmap
 
-Текущий статус: **🚀 Live в production** на [https://www.kampaio.com](https://www.kampaio.com).
+Текущий статус: **🚀 Live в production с реальными Google Ads данными** на [https://www.kampaio.com](https://www.kampaio.com).
+
+Что закрыто:
+- ✅ Production deploy (Vercel + Hetzner CPX22)
+- ✅ ANTHROPIC_API_KEY активирован → AI-агенты отвечают
+- ✅ **Google Ads OAuth flow построен** → 33 реальных аккаунта подключены, GOOGLE_ADS_USE_MOCK=false
+- ✅ Backend читает реальные campaigns из Google Ads API
 
 Следующие вехи:
-- ⏳ **Активировать `ANTHROPIC_API_KEY` в prod** — без него агенты в проде молчат (5 минут SSH-работы)
-- ⏳ **Google Ads Production Token** (заявка подана, 4-8 нед approval) — после этого выходим из mock-режима
+- ⏳ **Тестирование Buzz/Aegis** на реальном аккаунте (готовы по коду, ждут безопасный тест)
+- ⏳ **Multi-tenancy + auth** — сейчас single dev-user-001, нельзя онбордить клиентов без ручного INSERT
 - ⏳ **First 30 beta users** через waitlist
-- ⏳ **Multi-tenancy + auth** (сейчас single dev-user)
+- ⏳ **Google Ads Standard Access** (запросить когда дорастём до 100+ юзеров, сейчас Basic = 15K ops/day)
 - ⏳ **Real Stripe billing** (test mode → live при первом платящем)
 
 ---
 
 ## 🤝 Built with
 
-Built solo by [vitali-ppc](https://github.com/vitali-ppc) using **Claude Code** за ~25 часов работы (Sprint 1 → 3 → Launch Day).
+Built solo by [vitali-ppc](https://github.com/vitali-ppc) using **Claude Code** за ~28 часов работы (Sprint 1 → 5).
 
-~8,500 строк production кода. 22 HTTP endpoints. 7 AI-агентов. Docker production stack live на Hetzner + Vercel.
+~9,000 строк production кода. 26 HTTP endpoints. 7 AI-агентов. OAuth интеграция с Google Ads. Docker production stack live на Hetzner + Vercel.
 
 ---
 

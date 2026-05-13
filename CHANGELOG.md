@@ -6,6 +6,96 @@
 
 ---
 
+## [Sprint 5] — 2026-05-13 — Google Ads OAuth + real data integration
+
+После launch'а агенты в проде работали на mock-кампаниях. Этот sprint подключил **реальный Google Ads API** через OAuth flow.
+
+### Что построено
+
+**Backend (`ai-server/`):**
+- `routers/google_ads.py` (новый, ~280 строк) — 4 endpoint'а:
+  - `GET /api/google-ads/oauth/start` — генерирует Google OAuth URL с CSRF state token, TTL 10 мин
+  - `GET /api/google-ads/oauth/callback` — exchange code → refresh_token → list accessible customers → save в DB
+  - `GET /api/google-ads/accounts` — list connected accounts для юзера
+  - `DELETE /api/google-ads/accounts/{id}` — soft disconnect (is_active=false)
+- `services/google_ads_client.py`: добавлены helpers
+  - `exchange_code_for_tokens(code, redirect_uri)` — initial OAuth code exchange (one-time, gets refresh_token)
+  - `list_accessible_customers(refresh_token)` — fetch user's Google Ads customer IDs через `listAccessibleCustomers` API
+- `routers/campaigns.py` + `agents/tools.py`: `_get_access_token()` больше не читает `DEV_REFRESH_TOKEN` env var, а делает SQLAlchemy lookup в `google_ads_accounts` table по `customer_id` (или `user_id` fallback)
+- `agents/research_agent.py` + `agents/creative_agent.py`: используют `_get_access_token_for` из tools.py (DB-based) вместо легаси env var
+
+**Frontend (`src/`):**
+- `components/b6/GoogleAdsConnect.tsx` (новый, ~256 строк) — UI блок на дашборде:
+  - 0 connections → большая CTA «🔗 Connect Google Ads» с описанием value
+  - ≥1 connection → compact status «✅ Google Ads подключён» + список первых 3 ID + «+ Добавить ещё» button
+  - Picks up `?google_ads_connected=N` / `?google_ads_error=...` из URL после OAuth callback, показывает баннер, scrubs query params
+- `lib/b6-api.ts`: добавлены `startGoogleAdsOAuth()`, `listConnectedAccounts()`, `disconnectGoogleAdsAccount()` typed client methods
+- `app/b6/page.tsx`:
+  - Заменён hardcoded `CUSTOMER_ID = "1234567890"` на динамический `activeCustomerId` state
+  - На mount fetches `listConnectedAccounts()` → выбирает первую `is_active=true` connection → её customer_id используется во всех API calls (`listCampaigns`, `runAgent`, etc.)
+  - Header показывает `Customer XXX · prod data` или `· mock mode` (динамически)
+
+### Production setup
+
+- **Google Ads Developer Token**: `Basic Access` (15K ops/day) — у юзера на customer K0514922126
+- **OAuth Client `Kampaio OAuth Client`**: project `Pyton` на Google Cloud, redirect URIs обновлены (добавлены `https://api.kampaio.com/api/google-ads/oauth/callback` и `http://localhost:8000/...`)
+- **.env.prod на сервере**: добавлены ANTHROPIC_API_KEY, GOOGLE_ADS_DEVELOPER_TOKEN, GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET (передавались через SSH stdin, не через chat). `GOOGLE_ADS_USE_MOCK=true → false`.
+- **dev-user-001** seeded в prod DB через `scripts/seed_dev.py`.
+
+### Что подключилось
+
+После OAuth flow юзера (PPC специалиста) **`listAccessibleCustomers` вернул 33 реальных Google Ads аккаунта** (client portfolio + own). Все 33 записаны в `google_ads_accounts` таблицу с одним общим refresh_token. Один marked `is_active=true` для тестов — **`3133506664`** (Goodevas It, итальянский рынок).
+
+API `GET /api/campaigns?customer_id=3133506664` возвращает **10 реальных кампаний**: Pmax_Goodevas_It_All-Products, SN_Goodevas_It_Brand, Pmax_Goodevas_It_Top-Products-1, etc.
+
+### Bugs found and fixed mid-sprint
+
+- **`list_accessible_customers` тоже возвращал mock** когда `GOOGLE_ADS_USE_MOCK=true`. Первый OAuth flow создал в DB connection с фейковым customer_id `1234567890`. Фикс: account-listing **всегда** идёт в real API (flag должен влиять только на campaign-data queries). Запустил Python helper script на сервере чтобы delete-all + re-insert 33 real connections.
+
+### Open issues для следующего sprint
+
+- **Buzz/Aegis не тестированы на реальном аккаунте**. По коду готовы, но live test = «нажать Run Buzz на /b6» с реальными $114/day кампаниями — рискованно (даже в dry_run). Безопаснее: dedicated test account или explicit подтверждение от юзера.
+- **Vercel deploy queue lag**: 3 коммита (728d05f → 1f65c98) задеплоились с задержкой. Production Branch требует проверки.
+- **Multi-tenancy still pending**. Всё на `dev-user-001`. Когда придёт второй юзер — `INSERT INTO users` руками.
+- **33 connections shared one refresh_token**. Корректно (один OAuth grant), но если юзер revokes доступ в Google Account settings — все 33 connections разом перестанут работать.
+
+### Git (Sprint 5 commits)
+
+- `f9ae0f1` — feat: Google Ads OAuth flow (backend + frontend)
+- `f84e854` — fix: list_accessible_customers always calls real Google API
+- `728d05f` — feat: dashboard uses dynamic customer_id from connected accounts
+- `86057b8` — feat: load Google Ads refresh_token from DB (not env var)
+- `1f65c98` — fix: dashboard header — proper MOCK_CUSTOMER_ID name + dynamic mode label
+
+---
+
+## [SEO sister-project integration] — 2026-05-13 — Sitemap, blog component, 3rd article
+
+> Контекст: `/Users/vitaly/Vit+/projects/seo-agent-team/` — отдельный pipeline для контент-маркетинга B6. Sister project (см. `CLAUDE.md` → «Связанные проекты»). За этот sprint добавлен infrastructure-код в `ppc-landing/` для поддержки auto-publish из sister project.
+
+### Added in `ppc-landing/`
+- **`src/components/blog/MascotQuote.tsx`** — React-компонент для inline-цитат маскотов (Buzz/Aegis/Echo/Vox/Maximus/Mira/Sage) внутри blog-статей. Стилизованные блок-цитаты с цветной полосой слева на бренд-цвет каждого маскота. Используется только в `/blog/`.
+- **`src/app/sitemap.ts`** — dynamic sitemap для kampaio.com. Auto-discovers blog articles из filesystem (`src/app/blog/<slug>/`), читает `datePublished`/`dateModified` из JSON-LD каждой статьи. Заменяет статический `public/sitemap.xml`. При публикации новой статьи sitemap обновляется автоматически на следующем Vercel build — без manual maintenance.
+- **`src/app/blog/google-ads-without-agency/page.tsx`** — 3-я auto-published статья (agency-burnt persona, 36KB TSX). Commit `5eaad93`.
+
+### Fixed
+- **`public/robots.txt`**: Sitemap directive указывал на старый домен `https://ppcset.com/sitemap.xml`. Исправлено на `https://www.kampaio.com/sitemap.xml`.
+- **`public/sitemap.xml`**: удалён (replaced by dynamic).
+
+### Side effect — blog index расширен
+`src/app/blog/page.tsx` теперь содержит 3 entries id=8,9,10 для auto-published статей. Поддерживается тем же SEO Agent Team publisher автоматически.
+
+### Open blockers (для sister project L3)
+- **Gap #1: Vercel production deploy не автоматический.** Push в `v2-autonomous-agents` помечается как `env=Preview` в GitHub API; `kampaio.com` обслуживается через alias к конкретному preview deployment. Чтобы SEO Agent Team L3 cron мог сам публиковать статьи — нужно решить: смена **Production Branch** в Vercel UI с `main` на `v2-autonomous-agents`, либо merge `v2-autonomous-agents` → `main` после каждой статьи, либо `vercel promote` в publisher.
+- **Gap #2: `claude -p` зависает после успешного git push.** Sister project quick fix — `timeout 1200` в scheduler.sh.
+
+### Commits (all in origin)
+- `482e8ce` blog: dynamic sitemap.ts + robots.txt domain fix
+- `5eaad93` blog: add google-ads-without-agency
+- `73e8cc7` blog: strip em-dashes from auto-generated articles
+
+---
+
 ## [🚀 Launch Day] — 2026-05-12 — Production live на kampaio.com
 
 После долгого пути из «launch-ready» в реально-в-проде. ~3 часа работы.

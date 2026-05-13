@@ -37,7 +37,7 @@
 | 🎨 | Mira | Creative (ad copy + images) | ✅ LIVE |
 | 🦉 | Sage | Research (keywords + audiences) | ✅ LIVE |
 
-**Главное состояние сейчас**: 🚀 **LIVE В PRODUCTION** на https://www.kampaio.com (Vercel frontend) + https://api.kampaio.com (Hetzner CPX22 backend, IP `178.104.124.150`). Осталось вставить `ANTHROPIC_API_KEY` в `.env.prod` на сервере чтобы AI-агенты заработали в проде. Подробно → [`HANDOFF.md`](./HANDOFF.md).
+**Главное состояние сейчас**: 🚀 **LIVE В PRODUCTION C РЕАЛЬНЫМИ ДАННЫМИ** на https://www.kampaio.com (Vercel frontend) + https://api.kampaio.com (Hetzner CPX22 backend, IP `178.104.124.150`). `ANTHROPIC_API_KEY`, `GOOGLE_ADS_DEVELOPER_TOKEN`, `GOOGLE_CLIENT_ID/SECRET` все в .env.prod. **GOOGLE_ADS_USE_MOCK=false** — backend читает реальные Google Ads campaigns. OAuth flow построен (`routers/google_ads.py` + `components/b6/GoogleAdsConnect.tsx`), 33 реальных Google Ads аккаунта подключены, активный для тестов `3133506664` (Goodevas It). Подробно → [`HANDOFF.md`](./HANDOFF.md).
 
 ---
 
@@ -244,7 +244,22 @@ http://localhost:8000/docs
 - **Главная угроза**: Synter (universal ad MCP, $199/мес) + большие игроки (Optmyzr/Madgicx) пивотят в ту же сторону. **Окно ~6-12 месяцев** чтобы захватить позицию
 
 ### Связанные проекты (sister projects)
-- **SEO Agent Team** — `/Users/vitaly/Vit+/projects/seo-agent-team/` — отдельный Python-pipeline который генерит SEO-статьи для блога B6. Output ложится в `src/app/blog/<slug>/page.tsx` обычными git-коммитами, Vercel автодеплоит. **Не часть B6 backend**, не объединяем. На 2026-05-12: 2 статьи опубликованы (`/blog/performance-max-not-converting`, `/blog/google-ads-roas-dropped-suddenly`). Pipeline на L2 автономии (keyword → published TSX за ~15 мин).
+- **SEO Agent Team** — `/Users/vitaly/Vit+/projects/seo-agent-team/` — отдельный Python-pipeline который генерит SEO-статьи для блога B6. Output ложится в `src/app/blog/<slug>/page.tsx` обычными git-коммитами, Vercel автодеплоит. **Не часть B6 backend**, не объединяем.
+
+  **Что от него уже в этом репо (важно знать перед editor):**
+  - `src/components/blog/MascotQuote.tsx` — React-компонент для inline-цитат маскотов (Buzz/Aegis/Echo/Vox/Maximus/Mira/Sage) внутри blog-статей. Используется только в `/blog/`, **не трогать в backend контексте**.
+  - `src/app/sitemap.ts` — dynamic sitemap, auto-discovers blog articles из filesystem. Заменяет старый `public/sitemap.xml` (удалён). При публикации новой статьи sitemap обновляется автоматически на следующем Vercel build.
+  - `public/robots.txt` — Sitemap directive исправлен с `ppcset.com` на `www.kampaio.com`.
+
+  **Статус на 2026-05-13:**
+  - **L2 автономии** в проде (keyword → published TSX за ~15 мин, manual trigger через CLI)
+  - **L3 компоненты построены** (topic-selector + scheduler.sh + cron installer + auto-push в publisher) но НЕ работают в проде из-за 2 gap'ов:
+    1. **Vercel production deploy не автоматический** — push в `v2-autonomous-agents` помечается как `env=Preview` в GitHub API; kampaio.com обслуживается через alias к конкретному preview deployment. Чтобы L3 работал — нужно решить: смена Production Branch в Vercel UI / merge `v2-autonomous-agents` → `main` / `vercel promote` в publisher.
+    2. `claude -p` зависает после успешного git push (~30+ мин с CPU 0%). Quick fix — `timeout 1200` в scheduler.sh.
+  - **3 статьи в blog index**: `/blog/performance-max-not-converting`, `/blog/google-ads-roas-dropped-suddenly` (обе LIVE на проде), `/blog/google-ads-without-agency` (запушено commit `5eaad93`, ждёт fix Gap #1).
+  - SEO коммиты в origin: `4cee0f8`, `921b43b`, `73e8cc7`, `482e8ce`, `5eaad93`.
+
+  Полный план и текущий статус: [`/Users/vitaly/Vit+/projects/seo-agent-team/ROADMAP.md`](/Users/vitaly/Vit+/projects/seo-agent-team/ROADMAP.md)
 
 ### Что делает нас отличными
 1. **Multi-agent с visualization** (mascots + live stream) — у конкурентов нет
