@@ -118,6 +118,16 @@ export default function BlogPage() {
       date: '2026-05-14',
       readTime: '11 min read',
       slug: 'google-ads-not-spending-full-budget'
+    },
+    {
+      id: 12,
+      title: "8 Signs It's Time to Fire Your PPC Agency (And What to Do Next)",
+      excerpt: 'Eight observable signs your PPC agency is failing, a self-scoring diagnostic, and a step-by-step plan for what to do next: confront, switch, or go independent with AI tools.',
+      category: 'strategy',
+      author: 'By B6 Team',
+      date: '2026-05-14',
+      readTime: '12 min read',
+      slug: 'signs-you-need-to-fire-your-ppc-agency'
     }
   ];
 
