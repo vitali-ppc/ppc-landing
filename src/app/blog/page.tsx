@@ -108,6 +108,16 @@ export default function BlogPage() {
       date: '2026-05-13',
       readTime: '12 min read',
       slug: 'google-ads-without-agency'
+    },
+    {
+      id: 11,
+      title: 'Google Ads Not Spending Full Budget? 7 Causes and How to Fix Each One',
+      excerpt: 'Your Google Ads campaign is not spending its daily budget. Here are the 7 most common causes, how to diagnose each one in under 2 minutes, and step-by-step fixes.',
+      category: 'google-ads',
+      author: 'By B6 Team',
+      date: '2026-05-14',
+      readTime: '11 min read',
+      slug: 'google-ads-not-spending-full-budget'
     }
   ];
 
