@@ -5,7 +5,6 @@ import Header from '../../../components/Header';
 import Footer from '../../../components/Footer';
 import Breadcrumbs from '../../../components/Breadcrumbs';
 import MascotQuote from '../../../components/blog/MascotQuote';
-import MermaidDiagram from '../../../components/blog/MermaidDiagram';
 import ComparisonTable from '../../../components/blog/ComparisonTable';
 import InlineSVG from '../../../components/blog/InlineSVG';
 
@@ -96,6 +95,58 @@ export default function BlogPostPage() {
       symptom: 'CPC steadily climbing over months',
       cause: 'Ad group structure too broad: 30+ keywords sharing 2 ads',
       action: 'Split into Single-Theme Ad Groups (5 to 20 keywords each)',
+    },
+  ];
+
+  // VISUAL 6 data: bid strategy decision matrix (replaced sprawling mindmap with readable 3-column grid)
+  const bidStrategyCards = [
+    {
+      icon: '🎯',
+      goal: 'Conversion volume goal',
+      cases: [
+        {
+          when: '30+ days of conversion data',
+          then: 'Target CPA',
+          note: 'Set target at recent CPA −10%. Expect 2-6 weeks learning period. Do not pause or change target mid-learning.',
+        },
+        {
+          when: 'Less than 30 days of conversion data',
+          then: 'Maximize Conversions',
+          note: 'Run for 30 days to build baseline, then add Target CPA when conversion volume stabilizes.',
+        },
+      ],
+    },
+    {
+      icon: '💰',
+      goal: 'Revenue value goal',
+      cases: [
+        {
+          when: 'Variable order values (ecom, B2B)',
+          then: 'Target ROAS',
+          note: 'Use 90-day blended ROAS as starting target. Lower the target = more volume at thinner margin.',
+        },
+        {
+          when: 'Fixed-price products (one SKU)',
+          then: 'Target CPA',
+          note: 'Revenue per conversion is constant, so a CPA cap functions as a ROAS cap. Simpler to manage.',
+        },
+      ],
+    },
+    {
+      icon: '📢',
+      goal: 'Awareness only (no conv goal)',
+      cases: [
+        {
+          when: 'Cold start, no conversion data yet',
+          then: 'Maximize Clicks + max CPC cap',
+          note: 'Accept higher CPC for top-of-funnel reach. Always set a max CPC cap or budget caps will be eaten by expensive auctions.',
+        },
+        {
+          when: 'Operator with hands-on time daily',
+          then: 'Manual CPC',
+          note: 'Only viable if someone is reviewing bids per keyword each day. For most SMB accounts, this is a tax on attention.',
+        },
+      ],
     },
   ];
 
@@ -405,34 +456,136 @@ export default function BlogPostPage() {
                 The decision tree for bid strategy is shorter than vendor marketing suggests. Are you optimizing for conversion volume? Target CPA. Optimizing for revenue value with variable order sizes? Target ROAS. Have no conversion data and pure top-of-funnel goals? Maximize Clicks, knowing CPC will be higher and you accept that for awareness. Almost no SMB account should be on Maximize Clicks for a campaign with a conversion goal.
               </p>
 
-              {/* VISUAL 6: Mermaid mindmap - bid strategy decision tree */}
-              <MermaidDiagram
-                chart={`mindmap
-  root((Pick your<br/>bid strategy))
-    Conversion volume goal
-      30+ days of conv data
-        Target CPA
-          Set target at recent CPA - 10%
-          Expect 2-6 weeks learning
-        Less than 30 days
-          Maximize Conversions
-          Add Target CPA when stable
-    Revenue value goal
-      Variable order values
-        Target ROAS
-          Use 90-day blended ROAS
-          Lower target = more volume
-      Fixed price products
-        Target CPA works fine
-    Awareness only
-      Maximize Clicks
-        Accept high CPC
-        Set max CPC cap
-      Manual CPC
-        Only with operator time daily
-`}
-                caption="Decision tree for choosing your bid strategy. Conversion volume goal with 30+ days of data is the most common SMB starting point. The 2 to 6 week learning period is non-negotiable: changing strategy during it resets the clock."
-              />
+              {/* VISUAL 6: Bid strategy decision matrix (3-column card grid, replaces unreadable mindmap) */}
+              <figure
+                style={{
+                  margin: '32px 0',
+                  padding: '24px',
+                  background: '#f8fafc',
+                  border: '1px solid #e2e8f0',
+                  borderRadius: '12px',
+                }}
+              >
+                <div
+                  style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+                    gap: '16px',
+                  }}
+                >
+                  {bidStrategyCards.map((card, idx) => (
+                    <div
+                      key={idx}
+                      style={{
+                        background: '#ffffff',
+                        border: '1px solid #e2e8f0',
+                        borderRadius: '12px',
+                        overflow: 'hidden',
+                        display: 'flex',
+                        flexDirection: 'column',
+                      }}
+                    >
+                      <div
+                        style={{
+                          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                          color: '#ffffff',
+                          padding: '14px 18px',
+                          fontSize: '15px',
+                          fontWeight: 700,
+                          letterSpacing: '0.01em',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '10px',
+                          lineHeight: 1.3,
+                        }}
+                      >
+                        <span style={{ fontSize: '20px' }}>{card.icon}</span>
+                        {card.goal}
+                      </div>
+                      <div style={{ padding: '18px 20px', flex: 1 }}>
+                        {card.cases.map((c, ci) => (
+                          <div
+                            key={ci}
+                            style={{
+                              marginBottom: ci < card.cases.length - 1 ? '18px' : 0,
+                              paddingBottom: ci < card.cases.length - 1 ? '18px' : 0,
+                              borderBottom:
+                                ci < card.cases.length - 1 ? '1px dashed #e2e8f0' : 'none',
+                            }}
+                          >
+                            <div
+                              style={{
+                                fontSize: '10px',
+                                color: '#94a3b8',
+                                fontWeight: 700,
+                                letterSpacing: '0.08em',
+                                textTransform: 'uppercase',
+                                marginBottom: '6px',
+                              }}
+                            >
+                              If
+                            </div>
+                            <div
+                              style={{
+                                fontSize: '14px',
+                                color: '#1e293b',
+                                marginBottom: '12px',
+                                lineHeight: 1.5,
+                              }}
+                            >
+                              {c.when}
+                            </div>
+                            <div
+                              style={{
+                                fontSize: '10px',
+                                color: '#764ba2',
+                                fontWeight: 700,
+                                letterSpacing: '0.08em',
+                                textTransform: 'uppercase',
+                                marginBottom: '6px',
+                              }}
+                            >
+                              → Use
+                            </div>
+                            <div
+                              style={{
+                                fontSize: '15px',
+                                color: '#1e293b',
+                                fontWeight: 700,
+                                marginBottom: '10px',
+                                lineHeight: 1.4,
+                              }}
+                            >
+                              {c.then}
+                            </div>
+                            <div
+                              style={{
+                                fontSize: '13px',
+                                color: '#475569',
+                                lineHeight: 1.55,
+                              }}
+                            >
+                              {c.note}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <figcaption
+                  style={{
+                    marginTop: '16px',
+                    fontSize: '14px',
+                    color: '#64748b',
+                    textAlign: 'center',
+                    fontStyle: 'italic',
+                    lineHeight: 1.5,
+                  }}
+                >
+                  Decision matrix for choosing your bid strategy. Conversion volume goal with 30+ days of data is the most common SMB starting point. The 2 to 6 week learning period is non-negotiable: changing strategy during it resets the clock.
+                </figcaption>
+              </figure>
 
               <p style={pStyle}>
                 Maximize Clicks is the silent budget burner. The strategy is built to spend the daily budget on the highest possible click volume, which means it will pay whatever CPC the auction asks. Switch a Maximize Clicks campaign with 30 days of conversion data to Target CPA and CPC typically drops 20 to 35% within a week (alongside higher conversion volume, because the new strategy bids harder on the queries that actually convert).
