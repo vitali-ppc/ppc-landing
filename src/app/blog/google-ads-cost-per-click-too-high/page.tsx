@@ -620,7 +620,7 @@ export default function BlogPostPage() {
               </figure>
 
               <p style={pStyle}>
-                Maximize Clicks is the silent budget burner. The strategy is built to spend the daily budget on the highest possible click volume, which means it will pay whatever CPC the auction asks. Switch a Maximize Clicks campaign with 30 days of conversion data to Target CPA and CPC typically drops 20 to 35% within a week (alongside higher conversion volume, because the new strategy bids harder on the queries that actually convert).
+                Maximize Clicks is the silent budget burner. The strategy is built to spend the daily budget on the highest possible click volume, which means it will pay whatever CPC the auction asks. Switch a Maximize Clicks campaign with 30 days of conversion data to Target CPA and CPC typically drops 20 to 35% within a week (alongside higher conversion volume, because the new strategy bids harder on the queries that actually convert). The flip side is real too: if you cut bids too far and the campaign stops spending instead of cooling off CPC, you&apos;re in a different failure mode - work through <a href="/blog/google-ads-not-spending-full-budget" style={linkStyle}>why Google Ads isn&apos;t spending the full budget</a> to tell pacing problems apart from CPC problems.
               </p>
               <p style={pStyle}>
                 The Smart Bidding learning period is real and it sucks. Two to six weeks of CPC volatility while Target CPA or Target ROAS calibrates. The first 7 to 10 days will look like the strategy is broken. Do not pause, do not change the target, do not switch back. The single most common self-inflicted wound in PPC is killing a Smart Bidding campaign in week two.

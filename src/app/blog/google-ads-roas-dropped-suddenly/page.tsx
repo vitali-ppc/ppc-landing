@@ -160,7 +160,7 @@ export default function BlogPostPage() {
                 <li style={liStyle}><strong>The market genuinely changed.</strong> Seasonality, a competitor promo, a supply hit. Accept the new baseline and recalibrate Target ROAS.</li>
               </ol>
               <p style={pStyle}>
-                If you only try one thing, check conversion tracking first. It&apos;s the most common cause and the fastest fix.
+                If you only try one thing, check conversion tracking first. It&apos;s the most common cause and the fastest fix. For the full chain of tag misfires, GA4 import gaps, and Consent Mode v2 traps, work the <a href="/blog/google-ads-conversion-tracking-not-working" style={linkStyle}>conversion tracking diagnostic</a> end to end before touching anything else.
               </p>
             </section>
 
@@ -203,7 +203,7 @@ export default function BlogPostPage() {
                 Google Ads → your campaign → Auction Insights. Compare the last seven days against the prior 28. Three patterns to look for: your Impression Share dropped, a competitor&apos;s rose, a name appeared in the top five that wasn&apos;t there a month ago.
               </p>
               <p style={pStyle}>
-                Thresholds: Impression Share down 10 or more points plus a competitor&apos;s IS up 5 or more points means the auction got more expensive. Your Target ROAS hasn&apos;t moved, but winning now requires a higher bid. ROAS drops mechanically, even though nothing broke.
+                Thresholds: Impression Share down 10 or more points plus a competitor&apos;s IS up 5 or more points means the auction got more expensive. Your Target ROAS hasn&apos;t moved, but winning now requires a higher bid. ROAS drops mechanically, even though nothing broke. CPC inflation hits ROAS one-for-one, so if average CPC has climbed faster than conversion rate, dig into <a href="/blog/google-ads-cost-per-click-too-high" style={linkStyle}>why CPC is too high</a> for the 9-cause framework before re-cutting Target ROAS.
               </p>
               <p style={pStyle}>
                 Usual culprits: a competitor launching a Black Friday push, a category leader returning from a paused budget, or a venture-funded entrant arriving with a war chest. Two responses. Lower Target ROAS by 10 to 15 percent for 14 days to defend Impression Share - or accept lower volume at the original ROAS. Don&apos;t do both.

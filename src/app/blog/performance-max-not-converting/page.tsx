@@ -162,7 +162,7 @@ export default function BlogPostPage() {
                 <li style={liStyle}><strong>Landing page is slow or off-topic.</strong> Under 3 seconds on mobile, matched to the asset group theme.</li>
               </ol>
               <p style={pStyle}>
-                Worked through all five and still see zero conversions? Performance Max probably isn&apos;t the right campaign type for your account. We cover that in the last section.
+                Worked through all five and still see zero conversions? Performance Max probably isn&apos;t the right campaign type for your account. We cover that in the last section. And if conversions are coming through but ROAS is suddenly worse, that&apos;s a different diagnostic chain: read <a href="/blog/google-ads-roas-dropped-suddenly" style={linkStyle}>why Google Ads ROAS dropped suddenly</a> for the 8-step ROAS recovery playbook.
               </p>
             </section>
 
@@ -173,7 +173,7 @@ export default function BlogPostPage() {
                 Most &quot;pMax not converting&quot; problems reduce to three root causes. Knowing which one you&apos;re dealing with shortens the fix from hours to minutes.
               </p>
               <p style={pStyle}>
-                <strong>Root cause 1: the tracking layer is broken.</strong> Across <a href="https://support.google.com/google-ads/answer/12131516?hl=en" style={linkStyle} target="_blank" rel="noopener noreferrer">the top troubleshooting articles</a> in Google&apos;s organic results, conversion tracking shows up as the #1 culprit in six of nine sources. The campaign looks like it&apos;s failing, but Google&apos;s AI is literally getting no signal. Tags fire on every page instead of the thank-you page. GA4 events aren&apos;t imported as conversion actions. Enhanced conversions aren&apos;t enabled. The dashboard says zero. The reality is closer to &quot;we don&apos;t know.&quot;
+                <strong>Root cause 1: the tracking layer is broken.</strong> Across <a href="https://support.google.com/google-ads/answer/12131516?hl=en" style={linkStyle} target="_blank" rel="noopener noreferrer">the top troubleshooting articles</a> in Google&apos;s organic results, conversion tracking shows up as the #1 culprit in six of nine sources. The campaign looks like it&apos;s failing, but Google&apos;s AI is literally getting no signal. Tags fire on every page instead of the thank-you page. GA4 events aren&apos;t imported as conversion actions. Enhanced conversions aren&apos;t enabled. The dashboard says zero. The reality is closer to &quot;we don&apos;t know.&quot; If pMax is the symptom but your whole account is reporting fewer conversions, work through the <a href="/blog/google-ads-conversion-tracking-not-working" style={linkStyle}>conversion tracking diagnostic</a> first - the same broken-tag patterns show up everywhere tracking is wired.
               </p>
               <p style={pStyle}>
                 <strong>Root cause 2: bidding starves the campaign.</strong> Set Target ROAS at 600% on an account with 320% historical ROAS, and the auction skips your bid every time. Or run Maximize Conversions without a Target CPA and watch the budget burn on junk traffic. Smart Bidding needs roughly 30 conversions per month to stabilize, and many SMB accounts don&apos;t have the volume. Set the target too high and the system never bids. Set it too low (or skip it entirely) and the system spends on the wrong people.
@@ -244,7 +244,7 @@ export default function BlogPostPage() {
                 Common SMB mistake: $500/month budget, expecting pMax to perform like a high-spend account. The campaign doesn&apos;t have enough volume to feed the algorithm. It bounces between exploration phases and never settles. You see noise, not performance.
               </p>
               <p style={pStyle}>
-                If your budget can&apos;t support 30 conversions per month, Performance Max is the wrong campaign type. Standard Shopping or Search with manual or eCPC bidding will give you more control on lower volume.
+                If your budget can&apos;t support 30 conversions per month, Performance Max is the wrong campaign type. Standard Shopping or Search with manual or eCPC bidding will give you more control on lower volume. If the campaign is actually <em>under</em>spending its budget rather than burning it, the pacing diagnosis is different: see <a href="/blog/google-ads-not-spending-full-budget" style={linkStyle}>why Google Ads isn&apos;t spending the full budget</a> for the auction-eligibility checklist.
               </p>
 
               {/* Step 5 */}

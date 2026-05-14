@@ -537,7 +537,7 @@ export default function BlogPostPage() {
                 <strong>Step 2: Download change history, search terms, and conversion data for the last 6 months.</strong> Your baseline. Even if the agency revokes access later, you have the export.
               </p>
               <p style={pStyle}>
-                <strong>Step 3: Set up independent conversion tracking.</strong> Many agencies use their own GA4 property or GTM container. Create yours in parallel. Verify numbers match for 7-14 days before firing.
+                <strong>Step 3: Set up independent conversion tracking.</strong> Many agencies use their own GA4 property or GTM container. Create yours in parallel. Verify numbers match for 7-14 days before firing. If the numbers don&apos;t match, work the <a href="/blog/google-ads-conversion-tracking-not-working" style={linkStyle}>conversion tracking diagnostic</a> before you sign the cancellation letter - agency-installed tracking is one of the most common places we find tag misfires and Consent Mode v2 traps that distort every report you&apos;ve seen for months.
               </p>
               <p style={pStyle}>
                 <strong>Step 4: Run the agency and a tool in parallel for 30 days.</strong> Connect B6 in read-only Co-pilot mode at $99/month. Compare what B6 proposes vs. what the agency actually does. The gap is visible immediately.

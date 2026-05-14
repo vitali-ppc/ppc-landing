@@ -170,6 +170,9 @@ export default function BlogPostPage() {
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
                 This is structural economics, not agency malice. Agency minimums of $2-5K exist to cover labor costs. A skilled PPC specialist billing $75/hour internally needs to generate at least $2K/month to break even after overhead. Small accounts simply don&apos;t get the attention their budgets deserve. The unit economics don&apos;t work.
               </p>
+              <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
+                If you&apos;re reading this because something feels off but you can&apos;t put a number on it, run the structured audit in <a href="/blog/signs-you-need-to-fire-your-ppc-agency" style={{ color: '#764ba2', textDecoration: 'underline' }}>signs you need to fire your PPC agency</a> first. It scores the relationship across reporting, response time, and search-term hygiene so you decide based on evidence, not vibes.
+              </p>
             </section>
 
             {/* What an Agency Actually Does */}
@@ -246,6 +249,9 @@ flowchart TD
               </p>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
                 Be clear on this: DIY does not mean set and forget. Even with automation, you need minimum 3-5 hours/week for review, strategy adjustments, and creative testing. If you can&apos;t commit that time consistently, you&apos;ll underperform and waste budget through neglect. Google Ads punishes inattention.
+              </p>
+              <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
+                One concrete skill the agency was probably hiding from you: diagnosing CPC inflation. When your average cost-per-click creeps up 30 percent in a quarter and nobody notices, ROAS erodes silently. The <a href="/blog/google-ads-cost-per-click-too-high" style={{ color: '#764ba2', textDecoration: 'underline' }}>9-cause CPC framework</a> is the first DIY skill worth investing two hours to learn.
               </p>
             </section>
 
