@@ -128,6 +128,16 @@ export default function BlogPage() {
       date: '2026-05-14',
       readTime: '12 min read',
       slug: 'signs-you-need-to-fire-your-ppc-agency'
+    },
+    {
+      id: 13,
+      title: 'Google Ads Conversion Tracking Not Working? The 90-Second Triage and 7 Fixes That Actually Work',
+      excerpt: 'Run this 90-second triage first, then fix the 7 most common failure modes: tag missing, duplicate conversions, GA4 mismatch, gclid stripped, enhanced conversions silent fail.',
+      category: 'google-ads',
+      author: 'By B6 Team',
+      date: '2026-05-14',
+      readTime: '11 min read',
+      slug: 'google-ads-conversion-tracking-not-working'
     }
   ];
 
