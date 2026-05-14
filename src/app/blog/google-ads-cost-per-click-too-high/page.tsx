@@ -410,7 +410,7 @@ export default function BlogPostPage() {
                 <li style={{ marginBottom: '12px' }}><strong>Broad match</strong> only when paired with Smart Bidding (Target ROAS or Target CPA) and a robust negative list. Broad without conversion-based bidding will hemorrhage budget.</li>
               </ul>
 
-              {/* VISUAL 5: Custom HTML scorecard - real audit numbers */}
+              {/* VISUAL 5: Custom HTML scorecard - real audit numbers (explicit 4-col → 2x2 → 1-col grid) */}
               <div style={{
                 background: 'linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%)',
                 border: '1px solid #10b981',
@@ -421,20 +421,20 @@ export default function BlogPostPage() {
                 <div style={{ fontSize: '13px', fontWeight: 700, color: '#047857', marginBottom: '20px', textTransform: 'uppercase' as const, letterSpacing: '0.08em' }}>
                   Sample audit &middot; real SMB account &middot; 14 days
                 </div>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '20px' }}>
-                  <div style={{ padding: '16px', background: 'white', borderRadius: '10px', border: '1px solid #d1fae5' }}>
+                <div className="b6-scorecard-grid">
+                  <div className="b6-scorecard-cell">
                     <div style={{ fontSize: '40px', fontWeight: 800, color: '#1e293b', lineHeight: 1 }}>1,847</div>
                     <div style={{ fontSize: '13px', color: '#475569', marginTop: '8px', lineHeight: '1.4' }}>Search queries reviewed</div>
                   </div>
-                  <div style={{ padding: '16px', background: 'white', borderRadius: '10px', border: '1px solid #d1fae5' }}>
+                  <div className="b6-scorecard-cell">
                     <div style={{ fontSize: '40px', fontWeight: 800, color: '#ef4444', lineHeight: 1 }}>312</div>
                     <div style={{ fontSize: '13px', color: '#475569', marginTop: '8px', lineHeight: '1.4' }}>Queries with CPC over $4 and 0 conversions</div>
                   </div>
-                  <div style={{ padding: '16px', background: 'white', borderRadius: '10px', border: '1px solid #d1fae5' }}>
+                  <div className="b6-scorecard-cell">
                     <div style={{ fontSize: '40px', fontWeight: 800, color: '#f59e0b', lineHeight: 1 }}>80</div>
                     <div style={{ fontSize: '13px', color: '#475569', marginTop: '8px', lineHeight: '1.4' }}>Negatives added (top 80 by cost)</div>
                   </div>
-                  <div style={{ padding: '16px', background: 'white', borderRadius: '10px', border: '2px solid #10b981' }}>
+                  <div className="b6-scorecard-cell b6-scorecard-cell-highlight">
                     <div style={{ fontSize: '40px', fontWeight: 800, color: '#10b981', lineHeight: 1 }}>-23%</div>
                     <div style={{ fontSize: '13px', color: '#475569', marginTop: '8px', lineHeight: '1.4' }}>Avg CPC after 14 days (no bid changes)</div>
                   </div>
@@ -442,6 +442,32 @@ export default function BlogPostPage() {
                 <div style={{ marginTop: '20px', fontSize: '14px', color: '#475569', lineHeight: '1.6', fontStyle: 'italic' }}>
                   No bids touched. No budgets touched. One afternoon of negative keyword work, and 23% of the CPC line walked off the dashboard.
                 </div>
+                <style jsx>{`
+                  .b6-scorecard-grid {
+                    display: grid;
+                    grid-template-columns: repeat(4, 1fr);
+                    gap: 16px;
+                  }
+                  .b6-scorecard-cell {
+                    padding: 16px;
+                    background: #ffffff;
+                    border-radius: 10px;
+                    border: 1px solid #d1fae5;
+                  }
+                  .b6-scorecard-cell-highlight {
+                    border: 2px solid #10b981;
+                  }
+                  @media (max-width: 1100px) {
+                    .b6-scorecard-grid {
+                      grid-template-columns: repeat(2, 1fr);
+                    }
+                  }
+                  @media (max-width: 520px) {
+                    .b6-scorecard-grid {
+                      grid-template-columns: 1fr;
+                    }
+                  }
+                `}</style>
               </div>
 
               <p style={pStyle}>
@@ -456,7 +482,7 @@ export default function BlogPostPage() {
                 The decision tree for bid strategy is shorter than vendor marketing suggests. Are you optimizing for conversion volume? Target CPA. Optimizing for revenue value with variable order sizes? Target ROAS. Have no conversion data and pure top-of-funnel goals? Maximize Clicks, knowing CPC will be higher and you accept that for awareness. Almost no SMB account should be on Maximize Clicks for a campaign with a conversion goal.
               </p>
 
-              {/* VISUAL 6: Bid strategy decision matrix (3-column card grid, replaces unreadable mindmap) */}
+              {/* VISUAL 6: Bid strategy decision matrix (3-col grid, no orphan-prone auto-fit) */}
               <figure
                 style={{
                   margin: '32px 0',
@@ -466,13 +492,7 @@ export default function BlogPostPage() {
                   borderRadius: '12px',
                 }}
               >
-                <div
-                  style={{
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-                    gap: '16px',
-                  }}
-                >
+                <div className="b6-decision-matrix-grid">
                   {bidStrategyCards.map((card, idx) => (
                     <div
                       key={idx}
@@ -585,6 +605,18 @@ export default function BlogPostPage() {
                 >
                   Decision matrix for choosing your bid strategy. Conversion volume goal with 30+ days of data is the most common SMB starting point. The 2 to 6 week learning period is non-negotiable: changing strategy during it resets the clock.
                 </figcaption>
+                <style jsx>{`
+                  .b6-decision-matrix-grid {
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+                    gap: 16px;
+                  }
+                  @media (max-width: 900px) {
+                    .b6-decision-matrix-grid {
+                      grid-template-columns: 1fr;
+                    }
+                  }
+                `}</style>
               </figure>
 
               <p style={pStyle}>
