@@ -116,8 +116,22 @@ export default function MermaidDiagram({ chart, caption }: MermaidDiagramProps) 
       <div
         ref={ref}
         dangerouslySetInnerHTML={{ __html: svg }}
-        style={{ display: 'flex', justifyContent: 'center', minHeight: svg ? 'auto' : '120px' }}
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          minHeight: svg ? 'auto' : '120px',
+          // Fix: Mermaid `journey` and some other types render an oversized
+          // SVG canvas with empty whitespace below the actual content. Force
+          // the inline SVG to auto-size to its viewBox content via inline CSS.
+        }}
       />
+      <style jsx>{`
+        figure :global(svg) {
+          max-width: 100%;
+          height: auto !important;
+          max-height: 600px;
+        }
+      `}</style>
       {caption && (
         <figcaption
           style={{
