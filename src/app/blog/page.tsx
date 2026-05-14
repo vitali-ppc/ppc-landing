@@ -138,6 +138,16 @@ export default function BlogPage() {
       date: '2026-05-14',
       readTime: '11 min read',
       slug: 'google-ads-conversion-tracking-not-working'
+    },
+    {
+      id: 14,
+      title: 'Google Ads Cost Per Click Too High: 9 Reasons + the Fix Sheet for Each',
+      excerpt: 'Your CPC is high for one of 9 specific causes. Diagnostic triage, per-cause fix, and the real numbers we cut CPC by on live accounts (including a 23% CPC drop in 14 days, no bid changes).',
+      category: 'google-ads',
+      author: 'By B6 Team',
+      date: '2026-05-15',
+      readTime: '13 min read',
+      slug: 'google-ads-cost-per-click-too-high'
     }
   ];
 
