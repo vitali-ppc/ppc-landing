@@ -198,7 +198,7 @@ export default function BlogPostPage() {
                 <div style={{ fontSize: '15px', fontWeight: 600, color: '#475569', marginBottom: '16px', textTransform: 'uppercase' as const, letterSpacing: '0.05em' }}>
                   Score yourself
                 </div>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '10px', marginBottom: '24px' }}>
+                <div className="b6-signs-grid">
                   {[
                     'Their reports show activity, not outcomes',
                     'The change history is empty',
@@ -237,7 +237,7 @@ export default function BlogPostPage() {
                     </div>
                   ))}
                 </div>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '12px' }}>
+                <div className="b6-score-tier-grid">
                   <div style={{ padding: '16px', borderRadius: '10px', background: '#ecfdf5', border: '1px solid #10b981' }}>
                     <div style={{ fontSize: '24px', fontWeight: 800, color: '#047857', marginBottom: '4px' }}>0-2</div>
                     <div style={{ fontSize: '14px', color: '#1e293b', fontWeight: 600 }}>Good partner</div>
@@ -404,7 +404,7 @@ export default function BlogPostPage() {
               <p style={pStyle}>The 8 signals are not equal in weight, but for a quick read, a flat count works.</p>
 
               {/* VISUAL 3: Three-tier decision cards (custom layout, not Mermaid) */}
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '16px', marginBottom: '40px' }}>
+              <div className="b6-decision-tier-grid">
                 <div style={{
                   padding: '24px',
                   borderRadius: '12px',
@@ -624,6 +624,39 @@ export default function BlogPostPage() {
           </div>
         </div>
         <Footer />
+
+        {/* Responsive grid layouts: explicit column counts at every viewport (no auto-fit orphans). */}
+        <style jsx>{`
+          .b6-signs-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 24px;
+          }
+          @media (max-width: 1100px) {
+            .b6-signs-grid { grid-template-columns: repeat(2, 1fr); }
+          }
+          @media (max-width: 600px) {
+            .b6-signs-grid { grid-template-columns: 1fr; }
+          }
+          .b6-score-tier-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+          }
+          @media (max-width: 900px) {
+            .b6-score-tier-grid { grid-template-columns: 1fr; }
+          }
+          .b6-decision-tier-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 40px;
+          }
+          @media (max-width: 900px) {
+            .b6-decision-tier-grid { grid-template-columns: 1fr; }
+          }
+        `}</style>
       </div>
     </>
   );

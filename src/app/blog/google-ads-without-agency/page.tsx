@@ -294,7 +294,7 @@ flowchart TD
                   { cells: ['Recommendation tool (Optmyzr, Madgicx)', '$499–899', '5–8 h/week', 'Review AI suggestions, execute manually'] },
                   { cells: ['B6 (autonomous tool)', '$99–399', '3–5 h/week', 'Set guardrails, review weekly digest from Echo'], highlight: true },
                 ]}
-                caption="Cost vs time for a $10K/month Google Ads spend — B6 sits between DIY and agency at fraction of agency cost"
+                caption="Cost vs time for a $10K/month Google Ads spend. B6 sits between DIY and agency at a fraction of agency cost."
               />
 
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
