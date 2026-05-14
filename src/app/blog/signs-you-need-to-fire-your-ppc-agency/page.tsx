@@ -306,7 +306,7 @@ export default function BlogPostPage() {
               <h3 id="sign-2" style={h3Style}>Sign 2: The Change History Is Empty</h3>
               <p style={pStyle}>The smoking gun. Most readers do not know they can audit it.</p>
               <p style={pStyle}>
-                In Google Ads: Tools and settings, then <a href="https://support.google.com/google-ads/answer/2454972" style={linkStyle} target="_blank" rel="noopener noreferrer">Change History</a>. Filter to the last 30 days. For an active account spending $5K or more per month, you should see 20 to 30 changes minimum: bid adjustments, negative keyword adds, asset rotations, audience tweaks. Anything less and the agency is not doing weekly work. They are letting Smart Bidding do everything while billing you for project management overhead.
+                In Google Ads: Tools and settings, then <a href="https://support.google.com/google-ads/answer/2454072" style={linkStyle} target="_blank" rel="noopener noreferrer">Change History</a>. Filter to the last 30 days. For an active account spending $5K or more per month, you should see 20 to 30 changes minimum: bid adjustments, negative keyword adds, asset rotations, audience tweaks. Anything less and the agency is not doing weekly work. They are letting Smart Bidding do everything while billing you for project management overhead.
               </p>
 
               {/* VISUAL 2: Inline SVG illustration of an empty change history */}
@@ -333,7 +333,7 @@ export default function BlogPostPage() {
               {/* Sign 4 */}
               <h3 id="sign-4" style={h3Style}>Sign 4: You Don&apos;t Have Full MCC Access</h3>
               <p style={pStyle}>
-                Critical and often hidden. Many agencies hold MCC (manager account) ownership and grant clients only Standard or Read-only <a href="https://support.google.com/google-ads/answer/2375056" style={linkStyle} target="_blank" rel="noopener noreferrer">access levels</a>. When you fire the agency, they can revoke that access, taking your historical data, conversion tracking, and audience lists with them.
+                Critical and often hidden. Many agencies hold MCC (manager account) ownership and grant clients only Standard or Read-only <a href="https://support.google.com/google-ads/answer/6139186" style={linkStyle} target="_blank" rel="noopener noreferrer">access levels</a>. When you fire the agency, they can revoke that access, taking your historical data, conversion tracking, and audience lists with them.
               </p>
               <p style={pStyle}>
                 <strong>Verification check 1:</strong> Try to add a user to your Google Ads account. Settings, Access and security, +User. If greyed out or you hit a permissions error, you are not Admin.
