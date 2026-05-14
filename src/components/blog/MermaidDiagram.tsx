@@ -15,8 +15,11 @@ import { useEffect, useRef, useState } from 'react';
  *   - Comparison graphs
  *   - Sequence diagrams
  *
- * Click-to-zoom: clicking the figure opens a fullscreen lightbox.
- * ESC or backdrop-click closes it. Body scroll locked while open.
+ * Click-to-zoom lightbox:
+ *   - Default: SVG forced to full container width (much bigger than article view)
+ *   - Zoom controls: −/+/↺ toolbar adjusts scale 50-400%
+ *   - Scroll wheel inside modal also zooms (Cmd/Ctrl+wheel)
+ *   - ESC or backdrop click closes
  *
  * Brand colors applied via custom theme variables.
  *
@@ -37,11 +40,16 @@ interface MermaidDiagramProps {
 
 let mermaidInitialized = false;
 
+const ZOOM_MIN = 0.5;
+const ZOOM_MAX = 4;
+const ZOOM_STEP = 0.25;
+
 export default function MermaidDiagram({ chart, caption }: MermaidDiagramProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [svg, setSvg] = useState<string>('');
   const [error, setError] = useState<string>('');
   const [zoomed, setZoomed] = useState(false);
+  const [zoomLevel, setZoomLevel] = useState(1);
 
   useEffect(() => {
     let cancelled = false;
@@ -87,20 +95,41 @@ export default function MermaidDiagram({ chart, caption }: MermaidDiagramProps) 
     };
   }, [chart]);
 
-  // Lightbox: lock body scroll + listen for ESC when zoomed
+  // Lightbox: lock body scroll + listen for ESC/+/- when zoomed
   useEffect(() => {
     if (!zoomed) return;
-    const handleEsc = (e: KeyboardEvent) => {
+    const handleKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') setZoomed(false);
+      else if (e.key === '+' || e.key === '=') {
+        e.preventDefault();
+        setZoomLevel((z) => Math.min(ZOOM_MAX, +(z + ZOOM_STEP).toFixed(2)));
+      } else if (e.key === '-' || e.key === '_') {
+        e.preventDefault();
+        setZoomLevel((z) => Math.max(ZOOM_MIN, +(z - ZOOM_STEP).toFixed(2)));
+      } else if (e.key === '0') {
+        e.preventDefault();
+        setZoomLevel(1);
+      }
     };
-    document.addEventListener('keydown', handleEsc);
+    document.addEventListener('keydown', handleKey);
     const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
     return () => {
-      document.removeEventListener('keydown', handleEsc);
+      document.removeEventListener('keydown', handleKey);
       document.body.style.overflow = prevOverflow;
     };
   }, [zoomed]);
+
+  // Reset zoom whenever modal opens
+  useEffect(() => {
+    if (zoomed) setZoomLevel(1);
+  }, [zoomed]);
+
+  const adjustZoom = (delta: number) =>
+    setZoomLevel((z) => {
+      const next = +(z + delta).toFixed(2);
+      return Math.max(ZOOM_MIN, Math.min(ZOOM_MAX, next));
+    });
 
   if (error) {
     return (
@@ -121,6 +150,25 @@ export default function MermaidDiagram({ chart, caption }: MermaidDiagramProps) 
     );
   }
 
+  const toolbarBtnStyle: React.CSSProperties = {
+    width: '32px',
+    height: '32px',
+    borderRadius: '8px',
+    border: 'none',
+    background: 'transparent',
+    color: '#1e293b',
+    fontSize: '18px',
+    fontWeight: 500,
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    transition: 'background 0.12s ease',
+    padding: 0,
+    lineHeight: 1,
+    userSelect: 'none',
+  };
+
   return (
     <>
       <figure
@@ -136,7 +184,7 @@ export default function MermaidDiagram({ chart, caption }: MermaidDiagramProps) 
           overflowX: 'auto',
           position: 'relative',
           cursor: svg ? 'zoom-in' : 'default',
-          transition: 'box-shadow 0.2s ease, transform 0.2s ease',
+          transition: 'box-shadow 0.2s ease, border-color 0.2s ease',
         }}
         onMouseEnter={(e) => {
           if (svg) {
@@ -181,9 +229,6 @@ export default function MermaidDiagram({ chart, caption }: MermaidDiagramProps) 
             display: 'flex',
             justifyContent: 'center',
             minHeight: svg ? 'auto' : '120px',
-            // Fix: Mermaid `journey` and some other types render an oversized
-            // SVG canvas with empty whitespace below the actual content. Force
-            // the inline SVG to auto-size to its viewBox content via inline CSS.
           }}
         />
         <style jsx>{`
@@ -217,79 +262,184 @@ export default function MermaidDiagram({ chart, caption }: MermaidDiagramProps) 
           style={{
             position: 'fixed',
             inset: 0,
-            background: 'rgba(15, 23, 42, 0.92)',
+            background: 'rgba(15, 23, 42, 0.94)',
             backdropFilter: 'blur(4px)',
             WebkitBackdropFilter: 'blur(4px)',
             zIndex: 9999,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            padding: '4vh 4vw',
+            padding: '72px 2vw 24px 2vw',
             cursor: 'zoom-out',
-            animation: 'b6MermaidFadeIn 0.2s ease',
+            animation: 'b6MermaidFadeIn 0.18s ease',
           }}
         >
-          <button
-            onClick={() => setZoomed(false)}
-            aria-label="Close enlarged diagram"
+          {/* Top-right toolbar: zoom controls + close */}
+          <div
+            onClick={(e) => e.stopPropagation()}
             style={{
-              position: 'absolute',
-              top: '20px',
-              right: '24px',
-              width: '44px',
-              height: '44px',
-              borderRadius: '50%',
-              border: 'none',
-              background: 'rgba(255, 255, 255, 0.95)',
-              color: '#1e293b',
-              fontSize: '24px',
-              fontWeight: 300,
-              cursor: 'pointer',
+              position: 'fixed',
+              top: '16px',
+              right: '16px',
               display: 'flex',
+              gap: '10px',
               alignItems: 'center',
-              justifyContent: 'center',
-              boxShadow: '0 4px 14px rgba(0, 0, 0, 0.25)',
-              lineHeight: 1,
-              padding: 0,
-              transition: 'transform 0.15s ease',
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLElement).style.transform = 'scale(1.08)';
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLElement).style.transform = 'scale(1)';
+              zIndex: 10000,
+              cursor: 'default',
             }}
           >
-            ×
-          </button>
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '2px',
+                background: 'rgba(255, 255, 255, 0.97)',
+                borderRadius: '12px',
+                padding: '4px',
+                boxShadow: '0 4px 14px rgba(0, 0, 0, 0.25)',
+              }}
+            >
+              <button
+                onClick={() => adjustZoom(-ZOOM_STEP)}
+                aria-label="Zoom out"
+                disabled={zoomLevel <= ZOOM_MIN}
+                style={{
+                  ...toolbarBtnStyle,
+                  opacity: zoomLevel <= ZOOM_MIN ? 0.35 : 1,
+                  cursor: zoomLevel <= ZOOM_MIN ? 'default' : 'pointer',
+                }}
+                onMouseEnter={(e) => {
+                  if (zoomLevel > ZOOM_MIN)
+                    (e.currentTarget as HTMLElement).style.background = '#f1f5f9';
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.background = 'transparent';
+                }}
+              >
+                −
+              </button>
+              <span
+                style={{
+                  minWidth: '52px',
+                  textAlign: 'center',
+                  fontSize: '13px',
+                  fontWeight: 600,
+                  color: '#1e293b',
+                  fontVariantNumeric: 'tabular-nums',
+                  userSelect: 'none',
+                }}
+              >
+                {Math.round(zoomLevel * 100)}%
+              </span>
+              <button
+                onClick={() => adjustZoom(ZOOM_STEP)}
+                aria-label="Zoom in"
+                disabled={zoomLevel >= ZOOM_MAX}
+                style={{
+                  ...toolbarBtnStyle,
+                  opacity: zoomLevel >= ZOOM_MAX ? 0.35 : 1,
+                  cursor: zoomLevel >= ZOOM_MAX ? 'default' : 'pointer',
+                }}
+                onMouseEnter={(e) => {
+                  if (zoomLevel < ZOOM_MAX)
+                    (e.currentTarget as HTMLElement).style.background = '#f1f5f9';
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.background = 'transparent';
+                }}
+              >
+                +
+              </button>
+              <div style={{ width: '1px', height: '20px', background: '#e2e8f0', margin: '0 2px' }} />
+              <button
+                onClick={() => setZoomLevel(1)}
+                aria-label="Reset zoom"
+                title="Reset zoom (0)"
+                style={{
+                  ...toolbarBtnStyle,
+                  fontSize: '14px',
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLElement).style.background = '#f1f5f9';
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.background = 'transparent';
+                }}
+              >
+                ↺
+              </button>
+            </div>
+            <button
+              onClick={() => setZoomed(false)}
+              aria-label="Close enlarged diagram"
+              style={{
+                width: '40px',
+                height: '40px',
+                borderRadius: '50%',
+                border: 'none',
+                background: 'rgba(255, 255, 255, 0.97)',
+                color: '#1e293b',
+                fontSize: '22px',
+                fontWeight: 300,
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                boxShadow: '0 4px 14px rgba(0, 0, 0, 0.25)',
+                lineHeight: 1,
+                padding: 0,
+                transition: 'transform 0.12s ease',
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLElement).style.transform = 'scale(1.08)';
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLElement).style.transform = 'scale(1)';
+              }}
+            >
+              ×
+            </button>
+          </div>
+
+          {/* White card containing the SVG */}
           <div
             onClick={(e) => e.stopPropagation()}
             className="b6-mermaid-zoom-card"
             style={{
-              maxWidth: '95vw',
-              maxHeight: '92vh',
+              width: '96vw',
+              maxHeight: 'calc(100vh - 96px)',
               overflow: 'auto',
               background: '#ffffff',
-              padding: '32px',
-              borderRadius: '16px',
-              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.55)',
+              padding: '20px',
+              borderRadius: '14px',
+              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.6)',
               cursor: 'default',
               animation: 'b6MermaidScaleIn 0.22s cubic-bezier(0.16, 1, 0.3, 1)',
             }}
           >
             <div
-              dangerouslySetInnerHTML={{ __html: svg }}
               style={{
+                minWidth: '100%',
                 display: 'flex',
                 justifyContent: 'center',
-                alignItems: 'center',
               }}
-            />
+            >
+              <div
+                style={{
+                  width: `${zoomLevel * 100}%`,
+                  flexShrink: 0,
+                  transition: 'width 0.2s ease',
+                  display: 'flex',
+                  justifyContent: 'center',
+                }}
+                dangerouslySetInnerHTML={{ __html: svg }}
+              />
+            </div>
             {caption && (
               <div
                 style={{
-                  marginTop: '20px',
-                  paddingTop: '20px',
+                  marginTop: '16px',
+                  paddingTop: '16px',
                   borderTop: '1px solid #e2e8f0',
                   fontSize: '14px',
                   color: '#475569',
@@ -305,6 +455,25 @@ export default function MermaidDiagram({ chart, caption }: MermaidDiagramProps) 
               </div>
             )}
           </div>
+
+          {/* Bottom hint */}
+          <div
+            style={{
+              position: 'fixed',
+              bottom: '14px',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              fontSize: '11px',
+              color: 'rgba(255, 255, 255, 0.55)',
+              letterSpacing: '0.04em',
+              userSelect: 'none',
+              pointerEvents: 'none',
+              fontFamily: 'system-ui, -apple-system, sans-serif',
+            }}
+          >
+            ESC / click outside to close · + / − / 0 to zoom
+          </div>
+
           <style jsx global>{`
             @keyframes b6MermaidFadeIn {
               from {
@@ -325,10 +494,11 @@ export default function MermaidDiagram({ chart, caption }: MermaidDiagramProps) 
               }
             }
             .b6-mermaid-zoom-card svg {
-              max-width: 100% !important;
-              max-height: 80vh !important;
+              width: 100% !important;
               height: auto !important;
-              width: auto !important;
+              max-width: none !important;
+              max-height: none !important;
+              display: block;
             }
           `}</style>
         </div>
