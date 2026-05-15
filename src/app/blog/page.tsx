@@ -158,6 +158,16 @@ export default function BlogPage() {
       date: '2026-05-15',
       readTime: '12 min read',
       slug: 'google-ads-anomaly-detection'
+    },
+    {
+      id: 16,
+      title: 'Responsive Search Ads Best Practices for Senior PPC Managers (2026)',
+      excerpt: 'Technical RSA best practices: ML signal quality, asset combinations, ad strength forensics, pinning trade-offs, variant testing with statistical significance.',
+      category: 'google-ads',
+      author: 'By B6 Team',
+      date: '2026-05-15',
+      readTime: '13 min read',
+      slug: 'responsive-search-ads-best-practices'
     }
   ];
 
