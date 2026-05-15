@@ -178,11 +178,39 @@ export default function BlogPage() {
     return matchesCategory && matchesSearch;
   });
 
+  const blogIndexJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Kampaio Blog",
+    description:
+      "AI-powered Google Ads insights, PPC strategy, autonomous campaign management. Practical guides for SMB advertisers and agencies.",
+    url: "https://www.kampaio.com/blog",
+    publisher: {
+      "@type": "Organization",
+      name: "Kampaio",
+      url: "https://www.kampaio.com",
+    },
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: blogPosts.length,
+      itemListElement: blogPosts.map((post, idx) => ({
+        "@type": "ListItem",
+        position: idx + 1,
+        url: `https://www.kampaio.com/blog/${post.slug}`,
+        name: post.title,
+      })),
+    },
+  };
+
   return (
     <div style={{
       minHeight: '100vh',
       background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)'
     }}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogIndexJsonLd) }}
+      />
       <Header />
       
       {/* Hero Section */}

@@ -4,6 +4,63 @@ import { useState, useEffect } from 'react';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 
+const pricingJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "Kampaio",
+  applicationCategory: "BusinessApplication",
+  applicationSubCategory: "Advertising Management",
+  operatingSystem: "Web",
+  description:
+    "AI-powered Google Ads management platform. Plans from free to $149/mo with autonomous AI agents (Buzz, Aegis, Echo, Vox, Maximus, Mira, Sage) for SMB advertisers.",
+  url: "https://www.kampaio.com/pricing",
+  publisher: {
+    "@type": "Organization",
+    name: "Kampaio",
+    url: "https://www.kampaio.com",
+  },
+  offers: [
+    {
+      "@type": "Offer",
+      name: "Free",
+      price: "0",
+      priceCurrency: "USD",
+      description: "25 AI queries/month, 1 Google Ads account, basic analytics",
+      availability: "https://schema.org/InStock",
+    },
+    {
+      "@type": "Offer",
+      name: "Professional",
+      price: "49",
+      priceCurrency: "USD",
+      priceSpecification: {
+        "@type": "UnitPriceSpecification",
+        price: "49",
+        priceCurrency: "USD",
+        unitText: "MONTH",
+      },
+      description:
+        "Unlimited AI queries, up to 5 Google Ads accounts, advanced analytics, email support",
+      availability: "https://schema.org/InStock",
+    },
+    {
+      "@type": "Offer",
+      name: "Business",
+      price: "149",
+      priceCurrency: "USD",
+      priceSpecification: {
+        "@type": "UnitPriceSpecification",
+        price: "149",
+        priceCurrency: "USD",
+        unitText: "MONTH",
+      },
+      description:
+        "All Professional features plus dedicated support, custom integrations, SLA",
+      availability: "https://schema.org/InStock",
+    },
+  ],
+};
+
 export default function PricingContent() {
   const [isAnnual, setIsAnnual] = useState(false);
   const [hoveredPlan, setHoveredPlan] = useState<string | null>(null);
@@ -85,6 +142,10 @@ export default function PricingContent() {
       minHeight: '100vh',
       background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)'
     }}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(pricingJsonLd) }}
+      />
       <Header />
 
       {/* Hero Section */}

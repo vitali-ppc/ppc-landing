@@ -5,6 +5,45 @@ import React, { useState } from "react";
 const API_BASE =
   process.env.NEXT_PUBLIC_B6_API_BASE || "http://localhost:8000";
 
+const homeJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.kampaio.com/#organization",
+      name: "Kampaio",
+      url: "https://www.kampaio.com",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://www.kampaio.com/logo.png",
+        width: 512,
+        height: 512,
+      },
+      sameAs: [
+        "https://github.com/vitali-ppc",
+      ],
+      description:
+        "Kampaio builds B6, an autonomous AI agent system that manages Google Ads campaigns for SMB and DTC advertisers.",
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.kampaio.com/#website",
+      url: "https://www.kampaio.com",
+      name: "Kampaio",
+      description: "AI-Powered Google Ads Management Platform",
+      publisher: { "@id": "https://www.kampaio.com/#organization" },
+      potentialAction: {
+        "@type": "SearchAction",
+        target: {
+          "@type": "EntryPoint",
+          urlTemplate: "https://www.kampaio.com/blog?q={search_term_string}",
+        },
+        "query-input": "required name=search_term_string",
+      },
+    },
+  ],
+};
+
 export default function HomeContent() {
   return (
     <div
@@ -15,6 +54,10 @@ export default function HomeContent() {
         minHeight: "100vh",
       }}
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homeJsonLd) }}
+      />
       <Hero />
       <HowItWorks />
       <MeetTheTeam />
