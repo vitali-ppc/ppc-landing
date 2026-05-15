@@ -85,31 +85,12 @@ export default function Breadcrumbs() {
           ))}
         </nav>
       </div>
-      
-      {/* Schema.org BreadcrumbList */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            "itemListElement": [
-              {
-                "@type": "ListItem",
-                "position": 1,
-                "name": "Home",
-                "item": "https://kampaio.com"
-              },
-              ...breadcrumbs.map((breadcrumb, index) => ({
-                "@type": "ListItem",
-                "position": index + 2,
-                "name": breadcrumb.title,
-                "item": `https://kampaio.com${breadcrumb.path}`
-              }))
-            ]
-          })
-        }}
-      />
+      {/* BreadcrumbList JSON-LD intentionally removed.
+          Each page now renders its own accurate BreadcrumbList in
+          ArticleContent.tsx with the actual article title and www
+          canonical (this component used slug-formatted titles and
+          no-www URLs, which mismatched the canonical and made Google
+          ignore the breadcrumb data). */}
     </>
   )
 } 
