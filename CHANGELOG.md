@@ -6,6 +6,68 @@
 
 ---
 
+## [Sprint 6 — starting] — 2026-05-16 — Multi-tenancy + JWT auth
+
+**Статус**: 🚧 IN PROGRESS — главный блокер платящих клиентов.
+
+### Scope (план)
+
+- **Backend**: 3 auth endpoints (`/api/auth/register`, `/login`, `/me`) + JWT middleware + replace hardcoded `dev-user-001`
+- **Frontend**: `/register` + `/login` pages с server+client split, auth context, protected `/b6` route
+- **Data isolation**: все queries фильтруют по `user_id` из JWT (GoogleAdsAccount, AgentAction, AuditLog)
+- **Tests**: 2 users — каждый видит только свои данные
+
+### Зачем
+
+Сейчас захардкожен `dev-user-001`. Нельзя онбордить реальных клиентов без ручного `INSERT INTO users`. После Sprint 6 — beta-юзеры регистрируются сами.
+
+### Estimate
+
+4-6 часов работы. После — Stripe integration + marketing kit.
+
+---
+
+## [SEO sister-project contributions] — 2026-05-16 — Commercial schemas + T1 refreshes
+
+В этот день в `ppc-landing` repo попали изменения от **SEO Agent Team** sister project (который сам на паузе после Phase 2 complete):
+
+### Added — Commercial JSON-LD schemas (3 pages)
+
+Argus `schema_completeness.mjs` обнаружил что 3 marketing страницы вообще без JSON-LD. Добавили:
+
+- `src/app/HomeContent.tsx` → **Organization + WebSite** schema (с SearchAction для sitelinks search box)
+- `src/app/pricing/PricingContent.tsx` → **SoftwareApplication + 3 Offer** (Free, Pro $49, Business $149)
+- `src/app/blog/page.tsx` → **CollectionPage + ItemList** of all blog posts
+
+Skipped: `/chat` (noindex via layout), `/b6` (auth-gated dashboard).
+
+### Refreshed — 6 T1 critical blog articles
+
+Argus `refresh_scheduler.mjs` флагнул 6 articles >1 year old с dated content. Refresh (cosmetic tier — года 2025→2026, dateModified bumped, "Updated May 15, 2026" indicator):
+
+- `the-complete-guide-to-google-ads-quality-score-in-2025` (slug preserved)
+- `10-ai-powered-ppc-optimization-strategies`
+- `5-tips-for-working-with-ai-ppc-tools`
+- `how-ai-is-transforming-google-ads-in-2025` (title 2025→2026 в metadata)
+- `performance-max-problems-b2b-marketing`
+- `what-ceos-want-google-ads-reports`
+
+Slug preserved (permanent URL — не ломаем backlinks). Effect: Google `dateModified` freshness signal + visible "Updated" CTR boost.
+
+### SEO project status
+
+🟡 **PAUSED** на 2026-05-16. Phase 2 complete (Hermes 9 sub-agents с topic-architect + intent classifier + KD filter + cannibalization defense; Argus 14 audits + 6 auto-fixes + desktop+mobile lighthouse). Pipeline работает автономно — Hermes Mon-Fri 10:07, Argus Sun 11:37. Resume через 2-4 недели когда GSC накопит данные.
+
+Подробнее: [`/Users/vitaly/Vit+/projects/seo-agent-team/HANDOFF.md`](/Users/vitaly/Vit+/projects/seo-agent-team/HANDOFF.md)
+
+### Commits
+
+- `4358a14` — feat(seo): add JSON-LD schema to 3 commercial pages
+- `fc9f31d` — refresh(blog): T1 critical refresh — Quality Score guide 2025→2026
+- `0cfa898` — refresh(blog): T1 critical batch — 5 articles dateModified + Updated badge
+
+---
+
 ## [Sprint 5 close — Live Validation] — 2026-05-13 — Buzz/Aegis протестированы на реальном клиентском аккаунте
 
 После того как OAuth flow собрался и backend стал читать реальные данные, оставалось доказать end-to-end что **AI-агенты реально работают на production-данных**. Этот sub-sprint закрыл этот gap.
