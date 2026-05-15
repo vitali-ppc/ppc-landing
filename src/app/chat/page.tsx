@@ -1,32 +1,33 @@
-'use client';
+import type { Metadata } from 'next';
+import ChatContent from './ChatContent';
 
-import ChatFormGPT from '@/components/chat/index';
-import { useEffect } from 'react';
+export const metadata: Metadata = {
+  title: 'Chat with Kampaio AI: Instant Google Ads Insights',
+  description:
+    'Chat with our AI to get instant Google Ads advice, audit your account, or generate campaign strategy. Free preview, no signup required.',
+  alternates: { canonical: 'https://www.kampaio.com/chat' },
+  openGraph: {
+    title: 'Free PPC AI Chat | Kampaio',
+    description: 'Get instant Google Ads advice from our AI. No signup needed.',
+    url: 'https://www.kampaio.com/chat',
+    type: 'website',
+    images: [
+      {
+        url: '/logo.png',
+        width: 1200,
+        height: 630,
+        alt: 'Kampaio AI Chat for Google Ads',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Free PPC AI Chat | Kampaio',
+    description: 'Get instant Google Ads advice from our AI. No signup needed.',
+    images: ['/logo.png'],
+  },
+};
 
-export default function ChatPage() {
-  useEffect(() => {
-    // Добавляем класс для предотвращения скролла
-    document.body.classList.add('chat-page');
-    
-    // Убираем класс при размонтировании
-    return () => {
-      document.body.classList.remove('chat-page');
-    };
-  }, []);
-
-  return (
-    <div style={{
-      background: '#f8fafc',
-      height: '100vh',
-      width: '100vw',
-      margin: 0,
-      padding: 0,
-      overflow: 'hidden',
-      position: 'fixed',
-      top: 0,
-      left: 0
-    }}>
-      <ChatFormGPT />
-    </div>
-  );
-} 
+export default function Page() {
+  return <ChatContent />;
+}
