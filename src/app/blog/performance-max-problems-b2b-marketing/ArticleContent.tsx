@@ -13,7 +13,7 @@ export default function ArticleContent() {
     "@type": "Article",
     "headline": "Why Performance Max Fails in B2B Marketing",
     "description": "The dirty secret Google won't tell you: Performance Max is built for B2C, not B2B. Learn why it fails and get the alternative strategy that actually works.",
-    "image": "https://kampaio.com/logo.png",
+    "image": "https://kampaio.com/og/performance-max-problems-b2b-marketing.png",
     "author": {
       "@type": "Person",
       "name": "Emily Carter",

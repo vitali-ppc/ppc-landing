@@ -13,7 +13,7 @@ export default function ArticleContent() {
     "@type": "Article",
     "headline": "How AI is Transforming Google Ads in 2025",
     "description": "Discover the new rules of PPC: smarter bidding, better targeting, and automated creativity. Learn the 5 biggest AI-driven changes in Google Ads for 2025 and how to stay ahead.",
-    "image": "https://kampaio.com/logo.png",
+    "image": "https://kampaio.com/og/how-ai-is-transforming-google-ads-in-2025.png",
     "author": {
       "@type": "Person",
       "name": "Emily Carter",

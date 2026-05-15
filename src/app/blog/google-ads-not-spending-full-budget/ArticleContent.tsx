@@ -16,7 +16,7 @@ export default function ArticleContent() {
     "@type": "Article",
     "headline": "Google Ads Not Spending Full Budget? 7 Causes and How to Fix Each One",
     "description": "Your Google Ads campaign is not spending its daily budget. Here are the 7 most common causes, how to diagnose each one in under 2 minutes, and step-by-step fixes.",
-    "image": "https://kampaio.com/logo.png",
+    "image": "https://kampaio.com/og/google-ads-not-spending-full-budget.png",
     "author": {
       "@type": "Person",
       "name": "B6 Team"

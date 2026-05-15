@@ -13,7 +13,7 @@ export default function ArticleContent() {
     "@type": "Article",
     "headline": "10 AI-Powered PPC Optimization Strategies That Actually Work",
     "description": "Discover how artificial intelligence is revolutionizing PPC campaigns and learn proven strategies to boost your ROI.",
-    "image": "https://kampaio.com/logo.png",
+    "image": "https://kampaio.com/og/10-ai-powered-ppc-optimization-strategies.png",
     "author": {
       "@type": "Person",
       "name": "Emily Carter",

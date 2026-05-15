@@ -14,7 +14,7 @@ export default function ArticleContent() {
     "@type": "Article",
     "headline": "What CEOs Want to See in Google Ads Reports",
     "description": "Learn which Google Ads metrics CEOs care about (hint: it's not clicks) and get the exact reporting template that secures bigger budgets.",
-    "image": "https://kampaio.com/logo.png",
+    "image": "https://kampaio.com/og/what-ceos-want-google-ads-reports.png",
     "author": {
       "@type": "Person",
       "name": "Emily Carter",

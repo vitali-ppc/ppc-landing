@@ -16,7 +16,7 @@ export default function ArticleContent() {
     "@type": "Article",
     "headline": "Google Ads Cost Per Click Too High: 9 Reasons + the Fix Sheet for Each",
     "description": "Your Google Ads CPC is too high because of one of 9 specific causes. Diagnostic table, per-cause fix, and the numbers we cut CPC by on real accounts.",
-    "image": "https://kampaio.com/logo.png",
+    "image": "https://kampaio.com/og/google-ads-cost-per-click-too-high.png",
     "author": {
       "@type": "Organization",
       "name": "B6 Team",

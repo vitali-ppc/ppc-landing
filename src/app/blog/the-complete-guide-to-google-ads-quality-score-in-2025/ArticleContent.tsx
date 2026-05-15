@@ -13,7 +13,7 @@ export default function ArticleContent() {
     "@type": "Article",
     "headline": "The Complete Guide to Google Ads Quality Score in 2025",
     "description": "Master the fundamentals of Quality Score and learn advanced techniques to improve your ad performance.",
-    "image": "https://kampaio.com/logo.png",
+    "image": "https://kampaio.com/og/the-complete-guide-to-google-ads-quality-score-in-2025.png",
     "author": {
       "@type": "Person",
       "name": "Emily Carter",

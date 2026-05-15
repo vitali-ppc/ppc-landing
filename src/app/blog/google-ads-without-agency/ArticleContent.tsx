@@ -16,7 +16,7 @@ export default function ArticleContent() {
     "@type": "Article",
     "headline": "Google Ads Without an Agency: When DIY Works, When It Doesn't, and the Third Option",
     "description": "Can you manage Google Ads without paying an agency $2K/month? Yes, if your spend is under $20K and you use the right tools. Here is a realistic framework for SMB owners.",
-    "image": "https://kampaio.com/logo.png",
+    "image": "https://kampaio.com/og/google-ads-without-agency.png",
     "author": {
       "@type": "Person",
       "name": "B6 Team"

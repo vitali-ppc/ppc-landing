@@ -13,7 +13,7 @@ export default function ArticleContent() {
     "@type": "Article",
     "headline": "5 Tips for Working with AI-Powered PPC Tools",
     "description": "Unlock the full potential of AI in your PPC campaigns with these 5 actionable tips for marketers and advertisers.",
-    "image": "https://kampaio.com/logo.png",
+    "image": "https://kampaio.com/og/5-tips-for-working-with-ai-ppc-tools.png",
     "author": {
       "@type": "Person",
       "name": "Emily Carter",
