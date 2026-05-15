@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/logo.png',
+        url: '/og/home.png',
         width: 1200,
         height: 630,
         alt: 'Kampaio AI-Powered Google Ads Platform',
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     title: 'Kampaio: AI-Powered Google Ads Platform',
     description:
       '7 AI agents work 24/7 on your Google Ads. Built for SMBs. From $99/month.',
-    images: ['/logo.png'],
+    images: ['/og/home.png'],
   },
 };
 

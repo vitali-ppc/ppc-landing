@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/logo.png',
+        url: '/og/chat.png',
         width: 1200,
         height: 630,
         alt: 'Kampaio AI Chat for Google Ads',
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Free PPC AI Chat | Kampaio',
     description: 'Get instant Google Ads advice from our AI. No signup needed.',
-    images: ['/logo.png'],
+    images: ['/og/chat.png'],
   },
 };
 

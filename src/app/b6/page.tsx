@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/logo.png',
+        url: '/og/b6.png',
         width: 1200,
         height: 630,
         alt: 'B6 Autonomous PPC Cabinet by Kampaio',
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     title: 'B6: 7 AI Agents Running Your Google Ads',
     description:
       'Autonomous PPC cabinet. Buzz, Aegis, Echo work 24/7. From $99/month.',
-    images: ['/logo.png'],
+    images: ['/og/b6.png'],
   },
 };
 

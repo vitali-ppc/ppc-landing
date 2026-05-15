@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/logo.png',
+        url: '/og/pricing.png',
         width: 1200,
         height: 630,
         alt: 'B6 Pricing by Kampaio',
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     title: 'B6 Pricing: $99 / $199 / $399 per month',
     description:
       'Three tiers of autonomy. All include 7 AI agents + Aegis safety reviewer.',
-    images: ['/logo.png'],
+    images: ['/og/pricing.png'],
   },
 };
 
