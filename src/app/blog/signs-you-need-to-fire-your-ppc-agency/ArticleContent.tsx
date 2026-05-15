@@ -442,7 +442,7 @@ export default function ArticleContent() {
                 <li style={{ marginBottom: '12px' }}>What does the latest auction insights report show for our top 3 competitors?</li>
               </ol>
               <p style={pStyle}>
-                A senior AM differentiates IS Lost Budget (not enough budget to compete) from IS Lost Rank (bids or Quality Score not strong enough). They explain why Target ROAS fits revenue-based e-commerce and Target CPA fits flat-value lead generation. They name competitor domains and quote overlap from auction insights.
+                A senior AM differentiates IS Lost Budget (not enough budget to compete) from IS Lost Rank (bids or <a href="/blog/the-complete-guide-to-google-ads-quality-score-in-2025" style={linkStyle}>Quality Score</a> not strong enough). They explain why Target ROAS fits revenue-based e-commerce and Target CPA fits flat-value lead generation. They name competitor domains and quote overlap from auction insights.
               </p>
               <p style={pStyle}>
                 Vague non-answers (&quot;we have good impression share&quot;, &quot;we picked what Google recommended&quot;) mean the AM is not managing at the bid-strategy level.
@@ -557,7 +557,7 @@ export default function ArticleContent() {
                 <strong>Hire a freelancer.</strong> $500-2,000/month, sometimes excellent expertise, often a single point of failure. Vacation gaps. Skill gaps in one or two domains.
               </p>
               <p style={pStyle}>
-                <strong>Go independent with an AI tool.</strong> $99-399/month for autonomous tools (B6 and a small number of competitors). $499-899/month for recommendation tools (Optmyzr, Madgicx). No retainer minimums. You stay in control of strategy; the tool handles bid adjustments, anomaly detection, and reporting.
+                <strong>Go independent with an AI tool.</strong> $99-399/month for autonomous tools (B6 and a small number of competitors). $499-899/month for recommendation tools (Optmyzr, Madgicx). No retainer minimums. You stay in control of strategy; the tool handles bid adjustments, <a href="/blog/google-ads-anomaly-detection" style={linkStyle}>anomaly detection</a>, and reporting.
               </p>
               <p style={pStyle}>
                 B6 sits in the third category as <a href="/b6" style={linkStyle}>7 AI agents</a> doing the work an agency was supposed to do. Buzz handles bids, Aegis flags risk and access issues, Echo sends weekly reports, Vox handles cross-campaign strategy, Maximus orchestrates the rules, Mira generates ad copy and image variants, Sage handles keyword and audience research. Pricing: $99 Co-pilot (read-only audit), $199 Approval (every change needs your OK), $399 Autonomous (agents execute within your guardrails).
