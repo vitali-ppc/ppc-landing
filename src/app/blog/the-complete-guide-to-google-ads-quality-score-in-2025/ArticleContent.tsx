@@ -11,8 +11,8 @@ export default function ArticleContent() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
-    "headline": "The Complete Guide to Google Ads Quality Score in 2025",
-    "description": "Master the fundamentals of Quality Score and learn advanced techniques to improve your ad performance.",
+    "headline": "The Complete Guide to Google Ads Quality Score in 2026",
+    "description": "Master the fundamentals of Quality Score and learn advanced techniques to improve your ad performance in 2026.",
     "image": "https://kampaio.com/og/the-complete-guide-to-google-ads-quality-score-in-2025.png",
     "author": {
       "@type": "Person",
@@ -28,12 +28,12 @@ export default function ArticleContent() {
       }
     },
     "datePublished": "2025-07-21T00:00:00.000Z",
-    "dateModified": "2025-07-21T00:00:00.000Z",
+    "dateModified": "2026-05-15T00:00:00.000Z",
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https://kampaio.com/blog/the-complete-guide-to-google-ads-quality-score-in-2025"
     },
-    "keywords": "Google Ads Quality Score, Quality Score 2025, Google Ads optimization, ad performance, PPC tips, advanced PPC",
+    "keywords": "Google Ads Quality Score, Quality Score 2026, Google Ads optimization, ad performance, PPC tips, advanced PPC",
     "wordCount": 478,
     "articleSection": "Google Ads",
     "inLanguage": "en"
@@ -58,7 +58,7 @@ export default function ArticleContent() {
       {
         "@type": "ListItem",
         "position": 3,
-        "name": "The Complete Guide to Google Ads Quality Score in 2025",
+        "name": "The Complete Guide to Google Ads Quality Score in 2026",
         "item": "https://www.kampaio.com/blog/the-complete-guide-to-google-ads-quality-score-in-2025"
       }
     ]
@@ -69,7 +69,7 @@ export default function ArticleContent() {
     { id: 'what-is-quality-score', title: 'What is Google Ads Quality Score?', level: 2 },
     { id: 'components', title: 'Key Components of Quality Score', level: 2 },
     { id: 'improving', title: 'How to Improve Your Quality Score', level: 2 },
-    { id: 'advanced', title: 'Advanced Techniques for 2025', level: 2 },
+    { id: 'advanced', title: 'Advanced Techniques for 2026', level: 2 },
     { id: 'practical-tips', title: 'Practical Tips & Common Mistakes', level: 2 },
     { id: 'conclusion', title: 'Conclusion', level: 1 }
   ];
@@ -107,7 +107,7 @@ export default function ArticleContent() {
             </div>
             {/* Title */}
             <h1 style={{ fontSize: 'clamp(32px, 4vw, 48px)', fontWeight: '800', color: '#1e293b', marginBottom: '24px', lineHeight: '1.2' }}>
-            The Complete Guide to Google Ads Quality Score in 2025            </h1>
+            The Complete Guide to Google Ads Quality Score in 2026            </h1>
             {/* Subtitle */}
             <p style={{ fontSize: '20px', color: '#64748b', marginBottom: '32px', lineHeight: '1.6', fontWeight: '500' }}>
               Master the fundamentals of Quality Score and learn advanced techniques to improve your ad performance.
@@ -121,7 +121,7 @@ export default function ArticleContent() {
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '2px' }}>
                   <span style={{ color: '#64748b', fontSize: '16px', fontWeight: 600 }}>by Emily Carter</span>
                   <span style={{ color: '#64748b', fontSize: '15px' }}>Paid Media Strategist at Kampaio</span>
-                  <span style={{ color: '#64748b', fontSize: '15px' }}>July 21, 2025 · 12 min read</span>
+                  <span style={{ color: '#64748b', fontSize: '15px' }}>July 21, 2025 · Updated May 15, 2026 · 12 min read</span>
                 </div>
               </div>
             </div>
@@ -164,7 +164,7 @@ export default function ArticleContent() {
             {/* Introduction */}
             <section id="introduction">
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
-                Quality Score is one of the most important (and most misunderstood) factors in Google Ads. In this comprehensive guide, you'll learn what Quality Score really is, how it's calculated, and the proven strategies top advertisers use to boost their scores and lower costs in 2025. If your CPCs have been creeping up despite stable bids, our 9-cause breakdown on <a href="/blog/google-ads-cost-per-click-too-high" style={{ color: '#764ba2', textDecoration: 'underline' }}>why Google Ads CPC gets too high</a> is the first thing to check before tweaking ad copy.
+                Quality Score is one of the most important (and most misunderstood) factors in Google Ads. In this comprehensive guide, you'll learn what Quality Score really is, how it's calculated, and the proven strategies top advertisers use to boost their scores and lower costs in 2026. If your CPCs have been creeping up despite stable bids, our 9-cause breakdown on <a href="/blog/google-ads-cost-per-click-too-high" style={{ color: '#764ba2', textDecoration: 'underline' }}>why Google Ads CPC gets too high</a> is the first thing to check before tweaking ad copy.
               </p>
             </section>
             {/* What is Quality Score */}
@@ -270,7 +270,7 @@ export default function ArticleContent() {
             {/* Advanced Techniques */}
             <section id="advanced">
               <h2 style={{ fontSize: '28px', fontWeight: '700', color: '#1e293b', marginBottom: '24px', marginTop: '48px' }}>
-                Advanced Techniques for 2025
+                Advanced Techniques for 2026
               </h2>
               <ul style={{ fontSize: '18px', color: '#1e293b', lineHeight: '1.8', paddingLeft: '24px', marginBottom: '32px' }}>
                 <li style={{ marginBottom: '16px' }}><strong>Leverage AI for ad copy and landing page optimization:</strong> Use machine learning tools to personalize and test at scale.</li>
@@ -296,7 +296,7 @@ export default function ArticleContent() {
                 Conclusion
               </h2>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
-                Mastering Quality Score is one of the fastest ways to lower costs and boost results in Google Ads. By applying the fundamentals and advanced techniques in this guide, you’ll be ahead of the competition in 2025 and beyond.
+                Mastering Quality Score is one of the fastest ways to lower costs and boost results in Google Ads. By applying the fundamentals and advanced techniques in this guide, you'll be ahead of the competition in 2026 and beyond.
               </p>
               <div style={{
                 background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',

@@ -41,11 +41,11 @@ export default function BlogPage() {
     },
     {
       id: 3,
-      title: 'The Complete Guide to Google Ads Quality Score in 2025',
-      excerpt: 'Master the fundamentals of Quality Score and learn advanced techniques to improve your ad performance.',
+      title: 'The Complete Guide to Google Ads Quality Score in 2026',
+      excerpt: 'Master the fundamentals of Quality Score and learn advanced techniques to improve your ad performance in 2026.',
       category: 'google-ads',
       author: 'By Emily Carter',
-      date: '2025-07-21',
+      date: '2026-05-15',
       readTime: '12 min read',
       slug: 'the-complete-guide-to-google-ads-quality-score-in-2025'
     },
