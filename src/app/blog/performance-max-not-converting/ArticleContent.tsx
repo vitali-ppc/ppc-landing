@@ -92,6 +92,31 @@ export default function ArticleContent() {
     ]
   };
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.kampaio.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Blog",
+        "item": "https://www.kampaio.com/blog"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Performance Max Not Converting? 9 Fixes That Actually Work",
+        "item": "https://www.kampaio.com/blog/performance-max-not-converting"
+      }
+    ]
+  };
+
   const tableOfContents = [
     { id: 'tldr', title: 'TL;DR - Top 5 Fixes in 30 Seconds', level: 1 },
     { id: 'why-pmax-stops', title: 'Why Performance Max Stops Converting', level: 1 },
@@ -135,6 +160,10 @@ export default function ArticleContent() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <div style={{ minHeight: '100vh', background: 'white' }}>
         <Header />

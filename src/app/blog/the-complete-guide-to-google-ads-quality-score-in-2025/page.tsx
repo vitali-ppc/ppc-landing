@@ -12,13 +12,13 @@ export const metadata: Metadata = {
     description: 'Master Quality Score fundamentals and learn advanced techniques to improve your Google Ads performance in 2025.',
     url: 'https://www.kampaio.com/blog/the-complete-guide-to-google-ads-quality-score-in-2025',
     type: 'article',
-    images: [{ url: '/logo.png', width: 1200, height: 630, alt: 'B6 PPC Cabinet' }],
+    images: [{ url: '/og/the-complete-guide-to-google-ads-quality-score-in-2025.png', width: 1200, height: 630, alt: 'The Complete Guide To Google Ads Quality Score In 2025, kampaio.com/blog' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'The Complete Guide to Google Ads Quality Score in 2025',
     description: 'Master Quality Score fundamentals and learn advanced techniques to improve your Google Ads performance in 2025.',
-    images: ['/logo.png'],
+    images: ['/og/the-complete-guide-to-google-ads-quality-score-in-2025.png'],
   },
 };
 

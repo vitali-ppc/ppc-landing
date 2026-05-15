@@ -85,6 +85,31 @@ export default function ArticleContent() {
     ]
   };
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.kampaio.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Blog",
+        "item": "https://www.kampaio.com/blog"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Google Ads Not Spending Full Budget? 7 Causes",
+        "item": "https://www.kampaio.com/blog/google-ads-not-spending-full-budget"
+      }
+    ]
+  };
+
   const tableOfContents = [
     { id: 'tldr', title: 'TL;DR - Quick Diagnostic Checklist', level: 1 },
     { id: 'how-budgets-work', title: 'How Google Ads Daily Budgets Actually Work', level: 1 },
@@ -115,6 +140,10 @@ export default function ArticleContent() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <div style={{ minHeight: '100vh', background: 'white' }}>
         <Header />

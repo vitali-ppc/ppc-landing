@@ -37,6 +37,31 @@ export default function ArticleContent() {
     "keywords": "Google Ads reports, CEO metrics, PPC reporting, ROI tracking, customer acquisition cost, Google Ads strategy, PPC optimization"
   };
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.kampaio.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Blog",
+        "item": "https://www.kampaio.com/blog"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "What CEOs Want to See in Google Ads Reports",
+        "item": "https://www.kampaio.com/blog/what-ceos-want-google-ads-reports"
+      }
+    ]
+  };
+
   const tableOfContents = [
     { id: 'introduction', title: 'Introduction', level: 1 },
     { id: 'ceo-metrics', title: 'What CEOs Actually Care About', level: 1 },
@@ -69,6 +94,10 @@ export default function ArticleContent() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       
       <div style={{

@@ -92,6 +92,31 @@ export default function ArticleContent() {
     ]
   };
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.kampaio.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Blog",
+        "item": "https://www.kampaio.com/blog"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Google Ads ROAS Dropped Suddenly? 8 Diagnostic Steps",
+        "item": "https://www.kampaio.com/blog/google-ads-roas-dropped-suddenly"
+      }
+    ]
+  };
+
   const tableOfContents = [
     { id: 'tldr', title: 'TL;DR - The 5 Most Likely Causes', level: 1 },
     { id: 'real-or-tracking', title: 'Is the ROAS Drop Real or Is Your Tracking Lying?', level: 1 },
@@ -133,6 +158,10 @@ export default function ArticleContent() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <div style={{ minHeight: '100vh', background: 'white' }}>
         <Header />

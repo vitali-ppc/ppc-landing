@@ -36,6 +36,31 @@ export default function ArticleContent() {
     "keywords": "AI PPC, PPC optimization, Google Ads AI, PPC automation, AI marketing, PPC strategies, boost ROI"
   };
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.kampaio.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Blog",
+        "item": "https://www.kampaio.com/blog"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "10 AI-Powered PPC Optimization Strategies That Actually Work",
+        "item": "https://www.kampaio.com/blog/10-ai-powered-ppc-optimization-strategies"
+      }
+    ]
+  };
+
   const tableOfContents = [
     { id: 'introduction', title: 'Introduction', level: 1 },
     { id: 'strategy-1', title: '1. Automated Bid Management', level: 2 },
@@ -65,6 +90,10 @@ export default function ArticleContent() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <div style={{ minHeight: '100vh', background: 'white' }}>
         <Header />

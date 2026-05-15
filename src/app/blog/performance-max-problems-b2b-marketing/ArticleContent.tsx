@@ -36,6 +36,31 @@ export default function ArticleContent() {
     "keywords": "Performance Max, Google Ads, B2B, PPC, lead quality, sales cycle, conversion tracking, audience signals, budget waste, automation"
   };
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.kampaio.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Blog",
+        "item": "https://www.kampaio.com/blog"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Why Performance Max Fails in B2B Marketing",
+        "item": "https://www.kampaio.com/blog/performance-max-problems-b2b-marketing"
+      }
+    ]
+  };
+
   const tableOfContents = [
     { id: 'introduction', title: 'Introduction', level: 1 },
     { id: 'problem-1', title: '1. Poor Lead Quality', level: 2 },
@@ -60,6 +85,10 @@ export default function ArticleContent() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <div style={{ minHeight: '100vh', background: 'white' }}>
         <Header />

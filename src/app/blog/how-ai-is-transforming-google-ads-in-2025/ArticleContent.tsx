@@ -36,6 +36,31 @@ export default function ArticleContent() {
     "keywords": "AI Google Ads, PPC automation, Performance Max, Smart Bidding, Responsive Search Ads, Audience Signals, Automated Insights, Google Ads 2025"
   };
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.kampaio.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Blog",
+        "item": "https://www.kampaio.com/blog"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "How AI is Transforming Google Ads in 2025",
+        "item": "https://www.kampaio.com/blog/how-ai-is-transforming-google-ads-in-2025"
+      }
+    ]
+  };
+
   const tableOfContents = [
     { id: 'introduction', title: 'Introduction', level: 1 },
     { id: 'change-1', title: '1. Performance Max: The AI-First Campaign', level: 2 },
@@ -60,6 +85,10 @@ export default function ArticleContent() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <div style={{ minHeight: '100vh', background: 'white' }}>
         <Header />

@@ -12,13 +12,13 @@ export const metadata: Metadata = {
     description: 'Performance Max is built for B2C, not B2B. Why it fails for B2B advertisers, plus the alternative strategy that actually works.',
     url: 'https://www.kampaio.com/blog/performance-max-problems-b2b-marketing',
     type: 'article',
-    images: [{ url: '/logo.png', width: 1200, height: 630, alt: 'B6 PPC Cabinet' }],
+    images: [{ url: '/og/performance-max-problems-b2b-marketing.png', width: 1200, height: 630, alt: 'Performance Max Problems B2b Marketing, kampaio.com/blog' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Why Performance Max Fails in B2B Marketing',
     description: 'Performance Max is built for B2C, not B2B. Why it fails for B2B advertisers, plus the alternative strategy that actually works.',
-    images: ['/logo.png'],
+    images: ['/og/performance-max-problems-b2b-marketing.png'],
   },
 };
 

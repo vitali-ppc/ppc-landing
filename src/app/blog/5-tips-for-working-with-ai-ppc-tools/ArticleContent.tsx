@@ -36,6 +36,31 @@ export default function ArticleContent() {
     "keywords": "AI PPC, PPC tools, Google Ads AI, PPC automation, AI marketing, PPC tips, campaign optimization"
   };
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.kampaio.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Blog",
+        "item": "https://www.kampaio.com/blog"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "5 Tips for Working with AI-Powered PPC Tools",
+        "item": "https://www.kampaio.com/blog/5-tips-for-working-with-ai-ppc-tools"
+      }
+    ]
+  };
+
   const tableOfContents = [
     { id: 'introduction', title: 'Introduction', level: 1 },
     { id: 'tip-1', title: '1. Boost AI Accuracy by Defining Your Campaign Goals', level: 2 },
@@ -60,6 +85,10 @@ export default function ArticleContent() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <div style={{ minHeight: '100vh', background: 'white' }}>
         <Header />

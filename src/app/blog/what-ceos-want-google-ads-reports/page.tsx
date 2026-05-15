@@ -12,13 +12,13 @@ export const metadata: Metadata = {
     description: 'The Google Ads metrics CEOs actually care about (hint: not clicks), plus the exact reporting template that secures bigger budgets.',
     url: 'https://www.kampaio.com/blog/what-ceos-want-google-ads-reports',
     type: 'article',
-    images: [{ url: '/logo.png', width: 1200, height: 630, alt: 'B6 PPC Cabinet' }],
+    images: [{ url: '/og/what-ceos-want-google-ads-reports.png', width: 1200, height: 630, alt: 'What Ceos Want Google Ads Reports, kampaio.com/blog' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'What CEOs Want in Google Ads Reports',
     description: 'The Google Ads metrics CEOs actually care about (hint: not clicks), plus the exact reporting template that secures bigger budgets.',
-    images: ['/logo.png'],
+    images: ['/og/what-ceos-want-google-ads-reports.png'],
   },
 };
 

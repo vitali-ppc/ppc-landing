@@ -12,13 +12,13 @@ export const metadata: Metadata = {
     description: 'Discover how AI is revolutionizing PPC campaigns and learn proven strategies to boost your ROI on every spend.',
     url: 'https://www.kampaio.com/blog/10-ai-powered-ppc-optimization-strategies',
     type: 'article',
-    images: [{ url: '/logo.png', width: 1200, height: 630, alt: 'B6 PPC Cabinet' }],
+    images: [{ url: '/og/10-ai-powered-ppc-optimization-strategies.png', width: 1200, height: 630, alt: '10 Ai Powered Ppc Optimization Strategies, kampaio.com/blog' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: '10 AI-Powered PPC Optimization Strategies',
     description: 'Discover how AI is revolutionizing PPC campaigns and learn proven strategies to boost your ROI on every spend.',
-    images: ['/logo.png'],
+    images: ['/og/10-ai-powered-ppc-optimization-strategies.png'],
   },
 };
 
