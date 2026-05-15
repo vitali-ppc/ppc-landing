@@ -12,13 +12,13 @@ export const metadata: Metadata = {
     description: '90-second triage and 7 fixes for broken Google Ads conversion tracking: tag missing, duplicates, GA4 mismatch, gclid stripped, enhanced conv silent fail.',
     url: 'https://www.kampaio.com/blog/google-ads-conversion-tracking-not-working',
     type: 'article',
-    images: [{ url: '/logo.png', width: 1200, height: 630, alt: 'B6 PPC Cabinet' }],
+    images: [{ url: '/og/google-ads-conversion-tracking-not-working.png', width: 1200, height: 630, alt: 'Google Ads Conversion Tracking Not Working , kampaio.com/blog' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Google Ads Conversion Tracking Not Working: 7 Fixes',
     description: '90-second triage and 7 fixes for broken Google Ads conversion tracking: tag missing, duplicates, GA4 mismatch, gclid stripped, enhanced conv silent fail.',
-    images: ['/logo.png'],
+    images: ['/og/google-ads-conversion-tracking-not-working.png'],
   },
 };
 

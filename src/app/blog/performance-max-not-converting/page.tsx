@@ -12,13 +12,13 @@ export const metadata: Metadata = {
     description: '9 diagnostic steps for Performance Max that burns budget without converting: tracking, bid strategy, landing pages, with thresholds and timelines.',
     url: 'https://www.kampaio.com/blog/performance-max-not-converting',
     type: 'article',
-    images: [{ url: '/logo.png', width: 1200, height: 630, alt: 'B6 PPC Cabinet' }],
+    images: [{ url: '/og/performance-max-not-converting.png', width: 1200, height: 630, alt: 'Performance Max Not Converting , kampaio.com/blog' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Performance Max Not Converting: 9 Fixes That Work',
     description: '9 diagnostic steps for Performance Max that burns budget without converting: tracking, bid strategy, landing pages, with thresholds and timelines.',
-    images: ['/logo.png'],
+    images: ['/og/performance-max-not-converting.png'],
   },
 };
 

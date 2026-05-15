@@ -12,13 +12,13 @@ export const metadata: Metadata = {
     description: 'Can you run Google Ads without an agency? Yes if spend is under $20K and you pick the right tools. Realistic framework for SMB owners.',
     url: 'https://www.kampaio.com/blog/google-ads-without-agency',
     type: 'article',
-    images: [{ url: '/logo.png', width: 1200, height: 630, alt: 'B6 PPC Cabinet' }],
+    images: [{ url: '/og/google-ads-without-agency.png', width: 1200, height: 630, alt: 'Google Ads Without Agency , kampaio.com/blog' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Google Ads Without an Agency: DIY Framework for SMBs',
     description: 'Can you run Google Ads without an agency? Yes if spend is under $20K and you pick the right tools. Realistic framework for SMB owners.',
-    images: ['/logo.png'],
+    images: ['/og/google-ads-without-agency.png'],
   },
 };
 

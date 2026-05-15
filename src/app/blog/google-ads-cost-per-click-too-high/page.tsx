@@ -12,13 +12,13 @@ export const metadata: Metadata = {
     description: 'Diagnostic guide for SMBs and PPC managers fighting CPC inflation. 9 root causes, fix sheets, real numbers from B6 client accounts.',
     url: 'https://www.kampaio.com/blog/google-ads-cost-per-click-too-high',
     type: 'article',
-    images: [{ url: '/logo.png', width: 1200, height: 630, alt: 'B6 PPC Cabinet' }],
+    images: [{ url: '/og/google-ads-cost-per-click-too-high.png', width: 1200, height: 630, alt: 'Google Ads Cost Per Click Too High , kampaio.com/blog' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Google Ads CPC Too High: 9 Reasons + Fixes',
     description: 'Diagnostic guide for SMBs and PPC managers fighting CPC inflation. 9 root causes, fix sheets, real numbers from B6 client accounts.',
-    images: ['/logo.png'],
+    images: ['/og/google-ads-cost-per-click-too-high.png'],
   },
 };
 
