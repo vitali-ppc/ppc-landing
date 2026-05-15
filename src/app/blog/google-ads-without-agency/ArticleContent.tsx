@@ -38,6 +38,53 @@ export default function ArticleContent() {
     "keywords": "google ads, agency, manage, PPC, budget, ad spend, DIY, automation, Smart Bidding, ROAS, bid management, CPC, Performance Max, campaign structure, conversion tracking, negative keywords"
   };
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is $20 a day enough for Google Ads?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "$20/day ($600/month) is enough for highly targeted local campaigns or very narrow niches. It is not enough for competitive e-commerce or broad search terms. Google recommends at least 2x your target CPA as daily budget. If your target cost per acquisition is $30, you need minimum $60/day ($1,800/month). Otherwise the algorithm doesn't have enough room to optimize."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much should a small business spend on Google Ads?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A functional minimum is $1,500-3,000/month. Below that, you're limited to one or two campaigns with restricted reach. The sweet spot for most SMBs is $3-10K/month, which allows 3-5 campaigns, enough conversion volume for Smart Bidding to work, and room to test. Above $20K/month, the complexity usually justifies hiring help."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I run Google Ads myself with no experience?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, but start small. Launch one Brand campaign (your company name as keyword) with a $500-1,000 budget. Learn conversion tracking, search terms review, and basic bid adjustments. Don't launch a $5K/month Performance Max campaign on day one. You'll waste 40-60% of budget before you understand what went wrong. Crawl, then walk, then run."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the minimum budget for Google Ads?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Google has no enforced minimum, but practical minimums exist. For Search campaigns, $30-50/day minimum ($900-1,500/month). For Performance Max, $50-100/day minimum ($1,500-3,000/month) because pMax needs 30+ conversions/month to optimize. Below these thresholds, the AI doesn't have enough data to learn. You end up spending money without getting smarter."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How many hours per week does Google Ads management take?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Manual DIY: 8-15 hours/week for a $10K account. With automation tools and Smart Bidding: 3-5 hours/week. With an agency: 1 hour/month for review calls. Your time commitment depends entirely on how much you automate. The real question is which hours you're spending: strategic decisions or spreadsheet maintenance."
+        }
+      }
+    ]
+  };
+
   const tableOfContents = [
     { id: 'tldr', title: 'TL;DR - Can You Run Google Ads Without an Agency?', level: 1 },
     { id: 'why-ditching-agencies', title: 'Why Business Owners Are Ditching Agencies', level: 1 },
@@ -63,6 +110,10 @@ export default function ArticleContent() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <div style={{ minHeight: '100vh', background: 'white' }}>
         <Header />

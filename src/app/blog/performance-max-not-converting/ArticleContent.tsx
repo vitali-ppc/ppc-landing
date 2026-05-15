@@ -37,6 +37,61 @@ export default function ArticleContent() {
     "keywords": "performance max, pmax, conversions, conversion tracking, google ads, bid strategy, target ROAS, target CPA, learning period, asset group, audience signals, final URL expansion, diagnostic insights, landing page, budget, Smart Bidding"
   };
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why is my Performance Max campaign not converting?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Almost always one of five causes: broken conversion tracking, learning period not finished, bid strategy set too aggressively, Final URL expansion sending paid traffic to irrelevant pages, or a slow/mismatched landing page. Work through the 9-step checklist above in order."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long should I wait before judging a Performance Max campaign?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Google recommends 7-14 days. Conservative answer: 14 days minimum before any structural change, and four to six weeks before you have full confidence in performance. Don't touch bid strategy or change budget by more than 20% during this window."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is my Performance Max campaign not spending?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Most often: Target ROAS set higher than your historical baseline, so the auction stops bidding. Other causes: location targeting too narrow, negative keywords blocking core terms, account suspension, ad disapproval."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does Performance Max get clicks but no sales?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Either targeting is too broad (Final URL expansion sending traffic to non-converting pages), landing page doesn't match the ad message, or your offer doesn't compete in the market. Check landing page speed first. Under three seconds on mobile is the threshold."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can Performance Max work for small budgets under $1,000/month?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Usually no. Smart Bidding needs ~30 conversions per month, which at a typical $40 CPA requires $1,200+ budget. Below that, use Search or Standard Shopping with manual bidding."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I use Maximize Conversions or Target ROAS for Performance Max?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Start with Maximize Conversion Value (no target) for the first 30 days to find your real baseline. Once you have 30+ conversions, switch to Target ROAS at ~80% of the baseline you observed. Don't set targets based on aspiration - set them based on observed performance."
+        }
+      }
+    ]
+  };
+
   const tableOfContents = [
     { id: 'tldr', title: 'TL;DR - Top 5 Fixes in 30 Seconds', level: 1 },
     { id: 'why-pmax-stops', title: 'Why Performance Max Stops Converting', level: 1 },
@@ -76,6 +131,10 @@ export default function ArticleContent() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <div style={{ minHeight: '100vh', background: 'white' }}>
         <Header />

@@ -40,6 +40,53 @@ export default function ArticleContent() {
     "keywords": "PPC agency, fire PPC agency, signs, Google Ads, agency reports, ROAS, account manager, bid management, change history, MCC access, Smart Bidding, Performance Max, diagnostic, transition, B6, Buzz, Aegis, Echo, freelancer, conversion tracking, AI agents"
   };
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How long should I give my PPC agency to fix issues before firing them?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "60 days maximum, with documented signals and a specific corrective plan in writing from the agency."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the average cost of a PPC agency for a small business?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "$1-3K per month flat fee, or 10-20% of ad spend, whichever is higher. For a $5K spend SMB, the typical fee means 20-30% of total budget goes to management."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I run Google Ads without an agency?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, especially under $20K/month spend, with the right tool. We covered this in our guide to Google Ads without an agency."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between a PPC freelancer and an AI tool like B6?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A freelancer is one person with bandwidth limits and vacation gaps. B6 is 7 AI agents working 24/7 with full transparency on every action."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I tell the agency I am firing them?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "In writing, with a clear effective date, a request for access transfer, and a polite but unambiguous tone. No need to itemize complaints unless they ask."
+        }
+      }
+    ]
+  };
+
   const tableOfContents = [
     { id: 'tldr', title: "TL;DR - The 8-Signal PPC Agency Diagnostic", level: 1 },
     { id: 'why-outgrow', title: 'Why So Many SMBs Outgrow Their PPC Agency', level: 1 },
@@ -120,6 +167,10 @@ export default function ArticleContent() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <div style={{ minHeight: '100vh', background: 'white' }}>
         <Header />

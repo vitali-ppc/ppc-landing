@@ -39,6 +39,53 @@ export default function ArticleContent() {
     "keywords": "Google Ads conversion tracking, conversion tag not firing, Google Tag Manager, GA4 conversion import, enhanced conversions, gclid attribution, Tag Assistant, Smart Bidding, tCPA, tROAS, Shopify checkout tracking, server-side tagging, dataLayer, conversion action primary secondary, Aegis, Buzz, B6"
   };
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why does my Google Ads conversion count differ from GA4?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Different attribution models (Google Ads is moving to data-driven, GA4 defaults to data-driven), different conversion windows, and different de-duplication rules. A 10 to 20% gap is normal. A gap above 30% means investigate, usually starting with duplicate import (Fix 4 above)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What does \"Recently a conversion has not been recorded\" mean?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "An active conversion action had fires in the past but has logged zero fires in the past 7 days. Cause is either the tag broke or you genuinely had zero conversions for that action in 7 days. Check both, starting with Tag Assistant on the relevant page."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does Smart Bidding take to recover after tracking is fixed?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "7 to 21 days. The algorithm needs to re-accumulate enough signal to leave \"Learning Limited.\" During recovery, expect lower spend, lower impression share, and conservative bidding. Do not change other settings during this window. Related: what to do when Google Ads ROAS drops suddenly (most ROAS drops are downstream of tracking)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does enhanced conversions help if my regular conversions are working?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Enhanced conversions improve match rate by 5 to 15%, with the biggest gains on Safari and Firefox where third-party cookies are blocked or restricted. Even on a clean setup, the bump is worth the 20-minute configuration."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I use Google Ads gtag or import from GA4?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Pick one. GA4 import gives richer ecommerce context. Direct gtag is simpler and has lower latency. Never run both for the same event (see Fix 4). For most accounts we recommend GA4 import once GA4 ecommerce events are clean."
+        }
+      }
+    ]
+  };
+
   const tableOfContents = [
     { id: 'tldr', title: 'TL;DR - The 90-Second Triage', level: 1 },
     { id: 'three-layers', title: 'The Three Layers Where Conversion Tracking Breaks', level: 1 },
@@ -104,6 +151,10 @@ export default function ArticleContent() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <div style={{ minHeight: '100vh', background: 'white' }}>
         <Header />

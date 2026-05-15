@@ -38,6 +38,53 @@ export default function ArticleContent() {
     "keywords": "google ads, daily budget, not spending, smart bidding, target roas, target cpa, limited by budget, ad rank, quality score, learning period, auction insights, bid management, troubleshooting"
   };
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why is my Google Ads campaign not spending the full daily budget?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The most common causes are bids too low to win auctions, Smart Bidding targets too aggressive for current performance, or targeting too narrow to generate enough search volume. Check impression share and Auction Insights first to isolate whether the issue is bid-related or volume-related."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I fix the \"Limited by budget\" status in Google Ads?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "\"Limited by budget\" specifically means the campaign could spend more if the daily budget ceiling were raised - it is not the same as general underspending. If conversion costs are acceptable, raising the daily budget is the right fix. If conversion costs are already high, fix the underlying efficiency problem before increasing budget. See Google's step-by-step guide to fix 'limited by budget' status."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is my ad active but not spending money?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Active status means the campaign is eligible to run, not that it is winning auctions. Active ads can still be blocked by low bids, a poor Quality Score, disapproved copy, or Smart Bidding targets that prevent entry into auctions predicted to miss the target."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Will Google Ads go over my daily budget?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, on individual days. According to Google's documentation, Google may spend up to 2 times the average daily budget on a single high-traffic day. Your total monthly spend will not exceed your daily budget multiplied by 30.4."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does it take for a new Google Ads campaign to start spending?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Most campaigns begin spending within 24-48 hours of going live, once ads clear the review process. Campaigns using Smart Bidding typically spend erratically for 1-2 weeks during the learning period before stabilizing. Google recommends measuring Smart Bidding performance only after accumulating at least 30 conversions."
+        }
+      }
+    ]
+  };
+
   const tableOfContents = [
     { id: 'tldr', title: 'TL;DR - Quick Diagnostic Checklist', level: 1 },
     { id: 'how-budgets-work', title: 'How Google Ads Daily Budgets Actually Work', level: 1 },
@@ -64,6 +111,10 @@ export default function ArticleContent() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <div style={{ minHeight: '100vh', background: 'white' }}>
         <Header />

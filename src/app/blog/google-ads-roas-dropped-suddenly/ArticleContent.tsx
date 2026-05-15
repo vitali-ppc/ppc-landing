@@ -37,6 +37,61 @@ export default function ArticleContent() {
     "keywords": "ROAS, google ads, conversion tracking, Smart Bidding, Target ROAS, Performance Max, Auction Insights, conversion rate, Consent Mode, enhanced conversions, iOS, ATT, audience signals, landing page, seasonality, impression share, bid strategy"
   };
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why did my Google Ads ROAS drop suddenly?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Four out of five sudden ROAS drops are measurement problems, not campaign problems. Cross-check Google Ads revenue against Shopify or Stripe over the last seven days. If they disagree by more than 15 percent, fix tracking first. Otherwise work the 8-step checklist above in order."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is a sudden ROAS drop always a tracking problem?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No, but it's the highest-probability cause and the fastest to verify. The five most common categories are tracking, signal-loss-induced Smart Bidding starvation, Performance Max placement drift, new auction competition, and genuine market shifts."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does iOS privacy affect Google Ads ROAS?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. iOS 18 ATT, Consent Mode v2, and third-party cookie deprecation have cut reported conversions 15 to 25 percent versus 2022. The conversions still happen - the reporting sees fewer of them. Enhanced conversions and refreshed customer match lists are the main compensations."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I lower Target ROAS or pause the campaign when ROAS drops?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Lower it, don't pause. Reduce budgets 20 to 30 percent and lower Target ROAS by 10 to 20 percent while you diagnose. Pausing resets the learning period and delays recovery by weeks."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does it take Google Ads ROAS to recover after a drop?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "With the right diagnosis and fixes, 7 to 14 days for a typical SMB account. Longer if you change bid strategy mid-recovery. Don't change multiple variables at once."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can Performance Max cause ROAS to drop suddenly?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. The most common pattern is Final URL expansion or new asset uploads tipping PMax toward Display and YouTube placements that look cheap and don't convert. Check Placement and Asset group reports, tighten signals to one to three per group."
+        }
+      }
+    ]
+  };
+
   const tableOfContents = [
     { id: 'tldr', title: 'TL;DR - The 5 Most Likely Causes', level: 1 },
     { id: 'real-or-tracking', title: 'Is the ROAS Drop Real or Is Your Tracking Lying?', level: 1 },
@@ -74,6 +129,10 @@ export default function ArticleContent() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <div style={{ minHeight: '100vh', background: 'white' }}>
         <Header />

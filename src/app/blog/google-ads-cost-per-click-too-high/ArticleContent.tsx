@@ -39,6 +39,53 @@ export default function ArticleContent() {
     "keywords": "google ads cpc, quality score, cost per click, bidding strategy, negative keywords, match types, ad rank, target cpa, smart bidding, target roas, maximize clicks, learning period, ad relevance, landing page experience, auction insights, search terms report, Buzz, Aegis, Echo, B6"
   };
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why did my Google Ads CPC suddenly double?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Three usual suspects. (1) A bid strategy switch into a Smart Bidding learning period: 2 to 6 weeks of volatility, expected. (2) An Auction Insights shift: pull the report, look for new entrants. (3) A broken Quality Score: pull QS for top 20 spend keywords, anything that dropped 2+ points in a week is the suspect."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a normal CPC for Google Ads in 2026?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It depends on the vertical more than anything else. Legal and insurance commonly run $5 to $50 per click. Ecommerce typical range is $0.80 to $3.50. B2B SaaS $4 to $20. Inside your vertical, the question to ask is not \"what is normal\" but \"what is my CPC vs my Quality Score.\" If your QS is 8 and CPC is high, you are paying the competitive market price. If your QS is 5, your CPC is high because of your account, not the market."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does lowering my bid actually lower my CPC?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Short term yes, medium term no. Lower bids mean lower position, which usually means lower CTR, which lowers expected CTR, which lowers Quality Score, which raises CPC. The only sustainable way to lower CPC is to raise Quality Score and tighten match."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long until I see lower CPC after I fix Quality Score?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Quality Score updates roughly every 24 to 48 hours on active keywords. The CPC change shows in your reports within 2 to 7 days of the rating improvement. Compounding effects (better CTR data feeding back into expected CTR) take 30 to 60 days. Related: what to do when Google Ads ROAS drops suddenly."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I get my Quality Score from 5 to 9?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, on most keywords, with three caveats. (1) The keyword must be relevant enough to your business to genuinely deliver a high CTR. Some keywords are structurally weak fits and will cap at 7. (2) Landing page experience changes need a code deploy, not a settings toggle. (3) Expected CTR is the slowest to update because it is built from rolling 90-day data."
+        }
+      }
+    ]
+  };
+
   const tableOfContents = [
     { id: 'tldr', title: 'TL;DR - Why Your CPC Is Too High and the 30-Second Triage', level: 1 },
     { id: 'auction-math', title: 'The Auction Math: How Google Actually Sets Your CPC', level: 1 },
@@ -198,6 +245,10 @@ export default function ArticleContent() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <div style={{ minHeight: '100vh', background: 'white' }}>
         <Header />
