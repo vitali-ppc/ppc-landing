@@ -35,7 +35,10 @@ export default function ArticleContent() {
       "@type": "WebPage",
       "@id": "https://kampaio.com/blog/google-ads-not-spending-full-budget"
     },
-    "keywords": "google ads, daily budget, not spending, smart bidding, target roas, target cpa, limited by budget, ad rank, quality score, learning period, auction insights, bid management, troubleshooting"
+    "keywords": "google ads, daily budget, not spending, smart bidding, target roas, target cpa, limited by budget, ad rank, quality score, learning period, auction insights, bid management, troubleshooting",
+    "wordCount": 2455,
+    "articleSection": "Google Ads",
+    "inLanguage": "en"
   };
 
   const faqSchema = {

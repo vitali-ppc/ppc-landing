@@ -33,7 +33,10 @@ export default function ArticleContent() {
       "@type": "WebPage",
       "@id": "https://kampaio.com/blog/performance-max-problems-b2b-marketing"
     },
-    "keywords": "Performance Max, Google Ads, B2B, PPC, lead quality, sales cycle, conversion tracking, audience signals, budget waste, automation"
+    "keywords": "Performance Max, Google Ads, B2B, PPC, lead quality, sales cycle, conversion tracking, audience signals, budget waste, automation",
+    "wordCount": 443,
+    "articleSection": "B2B Marketing",
+    "inLanguage": "en"
   };
 
   const breadcrumbSchema = {

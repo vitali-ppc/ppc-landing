@@ -34,7 +34,10 @@ export default function ArticleContent() {
       "@type": "WebPage",
       "@id": "https://kampaio.com/blog/performance-max-not-converting"
     },
-    "keywords": "performance max, pmax, conversions, conversion tracking, google ads, bid strategy, target ROAS, target CPA, learning period, asset group, audience signals, final URL expansion, diagnostic insights, landing page, budget, Smart Bidding"
+    "keywords": "performance max, pmax, conversions, conversion tracking, google ads, bid strategy, target ROAS, target CPA, learning period, asset group, audience signals, final URL expansion, diagnostic insights, landing page, budget, Smart Bidding",
+    "wordCount": 2305,
+    "articleSection": "Google Ads",
+    "inLanguage": "en"
   };
 
   const faqSchema = {

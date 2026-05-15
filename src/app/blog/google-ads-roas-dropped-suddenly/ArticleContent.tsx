@@ -34,7 +34,10 @@ export default function ArticleContent() {
       "@type": "WebPage",
       "@id": "https://kampaio.com/blog/google-ads-roas-dropped-suddenly"
     },
-    "keywords": "ROAS, google ads, conversion tracking, Smart Bidding, Target ROAS, Performance Max, Auction Insights, conversion rate, Consent Mode, enhanced conversions, iOS, ATT, audience signals, landing page, seasonality, impression share, bid strategy"
+    "keywords": "ROAS, google ads, conversion tracking, Smart Bidding, Target ROAS, Performance Max, Auction Insights, conversion rate, Consent Mode, enhanced conversions, iOS, ATT, audience signals, landing page, seasonality, impression share, bid strategy",
+    "wordCount": 2395,
+    "articleSection": "Google Ads",
+    "inLanguage": "en"
   };
 
   const faqSchema = {

@@ -37,7 +37,10 @@ export default function ArticleContent() {
       "@type": "WebPage",
       "@id": "https://kampaio.com/blog/google-ads-anomaly-detection"
     },
-    "keywords": "google ads anomaly detection, account anomaly detector, campaign anomaly detector, CAD v2, rolling baseline, z-score, severity tier, tracking outage, click bombing, brand campaign, Smart Bidding learning, Aegis, Buzz, Echo, Sage, B6, multi-agent, false-positive rate"
+    "keywords": "google ads anomaly detection, account anomaly detector, campaign anomaly detector, CAD v2, rolling baseline, z-score, severity tier, tracking outage, click bombing, brand campaign, Smart Bidding learning, Aegis, Buzz, Echo, Sage, B6, multi-agent, false-positive rate",
+    "wordCount": 3137,
+    "articleSection": "Google Ads",
+    "inLanguage": "en"
   };
 
   const faqSchema = {

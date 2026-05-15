@@ -33,7 +33,10 @@ export default function ArticleContent() {
       "@type": "WebPage",
       "@id": "https://kampaio.com/blog/how-ai-is-transforming-google-ads-in-2025"
     },
-    "keywords": "AI Google Ads, PPC automation, Performance Max, Smart Bidding, Responsive Search Ads, Audience Signals, Automated Insights, Google Ads 2025"
+    "keywords": "AI Google Ads, PPC automation, Performance Max, Smart Bidding, Responsive Search Ads, Audience Signals, Automated Insights, Google Ads 2025",
+    "wordCount": 469,
+    "articleSection": "AI",
+    "inLanguage": "en"
   };
 
   const breadcrumbSchema = {

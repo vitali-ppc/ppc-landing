@@ -36,7 +36,10 @@ export default function ArticleContent() {
       "@type": "WebPage",
       "@id": "https://kampaio.com/blog/google-ads-conversion-tracking-not-working"
     },
-    "keywords": "Google Ads conversion tracking, conversion tag not firing, Google Tag Manager, GA4 conversion import, enhanced conversions, gclid attribution, Tag Assistant, Smart Bidding, tCPA, tROAS, Shopify checkout tracking, server-side tagging, dataLayer, conversion action primary secondary, Aegis, Buzz, B6"
+    "keywords": "Google Ads conversion tracking, conversion tag not firing, Google Tag Manager, GA4 conversion import, enhanced conversions, gclid attribution, Tag Assistant, Smart Bidding, tCPA, tROAS, Shopify checkout tracking, server-side tagging, dataLayer, conversion action primary secondary, Aegis, Buzz, B6",
+    "wordCount": 2431,
+    "articleSection": "Google Ads",
+    "inLanguage": "en"
   };
 
   const faqSchema = {

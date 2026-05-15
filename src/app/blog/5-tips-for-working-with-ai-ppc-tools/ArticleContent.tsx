@@ -33,7 +33,10 @@ export default function ArticleContent() {
       "@type": "WebPage",
       "@id": "https://kampaio.com/blog/5-tips-for-working-with-ai-ppc-tools"
     },
-    "keywords": "AI PPC, PPC tools, Google Ads AI, PPC automation, AI marketing, PPC tips, campaign optimization"
+    "keywords": "AI PPC, PPC tools, Google Ads AI, PPC automation, AI marketing, PPC tips, campaign optimization",
+    "wordCount": 398,
+    "articleSection": "AI",
+    "inLanguage": "en"
   };
 
   const breadcrumbSchema = {

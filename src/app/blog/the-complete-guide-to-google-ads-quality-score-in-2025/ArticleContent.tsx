@@ -33,7 +33,10 @@ export default function ArticleContent() {
       "@type": "WebPage",
       "@id": "https://kampaio.com/blog/the-complete-guide-to-google-ads-quality-score-in-2025"
     },
-    "keywords": "Google Ads Quality Score, Quality Score 2025, Google Ads optimization, ad performance, PPC tips, advanced PPC"
+    "keywords": "Google Ads Quality Score, Quality Score 2025, Google Ads optimization, ad performance, PPC tips, advanced PPC",
+    "wordCount": 478,
+    "articleSection": "Google Ads",
+    "inLanguage": "en"
   };
 
   const breadcrumbSchema = {

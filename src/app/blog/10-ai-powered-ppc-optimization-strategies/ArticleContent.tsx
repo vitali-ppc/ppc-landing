@@ -33,7 +33,10 @@ export default function ArticleContent() {
       "@type": "WebPage",
       "@id": "https://kampaio.com/blog/10-ai-powered-ppc-optimization-strategies"
     },
-    "keywords": "AI PPC, PPC optimization, Google Ads AI, PPC automation, AI marketing, PPC strategies, boost ROI"
+    "keywords": "AI PPC, PPC optimization, Google Ads AI, PPC automation, AI marketing, PPC strategies, boost ROI",
+    "wordCount": 452,
+    "articleSection": "AI",
+    "inLanguage": "en"
   };
 
   const breadcrumbSchema = {

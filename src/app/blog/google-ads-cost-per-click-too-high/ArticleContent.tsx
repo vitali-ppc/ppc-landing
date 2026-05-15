@@ -36,7 +36,10 @@ export default function ArticleContent() {
       "@type": "WebPage",
       "@id": "https://kampaio.com/blog/google-ads-cost-per-click-too-high"
     },
-    "keywords": "google ads cpc, quality score, cost per click, bidding strategy, negative keywords, match types, ad rank, target cpa, smart bidding, target roas, maximize clicks, learning period, ad relevance, landing page experience, auction insights, search terms report, Buzz, Aegis, Echo, B6"
+    "keywords": "google ads cpc, quality score, cost per click, bidding strategy, negative keywords, match types, ad rank, target cpa, smart bidding, target roas, maximize clicks, learning period, ad relevance, landing page experience, auction insights, search terms report, Buzz, Aegis, Echo, B6",
+    "wordCount": 3010,
+    "articleSection": "Google Ads",
+    "inLanguage": "en"
   };
 
   const faqSchema = {

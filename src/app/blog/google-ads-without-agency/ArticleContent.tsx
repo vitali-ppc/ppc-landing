@@ -35,7 +35,10 @@ export default function ArticleContent() {
       "@type": "WebPage",
       "@id": "https://kampaio.com/blog/google-ads-without-agency"
     },
-    "keywords": "google ads, agency, manage, PPC, budget, ad spend, DIY, automation, Smart Bidding, ROAS, bid management, CPC, Performance Max, campaign structure, conversion tracking, negative keywords"
+    "keywords": "google ads, agency, manage, PPC, budget, ad spend, DIY, automation, Smart Bidding, ROAS, bid management, CPC, Performance Max, campaign structure, conversion tracking, negative keywords",
+    "wordCount": 2600,
+    "articleSection": "Strategy",
+    "inLanguage": "en"
   };
 
   const faqSchema = {

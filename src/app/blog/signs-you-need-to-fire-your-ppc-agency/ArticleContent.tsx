@@ -37,7 +37,10 @@ export default function ArticleContent() {
       "@type": "WebPage",
       "@id": "https://kampaio.com/blog/signs-you-need-to-fire-your-ppc-agency"
     },
-    "keywords": "PPC agency, fire PPC agency, signs, Google Ads, agency reports, ROAS, account manager, bid management, change history, MCC access, Smart Bidding, Performance Max, diagnostic, transition, B6, Buzz, Aegis, Echo, freelancer, conversion tracking, AI agents"
+    "keywords": "PPC agency, fire PPC agency, signs, Google Ads, agency reports, ROAS, account manager, bid management, change history, MCC access, Smart Bidding, Performance Max, diagnostic, transition, B6, Buzz, Aegis, Echo, freelancer, conversion tracking, AI agents",
+    "wordCount": 2178,
+    "articleSection": "PPC Optimization",
+    "inLanguage": "en"
   };
 
   const faqSchema = {

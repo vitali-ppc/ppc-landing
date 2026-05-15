@@ -34,7 +34,10 @@ export default function ArticleContent() {
       "@type": "WebPage",
       "@id": "https://kampaio.com/blog/what-ceos-want-google-ads-reports"
     },
-    "keywords": "Google Ads reports, CEO metrics, PPC reporting, ROI tracking, customer acquisition cost, Google Ads strategy, PPC optimization"
+    "keywords": "Google Ads reports, CEO metrics, PPC reporting, ROI tracking, customer acquisition cost, Google Ads strategy, PPC optimization",
+    "wordCount": 1265,
+    "articleSection": "Strategy",
+    "inLanguage": "en"
   };
 
   const breadcrumbSchema = {
