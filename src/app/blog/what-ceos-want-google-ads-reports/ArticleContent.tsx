@@ -29,7 +29,7 @@ export default function ArticleContent() {
       }
     },
     "datePublished": "2025-07-15T00:00:00.000Z",
-    "dateModified": "2025-07-15T00:00:00.000Z",
+    "dateModified": "2026-05-15T00:00:00.000Z",
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https://kampaio.com/blog/what-ceos-want-google-ads-reports"
@@ -180,7 +180,7 @@ export default function ArticleContent() {
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '2px' }}>
                 <span style={{ color: '#64748b', fontSize: '16px', fontWeight: 600 }}>by Emily Carter</span>
                 <span style={{ color: '#64748b', fontSize: '15px' }}>Paid Media Strategist at Kampaio</span>
-                <span style={{ color: '#64748b', fontSize: '15px' }}>July 15, 2025 · 12 min read</span>
+                <span style={{ color: '#64748b', fontSize: '15px' }}>July 15, 2025 · Updated May 15, 2026 · 12 min read</span>
               </div>
             </div>
           </div>

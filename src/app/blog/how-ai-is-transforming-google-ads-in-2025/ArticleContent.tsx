@@ -11,8 +11,8 @@ export default function ArticleContent() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
-    "headline": "How AI is Transforming Google Ads in 2025",
-    "description": "Discover the new rules of PPC: smarter bidding, better targeting, and automated creativity. Learn the 5 biggest AI-driven changes in Google Ads for 2025 and how to stay ahead.",
+    "headline": "How AI is Transforming Google Ads in 2026",
+    "description": "Discover the new rules of PPC: smarter bidding, better targeting, and automated creativity. Learn the 5 biggest AI-driven changes in Google Ads for 2026 and how to stay ahead.",
     "image": "https://kampaio.com/og/how-ai-is-transforming-google-ads-in-2025.png",
     "author": {
       "@type": "Person",
@@ -28,7 +28,7 @@ export default function ArticleContent() {
       }
     },
     "datePublished": "2025-07-24T00:00:00.000Z",
-    "dateModified": "2025-07-24T00:00:00.000Z",
+    "dateModified": "2026-05-15T00:00:00.000Z",
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https://kampaio.com/blog/how-ai-is-transforming-google-ads-in-2025"
@@ -58,7 +58,7 @@ export default function ArticleContent() {
       {
         "@type": "ListItem",
         "position": 3,
-        "name": "How AI is Transforming Google Ads in 2025",
+        "name": "How AI is Transforming Google Ads in 2026",
         "item": "https://www.kampaio.com/blog/how-ai-is-transforming-google-ads-in-2025"
       }
     ]
@@ -108,7 +108,7 @@ export default function ArticleContent() {
             </div>
             {/* Title */}
             <h1 style={{ fontSize: 'clamp(32px, 4vw, 48px)', fontWeight: '800', color: '#1e293b', marginBottom: '24px', lineHeight: '1.2' }}>
-              How AI is Transforming Google Ads in 2025
+              How AI is Transforming Google Ads in 2026
             </h1>
             {/* Subtitle */}
             <p style={{ fontSize: '20px', color: '#64748b', marginBottom: '32px', lineHeight: '1.6', fontWeight: '500' }}>
@@ -123,7 +123,7 @@ export default function ArticleContent() {
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '2px' }}>
                   <span style={{ color: '#64748b', fontSize: '16px', fontWeight: 600 }}>by Emily Carter</span>
                   <span style={{ color: '#64748b', fontSize: '15px' }}>Paid Media Strategist at Kampaio</span>
-                  <span style={{ color: '#64748b', fontSize: '15px' }}>July 24, 2025 · 10 min read</span>
+                  <span style={{ color: '#64748b', fontSize: '15px' }}>July 24, 2025 · Updated May 15, 2026 · 10 min read</span>
                 </div>
               </div>
             </div>
@@ -174,7 +174,7 @@ export default function ArticleContent() {
             {/* 5 AI-Driven Changes */}
             <section>
               <h2 style={{ fontSize: '32px', fontWeight: '700', color: '#1e293b', marginBottom: '32px', marginTop: '48px' }}>
-                5 Ways AI is Changing Google Ads in 2025
+                5 Ways AI is Changing Google Ads in 2026
               </h2>
               <ol style={{ fontSize: '18px', color: '#1e293b', lineHeight: '1.8', paddingLeft: '24px', marginBottom: '40px' }}>
                 <li id="change-1" style={{ marginBottom: '24px' }}><strong>Performance Max: The AI-First Campaign:</strong> Google's flagship campaign type is now fully AI-driven, combining search, display, video, and more, all optimized by machine learning. <strong>Performance Max examples</strong> show how automation can drive results, but only with the right data and strategy. If yours isn't, our deep-dive on <a href="/blog/performance-max-not-converting" style={{ color: '#764ba2', textDecoration: 'underline' }}>why Performance Max stops converting</a> walks through the most common failure modes.</li>
@@ -202,7 +202,7 @@ export default function ArticleContent() {
                 Conclusion
               </h2>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
-                AI is no longer optional in Google Ads: it's essential. The advertisers who win in 2025 will be those who embrace automation, feed the machine with quality data, and never stop learning. Use these tips to stay ahead and turn Google's AI into your competitive advantage.
+                AI is no longer optional in Google Ads: it's essential. The advertisers who win in 2026 will be those who embrace automation, feed the machine with quality data, and never stop learning. Use these tips to stay ahead and turn Google's AI into your competitive advantage.
               </p>
               <div style={{
                 background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
