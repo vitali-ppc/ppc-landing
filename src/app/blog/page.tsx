@@ -148,6 +148,16 @@ export default function BlogPage() {
       date: '2026-05-15',
       readTime: '13 min read',
       slug: 'google-ads-cost-per-click-too-high'
+    },
+    {
+      id: 15,
+      title: 'Google Ads Anomaly Detection: Spend Spikes, Conversion Drops, Tracking Outages',
+      excerpt: 'Built-in Google Ads alerts are too noisy or too late. The Account Anomaly Detector script is brittle. The detection stack that actually works in 2026: rolling baselines, severity tiers, and Aegis classification.',
+      category: 'google-ads',
+      author: 'By B6 Team',
+      date: '2026-05-15',
+      readTime: '12 min read',
+      slug: 'google-ads-anomaly-detection'
     }
   ];
 
