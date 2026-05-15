@@ -47,3 +47,6 @@ src/app/page.kampaio-legacy.tsx.bak
 # B6 — frontend build artifacts (already in .next/)
 out/
 build/
+
+# TypeScript build cache
+tsconfig.tsbuildinfo
