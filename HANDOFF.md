@@ -5,10 +5,67 @@
 > Архитектура системы: [`ARCHITECTURE.md`](./ARCHITECTURE.md)
 > История изменений: [`CHANGELOG.md`](./CHANGELOG.md)
 
-**Дата последнего обновления**: 2026-05-13 (Sprint 5 закрыт + live validation на Goodevas It)
+**Дата последнего обновления**: 2026-05-16 (Sprint 6 starting — JWT auth)
 **Текущая ветка**: `v2-autonomous-agents`
-**Прогресс кода**: **100%** (все 7 агентов + OAuth + real Google Ads API + validated end-to-end)
-**Статус**: ✅ **LIVE В PRODUCTION, Buzz+Aegis ПРОТЕСТИРОВАНЫ НА РЕАЛЬНЫХ ДАННЫХ КЛИЕНТА**
+**Прогресс кода**: **100%** агентов + OAuth + real Google Ads (Sprint 5 done). **Sprint 6 = multi-tenancy auth, начинается сейчас.**
+**Статус**: ✅ LIVE В PRODUCTION на 1 dev-user. ⚠️ Multi-tenancy не реализована — блокер платящих клиентов.
+
+---
+
+## 🎯 ЧТО ДЕЛАТЬ СЕЙЧАС (2026-05-16)
+
+**Пользователь переключился из SEO project в B6 для Sprint 6 (JWT auth).**
+
+Это **главный блокер платящих клиентов**: сейчас в системе захардкожен `dev-user-001`, нельзя онбордить реальных юзеров без ручного `INSERT INTO users`.
+
+### Sprint 6 scope (план)
+
+```
+1. Backend (FastAPI):
+   - POST /api/auth/register  (email + password → hash → создать User row)
+   - POST /api/auth/login     (email + password → JWT token)
+   - GET  /api/auth/me        (JWT → User info)
+   - JWT middleware на все защищённые routes
+   - Replace hardcoded user_id="dev-user-001" в queries → from JWT
+
+2. Frontend (Next.js):
+   - /register page
+   - /login page (server+client split с noindex)
+   - auth context (token storage — localStorage или httpOnly cookie)
+   - protected /b6 route (redirect to /login если нет токена)
+   - Sign out button
+
+3. Data isolation:
+   - Все queries фильтруют по user_id из JWT
+   - GoogleAdsAccount, AgentAction, AuditLog — user-scoped
+
+4. Tests:
+   - register → login → /b6 access flow
+   - 2 users — каждый видит только свои данные
+```
+
+### Время
+
+Estimate: **4-6 часов работы**. После — beta-юзеры могут регистрироваться сами.
+
+---
+
+## 📦 Sister project status (2026-05-16)
+
+**SEO Agent Team** — 🟡 **PAUSED**. Phase 2 complete, ждёт GSC данных 2-4 недели.
+
+Pipeline работает АВТОНОМНО:
+- Hermes (Mon-Fri 10:07) → пишет новые статьи
+- Argus 2.0 (Sun 11:37) → 14 audits + 6 auto-fixes
+
+**Что было сделано в ppc-landing 2026-05-16 от SEO работы:**
+- 3 commercial JSON-LD schemas (home + pricing + blog index)
+- 6 T1 critical blog articles refreshed (dateModified bumped, year 2025→2026)
+- TypeScript clean, deployed via Vercel auto-deploy
+
+Подробнее: [`/Users/vitaly/Vit+/projects/seo-agent-team/HANDOFF.md`](/Users/vitaly/Vit+/projects/seo-agent-team/HANDOFF.md)
+
+---
 
 ## 🌍 Production URLs
 

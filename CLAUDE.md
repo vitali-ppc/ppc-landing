@@ -244,22 +244,34 @@ http://localhost:8000/docs
 - **Главная угроза**: Synter (universal ad MCP, $199/мес) + большие игроки (Optmyzr/Madgicx) пивотят в ту же сторону. **Окно ~6-12 месяцев** чтобы захватить позицию
 
 ### Связанные проекты (sister projects)
-- **SEO Agent Team** — `/Users/vitaly/Vit+/projects/seo-agent-team/` — отдельный Python-pipeline который генерит SEO-статьи для блога B6. Output ложится в `src/app/blog/<slug>/page.tsx` обычными git-коммитами, Vercel автодеплоит. **Не часть B6 backend**, не объединяем.
+- **SEO Agent Team** — `/Users/vitaly/Vit+/projects/seo-agent-team/` — отдельный pipeline на Claude Code Routines + Agent tool, который генерит SEO-статьи для блога B6. Output ложится в `src/app/blog/<slug>/page.tsx` обычными git-коммитами, Vercel автодеплоит. **Не часть B6 backend**, не объединяем.
 
-  **Что от него уже в этом репо (важно знать перед editor):**
-  - `src/components/blog/MascotQuote.tsx` — React-компонент для inline-цитат маскотов (Buzz/Aegis/Echo/Vox/Maximus/Mira/Sage) внутри blog-статей. Используется только в `/blog/`, **не трогать в backend контексте**.
-  - `src/app/sitemap.ts` — dynamic sitemap, auto-discovers blog articles из filesystem. Заменяет старый `public/sitemap.xml` (удалён). При публикации новой статьи sitemap обновляется автоматически на следующем Vercel build.
-  - `public/robots.txt` — Sitemap directive исправлен с `ppcset.com` на `www.kampaio.com`.
+  **Статус на 2026-05-16: 🟡 PAUSED** (Phase 2 complete, ждёт GSC данных 2-4 недели)
 
-  **Статус на 2026-05-13:**
-  - **L2 автономии** в проде (keyword → published TSX за ~15 мин, manual trigger через CLI)
-  - **L3 компоненты построены** (topic-selector + scheduler.sh + cron installer + auto-push в publisher) но НЕ работают в проде из-за 2 gap'ов:
-    1. **Vercel production deploy не автоматический** — push в `v2-autonomous-agents` помечается как `env=Preview` в GitHub API; kampaio.com обслуживается через alias к конкретному preview deployment. Чтобы L3 работал — нужно решить: смена Production Branch в Vercel UI / merge `v2-autonomous-agents` → `main` / `vercel promote` в publisher.
-    2. `claude -p` зависает после успешного git push (~30+ мин с CPU 0%). Quick fix — `timeout 1200` в scheduler.sh.
-  - **3 статьи в blog index**: `/blog/performance-max-not-converting`, `/blog/google-ads-roas-dropped-suddenly` (обе LIVE на проде), `/blog/google-ads-without-agency` (запушено commit `5eaad93`, ждёт fix Gap #1).
-  - SEO коммиты в origin: `4cee0f8`, `921b43b`, `73e8cc7`, `482e8ce`, `5eaad93`.
+  **Что от него в этом репо:**
+  - **14 blog articles** в `src/app/blog/<slug>/` — все с server+client split (page.tsx экспортирует metadata, ArticleContent.tsx — body).
+  - **3 commercial JSON-LD schemas** добавлены 2026-05-16:
+    - `src/app/HomeContent.tsx` → Organization + WebSite
+    - `src/app/pricing/PricingContent.tsx` → SoftwareApplication + 3 Offer
+    - `src/app/blog/page.tsx` → CollectionPage + ItemList
+  - **6 T1 critical articles refreshed** 2026-05-16 (dateModified bumped, year refs 2025→2026)
+  - `src/components/blog/MascotQuote.tsx` — React-компонент для inline-цитат маскотов в blog-статьях.
+  - `src/app/sitemap.ts` — dynamic sitemap, auto-discovers blog articles.
+  - `public/robots.txt` — Sitemap directive points to www.kampaio.com.
+  - `public/og/*.png` — 17 OG images (14 blog + home + b6 + pricing + chat).
+  - **pre-commit hook** в `.git/hooks/pre-commit` — 6 lint rules (blocks em-dash, auto-fit grid, mindmap, [B6_URL], missing metadata, missing internal links).
 
-  Полный план и текущий статус: [`/Users/vitaly/Vit+/projects/seo-agent-team/ROADMAP.md`](/Users/vitaly/Vit+/projects/seo-agent-team/ROADMAP.md)
+  **Автономный pipeline:**
+  - 🪶 **Hermes** (Claude Code Routine `seo-autonomous-publisher`) — Mon-Fri 10:07 → keyword → brief → write → publish → git push. ~15 минут.
+  - 🦅 **Argus 2.0** (Routine `argus-technical-auditor`) — Sun 11:37 → 14 audits + 6 auto-fixes на 18 SEO pages.
+
+  **Что НЕ нужно делать в B6 контексте:**
+  - НЕ трогать `src/app/blog/<slug>/` файлы — pipeline их пишет
+  - НЕ трогать `src/components/blog/MascotQuote.tsx`
+  - НЕ менять lint rules без понимания (см. `scripts/lint_visuals.sh` в SEO репо)
+
+  Полный статус: [`/Users/vitaly/Vit+/projects/seo-agent-team/HANDOFF.md`](/Users/vitaly/Vit+/projects/seo-agent-team/HANDOFF.md)
+  План: [`/Users/vitaly/.claude/plans/agile-crunching-donut.md`](/Users/vitaly/.claude/plans/agile-crunching-donut.md)
 
 ### Что делает нас отличными
 1. **Multi-agent с visualization** (mascots + live stream) — у конкурентов нет
