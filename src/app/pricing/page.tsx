@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import PricingContent from './PricingContent';
 
 export const metadata: Metadata = {
-  title: 'Pricing | B6 Autonomous PPC Cabinet by Kampaio',
+  title: 'B6 Pricing: 3 Tiers of Google Ads AI Autonomy',
   description:
     'B6 pricing: L1 $99 (assistant), L2 $199 (autopilot), L3 $399 (full autonomy). All tiers include 7 AI agents plus Aegis safety reviewer.',
   alternates: { canonical: 'https://www.kampaio.com/pricing' },
