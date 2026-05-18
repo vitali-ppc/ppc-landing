@@ -51,6 +51,7 @@ function B6Dashboard() {
   const [error, setError] = useState<string | null>(null);
   const [stats, setStats] = useState<{ iterations?: number; tool_calls?: number }>({});
   const [activeCustomerId, setActiveCustomerId] = useState<string>("");
+  const [campaignFilter, setCampaignFilter] = useState<"all" | "enabled" | "paused">("all");
 
   // Live events через Socket.IO
   const { events: liveEvents, connected, clear: clearEvents } = useB6Events();
@@ -128,6 +129,15 @@ function B6Dashboard() {
   const aegisHighRisk = actions.filter(
     (a) => a.risk_review && a.risk_review.risk_score >= 60
   ).length;
+
+  // Campaign filter: счётчики по статусу + отфильтрованный список
+  const enabledCount = campaigns.filter((c) => c.status === "ENABLED").length;
+  const pausedCount = campaigns.filter((c) => c.status === "PAUSED").length;
+  const filteredCampaigns = campaigns.filter((c) => {
+    if (campaignFilter === "enabled") return c.status === "ENABLED";
+    if (campaignFilter === "paused") return c.status === "PAUSED";
+    return true;
+  });
 
   return (
     <div
@@ -244,21 +254,34 @@ function B6Dashboard() {
 
         {/* Campaigns */}
         <section style={{ marginBottom: "28px" }}>
-          <h2 style={{ fontSize: "16px", fontWeight: 600, marginBottom: "12px", color: "#E0E6F7" }}>
-            📊 Кампании ({campaigns.length})
-            {highlightedCampaign && (
-              <span style={{ marginLeft: "10px", color: "#00FFE7", fontSize: "12px", fontWeight: 500 }}>
-                · 🐝 Buzz смотрит на {highlightedCampaign}
-              </span>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "12px", flexWrap: "wrap", gap: 8 }}>
+            <h2 style={{ fontSize: "16px", fontWeight: 600, margin: 0, color: "#E0E6F7" }}>
+              📊 Кампании ({filteredCampaigns.length}{campaignFilter !== "all" ? ` / ${campaigns.length}` : ""})
+              {highlightedCampaign && (
+                <span style={{ marginLeft: "10px", color: "#00FFE7", fontSize: "12px", fontWeight: 500 }}>
+                  · 🐝 Buzz смотрит на {highlightedCampaign}
+                </span>
+              )}
+            </h2>
+            {campaigns.length > 0 && (
+              <div style={{ display: "flex", gap: 6 }}>
+                <FilterTab label="All" count={campaigns.length} active={campaignFilter === "all"} onClick={() => setCampaignFilter("all")} color="#7F9CF5" />
+                <FilterTab label="Active" count={enabledCount} active={campaignFilter === "enabled"} onClick={() => setCampaignFilter("enabled")} color="#4ECDC4" />
+                <FilterTab label="Paused" count={pausedCount} active={campaignFilter === "paused"} onClick={() => setCampaignFilter("paused")} color="#FFA726" />
+              </div>
             )}
-          </h2>
+          </div>
           {campaigns.length === 0 ? (
             <div style={{ padding: "20px", background: "#1F232B", borderRadius: "10px", textAlign: "center", color: "#A0A0A0" }}>
               Кампании ещё не загружены...
             </div>
+          ) : filteredCampaigns.length === 0 ? (
+            <div style={{ padding: "20px", background: "#1F232B", borderRadius: "10px", textAlign: "center", color: "#A0A0A0", fontSize: 13 }}>
+              Под этот фильтр кампаний нет.
+            </div>
           ) : (
             <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "12px" }}>
-              {campaigns.map((c) => (
+              {filteredCampaigns.map((c) => (
                 <CampaignCard
                   key={c.id}
                   campaign={c}
@@ -343,4 +366,30 @@ const StatBox: React.FC<{ label: string; value: number | string; color: string }
     </div>
     <div style={{ color, fontSize: "22px", fontWeight: 700, marginTop: "4px" }}>{value}</div>
   </div>
+);
+
+const FilterTab: React.FC<{
+  label: string;
+  count: number;
+  active: boolean;
+  onClick: () => void;
+  color: string;
+}> = ({ label, count, active, onClick, color }) => (
+  <button
+    type="button"
+    onClick={onClick}
+    style={{
+      padding: "6px 12px",
+      background: active ? `${color}22` : "transparent",
+      border: `1px solid ${active ? `${color}88` : "#2D3340"}`,
+      color: active ? color : "#A0A0A0",
+      borderRadius: 6,
+      fontSize: 12,
+      fontWeight: 600,
+      cursor: "pointer",
+      whiteSpace: "nowrap",
+    }}
+  >
+    {label} <span style={{ opacity: 0.7, fontWeight: 500 }}>({count})</span>
+  </button>
 );
