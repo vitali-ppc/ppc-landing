@@ -65,6 +65,7 @@ class GoogleAdsAccount(Base):
     user_id: Mapped[str] = mapped_column(String(36), ForeignKey("users.id", ondelete="CASCADE"), index=True)
     google_customer_id: Mapped[str] = mapped_column(String(50), nullable=False)
     oauth_refresh_token: Mapped[str] = mapped_column(Text, nullable=False)
+    descriptive_name: Mapped[Optional[str]] = mapped_column(String(255), nullable=True)
     timezone: Mapped[Optional[str]] = mapped_column(String(50), nullable=True)
     currency: Mapped[Optional[str]] = mapped_column(String(10), nullable=True)
     connected_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)

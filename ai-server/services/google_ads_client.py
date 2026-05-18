@@ -157,9 +157,13 @@ def _headers(access_token: str, mcc_id: Optional[str] = None) -> dict[str, str]:
 # ---------------------------------------------------------------------------
 
 async def get_account_info(access_token: str, customer_id: str) -> Optional[dict[str, Any]]:
-    """Возвращает timezone и currency аккаунта."""
+    """Returns timezone, currency and descriptiveName (user-given account label)."""
     if use_mock():
-        return {"timezone": "Europe/Kiev", "currencyCode": "USD"}
+        return {
+            "timezone": "Europe/Kiev",
+            "currencyCode": "USD",
+            "descriptiveName": f"Mock Account {customer_id}",
+        }
 
     async with httpx.AsyncClient(timeout=20.0) as client:
         r = await client.get(
@@ -173,6 +177,7 @@ async def get_account_info(access_token: str, customer_id: str) -> Optional[dict
         return {
             "timezone": data.get("timeZone"),
             "currencyCode": data.get("currencyCode", "USD"),
+            "descriptiveName": data.get("descriptiveName"),
         }
 
 

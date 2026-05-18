@@ -287,6 +287,7 @@ export function formatActionShortId(id: string): string {
 export type ConnectedAccount = {
   id: string;
   google_customer_id: string;
+  descriptive_name: string | null;
   timezone: string | null;
   currency: string | null;
   is_active: boolean;

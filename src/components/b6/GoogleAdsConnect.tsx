@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, useRef, useMemo } from "react";
 import {
   listConnectedAccounts,
   startGoogleAdsOAuth,
@@ -11,19 +11,31 @@ import {
 /**
  * Google Ads connection panel for the B6 dashboard.
  *
- * - If user has 0 connected accounts → big "Connect Google Ads" CTA
- * - If user has ≥1 → compact status line with disconnect option
+ * - 0 connected → big "Connect Google Ads" CTA
+ * - >=1 connected → compact bar with the active account label, a dropdown
+ *   listing all accounts (with search), an "Add more" link, and a banner
+ *   surfacing the result of the OAuth callback.
  *
- * After OAuth callback completes, our backend redirects browser to
- * `/b6?google_ads_connected=N&added=N&updated=N` (or `?google_ads_error=...`).
- * We pick those query params up on mount, show a toast-style banner, then
- * scrub them from the URL.
+ * Active-account selection is owned by the parent (B6Content). We just call
+ * onSelectCustomer when the user picks a row in the dropdown.
  */
-export function GoogleAdsConnect({ onChange }: { onChange?: () => void }) {
+export function GoogleAdsConnect({
+  activeCustomerId,
+  onSelectCustomer,
+  onChange,
+}: {
+  activeCustomerId: string;
+  onSelectCustomer: (googleCustomerId: string) => void;
+  onChange?: () => void;
+}) {
   const [accounts, setAccounts] = useState<ConnectedAccount[]>([]);
   const [loading, setLoading] = useState(true);
   const [connecting, setConnecting] = useState(false);
   const [banner, setBanner] = useState<{ kind: "success" | "error"; text: string } | null>(null);
+
+  const [open, setOpen] = useState(false);
+  const [query, setQuery] = useState("");
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
 
   const refresh = useCallback(async () => {
     try {
@@ -56,7 +68,6 @@ export function GoogleAdsConnect({ onChange }: { onChange?: () => void }) {
       });
     }
 
-    // Scrub query params from URL without reload
     if (connected || err) {
       const cleanUrl = window.location.pathname;
       window.history.replaceState({}, "", cleanUrl);
@@ -65,11 +76,22 @@ export function GoogleAdsConnect({ onChange }: { onChange?: () => void }) {
     refresh();
   }, [refresh]);
 
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    if (!open) return;
+    function onDocClick(e: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", onDocClick);
+    return () => document.removeEventListener("mousedown", onDocClick);
+  }, [open]);
+
   const handleConnect = async () => {
     setConnecting(true);
     try {
       const { auth_url } = await startGoogleAdsOAuth();
-      // Redirect browser to Google's OAuth page
       window.location.href = auth_url;
     } catch (e: unknown) {
       const msg = e instanceof Error ? e.message : String(e);
@@ -78,11 +100,11 @@ export function GoogleAdsConnect({ onChange }: { onChange?: () => void }) {
     }
   };
 
-  const handleDisconnect = async (id: string) => {
-    if (!confirm("Disconnect this Google Ads account?")) return;
+  const handleDisconnect = async (id: string, customerLabel: string) => {
+    if (!confirm(`Disconnect account ${customerLabel}?`)) return;
     try {
       await disconnectGoogleAdsAccount(id);
-      setBanner({ kind: "success", text: "Account disconnected." });
+      setBanner({ kind: "success", text: `Account ${customerLabel} disconnected.` });
       await refresh();
       onChange?.();
     } catch (e: unknown) {
@@ -90,6 +112,19 @@ export function GoogleAdsConnect({ onChange }: { onChange?: () => void }) {
       setBanner({ kind: "error", text: `Disconnect failed: ${msg}` });
     }
   };
+
+  const filteredAccounts = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    if (!q) return accounts;
+    return accounts.filter((a) =>
+      a.google_customer_id.toLowerCase().includes(q) ||
+      (a.descriptive_name ?? "").toLowerCase().includes(q) ||
+      (a.currency ?? "").toLowerCase().includes(q) ||
+      (a.timezone ?? "").toLowerCase().includes(q)
+    );
+  }, [accounts, query]);
+
+  const active = accounts.find((a) => a.google_customer_id === activeCustomerId) ?? accounts[0];
 
   if (loading) return null;
 
@@ -171,9 +206,11 @@ export function GoogleAdsConnect({ onChange }: { onChange?: () => void }) {
           </button>
         </div>
       ) : (
-        // Compact status when connected
+        // Compact status when connected — active customer + dropdown
         <div
+          ref={dropdownRef}
           style={{
+            position: "relative",
             padding: "12px 16px",
             background: "#1F232B",
             border: "1px solid #2D3441",
@@ -185,48 +222,52 @@ export function GoogleAdsConnect({ onChange }: { onChange?: () => void }) {
           }}
         >
           <span style={{ fontSize: "13px", color: "#10b981", fontWeight: 600 }}>
-            ✅ Google Ads connected
+            ✅ Google Ads
           </span>
-          <span style={{ fontSize: "13px", color: "#A0A0A0" }}>
-            ({accounts.length} {accounts.length === 1 ? "account" : "accounts"}):
+
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            style={{
+              padding: "6px 12px",
+              background: open ? "#2D3441" : "#0F1116",
+              border: "1px solid #2D3441",
+              borderRadius: "8px",
+              color: "#E0E6F7",
+              fontSize: "13px",
+              fontWeight: 500,
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              gap: 10,
+              minWidth: 280,
+              maxWidth: 420,
+              justifyContent: "space-between",
+            }}
+            title="Choose active account"
+          >
+            <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+              {active ? (
+                <>
+                  <span style={{ fontWeight: 600 }}>
+                    {active.descriptive_name || formatCustomerId(active.google_customer_id)}
+                  </span>
+                  <span style={{ marginLeft: 8, color: "#A0A0A0", fontFamily: "monospace", fontSize: 11 }}>
+                    {formatCustomerId(active.google_customer_id)}
+                    {active.currency && ` · ${active.currency}`}
+                  </span>
+                </>
+              ) : (
+                "—"
+              )}
+            </span>
+            <span style={{ color: "#A0A0A0", fontSize: 11 }}>▼</span>
+          </button>
+
+          <span style={{ fontSize: "12px", color: "#A0A0A0" }}>
+            {accounts.length} {accounts.length === 1 ? "account" : "accounts"} total
           </span>
-          {accounts.slice(0, 3).map((a) => (
-            <span
-              key={a.id}
-              style={{
-                fontSize: "12px",
-                color: "#E0E6F7",
-                background: "#0F1116",
-                padding: "4px 10px",
-                borderRadius: "6px",
-                fontFamily: "monospace",
-              }}
-              title={`${a.timezone ?? "?"} · ${a.currency ?? "?"} · ${a.connected_at}`}
-            >
-              {formatCustomerId(a.google_customer_id)}
-              {a.currency && <span style={{ marginLeft: "6px", color: "#A0A0A0" }}>{a.currency}</span>}
-              <button
-                onClick={() => handleDisconnect(a.id)}
-                style={{
-                  marginLeft: "8px",
-                  background: "transparent",
-                  border: "none",
-                  color: "#A0A0A0",
-                  cursor: "pointer",
-                  fontSize: "12px",
-                  padding: 0,
-                }}
-                title="Disconnect account"
-              >
-                ✕
-              </button>
-            </span>
-          ))}
-          {accounts.length > 3 && (
-            <span style={{ fontSize: "12px", color: "#A0A0A0" }}>
-              + {accounts.length - 3} more
-            </span>
-          )}
+
           <button
             onClick={handleConnect}
             disabled={connecting}
@@ -243,6 +284,133 @@ export function GoogleAdsConnect({ onChange }: { onChange?: () => void }) {
           >
             {connecting ? "..." : "+ Add more"}
           </button>
+
+          {open && (
+            <div
+              style={{
+                position: "absolute",
+                top: "calc(100% + 6px)",
+                left: 16,
+                width: "min(420px, calc(100% - 32px))",
+                background: "#15181D",
+                border: "1px solid #2D3441",
+                borderRadius: 10,
+                boxShadow: "0 12px 28px rgba(0,0,0,0.4)",
+                zIndex: 50,
+                overflow: "hidden",
+              }}
+            >
+              {accounts.length > 8 && (
+                <div style={{ padding: "10px 12px", borderBottom: "1px solid #2D3441" }}>
+                  <input
+                    autoFocus
+                    type="text"
+                    placeholder="Search by ID, currency, timezone..."
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                    style={{
+                      width: "100%",
+                      padding: "8px 10px",
+                      background: "#0F1116",
+                      border: "1px solid #2D3441",
+                      borderRadius: 6,
+                      color: "#E0E6F7",
+                      fontSize: 12,
+                      outline: "none",
+                      boxSizing: "border-box",
+                    }}
+                  />
+                </div>
+              )}
+
+              <div style={{ maxHeight: 320, overflowY: "auto" }}>
+                {filteredAccounts.length === 0 ? (
+                  <div style={{ padding: 16, color: "#666", fontSize: 12, textAlign: "center" }}>
+                    No matches.
+                  </div>
+                ) : (
+                  filteredAccounts.map((a) => {
+                    const isActive = a.google_customer_id === activeCustomerId;
+                    return (
+                      <div
+                        key={a.id}
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: 10,
+                          padding: "10px 12px",
+                          background: isActive ? "#00FFE71A" : "transparent",
+                          borderLeft: isActive ? "3px solid #00FFE7" : "3px solid transparent",
+                          cursor: "pointer",
+                          transition: "background 100ms",
+                        }}
+                        onMouseEnter={(e) => {
+                          if (!isActive) (e.currentTarget as HTMLDivElement).style.background = "#1F232B";
+                        }}
+                        onMouseLeave={(e) => {
+                          if (!isActive) (e.currentTarget as HTMLDivElement).style.background = "transparent";
+                        }}
+                        onClick={() => {
+                          onSelectCustomer(a.google_customer_id);
+                          setOpen(false);
+                          setQuery("");
+                        }}
+                      >
+                        <div style={{ flex: 1, minWidth: 0 }}>
+                          <div
+                            style={{
+                              fontSize: 13,
+                              color: isActive ? "#00FFE7" : "#E0E6F7",
+                              fontWeight: isActive ? 600 : 500,
+                              overflow: "hidden",
+                              textOverflow: "ellipsis",
+                              whiteSpace: "nowrap",
+                            }}
+                          >
+                            {a.descriptive_name || formatCustomerId(a.google_customer_id)}
+                            {isActive && (
+                              <span style={{ marginLeft: 8, fontSize: 10, color: "#00FFE7" }}>active</span>
+                            )}
+                          </div>
+                          <div
+                            style={{
+                              fontSize: 10,
+                              color: "#666",
+                              marginTop: 2,
+                              fontFamily: "monospace",
+                            }}
+                          >
+                            {formatCustomerId(a.google_customer_id)} · {a.currency ?? "—"} · {a.timezone ?? "—"}
+                          </div>
+                        </div>
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleDisconnect(a.id, formatCustomerId(a.google_customer_id));
+                          }}
+                          title="Disconnect"
+                          style={{
+                            padding: "4px 8px",
+                            background: "transparent",
+                            border: "1px solid #2D3441",
+                            color: "#A0A0A0",
+                            borderRadius: 4,
+                            cursor: "pointer",
+                            fontSize: 10,
+                            opacity: 0.6,
+                          }}
+                          onMouseEnter={(e) => ((e.currentTarget as HTMLButtonElement).style.opacity = "1")}
+                          onMouseLeave={(e) => ((e.currentTarget as HTMLButtonElement).style.opacity = "0.6")}
+                        >
+                          Disconnect
+                        </button>
+                      </div>
+                    );
+                  })
+                )}
+              </div>
+            </div>
+          )}
         </div>
       )}
     </div>

@@ -89,6 +89,7 @@ class OAuthStartResponse(BaseModel):
 class ConnectedAccount(BaseModel):
     id: str
     google_customer_id: str
+    descriptive_name: Optional[str] = None
     timezone: Optional[str] = None
     currency: Optional[str] = None
     is_active: bool
@@ -193,13 +194,13 @@ async def oauth_callback(
         logger.warning("No accessible Google Ads accounts for user %s", user_id)
         return RedirectResponse(f"{frontend_base}/b6?google_ads_error=no_accounts")
 
-    # Store each connection (or update existing). Fetch timezone/currency where possible.
+    # Store each connection (or update existing). Fetch timezone/currency/name where possible.
     added = 0
     updated = 0
     async with AsyncSessionLocal() as session:
         for customer_id in customer_ids:
             # Try to fetch account info; tolerate failures (e.g. MCC accounts without direct access).
-            tz, curr = None, None
+            tz, curr, descriptive_name = None, None, None
             try:
                 from services.google_ads_client import get_valid_access_token
                 access_token = await get_valid_access_token(refresh_token)
@@ -207,6 +208,7 @@ async def oauth_callback(
                 if info:
                     tz = info.get("timezone")
                     curr = info.get("currencyCode")
+                    descriptive_name = info.get("descriptiveName")
             except Exception:
                 logger.warning("Could not fetch account info for %s (may be MCC or no-access)", customer_id)
 
@@ -221,6 +223,7 @@ async def oauth_callback(
                 existing.oauth_refresh_token = refresh_token
                 existing.timezone = tz or existing.timezone
                 existing.currency = curr or existing.currency
+                existing.descriptive_name = descriptive_name or existing.descriptive_name
                 existing.is_active = True
                 updated += 1
             else:
@@ -230,6 +233,7 @@ async def oauth_callback(
                     oauth_refresh_token=refresh_token,
                     timezone=tz,
                     currency=curr,
+                    descriptive_name=descriptive_name,
                     is_active=True,
                 ))
                 added += 1
@@ -255,6 +259,7 @@ async def list_accounts(current_user: User = Depends(get_current_user)):
             ConnectedAccount(
                 id=acc.id,
                 google_customer_id=acc.google_customer_id,
+                descriptive_name=acc.descriptive_name,
                 timezone=acc.timezone,
                 currency=acc.currency,
                 is_active=acc.is_active,

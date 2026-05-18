@@ -220,7 +220,11 @@ function B6Dashboard() {
         </header>
 
         {/* Google Ads connection status */}
-        <GoogleAdsConnect onChange={refresh} />
+        <GoogleAdsConnect
+          activeCustomerId={activeCustomerId}
+          onSelectCustomer={setActiveCustomerId}
+          onChange={refresh}
+        />
 
         {/* Stats bar */}
         <div
