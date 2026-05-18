@@ -14,6 +14,7 @@ from typing import Optional
 from fastapi import APIRouter, Depends, HTTPException, Query
 from pydantic import BaseModel
 
+from agents.tools import _get_access_token_for
 from db.models import User
 from dependencies import get_current_user
 from services import audit, google_ads_client as gads
@@ -75,10 +76,16 @@ async def get_action_review(action_id: str, current_user: User = Depends(get_cur
 
 @router.post("/{action_id}/approve")
 async def approve_action(action_id: str, body: ApproveRequest, current_user: User = Depends(get_current_user)):
-    """Апрувнуть действие.
+    """Approve an action.
 
-    Если apply_to_google_ads=True — сразу выполняем через google_ads_client.
-    Day 2 по умолчанию dry-run (статус становится 'approved' + 'applied' но в Google Ads ничего не уходит).
+    If apply_to_google_ads=True the change is written to Google Ads (Sprint 7).
+    Default (apply_to_google_ads=False) only marks the action as applied in our
+    DB without touching the real account.
+
+    Sprint 7 safety:
+    - Daily cap: max 5 REAL applies per (user, customer) in 24h
+    - Real applies require the user's stored OAuth refresh_token (ownership check)
+    - update_bid real apply still raises NotImplementedError (Sprint 7.5)
     """
     action = await audit.get_action(action_id)
     if action is None:
@@ -88,36 +95,65 @@ async def approve_action(action_id: str, body: ApproveRequest, current_user: Use
         raise HTTPException(400, f"Action is in status '{action['status']}' — cannot approve")
 
     target = action["target"] or {}
+    customer_id = target.get("customer_id")
+    campaign_id = target.get("campaign_id")
     approver_id = current_user.id
+
+    # Sprint 7 safety: rate-limit REAL applies per customer
+    if body.apply_to_google_ads:
+        if not customer_id:
+            raise HTTPException(400, "Action target missing customer_id — cannot apply to Google Ads")
+        count = await audit.count_real_applies_last_24h(approver_id, customer_id)
+        if count >= audit.DAILY_REAL_APPLY_CAP:
+            raise HTTPException(
+                429,
+                f"Daily safety cap reached: {count}/{audit.DAILY_REAL_APPLY_CAP} real applies on customer "
+                f"{customer_id} in the last 24h. Refusing further real applies. Wait or contact support.",
+            )
+
+    # Resolve access token — only needed for real apply
+    access_token = "dev-token"
+    if body.apply_to_google_ads:
+        try:
+            access_token = await _get_access_token_for(approver_id, customer_id)
+        except PermissionError as e:
+            raise HTTPException(403, str(e))
+        except Exception as e:
+            logger.exception("Failed to resolve access token for real apply")
+            raise HTTPException(500, f"Could not resolve access token: {e}")
 
     # Mark approved
     await audit.update_action_status(
         action_id, "approved", approved_by_user_id=approver_id
     )
 
-    # Apply (dry-run для Day 2)
+    # Apply (dry-run by default; real if apply_to_google_ads=True)
     after_state = None
     try:
         if action["action_type"] == "update_bid":
             after_state = await gads.update_bid(
-                access_token="dev-token",
-                customer_id=target.get("customer_id"),
-                ad_group_criterion_resource=f"campaign_{target.get('campaign_id')}",
+                access_token=access_token,
+                customer_id=customer_id,
+                ad_group_criterion_resource=f"campaign_{campaign_id}",
                 new_bid_micros=int(target.get("new_bid_micros", 0)),
                 dry_run=not body.apply_to_google_ads,
             )
         elif action["action_type"] == "pause_campaign":
             after_state = await gads.pause_campaign(
-                access_token="dev-token",
-                customer_id=target.get("customer_id"),
-                campaign_id=target.get("campaign_id"),
+                access_token=access_token,
+                customer_id=customer_id,
+                campaign_id=campaign_id,
                 dry_run=not body.apply_to_google_ads,
             )
         else:
             after_state = {"warning": f"Unknown action_type {action['action_type']} — only marked approved"}
     except NotImplementedError as e:
-        # Production write tools пока не реализованы (нужен real token)
-        after_state = {"dry_run": True, "note": str(e)}
+        # Real apply path not implemented for this action_type (e.g. update_bid → Sprint 7.5)
+        after_state = {"applied": False, "dry_run": True, "note": str(e)}
+    except RuntimeError as e:
+        # Google Ads API error — record it; don't crash the approval flow
+        logger.error("Real apply failed for %s: %s", action_id, e)
+        after_state = {"applied": False, "error": str(e), "customer_id": customer_id, "campaign_id": campaign_id}
 
     result = await audit.update_action_status(
         action_id, "applied", approved_by_user_id=approver_id, after_state=after_state

@@ -1,33 +1,61 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import type { LiveEvent } from "@/lib/b6-socket";
+
+const STORAGE_KEY = "b6_live_stream_open";
 
 export const LiveEventStream: React.FC<{
   events: LiveEvent[];
   connected: boolean;
 }> = ({ events, connected }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
+  // Свёрнут по умолчанию; состояние помним между рендерами через localStorage.
+  const [open, setOpen] = useState<boolean>(() => {
+    if (typeof window === "undefined") return false;
+    return window.localStorage.getItem(STORAGE_KEY) === "1";
+  });
 
-  // Авто-скролл вниз при новых событиях
   useEffect(() => {
+    if (typeof window === "undefined") return;
+    window.localStorage.setItem(STORAGE_KEY, open ? "1" : "0");
+  }, [open]);
+
+  // Auto-scroll to bottom on new events (only when expanded).
+  useEffect(() => {
+    if (!open) return;
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
-  }, [events.length]);
+  }, [events.length, open]);
 
   return (
     <div>
-      <div
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
         style={{
+          width: "100%",
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          marginBottom: "8px",
+          marginBottom: open ? 8 : 0,
+          padding: "6px 4px",
+          background: "transparent",
+          border: "none",
+          cursor: "pointer",
         }}
+        aria-expanded={open}
+        title={open ? "Collapse live stream" : "Expand live stream"}
       >
-        <h2 style={{ fontSize: "16px", fontWeight: 600, margin: 0, color: "#E0E6F7" }}>
+        <h2 style={{ fontSize: "16px", fontWeight: 600, margin: 0, color: "#E0E6F7", display: "flex", alignItems: "center", gap: 8 }}>
+          <span style={{ display: "inline-block", width: 12, color: "#A0A0A0", fontSize: 11, transition: "transform 100ms", transform: open ? "rotate(90deg)" : "rotate(0deg)" }}>▶</span>
           🎬 Live agent stream
+          {!open && events.length > 0 && (
+            <span style={{ fontSize: 11, fontWeight: 400, color: "#666" }}>
+              ({events.length} event{events.length === 1 ? "" : "s"})
+            </span>
+          )}
         </h2>
         <div
           style={{
@@ -49,32 +77,35 @@ export const LiveEventStream: React.FC<{
           />
           {connected ? "live" : "offline"}
         </div>
-      </div>
+      </button>
 
-      <div
-        ref={scrollRef}
-        style={{
-          maxHeight: "320px",
-          overflowY: "auto",
-          background: "#15181D",
-          borderRadius: "8px",
-          padding: "10px",
-          border: "1px solid #2D3340",
-          fontFamily: "ui-monospace, 'SF Mono', Menlo, monospace",
-          fontSize: "12px",
-          lineHeight: "1.6",
-        }}
-      >
-        {events.length === 0 ? (
-          <div style={{ color: "#666", textAlign: "center", padding: "20px" }}>
-            {connected
-              ? "Waiting for events... hit 'Run Buzz now'"
-              : "Connecting to server..."}
-          </div>
-        ) : (
-          events.map((e, i) => <EventLine key={i} event={e} />)
-        )}
-      </div>
+      {open && (
+        <div
+          ref={scrollRef}
+          style={{
+            maxHeight: "320px",
+            overflowY: "auto",
+            background: "#15181D",
+            borderRadius: "8px",
+            padding: "10px",
+            border: "1px solid #2D3340",
+            fontFamily: "ui-monospace, 'SF Mono', Menlo, monospace",
+            fontSize: "12px",
+            lineHeight: "1.6",
+            scrollbarGutter: "stable",
+          }}
+        >
+          {events.length === 0 ? (
+            <div style={{ color: "#666", textAlign: "center", padding: "20px" }}>
+              {connected
+                ? "Waiting for events... hit 'Run Buzz now'"
+                : "Connecting to server..."}
+            </div>
+          ) : (
+            events.map((e, i) => <EventLine key={i} event={e} />)
+          )}
+        </div>
+      )}
 
       <style jsx>{`
         @keyframes pulse {
@@ -87,7 +118,8 @@ export const LiveEventStream: React.FC<{
 };
 
 const EventLine: React.FC<{ event: LiveEvent }> = ({ event }) => {
-  const time = new Date(event.ts).toLocaleTimeString("ru-RU", {
+  const time = new Date(event.ts).toLocaleTimeString("en-US", {
+    hour12: false,
     hour: "2-digit",
     minute: "2-digit",
     second: "2-digit",

@@ -87,6 +87,7 @@ async function jsonRequest<T>(
   method: string,
   path: string,
   body?: unknown,
+  signal?: AbortSignal,
 ): Promise<T> {
   const res = await fetch(`${API_BASE}${path}`, {
     method,
@@ -96,6 +97,7 @@ async function jsonRequest<T>(
     },
     body: body ? JSON.stringify(body) : undefined,
     cache: "no-store",
+    signal,
   });
   if (res.status === 401) {
     handleUnauthorized();
@@ -122,12 +124,18 @@ export async function runAgent(opts: {
   agentType?: string;
   customerId: string;
   campaignId?: string;
+  signal?: AbortSignal;
 }): Promise<RunAgentResponse> {
-  return jsonRequest("POST", `/api/agents/run`, {
-    agent_type: opts.agentType || "bidding",
-    customer_id: opts.customerId,
-    campaign_id: opts.campaignId,
-  });
+  return jsonRequest(
+    "POST",
+    `/api/agents/run`,
+    {
+      agent_type: opts.agentType || "bidding",
+      customer_id: opts.customerId,
+      campaign_id: opts.campaignId,
+    },
+    opts.signal,
+  );
 }
 
 // ---------- Actions ----------
@@ -178,10 +186,12 @@ export type CampaignFromAPI = {
 export async function listCampaigns(
   customerId: string,
   includeMetrics = true,
+  days = 7,
 ): Promise<{ count: number; campaigns: CampaignFromAPI[] }> {
   const params = new URLSearchParams({
     customer_id: customerId,
     include_metrics: String(includeMetrics),
+    days: String(days),
   });
   return jsonRequest("GET", `/api/campaigns?${params}`);
 }

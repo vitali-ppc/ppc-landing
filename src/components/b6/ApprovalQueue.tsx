@@ -41,6 +41,7 @@ const ApprovalRow: React.FC<{
   onActionChange: () => void;
 }> = ({ action, onActionChange }) => {
   const [busy, setBusy] = useState<"approve" | "reject" | null>(null);
+  const [applyReal, setApplyReal] = useState(false);
 
   const campaign = action.target?.campaign_id;
   const newBid = action.target?.new_bid_usd;
@@ -51,10 +52,23 @@ const ApprovalRow: React.FC<{
       ? "Pause campaign"
       : action.action_type;
 
+  // Sprint 7: update_bid real apply isn't wired yet — toggle stays cosmetic
+  // for that action_type. pause_campaign is the only real-apply-capable action.
+  const supportsRealApply = action.action_type === "pause_campaign";
+
   const onApprove = async () => {
+    if (applyReal) {
+      const ok = confirm(
+        `⚠️ This will REALLY ${actionLabel.toLowerCase()} in the client's Google Ads account.\n\n` +
+        `Campaign: ${campaign}\n` +
+        `This action is logged and counted against the daily safety cap (5 real applies/24h).\n\n` +
+        `Proceed?`
+      );
+      if (!ok) return;
+    }
     setBusy("approve");
     try {
-      await approveAction(action.id);
+      await approveAction(action.id, applyReal);
       onActionChange();
     } catch (e) {
       console.error(e);
@@ -121,15 +135,22 @@ const ApprovalRow: React.FC<{
           <AegisBadge review={review} />
         </div>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: "8px", minWidth: "100px" }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: "8px", minWidth: "140px" }}>
           <button
             onClick={onApprove}
             disabled={busy !== null}
+            title={applyReal ? "Approve AND apply to Google Ads now" : "Approve (dry-run, no real change)"}
             style={{
               padding: "8px 14px",
               borderRadius: "6px",
               border: "none",
-              background: busy === "approve" ? "#4ECDC488" : "#4ECDC4",
+              background: applyReal
+                ? busy === "approve"
+                  ? "#FF6B6B88"
+                  : "linear-gradient(135deg, #FF8E53, #FF6B6B)"
+                : busy === "approve"
+                  ? "#4ECDC488"
+                  : "#4ECDC4",
               color: "#0F1116",
               fontSize: "13px",
               fontWeight: 600,
@@ -137,8 +158,31 @@ const ApprovalRow: React.FC<{
               transition: "background 150ms",
             }}
           >
-            {busy === "approve" ? "..." : "✓ Approve"}
+            {busy === "approve" ? "..." : applyReal ? "⚠ Apply now" : "✓ Approve"}
           </button>
+          {supportsRealApply && (
+            <label
+              title="When ON, approving will WRITE to the real Google Ads account (not dry-run)"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 6,
+                fontSize: 10,
+                color: applyReal ? "#FF8E53" : "#A0A0A0",
+                cursor: "pointer",
+                userSelect: "none",
+              }}
+            >
+              <input
+                type="checkbox"
+                checked={applyReal}
+                onChange={(e) => setApplyReal(e.target.checked)}
+                disabled={busy !== null}
+                style={{ accentColor: "#FF6B6B", cursor: "pointer" }}
+              />
+              <span>Apply to Google Ads</span>
+            </label>
+          )}
           <button
             onClick={onReject}
             disabled={busy !== null}

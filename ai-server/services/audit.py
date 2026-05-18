@@ -8,16 +8,20 @@
 from __future__ import annotations
 
 import logging
-from datetime import datetime
+from datetime import datetime, timedelta
 from typing import Any, Optional
 
-from sqlalchemy import select
+from sqlalchemy import select, and_, func
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from db.models import Agent, AgentAction, AuditLog
 from db.session import AsyncSessionLocal
 
 logger = logging.getLogger(__name__)
+
+# Sprint 7 safety: how many REAL applies (apply_to_google_ads=true) per
+# (user, customer_id) in the last 24h are allowed before we refuse to apply.
+DAILY_REAL_APPLY_CAP = 5
 
 
 async def write_proposed_action(
@@ -236,3 +240,36 @@ async def get_action(action_id: str) -> Optional[dict[str, Any]]:
             "created_at": a.created_at.isoformat(),
             "applied_at": a.applied_at.isoformat() if a.applied_at else None,
         }
+
+
+async def count_real_applies_last_24h(user_id: str, customer_id: str) -> int:
+    """Count AgentActions that were REALLY applied to Google Ads in the last 24h
+    for a specific (user_id, customer_id) pair.
+
+    "Really applied" means status='applied' AND after_state.applied=true
+    (i.e. apply_to_google_ads=true was used, not dry-run).
+
+    Sprint 7 safety cap: routers/actions.py refuses further real applies once
+    this returns >= DAILY_REAL_APPLY_CAP, regardless of Aegis verdict.
+    """
+    since = datetime.utcnow() - timedelta(hours=24)
+    async with AsyncSessionLocal() as session:
+        stmt = select(AgentAction).where(
+            and_(
+                AgentAction.user_id == user_id,
+                AgentAction.status == "applied",
+                AgentAction.applied_at.is_not(None),
+                AgentAction.applied_at >= since,
+            )
+        )
+        rows = (await session.execute(stmt)).scalars().all()
+    count = 0
+    for row in rows:
+        target = row.target or {}
+        after = row.after_state or {}
+        if target.get("customer_id") != customer_id:
+            continue
+        # Only count REAL applies (after_state.applied=true, not dry_run)
+        if after.get("applied") is True and after.get("dry_run") is False:
+            count += 1
+    return count

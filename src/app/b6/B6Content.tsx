@@ -15,6 +15,7 @@ import { MaximusPanel } from "@/components/b6/MaximusPanel";
 import { MiraPanel } from "@/components/b6/MiraPanel";
 import { SagePanel } from "@/components/b6/SagePanel";
 import { GoogleAdsConnect } from "@/components/b6/GoogleAdsConnect";
+import { DateRangePicker, defaultDateRange, type DateRange } from "@/components/b6/DateRangePicker";
 import AuthGuard from "@/components/AuthGuard";
 import { useAuth } from "@/lib/useAuth";
 import { useB6Events } from "@/lib/b6-socket";
@@ -53,6 +54,17 @@ function B6Dashboard() {
   const [stats, setStats] = useState<{ iterations?: number; tool_calls?: number }>({});
   const [activeCustomerId, setActiveCustomerId] = useState<string>("");
   const [campaignFilter, setCampaignFilter] = useState<"all" | "enabled" | "paused">("all");
+  const [dateRange, setDateRange] = useState<DateRange>(() => defaultDateRange());
+  const [campaignsOpen, setCampaignsOpen] = useState<boolean>(() => {
+    if (typeof window === "undefined") return true;
+    const v = window.localStorage.getItem("b6_campaigns_open");
+    return v === null ? true : v === "1";
+  });
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem("b6_campaigns_open", campaignsOpen ? "1" : "0");
+    }
+  }, [campaignsOpen]);
 
   // Live events через Socket.IO
   const { events: liveEvents, connected, clear: clearEvents } = useB6Events();
@@ -92,7 +104,7 @@ function B6Dashboard() {
         listActions({ limit: 30 }),
         listAgents(),
         activeCustomerId
-          ? listCampaigns(activeCustomerId).catch((e) => {
+          ? listCampaigns(activeCustomerId, true, dateRange.days).catch((e) => {
               console.warn("Campaigns fetch failed", e);
               return { count: 0, campaigns: [] };
             })
@@ -109,7 +121,7 @@ function B6Dashboard() {
     } finally {
       setLoading(false);
     }
-  }, [activeCustomerId]);
+  }, [activeCustomerId, dateRange.days]);
 
   useEffect(() => {
     refresh();
@@ -266,41 +278,90 @@ function B6Dashboard() {
 
         {/* Campaigns */}
         <section style={{ marginBottom: "28px" }}>
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "12px", flexWrap: "wrap", gap: 8 }}>
-            <h2 style={{ fontSize: "16px", fontWeight: 600, margin: 0, color: "#E0E6F7" }}>
-              📊 Campaigns ({filteredCampaigns.length}{campaignFilter !== "all" ? ` / ${campaigns.length}` : ""})
-              {highlightedCampaign && (
-                <span style={{ marginLeft: "10px", color: "#00FFE7", fontSize: "12px", fontWeight: 500 }}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              marginBottom: campaignsOpen ? "12px" : 0,
+              flexWrap: "wrap",
+              gap: 8,
+            }}
+          >
+            <button
+              type="button"
+              onClick={() => setCampaignsOpen((v) => !v)}
+              aria-expanded={campaignsOpen}
+              title={campaignsOpen ? "Collapse campaigns" : "Expand campaigns"}
+              style={{
+                background: "transparent",
+                border: "none",
+                padding: "4px 0",
+                cursor: "pointer",
+                color: "#E0E6F7",
+                fontSize: "16px",
+                fontWeight: 600,
+                display: "flex",
+                alignItems: "center",
+                gap: 8,
+              }}
+            >
+              <span
+                style={{
+                  display: "inline-block",
+                  width: 12,
+                  color: "#A0A0A0",
+                  fontSize: 11,
+                  transform: campaignsOpen ? "rotate(90deg)" : "rotate(0deg)",
+                  transition: "transform 100ms",
+                }}
+              >
+                ▶
+              </span>
+              📊 Campaigns ({filteredCampaigns.length}
+              {campaignFilter !== "all" ? ` / ${campaigns.length}` : ""})
+              <span style={{ fontSize: 12, fontWeight: 400, color: "#A0A0A0" }}>
+                · {dateRange.label}
+              </span>
+              {highlightedCampaign && campaignsOpen && (
+                <span style={{ color: "#00FFE7", fontSize: "12px", fontWeight: 500 }}>
                   · 🐝 Buzz is looking at {highlightedCampaign}
                 </span>
               )}
-            </h2>
-            {campaigns.length > 0 && (
-              <div style={{ display: "flex", gap: 6 }}>
-                <FilterTab label="All" count={campaigns.length} active={campaignFilter === "all"} onClick={() => setCampaignFilter("all")} color="#7F9CF5" />
-                <FilterTab label="Active" count={enabledCount} active={campaignFilter === "enabled"} onClick={() => setCampaignFilter("enabled")} color="#4ECDC4" />
-                <FilterTab label="Paused" count={pausedCount} active={campaignFilter === "paused"} onClick={() => setCampaignFilter("paused")} color="#FFA726" />
+            </button>
+            {campaignsOpen && (
+              <div style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
+                {campaigns.length > 0 && (
+                  <div style={{ display: "flex", gap: 6 }}>
+                    <FilterTab label="All" count={campaigns.length} active={campaignFilter === "all"} onClick={() => setCampaignFilter("all")} color="#7F9CF5" />
+                    <FilterTab label="Active" count={enabledCount} active={campaignFilter === "enabled"} onClick={() => setCampaignFilter("enabled")} color="#4ECDC4" />
+                    <FilterTab label="Paused" count={pausedCount} active={campaignFilter === "paused"} onClick={() => setCampaignFilter("paused")} color="#FFA726" />
+                  </div>
+                )}
+                <DateRangePicker value={dateRange} onChange={setDateRange} />
               </div>
             )}
           </div>
-          {campaigns.length === 0 ? (
-            <div style={{ padding: "20px", background: "#1F232B", borderRadius: "10px", textAlign: "center", color: "#A0A0A0" }}>
-              Campaigns not loaded yet...
-            </div>
-          ) : filteredCampaigns.length === 0 ? (
-            <div style={{ padding: "20px", background: "#1F232B", borderRadius: "10px", textAlign: "center", color: "#A0A0A0", fontSize: 13 }}>
-              No campaigns match this filter.
-            </div>
-          ) : (
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "12px" }}>
-              {filteredCampaigns.map((c) => (
-                <CampaignCard
-                  key={c.id}
-                  campaign={c}
-                  highlighted={highlightedCampaign === c.id}
-                />
-              ))}
-            </div>
+          {campaignsOpen && (
+            campaigns.length === 0 ? (
+              <div style={{ padding: "20px", background: "#1F232B", borderRadius: "10px", textAlign: "center", color: "#A0A0A0" }}>
+                Campaigns not loaded yet...
+              </div>
+            ) : filteredCampaigns.length === 0 ? (
+              <div style={{ padding: "20px", background: "#1F232B", borderRadius: "10px", textAlign: "center", color: "#A0A0A0", fontSize: 13 }}>
+                No campaigns match this filter.
+              </div>
+            ) : (
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "12px" }}>
+                {filteredCampaigns.map((c) => (
+                  <CampaignCard
+                    key={c.id}
+                    campaign={c}
+                    highlighted={highlightedCampaign === c.id}
+                  />
+                ))}
+              </div>
+            )
           )}
         </section>
 

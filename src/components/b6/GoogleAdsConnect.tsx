@@ -254,7 +254,6 @@ export function GoogleAdsConnect({
                   </span>
                   <span style={{ marginLeft: 8, color: "#A0A0A0", fontFamily: "monospace", fontSize: 11 }}>
                     {formatCustomerId(active.google_customer_id)}
-                    {active.currency && ` · ${active.currency}`}
                   </span>
                 </>
               ) : (
@@ -331,9 +330,15 @@ export function GoogleAdsConnect({
                 ) : (
                   filteredAccounts.map((a) => {
                     const isActive = a.google_customer_id === activeCustomerId;
+                    const tooltipParts = [
+                      a.currency,
+                      a.timezone,
+                      a.connected_at ? `connected ${new Date(a.connected_at).toLocaleDateString("en-US")}` : null,
+                    ].filter(Boolean);
                     return (
                       <div
                         key={a.id}
+                        title={tooltipParts.join(" · ")}
                         style={{
                           display: "flex",
                           alignItems: "center",
@@ -374,13 +379,13 @@ export function GoogleAdsConnect({
                           </div>
                           <div
                             style={{
-                              fontSize: 10,
+                              fontSize: 11,
                               color: "#666",
                               marginTop: 2,
                               fontFamily: "monospace",
                             }}
                           >
-                            {formatCustomerId(a.google_customer_id)} · {a.currency ?? "—"} · {a.timezone ?? "—"}
+                            {formatCustomerId(a.google_customer_id)}
                           </div>
                         </div>
                         <button

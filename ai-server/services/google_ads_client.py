@@ -367,18 +367,46 @@ async def update_bid(
     *,
     dry_run: bool = True,
 ) -> dict[str, Any]:
-    """Обновить ставку.
+    """Update CPC bid on an ad group criterion (keyword-level).
 
-    В dev (mock или dry_run=True) — возвращает имитацию.
-    В prod — делает mutate-запрос к API.
+    NOTE: Sprint 7 ships pause_campaign with real apply. update_bid real apply
+    is deferred to Sprint 7.5 because the current Buzz proposal model passes
+    campaign_id rather than ad_group_criterion resource_name — needs a model
+    refactor on the agent side first.
     """
     if use_mock() or dry_run:
         logger.info("update_bid (dry_run) %s -> %s micros", ad_group_criterion_resource, new_bid_micros)
         return {"applied": False, "dry_run": True, "new_bid_micros": new_bid_micros}
 
-    # Production: mutate AdGroupCriterion.cpc_bid_micros
-    # см. https://developers.google.com/google-ads/api/docs/samples/update-keyword-bid
-    raise NotImplementedError("Production bid update not implemented yet — будет добавлено после Google Ads token approval")
+    raise NotImplementedError(
+        "Real bid update requires per-keyword ad_group_criterion resource name. "
+        "Buzz currently proposes at campaign level — refactor pending (Sprint 7.5)."
+    )
+
+
+async def get_campaign_status(access_token: str, customer_id: str, campaign_id: str) -> Optional[str]:
+    """Return current campaign status (ENABLED / PAUSED / REMOVED) or None on failure.
+
+    Used by pause_campaign to capture before_state before applying changes.
+    """
+    if use_mock():
+        return "ENABLED"
+    query = (
+        f"SELECT campaign.status FROM campaign "
+        f"WHERE campaign.id = {campaign_id} LIMIT 1"
+    )
+    url = f"{GOOGLE_ADS_API_BASE}/customers/{customer_id}/googleAds:searchStream"
+    async with httpx.AsyncClient(timeout=20.0) as client:
+        r = await client.post(url, headers=_headers(access_token), json={"query": query})
+        if r.status_code != 200:
+            logger.warning("get_campaign_status %s/%s -> %s: %s", customer_id, campaign_id, r.status_code, r.text[:200])
+            return None
+        data = r.json()
+    chunks = data if isinstance(data, list) else [data]
+    for chunk in chunks:
+        for row in chunk.get("results", []) or []:
+            return (row.get("campaign", {}) or {}).get("status")
+    return None
 
 
 async def pause_campaign(
@@ -388,12 +416,75 @@ async def pause_campaign(
     *,
     dry_run: bool = True,
 ) -> dict[str, Any]:
-    """Поставить кампанию на паузу."""
-    if use_mock() or dry_run:
-        logger.info("pause_campaign (dry_run) %s", campaign_id)
-        return {"applied": False, "dry_run": True, "campaign_id": campaign_id}
+    """Pause a Google Ads campaign.
 
-    raise NotImplementedError("Production pause not implemented yet")
+    Returns a structured dict with the before/after state and a `dry_run` flag
+    so the caller can persist it as audit. Raises on API errors (caller logs
+    and stores as 'failed' status).
+    """
+    if use_mock() or dry_run:
+        logger.info("pause_campaign (dry_run=%s) %s/%s", dry_run, customer_id, campaign_id)
+        return {
+            "applied": False,
+            "dry_run": True,
+            "customer_id": customer_id,
+            "campaign_id": campaign_id,
+            "before_status": None,
+            "after_status": "PAUSED",
+        }
+
+    # Real apply path
+    before_status = await get_campaign_status(access_token, customer_id, campaign_id)
+    if before_status == "PAUSED":
+        return {
+            "applied": False,
+            "noop": True,
+            "reason": "Campaign already PAUSED",
+            "customer_id": customer_id,
+            "campaign_id": campaign_id,
+            "before_status": before_status,
+            "after_status": before_status,
+        }
+    if before_status == "REMOVED":
+        raise RuntimeError(f"Campaign {campaign_id} is REMOVED — cannot pause")
+
+    resource_name = f"customers/{customer_id}/campaigns/{campaign_id}"
+    url = f"{GOOGLE_ADS_API_BASE}/customers/{customer_id}/campaigns:mutate"
+    body = {
+        "operations": [
+            {
+                "update": {
+                    "resourceName": resource_name,
+                    "status": "PAUSED",
+                },
+                "updateMask": "status",
+            }
+        ],
+        "partialFailure": False,
+        "validateOnly": False,
+    }
+
+    async with httpx.AsyncClient(timeout=30.0) as client:
+        r = await client.post(url, headers=_headers(access_token), json=body)
+
+    if r.status_code != 200:
+        logger.error(
+            "pause_campaign %s/%s -> %s: %s",
+            customer_id, campaign_id, r.status_code, r.text[:500],
+        )
+        raise RuntimeError(f"Google Ads mutate failed: {r.status_code} {r.text[:200]}")
+
+    response = r.json()
+    logger.info("pause_campaign applied %s/%s (before=%s)", customer_id, campaign_id, before_status)
+    return {
+        "applied": True,
+        "dry_run": False,
+        "customer_id": customer_id,
+        "campaign_id": campaign_id,
+        "before_status": before_status,
+        "after_status": "PAUSED",
+        "google_ads_response": response,
+    }
 
 
 # ---------------------------------------------------------------------------
