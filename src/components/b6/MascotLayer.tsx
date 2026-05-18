@@ -181,15 +181,15 @@ function handleEvent(
 
   switch (e.event_type) {
     case "session.start":
-      setBuzz({ state: "center", x: 0, y: 0, message: "Buzz готовится...", campaignId: null });
+      setBuzz({ state: "center", x: 0, y: 0, message: "Buzz is gearing up...", campaignId: null });
       setAegis(IDLE_AEGIS);
       break;
 
     case "agent.thinking":
       if (isAegis) {
-        setAegis({ state: "center", x: 0, y: 0, message: "Aegis анализирует...", campaignId: null });
+        setAegis({ state: "center", x: 0, y: 0, message: "Aegis is analyzing...", campaignId: null });
       } else {
-        setBuzz({ state: "center", x: 0, y: 0, message: "Думаю...", campaignId: null });
+        setBuzz({ state: "center", x: 0, y: 0, message: "Thinking...", campaignId: null });
       }
       break;
 
@@ -234,9 +234,9 @@ function handleEvent(
 
     case "agent.done":
       if (isAegis) {
-        setAegis({ state: "done", x: 0, y: 0, message: "✓ Aegis закончил", campaignId: null });
+        setAegis({ state: "done", x: 0, y: 0, message: "✓ Aegis done", campaignId: null });
       } else {
-        setBuzz({ state: "done", x: 0, y: 0, message: "✓ Buzz закончил", campaignId: null });
+        setBuzz({ state: "done", x: 0, y: 0, message: "✓ Buzz done", campaignId: null });
       }
       setTimeout(() => {
         if (isAegis) setAegis(IDLE_AEGIS);
@@ -277,13 +277,13 @@ function findCardPosition(campaignId: string): { x: number; y: number } | null {
 function describeTool(tool: string | undefined, input: string | undefined): string {
   if (!tool) return "...";
   switch (tool) {
-    case "list_campaigns": return "смотрю все кампании";
-    case "get_campaign_metrics": return "читаю метрики";
-    case "get_keyword_metrics": return "читаю ключи";
-    case "check_safety_cap": return "проверяю лимиты";
-    case "propose_bid_change": return "предлагаю поднять ставку";
-    case "propose_pause_campaign": return "предлагаю паузу";
-    case "submit_review": return "ревьюю";
+    case "list_campaigns": return "scanning all campaigns";
+    case "get_campaign_metrics": return "reading metrics";
+    case "get_keyword_metrics": return "reading keywords";
+    case "check_safety_cap": return "checking safety caps";
+    case "propose_bid_change": return "proposing bid raise";
+    case "propose_pause_campaign": return "proposing pause";
+    case "submit_review": return "reviewing";
     default: return tool;
   }
 }

@@ -17,7 +17,7 @@ export const ActivityFeed: React.FC<{ actions: AgentAction[] }> = ({ actions }) 
           borderRadius: "10px",
         }}
       >
-        Buzz пока не делал действий. Нажми «Run Buzz» сверху.
+        Buzz hasn't taken any actions yet. Hit "Run Buzz" up top.
       </div>
     );
   }
@@ -32,7 +32,7 @@ export const ActivityFeed: React.FC<{ actions: AgentAction[] }> = ({ actions }) 
 };
 
 const FeedItem: React.FC<{ action: AgentAction }> = ({ action }) => {
-  const time = new Date(action.created_at).toLocaleTimeString("ru-RU", {
+  const time = new Date(action.created_at).toLocaleTimeString("en-US", {
     hour: "2-digit",
     minute: "2-digit",
     second: "2-digit",
@@ -53,10 +53,10 @@ const FeedItem: React.FC<{ action: AgentAction }> = ({ action }) => {
     >
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "4px" }}>
         <div style={{ color: "#E0E6F7", fontWeight: 500 }}>
-          🐝 Buzz · {action.action_type === "update_bid" ? "повысить ставку" : action.action_type === "pause_campaign" ? "поставить паузу" : action.action_type}
+          🐝 Buzz · {action.action_type === "update_bid" ? "raise bid" : action.action_type === "pause_campaign" ? "pause campaign" : action.action_type}
           {campaign && (
             <span style={{ color: "#A0A0A0", marginLeft: "6px" }}>
-              для кампании <code style={{ color: "#7F9CF5" }}>{campaign}</code>
+              on campaign <code style={{ color: "#7F9CF5" }}>{campaign}</code>
             </span>
           )}
           {isPositive && (

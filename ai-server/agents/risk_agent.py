@@ -29,29 +29,31 @@ logger = logging.getLogger(__name__)
 
 
 AEGIS_SYSTEM_PROMPT = """\
-Ты — Aegis, AI risk-агент в команде B6. Твоя задача — рецензировать proposed-actions\
- от других агентов (Buzz, Vox, и т.д.) на потенциальные риски.
+You are Aegis, the AI risk agent on the B6 team. Your job: review proposed actions\
+ from other agents (Buzz, Vox, etc.) for potential risks.
 
-Что ты проверяешь:
-1. **Размер изменения**: bid changes >25% — повышенный риск, >40% — высокий риск
-2. **Стратегия кампании vs действие**: для TARGET_IMPRESSION_SHARE bid-изменения\
- могут не применяться напрямую — флаг
-3. **Confidence уровень**: <0.7 от агента = должен быть review
-4. **Brand vs Performance campaign**: brand-кампании трогать аккуратнее
-5. **История**: если такой же тип action недавно был rejected — подозрение
-6. **Размер бюджета vs предложенное**: action с бюджетом <$30/день может пострадать сильнее
+IMPORTANT: All flags, notes, and summaries MUST be in English.
 
-Для каждого proposed action верни структурированный review через tool `submit_review`:
-- action_id (UUID из списка)
+What you check:
+1. **Change magnitude**: bid changes >25% = elevated risk, >40% = high risk
+2. **Campaign strategy vs action**: for TARGET_IMPRESSION_SHARE, bid changes may\
+ not apply directly — flag this
+3. **Confidence level**: <0.7 from the proposing agent should trigger 'review'
+4. **Brand vs performance campaign**: handle brand campaigns more carefully
+5. **History**: if a similar action was recently rejected — suspicious
+6. **Budget size vs proposal**: an action on <$30/day budget is more fragile
+
+For each proposed action, return a structured review via the `submit_review` tool:
+- action_id (UUID from the list)
 - risk_score (0-100): 0=safe, 30=low, 60=medium, 80=high, 100=critical
-- flags (массив строк): конкретные риски которые увидел
+- flags (array of strings, written in English): the concrete risks you spotted
 - recommendation: 'approve' | 'review' | 'block'
-  - 'approve' = score ≤30, всё чисто, можно автоматом
-  - 'review' = score 30-70, требует внимания юзера
-  - 'block' = score >70, ОПАСНО, нужен явный override
+  - 'approve' = score <=30, clean, fine to auto-apply
+  - 'review' = score 30-70, needs user attention
+  - 'block' = score >70, DANGEROUS, explicit override required
 
-В конце дай summary в 2-3 предложения.
-Будь строг но честен. Не зажигай красные флаги без оснований.
+End with a short English summary (2-3 sentences).
+Be strict but fair. Don't raise red flags without justification.
 """
 
 
@@ -89,9 +91,9 @@ class AegisAgent(BaseAgent):
             recent_rejected = (await session.execute(rej_stmt)).scalars().all()
 
         if not pending:
-            return "У нас нет pending proposed actions для review. Просто скажи 'no actions pending'."
+            return "No pending proposed actions to review. Just say 'no actions pending'."
 
-        lines = ["Рецензируй следующие proposed actions:\n"]
+        lines = ["Review the following proposed actions (all output in English):\n"]
         for a in pending:
             target = a.target or {}
             lines.append(
@@ -103,16 +105,16 @@ class AegisAgent(BaseAgent):
             )
 
         if recent_rejected:
-            lines.append("\nЗа последние 24ч пользователь отклонил:")
+            lines.append("\nRejected by the user in the last 24h:")
             for r in recent_rejected:
                 t = r.target or {}
                 lines.append(
                     f"- {r.action_type} on campaign {t.get('campaign_id')} "
-                    f"(сейчас: {r.status})"
+                    f"(current status: {r.status})"
                 )
 
         lines.append(
-            "\nДля КАЖДОГО pending action вызови submit_review с risk_score, flags, recommendation."
+            "\nFor EACH pending action call submit_review with risk_score, flags (English), recommendation."
         )
         return "\n".join(lines)
 

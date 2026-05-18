@@ -24,30 +24,32 @@ logger = logging.getLogger(__name__)
 
 
 MIRA_SYSTEM_PROMPT = """\
-Ты — Mira, AI creative-агент в команде B6. Твоя задача — создавать рекламные креативы\
- для Google Ads кампаний пользователя.
+You are Mira, an AI creative agent in the B6 team. Your job is to create ad creatives\
+ for the user's Google Ads campaigns.
 
-У тебя есть данные одной кампании (метрики, бюджет, стратегия). Твоё задание:
+IMPORTANT: All reasoning, summaries, flags, and proposal text MUST be in English.
 
-1. Сгенерируй **3 варианта** ad copy (Responsive Search Ad-формат):
-   - **Headline 1** (макс 30 символов) — главное преимущество
-   - **Headline 2** (макс 30 символов) — call to action
-   - **Description** (макс 90 символов) — детали + что мотивирует кликнуть
+You have the data for one campaign (metrics, budget, strategy). Your task:
 
-2. К каждому варианту — **image prompt** для display ad (одной строкой):
-   - Стиль (modern minimalist / lifestyle photo / product hero / abstract)
-   - Объект (что показать)
+1. Generate **3 variants** of ad copy (Responsive Search Ad format):
+   - **Headline 1** (max 30 chars) — main benefit
+   - **Headline 2** (max 30 chars) — call to action
+   - **Description** (max 90 chars) — details + what motivates the click
+
+2. For each variant — an **image prompt** for the display ad (single line):
+   - Style (modern minimalist / lifestyle photo / product hero / abstract)
+   - Subject (what to show)
    - Mood (energetic / calm / luxurious / playful)
 
-3. Объясни **почему именно такие** креативы — на основе данных кампании.
+3. Explain **why these specific** creatives — based on campaign data.
 
-Правила Google Ads:
-- Без CAPS LOCK, восклицательных знаков подряд
-- Без обещаний типа «100% guaranteed»
-- Без неподтверждённых статистик
-- Конкретика > общие слова
+Google Ads rules:
+- No CAPS LOCK, no consecutive exclamation marks
+- No promises like "100% guaranteed"
+- No unverified statistics
+- Specifics > generic words
 
-Используй tool `propose_creative_set` (ОДИН раз) с всеми 3 вариантами.
+Use the tool `propose_creative_set` (ONCE) with all 3 variants.
 """
 
 
@@ -83,7 +85,7 @@ class CreativeAgent(BaseAgent):
         campaigns = await gads.list_campaigns(access_token, self.customer_id)
         target = next((c for c in campaigns if str(c["id"]) == str(self.campaign_id)), None)
         if not target:
-            return f"Кампания {self.campaign_id} не найдена. Скажи 'campaign not found' и выйди."
+            return f"Campaign {self.campaign_id} not found. Say 'campaign not found' and exit."
 
         # Метрики
         metrics = await gads.get_campaign_metrics(
@@ -97,27 +99,27 @@ class CreativeAgent(BaseAgent):
             keywords = []
 
         kw_lines = "\n".join([
-            f"  - «{k.get('keyword')}» ({k.get('match_type')}) CTR {k.get('ctr',0)*100:.1f}%"
+            f"  - \"{k.get('keyword')}\" ({k.get('match_type')}) CTR {k.get('ctr',0)*100:.1f}%"
             for k in keywords[:5]
-        ]) or "  (нет данных по ключам)"
+        ]) or "  (no keyword data)"
 
         return f"""\
-Создай 3 варианта рекламы для следующей кампании.
+Create 3 ad variants for the following campaign.
 
-**Кампания**: «{target['name']}» (id {target['id']})
-- Стратегия: {target.get('bid_strategy')}
-- Бюджет: ${target['budget_micros']/1_000_000:.0f}/день
+**Campaign**: "{target['name']}" (id {target['id']})
+- Strategy: {target.get('bid_strategy')}
+- Budget: ${target['budget_micros']/1_000_000:.0f}/day
 
-**Метрики за 7 дней**:
+**7-day metrics**:
 - ROAS: {metrics['roas']}
 - CTR: {metrics['ctr']*100:.2f}%
-- Конверсий: {metrics['conversions']}
-- Стоимость конверсии: ~${metrics['spend_micros']/1_000_000/max(metrics['conversions'],1):.2f}
+- Conversions: {metrics['conversions']}
+- Cost per conversion: ~${metrics['spend_micros']/1_000_000/max(metrics['conversions'],1):.2f}
 
-**Топ-5 ключей в кампании**:
+**Top-5 keywords in the campaign**:
 {kw_lines}
 
-Вызови `propose_creative_set` с 3 вариантами + image prompts.
+Call `propose_creative_set` with 3 variants + image prompts. All output must be in English.
 """
 
     def register_tools(self) -> list[ToolSpec]:

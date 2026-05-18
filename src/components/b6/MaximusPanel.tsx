@@ -10,10 +10,10 @@ import {
 } from "@/lib/b6-api";
 
 const LEVELS: { value: AutonomyLevel; label: string; desc: string; price: string }[] = [
-  { value: "l0", label: "L0 Observer", desc: "AI смотрит, ничего не делает", price: "free" },
-  { value: "l1", label: "L1 Co-pilot", desc: "Каждое действие через апрув", price: "$99" },
-  { value: "l2", label: "L2 Approval", desc: "Auto-apply подтверждённых", price: "$199" },
-  { value: "l3", label: "L3 Autonomous", desc: "Полная автономия", price: "$399" },
+  { value: "l0", label: "L0 Observer", desc: "AI watches, does nothing", price: "free" },
+  { value: "l1", label: "L1 Co-pilot", desc: "Every action via approval", price: "$99" },
+  { value: "l2", label: "L2 Approval", desc: "Auto-apply once approved", price: "$199" },
+  { value: "l3", label: "L3 Autonomous", desc: "Full autonomy", price: "$399" },
 ];
 
 export const MaximusPanel: React.FC<{ onChange?: () => void }> = ({ onChange }) => {
@@ -80,7 +80,7 @@ export const MaximusPanel: React.FC<{ onChange?: () => void }> = ({ onChange }) 
             🐻 Maximus — Orchestrator
           </div>
           <div style={{ fontSize: "11px", color: "#666", marginTop: "2px" }}>
-            Решает что апрувить автоматически, что эскалировать тебе
+            Decides what to auto-approve and what to escalate to you
           </div>
         </div>
         <button
@@ -97,7 +97,7 @@ export const MaximusPanel: React.FC<{ onChange?: () => void }> = ({ onChange }) 
             cursor: running ? "wait" : "pointer",
           }}
         >
-          {running ? "🐻 Maximus думает..." : "Запустить cycle"}
+          {running ? "🐻 Maximus is thinking..." : "Run cycle"}
         </button>
       </div>
 
@@ -159,7 +159,7 @@ export const MaximusPanel: React.FC<{ onChange?: () => void }> = ({ onChange }) 
         <CycleResult cycle={cycle} />
       ) : (
         <div style={{ padding: "20px", textAlign: "center", color: "#666", fontSize: "12px" }}>
-          Пока не запускался. Нажми «Запустить cycle» когда есть proposed actions от Buzz/Vox.
+          Not run yet. Hit "Run cycle" when there are proposed actions from Buzz/Vox.
         </div>
       )}
     </div>
@@ -175,17 +175,17 @@ const CycleResult: React.FC<{ cycle: OrchestrationCycle }> = ({ cycle }) => (
     </div>
 
     {cycle.auto_approved.length > 0 && (
-      <DetailsList title="Авто-апрувлено Maximus'ом" items={cycle.auto_approved} color="#4ECDC4" />
+      <DetailsList title="Auto-approved by Maximus" items={cycle.auto_approved} color="#4ECDC4" />
     )}
     {cycle.kept_pending.length > 0 && (
-      <DetailsList title="Оставлено на ручной апрув" items={cycle.kept_pending} color="#FFA726" />
+      <DetailsList title="Kept for manual approval" items={cycle.kept_pending} color="#FFA726" />
     )}
     {cycle.blocked.length > 0 && (
-      <DetailsList title="Заблокировано (Aegis)" items={cycle.blocked} color="#FF6B6B" />
+      <DetailsList title="Blocked by Aegis" items={cycle.blocked} color="#FF6B6B" />
     )}
 
     <div style={{ marginTop: "10px", color: "#666", fontSize: "10px", textAlign: "right" }}>
-      Last cycle: {new Date(cycle.run_at).toLocaleString("ru-RU")}
+      Last cycle: {new Date(cycle.run_at).toLocaleString("en-US")}
     </div>
   </>
 );

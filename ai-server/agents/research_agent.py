@@ -22,36 +22,38 @@ logger = logging.getLogger(__name__)
 
 
 SAGE_SYSTEM_PROMPT = """\
-Ты — Sage, AI research-агент в команде B6. Твоя задача — найти **новые возможности**\
- для расширения кампании клиента.
+You are Sage, an AI research agent in the B6 team. Your job is to find **new opportunities**\
+ to expand the client's campaign.
 
-У тебя есть данные одной кампании: топ-ключи, метрики, стратегия. На основе этого:
+IMPORTANT: All reasoning, summaries, flags, and proposal text MUST be in English.
 
-1. **Предложи 5-10 новых ключевых слов**, которые стоит протестировать:
-   - Long-tail варианты от текущих топ-перформеров
-   - Semantically related (синонимы, родственные понятия)
+You have the data for one campaign: top keywords, metrics, strategy. Based on this:
+
+1. **Propose 5-10 new keywords** worth testing:
+   - Long-tail variants of current top performers
+   - Semantically related (synonyms, related concepts)
    - Intent-based (commercial / informational / navigational)
-   - Группировка по themes
+   - Grouped by themes
 
-2. **Предложи 2-3 audience-сегмента** для дополнительного таргетинга:
+2. **Propose 2-3 audience segments** for additional targeting:
    - In-market audiences
    - Affinity / custom intent
-   - Lookalike возможности
+   - Lookalike opportunities
 
-3. **Найди 1-2 competitor angle**:
-   - Какие подходы используют сильные конкуренты в этой нише
-   - Где у них слабость, которой можно воспользоваться
+3. **Find 1-2 competitor angles**:
+   - What approaches strong competitors use in this niche
+   - Where their weakness is — something you can exploit
 
-Правила:
-- **Конкретика > общие слова** (плохо: «активные люди». хорошо: «runners 25-44, interested in marathons»)
-- Для ключей указывай **match_type** (EXACT / PHRASE / BROAD) — большинство должны быть PHRASE
-- НЕ предлагай дубликаты текущих ключей
-- НЕ предлагай негативные ключи (это другая задача)
+Rules:
+- **Specifics > generic words** (bad: "active people". good: "runners 25-44, interested in marathons")
+- For keywords specify **match_type** (EXACT / PHRASE / BROAD) — most should be PHRASE
+- DO NOT propose duplicates of current keywords
+- DO NOT propose negative keywords (that's a separate task)
 
-Используй tools:
-- `propose_keyword` — одна за раз, для каждого нового ключа
-- `propose_audience` — одна за раз, для каждого сегмента
-- `finalize_research` — в конце, с overall summary (1-2 предложения)
+Use tools:
+- `propose_keyword` — one at a time, for each new keyword
+- `propose_audience` — one at a time, for each segment
+- `finalize_research` — at the end, with an overall summary (1-2 sentences)
 """
 
 
@@ -86,7 +88,7 @@ class ResearchAgent(BaseAgent):
         campaigns = await gads.list_campaigns(access_token, self.customer_id)
         target = next((c for c in campaigns if str(c["id"]) == str(self.campaign_id)), None)
         if not target:
-            return f"Кампания {self.campaign_id} не найдена. Скажи 'campaign not found'."
+            return f"Campaign {self.campaign_id} not found. Say 'campaign not found'."
 
         metrics = await gads.get_campaign_metrics(access_token, self.customer_id, self.campaign_id, days=7)
         try:
@@ -95,24 +97,24 @@ class ResearchAgent(BaseAgent):
             keywords = []
 
         kw_lines = "\n".join([
-            f"  - «{k.get('keyword')}» ({k.get('match_type')}) — CTR {k.get('ctr',0)*100:.1f}%, "
+            f"  - \"{k.get('keyword')}\" ({k.get('match_type')}) — CTR {k.get('ctr',0)*100:.1f}%, "
             f"conv {k.get('conv',0)}, spend ${k.get('spend',0):.2f}"
             for k in keywords[:10]
-        ]) or "  (нет данных по ключам)"
+        ]) or "  (no keyword data)"
 
         return f"""\
-Проведи research для расширения этой кампании.
+Run research to expand this campaign.
 
-**Кампания**: «{target['name']}» (id {target['id']})
-- Стратегия: {target.get('bid_strategy')}
-- Бюджет: ${target['budget_micros']/1_000_000:.0f}/день
+**Campaign**: "{target['name']}" (id {target['id']})
+- Strategy: {target.get('bid_strategy')}
+- Budget: ${target['budget_micros']/1_000_000:.0f}/day
 - ROAS: {metrics['roas']}, CTR: {metrics['ctr']*100:.2f}%
 
-**Текущие ключи**:
+**Current keywords**:
 {kw_lines}
 
-Найди 5-10 новых ключей, 2-3 аудитории, 1-2 competitor angle.\
- Затем позови `finalize_research`.
+Find 5-10 new keywords, 2-3 audiences, 1-2 competitor angles.\
+ Then call `finalize_research`. All output must be in English.
 """
 
     def register_tools(self) -> list[ToolSpec]:
@@ -120,8 +122,8 @@ class ResearchAgent(BaseAgent):
             ToolSpec(
                 name="propose_keyword",
                 description=(
-                    "Предложить один новый ключ для кампании. Вызывай для КАЖДОГО ключа отдельно. "
-                    "Указывай match_type (EXACT/PHRASE/BROAD) и theme для группировки."
+                    "Propose one new keyword for the campaign. Call this separately for EACH keyword. "
+                    "Specify match_type (EXACT/PHRASE/BROAD) and theme for grouping."
                 ),
                 input_schema={
                     "type": "object",
@@ -139,7 +141,7 @@ class ResearchAgent(BaseAgent):
             ToolSpec(
                 name="propose_audience",
                 description=(
-                    "Предложить audience segment для дополнительного таргетинга."
+                    "Propose an audience segment for additional targeting."
                 ),
                 input_schema={
                     "type": "object",
@@ -158,7 +160,7 @@ class ResearchAgent(BaseAgent):
             ),
             ToolSpec(
                 name="finalize_research",
-                description="Финальный summary research-сессии. Вызывай ОДИН раз в конце.",
+                description="Final summary of the research session. Call this ONCE at the end.",
                 input_schema={
                     "type": "object",
                     "properties": {

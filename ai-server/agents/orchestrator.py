@@ -204,37 +204,37 @@ def _decide(
 
     Returns: { decision: 'auto_approve' | 'keep_pending' | 'block', reason: str }
     """
-    # Если нет review — Maximus не имеет права авто-апрувить (нет проверки Aegis)
+    # No review yet — Maximus can't auto-approve without Aegis check
     if review is None:
-        return {"decision": "keep_pending", "reason": "Aegis ещё не рецензировал — требует обзора"}
+        return {"decision": "keep_pending", "reason": "Aegis hasn't reviewed yet — needs review"}
 
     rec = review.get("recommendation", "review")
     score = review.get("risk_score", 100)
     confidence = float(action.confidence) if action.confidence is not None else 0
 
-    # Block — всегда блокируем
+    # Block — always blocked
     if rec == "block":
         return {
             "decision": "block",
-            "reason": f"Aegis заблокировал (score {score}). Не апрувим даже на L3.",
+            "reason": f"Aegis blocked (score {score}). Not approved even at L3.",
         }
 
-    # Auto-approve по правилу autonomy_level
+    # Auto-approve by autonomy_level rule
     if rec in rules["auto_approve_recommendations"] and confidence >= rules["min_confidence"]:
         return {
             "decision": "auto_approve",
             "reason": (
-                f"Aegis: {rec} (score {score}), confidence {confidence:.2f} ≥ "
-                f"{rules['min_confidence']} — пропускаем автоматически"
+                f"Aegis: {rec} (score {score}), confidence {confidence:.2f} >= "
+                f"{rules['min_confidence']} — auto-approving"
             ),
         }
 
-    # Иначе — требует ручного апрува
+    # Otherwise — needs manual approval
     return {
         "decision": "keep_pending",
         "reason": (
             f"Aegis: {rec} (score {score}), confidence {confidence:.2f} — "
-            f"требует ручного апрува"
+            f"requires manual approval"
         ),
     }
 

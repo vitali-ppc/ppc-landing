@@ -52,7 +52,7 @@ export const RunBuzzButton: React.FC<{
           (e.currentTarget as HTMLButtonElement).style.transform = "scale(1)";
         }}
       >
-        {busy ? "🐝 Buzz думает..." : "🐝 Run Buzz now"}
+        {busy ? "🐝 Buzz is thinking..." : "🐝 Run Buzz now"}
       </button>
       {error && (
         <div

@@ -163,10 +163,10 @@ function B6Dashboard() {
               Customer <code style={{ color: "#7F9CF5" }}>{activeCustomerId || NO_CUSTOMER_PLACEHOLDER}</code>
               {activeCustomerId ? " · prod data" : " · no Google Ads connected yet"} ·{" "}
               {agents.length === 0
-                ? "Buzz ещё не запускался"
-                : `${agents.length} агент${agents.length === 1 ? "" : "ов"} · последний запуск: ${
+                ? "Buzz hasn't run yet"
+                : `${agents.length} agent${agents.length === 1 ? "" : "s"} · last run: ${
                     agents[0].last_run_at
-                      ? new Date(agents[0].last_run_at).toLocaleTimeString("ru-RU")
+                      ? new Date(agents[0].last_run_at).toLocaleTimeString("en-US")
                       : "..."
                   }`}
             </div>
@@ -174,7 +174,7 @@ function B6Dashboard() {
           <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
             <button
               onClick={clearEvents}
-              title="Очистить live-feed"
+              title="Clear live feed"
               style={{
                 padding: "8px 12px",
                 background: "transparent",
@@ -254,7 +254,7 @@ function B6Dashboard() {
             ⚠️ {error}
             <br />
             <span style={{ color: "#A0A0A0", fontSize: "11px" }}>
-              Backend на http://localhost:8000, он живой? Запусти:{" "}
+              Backend at http://localhost:8000 — is it running? Start with:{" "}
               <code>cd ai-server && uvicorn app:app --port 8000</code>
             </span>
           </div>
@@ -264,10 +264,10 @@ function B6Dashboard() {
         <section style={{ marginBottom: "28px" }}>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "12px", flexWrap: "wrap", gap: 8 }}>
             <h2 style={{ fontSize: "16px", fontWeight: 600, margin: 0, color: "#E0E6F7" }}>
-              📊 Кампании ({filteredCampaigns.length}{campaignFilter !== "all" ? ` / ${campaigns.length}` : ""})
+              📊 Campaigns ({filteredCampaigns.length}{campaignFilter !== "all" ? ` / ${campaigns.length}` : ""})
               {highlightedCampaign && (
                 <span style={{ marginLeft: "10px", color: "#00FFE7", fontSize: "12px", fontWeight: 500 }}>
-                  · 🐝 Buzz смотрит на {highlightedCampaign}
+                  · 🐝 Buzz is looking at {highlightedCampaign}
                 </span>
               )}
             </h2>
@@ -281,11 +281,11 @@ function B6Dashboard() {
           </div>
           {campaigns.length === 0 ? (
             <div style={{ padding: "20px", background: "#1F232B", borderRadius: "10px", textAlign: "center", color: "#A0A0A0" }}>
-              Кампании ещё не загружены...
+              Campaigns not loaded yet...
             </div>
           ) : filteredCampaigns.length === 0 ? (
             <div style={{ padding: "20px", background: "#1F232B", borderRadius: "10px", textAlign: "center", color: "#A0A0A0", fontSize: 13 }}>
-              Под этот фильтр кампаний нет.
+              No campaigns match this filter.
             </div>
           ) : (
             <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "12px" }}>
@@ -333,7 +333,7 @@ function B6Dashboard() {
         <div style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr", gap: "20px" }}>
           <section>
             <h2 style={{ fontSize: "16px", fontWeight: 600, marginBottom: "12px", color: "#E0E6F7" }}>
-              ⏳ Ожидают апрува ({pending.length})
+              ⏳ Pending approval ({pending.length})
             </h2>
             <ApprovalQueue pending={pending} onActionChange={refresh} />
           </section>
@@ -348,12 +348,12 @@ function B6Dashboard() {
 
         {loading && (
           <div style={{ textAlign: "center", color: "#A0A0A0", fontSize: "12px", marginTop: "16px" }}>
-            Загрузка...
+            Loading...
           </div>
         )}
 
         <footer style={{ marginTop: "32px", textAlign: "center", color: "#666", fontSize: "11px" }}>
-          B6 v0.3 · Day 3 build · auto-refresh каждые {REFRESH_INTERVAL_MS / 1000}с
+          B6 v0.3 · Day 3 build · auto-refresh every {REFRESH_INTERVAL_MS / 1000}s
         </footer>
       </div>
     </div>

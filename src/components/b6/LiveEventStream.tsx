@@ -27,7 +27,7 @@ export const LiveEventStream: React.FC<{
         }}
       >
         <h2 style={{ fontSize: "16px", fontWeight: 600, margin: 0, color: "#E0E6F7" }}>
-          🎬 Live от агентов
+          🎬 Live agent stream
         </h2>
         <div
           style={{
@@ -68,8 +68,8 @@ export const LiveEventStream: React.FC<{
         {events.length === 0 ? (
           <div style={{ color: "#666", textAlign: "center", padding: "20px" }}>
             {connected
-              ? "Жду событий... нажми «Run Buzz now»"
-              : "Подключение к серверу..."}
+              ? "Waiting for events... hit 'Run Buzz now'"
+              : "Connecting to server..."}
           </div>
         ) : (
           events.map((e, i) => <EventLine key={i} event={e} />)

@@ -22,7 +22,7 @@ export const ApprovalQueue: React.FC<{
           border: "1px dashed #2D3340",
         }}
       >
-        ✅ Нет действий, ожидающих апрува
+        ✅ No actions pending approval
       </div>
     );
   }
@@ -46,9 +46,9 @@ const ApprovalRow: React.FC<{
   const newBid = action.target?.new_bid_usd;
   const actionLabel =
     action.action_type === "update_bid"
-      ? `Повысить ставку до $${newBid}`
+      ? `Raise bid to $${newBid}`
       : action.action_type === "pause_campaign"
-      ? "Поставить паузу"
+      ? "Pause campaign"
       : action.action_type;
 
   const onApprove = async () => {
@@ -58,21 +58,21 @@ const ApprovalRow: React.FC<{
       onActionChange();
     } catch (e) {
       console.error(e);
-      alert(`Ошибка: ${e}`);
+      alert(`Error: ${e}`);
     } finally {
       setBusy(null);
     }
   };
 
   const onReject = async () => {
-    const reason = prompt("Причина отклонения (опционально):") || undefined;
+    const reason = prompt("Reason for rejection (optional):") || undefined;
     setBusy("reject");
     try {
       await rejectAction(action.id, reason);
       onActionChange();
     } catch (e) {
       console.error(e);
-      alert(`Ошибка: ${e}`);
+      alert(`Error: ${e}`);
     } finally {
       setBusy(null);
     }
@@ -100,11 +100,11 @@ const ApprovalRow: React.FC<{
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "12px" }}>
         <div style={{ flex: 1 }}>
           <div style={{ color: "#FFFFFF", fontSize: "14px", fontWeight: 600, marginBottom: "4px", display: "flex", alignItems: "center", gap: "8px" }}>
-            <span>🐝 Buzz предлагает: <span style={{ color: "#00FFE7" }}>{actionLabel}</span></span>
+            <span>🐝 Buzz proposes: <span style={{ color: "#00FFE7" }}>{actionLabel}</span></span>
             <AegisBadge review={review} compact />
           </div>
           <div style={{ color: "#A0A0A0", fontSize: "12px", marginBottom: "8px" }}>
-            Кампания <code style={{ color: "#7F9CF5" }}>{campaign}</code> · confidence {Math.round(action.confidence * 100)}%
+            Campaign <code style={{ color: "#7F9CF5" }}>{campaign}</code> · confidence {Math.round(action.confidence * 100)}%
           </div>
           <div
             style={{

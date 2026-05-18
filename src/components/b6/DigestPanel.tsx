@@ -57,7 +57,7 @@ export const DigestPanel: React.FC = () => {
           </div>
           {digest && (
             <div style={{ fontSize: "11px", color: "#666", marginTop: "2px" }}>
-              {digest.period} · сгенерировано {new Date(digest.generated_at).toLocaleString("ru-RU")}
+              {digest.period} · generated {new Date(digest.generated_at).toLocaleString("en-US")}
             </div>
           )}
         </div>
@@ -75,7 +75,7 @@ export const DigestPanel: React.FC = () => {
             cursor: loading ? "wait" : "pointer",
           }}
         >
-          {loading ? "📊 Echo думает..." : digest ? "🔄 Обновить" : "📊 Сгенерировать"}
+          {loading ? "📊 Echo is thinking..." : digest ? "🔄 Refresh" : "📊 Generate"}
         </button>
       </div>
 
@@ -97,8 +97,7 @@ export const DigestPanel: React.FC = () => {
 
       {!digest ? (
         <div style={{ padding: "30px 20px", textAlign: "center", color: "#666", fontSize: "13px" }}>
-          Пока нет digest&apos;а. Нажми «Сгенерировать» — Echo прочитает историю агентов и даст
-          сводку.
+          No digest yet. Hit "Generate" — Echo reads agent history and produces a summary.
         </div>
       ) : (
         <DigestContent digest={digest} />

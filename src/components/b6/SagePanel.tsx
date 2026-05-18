@@ -88,7 +88,7 @@ export const SagePanel: React.FC<{
 
   const onRun = async () => {
     if (!selectedCampaign) {
-      setError("Сначала выбери кампанию");
+      setError("Select a campaign first");
       return;
     }
     setError(null);
@@ -139,7 +139,7 @@ export const SagePanel: React.FC<{
             🦉 Sage — Research Agent
           </div>
           <div style={{ fontSize: "11px", color: "#666", marginTop: "2px" }}>
-            Ищет новые ключи, аудитории и competitor-возможности
+            Finds new keywords, audiences and competitor opportunities
           </div>
         </div>
         <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
@@ -176,7 +176,7 @@ export const SagePanel: React.FC<{
               cursor: running ? "wait" : "pointer",
             }}
           >
-            {running ? "🦉 Sage ищет..." : "Запустить research"}
+            {running ? "🦉 Sage is searching..." : "Run research"}
           </button>
         </div>
       </div>
@@ -206,7 +206,7 @@ export const SagePanel: React.FC<{
             fontSize: "13px",
           }}
         >
-          Sage ещё не делал research. Нажми «Запустить research» — найдёт ключи и аудитории.
+          Sage hasn't researched yet. Hit "Run research" — finds keywords and audiences.
         </div>
       ) : (
         <div style={{ display: "grid", gridTemplateColumns: "1.5fr 1fr", gap: "16px" }}>

@@ -160,30 +160,59 @@ function Field(props: {
   required?: boolean;
   minLength?: number;
 }) {
+  const isPassword = props.type === "password";
+  const [revealed, setRevealed] = useState(false);
+  const effectiveType = isPassword && revealed ? "text" : props.type;
   return (
     <label style={{ display: "block", marginBottom: 12 }}>
       <span style={{ fontSize: 12, color: "#A0A0A0", marginBottom: 4, display: "block" }}>
         {props.label}
       </span>
-      <input
-        type={props.type}
-        value={props.value}
-        onChange={(e) => props.onChange(e.target.value)}
-        autoComplete={props.autoComplete}
-        required={props.required}
-        minLength={props.minLength}
-        style={{
-          width: "100%",
-          padding: "10px 12px",
-          background: "#15181D",
-          border: "1px solid #2D3340",
-          borderRadius: 8,
-          color: "#FFFFFF",
-          fontSize: 14,
-          outline: "none",
-          boxSizing: "border-box",
-        }}
-      />
+      <div style={{ position: "relative" }}>
+        <input
+          type={effectiveType}
+          value={props.value}
+          onChange={(e) => props.onChange(e.target.value)}
+          autoComplete={props.autoComplete}
+          required={props.required}
+          minLength={props.minLength}
+          style={{
+            width: "100%",
+            padding: "10px 12px",
+            paddingRight: isPassword ? 40 : 12,
+            background: "#15181D",
+            border: "1px solid #2D3340",
+            borderRadius: 8,
+            color: "#FFFFFF",
+            fontSize: 14,
+            outline: "none",
+            boxSizing: "border-box",
+          }}
+        />
+        {isPassword && (
+          <button
+            type="button"
+            onClick={() => setRevealed((v) => !v)}
+            aria-label={revealed ? "Hide password" : "Show password"}
+            title={revealed ? "Hide password" : "Show password"}
+            style={{
+              position: "absolute",
+              right: 8,
+              top: "50%",
+              transform: "translateY(-50%)",
+              background: "transparent",
+              border: "none",
+              color: revealed ? "#7F9CF5" : "#A0A0A0",
+              cursor: "pointer",
+              padding: 6,
+              fontSize: 16,
+              lineHeight: 1,
+            }}
+          >
+            {revealed ? "🙈" : "👁"}
+          </button>
+        )}
+      </div>
     </label>
   );
 }

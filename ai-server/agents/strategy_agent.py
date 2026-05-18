@@ -23,28 +23,30 @@ logger = logging.getLogger(__name__)
 
 
 VOX_SYSTEM_PROMPT = """\
-Ты — Vox, AI strategy-агент в команде B6. Твоя задача — управление бюджетом\
- МЕЖДУ кампаниями (не внутри одной).
+You are Vox, an AI strategy agent in the B6 team. Your job is budget management\
+ ACROSS campaigns (not within a single one).
 
-Принцип: тебе дают список ВСЕХ активных кампаний клиента с их метриками за 7 дней.\
- Ты решаешь как перераспределить бюджет:
+IMPORTANT: All reasoning, summaries, flags, and proposal text MUST be in English.
 
-1. **Star-перформеры** (ROAS ≥ 3.0 + конверсии стабильные) → давать больше бюджета (+10-30%)
-2. **Подтянутые** (ROAS 1.5-3.0) → держать как есть
-3. **Слабые** (ROAS 1.0-1.5) → сократить бюджет (-20-40%) для проверки
-4. **Убытки** (ROAS < 1.0 за 7+ дней) → паузить или сильно сократить
+Principle: you are given a list of ALL active campaigns for the client with their 7-day metrics.\
+ You decide how to reallocate the budget:
 
-Правила:
-- НЕ повышай бюджет более чем на 30% за один раз (риск)
-- НЕ сокращай бюджет ниже 20% от текущего (можно убить кампанию)
-- Перераспределение должно быть **нулевой суммой**: если у одной +$N, у другой -$N
-- Если все кампании отличные — скажи это и не лезь зря
+1. **Star performers** (ROAS >= 3.0 + stable conversions) -> give more budget (+10-30%)
+2. **Solid** (ROAS 1.5-3.0) -> keep as is
+3. **Weak** (ROAS 1.0-1.5) -> cut budget (-20-40%) for a test
+4. **Losses** (ROAS < 1.0 over 7+ days) -> pause or cut deeply
 
-Возвращай proposed_actions через tool `propose_budget_shift` —\
- КАЖДЫЙ shift отдельным вызовом. Если ничего не нужно менять — позови `submit_no_action`\
- с объяснением почему.
+Rules:
+- DO NOT raise budget by more than 30% at once (risk)
+- DO NOT cut budget below 20% of current (you can kill the campaign)
+- Reallocation must be **zero-sum**: if one campaign gets +$N, another gets -$N
+- If all campaigns are doing great — say so and don't touch them for the sake of it
 
-В финале дай 2-3 предложения summary стратегии.
+Return proposed_actions via the tool `propose_budget_shift` —\
+ EACH shift in a separate call. If nothing should change — call `submit_no_action`\
+ with an explanation why.
+
+At the end give a 2-3 sentence strategy summary.
 """
 
 
@@ -69,22 +71,22 @@ class StrategyAgent(BaseAgent):
             access_token = await gads.get_valid_access_token(refresh)
 
         campaigns = await gads.list_campaigns(access_token, self.customer_id)
-        lines = ["Активные кампании с метриками за 7 дней:\n"]
+        lines = ["Active campaigns with 7-day metrics:\n"]
         for c in campaigns:
             try:
                 m = await gads.get_campaign_metrics(access_token, self.customer_id, str(c["id"]), days=7)
                 lines.append(
-                    f"- campaign_id={c['id']} «{c['name']}»\n"
-                    f"  бюджет: ${c['budget_micros']/1_000_000:.0f}/day"
-                    f", стратегия: {c.get('bid_strategy')}\n"
+                    f"- campaign_id={c['id']} \"{c['name']}\"\n"
+                    f"  budget: ${c['budget_micros']/1_000_000:.0f}/day"
+                    f", strategy: {c.get('bid_strategy')}\n"
                     f"  ROAS: {m['roas']}, CTR: {m['ctr']*100:.2f}%"
                     f", spend $: {m['spend_micros']/1_000_000:.0f}"
                     f", conv: {m['conversions']}, conv_value $: {m['conversion_value']}"
                 )
             except Exception as e:
-                lines.append(f"- campaign_id={c['id']}: ошибка метрик ({e})")
+                lines.append(f"- campaign_id={c['id']}: metrics error ({e})")
 
-        lines.append("\nПроанализируй и предложи перераспределение бюджета (или скажи что не нужно).")
+        lines.append("\nAnalyze and propose budget reallocation (or say it's not needed). All output must be in English.")
         return "\n".join(lines)
 
     def register_tools(self) -> list[ToolSpec]:
@@ -92,17 +94,17 @@ class StrategyAgent(BaseAgent):
             ToolSpec(
                 name="propose_budget_shift",
                 description=(
-                    "Предложить изменение бюджета одной кампании. "
-                    "delta_micros: положительное = добавить, отрицательное = сократить (в micros, 1$ = 1_000_000). "
-                    "ВАЖНО: сумма deltas по всем кампаниям должна быть ≈ 0 (zero-sum reallocation)."
+                    "Propose a budget change for a single campaign. "
+                    "delta_micros: positive = add, negative = cut (in micros, $1 = 1_000_000). "
+                    "IMPORTANT: the sum of deltas across all campaigns must be ~ 0 (zero-sum reallocation)."
                 ),
                 input_schema={
                     "type": "object",
                     "properties": {
                         "customer_id": {"type": "string"},
                         "campaign_id": {"type": "string"},
-                        "delta_micros": {"type": "integer", "description": "1$ = 1_000_000 micros"},
-                        "new_total_micros": {"type": "integer", "description": "Новый дневной бюджет в micros"},
+                        "delta_micros": {"type": "integer", "description": "$1 = 1_000_000 micros"},
+                        "new_total_micros": {"type": "integer", "description": "New daily budget in micros"},
                         "reasoning": {"type": "string"},
                         "confidence": {"type": "number"},
                     },
@@ -113,8 +115,8 @@ class StrategyAgent(BaseAgent):
             ToolSpec(
                 name="submit_no_action",
                 description=(
-                    "Сказать что перераспределение не нужно. Используй когда все кампании в хорошей форме "
-                    "или данных слишком мало для решения."
+                    "Say that reallocation is not needed. Use when all campaigns are in good shape "
+                    "or there's too little data to make a decision."
                 ),
                 input_schema={
                     "type": "object",

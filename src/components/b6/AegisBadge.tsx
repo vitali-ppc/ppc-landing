@@ -15,9 +15,9 @@ const recommendationLabel = (rec: RiskReview["recommendation"]) => {
     case "approve":
       return "✓ Approve OK";
     case "review":
-      return "⚠ Внимательно";
+      return "⚠ Review";
     case "block":
-      return "✕ Блокировать";
+      return "✕ Block";
   }
 };
 
@@ -34,7 +34,7 @@ export const AegisBadge: React.FC<{ review: RiskReview | null | undefined; compa
           fontStyle: "italic",
         }}
       >
-        🛡️ Aegis ещё не ревьюил
+        🛡️ Aegis hasn't reviewed yet
       </div>
     );
   }

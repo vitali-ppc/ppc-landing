@@ -66,7 +66,7 @@ export const MiraPanel: React.FC<{ campaigns: CampaignFromAPI[]; customerId: str
 
   const onRun = async () => {
     if (!selectedCampaign) {
-      setError("Сначала выбери кампанию");
+      setError("Select a campaign first");
       return;
     }
     setError(null);
@@ -110,7 +110,7 @@ export const MiraPanel: React.FC<{ campaigns: CampaignFromAPI[]; customerId: str
             🎨 Mira — Creative Agent
           </div>
           <div style={{ fontSize: "11px", color: "#666", marginTop: "2px" }}>
-            Генерирует 3 варианта рекламных объявлений на основе данных кампании
+            Generates 3 ad variants based on campaign data
           </div>
         </div>
         <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
@@ -147,7 +147,7 @@ export const MiraPanel: React.FC<{ campaigns: CampaignFromAPI[]; customerId: str
               cursor: running ? "wait" : "pointer",
             }}
           >
-            {running ? "🎨 Mira творит..." : "Сгенерировать"}
+            {running ? "🎨 Mira is creating..." : "Generate"}
           </button>
         </div>
       </div>
@@ -177,7 +177,7 @@ export const MiraPanel: React.FC<{ campaigns: CampaignFromAPI[]; customerId: str
             fontSize: "13px",
           }}
         >
-          Mira ещё не создавала креативов для этой кампании. Нажми «Сгенерировать».
+          Mira hasn't generated creatives for this campaign yet. Hit "Generate".
         </div>
       ) : (
         <div

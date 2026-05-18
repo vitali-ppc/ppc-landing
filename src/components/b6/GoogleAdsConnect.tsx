@@ -47,12 +47,12 @@ export function GoogleAdsConnect({ onChange }: { onChange?: () => void }) {
       const updated = params.get("updated") ?? "0";
       setBanner({
         kind: "success",
-        text: `Google Ads подключён — добавлено ${added}, обновлено ${updated} аккаунт(а).`,
+        text: `Google Ads connected — ${added} added, ${updated} updated.`,
       });
     } else if (err) {
       setBanner({
         kind: "error",
-        text: `OAuth ошибка: ${err}. Попробуй ещё раз.`,
+        text: `OAuth error: ${err}. Please try again.`,
       });
     }
 
@@ -73,16 +73,16 @@ export function GoogleAdsConnect({ onChange }: { onChange?: () => void }) {
       window.location.href = auth_url;
     } catch (e: unknown) {
       const msg = e instanceof Error ? e.message : String(e);
-      setBanner({ kind: "error", text: `Не удалось начать OAuth: ${msg}` });
+      setBanner({ kind: "error", text: `Failed to start OAuth: ${msg}` });
       setConnecting(false);
     }
   };
 
   const handleDisconnect = async (id: string) => {
-    if (!confirm("Отключить этот Google Ads аккаунт?")) return;
+    if (!confirm("Disconnect this Google Ads account?")) return;
     try {
       await disconnectGoogleAdsAccount(id);
-      setBanner({ kind: "success", text: "Аккаунт отключён." });
+      setBanner({ kind: "success", text: "Account disconnected." });
       await refresh();
       onChange?.();
     } catch (e: unknown) {
@@ -145,11 +145,11 @@ export function GoogleAdsConnect({ onChange }: { onChange?: () => void }) {
         >
           <div>
             <div style={{ fontSize: "16px", fontWeight: 600, color: "#E0E6F7", marginBottom: "6px" }}>
-              🐝 Подключи Google Ads, чтобы агенты заработали на реальных данных
+              🐝 Connect Google Ads to put the agents on your real data
             </div>
             <div style={{ fontSize: "13px", color: "#A0A0A0", lineHeight: 1.5 }}>
-              Сейчас Buzz/Aegis/Vox работают на mock-кампаниях. После подключения они будут видеть
-              твои реальные кампании, ROAS, конверсии — и предлагать настоящие изменения.
+              Right now Buzz/Aegis/Vox are working on mock campaigns. Once connected they'll see
+              your real campaigns, ROAS, conversions — and propose real changes.
             </div>
           </div>
           <button
@@ -167,7 +167,7 @@ export function GoogleAdsConnect({ onChange }: { onChange?: () => void }) {
               whiteSpace: "nowrap",
             }}
           >
-            {connecting ? "Открываем Google..." : "🔗 Connect Google Ads"}
+            {connecting ? "Opening Google..." : "🔗 Connect Google Ads"}
           </button>
         </div>
       ) : (
@@ -185,10 +185,10 @@ export function GoogleAdsConnect({ onChange }: { onChange?: () => void }) {
           }}
         >
           <span style={{ fontSize: "13px", color: "#10b981", fontWeight: 600 }}>
-            ✅ Google Ads подключён
+            ✅ Google Ads connected
           </span>
           <span style={{ fontSize: "13px", color: "#A0A0A0" }}>
-            ({accounts.length} {accounts.length === 1 ? "аккаунт" : "аккаунта"}):
+            ({accounts.length} {accounts.length === 1 ? "account" : "accounts"}):
           </span>
           {accounts.slice(0, 3).map((a) => (
             <span
@@ -216,7 +216,7 @@ export function GoogleAdsConnect({ onChange }: { onChange?: () => void }) {
                   fontSize: "12px",
                   padding: 0,
                 }}
-                title="Отключить аккаунт"
+                title="Disconnect account"
               >
                 ✕
               </button>
@@ -224,7 +224,7 @@ export function GoogleAdsConnect({ onChange }: { onChange?: () => void }) {
           ))}
           {accounts.length > 3 && (
             <span style={{ fontSize: "12px", color: "#A0A0A0" }}>
-              + ещё {accounts.length - 3}
+              + {accounts.length - 3} more
             </span>
           )}
           <button
@@ -241,7 +241,7 @@ export function GoogleAdsConnect({ onChange }: { onChange?: () => void }) {
               cursor: connecting ? "wait" : "pointer",
             }}
           >
-            {connecting ? "..." : "+ Добавить ещё"}
+            {connecting ? "..." : "+ Add more"}
           </button>
         </div>
       )}

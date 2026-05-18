@@ -17,7 +17,7 @@ export const RunVoxButton: React.FC<{
 
   const onClick = async () => {
     if (!customerId) {
-      setError("Подключи Google Ads аккаунт сначала.");
+      setError("Connect a Google Ads account first.");
       return;
     }
     setError(null);
@@ -42,7 +42,7 @@ export const RunVoxButton: React.FC<{
       <button
         onClick={onClick}
         disabled={busy}
-        title="Vox смотрит на все кампании сразу — предложит budget reallocation"
+        title="Vox looks at all campaigns at once — proposes budget reallocation"
         style={{
           padding: "10px 20px",
           borderRadius: "8px",
@@ -62,7 +62,7 @@ export const RunVoxButton: React.FC<{
           (e.currentTarget as HTMLButtonElement).style.transform = "scale(1)";
         }}
       >
-        {busy ? "🦊 Vox думает..." : "🦊 Run Vox now"}
+        {busy ? "🦊 Vox is thinking..." : "🦊 Run Vox now"}
       </button>
       {error && (
         <div

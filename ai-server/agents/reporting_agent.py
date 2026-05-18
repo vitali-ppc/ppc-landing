@@ -23,20 +23,22 @@ logger = logging.getLogger(__name__)
 
 
 ECHO_SYSTEM_PROMPT = """\
-Ты — Echo, AI reporting-агент в команде B6. Твоя задача — раз в неделю генерировать\
- краткий, читабельный digest для владельца про работу остальных AI-агентов на его аккаунте.
+You are Echo, an AI reporting agent in the B6 team. Your job — once a week generate\
+ a short, readable digest for the account owner about how the other AI agents performed on their account.
 
-Что включить в digest:
-1. **Сводка действий**: сколько proposed, applied, rejected за период
-2. **Топ-3 решения**: самые значимые действия с короткой причиной (используй данные)
-3. **🛡️ Aegis-блокировки**: если были — что и почему
-4. **Тренды**: что меняется неделя к неделе (например — больше bid-changes, меньше пауз)
-5. **Один совет владельцу**: на основе паттернов, не общая чушь
+IMPORTANT: All reasoning, summaries, flags, and proposal text MUST be in English.
 
-Тон: дружелюбный, конкретный, цифры обязательны. **Без воды.** Не более 5-7 предложений\
- в основном тексте + список топ-решений.
+What to include in the digest:
+1. **Action summary**: how many proposed, applied, rejected in the period
+2. **Top-3 decisions**: the most significant actions with a short reason (use the data)
+3. **🛡️ Aegis blocks**: if any — what and why
+4. **Trends**: what's changing week over week (e.g. more bid-changes, fewer pauses)
+5. **One piece of advice for the owner**: based on patterns, not generic fluff
 
-Используй tool `submit_digest` чтобы вернуть результат структурно (для frontend + email).
+Tone: friendly, concrete, numbers are mandatory. **No fluff.** No more than 5-7 sentences\
+ in the main text + the list of top decisions.
+
+Use the tool `submit_digest` to return the result in a structured form (for frontend + email).
 """
 
 
@@ -105,21 +107,21 @@ class EchoAgent(BaseAgent):
             )
 
         return f"""\
-Сделай weekly digest за последние {self.period_days} дней для аккаунта пользователя.
+Build a weekly digest for the last {self.period_days} days for the user's account.
 
-**Статистика:**
-- Всего действий агентов: {len(actions)}
-- По статусам: {by_status}
-- По типам: {by_action_type}
-- 🛡️ Aegis-блокировок: {len(blocks)}
+**Stats:**
+- Total agent actions: {len(actions)}
+- By status: {by_status}
+- By type: {by_action_type}
+- 🛡️ Aegis blocks: {len(blocks)}
 
-**Топ-10 свежих действий:**
-{chr(10).join(top_actions_text) if top_actions_text else '(нет действий за период)'}
+**Top-10 recent actions:**
+{chr(10).join(top_actions_text) if top_actions_text else '(no actions in this period)'}
 
-**Aegis-блокировки:**
-{chr(10).join(blocks_text) if blocks_text else '(нет блокировок)'}
+**Aegis blocks:**
+{chr(10).join(blocks_text) if blocks_text else '(no blocks)'}
 
-Вызови `submit_digest` с полным digest'ом.
+Call `submit_digest` with the full digest. All output must be in English.
 """
 
     def register_tools(self) -> list[ToolSpec]:
@@ -128,14 +130,14 @@ class EchoAgent(BaseAgent):
                 name="submit_digest",
                 description=(
                     "Submit the weekly digest. Call ONCE with all fields filled. "
-                    "summary_text: 4-7 предложений на русском человеческим языком. "
-                    "top_decisions: список 2-5 самых значимых решений. "
-                    "advice: один конкретный совет владельцу."
+                    "summary_text: 4-7 sentences in plain English. "
+                    "top_decisions: list of 2-5 most significant decisions. "
+                    "advice: one concrete piece of advice for the owner."
                 ),
                 input_schema={
                     "type": "object",
                     "properties": {
-                        "summary_text": {"type": "string", "description": "Главный summary параграф"},
+                        "summary_text": {"type": "string", "description": "Main summary paragraph"},
                         "actions_count": {"type": "integer"},
                         "applied": {"type": "integer"},
                         "rejected": {"type": "integer"},
@@ -148,11 +150,11 @@ class EchoAgent(BaseAgent):
                                     "agent": {"type": "string", "description": "e.g. 'Buzz'"},
                                     "emoji": {"type": "string", "description": "e.g. '🐝'"},
                                     "summary": {"type": "string", "description": "1 sentence"},
-                                    "when": {"type": "string", "description": "human time like 'вчера' / 'today'"},
+                                    "when": {"type": "string", "description": "human time like 'yesterday' / 'today'"},
                                 },
                             },
                         },
-                        "advice": {"type": "string", "description": "Один конкретный совет"},
+                        "advice": {"type": "string", "description": "One concrete piece of advice"},
                         "period_label": {"type": "string", "description": "e.g. 'last 7 days'"},
                     },
                     "required": ["summary_text", "actions_count", "top_decisions"],
