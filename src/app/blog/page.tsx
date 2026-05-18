@@ -188,6 +188,16 @@ export default function BlogPage() {
       date: '2026-05-18',
       readTime: '14 min read',
       slug: 'ai-powered-ppc-optimization-complete-guide'
+    },
+    {
+      id: 19,
+      title: 'Why Google Ads Strategy Fails at Scale: 8 Diagnostic Patterns Agencies See',
+      excerpt: 'Across 20+ client accounts an agency owner sees the same 8 patterns when Google Ads strategy stalls at scale: auction signal exhaustion, attribution drift, KPI misalignment, vendor sprawl. The diagnostic framework to find which is killing your account.',
+      category: 'strategy',
+      author: 'By B6 Team',
+      date: '2026-05-18',
+      readTime: '13 min read',
+      slug: 'why-google-ads-strategy-fails-at-scale'
     }
   ];
 
