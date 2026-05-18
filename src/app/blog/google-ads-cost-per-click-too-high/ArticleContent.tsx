@@ -721,7 +721,7 @@ export default function ArticleContent() {
             <section id="fix-sheet-4">
               <h2 style={h2Style}>Fix Sheet 4 - Structure, Competition, and the Slow Compounders</h2>
               <p style={pStyle}>
-                Single-Keyword Ad Groups (SKAGs) are dead. The 2019 Google updates that broadened close-variants killed the SKAG thesis. Single-Theme Ad Groups (STAGs) are alive: 5 to 20 keywords per ad group, all sharing one user intent, one set of two or three responsive search ads, one landing page that matches the theme.
+                Single-Keyword Ad Groups (SKAGs) are dead. The 2019 Google updates that broadened close-variants killed the SKAG thesis. Single-Theme Ad Groups (STAGs) are alive: 5 to 20 keywords per ad group, all sharing one user intent, one set of two or three <a href="/blog/responsive-search-ads-best-practices" style={linkStyle}>responsive search ads</a>, one landing page that matches the theme.
               </p>
               <p style={pStyle}>
                 Why account structure compounds: tighter ad groups raise ad relevance, which raises Quality Score, which lowers CPC, which lets you raise position without raising bid, which raises CTR, which raises expected CTR, which raises Quality Score again. The flywheel takes 60 to 90 days to spin up. It is also the only durable answer to CPC inflation.

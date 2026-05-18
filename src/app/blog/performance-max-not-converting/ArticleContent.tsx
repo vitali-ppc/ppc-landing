@@ -356,7 +356,7 @@ export default function ArticleContent() {
                 Each asset group needs minimum five headlines, five descriptions, four images, one logo, and one video for healthy serving. Below those minimums, Google can&apos;t generate enough ad combinations to test.
               </p>
               <p style={pStyle}>
-                Ad Strength rating: aim for &quot;Good&quot;, not &quot;Excellent&quot;. &quot;Excellent&quot; often signals the assets are too similar. They look great individually but compete with themselves in the auction.
+                <a href="/blog/responsive-search-ads-best-practices" style={linkStyle}>Ad Strength</a> rating: aim for &quot;Good&quot;, not &quot;Excellent&quot;. &quot;Excellent&quot; often signals the assets are too similar. They look great individually but compete with themselves in the auction.
               </p>
               <p style={pStyle}>
                 Audience signals: one to three per asset group. Piling on 20 signals doesn&apos;t give Google &quot;more data&quot;. It confuses the model. Stick to your highest-intent customer match list, one demographic, maybe one interest segment.

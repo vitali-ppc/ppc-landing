@@ -210,7 +210,7 @@ export default function ArticleContent() {
                 Conclusion
               </h2>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
-                AI is no longer optional for PPC success: it's essential. By adopting these 10 strategies, you'll save time, reduce wasted spend, and unlock new growth opportunities in your campaigns. If your in-house team is small, our take on <a href="/blog/google-ads-without-agency" style={{ color: '#764ba2', textDecoration: 'underline' }}>running Google Ads without an agency</a> walks through how AI changes that calculation. Ready to see what AI can do for your PPC?
+                AI is no longer optional for PPC success: it's essential. By adopting these 10 strategies, you'll save time, reduce wasted spend, and unlock new growth opportunities in your campaigns. If your in-house team is small, our take on <a href="/blog/google-ads-without-agency" style={{ color: '#764ba2', textDecoration: 'underline' }}>running Google Ads without an agency</a> walks through how <a href="/blog/how-ai-is-transforming-google-ads-in-2025" style={{ color: '#764ba2', textDecoration: 'underline' }}>AI changes</a> that calculation. Ready to see what AI can do for your PPC?
               </p>
               <div style={{
                 background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',

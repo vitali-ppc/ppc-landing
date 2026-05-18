@@ -536,7 +536,7 @@ export default function ArticleContent() {
                 <strong>Case 1: Spend over $50K/month with complex multi-region structure.</strong> Multiple markets, languages, currencies, and product feeds justify agency-level project management. The juniors-on-small-accounts problem inverts: at $50K+ you get the senior team.
               </p>
               <p style={pStyle}>
-                <strong>Case 2: You need creative production bundled with media buying.</strong> Custom landing pages, video, display banners, copywriting. Most PPC tools (including B6) optimize what you give them; they do not produce creative. Agencies do.
+                <strong>Case 2: You need creative production bundled with media buying.</strong> Custom landing pages, video, display banners, copywriting. Most <a href="/blog/5-tips-for-working-with-ai-ppc-tools" style={linkStyle}>PPC tools</a> (including B6) optimize what you give them; they do not produce creative. Agencies do.
               </p>
               <p style={pStyle}>
                 <strong>Case 3: Zero hours per week available.</strong> Not 3-5, not even 1. An imperfect agency beats complete neglect. Smart Bidding without human oversight optimizes for whatever signal it has, usually cheap conversions, not high-value ones.
