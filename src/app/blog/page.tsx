@@ -178,6 +178,16 @@ export default function BlogPage() {
       date: '2026-05-18',
       readTime: '13 min read',
       slug: 'incrementality-testing-google-ads'
+    },
+    {
+      id: 18,
+      title: 'AI-Powered PPC Optimization: The Complete Guide for Senior PPC Managers',
+      excerpt: 'A senior PPC manager pillar on AI-PPC. What AI actually decides at the auction-signal level, recommendation vs autonomous tools, a calibrated adoption roadmap, realistic 12-25% ROAS lift on 90 days, and where senior judgment still wins.',
+      category: 'google-ads',
+      author: 'By B6 Team',
+      date: '2026-05-18',
+      readTime: '14 min read',
+      slug: 'ai-powered-ppc-optimization-complete-guide'
     }
   ];
 
