@@ -7,6 +7,7 @@ import { CampaignCard, type CampaignMetrics } from "@/components/b6/CampaignCard
 import { ActivityFeed } from "@/components/b6/ActivityFeed";
 import { ApprovalQueue } from "@/components/b6/ApprovalQueue";
 import { RunBuzzButton } from "@/components/b6/RunBuzzButton";
+import { RunVoxButton } from "@/components/b6/RunVoxButton";
 import { LiveEventStream } from "@/components/b6/LiveEventStream";
 import { MascotLayer } from "@/components/b6/MascotLayer";
 import { DigestPanel } from "@/components/b6/DigestPanel";
@@ -202,6 +203,13 @@ function B6Dashboard() {
               sign out
             </button>
             <RunBuzzButton
+              customerId={activeCustomerId}
+              onComplete={(r) => {
+                setStats({ iterations: r.iterations, tool_calls: r.tool_calls });
+                refresh();
+              }}
+            />
+            <RunVoxButton
               customerId={activeCustomerId}
               onComplete={(r) => {
                 setStats({ iterations: r.iterations, tool_calls: r.tool_calls });
