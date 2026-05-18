@@ -263,7 +263,7 @@ http://localhost:8000/docs
 
   **Автономный pipeline:**
   - 🪶 **Hermes** (Claude Code Routine `seo-autonomous-publisher`) — Mon-Fri 10:07 → keyword → brief → write → publish → git push. ~15 минут.
-  - 🦅 **Argus 2.0** (Routine `argus-technical-auditor`) — Sun 11:37 → 14 audits + 6 auto-fixes на 18 SEO pages.
+  - 🦅 **Argus 3.0** (Routine `argus-technical-auditor`) — Sun 11:37 → **17 audits** + 6 auto-fixes на 18 SEO pages. Phase 3 added DebugBear-aligned audits (redirect_chains, canonical_validation, soft_404, INP). ~76% DebugBear 2026 checklist coverage.
 
   **Что НЕ нужно делать в B6 контексте:**
   - НЕ трогать `src/app/blog/<slug>/` файлы — pipeline их пишет
