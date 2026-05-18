@@ -168,6 +168,16 @@ export default function BlogPage() {
       date: '2026-05-15',
       readTime: '13 min read',
       slug: 'responsive-search-ads-best-practices'
+    },
+    {
+      id: 17,
+      title: 'Incrementality Testing in Google Ads: What It Measures, How to Run One, and Why Smart Bidding Needs It',
+      excerpt: 'Smart Bidding optimizes against last-touch conversions. Lift testing measures causal conversions. Covers Conversion Lift, geo experiments, the Nov 2025 $5K minimum, design pitfalls, and the Smart Bidding feedback loop.',
+      category: 'google-ads',
+      author: 'By B6 Team',
+      date: '2026-05-18',
+      readTime: '13 min read',
+      slug: 'incrementality-testing-google-ads'
     }
   ];
 
