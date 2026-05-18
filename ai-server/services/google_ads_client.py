@@ -157,7 +157,12 @@ def _headers(access_token: str, mcc_id: Optional[str] = None) -> dict[str, str]:
 # ---------------------------------------------------------------------------
 
 async def get_account_info(access_token: str, customer_id: str) -> Optional[dict[str, Any]]:
-    """Returns timezone, currency and descriptiveName (user-given account label)."""
+    """Returns timezone, currency and descriptiveName via GAQL search.
+
+    Google Ads API doesn't expose a plain GET /customers/{id}; we have to query
+    the customer resource via searchStream. Returns None on any failure
+    (MCC account / no-access / API error).
+    """
     if use_mock():
         return {
             "timezone": "Europe/Kiev",
@@ -165,20 +170,30 @@ async def get_account_info(access_token: str, customer_id: str) -> Optional[dict
             "descriptiveName": f"Mock Account {customer_id}",
         }
 
+    query = (
+        "SELECT customer.descriptive_name, customer.currency_code, "
+        "customer.time_zone, customer.manager FROM customer LIMIT 1"
+    )
+    url = f"{GOOGLE_ADS_API_BASE}/customers/{customer_id}/googleAds:searchStream"
     async with httpx.AsyncClient(timeout=20.0) as client:
-        r = await client.get(
-            f"{GOOGLE_ADS_API_BASE}/customers/{customer_id}",
-            headers=_headers(access_token),
-        )
+        r = await client.post(url, headers=_headers(access_token), json={"query": query})
         if r.status_code != 200:
             logger.warning("get_account_info %s -> %s: %s", customer_id, r.status_code, r.text[:200])
             return None
         data = r.json()
-        return {
-            "timezone": data.get("timeZone"),
-            "currencyCode": data.get("currencyCode", "USD"),
-            "descriptiveName": data.get("descriptiveName"),
-        }
+
+    # searchStream returns a list of chunks; each chunk has a "results" array.
+    chunks = data if isinstance(data, list) else [data]
+    for chunk in chunks:
+        for row in chunk.get("results", []) or []:
+            customer = row.get("customer", {}) if isinstance(row, dict) else {}
+            return {
+                "timezone": customer.get("timeZone"),
+                "currencyCode": customer.get("currencyCode", "USD"),
+                "descriptiveName": customer.get("descriptiveName"),
+                "isManager": customer.get("manager", False),
+            }
+    return None
 
 
 # ---------------------------------------------------------------------------
