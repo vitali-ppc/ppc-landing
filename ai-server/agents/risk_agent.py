@@ -221,7 +221,14 @@ class AegisAgent(BaseAgent):
         flags: Optional[list[str]] = None,
         note: Optional[str] = None,
     ) -> dict[str, Any]:
-        """Записать review в audit_log + кеш в этой сессии для итогового результата."""
+        """Записать review в audit_log + кеш в этой сессии для итогового результата.
+
+        Defensive: Aegis LLM occasionally hallucinates action_ids (slight UUID
+        typo, or fabricates one for an action that doesn't belong to this user).
+        Validate that the action actually exists and belongs to this user before
+        inserting — otherwise the FK constraint on audit_log.action_id would
+        ROLLBACK the transaction and crash the agent loop.
+        """
         review = {
             "action_id": action_id,
             "reviewer": "aegis",
@@ -232,6 +239,19 @@ class AegisAgent(BaseAgent):
             "reviewed_at": datetime.utcnow().isoformat(),
         }
         async with AsyncSessionLocal() as session:
+            action = await session.get(AgentAction, action_id)
+            if action is None or action.user_id != self.user_id:
+                logger.warning(
+                    "Aegis tried to review unknown/foreign action_id=%s — ignored",
+                    str(action_id)[:36],
+                )
+                return {
+                    "ok": False,
+                    "error": (
+                        f"Action {str(action_id)[:8]}... not found or not yours. "
+                        "Use the exact action_id from the prompt list — do not invent or modify it."
+                    ),
+                }
             audit = AuditLog(
                 action_id=action_id,
                 user_id=self.user_id,
