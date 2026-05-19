@@ -5,28 +5,48 @@
 > Архитектура системы: [`ARCHITECTURE.md`](./ARCHITECTURE.md)
 > История изменений: [`CHANGELOG.md`](./CHANGELOG.md)
 
-**Дата последнего обновления**: 2026-05-19 evening (v24 migration + Sprint 6/7 closed + Phase 1/2/3/8 done)
+**Дата последнего обновления**: 2026-05-19 late evening (Sprint 8 — Vigil 🦇 — closed)
 **Текущая ветка**: `v2-autonomous-agents`
-**Прогресс кода**: Sprint 1-7 ✅ done, v24 migration Phase 1/2/3/8 ✅ done, Phase 5/6/7 deferred.
-**Статус**: ✅ LIVE В PRODUCTION на **multi-tenant JWT auth**, на Google Ads API **v24**, real apply для pause_campaign + apply_recommendation + add_negative_keyword. Готов к **первому платящему**.
+**Прогресс кода**: Sprint 1-8 ✅ done, v24 migration Phase 1/2/3/8 ✅ done, v24 Phase 5/6/7 deferred.
+**Статус**: ✅ LIVE В PRODUCTION на multi-tenant JWT auth + Google Ads API v24 + real apply (3 типа) + **🦇 Vigil 24/7 monitoring готов к включению на проде**. Готов к **первому платящему с L2/L3 pricing**.
 
 ---
 
 ## 🎯 ЧТО ДЕЛАТЬ ДАЛЬШЕ (приоритеты на 2026-05-20+)
 
 ```
-1. (~30 мин)  Resend setup — RESEND_API_KEY пустой в .env.prod, email
-              сейчас в mock-mode (см. v24 plan §10.A).
-              UI честно показывает "⚠️ Mock mode" баннер.
-2. (~20 ч)    Sprint 8 — Anomaly Agent + 24/7 cron monitoring.
-              Это превращает продукт из "жми Run" в "AI сам мониторит".
-              Без него мы не L2/L3.
-3. (~15 ч)    Sprint 9 — Maximus L3 aggressive auto-apply policy +
-              client-facing Echo improvements (charts, branding).
-4. (sales)    Tristan (Goodevas) demo — есть конкретные цифры:
+1. (~10 мин)  Enable Vigil on prod — на Hetzner добавить в .env.prod:
+              VIGIL_ENABLED=true
+              VIGIL_INTERVAL_MINUTES=60
+              docker compose up -d b6-api
+              → /health покажет vigil.running=true с next_run timestamp.
+              На текущих 33 connected accounts даст ~33 scans/час × ~$0.05 = ~$40/день
+              макс. при максимальной активности. С dedup-skip на quiet accounts
+              реальный cost ~$3-5/день.
+2. (~30 мин)  Resend setup — RESEND_API_KEY пустой в .env.prod, email digest
+              Echo + Vigil critical alerts сейчас в mock-mode (логируются, но не
+              доставляются). UI честно показывает "⚠️ Mock mode" баннер.
+              DNS records → resend.com domain verify → API key → .env.prod.
+3. (~15 ч)    Sprint 9 — Maximus L3 aggressive auto-apply policy + auto-pause
+              на critical anomaly. Замыкает цикл "Vigil detects → Maximus acts".
+4. (sales)    Tristan (Goodevas) demo — теперь есть еще ОДИН большой signal:
+              - 24/7 monitoring (Vigil) — фотография оффлайна
               - $900/мес junk traffic найдено на 13 аккаунтах
               - 15 customers с active Google recommendations
               - PDF client report готов к показу
+```
+
+### Sprint 8 quick reference (новые env vars)
+
+```
+VIGIL_ENABLED              false   master kill-switch
+VIGIL_INTERVAL_MINUTES     60      scheduler tick frequency
+VIGIL_DEDUP_MINUTES        45      skip rescan window
+VIGIL_MAX_CONCURRENT       3       rate-limit safety
+VIGIL_DAYS_WINDOW          14      detector lookback
+VIGIL_EMAIL_ENABLED        true    auto-email on critical
+VIGIL_EMAIL_DAILY_CAP      3       max emails / (user, customer) / 24h
+VIGIL_DASHBOARD_URL        https://www.kampaio.com/b6
 ```
 
 **Полный v24 plan + operational follow-ups**: [`/Users/vitaly/.claude/plans/b6-v24-migration.md`](/Users/vitaly/.claude/plans/b6-v24-migration.md). Там Phase-by-Phase статус + 6 операционных задач:
@@ -62,6 +82,18 @@ v24 Phase 8     ✅ Echo переписан client-facing tone, PDF generator
                   (reportlab), endpoints /digest/pdf + /digest/email,
                   inline email form вместо native popup.
                   Honest mock-mode banner когда RESEND_API_KEY пустой.
+Sprint 8 🦇     ✅ Vigil — 24/7 anomaly monitoring agent.
+                  • anomaly_detector.py: 5 правил pure-Python detection
+                  • VigilAgent (BaseAgent): hybrid Python detect + LLM judge
+                  • APScheduler: AsyncIOScheduler в lifespan, interval+dedup+
+                    concurrency cap, VIGIL_ENABLED hard gate
+                  • Aegis prompt: Class A (mutating) vs Class B (anomaly_alert)
+                  • routers/anomalies.py: /api/anomalies/{recent,ack,dismiss,settings}
+                  • VigilPanel.tsx + ⚙ inline settings + 🦇 stats counter
+                  • vigil_notifier.py: critical-only email digest, multi-layer
+                    dedupe (per-alert + daily cap per customer)
+                  • vigil_settings.py: per-user enable + min_severity in safety_caps
+                  • 3-layer smoke test, все три прошли
 ```
 
 Полный список commits: см. `git log v2-autonomous-agents` (от `73f0e78` до `50b2baf`, ~25+ коммитов).

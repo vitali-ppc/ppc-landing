@@ -329,6 +329,86 @@ export function formatActionShortId(id: string): string {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// Vigil 🦇 anomaly monitoring (Sprint 8)
+// ─────────────────────────────────────────────────────────────────────────────
+
+export type AnomalySeverity = "info" | "warning" | "critical";
+
+export type AnomalyType =
+  | "spend_spike"
+  | "conversion_drop"
+  | "ctr_collapse"
+  | "roas_drop"
+  | "zero_conversions";
+
+export type AnomalyAlert = {
+  id: string;
+  customer_id: string | null;
+  campaign_id: string | null;
+  campaign_name: string | null;
+  anomaly_type: AnomalyType | string;
+  severity: AnomalySeverity | string;
+  summary: string | null;
+  metric_name: string | null;
+  today_value: number | null;
+  baseline_value: number | null;
+  ratio: number | null;
+  today_date: string | null;
+  reasoning: string | null;
+  confidence: number | null;
+  status: string;
+  created_at: string;
+  aegis_score: number | null;
+  aegis_recommendation: string | null;
+  aegis_flags: string[];
+};
+
+export type AnomalyListResponse = {
+  count: number;
+  by_severity: Record<AnomalySeverity, number>;
+  alerts: AnomalyAlert[];
+  last_scan_at: string | null;
+};
+
+export async function listRecentAnomalies(opts?: {
+  days?: number;
+  includeHidden?: boolean;
+}): Promise<AnomalyListResponse> {
+  const params = new URLSearchParams({
+    days: String(opts?.days ?? 7),
+    include_hidden: String(opts?.includeHidden ?? false),
+  });
+  return jsonRequest("GET", `/api/anomalies/recent?${params}`);
+}
+
+export async function acknowledgeAnomaly(
+  actionId: string,
+): Promise<{ id: string; status: string }> {
+  return jsonRequest("POST", `/api/anomalies/${actionId}/acknowledge`);
+}
+
+export async function dismissAnomaly(
+  actionId: string,
+): Promise<{ id: string; status: string }> {
+  return jsonRequest("POST", `/api/anomalies/${actionId}/dismiss`);
+}
+
+export type VigilSettings = {
+  enabled: boolean;
+  min_severity: "info" | "warning" | "critical";
+};
+
+export async function getVigilSettings(): Promise<VigilSettings> {
+  return jsonRequest("GET", `/api/anomalies/settings`);
+}
+
+export async function updateVigilSettings(
+  patch: Partial<VigilSettings>,
+): Promise<VigilSettings> {
+  return jsonRequest("PATCH", `/api/anomalies/settings`, patch);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // Google Ads OAuth + connections
 // ─────────────────────────────────────────────────────────────────────────────
 

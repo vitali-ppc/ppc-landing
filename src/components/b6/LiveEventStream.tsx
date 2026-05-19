@@ -139,7 +139,18 @@ const EventLine: React.FC<{ event: LiveEvent }> = ({ event }) => {
 };
 
 function describeEvent(e: LiveEvent): { color: string; mascot: string; text: string } {
-  const mascot = e.mascot === "Buzz" ? "🐝" : e.mascot === "Aegis" ? "🛡️" : e.agent === "risk" ? "🛡️" : "✨";
+  const MASCOT_EMOJI: Record<string, string> = {
+    Buzz: "🐝",
+    Aegis: "🛡️",
+    Echo: "📊",
+    Vox: "🦊",
+    Maximus: "🐻",
+    Mira: "🎨",
+    Sage: "🦉",
+    Vigil: "🦇",
+  };
+  const mascot =
+    MASCOT_EMOJI[e.mascot ?? ""] || (e.agent === "risk" ? "🛡️" : e.agent === "anomaly" ? "🦇" : "✨");
 
   switch (e.event_type) {
     case "session.start":

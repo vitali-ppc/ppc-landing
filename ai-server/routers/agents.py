@@ -20,6 +20,7 @@ from agents.risk_agent import AegisAgent
 from agents.strategy_agent import StrategyAgent
 from agents.creative_agent import CreativeAgent
 from agents.research_agent import ResearchAgent
+from agents.anomaly_agent import VigilAgent
 from db.models import Agent, User
 from db.session import AsyncSessionLocal
 from dependencies import get_current_user
@@ -57,7 +58,7 @@ async def run_agent(payload: RunAgentRequest, current_user: User = Depends(get_c
     - 'bidding'  (Buzz)    → потом auto-run Aegis для review
     - 'strategy' (Vox)     → потом auto-run Aegis для review
     """
-    if payload.agent_type not in ("bidding", "strategy", "creative", "research"):
+    if payload.agent_type not in ("bidding", "strategy", "creative", "research", "anomaly"):
         raise HTTPException(400, f"Unsupported agent type: {payload.agent_type}")
     if payload.agent_type in ("creative", "research") and not payload.campaign_id:
         raise HTTPException(400, f"campaign_id required for '{payload.agent_type}' agent")
@@ -86,6 +87,12 @@ async def run_agent(payload: RunAgentRequest, current_user: User = Depends(get_c
             user_id=user_id,
             customer_id=payload.customer_id,
             campaign_id=payload.campaign_id,
+            event_publisher=publisher,
+        )
+    elif payload.agent_type == "anomaly":
+        main_agent = VigilAgent(
+            user_id=user_id,
+            customer_id=payload.customer_id,
             event_publisher=publisher,
         )
     else:  # research

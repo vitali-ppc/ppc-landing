@@ -6,6 +6,90 @@
 
 ---
 
+## [Sprint 8 — DONE] — 2026-05-19 — Vigil 🦇: 24/7 autonomous anomaly monitoring
+
+**Статус**: ✅ DONE. Превращает продукт из «юзер жмёт Run» в «AI сам сторожит 24/7». Гейтинговый sprint для L2/L3 pricing — без 24/7 monitoring уровни автономности не отличались бы друг от друга.
+
+**Полный план**: [`~/.claude/plans/b6-sprint-8-vigil.md`](/Users/vitaly/.claude/plans/b6-sprint-8-vigil.md) (6 фаз, ~20ч).
+
+### Phase 1 — Vigil agent + deterministic detector
+
+- `services/anomaly_detector.py` — pure Python, 5 правил (spend_spike, conversion_drop, ctr_collapse, roas_drop, zero_conversions) с tunable thresholds на module level
+- `services/google_ads_client.py::list_campaigns_with_daily_metrics` — GAQL `segments.date` per-campaign daily breakdown + детерминированный mock fixture (3 кампании, по 1 аномалии каждого типа)
+- `agents/anomaly_agent.py` — `VigilAgent` (BaseAgent subclass), mascot 🦇. Hybrid design: Python детектит candidates → LLM судит severity в контексте + пишет alert текст + дедупит против последних 24h
+- `agents/tools.py` — `detect_anomalies_tool`, `propose_anomaly_alert_tool` (action_type='anomaly_alert')
+- `routers/agents.py` — 'anomaly' в allowed agent_type, маршрутизация на VigilAgent
+- `scripts/smoke_test_vigil.py` — 3-layer test (pure detector / tool wrapper / full agent). Все три проходят.
+
+### Phase 2 — APScheduler 24/7 cron
+
+- `services/vigil_scheduler.py` — `AsyncIOScheduler` в FastAPI lifespan handler. Job каждые `VIGIL_INTERVAL_MINUTES` (default 60), скан всех (user, customer) пар, dedup через `vigil.scan` AuditLog в window `VIGIL_DEDUP_MINUTES` (default 45), max concurrent `VIGIL_MAX_CONCURRENT` (default 3) через `asyncio.Semaphore`
+- Hard gate: `VIGIL_ENABLED=true` (default false) — explicit opt-in required в проде
+- `app.py` — lifespan handler стартует/стопит scheduler, `/health` показывает scheduler_status (next_run, interval, etc.)
+- `routers/internal.py::trigger_vigil_tick` — manual tick для ops через POST /api/internal/vigil/tick
+- Verified end-to-end: scheduler сам fired на 20:42:55 (interval=1min), нашёл 1 target, на следующий tick через 60s показал `skipped=1` (dedup ✅), zero Anthropic calls в dedup-tick'е
+
+### Phase 3 — Aegis review of anomaly alerts
+
+- `agents/risk_agent.py::AEGIS_SYSTEM_PROMPT` — расширен на 2 класса actions:
+  - **Class A** (mutating: update_bid / pause_campaign / apply_recommendation / add_negative_keyword) — старая логика, approve=safe / review=needs_attention / block=dangerous
+  - **Class B** (anomaly_alert) — новые семантики: approve=valid, review=borderline_noise, block=false_positive_hide_from_UI. risk_score переинтерпретирован как «urgency to operator», не «risk to apply»
+- `build_initial_prompt` — type-aware listing: для каждого action_type показывает релевантные поля target
+- Verified: Aegis правильно даёт score 85-88 для critical anomaly_alerts, замечает compound signals (3 anomalies на одной кампании → escalate), детектит duplicate signals
+
+### Phase 4 — UI Vigil panel + API endpoints
+
+- `routers/anomalies.py` — `GET /api/anomalies/recent?days=N&include_hidden=false`, `POST /api/anomalies/{id}/acknowledge`, `POST /api/anomalies/{id}/dismiss`. По умолчанию скрывает Aegis-blocked + user-dismissed alerts.
+- `src/components/b6/VigilPanel.tsx` — секция между live stream и Maximus/Echo. Группировка по severity (🚨 critical / ⚠️ warning / ℹ️ info), per-alert Acknowledge/Dismiss buttons, Aegis score badge, last-scan-Xm-ago label
+- `src/lib/b6-api.ts` — `AnomalyAlert` type + `listRecentAnomalies` + acknowledge/dismiss
+- `src/app/b6/B6Content.tsx` — stat box «🦇 Alerts (24h)» в stats bar (теперь 7 columns)
+- `src/components/b6/LiveEventStream.tsx` — mascot map расширен (Echo/Vox/Maximus/Mira/Sage/Vigil все теперь нативно рендерятся)
+
+### Phase 5 — Email notifications (mock-mode honest)
+
+- `services/vigil_notifier.py` — после каждого Vigil run на (user, customer): digest email критических alerts. Multi-layer фильтрация: min_severity порог, Aegis recommendation == 'block' исключает, per-alert dedupe через `vigil.alert_emailed` AuditLog, per-(user, customer) daily cap `VIGIL_EMAIL_DAILY_CAP` (default 3)
+- Reuses `services/emailer.py` (Resend + mock fallback). Subject `[Kampaio] 🦇 N critical alert(s) on customer X`
+- Audit-log пишет `vigil.email` + `vigil.alert_emailed` для transparency + dedupe
+- Verified: первый вызов отправил mock email с 2 critical alerts, второй вернул `all_already_emailed` ✅
+
+### Phase 6 — Per-user settings (enable/disable + severity threshold)
+
+- `services/vigil_settings.py` — хранение в existing `safety_caps` таблице через cap_types `vigil_enabled` (0/1) и `vigil_min_severity` (0/1/2). Defaults: enabled=true + critical-only emails
+- `routers/anomalies.py` — GET/PATCH `/api/anomalies/settings`
+- `services/vigil_scheduler.py::_list_scan_targets` — фильтрует disabled users, не тратит токены
+- `services/vigil_notifier.py` — filter с per-user `min_severity` (вместо hardcoded 'critical')
+- Frontend: ⚙ кнопка в VigilPanel header → inline panel с toggle + severity dropdown. Auto-save через PATCH
+
+### Infrastructure / deps
+
+- `requirements.txt` — добавлен `apscheduler>=3.10.0`
+- `app.py` — версия `0.3.0-day4` → **`0.4.0-sprint8`**
+- `db/models.py::AgentAction.action_type` — добавлен `anomaly_alert` (string column, миграция не нужна)
+- `services/audit.py::_ensure_agent` — mascot_map['anomaly'] = 'Vigil'
+
+### Env vars (Sprint 8 specific)
+
+| Var | Default | Purpose |
+|-----|---------|---------|
+| `VIGIL_ENABLED` | false | Master kill-switch для scheduler |
+| `VIGIL_INTERVAL_MINUTES` | 60 | Scheduler tick frequency |
+| `VIGIL_DEDUP_MINUTES` | 45 | Skip rescan window per (user, customer) |
+| `VIGIL_MAX_CONCURRENT` | 3 | Max parallel Vigil runs per tick |
+| `VIGIL_DAYS_WINDOW` | 14 | Detector lookback window |
+| `VIGIL_EMAIL_ENABLED` | true | Allow email notifications when scheduler runs |
+| `VIGIL_EMAIL_DAILY_CAP` | 3 | Max emails / (user, customer) / 24h |
+| `VIGIL_DASHBOARD_URL` | https://www.kampaio.com/b6 | Link target in email body |
+
+### Что НЕ вошло в Sprint 8 (deferred)
+
+- MascotLayer extension для 🦇 (Vigil появляется в LiveEventStream feed, но не как animated mascot — hardcoded Buzz+Aegis slots нужно рефакторить на generic mascot manager). Sprint 8.5+.
+- ML-based anomaly detection (ARIMA/isolation forest) — overengineering для MVP
+- Predictive alerts («spend likely to overshoot budget by Friday»)
+- Auto-pause на critical anomaly — L3 policy decision, Sprint 9
+- Web push notifications — defer until first paying customer asks
+
+---
+
 ## [v24 migration + Sprint 6/7 — DONE] — 2026-05-19 — Multi-tenancy + Real Apply + Google Ads API v24
 
 **Статус**: ✅ DONE — продукт готов к первому платящему. Сводка марафона 2026-05-18 → 2026-05-19 (~27 коммитов от `73f0e78` до `50b2baf`).

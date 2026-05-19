@@ -1,7 +1,13 @@
 "use client";
 
 import React, { useState, useEffect, useCallback, useMemo } from "react";
-import { listActions, listAgents, listCampaigns, listConnectedAccounts } from "@/lib/b6-api";
+import {
+  listActions,
+  listAgents,
+  listCampaigns,
+  listConnectedAccounts,
+  listRecentAnomalies,
+} from "@/lib/b6-api";
 import type { AgentAction, Agent, CampaignFromAPI, ConnectedAccount } from "@/lib/b6-api";
 import { CampaignCard, type CampaignMetrics } from "@/components/b6/CampaignCard";
 import { ActivityFeed } from "@/components/b6/ActivityFeed";
@@ -14,6 +20,7 @@ import { DigestPanel } from "@/components/b6/DigestPanel";
 import { MaximusPanel } from "@/components/b6/MaximusPanel";
 import { MiraPanel } from "@/components/b6/MiraPanel";
 import { SagePanel } from "@/components/b6/SagePanel";
+import { VigilPanel } from "@/components/b6/VigilPanel";
 import { GoogleAdsConnect } from "@/components/b6/GoogleAdsConnect";
 import { DateRangePicker, defaultDateRange, type DateRange } from "@/components/b6/DateRangePicker";
 import AuthGuard from "@/components/AuthGuard";
@@ -52,6 +59,7 @@ function B6Dashboard() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [stats, setStats] = useState<{ iterations?: number; tool_calls?: number }>({});
+  const [vigilAlerts24h, setVigilAlerts24h] = useState<number>(0);
   const [activeCustomerId, setActiveCustomerId] = useState<string>("");
   const [campaignFilter, setCampaignFilter] = useState<"all" | "enabled" | "paused">("all");
   const [dateRange, setDateRange] = useState<DateRange>(() => defaultDateRange());
@@ -100,7 +108,7 @@ function B6Dashboard() {
 
   const refresh = useCallback(async () => {
     try {
-      const [actRes, agRes, campRes] = await Promise.all([
+      const [actRes, agRes, campRes, anomRes] = await Promise.all([
         listActions({ limit: 30 }),
         listAgents(),
         activeCustomerId
@@ -109,11 +117,16 @@ function B6Dashboard() {
               return { count: 0, campaigns: [] };
             })
           : Promise.resolve({ count: 0, campaigns: [] }),
+        listRecentAnomalies({ days: 1 }).catch((e) => {
+          console.warn("Anomalies fetch failed", e);
+          return null;
+        }),
       ]);
       setActions(actRes.actions);
       setAgents(agRes.agents);
       setCampaigns(campRes.campaigns.map(apiToCampaignMetrics));
       setRawCampaigns(campRes.campaigns);
+      setVigilAlerts24h(anomRes?.count ?? 0);
       setError(null);
     } catch (e: unknown) {
       const msg = e instanceof Error ? e.message : String(e);
@@ -242,7 +255,7 @@ function B6Dashboard() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(6, 1fr)",
+            gridTemplateColumns: "repeat(7, 1fr)",
             gap: "12px",
             marginBottom: "24px",
           }}
@@ -252,6 +265,7 @@ function B6Dashboard() {
           <StatBox label="Rejected" value={counts.rejected || 0} color="#FF6B6B" />
           <StatBox label="🛡️ Blocks" value={aegisBlocks} color="#FF6B6B" />
           <StatBox label="🛡️ High-risk" value={aegisHighRisk} color="#FFA726" />
+          <StatBox label="🦇 Alerts (24h)" value={vigilAlerts24h} color="#9F7AEA" />
           <StatBox label="Tool calls (last)" value={stats.tool_calls || "..."} color="#7F9CF5" />
         </div>
 
@@ -369,6 +383,9 @@ function B6Dashboard() {
         <section style={{ marginBottom: "20px" }}>
           <LiveEventStream events={liveEvents} connected={connected} />
         </section>
+
+        {/* Vigil — 24/7 anomaly monitor */}
+        <VigilPanel />
 
         {/* Maximus + Echo grid */}
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px", marginBottom: "20px" }}>

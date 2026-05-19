@@ -35,6 +35,10 @@ requests==2.31.0
 # ---- Real-time (Socket.IO) ---------------------------------------------
 python-socketio>=5.11.0
 
+# ---- Scheduling (Sprint 8 — Vigil 24/7 monitoring) ---------------------
+# AsyncIOScheduler runs in the FastAPI event loop, no separate worker process.
+apscheduler>=3.10.0
+
 # ---- Background tasks (Week 2+) ----------------------------------------
 # Закомментировано до Week 2 — требует Redis локально
 # celery>=5.3.0

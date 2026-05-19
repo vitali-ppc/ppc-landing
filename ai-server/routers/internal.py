@@ -41,6 +41,22 @@ def _check_auth(secret: Optional[str]) -> None:
         raise HTTPException(403, "Forbidden")
 
 
+@router.post("/vigil/tick")
+async def trigger_vigil_tick(x_internal_secret: Optional[str] = Header(None)):
+    """Manually invoke a Vigil scheduler tick. For ops testing.
+
+    Same code path as the scheduled tick — iterates all eligible (user, account)
+    pairs, applies dedup window, scans, runs Aegis on new alerts. Useful to
+    verify scheduler behavior without waiting for the next interval.
+
+    Requires X-Internal-Secret header in production. Honors VIGIL_ENABLED gate.
+    """
+    _check_auth(x_internal_secret)
+    from services.vigil_scheduler import vigil_tick, scheduler_status
+    summary = await vigil_tick()
+    return {"summary": summary, "scheduler": scheduler_status()}
+
+
 @router.post("/stripe-sync")
 async def stripe_sync(
     payload: StripeSync,

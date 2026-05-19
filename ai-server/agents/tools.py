@@ -383,6 +383,123 @@ async def propose_negative_keyword_tool(
     }
 
 
+# ---------------------------------------------------------------------------
+# Vigil 🦇 — anomaly detection tools (Sprint 8)
+# ---------------------------------------------------------------------------
+
+async def detect_anomalies_tool(
+    customer_id: str,
+    days: int = 14,
+    user_id: str = "dev",
+) -> dict[str, Any]:
+    """Fetch daily metrics for all ENABLED campaigns and run deterministic
+    anomaly detection (spend spikes, conversion drops, CTR collapses, etc.).
+
+    Returns a structured list of candidate anomalies — Vigil then judges
+    severity in context and decides which deserve an alert.
+    """
+    try:
+        access_token = await _get_access_token_for(user_id, customer_id)
+    except PermissionError as e:
+        return {"ok": False, "error": str(e), "anomalies": [], "scanned": 0}
+
+    from services.anomaly_detector import detect_anomalies
+
+    campaigns = await gads.list_campaigns_with_daily_metrics(
+        access_token, customer_id, days=days
+    )
+    anomalies = detect_anomalies(campaigns, baseline_days=min(days - 1, 7))
+
+    return {
+        "ok": True,
+        "customer_id": customer_id,
+        "days_window": days,
+        "scanned_campaigns": len(campaigns),
+        "candidate_count": len(anomalies),
+        "candidates": [a.as_dict() for a in anomalies],
+    }
+
+
+async def propose_anomaly_alert_tool(
+    customer_id: str,
+    campaign_id: str,
+    anomaly_type: str,
+    severity: str,
+    summary: str,
+    today_value: float,
+    baseline_value: float,
+    ratio: float,
+    reasoning: str,
+    campaign_name: Optional[str] = None,
+    metric_name: Optional[str] = None,
+    today_date: Optional[str] = None,
+    confidence: float = 0.9,
+    user_id: str = "dev",
+) -> dict[str, Any]:
+    """Persist an anomaly alert as an AgentAction (action_type='anomaly_alert').
+
+    Anomaly alerts are informational — they don't trigger any mutate. Aegis
+    still reviews them (to escalate / dedupe), and the UI surfaces them as
+    a separate "Vigil monitor" feed. severity must be 'info' | 'warning' |
+    'critical'; anomaly_type one of: spend_spike, conversion_drop,
+    ctr_collapse, roas_drop, zero_conversions.
+    """
+    severity = (severity or "warning").lower()
+    if severity not in {"info", "warning", "critical"}:
+        return {
+            "ok": False,
+            "error": f"Invalid severity '{severity}' — must be info | warning | critical",
+        }
+    if anomaly_type not in {
+        "spend_spike", "conversion_drop", "ctr_collapse",
+        "roas_drop", "zero_conversions",
+    }:
+        return {"ok": False, "error": f"Unknown anomaly_type '{anomaly_type}'"}
+
+    target = {
+        "customer_id": customer_id,
+        "campaign_id": campaign_id,
+        "campaign_name": campaign_name,
+        "anomaly_type": anomaly_type,
+        "severity": severity,
+        "metric_name": metric_name,
+        "today_value": today_value,
+        "baseline_value": baseline_value,
+        "ratio": ratio,
+        "today_date": today_date,
+        "summary": summary,
+    }
+    try:
+        action_id = await audit.write_proposed_action(
+            user_id=user_id,
+            agent_type="anomaly",
+            action_type="anomaly_alert",
+            target=target,
+            reasoning=reasoning,
+            confidence=confidence,
+        )
+    except Exception as e:
+        logger.exception("Failed to persist anomaly_alert")
+        return {"ok": False, "error": f"DB error: {e}"}
+
+    return {
+        "ok": True,
+        "action_id": action_id,
+        "message": (
+            f"[{severity.upper()}] {anomaly_type} on '{campaign_name or campaign_id}' "
+            f"→ {summary} (action {action_id[:8]}...)"
+        ),
+        "proposed_action": {
+            "action_id": action_id,
+            "action_type": "anomaly_alert",
+            **target,
+            "reasoning": reasoning,
+            "confidence": confidence,
+            "status": "proposed",
+        },
+    }
+
+
 async def check_safety_cap_tool(
     cap_type: str,
     amount: float,

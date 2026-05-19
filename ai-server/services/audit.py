@@ -109,6 +109,7 @@ async def _ensure_agent(session: AsyncSession, user_id: str, agent_type: str) ->
         "risk": "Aegis",
         "reporting": "Echo",
         "orchestrator": "Maximus",
+        "anomaly": "Vigil",
     }
     agent = Agent(
         user_id=user_id,

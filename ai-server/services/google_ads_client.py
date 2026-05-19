@@ -341,6 +341,147 @@ async def get_campaign_metrics(
     }
 
 
+# ---------------------------------------------------------------------------
+# Daily metrics per campaign — Vigil 🦇 anomaly detection input (Sprint 8)
+# ---------------------------------------------------------------------------
+
+def _mock_daily_metrics(customer_id: str, days: int) -> list[dict[str, Any]]:
+    """Synthetic daily metrics shaped to trigger Vigil's detection rules.
+
+    Returns 3 campaigns whose latest day differs from the baseline week in
+    ways that match each anomaly type — useful for smoke tests + UI demos.
+    """
+    today = datetime.utcnow().date()
+
+    def _day(offset: int, **m: Any) -> dict[str, Any]:
+        return {
+            "date": (today - timedelta(days=offset)).isoformat(),
+            "impressions": m.get("impressions", 0),
+            "clicks": m.get("clicks", 0),
+            "cost_micros": m.get("cost_micros", 0),
+            "conversions": m.get("conversions", 0.0),
+            "conversion_value": m.get("conversion_value", 0.0),
+        }
+
+    # Campaign 1 — spend spike: today's spend ~3x baseline
+    spike_baseline = [
+        _day(i, impressions=2000, clicks=40, cost_micros=15_000_000,
+             conversions=3.0, conversion_value=90.0)
+        for i in range(1, days)
+    ]
+    spike_today = _day(0, impressions=5000, clicks=110, cost_micros=48_000_000,
+                       conversions=4.0, conversion_value=120.0)
+
+    # Campaign 2 — zero conversions + spend (also a conv drop)
+    zero_baseline = [
+        _day(i, impressions=1800, clicks=35, cost_micros=18_000_000,
+             conversions=2.5, conversion_value=75.0)
+        for i in range(1, days)
+    ]
+    zero_today = _day(0, impressions=1700, clicks=30, cost_micros=22_000_000,
+                      conversions=0.0, conversion_value=0.0)
+
+    # Campaign 3 — CTR collapse (impressions intact, clicks crater)
+    ctr_baseline = [
+        _day(i, impressions=10000, clicks=200, cost_micros=20_000_000,
+             conversions=4.0, conversion_value=120.0)
+        for i in range(1, days)
+    ]
+    ctr_today = _day(0, impressions=10500, clicks=42, cost_micros=8_500_000,
+                     conversions=3.0, conversion_value=90.0)
+
+    return [
+        {
+            "campaign_id": "100001",
+            "campaign_name": "Mock — Spend Spike Demo",
+            "status": "ENABLED",
+            "bid_strategy": "TARGET_ROAS",
+            "daily": [spike_today, *spike_baseline],
+        },
+        {
+            "campaign_id": "100002",
+            "campaign_name": "Mock — Zero Conv Demo",
+            "status": "ENABLED",
+            "bid_strategy": "MAXIMIZE_CONVERSIONS",
+            "daily": [zero_today, *zero_baseline],
+        },
+        {
+            "campaign_id": "100003",
+            "campaign_name": "Mock — CTR Collapse Demo",
+            "status": "ENABLED",
+            "bid_strategy": "MANUAL_CPC",
+            "daily": [ctr_today, *ctr_baseline],
+        },
+    ]
+
+
+async def list_campaigns_with_daily_metrics(
+    access_token: str,
+    customer_id: str,
+    *,
+    days: int = 14,
+) -> list[dict[str, Any]]:
+    """Per-campaign per-day metric breakdown for anomaly detection.
+
+    Returns one dict per ENABLED campaign:
+        {
+          "campaign_id": "100001",
+          "campaign_name": "Winter Shoes",
+          "status": "ENABLED",
+          "bid_strategy": "TARGET_ROAS",
+          "daily": [{"date": "YYYY-MM-DD", "impressions": ..., "clicks": ...,
+                    "cost_micros": ..., "conversions": ..., "conversion_value": ...}, ...]
+        }
+
+    Only ENABLED campaigns are returned — PAUSED/REMOVED can't anomalously
+    spend, and including them produces phantom "drops" on the cutover day.
+    """
+    if use_mock():
+        return _mock_daily_metrics(customer_id, days)
+
+    end_date = datetime.utcnow().date()
+    start_date = end_date - timedelta(days=days)
+    query = f"""
+        SELECT
+          campaign.id, campaign.name, campaign.status, campaign.bidding_strategy_type,
+          segments.date,
+          metrics.impressions, metrics.clicks, metrics.cost_micros,
+          metrics.conversions, metrics.conversions_value
+        FROM campaign
+        WHERE campaign.status = 'ENABLED'
+          AND segments.date BETWEEN '{start_date}' AND '{end_date}'
+    """
+    rows = await _search_stream(access_token, customer_id, query, lambda r: r)
+
+    by_campaign: dict[str, dict[str, Any]] = {}
+    for row in rows:
+        camp = row.get("campaign", {}) or {}
+        m = row.get("metrics", {}) or {}
+        seg = row.get("segments", {}) or {}
+        cid = str(camp.get("id") or "")
+        if not cid:
+            continue
+        if cid not in by_campaign:
+            by_campaign[cid] = {
+                "campaign_id": cid,
+                "campaign_name": camp.get("name") or "Unknown",
+                "status": camp.get("status"),
+                "bid_strategy": camp.get("biddingStrategyType"),
+                "daily": [],
+            }
+        by_campaign[cid]["daily"].append(
+            {
+                "date": seg.get("date"),
+                "impressions": int(m.get("impressions") or 0),
+                "clicks": int(m.get("clicks") or 0),
+                "cost_micros": int(m.get("costMicros") or 0),
+                "conversions": float(m.get("conversions") or 0.0),
+                "conversion_value": float(m.get("conversionsValue") or 0.0),
+            }
+        )
+    return list(by_campaign.values())
+
+
 async def get_keyword_metrics(
     access_token: str, customer_id: str, campaign_id: str
 ) -> list[dict[str, Any]]:

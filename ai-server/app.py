@@ -21,6 +21,7 @@ from __future__ import annotations
 
 import logging
 import os
+from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -44,12 +45,30 @@ from routers import internal as internal_router
 from routers import digest as digest_router
 from routers import orchestrator as orchestrator_router
 from routers import google_ads as google_ads_router
+from routers import anomalies as anomalies_router
+from services import vigil_scheduler
 from ws.events import sio
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """FastAPI lifespan — start Vigil scheduler on startup, shut it down cleanly.
+
+    Vigil only runs if VIGIL_ENABLED=true (default false). See
+    services/vigil_scheduler.py for full env-var documentation.
+    """
+    vigil_scheduler.start_scheduler()
+    try:
+        yield
+    finally:
+        vigil_scheduler.stop_scheduler()
+
 
 app = FastAPI(
     title="B6 — Autonomous PPC Cabinet",
     description="AI agents that manage Google Ads campaigns autonomously",
-    version="0.3.0-day4",
+    version="0.4.0-sprint8",
+    lifespan=lifespan,
 )
 
 # CORS — explicit origins; locked down from wildcard in Sprint 6.
@@ -73,6 +92,7 @@ app.include_router(internal_router.router)
 app.include_router(digest_router.router)
 app.include_router(orchestrator_router.router)
 app.include_router(google_ads_router.router)
+app.include_router(anomalies_router.router)
 
 
 @app.get("/")
@@ -96,6 +116,7 @@ async def health():
         "mock_mode": os.getenv("GOOGLE_ADS_USE_MOCK", "false"),
         "model": os.getenv("ANTHROPIC_DEFAULT_MODEL", "claude-sonnet-4-6"),
         "socketio": True,
+        "vigil": vigil_scheduler.scheduler_status(),
     }
 
 
