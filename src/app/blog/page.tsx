@@ -198,6 +198,16 @@ export default function BlogPage() {
       date: '2026-05-18',
       readTime: '13 min read',
       slug: 'why-google-ads-strategy-fails-at-scale'
+    },
+    {
+      id: 20,
+      title: 'Google Ads Attribution Models: A 2026 Guide to Picking the Right One (and Why It Affects Smart Bidding)',
+      excerpt: "A senior PPC manager's guide to Google Ads attribution models in 2026. Why Google deprecated four of them, when data-driven beats last-click, the 300-conversion DDA threshold, the Model Comparison tool, and how the attribution choice trains Smart Bidding.",
+      category: 'google-ads',
+      author: 'By B6 Team',
+      date: '2026-05-19',
+      readTime: '14 min read',
+      slug: 'google-ads-attribution-models-guide'
     }
   ];
 
