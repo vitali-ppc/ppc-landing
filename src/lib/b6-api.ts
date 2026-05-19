@@ -308,7 +308,13 @@ export async function emailDigest(opts: {
   toEmail: string;
   customerLabel?: string;
   note?: string;
-}): Promise<{ success: boolean; to: string; detail?: string }> {
+}): Promise<{
+  success: boolean;
+  to: string;
+  detail?: string;
+  delivered?: boolean;
+  mock_mode?: boolean;
+}> {
   return jsonRequest("POST", `/api/digest/latest/email`, {
     to_email: opts.toEmail,
     customer_label: opts.customerLabel,

@@ -110,6 +110,8 @@ class EmailDigestResponse(BaseModel):
     success: bool
     to: str
     detail: Optional[str] = None
+    delivered: bool = False  # True only when Resend confirmed delivery (not mock-mode)
+    mock_mode: bool = False  # True when RESEND_API_KEY is not configured
 
 
 @router.post("/latest/email", response_model=EmailDigestResponse)
@@ -144,8 +146,15 @@ async def email_latest_digest(
             }
         ],
     )
+    is_mock = bool(result.get("mock", False))
+    api_ok = bool(result.get("success", False))
     return EmailDigestResponse(
-        success=bool(result.get("success", False)),
+        # `success` stays true when the request was processed (so the UI clears
+        # the form), but `delivered` is only true when Resend actually accepted
+        # the email — the UI should show different copy for mock-mode.
+        success=api_ok,
+        delivered=api_ok and not is_mock,
+        mock_mode=is_mock,
         to=payload.to_email,
         detail=result.get("message") or result.get("id"),
     )

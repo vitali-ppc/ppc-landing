@@ -91,10 +91,16 @@ export const DigestPanel: React.FC<{ customerLabel?: string }> = ({ customerLabe
         customerLabel,
         note: emailNote.trim() || undefined,
       });
-      if (res.success) {
-        setEmailStatus(`Sent to ${res.to}`);
+      if (res.success && res.delivered) {
+        setEmailStatus(`✅ Delivered to ${res.to}`);
         setEmailFormOpen(false);
         setEmailNote("");
+      } else if (res.success && res.mock_mode) {
+        setEmailStatus(
+          `⚠️ Mock mode — saved to server log, NOT actually delivered. ` +
+          `Set RESEND_API_KEY in .env.prod + verify domain to enable real sending.`
+        );
+        setEmailFormOpen(false);
       } else {
         setError(`Failed: ${res.detail || "unknown error"}`);
       }
@@ -288,15 +294,16 @@ export const DigestPanel: React.FC<{ customerLabel?: string }> = ({ customerLabe
         <div
           style={{
             padding: "8px 10px",
-            background: "#4ECDC422",
-            border: "1px solid #4ECDC444",
+            background: emailStatus.startsWith("⚠️") ? "#FFA72622" : "#4ECDC422",
+            border: `1px solid ${emailStatus.startsWith("⚠️") ? "#FFA72666" : "#4ECDC444"}`,
             borderRadius: "6px",
-            color: "#4ECDC4",
+            color: emailStatus.startsWith("⚠️") ? "#FFA726" : "#4ECDC4",
             fontSize: "12px",
             marginBottom: "10px",
+            lineHeight: 1.4,
           }}
         >
-          ✅ {emailStatus}
+          {emailStatus}
         </div>
       )}
 
