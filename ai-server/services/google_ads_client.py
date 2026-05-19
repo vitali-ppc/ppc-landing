@@ -630,6 +630,12 @@ async def list_search_terms(
     else:
         date_range = "LAST_90_DAYS"
 
+    # GAQL v24 quirk: metrics.conversions doesn't support <= operator
+    # (allowed: =, !=, <, >, IN, NOT IN, IS NULL, IS NOT NULL).
+    # We filter conversions == 0 (the only useful threshold for a "junk" indicator
+    # in practice) and post-filter for >0 thresholds in Python if ever needed.
+    conv_clause = "AND metrics.conversions = 0" if max_conversions == 0 else ""
+
     query = (
         "SELECT "
         "search_term_view.search_term, "
@@ -644,8 +650,7 @@ async def list_search_terms(
         "FROM search_term_view "
         f"WHERE segments.date DURING {date_range} "
         f"AND metrics.cost_micros > {min_cost_micros} "
-        f"AND metrics.conversions <= {max_conversions} "
-        "AND search_term_view.status != 'EXCLUDED' "
+        f"{conv_clause} "
         "ORDER BY metrics.cost_micros DESC "
         f"LIMIT {limit}"
     )
@@ -663,6 +668,9 @@ async def list_search_terms(
     for chunk in chunks:
         for row in chunk.get("results", []) or []:
             stv = row.get("searchTermView", {}) or {}
+            # Python-side filter: skip queries already excluded as negative.
+            if stv.get("status") == "EXCLUDED":
+                continue
             cmp = row.get("campaign", {}) or {}
             ag = row.get("adGroup", {}) or {}
             m = row.get("metrics", {}) or {}
