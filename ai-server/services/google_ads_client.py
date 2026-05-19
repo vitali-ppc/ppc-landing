@@ -19,7 +19,7 @@ import httpx
 
 logger = logging.getLogger(__name__)
 
-GOOGLE_ADS_API_BASE = "https://googleads.googleapis.com/v20"
+GOOGLE_ADS_API_BASE = "https://googleads.googleapis.com/v24"
 TOKEN_CACHE_TTL_SECONDS = 3600
 _token_cache: dict[str, dict[str, Any]] = {}
 
