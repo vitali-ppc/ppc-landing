@@ -57,6 +57,11 @@ VIGIL_DASHBOARD_URL        https://www.kampaio.com/b6
 - §10.E — ChangeStatus в Echo (показывать non-B6 manual changes)
 - §10.F — PDF branding (логотип, графики)
 
+**Sprint 8.5 backlog (добавлено 2026-05-19 late night)**:
+- **§G. Echo prompt accuracy** (~10 мин) — Echo сейчас использует "blocked / held back / flagged" двусмысленно: эти слова звучат как-будто в Google Ads что-то произошло, но в реальности это только записи в БД о proposals + Aegis verdicts. Когда `status='proposed'` или Aegis `recommendation='block'` — Echo не должен говорить "we held back X" / "we blocked X", он должен явно писать "we proposed X but flagged it as risky" / "X awaits your review". Перед первым client-facing PDF reach (Tristan demo или первый платящий) этот prompt должен быть отполирован, иначе клиент откроет дашборд → увидит что "блоки" живые в Pending → потеряет доверие. **Триггер**: перед первой client-facing доставкой. **Не блокер сейчас** — никто кроме Виталия пока эти отчёты не читает.
+- **§H. Vigil scheduler — re-trigger без полного ожидания interval** — после рестарта первый scan теперь через 60 мин (Sprint 8.5 fix). Это правильно для prod stability, но иногда хочется быстро проверить новый код. Можно добавить admin endpoint `POST /api/internal/vigil/tick-now` который **игнорирует dedup** (не путать с существующим `/vigil/tick` который чтит dedup). ~20 мин. Низкий приоритет.
+- **§I. Bulk "Acknowledge all" в Vigil panel** — после big tick на новой логике может всё ещё быть 5-10 алертов; кликать каждый — нудно. Кнопка "Acknowledge all visible" / "Dismiss all on this severity". ~30 мин.
+
 ---
 
 ## ⚡ Что сделано в марафон 2026-05-18 → 2026-05-19
