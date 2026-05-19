@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import type { RiskReview } from "@/lib/b6-api";
 
 const colorFor = (score: number) => {
@@ -25,6 +25,8 @@ export const AegisBadge: React.FC<{ review: RiskReview | null | undefined; compa
   review,
   compact = false,
 }) => {
+  const [showDetails, setShowDetails] = useState(false);
+
   if (!review) {
     return compact ? null : (
       <div
@@ -60,6 +62,9 @@ export const AegisBadge: React.FC<{ review: RiskReview | null | undefined; compa
     );
   }
 
+  const flagCount = review.flags?.length ?? 0;
+  const hasExpandable = flagCount > 0 || Boolean(review.note);
+
   return (
     <div
       style={{
@@ -76,7 +81,7 @@ export const AegisBadge: React.FC<{ review: RiskReview | null | undefined; compa
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          marginBottom: "6px",
+          marginBottom: hasExpandable ? "6px" : 0,
         }}
       >
         <div style={{ fontWeight: 600, color }}>
@@ -87,8 +92,42 @@ export const AegisBadge: React.FC<{ review: RiskReview | null | undefined; compa
         </div>
       </div>
 
-      {review.flags && review.flags.length > 0 && (
-        <ul style={{ margin: "4px 0 0 16px", padding: 0, color: "#C0C6D7" }}>
+      {hasExpandable && (
+        <button
+          type="button"
+          onClick={() => setShowDetails((v) => !v)}
+          style={{
+            background: "transparent",
+            border: "none",
+            color: "#666",
+            fontSize: 11,
+            cursor: "pointer",
+            padding: 0,
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 4,
+          }}
+          title={showDetails ? "Hide Aegis details" : "Show Aegis details"}
+        >
+          <span
+            style={{
+              display: "inline-block",
+              width: 8,
+              fontSize: 9,
+              transform: showDetails ? "rotate(90deg)" : "rotate(0deg)",
+              transition: "transform 100ms",
+            }}
+          >
+            ▸
+          </span>
+          {showDetails
+            ? "Hide details"
+            : `Show details${flagCount > 0 ? ` · ${flagCount} flag${flagCount === 1 ? "" : "s"}` : ""}${review.note ? " + note" : ""}`}
+        </button>
+      )}
+
+      {showDetails && flagCount > 0 && (
+        <ul style={{ margin: "6px 0 0 16px", padding: 0, color: "#C0C6D7" }}>
           {review.flags.map((flag, i) => (
             <li key={i} style={{ marginBottom: "2px" }}>
               {flag}
@@ -97,7 +136,7 @@ export const AegisBadge: React.FC<{ review: RiskReview | null | undefined; compa
         </ul>
       )}
 
-      {review.note && (
+      {showDetails && review.note && (
         <div style={{ marginTop: "6px", color: "#A0A0A0", fontStyle: "italic" }}>
           “{review.note}”
         </div>

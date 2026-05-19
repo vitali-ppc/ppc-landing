@@ -392,6 +392,9 @@ function AlertCard({
   onAck: () => void;
   onDismiss: () => void;
 }) {
+  const [showDetails, setShowDetails] = useState(false);
+  const hasFlags = alert.aegis_flags && alert.aegis_flags.length > 0;
+
   return (
     <div
       style={{
@@ -433,22 +436,57 @@ function AlertCard({
             {alert.reasoning}
           </div>
         )}
-        {alert.aegis_flags && alert.aegis_flags.length > 0 && (
-          <div style={{ marginTop: 6, display: "flex", flexWrap: "wrap", gap: 4 }}>
-            {alert.aegis_flags.map((f, i) => (
+        {hasFlags && (
+          <div style={{ marginTop: 6 }}>
+            <button
+              type="button"
+              onClick={() => setShowDetails((v) => !v)}
+              style={{
+                background: "transparent",
+                border: "none",
+                color: "#666",
+                fontSize: 11,
+                cursor: "pointer",
+                padding: 0,
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 4,
+              }}
+              title={showDetails ? "Hide Aegis flags" : "Show Aegis flags"}
+            >
               <span
-                key={i}
                 style={{
-                  fontSize: 10,
-                  color: "#7F9CF5",
-                  background: "#7F9CF522",
-                  padding: "1px 6px",
-                  borderRadius: 8,
+                  display: "inline-block",
+                  width: 8,
+                  fontSize: 9,
+                  transform: showDetails ? "rotate(90deg)" : "rotate(0deg)",
+                  transition: "transform 100ms",
                 }}
               >
-                {f}
+                ▸
               </span>
-            ))}
+              {showDetails
+                ? `Hide details (${alert.aegis_flags.length} flag${alert.aegis_flags.length === 1 ? "" : "s"})`
+                : `Show details · ${alert.aegis_flags.length} Aegis flag${alert.aegis_flags.length === 1 ? "" : "s"}`}
+            </button>
+            {showDetails && (
+              <div style={{ marginTop: 6, display: "flex", flexWrap: "wrap", gap: 4 }}>
+                {alert.aegis_flags.map((f, i) => (
+                  <span
+                    key={i}
+                    style={{
+                      fontSize: 10,
+                      color: "#7F9CF5",
+                      background: "#7F9CF522",
+                      padding: "1px 6px",
+                      borderRadius: 8,
+                    }}
+                  >
+                    {f}
+                  </span>
+                ))}
+              </div>
+            )}
           </div>
         )}
       </div>
