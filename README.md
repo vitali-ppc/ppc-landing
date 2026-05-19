@@ -1,8 +1,8 @@
 # B6 — Autonomous PPC Cabinet
 
-> 🐝🛡️📊🦊🐻🎨🦉
+> 🐝🛡️📊🦊🐻🎨🦉🦇
 > **Your PPC agency. In a cabinet.**
-> AI agents that manage your Google Ads autonomously — bidding, budget, creative, reporting.
+> AI agents that manage your Google Ads autonomously — bidding, budget, creative, reporting, **and 24/7 anomaly monitoring**.
 
 [![Built with Claude](https://img.shields.io/badge/Built%20with-Claude%20Sonnet%204.6-FF8E53)](https://www.anthropic.com)
 [![Next.js](https://img.shields.io/badge/Next.js-15.5-black)](https://nextjs.org)
@@ -15,13 +15,13 @@
 
 ## 🚀 Что это
 
-B6 — это **multi-agent AI-агентство** для управления Google Ads кампаниями. Вместо одного generic AI-чата у нас **команда из 7 специалистов**, каждый со своей ролью, маскотом и логикой принятия решений.
+B6 — это **multi-agent AI-агентство** для управления Google Ads кампаниями. Вместо одного generic AI-чата у нас **команда из 8 специалистов**, каждый со своей ролью, маскотом и логикой принятия решений. Семь из них работают по запросу пользователя, восьмой (🦇 Vigil) — круглосуточно сам, без участия юзера.
 
 Пользователь подключает Google Ads, выбирает уровень автономности (L1 Co-pilot / L2 Approval / L3 Autonomous), и наблюдает в **real-time** как агенты работают — с маскотами, speech bubbles, и audit trail.
 
 ### Цена
 - **L1 Co-pilot** — $99/мес — AI предлагает, ты апруваешь каждое действие
-- **L2 Approval** — $199/мес — auto-apply безопасных, апрув на крупные
+- **L2 Approval** — $199/мес — auto-apply безопасных + **24/7 Vigil monitoring + email alerts**
 - **L3 Autonomous** — $399/мес — полная автономия, эскалация только рисков
 
 ---
@@ -30,15 +30,16 @@ B6 — это **multi-agent AI-агентство** для управления 
 
 | Маскот | Имя | Роль |
 |--------|-----|------|
-| 🐝 | **Buzz** | Bidding — корректирует ставки по перформансу |
-| 🛡️ | **Aegis** | Risk review — ревьюит Buzz и блокирует опасные решения |
-| 📊 | **Echo** | Reporting — weekly digest с конкретными советами |
+| 🐝 | **Buzz** | Bidding — корректирует ставки + применяет Google recommendations |
+| 🛡️ | **Aegis** | Risk review — ревьюит Buzz/Vox/Sage/Vigil, блокирует опасные решения и false-positive алерты |
+| 📊 | **Echo** | Reporting — weekly digest + клиентский PDF + email |
 | 🦊 | **Vox** | Strategy — cross-campaign budget reallocation |
-| 🐻 | **Maximus** | Orchestrator — auto-approve по правилам autonomy level |
+| 🐻 | **Maximus** | Orchestrator — auto-approve по правилам autonomy level (L1/L2/L3) |
 | 🎨 | **Mira** | Creative — генерация ad copy + image prompts |
-| 🦉 | **Sage** | Research — поиск новых ключей и аудиторий |
+| 🦉 | **Sage** | Research — поиск новых ключей, аудиторий и junk search terms → negative keywords |
+| 🦇 | **Vigil** | **24/7 anomaly monitoring** — APScheduler каждые 60 мин сам сканирует все аккаунты, 5 типов аномалий (spend spike / conversion drop / CTR collapse / ROAS drop / zero conversions), email digest на critical |
 
-Каждый агент построен на **Claude Sonnet 4.6** через нативный `anthropic` SDK с custom tool-use loop. Все решения логируются в immutable audit log с reasoning.
+Каждый агент построен на **Claude Sonnet 4.6** через нативный `anthropic` SDK с custom tool-use loop. **Vigil** — hybrid Python + LLM: детекция через детерминированные ratio'ы и пороги (быстро, бесплатно), LLM-судья только для классификации severity в контексте и текста алерта. Все решения логируются в immutable audit log с reasoning.
 
 ---
 
@@ -76,7 +77,7 @@ B6 — это **multi-agent AI-агентство** для управления 
 ```
 ppc-landing/
 ├── ai-server/                  # Python backend
-│   ├── agents/                 # 7 AI агентов
+│   ├── agents/                 # 8 AI агентов
 │   │   ├── base.py             # base agent loop (tool_use)
 │   │   ├── bidding_agent.py    # 🐝 Buzz
 │   │   ├── risk_agent.py       # 🛡️ Aegis
@@ -85,24 +86,40 @@ ppc-landing/
 │   │   ├── orchestrator.py     # 🐻 Maximus (rules engine)
 │   │   ├── creative_agent.py   # 🎨 Mira
 │   │   ├── research_agent.py   # 🦉 Sage
+│   │   ├── anomaly_agent.py    # 🦇 Vigil (Sprint 8)
 │   │   └── tools.py            # shared tool definitions
-│   ├── services/               # внешние интеграции
+│   ├── services/               # внешние интеграции + background workers
 │   │   ├── google_ads_client.py
 │   │   ├── audit.py
 │   │   ├── emailer.py          # Resend wrapper
-│   │   └── image_gen.py        # fal.ai wrapper
+│   │   ├── image_gen.py        # fal.ai wrapper
+│   │   ├── anomaly_detector.py # Sprint 8 — pure-Python 5 detection rules
+│   │   ├── vigil_scheduler.py  # Sprint 8 — APScheduler 24/7 cron
+│   │   ├── vigil_notifier.py   # Sprint 8 — critical email digest
+│   │   └── vigil_settings.py   # Sprint 8 — per-user enable + min_severity
 │   ├── routers/                # HTTP routes (FastAPI)
-│   ├── db/                     # SQLAlchemy models + migrations
+│   │   ├── agents.py
+│   │   ├── actions.py
+│   │   ├── anomalies.py        # Sprint 8 — /api/anomalies/{recent,ack,dismiss,settings}
+│   │   ├── auth.py
+│   │   ├── campaigns.py
+│   │   ├── digest.py
+│   │   ├── google_ads.py
+│   │   ├── internal.py
+│   │   ├── orchestrator.py
+│   │   └── waitlist.py
+│   ├── db/                     # SQLAlchemy models + Alembic migrations
 │   ├── ws/                     # Socket.IO server
-│   ├── app.py                  # B6 FastAPI app
+│   ├── app.py                  # B6 FastAPI + lifespan handler для Vigil scheduler
 │   ├── main.py                 # legacy Kampaio v1 (preserved)
+│   ├── scripts/smoke_test_vigil.py  # Sprint 8 — 3-layer smoke
 │   └── Dockerfile.b6           # production image
 ├── src/                        # Next.js frontend
 │   ├── app/
-│   │   ├── b6/page.tsx         # main dashboard
+│   │   ├── b6/                 # main dashboard (B6Content.tsx)
 │   │   ├── page.tsx            # landing
 │   │   └── api/                # Next.js API routes (incl. stripe-webhook)
-│   ├── components/b6/          # 15 B6 components
+│   ├── components/b6/          # 16 B6 components (incl. VigilPanel)
 │   └── lib/
 │       ├── b6-api.ts           # typed API client
 │       └── b6-socket.ts        # Socket.IO client + hook
@@ -188,20 +205,27 @@ API_BASE=https://api.kampaio.com FRONTEND=https://kampaio.com \
 
 ---
 
-## 📊 HTTP API (22 endpoints)
+## 📊 HTTP API (30+ endpoints)
 
 Основные:
-- `GET /health` — health check
-- `POST /api/agents/run` — запустить агента (bidding | strategy | creative | research)
+- `GET /health` — health check (включая `vigil.scheduler_status`)
+- `POST /api/auth/{register,login}` + `GET /api/auth/me` — JWT auth (Sprint 6)
+- `POST /api/agents/run` — запустить агента (`bidding | strategy | creative | research | anomaly`)
 - `GET /api/agents` — список агентов пользователя
 - `GET /api/actions?status=proposed` — pending actions
-- `POST /api/actions/{id}/approve` — апрув + dry-run apply
-- `POST /api/actions/{id}/reject` — отклонение
+- `POST /api/actions/{id}/approve` — апрув + опциональный `apply_to_google_ads=true` (Sprint 7)
+- `POST /api/actions/{id}/reject`
 - `GET /api/campaigns?customer_id=X` — кампании с метриками
 - `POST /api/orchestrator/cycle` — Maximus autonomy cycle
-- `POST /api/digest/run` — Echo weekly digest
+- `POST /api/digest/run` + `GET /api/digest/latest/pdf` + `POST /api/digest/latest/email` — Echo client report
+- **Sprint 8**: `GET /api/anomalies/recent` — Vigil alert feed
+- **Sprint 8**: `POST /api/anomalies/{id}/{acknowledge,dismiss}`
+- **Sprint 8**: `GET/PATCH /api/anomalies/settings` — per-user Vigil prefs
+- **Sprint 8**: `POST /api/internal/vigil/tick` — manual scheduler tick (ops)
+- `GET /api/google-ads/oauth/start` + `/callback` — OAuth onboarding
+- `GET /api/google-ads/accounts` + `DELETE /api/google-ads/accounts/{id}` — connection management
 - `POST /api/waitlist/signup` — waitlist + welcome email
-- Socket.IO `/socket.io/` — real-time events stream
+- Socket.IO `/socket.io/` — real-time events stream (JWT-authenticated, per-user room)
 
 Full OpenAPI spec → `http://localhost:8000/docs` после запуска.
 
@@ -249,31 +273,33 @@ Full OpenAPI spec → `http://localhost:8000/docs` после запуска.
 
 ## 🎯 Roadmap
 
-Текущий статус: **🚀 Live в production, Buzz+Aegis протестированы на реальном клиентском аккаунте** на [https://www.kampaio.com](https://www.kampaio.com).
+Текущий статус: **🚀 Live в production**, Sprint 1-8 done, готов к первому платящему L2/L3.
 
 Что закрыто:
 - ✅ Production deploy (Vercel + Hetzner CPX22)
-- ✅ ANTHROPIC_API_KEY активирован → AI-агенты отвечают
 - ✅ Google Ads OAuth flow → 33 реальных аккаунта подключены
 - ✅ Backend читает реальные campaigns (GOOGLE_ADS_USE_MOCK=false)
 - ✅ **Live validation**: Buzz 5 итераций / 9 tool calls на реальных Goodevas данных, Aegis BLOCK 2 actions на risk_score 82
-- ✅ Vercel Production Branch fixed (auto-deploy на каждый push)
+- ✅ **Sprint 6** — Multi-tenancy + JWT auth (bcrypt + HS256, 7-day TTL), все 6 protected routers переведены с hardcoded user
+- ✅ **Sprint 7** — Real apply для `pause_campaign` через `campaigns:mutate`, daily safety cap 5 applies/customer/24h, UI checkbox + confirm dialog
+- ✅ **v24 migration Phase 1/2/3/8** — Google Ads API v20 → v24, RecommendationService (Buzz/Vox потребляют Google's own recs), SearchTermView → negative keywords (Sage), Echo client-facing PDF + email
+- ✅ **Sprint 8 — Vigil 🦇 24/7 anomaly monitoring** — APScheduler + 5 detection rules + Aegis review для anomaly_alerts + UI panel + per-user settings + email digest (mock-mode)
 
 Следующие вехи:
-- ⏳ **Sprint 6 — Multi-tenancy + JWT auth** — главный блокер платящих клиентов (1-2 дня)
-- ⏳ Live test остальных агентов (Vox/Echo/Sage/Mira) на real Goodevas данных
+- ⏳ **Enable Vigil on prod** (~10 мин ops): `git push` + SSH + `VIGIL_ENABLED=true`
+- ⏳ **Resend setup** (~30 мин): DNS + verify + API key → реальная доставка PDF + critical alerts
+- ⏳ **Sprint 9 — Maximus L3 aggressive auto-apply + auto-pause на critical anomaly** (~15ч) — замыкает цикл "Vigil detects → Maximus acts"
 - ⏳ **First 30 beta users** через waitlist
-- ⏳ Real `apply_to_google_ads=true` test — реально применить одно Buzz предложение к Goodevas (рискованно — реальные деньги клиента)
-- ⏳ Google Ads Standard Access (запросить когда дорастём до 100+ юзеров, сейчас Basic = 15K ops/day)
 - ⏳ Real Stripe billing (test mode → live при первом платящем)
+- ⏳ Google Ads Standard Access (запросить когда дорастём до 100+ юзеров, сейчас Basic = 15K ops/day)
 
 ---
 
 ## 🤝 Built with
 
-Built solo by [vitali-ppc](https://github.com/vitali-ppc) using **Claude Code** за ~29 часов работы (Sprint 1 → 5 close).
+Built solo by [vitali-ppc](https://github.com/vitali-ppc) using **Claude Code** через Sprint 1 → 8.
 
-~9,200 строк production кода. 26 HTTP endpoints. 7 AI-агентов. OAuth интеграция с Google Ads. Live validated на реальном клиентском аккаунте.
+**~12,000+ строк production кода**. **30+ HTTP endpoints**. **8 AI-агентов** включая 24/7 anomaly monitor. OAuth интеграция с Google Ads. Multi-tenant JWT auth. Real Google Ads writes для 3 типов действий с safety caps. Live validated на реальном клиентском аккаунте.
 
 ---
 

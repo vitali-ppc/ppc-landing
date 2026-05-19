@@ -29,6 +29,7 @@
 │        │   │     b6-api (FastAPI)         │◄───┼─── Socket.IO       │
 │        │   │     Python 3.11              │    │                    │
 │        │   │     uvicorn:8000             │    │                    │
+│        │   │     + APScheduler (Vigil 🦇) │    │ ← Sprint 8         │
 │        │   └────┬─────────────┬───────────┘    │                    │
 │        │        │             │                │                    │
 │        │        ▼             ▼                │                    │
@@ -42,10 +43,10 @@
 │                       ▼                                             │
 │      ┌──────────────────────────────────────┐                       │
 │      │  External APIs                       │                       │
-│      │  • Anthropic Claude API              │                       │
-│      │  • Google Ads API v20                │                       │
+│      │  • Anthropic Claude API (Sonnet 4.6) │                       │
+│      │  • Google Ads API v24                │                       │
 │      │  • fal.ai (Flux image gen)           │                       │
-│      │  • Resend (email)                    │                       │
+│      │  • Resend (email — mock until key)   │                       │
 │      │  • Stripe (subscriptions)            │                       │
 │      └──────────────────────────────────────┘                       │
 └─────────────────────────────────────────────────────────────────────┘
@@ -83,7 +84,7 @@
 | `SagePanel.tsx` | Research output (keywords by theme + audiences) | 250 строк |
 
 ### Lib
-- `src/lib/b6-api.ts` — typed API client (все 22 endpoints + interfaces)
+- `src/lib/b6-api.ts` — typed API client (все 30+ endpoints + interfaces, включая Vigil)
 - `src/lib/b6-socket.ts` — Socket.IO client + `useB6Events` React hook
 
 ### Design system
@@ -143,16 +144,22 @@ ai-server/
     └── structural_test.py
 ```
 
-### HTTP API (22 endpoints)
+### HTTP API (30+ endpoints)
 
 #### Health & meta
 - `GET /` — root info
-- `GET /health` — health check + flags
+- `GET /health` — health check + flags + vigil scheduler status
 - `GET /docs` — Swagger UI
 - `GET /openapi.json`
 
+#### Auth (Sprint 6 — JWT, all protected routes use this)
+- `POST /api/auth/register` — bcrypt + email validation
+- `POST /api/auth/login` — returns access_token (HS256, 7-day TTL)
+- `GET /api/auth/me` — current user from JWT
+- `POST /api/auth/logout` — client-side token removal
+
 #### Agents
-- `POST /api/agents/run` — запустить агента (bidding|strategy|creative|research)
+- `POST /api/agents/run` — запустить агента (bidding|strategy|creative|research|anomaly)
 - `GET /api/agents` — список агентов пользователя
 - `POST /api/agents/{type}/pause`
 - `POST /api/agents/{type}/resume`
@@ -161,8 +168,15 @@ ai-server/
 - `GET /api/actions` — список (фильтр по status)
 - `GET /api/actions/{id}` — деталь + risk_review
 - `GET /api/actions/{id}/review` — только risk_review
-- `POST /api/actions/{id}/approve`
+- `POST /api/actions/{id}/approve` — + opt `apply_to_google_ads=true` (Sprint 7)
 - `POST /api/actions/{id}/reject`
+
+#### Anomalies (Sprint 8 — Vigil)
+- `GET /api/anomalies/recent?days=N&include_hidden=false` — alert feed
+- `POST /api/anomalies/{id}/acknowledge`
+- `POST /api/anomalies/{id}/dismiss`
+- `GET /api/anomalies/settings` — per-user enabled + min_severity
+- `PATCH /api/anomalies/settings` — update either/both
 
 #### Campaigns
 - `GET /api/campaigns?customer_id=X` — кампании с метриками (cached 30s)
@@ -177,15 +191,24 @@ ai-server/
 #### Digest (Echo)
 - `POST /api/digest/run` — generate + (optional) email
 - `GET /api/digest/latest`
+- `GET /api/digest/latest/pdf` — client-facing PDF (reportlab, v24 Phase 8)
+- `POST /api/digest/latest/email` — send digest as email (with optional override recipient)
+
+#### Google Ads OAuth (Sprint 5)
+- `GET /api/google-ads/oauth/start` — generate redirect URL + state
+- `GET /api/google-ads/oauth/callback` — handles code exchange + stores refresh_token
+- `GET /api/google-ads/accounts` — connected accounts
+- `DELETE /api/google-ads/accounts/{id}` — disconnect
 
 #### Waitlist
 - `POST /api/waitlist/signup` — добавить + welcome email
 - `GET /api/waitlist/stats`
 
-#### Internal (server-to-server)
+#### Internal (server-to-server, secret-protected)
 - `POST /api/internal/stripe-sync` — для Stripe webhook handler в Next.js
+- `POST /api/internal/vigil/tick` — manual scheduler tick (Sprint 8, for ops testing)
 
-#### Socket.IO
+#### Socket.IO (JWT-authenticated, per-user room)
 - `/socket.io/` — WebSocket transport
 - Events: `agent.thinking`, `agent.calling_tool`, `agent.done`, `agent.error`, `session.start`, `session.complete`
 
@@ -219,13 +242,14 @@ class BaseAgent:
 
 | Агент | Реализация | Особенность |
 |-------|------------|-------------|
-| **Buzz** | Claude + 6 tools | Single-campaign bidding |
-| **Aegis** | Claude + 1 tool (`submit_review`) | Бычит проподаются bulk-review всех pending |
-| **Echo** | Claude + 1 tool (`submit_digest`) | Read-only — не call API, только history |
-| **Vox** | Claude + 2 tools | Сразу видит ВСЕ кампании |
-| **Maximus** | **Deterministic Python** (НЕ Claude) | Rules engine — предсказуемость > LLM-творчество |
-| **Mira** | Claude + 1 tool (`propose_creative_set`) | Опционально вызывает image_gen после propose |
-| **Sage** | Claude + 3 tools (one-by-one) | Много мелких propose calls + finalize |
+| **Buzz** | Claude + 7 tools | Single-campaign bidding + apply Google recommendations. Защищён от non-MANUAL_CPC propose_bid_change. |
+| **Aegis** | Claude + 1 tool (`submit_review`) | Bulk-review всех pending. Class A (mutating) vs Class B (anomaly_alert) семантики (Sprint 8). |
+| **Echo** | Claude + 1 tool (`submit_digest`) | Read-only — не call API, только history. + client-facing PDF + email (v24 Phase 8). |
+| **Vox** | Claude + 3 tools | Сразу видит ВСЕ кампании. Использует Google recommendations типа CAMPAIGN_BUDGET / MOVE_UNUSED_BUDGET. |
+| **Maximus** | **Deterministic Python** (НЕ Claude) | Rules engine — предсказуемость > LLM-творчество. L0/L1/L2/L3 thresholds. |
+| **Mira** | Claude + 1 tool (`propose_creative_set`) | Опционально вызывает image_gen после propose. |
+| **Sage** | Claude + 5 tools | keywords + audiences + junk search-terms → add_negative_keyword. |
+| **Vigil** (Sprint 8) | Claude + 2 tools + pure-Python детектор | **Hybrid**: Python считает 5 ratio-based правил детерминированно, LLM судит severity в контексте + дедуп. Запускается автономно через APScheduler. |
 
 ### Tool use pattern
 ```python
@@ -253,6 +277,89 @@ Each agent receives optional `event_publisher` callable. На каждом ша�
 - `agent.error` — ошибка
 
 Frontend хук `useB6Events` слушает эти события и обновляет UI.
+
+---
+
+## Vigil 🦇 — autonomous 24/7 monitoring (Sprint 8)
+
+В отличие от остальных 7 агентов, Vigil **не дёргается юзером через UI**. Запускается автономно через APScheduler внутри FastAPI lifespan.
+
+### Архитектура одного tick'а
+
+```
+APScheduler (interval VIGIL_INTERVAL_MINUTES, default 60)
+    ↓
+vigil_scheduler.vigil_tick()
+    ↓
+_list_scan_targets()  →  SQL: все (user, customer) активные
+                          + per-user vigil_settings filter
+    ↓
+для каждой пары (max VIGIL_MAX_CONCURRENT параллельно):
+    ↓
+_was_scanned_recently()?  →  audit_log[vigil.scan] < VIGIL_DEDUP_MINUTES?
+    │ да → skip (ноль расходов)
+    │ нет ↓
+    ↓
+VigilAgent.run()
+    ├── detect_anomalies_tool
+    │   ├── google_ads_client.list_campaigns_with_daily_metrics()
+    │   │   └── GAQL: segments.date BETWEEN ... AND ... per campaign
+    │   └── anomaly_detector.detect_anomalies()  ← PURE PYTHON
+    │       ├── spend_spike    (ratio > 1.5 AND > $10)
+    │       ├── conversion_drop (today < 0.5x avg AND baseline >= 1)
+    │       ├── ctr_collapse    (today < 0.5x avg AND impressions > 500)
+    │       ├── roas_drop       (today < 0.7x avg AND conversions > 0)
+    │       └── zero_conversions (0 conv AND >= $20 spend AND avg >= 1)
+    ├── if candidates == []  → return (no LLM call, $0 cost)
+    └── LLM judges severity in context + dedup vs last 24h
+        └── propose_anomaly_alert(...)  →  AgentAction(action_type='anomaly_alert')
+    ↓
+AegisAgent.run()  →  reviews each anomaly_alert
+    ├── approve / review / block
+    └── compound signal detection ("3 anomalies on same campaign → escalate")
+    ↓
+vigil_notifier.notify_critical_anomalies()
+    ├── filter: severity >= user.min_severity_setting
+    ├── filter: aegis_recommendation != 'block'
+    ├── dedup: skip alerts with vigil.alert_emailed log
+    ├── rate-limit: <= VIGIL_EMAIL_DAILY_CAP / (user, customer) / 24h
+    └── emailer.send_email(...)  →  Resend (or mock fallback)
+    ↓
+_record_scan()  →  audit_log[vigil.scan] for next tick's dedup
+```
+
+### Env vars (Sprint 8)
+
+| Var | Default | Purpose |
+|-----|---------|---------|
+| `VIGIL_ENABLED` | `false` | Master kill-switch — must be set to "true" в prod |
+| `VIGIL_INTERVAL_MINUTES` | `60` | Scheduler tick frequency |
+| `VIGIL_DEDUP_MINUTES` | `45` | Skip rescan window per (user, customer) |
+| `VIGIL_MAX_CONCURRENT` | `3` | Max parallel Vigil runs per tick |
+| `VIGIL_DAYS_WINDOW` | `14` | Detector lookback window (uses up to 7 prior as baseline) |
+| `VIGIL_EMAIL_ENABLED` | `true` | Allow email notifications |
+| `VIGIL_EMAIL_DAILY_CAP` | `3` | Max emails / (user, customer) / 24h |
+| `VIGIL_DASHBOARD_URL` | `https://www.kampaio.com/b6` | Link target in email body |
+
+### Per-user settings (`safety_caps` table)
+
+Two cap_types added in Sprint 8:
+- `vigil_enabled` (1/0) — user-level kill-switch
+- `vigil_min_severity` (0=info, 1=warning, 2=critical) — email threshold
+
+Defaults: enabled=true, min_severity=critical. Managed via `GET/PATCH /api/anomalies/settings`.
+
+### Why hybrid (Python + LLM) instead of LLM-only
+
+| Aspect | LLM-only | Hybrid (chosen) |
+|---|---|---|
+| Detection math | LLM bad at it, expensive | Python — deterministic, ms-fast, free |
+| Severity calibration | LLM good at context | LLM — keeps this judgment |
+| Phrasing for humans | LLM essential | LLM — keeps this |
+| Dedup vs recent | LLM can do but slow | LLM with full context, but only IF candidates exist |
+| Cost on quiet account | $0.05 per run × 33 accounts × 24/day = $40/day | $0 (no LLM call — Python returns []) |
+
+This split is why Vigil costs ~$3-5/day on 33 accounts in practice, not $40+.
 
 ---
 

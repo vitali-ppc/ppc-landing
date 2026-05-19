@@ -25,19 +25,20 @@
 - Целевая аудитория: SMB и e-com магазины с $3-50K/мес рекламного бюджета
 - Цена: L1 $99 / L2 $199 / L3 $399 / мес — три уровня автономности
 
-**Текущая команда AI-агентов** (все 7 LIVE на 2026-05-12):
+**Текущая команда AI-агентов** (8 агентов, Sprint 1-8 done на 2026-05-19):
 
 | Маскот | Имя | Роль | Status |
 |--------|-----|------|--------|
 | 🐝 | Buzz | Bidding (single-campaign) | ✅ LIVE |
-| 🛡️ | Aegis | Risk review of Buzz/Vox | ✅ LIVE |
-| 📊 | Echo | Weekly digest + advice | ✅ LIVE |
+| 🛡️ | Aegis | Risk review (Class A mutating + Class B alerts) | ✅ LIVE |
+| 📊 | Echo | Weekly digest + client PDF | ✅ LIVE |
 | 🦊 | Vox | Strategy (cross-campaign budget) | ✅ LIVE |
 | 🐻 | Maximus | Orchestrator (rules engine for autonomy) | ✅ LIVE |
 | 🎨 | Mira | Creative (ad copy + images) | ✅ LIVE |
-| 🦉 | Sage | Research (keywords + audiences) | ✅ LIVE |
+| 🦉 | Sage | Research (keywords + audiences + negatives) | ✅ LIVE |
+| 🦇 | Vigil | 24/7 anomaly monitoring (Sprint 8) | ✅ CODE DONE, prod-gated за `VIGIL_ENABLED=true` |
 
-**Главное состояние сейчас**: 🚀 **LIVE В PRODUCTION, BUZZ/AEGIS ПРОТЕСТИРОВАНЫ НА РЕАЛЬНОМ КЛИЕНТСКОМ АККАУНТЕ** на https://www.kampaio.com + https://api.kampaio.com (Vercel + Hetzner CPX22 `178.104.124.150`). Все credentials в .env.prod, `GOOGLE_ADS_USE_MOCK=false`. 33 реальных Google Ads аккаунта подключены через OAuth, активный `3133506664` (Goodevas It). Buzz отрабатывает 5 итераций / 9 tool calls за 90 секунд, Aegis делает 8 risk reviews с BLOCK на risk_score 82/100 (brand_campaign_pause + zero_roas_tracking_suspicion). Vercel Production Branch fixed → `v2-autonomous-agents` (auto-deploy). Подробно → [`HANDOFF.md`](./HANDOFF.md).
+**Главное состояние сейчас (2026-05-19 late evening)**: 🚀 **LIVE В PRODUCTION** на https://www.kampaio.com + https://api.kampaio.com (Vercel + Hetzner CPX22 `178.104.124.150`). Multi-tenant JWT auth работает. 33 реальных Google Ads аккаунта через OAuth, активный `3133506664` (Goodevas It). На Google Ads API v24. Real apply для 3 типов действий (`pause_campaign`, `apply_recommendation`, `add_negative_keyword`) с daily safety cap. **Sprint 8 Vigil закоммичен** (commit `7177951`) — APScheduler + детектор + email digest + per-user settings, но **не запушен на origin и не включён на проде** (`VIGIL_ENABLED=false` default). Полная сводка → [`HANDOFF.md`](./HANDOFF.md).
 
 ---
 
@@ -68,10 +69,12 @@
 - **Production** (Hetzner, `.env.prod`): `GOOGLE_ADS_USE_MOCK=false` → агенты читают реальные Google Ads campaigns через OAuth refresh_token из БД (`GoogleAdsAccount` table). На 2026-05-13 активный customer_id = `3133506664` (Goodevas It).
 - Refresh_token берётся из БД по `customer_id` (см. `routers/campaigns.py` → `_get_access_token(customer_id)` и `agents/tools.py` → `_get_access_token_for(user_id, customer_id)`). Legacy `DEV_REFRESH_TOKEN` env var больше **не используется**.
 
-### 4. Dry-run все write-операции до production
-- Любые `update_bid`, `pause_campaign` сейчас **только pretend** — не пишут в Google Ads API
-- Реальные write активируются параметром `apply_to_google_ads=true` в `/api/actions/{id}/approve`
-- **Никогда** не разрешать default-true для apply без явного решения пользователя
+### 4. Dry-run по умолчанию, real-apply только с явным флагом
+- **Real apply** уже работает для 3 action_type: `pause_campaign` + `apply_recommendation` + `add_negative_keyword`. Активируется параметром `apply_to_google_ads=true` в `/api/actions/{id}/approve`.
+- `update_bid` всё ещё в dry-run (Sprint 7.5 — нужен strategy-aware refactor агентов).
+- Daily safety cap: 5 real applies / customer_id / 24h (см. `services/audit.py::count_real_applies_last_24h`).
+- **Никогда** не разрешать default-true для apply без явного решения пользователя.
+- В UI ApprovalQueue checkbox "Apply to Google Ads" + красная "⚠ Apply now" с `confirm()`.
 
 ### 5. Не добавлять фич которых юзер не просил
 - Baseline — то, что в [`HANDOFF.md`](./HANDOFF.md) → roadmap
@@ -87,20 +90,34 @@
 
 ```
 Frontend (Next.js 15 / TypeScript)              Backend (FastAPI / Python 3.9+)
-├── src/app/b6/page.tsx       ← главная B6     ├── app.py                   ← B6 FastAPI app
+├── src/app/b6/page.tsx       ← главная B6     ├── app.py                   ← B6 FastAPI + Vigil scheduler lifespan
 ├── src/app/dashboard/        ← legacy Kampaio  ├── main.py                  ← legacy Kampaio
-├── src/components/b6/        ← B6 UI           ├── agents/
-│   ├── CampaignCard          (10 файлов)       │   ├── base.py              ← agent loop
+├── src/components/b6/        ← B6 UI           ├── agents/                  ← 8 агентов
+│   ├── CampaignCard                            │   ├── base.py              ← agent loop
 │   ├── ActivityFeed                            │   ├── bidding_agent.py     ← Buzz
 │   ├── ApprovalQueue                           │   ├── risk_agent.py        ← Aegis
-│   ├── LiveEventStream                         │   └── tools.py
-│   ├── MascotLayer           ← Framer Motion   ├── services/
-│   └── AegisBadge                              │   ├── google_ads_client.py
-├── src/lib/                                    │   └── audit.py
-│   ├── b6-api.ts             ← API client      ├── routers/
-│   └── b6-socket.ts          ← Socket.IO       │   ├── agents.py
+│   ├── LiveEventStream                         │   ├── reporting_agent.py   ← Echo
+│   ├── MascotLayer           ← Framer Motion   │   ├── strategy_agent.py    ← Vox
+│   ├── DigestPanel                             │   ├── orchestrator.py      ← Maximus (rules engine)
+│   ├── VigilPanel            ← Sprint 8        │   ├── creative_agent.py    ← Mira
+│   └── AegisBadge                              │   ├── research_agent.py    ← Sage
+├── src/lib/                                    │   ├── anomaly_agent.py     ← Vigil (Sprint 8)
+│   ├── b6-api.ts             ← API client      │   └── tools.py
+│   └── b6-socket.ts          ← Socket.IO       ├── services/
+                                                │   ├── google_ads_client.py
+                                                │   ├── audit.py
+                                                │   ├── emailer.py
+                                                │   ├── anomaly_detector.py  ← Sprint 8 pure-Python rules
+                                                │   ├── vigil_scheduler.py   ← Sprint 8 APScheduler
+                                                │   ├── vigil_notifier.py    ← Sprint 8 email digest
+                                                │   └── vigil_settings.py    ← Sprint 8 per-user prefs
+                                                ├── routers/
+                                                │   ├── agents.py
                                                 │   ├── actions.py
-                                                │   └── campaigns.py
+                                                │   ├── anomalies.py         ← Sprint 8 /api/anomalies/*
+                                                │   ├── campaigns.py
+                                                │   ├── auth.py
+                                                │   └── digest.py
                                                 ├── db/
                                                 │   ├── models.py (7 таблиц)
                                                 │   ├── session.py
@@ -179,14 +196,21 @@ http://localhost:8000/docs
 | Что | Где |
 |-----|-----|
 | **Текущий план / следующие шаги** | [`HANDOFF.md`](./HANDOFF.md) |
-| **Полный архитектурный план** | `/Users/vitaly/.claude/plans/noble-waddling-sparkle.md` |
-| **Описание агента (system prompt)** | `ai-server/agents/<name>.py` (см. `AEGIS_SYSTEM_PROMPT`, `BiddingAgent.system_prompt`) |
-| **Что Buzz/Aegis могут вызвать** | `ai-server/agents/tools.py` + `risk_agent.py:register_tools` |
+| **Полный архитектурный план (исходный)** | `/Users/vitaly/.claude/plans/noble-waddling-sparkle.md` |
+| **v24 migration план** | `/Users/vitaly/.claude/plans/b6-v24-migration.md` |
+| **Sprint 8 (Vigil) план** | `/Users/vitaly/.claude/plans/b6-sprint-8-vigil.md` |
+| **Описание агента (system prompt)** | `ai-server/agents/<name>.py` (см. `AEGIS_SYSTEM_PROMPT`, `BiddingAgent.system_prompt`, `VIGIL_SYSTEM_PROMPT`) |
+| **Что агенты могут вызвать** | `ai-server/agents/tools.py` + методы `register_tools()` |
 | **Google Ads интеграция** | `ai-server/services/google_ads_client.py` |
+| **Anomaly detection rules** | `ai-server/services/anomaly_detector.py` |
+| **24/7 scheduler** | `ai-server/services/vigil_scheduler.py` |
+| **Vigil email digest** | `ai-server/services/vigil_notifier.py` |
+| **Per-user Vigil settings** | `ai-server/services/vigil_settings.py` |
 | **DB schema** | `ai-server/db/models.py` |
-| **Дашборд UI** | `src/app/b6/page.tsx` |
+| **Дашборд UI** | `src/app/b6/B6Content.tsx` |
+| **Vigil UI panel** | `src/components/b6/VigilPanel.tsx` |
 | **Live event stream** | `src/components/b6/LiveEventStream.tsx` + `src/lib/b6-socket.ts` |
-| **Маскоты (анимация)** | `src/components/b6/MascotLayer.tsx` |
+| **Маскоты (анимация)** | `src/components/b6/MascotLayer.tsx` (пока только Buzz+Aegis, refactor отложен) |
 | **Старый Kampaio (не трогать)** | `ai-server/main.py`, `src/app/chat/`, `src/app/dashboard/` (старый) |
 
 ---
@@ -194,10 +218,11 @@ http://localhost:8000/docs
 ## ⚠️ Open Decisions (требуют решения от Виталия)
 
 См. секцию «Open Decisions» в [`HANDOFF.md`](./HANDOFF.md).
-Главные на 2026-05-13:
-1. **Sprint 6 — Multi-tenancy auth** — JWT registration vs. ручной `INSERT INTO users` для первых beta-юзеров. **Главный блокер платящих**.
-2. **Live test остальных агентов** (Vox/Echo/Sage/Mira) на real Goodevas данных — готовы по коду, не запускались на real account.
-3. **Когда включать real `apply_to_google_ads=true`** — сейчас все Buzz предложения dry_run. Один из 5 текущих proposed actions нужно реально применить к Goodevas чтобы проверить write path end-to-end. Рискованно: реальные деньги клиента.
+Главные на 2026-05-19:
+1. **Включить Vigil на проде** — `git push` + SSH + добавить `VIGIL_ENABLED=true` в `.env.prod`. ~10 мин ops. Sprint 8 код готов и закоммичен, но scheduler не активен.
+2. **Resend setup** — `RESEND_API_KEY` пустой. Echo PDF + Vigil critical alerts сейчас mock-mode (UI честно показывает баннер). Реальной доставки нет. ~30 мин (DNS + verify + key).
+3. **Gating Vigil по autonomy_level** — сейчас Vigil scheduler не привязан к tier'у (любой юзер с `VIGIL_ENABLED=true` global получает). Бизнес-решение: давать free trial или жёсткий paywall за L2+? 5 строк кода когда определишься.
+4. **Sprint 9 — Maximus L3 aggressive auto-apply + auto-pause на critical anomaly** — замкнёт цикл "Vigil detects → Maximus acts". ~15ч.
 
 ---
 
