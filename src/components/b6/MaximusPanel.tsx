@@ -175,13 +175,26 @@ const CycleResult: React.FC<{ cycle: OrchestrationCycle }> = ({ cycle }) => (
     </div>
 
     {cycle.auto_approved.length > 0 && (
-      <DetailsList title="Auto-approved by Maximus" items={cycle.auto_approved} color="#4ECDC4" />
+      <DetailsList
+        title="Auto-approved by Maximus"
+        items={cycle.auto_approved}
+        color="#4ECDC4"
+        defaultOpen
+      />
     )}
     {cycle.kept_pending.length > 0 && (
-      <DetailsList title="Kept for manual approval" items={cycle.kept_pending} color="#FFA726" />
+      <DetailsList
+        title="Kept for manual approval"
+        items={cycle.kept_pending}
+        color="#FFA726"
+      />
     )}
     {cycle.blocked.length > 0 && (
-      <DetailsList title="Blocked by Aegis" items={cycle.blocked} color="#FF6B6B" />
+      <DetailsList
+        title="Blocked by Aegis"
+        items={cycle.blocked}
+        color="#FF6B6B"
+      />
     )}
 
     <div style={{ marginTop: "10px", color: "#666", fontSize: "10px", textAlign: "right" }}>
@@ -211,37 +224,73 @@ const DetailsList: React.FC<{
   title: string;
   items: Array<{ action_id: string; reason: string; campaign_id?: string }>;
   color: string;
-}> = ({ title, items, color }) => (
-  <div style={{ marginBottom: "10px" }}>
-    <div
-      style={{
-        fontSize: "10px",
-        color: "#A0A0A0",
-        textTransform: "uppercase",
-        letterSpacing: "0.5px",
-        marginBottom: "6px",
-      }}
-    >
-      {title}
-    </div>
-    <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
-      {items.slice(0, 5).map((x) => (
-        <div
-          key={x.action_id}
+  defaultOpen?: boolean;
+}> = ({ title, items, color, defaultOpen = false }) => {
+  const [open, setOpen] = useState(defaultOpen);
+  const shown = items.slice(0, 5);
+  const hiddenCount = Math.max(items.length - 5, 0);
+  return (
+    <div style={{ marginBottom: "10px" }}>
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        aria-expanded={open}
+        style={{
+          width: "100%",
+          background: "transparent",
+          border: "none",
+          padding: 0,
+          cursor: "pointer",
+          fontSize: "10px",
+          color: "#A0A0A0",
+          textTransform: "uppercase",
+          letterSpacing: "0.5px",
+          marginBottom: open ? "6px" : 0,
+          display: "flex",
+          alignItems: "center",
+          gap: 6,
+        }}
+        title={open ? `Hide ${title}` : `Show ${title}`}
+      >
+        <span
           style={{
-            padding: "6px 10px",
-            background: "#0F1116",
-            borderLeft: `2px solid ${color}`,
-            borderRadius: "4px",
-            fontSize: "11px",
-            color: "#C0C6D7",
+            display: "inline-block",
+            width: 8,
+            fontSize: 9,
+            transform: open ? "rotate(90deg)" : "rotate(0deg)",
+            transition: "transform 100ms",
           }}
         >
-          <code style={{ color: "#7F9CF5" }}>{x.action_id.slice(0, 8)}..</code>
-          {x.campaign_id && <span style={{ color: "#A0A0A0" }}> · campaign {x.campaign_id}</span>}
-          <div style={{ color: "#A0A0A0", marginTop: "2px", lineHeight: 1.4 }}>{x.reason}</div>
+          ▸
+        </span>
+        {title} ({items.length})
+      </button>
+      {open && (
+        <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+          {shown.map((x) => (
+            <div
+              key={x.action_id}
+              style={{
+                padding: "6px 10px",
+                background: "#0F1116",
+                borderLeft: `2px solid ${color}`,
+                borderRadius: "4px",
+                fontSize: "11px",
+                color: "#C0C6D7",
+              }}
+            >
+              <code style={{ color: "#7F9CF5" }}>{x.action_id.slice(0, 8)}..</code>
+              {x.campaign_id && <span style={{ color: "#A0A0A0" }}> · campaign {x.campaign_id}</span>}
+              <div style={{ color: "#A0A0A0", marginTop: "2px", lineHeight: 1.4 }}>{x.reason}</div>
+            </div>
+          ))}
+          {hiddenCount > 0 && (
+            <div style={{ color: "#666", fontSize: "10px", padding: "4px 10px" }}>
+              + {hiddenCount} more (open in Approval Queue below)
+            </div>
+          )}
         </div>
-      ))}
+      )}
     </div>
-  </div>
-);
+  );
+};
