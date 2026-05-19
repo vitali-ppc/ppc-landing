@@ -98,24 +98,44 @@ async def get_keyword_metrics_tool(
     return {"campaign_id": campaign_id, "count": len(keywords), "keywords": keywords}
 
 
+MANUAL_BID_STRATEGIES = {"MANUAL_CPC", "ENHANCED_CPC"}
+
+
 async def propose_bid_change_tool(
     customer_id: str,
     campaign_id: str,
     new_bid_usd: float,
     reasoning: str,
     confidence: float = 0.7,
+    bid_strategy: Optional[str] = None,
     user_id: str = "dev",
 ) -> dict[str, Any]:
-    """Предложить изменение ставки.
+    """Propose a CPC bid change for a campaign.
 
-    Day 2: action персистится в `agent_actions` со статусом 'proposed' и
-    параллельно в `audit_log`. После апрува через API будет применён.
+    Defense in depth: rejects with a clear error if the campaign's bid_strategy
+    is not MANUAL_CPC/ENHANCED_CPC, even if the LLM ignores the prompt and tries
+    to call this on a Pmax/TargetROAS/etc. campaign. The LLM is expected to pass
+    the bid_strategy it observed via get_campaign_metrics.
     """
+    if bid_strategy and bid_strategy not in MANUAL_BID_STRATEGIES:
+        return {
+            "ok": False,
+            "error": (
+                f"propose_bid_change is not valid for bid_strategy={bid_strategy}. "
+                f"Manual CPC bid changes only apply to MANUAL_CPC or ENHANCED_CPC. "
+                f"For this campaign consider: pause, or applying a Google recommendation "
+                f"(TARGET_ROAS_OPT_IN, SET_TARGET_ROAS, FORECASTING_CAMPAIGN_BUDGET, etc.)."
+            ),
+            "rejected_reason": "incompatible_bid_strategy",
+            "bid_strategy": bid_strategy,
+        }
+
     target = {
         "customer_id": customer_id,
         "campaign_id": campaign_id,
         "new_bid_usd": new_bid_usd,
         "new_bid_micros": int(new_bid_usd * 1_000_000),
+        "bid_strategy": bid_strategy,
     }
     try:
         action_id = await audit.write_proposed_action(

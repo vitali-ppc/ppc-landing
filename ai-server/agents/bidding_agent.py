@@ -18,16 +18,43 @@ Your job: analyze campaign performance and propose bid changes or pauses to\
 
 IMPORTANT: All reasoning, summaries, and proposed-action text MUST be in English.
 
+CRITICAL — bid strategy awareness:
+Google Ads campaigns use different bid_strategy values. Each campaign's metrics\
+ payload includes `bid_strategy`. propose_bid_change_tool ONLY makes sense for\
+ campaigns where the human (or the system) directly sets the CPC bid:
+  - MANUAL_CPC                 → bid change applies
+  - ENHANCED_CPC (legacy)       → bid change applies
+
+For ALL OTHER bid_strategy values the campaign's bid is computed by Google\
+ automatically; propose_bid_change has NO EFFECT and Google's API will reject\
+ it. NEVER call propose_bid_change for any of these:
+  - MAXIMIZE_CONVERSION_VALUE / MAXIMIZE_CONVERSION_VALUE_TARGET_ROAS
+  - TARGET_ROAS / TARGET_CPA / TARGET_IMPRESSION_SHARE
+  - MAXIMIZE_CONVERSIONS / MAXIMIZE_CLICKS
+  - any Performance Max strategy
+  - any Brand / smart-bidding strategy
+
+If you would otherwise have wanted to "raise/lower bid" on such a campaign:
+  1. Prefer applying a relevant Google recommendation (e.g. TARGET_ROAS_OPT_IN,\
+     SET_TARGET_ROAS, FORECASTING_CAMPAIGN_BUDGET).
+  2. If no recommendation applies, propose pausing the campaign (when ROAS < 1)\
+     or simply leave it alone and move on — do not synthesize a fake bid change.
+  3. Mention the bid_strategy explicitly in your final summary so the user\
+     understands why no bid action was proposed.
+
 Workflow:
 0. **ALWAYS start by calling list_recommendations_tool**. Google generates its own\
  recommendations (CAMPAIGN_BUDGET, KEYWORD, TARGET_ROAS_OPT_IN, MOVE_UNUSED_BUDGET,\
  etc.) — these are high-signal because they're based on Google's full data\
  (not just the last 7 days). For each relevant recommendation, decide whether to\
  propose applying it via propose_apply_recommendation_tool.
-1. THEN look at campaign metrics over the last 7 days for the gaps Google didn't cover.
+1. THEN look at campaign metrics over the last 7 days. For each campaign, FIRST\
+ read its bid_strategy. If automated → only consider pause or recommendation-apply.\
+ If MANUAL_CPC → metric-based bid rules below apply.
 2. For raw metric-based decisions, the rules below still apply.
 
-Metric-based rules (only when Google has no relevant recommendation):
+Metric-based rules (ONLY for MANUAL_CPC / ENHANCED_CPC campaigns and ONLY when\
+ Google has no relevant recommendation):
 - If ROAS > 3.0 and CTR > 0.02, you may raise the bid by up to +30%.
 - If ROAS < 1.0, lower the bid or propose pausing the campaign.
 - If ROAS is between 1.0 and 3.0, leave it alone unless there is a strong signal.
@@ -134,9 +161,13 @@ class BiddingAgent(BaseAgent):
             ToolSpec(
                 name="propose_bid_change",
                 description=(
-                    "Propose a bid change for a campaign. Will be saved as 'proposed' status, "
-                    "requires user approval before being applied to Google Ads. ALWAYS call "
-                    "check_safety_cap first."
+                    "Propose a CPC bid change for a campaign. "
+                    "ONLY usable when the campaign's bid_strategy is MANUAL_CPC or ENHANCED_CPC. "
+                    "For automated strategies (MAXIMIZE_CONVERSION_VALUE, TARGET_ROAS, TARGET_CPA, "
+                    "TARGET_IMPRESSION_SHARE, MAXIMIZE_CONVERSIONS, MAXIMIZE_CLICKS, any Performance Max), "
+                    "this tool MUST NOT be used — Google will reject the mutate and the proposal is noise. "
+                    "Always check bid_strategy from get_campaign_metrics before calling this tool. "
+                    "ALWAYS call check_safety_cap first."
                 ),
                 input_schema={
                     "type": "object",
@@ -146,11 +177,15 @@ class BiddingAgent(BaseAgent):
                         "new_bid_usd": {"type": "number", "description": "New bid in USD"},
                         "reasoning": {"type": "string", "description": "2-3 sentence explanation with numbers"},
                         "confidence": {"type": "number", "minimum": 0, "maximum": 1, "default": 0.7},
+                        "bid_strategy": {
+                            "type": "string",
+                            "description": "MUST be the campaign's bid_strategy as read from get_campaign_metrics. The tool will refuse anything other than MANUAL_CPC or ENHANCED_CPC.",
+                        },
                     },
-                    "required": ["customer_id", "campaign_id", "new_bid_usd", "reasoning"],
+                    "required": ["customer_id", "campaign_id", "new_bid_usd", "reasoning", "bid_strategy"],
                 },
-                handler=lambda customer_id, campaign_id, new_bid_usd, reasoning, confidence=0.7: tools.propose_bid_change_tool(
-                    customer_id, campaign_id, new_bid_usd, reasoning, confidence, user_id=self.user_id
+                handler=lambda customer_id, campaign_id, new_bid_usd, reasoning, confidence=0.7, bid_strategy=None: tools.propose_bid_change_tool(
+                    customer_id, campaign_id, new_bid_usd, reasoning, confidence, bid_strategy, user_id=self.user_id
                 ),
             ),
             ToolSpec(
