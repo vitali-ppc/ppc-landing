@@ -287,6 +287,102 @@ async def propose_apply_recommendation_tool(
     }
 
 
+async def list_search_terms_tool(
+    customer_id: str,
+    days: int = 30,
+    min_cost_usd: float = 5.0,
+    max_conversions: float = 0.0,
+    limit: int = 50,
+    user_id: str = "dev",
+) -> dict[str, Any]:
+    """Fetch real search queries that triggered ads — find junk-spend candidates.
+
+    Default filter (industry-standard junk indicator): spend > $5 over 30 days
+    AND zero conversions. These are prime candidates to add as negative keywords.
+    """
+    try:
+        access_token = await _get_access_token_for(user_id, customer_id)
+    except PermissionError as e:
+        return {"ok": False, "error": str(e), "search_terms": []}
+
+    items = await gads.list_search_terms(
+        access_token,
+        customer_id,
+        days=days,
+        min_cost_usd=min_cost_usd,
+        max_conversions=max_conversions,
+        limit=limit,
+    )
+    return {
+        "ok": True,
+        "customer_id": customer_id,
+        "filter": {"days": days, "min_cost_usd": min_cost_usd, "max_conversions": max_conversions},
+        "count": len(items),
+        "search_terms": items,
+    }
+
+
+async def propose_negative_keyword_tool(
+    customer_id: str,
+    campaign_id: str,
+    keyword_text: str,
+    match_type: str,
+    reasoning: str,
+    confidence: float = 0.8,
+    impact_summary: Optional[str] = None,
+    user_id: str = "dev",
+) -> dict[str, Any]:
+    """Propose adding a negative keyword at campaign level.
+
+    match_type must be EXACT / PHRASE / BROAD. EXACT is safest — blocks only
+    the exact junk phrase. PHRASE/BROAD can over-block legitimate variants;
+    use only with clear evidence the variants are also junk.
+    """
+    match_type = (match_type or "EXACT").upper()
+    if match_type not in {"EXACT", "PHRASE", "BROAD"}:
+        return {
+            "ok": False,
+            "error": f"Invalid match_type {match_type} — must be EXACT, PHRASE, or BROAD",
+        }
+
+    target = {
+        "customer_id": customer_id,
+        "campaign_id": campaign_id,
+        "keyword_text": keyword_text,
+        "match_type": match_type,
+        "impact_summary": impact_summary,
+    }
+    try:
+        action_id = await audit.write_proposed_action(
+            user_id=user_id,
+            agent_type="research",
+            action_type="add_negative_keyword",
+            target=target,
+            reasoning=reasoning,
+            confidence=confidence,
+        )
+    except Exception as e:
+        logger.exception("Failed to persist negative keyword proposal")
+        return {"ok": False, "error": f"DB error: {e}"}
+
+    return {
+        "ok": True,
+        "action_id": action_id,
+        "message": (
+            f"Proposed negative keyword: '{keyword_text}' [{match_type}] on campaign {campaign_id}. "
+            f"Action ID: {action_id[:8]}... — requires approval."
+        ),
+        "proposed_action": {
+            "action_id": action_id,
+            "action_type": "add_negative_keyword",
+            **target,
+            "reasoning": reasoning,
+            "confidence": confidence,
+            "status": "proposed",
+        },
+    }
+
+
 async def check_safety_cap_tool(
     cap_type: str,
     amount: float,

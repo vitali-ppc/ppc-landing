@@ -562,6 +562,204 @@ async def dismiss_recommendation(
 
 
 # ---------------------------------------------------------------------------
+# Search Terms — find junk queries to add as negative keywords (Phase 3)
+# ---------------------------------------------------------------------------
+
+async def list_search_terms(
+    access_token: str,
+    customer_id: str,
+    *,
+    days: int = 30,
+    min_cost_usd: float = 5.0,
+    max_conversions: float = 0.0,
+    limit: int = 50,
+) -> list[dict[str, Any]]:
+    """Find search queries that triggered ads but drained budget with no return.
+
+    Default filter (junk indicator): spend > $5 over 30 days AND conversions == 0.
+    These are prime candidates for negative-keyword cleanup.
+
+    Returns list of:
+        {
+          "search_term": "how to fix broken shoes",
+          "campaign_id": "22932954882",
+          "ad_group_id": "...",
+          "ad_group_resource": "customers/.../adGroups/...",
+          "clicks": 12,
+          "impressions": 340,
+          "cost_micros": 7_500_000,   # $7.50
+          "cost_usd": 7.50,
+          "conversions": 0.0,
+          "status": "NONE" | "ADDED" | "EXCLUDED",
+        }
+    """
+    if use_mock():
+        return [
+            {
+                "search_term": "how to fix broken shoes",
+                "campaign_id": "100001",
+                "ad_group_id": "200001",
+                "ad_group_resource": f"customers/{customer_id}/adGroups/200001",
+                "clicks": 12,
+                "impressions": 340,
+                "cost_micros": 7_500_000,
+                "cost_usd": 7.5,
+                "conversions": 0.0,
+                "status": "NONE",
+            },
+            {
+                "search_term": "ремонт обуви бесплатно",
+                "campaign_id": "100002",
+                "ad_group_id": "200002",
+                "ad_group_resource": f"customers/{customer_id}/adGroups/200002",
+                "clicks": 8,
+                "impressions": 220,
+                "cost_micros": 6_200_000,
+                "cost_usd": 6.2,
+                "conversions": 0.0,
+                "status": "NONE",
+            },
+        ]
+
+    min_cost_micros = int(min_cost_usd * 1_000_000)
+    # Date range token in GAQL — LAST_7_DAYS / LAST_30_DAYS / LAST_90_DAYS
+    if days <= 7:
+        date_range = "LAST_7_DAYS"
+    elif days <= 30:
+        date_range = "LAST_30_DAYS"
+    else:
+        date_range = "LAST_90_DAYS"
+
+    query = (
+        "SELECT "
+        "search_term_view.search_term, "
+        "search_term_view.status, "
+        "search_term_view.ad_group, "
+        "campaign.id, "
+        "ad_group.id, "
+        "metrics.clicks, "
+        "metrics.impressions, "
+        "metrics.cost_micros, "
+        "metrics.conversions "
+        "FROM search_term_view "
+        f"WHERE segments.date DURING {date_range} "
+        f"AND metrics.cost_micros > {min_cost_micros} "
+        f"AND metrics.conversions <= {max_conversions} "
+        "AND search_term_view.status != 'EXCLUDED' "
+        "ORDER BY metrics.cost_micros DESC "
+        f"LIMIT {limit}"
+    )
+
+    url = f"{GOOGLE_ADS_API_BASE}/customers/{customer_id}/googleAds:searchStream"
+    async with httpx.AsyncClient(timeout=30.0) as client:
+        r = await client.post(url, headers=_headers(access_token), json={"query": query})
+    if r.status_code != 200:
+        logger.warning("list_search_terms %s -> %s: %s", customer_id, r.status_code, r.text[:300])
+        return []
+
+    data = r.json()
+    chunks = data if isinstance(data, list) else [data]
+    out: list[dict[str, Any]] = []
+    for chunk in chunks:
+        for row in chunk.get("results", []) or []:
+            stv = row.get("searchTermView", {}) or {}
+            cmp = row.get("campaign", {}) or {}
+            ag = row.get("adGroup", {}) or {}
+            m = row.get("metrics", {}) or {}
+            cost_micros = int(m.get("costMicros") or 0)
+            out.append(
+                {
+                    "search_term": stv.get("searchTerm"),
+                    "campaign_id": cmp.get("id"),
+                    "ad_group_id": ag.get("id"),
+                    "ad_group_resource": stv.get("adGroup"),
+                    "clicks": int(m.get("clicks") or 0),
+                    "impressions": int(m.get("impressions") or 0),
+                    "cost_micros": cost_micros,
+                    "cost_usd": round(cost_micros / 1_000_000, 2),
+                    "conversions": float(m.get("conversions") or 0.0),
+                    "status": stv.get("status"),
+                }
+            )
+    return out
+
+
+# Allowed Google Ads keyword match types for negative criteria.
+NEGATIVE_KEYWORD_MATCH_TYPES = {"BROAD", "PHRASE", "EXACT"}
+
+
+async def add_negative_keyword(
+    access_token: str,
+    customer_id: str,
+    campaign_id: str,
+    keyword_text: str,
+    match_type: str = "EXACT",
+    *,
+    dry_run: bool = True,
+) -> dict[str, Any]:
+    """Add a negative keyword at the campaign level.
+
+    Uses customers/{cid}/campaignCriteria:mutate. Campaign-level negative is
+    safer than ad-group-level for SMB clients — it blocks the term across
+    the whole campaign so the same junk doesn't reappear in another ad group.
+
+    EXACT match by default — block only the exact phrase. PHRASE/BROAD are
+    available but riskier (can over-block legitimate variants).
+    """
+    if match_type not in NEGATIVE_KEYWORD_MATCH_TYPES:
+        raise ValueError(f"Invalid match_type {match_type}; must be one of {NEGATIVE_KEYWORD_MATCH_TYPES}")
+
+    if use_mock() or dry_run:
+        logger.info(
+            "add_negative_keyword (dry_run=%s) %s/%s '%s' [%s]",
+            dry_run, customer_id, campaign_id, keyword_text, match_type,
+        )
+        return {
+            "applied": False,
+            "dry_run": True,
+            "customer_id": customer_id,
+            "campaign_id": campaign_id,
+            "keyword": keyword_text,
+            "match_type": match_type,
+        }
+
+    url = f"{GOOGLE_ADS_API_BASE}/customers/{customer_id}/campaignCriteria:mutate"
+    body = {
+        "operations": [
+            {
+                "create": {
+                    "campaign": f"customers/{customer_id}/campaigns/{campaign_id}",
+                    "negative": True,
+                    "keyword": {"text": keyword_text, "matchType": match_type},
+                }
+            }
+        ],
+        "partialFailure": False,
+        "validateOnly": False,
+    }
+    async with httpx.AsyncClient(timeout=30.0) as client:
+        r = await client.post(url, headers=_headers(access_token), json=body)
+    if r.status_code != 200:
+        logger.error(
+            "add_negative_keyword %s/%s '%s' -> %s: %s",
+            customer_id, campaign_id, keyword_text, r.status_code, r.text[:500],
+        )
+        raise RuntimeError(f"Google Ads add_negative_keyword failed: {r.status_code} {r.text[:200]}")
+
+    response = r.json()
+    logger.info("add_negative_keyword applied %s/%s '%s'", customer_id, campaign_id, keyword_text)
+    return {
+        "applied": True,
+        "dry_run": False,
+        "customer_id": customer_id,
+        "campaign_id": campaign_id,
+        "keyword": keyword_text,
+        "match_type": match_type,
+        "google_ads_response": response,
+    }
+
+
+# ---------------------------------------------------------------------------
 # Campaigns — WRITE (требуют production token)
 # ---------------------------------------------------------------------------
 

@@ -15,6 +15,7 @@ import os
 from typing import Any, Optional
 
 from .base import BaseAgent, ToolSpec
+from . import tools
 from services import google_ads_client as gads
 from services import audit
 
@@ -22,38 +23,42 @@ logger = logging.getLogger(__name__)
 
 
 SAGE_SYSTEM_PROMPT = """\
-You are Sage, an AI research agent in the B6 team. Your job is to find **new opportunities**\
- to expand the client's campaign.
+You are Sage, an AI research agent in the B6 team. Your job has TWO parts:
+
+**Part A — Cleanup (negative keywords).** FIRST, call `list_search_terms` to fetch\
+ real queries that drained budget without converting (default filter: $5+ spend,\
+ 0 conversions over 30 days). For each clear junk query, propose adding it as a\
+ NEGATIVE keyword via `propose_negative_keyword`. This is high-value work —\
+ every junk query removed = real money saved every day going forward.
+
+**Part B — Expansion.** AFTER cleanup, look at the campaign's current keywords\
+ and propose 5-10 new ones worth testing + 2-3 audiences.
 
 IMPORTANT: All reasoning, summaries, flags, and proposal text MUST be in English.
 
-You have the data for one campaign: top keywords, metrics, strategy. Based on this:
+Part A — Negative keyword rules:
+- Junk indicator: spend > $5, conversions = 0, intent clearly unrelated to product
+- Be conservative with match_type:
+  * EXACT — default, safest (blocks only the exact phrase)
+  * PHRASE — only when several variants of the same junk phrase appear
+  * BROAD — almost never (over-blocks legitimate variants)
+- Skip queries that are borderline (low spend OR could convert later)
+- For each negative keyword propose, include reasoning citing the wasted spend
+  and why this query is irrelevant to the product
 
-1. **Propose 5-10 new keywords** worth testing:
-   - Long-tail variants of current top performers
-   - Semantically related (synonyms, related concepts)
-   - Intent-based (commercial / informational / navigational)
-   - Grouped by themes
-
-2. **Propose 2-3 audience segments** for additional targeting:
-   - In-market audiences
-   - Affinity / custom intent
-   - Lookalike opportunities
-
-3. **Find 1-2 competitor angles**:
-   - What approaches strong competitors use in this niche
-   - Where their weakness is — something you can exploit
-
-Rules:
+Part B — Keyword expansion rules:
 - **Specifics > generic words** (bad: "active people". good: "runners 25-44, interested in marathons")
 - For keywords specify **match_type** (EXACT / PHRASE / BROAD) — most should be PHRASE
 - DO NOT propose duplicates of current keywords
-- DO NOT propose negative keywords (that's a separate task)
+- DO NOT propose the same text as a negative — these would cancel out
 
 Use tools:
-- `propose_keyword` — one at a time, for each new keyword
-- `propose_audience` — one at a time, for each segment
-- `finalize_research` — at the end, with an overall summary (1-2 sentences)
+- `list_search_terms` — call FIRST, to fetch junk-query candidates
+- `propose_negative_keyword` — for each clear junk query
+- `propose_keyword` — for each new expansion keyword
+- `propose_audience` — for each segment
+- `finalize_research` — at the end, with an overall summary (1-2 sentences) noting
+  both the cleanup savings ("blocked $X/mo in wasted spend") and expansion ideas
 """
 
 
@@ -119,6 +124,52 @@ Find 5-10 new keywords, 2-3 audiences, 1-2 competitor angles.\
 
     def register_tools(self) -> list[ToolSpec]:
         return [
+            ToolSpec(
+                name="list_search_terms",
+                description=(
+                    "Fetch real search queries that triggered the client's ads. Default filter "
+                    "(junk-spend indicator): spend > $5 over the last 30 days AND zero conversions. "
+                    "ALWAYS call this FIRST (Part A — cleanup) before proposing new keywords."
+                ),
+                input_schema={
+                    "type": "object",
+                    "properties": {
+                        "customer_id": {"type": "string"},
+                        "days": {"type": "integer", "default": 30, "minimum": 7, "maximum": 90},
+                        "min_cost_usd": {"type": "number", "default": 5.0},
+                        "max_conversions": {"type": "number", "default": 0.0},
+                        "limit": {"type": "integer", "default": 50, "minimum": 1, "maximum": 200},
+                    },
+                    "required": ["customer_id"],
+                },
+                handler=lambda customer_id, days=30, min_cost_usd=5.0, max_conversions=0.0, limit=50: tools.list_search_terms_tool(
+                    customer_id, days, min_cost_usd, max_conversions, limit, user_id=self.user_id
+                ),
+            ),
+            ToolSpec(
+                name="propose_negative_keyword",
+                description=(
+                    "Propose adding a negative keyword at the campaign level. Use for clear junk "
+                    "queries from list_search_terms output. match_type: EXACT (default, safest), "
+                    "PHRASE (when multiple variants of the same junk), BROAD (almost never)."
+                ),
+                input_schema={
+                    "type": "object",
+                    "properties": {
+                        "customer_id": {"type": "string"},
+                        "campaign_id": {"type": "string"},
+                        "keyword_text": {"type": "string", "description": "The junk query to block"},
+                        "match_type": {"type": "string", "enum": ["EXACT", "PHRASE", "BROAD"], "default": "EXACT"},
+                        "reasoning": {"type": "string", "description": "Cite wasted spend + why query is irrelevant"},
+                        "confidence": {"type": "number", "minimum": 0, "maximum": 1, "default": 0.85},
+                        "impact_summary": {"type": "string", "description": "e.g. 'saves ~$7.50/mo of wasted spend'"},
+                    },
+                    "required": ["customer_id", "campaign_id", "keyword_text", "reasoning"],
+                },
+                handler=lambda customer_id, campaign_id, keyword_text, reasoning, match_type="EXACT", confidence=0.85, impact_summary=None: tools.propose_negative_keyword_tool(
+                    customer_id, campaign_id, keyword_text, match_type, reasoning, confidence, impact_summary, user_id=self.user_id
+                ),
+            ),
             ToolSpec(
                 name="propose_keyword",
                 description=(

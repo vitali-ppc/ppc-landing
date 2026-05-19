@@ -156,6 +156,20 @@ async def approve_action(action_id: str, body: ApproveRequest, current_user: Use
                     recommendation_resource_name=recommendation_resource,
                     dry_run=not body.apply_to_google_ads,
                 )
+        elif action["action_type"] == "add_negative_keyword":
+            keyword_text = target.get("keyword_text")
+            match_type = target.get("match_type", "EXACT")
+            if not keyword_text or not campaign_id:
+                after_state = {"applied": False, "error": "target missing keyword_text or campaign_id"}
+            else:
+                after_state = await gads.add_negative_keyword(
+                    access_token=access_token,
+                    customer_id=customer_id,
+                    campaign_id=campaign_id,
+                    keyword_text=keyword_text,
+                    match_type=match_type,
+                    dry_run=not body.apply_to_google_ads,
+                )
         else:
             after_state = {"warning": f"Unknown action_type {action['action_type']} — only marked approved"}
     except NotImplementedError as e:

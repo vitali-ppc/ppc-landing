@@ -47,6 +47,8 @@ const ApprovalRow: React.FC<{
   const newBid = (action.target as { new_bid_usd?: number })?.new_bid_usd;
   const recType = (action.target as { recommendation_type?: string })?.recommendation_type;
   const impactSummary = (action.target as { impact_summary?: string })?.impact_summary;
+  const negKeyword = (action.target as { keyword_text?: string })?.keyword_text;
+  const negMatch = (action.target as { match_type?: string })?.match_type;
 
   const actionLabel =
     action.action_type === "update_bid"
@@ -55,13 +57,18 @@ const ApprovalRow: React.FC<{
       ? "Pause campaign"
       : action.action_type === "apply_recommendation"
       ? `Apply Google recommendation: ${recType ?? "?"}`
+      : action.action_type === "add_negative_keyword"
+      ? `Add negative keyword: "${negKeyword ?? "?"}" [${negMatch ?? "EXACT"}]`
       : action.action_type;
 
   // Action types that have real-apply wired through google_ads_client + actions router.
   const supportsRealApply =
-    action.action_type === "pause_campaign" || action.action_type === "apply_recommendation";
+    action.action_type === "pause_campaign" ||
+    action.action_type === "apply_recommendation" ||
+    action.action_type === "add_negative_keyword";
 
   const isGoogleRecommendation = action.action_type === "apply_recommendation";
+  const isSageProposal = action.action_type === "add_negative_keyword";
 
   const onApprove = async () => {
     if (applyReal) {
@@ -121,7 +128,10 @@ const ApprovalRow: React.FC<{
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "12px" }}>
         <div style={{ flex: 1 }}>
           <div style={{ color: "#FFFFFF", fontSize: "14px", fontWeight: 600, marginBottom: "4px", display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap" }}>
-            <span>🐝 Buzz proposes: <span style={{ color: "#00FFE7" }}>{actionLabel}</span></span>
+            <span>
+              {isSageProposal ? "🦉 Sage" : "🐝 Buzz"} proposes:{" "}
+              <span style={{ color: "#00FFE7" }}>{actionLabel}</span>
+            </span>
             {isGoogleRecommendation && (
               <span
                 title="This proposal comes from Google's own recommendation engine"
@@ -137,6 +147,23 @@ const ApprovalRow: React.FC<{
                 }}
               >
                 📍 GOOGLE
+              </span>
+            )}
+            {isSageProposal && (
+              <span
+                title="Sage found this junk query in search terms data"
+                style={{
+                  padding: "2px 8px",
+                  background: "#FFA72622",
+                  border: "1px solid #FFA72666",
+                  color: "#FFA726",
+                  borderRadius: 4,
+                  fontSize: 10,
+                  fontWeight: 700,
+                  letterSpacing: 0.5,
+                }}
+              >
+                🚫 NEGATIVE
               </span>
             )}
             <AegisBadge review={review} compact />
