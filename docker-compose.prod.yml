@@ -64,10 +64,22 @@ services:
       GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
       STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY}
       RESEND_API_KEY: ${RESEND_API_KEY}
+      FROM_EMAIL: ${FROM_EMAIL:-B6 <noreply@kampaio.com>}
       B6_INTERNAL_SECRET: ${B6_INTERNAL_SECRET}
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY}
       CORS_ORIGINS: ${CORS_ORIGINS:-https://kampaio.com,https://www.kampaio.com}
       ENVIRONMENT: production
+      B6_ENV: ${B6_ENV:-prod}
       LOG_LEVEL: INFO
+      # Sprint 8 — Vigil 24/7 anomaly monitoring (all optional, defaults in code)
+      VIGIL_ENABLED: ${VIGIL_ENABLED:-false}
+      VIGIL_INTERVAL_MINUTES: ${VIGIL_INTERVAL_MINUTES:-60}
+      VIGIL_DEDUP_MINUTES: ${VIGIL_DEDUP_MINUTES:-45}
+      VIGIL_MAX_CONCURRENT: ${VIGIL_MAX_CONCURRENT:-3}
+      VIGIL_DAYS_WINDOW: ${VIGIL_DAYS_WINDOW:-14}
+      VIGIL_EMAIL_ENABLED: ${VIGIL_EMAIL_ENABLED:-true}
+      VIGIL_EMAIL_DAILY_CAP: ${VIGIL_EMAIL_DAILY_CAP:-3}
+      VIGIL_DASHBOARD_URL: ${VIGIL_DASHBOARD_URL:-https://www.kampaio.com/b6}
     ports:
       - "8000:8000"
     networks: [b6_net]
