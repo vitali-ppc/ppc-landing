@@ -187,6 +187,86 @@ async def propose_pause_campaign_tool(
     }
 
 
+async def list_recommendations_tool(
+    customer_id: str,
+    user_id: str = "dev",
+) -> dict[str, Any]:
+    """Fetch Google's own recommendations for this customer account.
+
+    Returns a list of active (not dismissed) recommendations Google has generated
+    for the account — budget changes, keyword suggestions, bidding strategy
+    migrations, asset additions, etc. Agents use this to align proposals with
+    Google's own signal rather than re-deriving them from raw metrics.
+    """
+    try:
+        access_token = await _get_access_token_for(user_id, customer_id)
+    except PermissionError as e:
+        return {"ok": False, "error": str(e), "recommendations": []}
+
+    recommendations = await gads.list_recommendations(access_token, customer_id)
+    return {
+        "ok": True,
+        "customer_id": customer_id,
+        "count": len(recommendations),
+        "recommendations": recommendations,
+    }
+
+
+async def propose_apply_recommendation_tool(
+    customer_id: str,
+    recommendation_resource_name: str,
+    recommendation_type: str,
+    reasoning: str,
+    confidence: float = 0.7,
+    impact_summary: Optional[str] = None,
+    user_id: str = "dev",
+) -> dict[str, Any]:
+    """Propose applying a specific Google recommendation.
+
+    The recommendation must already exist in Google's system (fetched via
+    list_recommendations_tool). This tool persists a proposed action with
+    action_type='apply_recommendation' so it goes through the standard
+    Aegis review + approval flow before being sent to Google Ads.
+    """
+    target = {
+        "customer_id": customer_id,
+        "recommendation_resource_name": recommendation_resource_name,
+        "recommendation_type": recommendation_type,
+        "impact_summary": impact_summary,
+    }
+    try:
+        action_id = await audit.write_proposed_action(
+            user_id=user_id,
+            agent_type="bidding",
+            action_type="apply_recommendation",
+            target=target,
+            reasoning=reasoning,
+            confidence=confidence,
+        )
+    except Exception as e:
+        logger.exception("Failed to persist apply_recommendation proposal")
+        return {"ok": False, "error": f"DB error: {e}"}
+
+    proposed_action = {
+        "action_id": action_id,
+        "action_type": "apply_recommendation",
+        **target,
+        "reasoning": reasoning,
+        "confidence": confidence,
+        "status": "proposed",
+    }
+    return {
+        "ok": True,
+        "action_id": action_id,
+        "message": (
+            f"Proposed applying Google recommendation {recommendation_type} "
+            f"({recommendation_resource_name.split('/')[-1][:12]}). "
+            f"Action ID: {action_id[:8]}... — requires approval."
+        ),
+        "proposed_action": proposed_action,
+    }
+
+
 async def check_safety_cap_tool(
     cap_type: str,
     amount: float,

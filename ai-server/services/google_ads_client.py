@@ -356,6 +356,212 @@ async def get_keyword_metrics(
 
 
 # ---------------------------------------------------------------------------
+# Recommendations (v24 — Google's own AI suggestions for the account)
+# ---------------------------------------------------------------------------
+
+# Subset of Recommendation.type enum values we actively surface to agents.
+# Full list at https://developers.google.com/google-ads/api/reference/rpc/v24/
+# RecommendationTypeEnum.RecommendationType — there are 60+ types; we filter to
+# the ones with clear automate-apply value for SMB / e-com clients.
+RECOMMENDATION_TYPES_PRIORITY = {
+    # Budget — high value, low risk
+    "CAMPAIGN_BUDGET": "Increase a budget-constrained campaign's daily budget",
+    "MOVE_UNUSED_BUDGET": "Reallocate unused budget between campaigns",
+    "MARGINAL_ROI_CAMPAIGN_BUDGET": "Increase budget where marginal ROI is positive",
+    "FORECASTING_CAMPAIGN_BUDGET": "Raise budget before a forecasted spike",
+    # Bidding strategy migrations — strategic
+    "TARGET_CPA_OPT_IN": "Switch to Target CPA bidding",
+    "TARGET_ROAS_OPT_IN": "Switch to Target ROAS bidding",
+    "MAXIMIZE_CONVERSIONS_OPT_IN": "Switch to Maximize Conversions",
+    "MAXIMIZE_CONVERSION_VALUE_OPT_IN": "Switch to Maximize Conversion Value",
+    "MAXIMIZE_CLICKS_OPT_IN": "Switch to Maximize Clicks",
+    # Content — quality improvements
+    "KEYWORD": "Add a suggested keyword to an ad group",
+    "TEXT_AD": "Add a new text ad based on best-performing assets",
+    "RESPONSIVE_SEARCH_AD": "Add a responsive search ad",
+    "RESPONSIVE_SEARCH_AD_ASSET": "Add new headlines/descriptions to an existing RSA",
+    # Pmax migrations
+    "PERFORMANCE_MAX_OPT_IN": "Try Performance Max for this account",
+    "IMPROVE_PERFORMANCE_MAX_AD_STRENGTH": "Improve PMax ad strength",
+    "UPGRADE_SMART_SHOPPING_CAMPAIGN_TO_PERFORMANCE_MAX": "Upgrade Smart Shopping to Pmax",
+    # Assets
+    "SITELINK_ASSET": "Add sitelink assets",
+    "CALLOUT_ASSET": "Add callout assets",
+    "CALL_ASSET": "Add a call asset",
+    "LEAD_FORM_ASSET": "Add a lead form asset",
+}
+
+
+async def list_recommendations(access_token: str, customer_id: str) -> list[dict[str, Any]]:
+    """Fetch active (not dismissed, not yet applied) recommendations from Google for a customer.
+
+    Returns a normalized list of:
+        {
+          "resource_name": "customers/{cid}/recommendations/{id}",
+          "type":          "CAMPAIGN_BUDGET" | "KEYWORD" | ...,
+          "campaign":      "customers/{cid}/campaigns/{cid}" | None,
+          "ad_group":      "customers/{cid}/adGroups/{agid}" | None,
+          "impact_base":   {"impressions": ..., "clicks": ..., "cost_micros": ..., "conversions": ...},
+          "impact_potential": {... same fields ...},
+          "type_specific": <nested dict for type — e.g. keyword_recommendation, campaign_budget_recommendation>,
+        }
+    """
+    if use_mock():
+        # Synthetic recommendations so agents can be smoke-tested in dev.
+        return [
+            {
+                "resource_name": f"customers/{customer_id}/recommendations/mock-budget-1",
+                "type": "CAMPAIGN_BUDGET",
+                "campaign": f"customers/{customer_id}/campaigns/100001",
+                "ad_group": None,
+                "impact_base": {"clicks": 120, "impressions": 4500, "cost_micros": 12_000_000, "conversions": 5.0},
+                "impact_potential": {"clicks": 195, "impressions": 7200, "cost_micros": 19_000_000, "conversions": 8.0},
+                "type_specific": {
+                    "campaign_budget_recommendation": {
+                        "current_budget_amount_micros": 20_000_000,
+                        "recommended_budget_amount_micros": 32_000_000,
+                    }
+                },
+            },
+            {
+                "resource_name": f"customers/{customer_id}/recommendations/mock-keyword-1",
+                "type": "KEYWORD",
+                "campaign": f"customers/{customer_id}/campaigns/100002",
+                "ad_group": f"customers/{customer_id}/adGroups/200001",
+                "impact_base": {"clicks": 0, "impressions": 0, "cost_micros": 0, "conversions": 0.0},
+                "impact_potential": {"clicks": 35, "impressions": 1200, "cost_micros": 4_500_000, "conversions": 1.5},
+                "type_specific": {"keyword_recommendation": {"keyword": {"text": "buy goodevas online", "match_type": "PHRASE"}}},
+            },
+        ]
+
+    query = (
+        "SELECT "
+        "recommendation.resource_name, "
+        "recommendation.type, "
+        "recommendation.campaign, "
+        "recommendation.ad_group, "
+        "recommendation.impact.base_metrics.impressions, "
+        "recommendation.impact.base_metrics.clicks, "
+        "recommendation.impact.base_metrics.cost_micros, "
+        "recommendation.impact.base_metrics.conversions, "
+        "recommendation.impact.potential_metrics.impressions, "
+        "recommendation.impact.potential_metrics.clicks, "
+        "recommendation.impact.potential_metrics.cost_micros, "
+        "recommendation.impact.potential_metrics.conversions "
+        "FROM recommendation "
+        "WHERE recommendation.dismissed = FALSE"
+    )
+    url = f"{GOOGLE_ADS_API_BASE}/customers/{customer_id}/googleAds:searchStream"
+    async with httpx.AsyncClient(timeout=30.0) as client:
+        r = await client.post(url, headers=_headers(access_token), json={"query": query})
+    if r.status_code != 200:
+        logger.warning("list_recommendations %s -> %s: %s", customer_id, r.status_code, r.text[:300])
+        return []
+    data = r.json()
+    chunks = data if isinstance(data, list) else [data]
+
+    out: list[dict[str, Any]] = []
+    for chunk in chunks:
+        for row in chunk.get("results", []) or []:
+            rec = row.get("recommendation", {}) or {}
+            impact = rec.get("impact", {}) or {}
+            out.append(
+                {
+                    "resource_name": rec.get("resourceName"),
+                    "type": rec.get("type"),
+                    "campaign": rec.get("campaign"),
+                    "ad_group": rec.get("adGroup"),
+                    "impact_base": impact.get("baseMetrics") or {},
+                    "impact_potential": impact.get("potentialMetrics") or {},
+                    "type_specific": {
+                        k: v
+                        for k, v in rec.items()
+                        if k.endswith("Recommendation") and isinstance(v, dict)
+                    },
+                }
+            )
+    return out
+
+
+async def apply_recommendation(
+    access_token: str,
+    customer_id: str,
+    recommendation_resource_name: str,
+    *,
+    dry_run: bool = True,
+) -> dict[str, Any]:
+    """Apply a Google-suggested recommendation. Returns audit-friendly dict.
+
+    Real apply uses RecommendationService.ApplyRecommendation via REST:
+        POST customers/{cid}/recommendations:apply
+        body: {operations: [{resource_name: "..."}]}
+
+    Some recommendation types accept type-specific parameters (e.g. a custom
+    budget amount). For Sprint 7 we always apply with Google's suggested
+    parameters (no override) — that's the safest baseline.
+    """
+    if use_mock() or dry_run:
+        logger.info(
+            "apply_recommendation (dry_run=%s) %s/%s",
+            dry_run, customer_id, recommendation_resource_name,
+        )
+        return {
+            "applied": False,
+            "dry_run": True,
+            "customer_id": customer_id,
+            "recommendation": recommendation_resource_name,
+        }
+
+    url = f"{GOOGLE_ADS_API_BASE}/customers/{customer_id}/recommendations:apply"
+    body = {
+        "operations": [{"resourceName": recommendation_resource_name}],
+        "partialFailure": False,
+    }
+    async with httpx.AsyncClient(timeout=30.0) as client:
+        r = await client.post(url, headers=_headers(access_token), json=body)
+    if r.status_code != 200:
+        logger.error(
+            "apply_recommendation %s -> %s: %s",
+            recommendation_resource_name, r.status_code, r.text[:500],
+        )
+        raise RuntimeError(f"Google Ads apply_recommendation failed: {r.status_code} {r.text[:200]}")
+
+    response = r.json()
+    logger.info("apply_recommendation applied %s", recommendation_resource_name)
+    return {
+        "applied": True,
+        "dry_run": False,
+        "customer_id": customer_id,
+        "recommendation": recommendation_resource_name,
+        "google_ads_response": response,
+    }
+
+
+async def dismiss_recommendation(
+    access_token: str, customer_id: str, recommendation_resource_name: str
+) -> dict[str, Any]:
+    """Mark a Google recommendation as dismissed (won't show up again until Google re-suggests).
+
+    Use when the user rejects a recommendation we surfaced via Buzz/Vox — keeps
+    Google's surface in sync with our DB so the same suggestion doesn't loop.
+    """
+    if use_mock():
+        return {"dismissed": True, "dry_run": True, "recommendation": recommendation_resource_name}
+
+    url = f"{GOOGLE_ADS_API_BASE}/customers/{customer_id}/recommendations:dismiss"
+    body = {"operations": [{"resourceName": recommendation_resource_name}]}
+    async with httpx.AsyncClient(timeout=20.0) as client:
+        r = await client.post(url, headers=_headers(access_token), json=body)
+    if r.status_code != 200:
+        logger.warning(
+            "dismiss_recommendation %s -> %s: %s",
+            recommendation_resource_name, r.status_code, r.text[:200],
+        )
+        return {"dismissed": False, "error": r.text[:200]}
+    return {"dismissed": True, "recommendation": recommendation_resource_name}
+
+
+# ---------------------------------------------------------------------------
 # Campaigns — WRITE (требуют production token)
 # ---------------------------------------------------------------------------
 

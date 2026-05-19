@@ -145,6 +145,17 @@ async def approve_action(action_id: str, body: ApproveRequest, current_user: Use
                 campaign_id=campaign_id,
                 dry_run=not body.apply_to_google_ads,
             )
+        elif action["action_type"] == "apply_recommendation":
+            recommendation_resource = target.get("recommendation_resource_name")
+            if not recommendation_resource:
+                after_state = {"applied": False, "error": "target missing recommendation_resource_name"}
+            else:
+                after_state = await gads.apply_recommendation(
+                    access_token=access_token,
+                    customer_id=customer_id,
+                    recommendation_resource_name=recommendation_resource,
+                    dry_run=not body.apply_to_google_ads,
+                )
         else:
             after_state = {"warning": f"Unknown action_type {action['action_type']} — only marked approved"}
     except NotImplementedError as e:

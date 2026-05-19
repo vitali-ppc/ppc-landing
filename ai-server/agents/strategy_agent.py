@@ -16,6 +16,7 @@ from datetime import datetime
 from typing import Any, Optional
 
 from .base import BaseAgent, ToolSpec
+from . import tools
 from services import google_ads_client as gads
 from services import audit
 
@@ -126,6 +127,50 @@ class StrategyAgent(BaseAgent):
                     "required": ["reason"],
                 },
                 handler=self._handle_no_action,
+            ),
+            ToolSpec(
+                name="list_recommendations",
+                description=(
+                    "Fetch Google's own active recommendations for the customer. "
+                    "Especially relevant for Vox: MOVE_UNUSED_BUDGET, MARGINAL_ROI_CAMPAIGN_BUDGET, "
+                    "FORECASTING_CAMPAIGN_BUDGET, CAMPAIGN_BUDGET — these are cross-campaign signals. "
+                    "Call this BEFORE proposing budget shifts."
+                ),
+                input_schema={
+                    "type": "object",
+                    "properties": {"customer_id": {"type": "string"}},
+                    "required": ["customer_id"],
+                },
+                handler=lambda customer_id: tools.list_recommendations_tool(customer_id, user_id=self.user_id),
+            ),
+            ToolSpec(
+                name="propose_apply_recommendation",
+                description=(
+                    "Propose applying a Google-generated recommendation. Use this for budget-related "
+                    "recommendations (MOVE_UNUSED_BUDGET, CAMPAIGN_BUDGET, etc.) instead of, or in "
+                    "addition to, propose_budget_shift. Saved as 'proposed' — requires approval."
+                ),
+                input_schema={
+                    "type": "object",
+                    "properties": {
+                        "customer_id": {"type": "string"},
+                        "recommendation_resource_name": {"type": "string"},
+                        "recommendation_type": {"type": "string"},
+                        "reasoning": {"type": "string"},
+                        "confidence": {"type": "number", "minimum": 0, "maximum": 1, "default": 0.8},
+                        "impact_summary": {"type": "string"},
+                    },
+                    "required": ["customer_id", "recommendation_resource_name", "recommendation_type", "reasoning"],
+                },
+                handler=lambda customer_id, recommendation_resource_name, recommendation_type, reasoning, confidence=0.8, impact_summary=None: tools.propose_apply_recommendation_tool(
+                    customer_id,
+                    recommendation_resource_name,
+                    recommendation_type,
+                    reasoning,
+                    confidence,
+                    impact_summary,
+                    user_id=self.user_id,
+                ),
             ),
         ]
 

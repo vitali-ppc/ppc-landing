@@ -44,17 +44,24 @@ const ApprovalRow: React.FC<{
   const [applyReal, setApplyReal] = useState(false);
 
   const campaign = action.target?.campaign_id;
-  const newBid = action.target?.new_bid_usd;
+  const newBid = (action.target as { new_bid_usd?: number })?.new_bid_usd;
+  const recType = (action.target as { recommendation_type?: string })?.recommendation_type;
+  const impactSummary = (action.target as { impact_summary?: string })?.impact_summary;
+
   const actionLabel =
     action.action_type === "update_bid"
       ? `Raise bid to $${newBid}`
       : action.action_type === "pause_campaign"
       ? "Pause campaign"
+      : action.action_type === "apply_recommendation"
+      ? `Apply Google recommendation: ${recType ?? "?"}`
       : action.action_type;
 
-  // Sprint 7: update_bid real apply isn't wired yet — toggle stays cosmetic
-  // for that action_type. pause_campaign is the only real-apply-capable action.
-  const supportsRealApply = action.action_type === "pause_campaign";
+  // Action types that have real-apply wired through google_ads_client + actions router.
+  const supportsRealApply =
+    action.action_type === "pause_campaign" || action.action_type === "apply_recommendation";
+
+  const isGoogleRecommendation = action.action_type === "apply_recommendation";
 
   const onApprove = async () => {
     if (applyReal) {
@@ -113,12 +120,31 @@ const ApprovalRow: React.FC<{
     >
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "12px" }}>
         <div style={{ flex: 1 }}>
-          <div style={{ color: "#FFFFFF", fontSize: "14px", fontWeight: 600, marginBottom: "4px", display: "flex", alignItems: "center", gap: "8px" }}>
+          <div style={{ color: "#FFFFFF", fontSize: "14px", fontWeight: 600, marginBottom: "4px", display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap" }}>
             <span>🐝 Buzz proposes: <span style={{ color: "#00FFE7" }}>{actionLabel}</span></span>
+            {isGoogleRecommendation && (
+              <span
+                title="This proposal comes from Google's own recommendation engine"
+                style={{
+                  padding: "2px 8px",
+                  background: "#4285F422",
+                  border: "1px solid #4285F466",
+                  color: "#4285F4",
+                  borderRadius: 4,
+                  fontSize: 10,
+                  fontWeight: 700,
+                  letterSpacing: 0.5,
+                }}
+              >
+                📍 GOOGLE
+              </span>
+            )}
             <AegisBadge review={review} compact />
           </div>
           <div style={{ color: "#A0A0A0", fontSize: "12px", marginBottom: "8px" }}>
-            Campaign <code style={{ color: "#7F9CF5" }}>{campaign}</code> · confidence {Math.round(action.confidence * 100)}%
+            {campaign && <>Campaign <code style={{ color: "#7F9CF5" }}>{campaign}</code> · </>}
+            confidence {Math.round(action.confidence * 100)}%
+            {impactSummary && <> · <span style={{ color: "#4ECDC4" }}>impact: {impactSummary}</span></>}
           </div>
           <div
             style={{
