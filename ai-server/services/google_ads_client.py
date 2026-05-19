@@ -23,6 +23,15 @@ GOOGLE_ADS_API_BASE = "https://googleads.googleapis.com/v24"
 TOKEN_CACHE_TTL_SECONDS = 3600
 _token_cache: dict[str, dict[str, Any]] = {}
 
+# Google Ads searchStream timeouts.
+# Default (30s) is too short for queries that span many days × many campaigns
+# (e.g. Vigil's list_campaigns_with_daily_metrics on real accounts with 10+
+# enabled campaigns × 14 days). httpx.AsyncClient defaults to 5s connect /
+# read separately, so we set explicit per-stage timeouts to be tolerant of
+# slow Google responses while still failing fast on network drops.
+GADS_DEFAULT_TIMEOUT = httpx.Timeout(connect=10.0, read=90.0, write=10.0, pool=10.0)
+GADS_HEAVY_TIMEOUT = httpx.Timeout(connect=10.0, read=180.0, write=10.0, pool=10.0)
+
 
 def use_mock() -> bool:
     return os.getenv("GOOGLE_ADS_USE_MOCK", "false").lower() in {"1", "true", "yes"}
@@ -451,7 +460,10 @@ async def list_campaigns_with_daily_metrics(
         WHERE campaign.status = 'ENABLED'
           AND segments.date BETWEEN '{start_date}' AND '{end_date}'
     """
-    rows = await _search_stream(access_token, customer_id, query, lambda r: r)
+    rows = await _search_stream(
+        access_token, customer_id, query, lambda r: r,
+        timeout=GADS_HEAVY_TIMEOUT,
+    )
 
     by_campaign: dict[str, dict[str, Any]] = {}
     for row in rows:
@@ -1127,18 +1139,31 @@ async def _search_stream(
     customer_id: str,
     query: str,
     row_mapper,
+    *,
+    timeout: Optional[httpx.Timeout] = None,
 ) -> list[Any]:
-    """Выполнить GAQL-запрос через searchStream endpoint."""
+    """Выполнить GAQL-запрос через searchStream endpoint.
+
+    Pass timeout=GADS_HEAVY_TIMEOUT for queries that scan many days × many
+    campaigns (Vigil's daily-metrics pull on real accounts). Default suits
+    short queries (single-campaign metrics, recommendation list, etc.).
+    """
     url = f"{GOOGLE_ADS_API_BASE}/customers/{customer_id}/googleAds:searchStream"
-    async with httpx.AsyncClient(timeout=30.0) as client:
-        r = await client.post(url, headers=_headers(access_token), json={"query": query})
-        if r.status_code != 200:
-            logger.warning("searchStream %s -> %s: %s", customer_id, r.status_code, r.text[:300])
-            return []
-        data = r.json()
-        # searchStream возвращает список объектов с "results"
-        results: list[Any] = []
-        for chunk in data if isinstance(data, list) else [data]:
-            for row in chunk.get("results", []) or []:
-                results.append(row_mapper(row))
-        return results
+    try:
+        async with httpx.AsyncClient(timeout=timeout or GADS_DEFAULT_TIMEOUT) as client:
+            r = await client.post(url, headers=_headers(access_token), json={"query": query})
+    except (httpx.TimeoutException, httpx.NetworkError, httpx.ReadError) as e:
+        # Surface as empty result rather than exception so agents can
+        # continue and dedup/record the failed scan cleanly.
+        logger.warning("searchStream %s -> transport error: %s", customer_id, type(e).__name__)
+        return []
+    if r.status_code != 200:
+        logger.warning("searchStream %s -> %s: %s", customer_id, r.status_code, r.text[:300])
+        return []
+    data = r.json()
+    # searchStream возвращает список объектов с "results"
+    results: list[Any] = []
+    for chunk in data if isinstance(data, list) else [data]:
+        for row in chunk.get("results", []) or []:
+            results.append(row_mapper(row))
+    return results
