@@ -389,7 +389,7 @@ async def propose_negative_keyword_tool(
 
 async def detect_anomalies_tool(
     customer_id: str,
-    days: int = 14,
+    days: int = 30,
     user_id: str = "dev",
 ) -> dict[str, Any]:
     """Fetch daily metrics for all ENABLED campaigns and run deterministic
@@ -397,6 +397,12 @@ async def detect_anomalies_tool(
 
     Returns a structured list of candidate anomalies — Vigil then judges
     severity in context and decides which deserve an alert.
+
+    The detector uses YESTERDAY as the reference day (today is partial data —
+    conversion attribution lags) and the median of the prior ~28 days as
+    baseline (robust to manual budget changes). spend_spike is budget-aware:
+    fires only when Google over-delivered the daily budget, not when the
+    operator intentionally raised the budget.
     """
     try:
         access_token = await _get_access_token_for(user_id, customer_id)
@@ -408,7 +414,8 @@ async def detect_anomalies_tool(
     campaigns = await gads.list_campaigns_with_daily_metrics(
         access_token, customer_id, days=days
     )
-    anomalies = detect_anomalies(campaigns, baseline_days=min(days - 1, 7))
+    # baseline window = days minus today + yesterday slots, cap at 28
+    anomalies = detect_anomalies(campaigns, baseline_days=min(max(days - 2, 5), 28))
 
     return {
         "ok": True,

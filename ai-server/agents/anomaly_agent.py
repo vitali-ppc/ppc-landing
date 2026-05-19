@@ -41,17 +41,32 @@ You are Vigil 🦇 — the AI night-watch on the B6 team. You run periodically o
 
 IMPORTANT: All reasoning, summaries, and alert text MUST be in English.
 
+DATA SEMANTICS (important):
+- The detector compares **YESTERDAY** (the most recent COMPLETED day) against\
+ a median baseline of the prior 28 days. Today is intentionally excluded\
+ because conversion attribution lags 1-7 days and "today" data is partial.
+- The spend_spike rule is BUDGET-AWARE: it fires only when yesterday's spend\
+ over-delivered the campaign's daily budget by 30%+ AND was 1.5×+ above\
+ median historical spend. This means: intentional budget bumps by the\
+ operator do NOT trigger false spike alerts. Only Google's over-delivery,\
+ runaway bid strategies, or broken feeds inflating CPCs do.
+- The baseline uses MEDIAN, not mean. So if the operator raised the budget\
+ a week ago, the median over 28 days is still anchored on the old steady\
+ state, and new "real" anomalies still surface cleanly.
+
 What you do, in order:
 1. Call `detect_anomalies_tool` with the customer_id (no other args needed).\
  You'll get back a list of `candidates` — each one already has anomaly_type,\
- severity, today_value, baseline_value, ratio, and a one-line summary computed\
- deterministically.
+ severity, today_value (= yesterday's value), baseline_value (= median or\
+ pooled baseline), ratio, and a one-line summary computed deterministically.
 2. For each candidate, JUDGE it in context before alerting:
    - Is the magnitude actually material for an account this size? A 2× spend\
      spike from $5 → $10 is statistical noise on a $500/day account.
-   - Is this likely a real signal or a known data-pipeline lag? (Today's data\
-     is partial in the first few hours; if today's spend is 0 and impressions\
-     are 0, that may be lag rather than a real outage.)
+   - For ROAS / CTR drops: are they ratio-based real degradations, or just\
+     low-volume noise? Look at absolute spend or impressions in extras.
+   - For spend_spike: extras contain `daily_budget_usd` and `budget_ratio`.\
+     If `budget_ratio` is just barely > 1.3 and absolute over-spend is small\
+     (under $20), this is likely Google's normal budget flex, not an emergency.
    - Has the same campaign / same anomaly_type already been alerted in the\
      **recent_alerts** block (last 24h)? If yes, SKIP — do not re-alert.
 3. For each candidate you decide to KEEP, call `propose_anomaly_alert_tool`\
@@ -64,20 +79,22 @@ What you do, in order:
  or non-material."
 
 Tone in `reasoning`: practical, like an experienced PPC manager flagging it\
- for the morning standup. Examples:
- - "Brand campaign clicks cratered last 24h — likely tracking/feed issue,\
+ for the morning standup. Always reference YESTERDAY's data explicitly so the\
+ operator knows it's settled numbers, not partial today.
+ Examples:
+ - "Brand campaign clicks cratered yesterday — likely tracking/feed issue,\
    worth checking pixel + Merchant Center."
- - "Pmax_IT spend ran 3.2× normal yesterday with no conversion lift —\
-   suspicious. Possibly Google reallocated budget toward a new asset group."
- - "0 conversions on Goodevas-Brand after $35 spend — conversion tracking\
-   may be broken; this campaign normally converts 4-6× per day."
+ - "Pmax_IT spend over-delivered budget 2× yesterday with no conversion lift —\
+   suspicious. Possibly a feed issue inflating CPCs or rogue bid strategy."
+ - "0 conversions yesterday on Goodevas-Brand after $35 spend — this campaign\
+   normally converts 4-6× per day, so tracking is suspect."
 
 DO NOT propose any mutate actions (no pauses, no bid changes, no negatives).\
  Your job is exclusively to RAISE FLAGS. Other agents act.
 
 If `detect_anomalies_tool` returns 0 candidates, do NOT call propose_*. Just\
- say "Scanned N campaigns — all metrics within normal bounds." That's a\
- legitimate, valuable result.
+ say "Scanned N campaigns — all metrics within normal bounds for yesterday."\
+ That's a legitimate, valuable result.
 """
 
 
@@ -94,7 +111,7 @@ class VigilAgent(BaseAgent):
         user_id: str,
         customer_id: str,
         event_publisher=None,
-        days: int = 14,
+        days: int = 30,
     ):
         self.customer_id = customer_id
         self.days = days
@@ -166,15 +183,15 @@ class VigilAgent(BaseAgent):
                         "customer_id": {"type": "string"},
                         "days": {
                             "type": "integer",
-                            "default": 14,
-                            "minimum": 4,
-                            "maximum": 30,
-                            "description": "Lookback window. Detector uses up to first 7 prior days as baseline.",
+                            "default": 30,
+                            "minimum": 7,
+                            "maximum": 60,
+                            "description": "Lookback window. Detector uses yesterday as reference + median of up to 28 prior days as baseline.",
                         },
                     },
                     "required": ["customer_id"],
                 },
-                handler=lambda customer_id, days=14: tools.detect_anomalies_tool(
+                handler=lambda customer_id, days=30: tools.detect_anomalies_tool(
                     customer_id, days=days, user_id=uid
                 ),
             ),

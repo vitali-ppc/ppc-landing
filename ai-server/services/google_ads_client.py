@@ -357,8 +357,10 @@ async def get_campaign_metrics(
 def _mock_daily_metrics(customer_id: str, days: int) -> list[dict[str, Any]]:
     """Synthetic daily metrics shaped to trigger Vigil's detection rules.
 
-    Returns 3 campaigns whose latest day differs from the baseline week in
-    ways that match each anomaly type — useful for smoke tests + UI demos.
+    Returns 3 campaigns where YESTERDAY (not today) differs from baseline in
+    ways that match each anomaly type. Today is a partial day (incomplete
+    conversions) to mimic real Google Ads behavior; Vigil's detector ignores
+    today and uses yesterday as reference.
     """
     today = datetime.utcnow().date()
 
@@ -372,32 +374,36 @@ def _mock_daily_metrics(customer_id: str, days: int) -> list[dict[str, Any]]:
             "conversion_value": m.get("conversion_value", 0.0),
         }
 
-    # Campaign 1 — spend spike: today's spend ~3x baseline
+    # Today (partial) — small/zero numbers, just to fill the slot
+    today_partial = _day(0, impressions=200, clicks=5, cost_micros=1_500_000,
+                         conversions=0.0, conversion_value=0.0)
+
+    # Campaign 1 — spend spike: yesterday burned 3.2× normal AT 2× budget
     spike_baseline = [
         _day(i, impressions=2000, clicks=40, cost_micros=15_000_000,
              conversions=3.0, conversion_value=90.0)
-        for i in range(1, days)
+        for i in range(2, days)
     ]
-    spike_today = _day(0, impressions=5000, clicks=110, cost_micros=48_000_000,
-                       conversions=4.0, conversion_value=120.0)
+    spike_yesterday = _day(1, impressions=5000, clicks=110, cost_micros=48_000_000,
+                           conversions=4.0, conversion_value=120.0)
 
-    # Campaign 2 — zero conversions + spend (also a conv drop)
+    # Campaign 2 — zero conversions yesterday with significant spend
     zero_baseline = [
         _day(i, impressions=1800, clicks=35, cost_micros=18_000_000,
              conversions=2.5, conversion_value=75.0)
-        for i in range(1, days)
+        for i in range(2, days)
     ]
-    zero_today = _day(0, impressions=1700, clicks=30, cost_micros=22_000_000,
-                      conversions=0.0, conversion_value=0.0)
+    zero_yesterday = _day(1, impressions=1700, clicks=30, cost_micros=22_000_000,
+                          conversions=0.0, conversion_value=0.0)
 
-    # Campaign 3 — CTR collapse (impressions intact, clicks crater)
+    # Campaign 3 — CTR collapse yesterday (impressions intact, clicks crater)
     ctr_baseline = [
         _day(i, impressions=10000, clicks=200, cost_micros=20_000_000,
              conversions=4.0, conversion_value=120.0)
-        for i in range(1, days)
+        for i in range(2, days)
     ]
-    ctr_today = _day(0, impressions=10500, clicks=42, cost_micros=8_500_000,
-                     conversions=3.0, conversion_value=90.0)
+    ctr_yesterday = _day(1, impressions=10500, clicks=42, cost_micros=8_500_000,
+                         conversions=3.0, conversion_value=90.0)
 
     return [
         {
@@ -405,21 +411,24 @@ def _mock_daily_metrics(customer_id: str, days: int) -> list[dict[str, Any]]:
             "campaign_name": "Mock — Spend Spike Demo",
             "status": "ENABLED",
             "bid_strategy": "TARGET_ROAS",
-            "daily": [spike_today, *spike_baseline],
+            "daily_budget_micros": 24_000_000,   # $24/day budget, $48 spent = 2× over
+            "daily": [today_partial, spike_yesterday, *spike_baseline],
         },
         {
             "campaign_id": "100002",
             "campaign_name": "Mock — Zero Conv Demo",
             "status": "ENABLED",
             "bid_strategy": "MAXIMIZE_CONVERSIONS",
-            "daily": [zero_today, *zero_baseline],
+            "daily_budget_micros": 25_000_000,   # $25/day budget
+            "daily": [today_partial, zero_yesterday, *zero_baseline],
         },
         {
             "campaign_id": "100003",
             "campaign_name": "Mock — CTR Collapse Demo",
             "status": "ENABLED",
             "bid_strategy": "MANUAL_CPC",
-            "daily": [ctr_today, *ctr_baseline],
+            "daily_budget_micros": 22_000_000,
+            "daily": [today_partial, ctr_yesterday, *ctr_baseline],
         },
     ]
 
@@ -450,9 +459,13 @@ async def list_campaigns_with_daily_metrics(
 
     end_date = datetime.utcnow().date()
     start_date = end_date - timedelta(days=days)
+    # Include campaign_budget.amount_micros so the detector can do budget-aware
+    # spend_spike (alert only when Google over-delivers the daily budget cap,
+    # not when the operator intentionally raised the budget).
     query = f"""
         SELECT
           campaign.id, campaign.name, campaign.status, campaign.bidding_strategy_type,
+          campaign_budget.amount_micros,
           segments.date,
           metrics.impressions, metrics.clicks, metrics.cost_micros,
           metrics.conversions, metrics.conversions_value
@@ -468,6 +481,7 @@ async def list_campaigns_with_daily_metrics(
     by_campaign: dict[str, dict[str, Any]] = {}
     for row in rows:
         camp = row.get("campaign", {}) or {}
+        budget = row.get("campaignBudget", {}) or {}
         m = row.get("metrics", {}) or {}
         seg = row.get("segments", {}) or {}
         cid = str(camp.get("id") or "")
@@ -479,6 +493,7 @@ async def list_campaigns_with_daily_metrics(
                 "campaign_name": camp.get("name") or "Unknown",
                 "status": camp.get("status"),
                 "bid_strategy": camp.get("biddingStrategyType"),
+                "daily_budget_micros": int(budget.get("amountMicros") or 0),
                 "daily": [],
             }
         by_campaign[cid]["daily"].append(

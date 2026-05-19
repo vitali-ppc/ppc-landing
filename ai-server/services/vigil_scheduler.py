@@ -71,7 +71,10 @@ def vigil_max_concurrent() -> int:
 
 
 def vigil_days_window() -> int:
-    return max(4, _env_int("VIGIL_DAYS_WINDOW", 14))
+    # Default 30 days — detector uses yesterday as reference + median of
+    # prior ~28 days as baseline. Less data still works (median falls back
+    # to whatever is available) but is more noise-prone.
+    return max(7, _env_int("VIGIL_DAYS_WINDOW", 30))
 
 
 async def _list_scan_targets() -> list[tuple[str, str]]:

@@ -49,48 +49,89 @@ def _day_offset(offset: int, **m: float) -> dict:
 
 
 def layer1_pure_detector() -> int:
-    """Hand-built input that should trigger each rule at least once."""
+    """Hand-built input that should trigger each rule at least once.
+
+    Note: detector uses YESTERDAY (offset=1), not today (offset=0). Anomalies
+    are placed at offset=1, baseline at offsets 2..29.
+    """
     print("\n" + "=" * 60)
     print("LAYER 1 — pure detector (no API, no LLM, no DB)")
     print("=" * 60)
 
+    # Partial-today placeholder for all campaigns
+    today = _day_offset(0, impressions=200, clicks=4, cost_micros=2_000_000,
+                        conversions=0, conversion_value=0)
+
     campaigns = [
-        # Spend spike: 3x normal
+        # Spend spike: yesterday $45 vs $15 median + 2x daily budget over-deliver
         {
             "campaign_id": "AAA",
             "campaign_name": "Spike-Test",
-            "daily": [_day_offset(0, impressions=2500, clicks=50, cost_micros=45_000_000, conversions=4, conversion_value=120)]
-            + [_day_offset(i, impressions=2000, clicks=40, cost_micros=15_000_000, conversions=3, conversion_value=90) for i in range(1, 8)],
+            "daily_budget_micros": 18_000_000,  # $18/day budget; $45 spent = 2.5× over
+            "daily": [
+                today,
+                _day_offset(1, impressions=2500, clicks=50, cost_micros=45_000_000, conversions=4, conversion_value=120),
+                *[_day_offset(i, impressions=2000, clicks=40, cost_micros=15_000_000, conversions=3, conversion_value=90) for i in range(2, 30)],
+            ],
         },
-        # Zero conversions with significant spend
+        # Zero conversions yesterday with significant spend
         {
             "campaign_id": "BBB",
             "campaign_name": "Zero-Conv-Test",
-            "daily": [_day_offset(0, impressions=1800, clicks=30, cost_micros=22_000_000, conversions=0, conversion_value=0)]
-            + [_day_offset(i, impressions=1700, clicks=32, cost_micros=18_000_000, conversions=2.5, conversion_value=75) for i in range(1, 8)],
+            "daily_budget_micros": 25_000_000,
+            "daily": [
+                today,
+                _day_offset(1, impressions=1800, clicks=30, cost_micros=22_000_000, conversions=0, conversion_value=0),
+                *[_day_offset(i, impressions=1700, clicks=32, cost_micros=18_000_000, conversions=2.5, conversion_value=75) for i in range(2, 30)],
+            ],
         },
-        # CTR collapse — impressions stable, clicks crater
+        # CTR collapse yesterday — impressions stable, clicks crater
         {
             "campaign_id": "CCC",
             "campaign_name": "CTR-Collapse-Test",
-            "daily": [_day_offset(0, impressions=10500, clicks=42, cost_micros=8_500_000, conversions=3, conversion_value=90)]
-            + [_day_offset(i, impressions=10000, clicks=200, cost_micros=20_000_000, conversions=4, conversion_value=120) for i in range(1, 8)],
+            "daily_budget_micros": 22_000_000,
+            "daily": [
+                today,
+                _day_offset(1, impressions=10500, clicks=42, cost_micros=8_500_000, conversions=3, conversion_value=90),
+                *[_day_offset(i, impressions=10000, clicks=200, cost_micros=20_000_000, conversions=4, conversion_value=120) for i in range(2, 30)],
+            ],
         },
-        # ROAS drop
+        # ROAS drop yesterday
         {
             "campaign_id": "DDD",
             "campaign_name": "ROAS-Drop-Test",
-            "daily": [_day_offset(0, impressions=3000, clicks=60, cost_micros=30_000_000, conversions=3, conversion_value=33)]
-            + [_day_offset(i, impressions=3200, clicks=64, cost_micros=32_000_000, conversions=4, conversion_value=160) for i in range(1, 8)],
+            "daily_budget_micros": 35_000_000,
+            "daily": [
+                today,
+                _day_offset(1, impressions=3000, clicks=60, cost_micros=30_000_000, conversions=3, conversion_value=33),
+                *[_day_offset(i, impressions=3200, clicks=64, cost_micros=32_000_000, conversions=4, conversion_value=160) for i in range(2, 30)],
+            ],
         },
         # Quiet — nothing should fire
         {
             "campaign_id": "EEE",
             "campaign_name": "Quiet-Test",
-            "daily": [_day_offset(i, impressions=2000, clicks=40, cost_micros=20_000_000, conversions=3, conversion_value=100) for i in range(0, 8)],
+            "daily_budget_micros": 25_000_000,
+            "daily": [
+                today,
+                *[_day_offset(i, impressions=2000, clicks=40, cost_micros=20_000_000, conversions=3, conversion_value=100) for i in range(1, 30)],
+            ],
+        },
+        # NEW: Intentional budget bump — operator raised budget 5×, Google
+        # is now spending up to the new budget. Should NOT trigger spend_spike
+        # because Google is NOT over-delivering the new budget cap.
+        {
+            "campaign_id": "FFF",
+            "campaign_name": "Intentional-Bump-Test",
+            "daily_budget_micros": 100_000_000,  # bumped to $100/day
+            "daily": [
+                today,
+                _day_offset(1, impressions=10000, clicks=200, cost_micros=95_000_000, conversions=15, conversion_value=600),
+                *[_day_offset(i, impressions=2000, clicks=40, cost_micros=18_000_000, conversions=3, conversion_value=120) for i in range(2, 30)],
+            ],
         },
     ]
-    anomalies = detect_anomalies(campaigns, baseline_days=7)
+    anomalies = detect_anomalies(campaigns, baseline_days=28)
 
     types_seen = {a.type for a in anomalies}
     print(f"\n  Detected {len(anomalies)} anomalies across {len(campaigns)} campaigns:")
@@ -100,13 +141,18 @@ def layer1_pure_detector() -> int:
     expected = {"spend_spike", "zero_conversions", "ctr_collapse", "roas_drop"}
     missing = expected - types_seen
     extra_on_quiet = [a for a in anomalies if a.campaign_id == "EEE"]
+    extra_on_bump = [a for a in anomalies if a.campaign_id == "FFF"]
     if missing:
         print(f"\n  ❌ Missing rule types: {missing}")
         return 1
     if extra_on_quiet:
         print(f"\n  ❌ Quiet campaign produced false positives: {extra_on_quiet}")
         return 1
-    print("\n  ✅ Layer 1 PASS — all rules fire, quiet campaign stays quiet.")
+    if extra_on_bump:
+        print(f"\n  ❌ Intentional budget-bump campaign produced false positives: "
+              f"{[a.type for a in extra_on_bump]} — budget-aware rule failing")
+        return 1
+    print("\n  ✅ Layer 1 PASS — all rules fire, quiet + intentional-bump stay quiet.")
     return 0
 
 
