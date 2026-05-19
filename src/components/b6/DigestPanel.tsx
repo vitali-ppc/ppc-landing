@@ -15,6 +15,9 @@ export const DigestPanel: React.FC<{ customerLabel?: string }> = ({ customerLabe
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState<"pdf" | "email" | null>(null);
   const [emailStatus, setEmailStatus] = useState<string | null>(null);
+  const [emailFormOpen, setEmailFormOpen] = useState(false);
+  const [emailTo, setEmailTo] = useState("");
+  const [emailNote, setEmailNote] = useState("");
 
   const refresh = useCallback(async () => {
     const d = await getLatestDigest();
@@ -64,16 +67,37 @@ export const DigestPanel: React.FC<{ customerLabel?: string }> = ({ customerLabe
     }
   };
 
-  const onEmail = async () => {
-    const to = window.prompt("Send this report to which email?", "");
-    if (!to) return;
-    const note = window.prompt("Optional note to include above the report (blank to skip):", "") || undefined;
+  const openEmailForm = () => {
+    setEmailFormOpen(true);
+    setEmailStatus(null);
+    setError(null);
+  };
+
+  const closeEmailForm = () => {
+    setEmailFormOpen(false);
+  };
+
+  const sendEmail = async () => {
+    if (!emailTo || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(emailTo)) {
+      setError("Enter a valid email address");
+      return;
+    }
     setBusy("email");
     setError(null);
     setEmailStatus(null);
     try {
-      const res = await emailDigest({ toEmail: to, customerLabel, note });
-      setEmailStatus(res.success ? `Sent to ${res.to}` : `Failed: ${res.detail || "unknown error"}`);
+      const res = await emailDigest({
+        toEmail: emailTo,
+        customerLabel,
+        note: emailNote.trim() || undefined,
+      });
+      if (res.success) {
+        setEmailStatus(`Sent to ${res.to}`);
+        setEmailFormOpen(false);
+        setEmailNote("");
+      } else {
+        setError(`Failed: ${res.detail || "unknown error"}`);
+      }
     } catch (e) {
       setError(e instanceof Error ? e.message : String(e));
     } finally {
@@ -129,13 +153,13 @@ export const DigestPanel: React.FC<{ customerLabel?: string }> = ({ customerLabe
                 {busy === "pdf" ? "..." : "📄 PDF"}
               </button>
               <button
-                onClick={onEmail}
+                onClick={emailFormOpen ? closeEmailForm : openEmailForm}
                 disabled={busy !== null || loading}
                 title="Email this digest to a client"
                 style={{
                   padding: "6px 12px",
-                  background: busy === "email" ? "#2D3340" : "transparent",
-                  border: "1px solid #2D3340",
+                  background: emailFormOpen ? "#FFA72622" : busy === "email" ? "#2D3340" : "transparent",
+                  border: `1px solid ${emailFormOpen ? "#FFA72688" : "#2D3340"}`,
                   color: busy === "email" ? "#666" : "#FFA726",
                   borderRadius: "6px",
                   fontSize: "12px",
@@ -143,7 +167,7 @@ export const DigestPanel: React.FC<{ customerLabel?: string }> = ({ customerLabe
                   cursor: busy ? "wait" : "pointer",
                 }}
               >
-                {busy === "email" ? "..." : "✉️ Email"}
+                {busy === "email" ? "..." : emailFormOpen ? "✕ Cancel" : "✉️ Email"}
               </button>
             </>
           )}
@@ -165,6 +189,100 @@ export const DigestPanel: React.FC<{ customerLabel?: string }> = ({ customerLabe
           </button>
         </div>
       </div>
+
+      {emailFormOpen && (
+        <div
+          style={{
+            padding: "12px",
+            background: "#0F1116",
+            border: "1px solid #FFA72644",
+            borderRadius: "8px",
+            marginBottom: "12px",
+          }}
+        >
+          <div style={{ fontSize: 11, color: "#FFA726", fontWeight: 700, marginBottom: 8, letterSpacing: 0.5 }}>
+            ✉️ EMAIL REPORT TO CLIENT
+          </div>
+          <input
+            type="email"
+            placeholder="client@example.com"
+            value={emailTo}
+            onChange={(e) => setEmailTo(e.target.value)}
+            disabled={busy === "email"}
+            autoFocus
+            style={{
+              width: "100%",
+              padding: "8px 10px",
+              background: "#15181D",
+              border: "1px solid #2D3340",
+              borderRadius: 6,
+              color: "#E0E6F7",
+              fontSize: 13,
+              outline: "none",
+              boxSizing: "border-box",
+              marginBottom: 8,
+            }}
+          />
+          <textarea
+            placeholder="Optional note above the report (e.g. 'Here's the week 19 recap — let me know if you want to discuss any of the held items.')"
+            value={emailNote}
+            onChange={(e) => setEmailNote(e.target.value)}
+            disabled={busy === "email"}
+            rows={2}
+            style={{
+              width: "100%",
+              padding: "8px 10px",
+              background: "#15181D",
+              border: "1px solid #2D3340",
+              borderRadius: 6,
+              color: "#E0E6F7",
+              fontSize: 12,
+              outline: "none",
+              boxSizing: "border-box",
+              marginBottom: 8,
+              resize: "vertical",
+              fontFamily: "inherit",
+            }}
+          />
+          <div style={{ display: "flex", gap: 8, justifyContent: "flex-end" }}>
+            <button
+              onClick={closeEmailForm}
+              disabled={busy === "email"}
+              style={{
+                padding: "6px 14px",
+                background: "transparent",
+                border: "1px solid #2D3340",
+                color: "#A0A0A0",
+                borderRadius: 6,
+                fontSize: 12,
+                fontWeight: 600,
+                cursor: "pointer",
+              }}
+            >
+              Cancel
+            </button>
+            <button
+              onClick={sendEmail}
+              disabled={busy === "email" || !emailTo}
+              style={{
+                padding: "6px 14px",
+                background: busy === "email" ? "#FFA72688" : "linear-gradient(135deg, #FF8E53, #FFA726)",
+                border: "none",
+                color: "#0F1116",
+                borderRadius: 6,
+                fontSize: 12,
+                fontWeight: 700,
+                cursor: busy === "email" ? "wait" : "pointer",
+              }}
+            >
+              {busy === "email" ? "Sending..." : "Send report"}
+            </button>
+          </div>
+          <div style={{ fontSize: 10, color: "#666", marginTop: 8 }}>
+            The report will be sent as a PDF attachment with the optional note prepended to the email body.
+          </div>
+        </div>
+      )}
 
       {emailStatus && (
         <div
