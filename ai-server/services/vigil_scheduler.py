@@ -304,6 +304,15 @@ def start_scheduler() -> Optional[AsyncIOScheduler]:
 
     interval = vigil_interval_minutes()
     sched = AsyncIOScheduler()
+    # First-tick delay: wait a FULL interval before the first scan after a
+    # container restart. Previous "datetime.now() + 30s" was too aggressive —
+    # every restart kicked off a heavy scan of all accounts within 30s,
+    # blocking the event loop and starving login + /health requests during
+    # the first scan window. The dedup audit-log marker already prevents
+    # immediate-re-scan storms, but a full interval delay also lets the API
+    # warm up cleanly. For local/dev where a short interval is set, the
+    # behavior stays the same (you'll wait `interval` minutes for the first
+    # tick — set VIGIL_INTERVAL_MINUTES=1 for quick local testing).
     sched.add_job(
         vigil_tick,
         trigger="interval",
@@ -312,9 +321,7 @@ def start_scheduler() -> Optional[AsyncIOScheduler]:
         replace_existing=True,
         max_instances=1,
         coalesce=True,
-        # APScheduler treats naive datetimes as local time — use datetime.now()
-        # not datetime.utcnow() to avoid a `Run time was missed` warning at boot.
-        next_run_time=datetime.now() + timedelta(seconds=30),
+        next_run_time=datetime.now() + timedelta(minutes=interval),
     )
     sched.start()
     _scheduler = sched
