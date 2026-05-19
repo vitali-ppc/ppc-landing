@@ -434,22 +434,21 @@ async def list_recommendations(access_token: str, customer_id: str) -> list[dict
             },
         ]
 
+    # GAQL v24 quirks (observed empirically on goodevas.it 2026-05-19):
+    # - `WHERE recommendation.dismissed = FALSE` returns 0 rows even when
+    #   active recommendations exist. Filter dismissed in Python instead.
+    # - `recommendation.impact.base_metrics.*` nested field selects raise
+    #   INVALID_ARGUMENT. Impact data has to be fetched per-row separately or
+    #   parsed from the resource fetched in full. For now we surface type +
+    #   target only — impact is reconstructed in agent prompts from context.
     query = (
         "SELECT "
         "recommendation.resource_name, "
         "recommendation.type, "
         "recommendation.campaign, "
         "recommendation.ad_group, "
-        "recommendation.impact.base_metrics.impressions, "
-        "recommendation.impact.base_metrics.clicks, "
-        "recommendation.impact.base_metrics.cost_micros, "
-        "recommendation.impact.base_metrics.conversions, "
-        "recommendation.impact.potential_metrics.impressions, "
-        "recommendation.impact.potential_metrics.clicks, "
-        "recommendation.impact.potential_metrics.cost_micros, "
-        "recommendation.impact.potential_metrics.conversions "
-        "FROM recommendation "
-        "WHERE recommendation.dismissed = FALSE"
+        "recommendation.dismissed "
+        "FROM recommendation"
     )
     url = f"{GOOGLE_ADS_API_BASE}/customers/{customer_id}/googleAds:searchStream"
     async with httpx.AsyncClient(timeout=30.0) as client:
@@ -464,20 +463,21 @@ async def list_recommendations(access_token: str, customer_id: str) -> list[dict
     for chunk in chunks:
         for row in chunk.get("results", []) or []:
             rec = row.get("recommendation", {}) or {}
-            impact = rec.get("impact", {}) or {}
+            if rec.get("dismissed") is True:
+                # Skip dismissed — Python-side because GAQL WHERE doesn't work here.
+                continue
             out.append(
                 {
                     "resource_name": rec.get("resourceName"),
                     "type": rec.get("type"),
                     "campaign": rec.get("campaign"),
                     "ad_group": rec.get("adGroup"),
-                    "impact_base": impact.get("baseMetrics") or {},
-                    "impact_potential": impact.get("potentialMetrics") or {},
-                    "type_specific": {
-                        k: v
-                        for k, v in rec.items()
-                        if k.endswith("Recommendation") and isinstance(v, dict)
-                    },
+                    # Impact metrics omitted: GAQL v24 rejects nested
+                    # `recommendation.impact.*` field selection. Agents
+                    # operate on type + target context for now.
+                    "impact_base": {},
+                    "impact_potential": {},
+                    "type_specific": {},
                 }
             )
     return out
