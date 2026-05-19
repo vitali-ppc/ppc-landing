@@ -18,6 +18,16 @@ export const DigestPanel: React.FC<{ customerLabel?: string }> = ({ customerLabe
   const [emailFormOpen, setEmailFormOpen] = useState(false);
   const [emailTo, setEmailTo] = useState("");
   const [emailNote, setEmailNote] = useState("");
+  const [open, setOpen] = useState<boolean>(() => {
+    if (typeof window === "undefined") return true;
+    const v = window.localStorage.getItem("b6_echo_open");
+    return v === null ? true : v === "1";
+  });
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem("b6_echo_open", open ? "1" : "0");
+    }
+  }, [open]);
 
   const refresh = useCallback(async () => {
     const d = await getLatestDigest();
@@ -125,19 +135,52 @@ export const DigestPanel: React.FC<{ customerLabel?: string }> = ({ customerLabe
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          marginBottom: "12px",
+          marginBottom: open ? "12px" : 0,
         }}
       >
-        <div>
-          <div style={{ fontSize: "14px", fontWeight: 600, color: "#E0E6F7" }}>
-            📊 Echo — Weekly Digest
-          </div>
-          {digest && (
-            <div style={{ fontSize: "11px", color: "#666", marginTop: "2px" }}>
-              {digest.period} · generated {new Date(digest.generated_at).toLocaleString("en-US")}
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          aria-expanded={open}
+          title={open ? "Collapse Echo digest" : "Expand Echo digest"}
+          style={{
+            background: "transparent",
+            border: "none",
+            padding: 0,
+            cursor: "pointer",
+            color: "#E0E6F7",
+            display: "flex",
+            alignItems: "flex-start",
+            gap: 8,
+            textAlign: "left",
+            flex: 1,
+            minWidth: 0,
+          }}
+        >
+          <span
+            style={{
+              display: "inline-block",
+              width: 12,
+              color: "#A0A0A0",
+              fontSize: 11,
+              transform: open ? "rotate(90deg)" : "rotate(0deg)",
+              transition: "transform 100ms",
+              marginTop: 2,
+            }}
+          >
+            ▶
+          </span>
+          <span style={{ minWidth: 0 }}>
+            <div style={{ fontSize: "14px", fontWeight: 600, color: "#E0E6F7" }}>
+              📊 Echo — Weekly Digest
             </div>
-          )}
-        </div>
+            {digest && (
+              <div style={{ fontSize: "11px", color: "#666", marginTop: "2px" }}>
+                {digest.period} · generated {new Date(digest.generated_at).toLocaleString("en-US")}
+              </div>
+            )}
+          </span>
+        </button>
         <div style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
           {digest && (
             <>
@@ -196,7 +239,7 @@ export const DigestPanel: React.FC<{ customerLabel?: string }> = ({ customerLabe
         </div>
       </div>
 
-      {emailFormOpen && (
+      {open && emailFormOpen && (
         <div
           style={{
             padding: "12px",
@@ -290,7 +333,7 @@ export const DigestPanel: React.FC<{ customerLabel?: string }> = ({ customerLabe
         </div>
       )}
 
-      {emailStatus && (
+      {open && emailStatus && (
         <div
           style={{
             padding: "8px 10px",
@@ -307,7 +350,7 @@ export const DigestPanel: React.FC<{ customerLabel?: string }> = ({ customerLabe
         </div>
       )}
 
-      {error && (
+      {open && error && (
         <div
           style={{
             padding: "10px",
@@ -323,13 +366,13 @@ export const DigestPanel: React.FC<{ customerLabel?: string }> = ({ customerLabe
         </div>
       )}
 
-      {!digest ? (
+      {open && (!digest ? (
         <div style={{ padding: "30px 20px", textAlign: "center", color: "#666", fontSize: "13px" }}>
           No digest yet. Hit "Generate" — Echo reads agent history and produces a summary.
         </div>
       ) : (
         <DigestContent digest={digest} />
-      )}
+      ))}
     </div>
   );
 };
