@@ -284,6 +284,38 @@ export async function runDigest(opts: {
   });
 }
 
+/**
+ * Download the latest digest as a client-ready PDF.
+ * Returns a Blob; caller is responsible for triggering the browser download.
+ */
+export async function downloadDigestPdf(customerLabel?: string): Promise<Blob> {
+  const token = getStoredToken();
+  const params = new URLSearchParams();
+  if (customerLabel) params.set("customer_label", customerLabel);
+  const url = `${API_BASE}/api/digest/latest/pdf${params.toString() ? `?${params}` : ""}`;
+  const res = await fetch(url, {
+    headers: token ? { Authorization: `Bearer ${token}` } : {},
+  });
+  if (res.status === 401) {
+    handleUnauthorized();
+    throw new UnauthorizedError();
+  }
+  if (!res.ok) throw new Error(`Failed to fetch PDF: ${res.status}`);
+  return res.blob();
+}
+
+export async function emailDigest(opts: {
+  toEmail: string;
+  customerLabel?: string;
+  note?: string;
+}): Promise<{ success: boolean; to: string; detail?: string }> {
+  return jsonRequest("POST", `/api/digest/latest/email`, {
+    to_email: opts.toEmail,
+    customer_label: opts.customerLabel,
+    note: opts.note,
+  });
+}
+
 // ---------- Helpers ----------
 
 export function formatActionShortId(id: string): string {

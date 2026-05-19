@@ -373,7 +373,7 @@ function B6Dashboard() {
         {/* Maximus + Echo grid */}
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px", marginBottom: "20px" }}>
           <MaximusPanel onChange={refresh} />
-          <DigestPanel />
+          <DigestPanel customerLabel={activeCustomerId || undefined} />
         </div>
 
         {/* Mira, full width */}

@@ -49,8 +49,12 @@ async def send_email(
     *,
     text: Optional[str] = None,
     tag: Optional[str] = None,
+    attachments: Optional[list[dict]] = None,
 ) -> dict:
     """Отправить email через Resend (или log в mock-режиме).
+
+    attachments format (Resend spec):
+        [{"filename": "report.pdf", "content": "<base64>", "type": "application/pdf"}]
 
     Returns: {success, id?, mock?, message?}
     """
@@ -64,6 +68,8 @@ async def send_email(
         payload["text"] = text
     if tag:
         payload["tags"] = [{"name": "type", "value": tag}]
+    if attachments:
+        payload["attachments"] = attachments
 
     if not is_configured():
         # Mock: пишем в файл вместо реальной отправки

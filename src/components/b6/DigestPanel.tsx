@@ -1,12 +1,20 @@
 "use client";
 
 import React, { useEffect, useState, useCallback } from "react";
-import { getLatestDigest, runDigest, type EchoDigest } from "@/lib/b6-api";
+import {
+  downloadDigestPdf,
+  emailDigest,
+  getLatestDigest,
+  runDigest,
+  type EchoDigest,
+} from "@/lib/b6-api";
 
-export const DigestPanel: React.FC = () => {
+export const DigestPanel: React.FC<{ customerLabel?: string }> = ({ customerLabel }) => {
   const [digest, setDigest] = useState<EchoDigest | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [busy, setBusy] = useState<"pdf" | "email" | null>(null);
+  const [emailStatus, setEmailStatus] = useState<string | null>(null);
 
   const refresh = useCallback(async () => {
     const d = await getLatestDigest();
@@ -20,6 +28,7 @@ export const DigestPanel: React.FC = () => {
   const onGenerate = async () => {
     setLoading(true);
     setError(null);
+    setEmailStatus(null);
     try {
       const res = await runDigest({ periodDays: 7, sendEmail: false });
       if (res.success && res.digest) {
@@ -31,6 +40,44 @@ export const DigestPanel: React.FC = () => {
       setError(e instanceof Error ? e.message : String(e));
     } finally {
       setLoading(false);
+    }
+  };
+
+  const onDownloadPdf = async () => {
+    setBusy("pdf");
+    setError(null);
+    try {
+      const blob = await downloadDigestPdf(customerLabel);
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      const datePart = digest?.generated_at?.slice(0, 10) ?? "report";
+      a.download = `b6-weekly-report-${datePart}.pdf`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : String(e));
+    } finally {
+      setBusy(null);
+    }
+  };
+
+  const onEmail = async () => {
+    const to = window.prompt("Send this report to which email?", "");
+    if (!to) return;
+    const note = window.prompt("Optional note to include above the report (blank to skip):", "") || undefined;
+    setBusy("email");
+    setError(null);
+    setEmailStatus(null);
+    try {
+      const res = await emailDigest({ toEmail: to, customerLabel, note });
+      setEmailStatus(res.success ? `Sent to ${res.to}` : `Failed: ${res.detail || "unknown error"}`);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : String(e));
+    } finally {
+      setBusy(null);
     }
   };
 
@@ -61,23 +108,79 @@ export const DigestPanel: React.FC = () => {
             </div>
           )}
         </div>
-        <button
-          onClick={onGenerate}
-          disabled={loading}
+        <div style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
+          {digest && (
+            <>
+              <button
+                onClick={onDownloadPdf}
+                disabled={busy !== null || loading}
+                title="Download a client-ready PDF of this digest"
+                style={{
+                  padding: "6px 12px",
+                  background: busy === "pdf" ? "#2D3340" : "transparent",
+                  border: "1px solid #2D3340",
+                  color: busy === "pdf" ? "#666" : "#4ECDC4",
+                  borderRadius: "6px",
+                  fontSize: "12px",
+                  fontWeight: 600,
+                  cursor: busy ? "wait" : "pointer",
+                }}
+              >
+                {busy === "pdf" ? "..." : "📄 PDF"}
+              </button>
+              <button
+                onClick={onEmail}
+                disabled={busy !== null || loading}
+                title="Email this digest to a client"
+                style={{
+                  padding: "6px 12px",
+                  background: busy === "email" ? "#2D3340" : "transparent",
+                  border: "1px solid #2D3340",
+                  color: busy === "email" ? "#666" : "#FFA726",
+                  borderRadius: "6px",
+                  fontSize: "12px",
+                  fontWeight: 600,
+                  cursor: busy ? "wait" : "pointer",
+                }}
+              >
+                {busy === "email" ? "..." : "✉️ Email"}
+              </button>
+            </>
+          )}
+          <button
+            onClick={onGenerate}
+            disabled={loading || busy !== null}
+            style={{
+              padding: "6px 14px",
+              background: loading ? "#2D3340" : "transparent",
+              border: "1px solid #2D3340",
+              color: loading ? "#666" : "#7F9CF5",
+              borderRadius: "6px",
+              fontSize: "12px",
+              fontWeight: 600,
+              cursor: loading ? "wait" : "pointer",
+            }}
+          >
+            {loading ? "📊 Echo is thinking..." : digest ? "🔄 Refresh" : "📊 Generate"}
+          </button>
+        </div>
+      </div>
+
+      {emailStatus && (
+        <div
           style={{
-            padding: "6px 14px",
-            background: loading ? "#2D3340" : "transparent",
-            border: "1px solid #2D3340",
-            color: loading ? "#666" : "#7F9CF5",
+            padding: "8px 10px",
+            background: "#4ECDC422",
+            border: "1px solid #4ECDC444",
             borderRadius: "6px",
+            color: "#4ECDC4",
             fontSize: "12px",
-            fontWeight: 600,
-            cursor: loading ? "wait" : "pointer",
+            marginBottom: "10px",
           }}
         >
-          {loading ? "📊 Echo is thinking..." : digest ? "🔄 Refresh" : "📊 Generate"}
-        </button>
-      </div>
+          ✅ {emailStatus}
+        </div>
+      )}
 
       {error && (
         <div

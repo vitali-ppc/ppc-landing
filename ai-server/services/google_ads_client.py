@@ -562,6 +562,84 @@ async def dismiss_recommendation(
 
 
 # ---------------------------------------------------------------------------
+# Change history — what actually changed in the Google Ads account (Phase 8)
+# ---------------------------------------------------------------------------
+
+async def list_change_status(
+    access_token: str,
+    customer_id: str,
+    *,
+    days: int = 7,
+    limit: int = 100,
+) -> list[dict[str, Any]]:
+    """Fetch what changed in the Google Ads account over the last N days.
+
+    GAQL v24 requires a BOUNDED date filter on change_status.last_change_date_time
+    (an open-ended `>` returns CHANGE_DATE_RANGE_INFINITE 400). We always pass
+    BETWEEN <N days ago> AND <now>.
+
+    Returns a list of:
+        {
+          "resource_name": "customers/.../changeStatus/...",
+          "last_change_date_time": "2026-05-19 08:18:41.007039",
+          "resource_type": "CAMPAIGN" | "AD_GROUP" | "AD_GROUP_CRITERION" | "AD" | ...,
+          "resource_status": "ADDED" | "CHANGED" | "REMOVED",
+          "campaign": "customers/.../campaigns/123" | None,
+          "ad_group": ... | None,
+        }
+    """
+    if use_mock():
+        return [
+            {
+                "resource_name": f"customers/{customer_id}/changeStatus/mock-1",
+                "last_change_date_time": datetime.utcnow().isoformat(),
+                "resource_type": "CAMPAIGN",
+                "resource_status": "CHANGED",
+                "campaign": f"customers/{customer_id}/campaigns/100001",
+                "ad_group": None,
+            },
+        ]
+
+    from datetime import datetime as _dt, timedelta as _td
+    now = _dt.utcnow().strftime("%Y-%m-%d %H:%M:%S")
+    since = (_dt.utcnow() - _td(days=days)).strftime("%Y-%m-%d %H:%M:%S")
+    q = chr(39)  # single quote — keep f-strings simple
+
+    query = (
+        "SELECT change_status.resource_name, change_status.last_change_date_time, "
+        "change_status.resource_type, change_status.resource_status, "
+        "change_status.campaign, change_status.ad_group "
+        "FROM change_status "
+        f"WHERE change_status.last_change_date_time BETWEEN {q}{since}{q} AND {q}{now}{q} "
+        "ORDER BY change_status.last_change_date_time DESC "
+        f"LIMIT {limit}"
+    )
+    url = f"{GOOGLE_ADS_API_BASE}/customers/{customer_id}/googleAds:searchStream"
+    async with httpx.AsyncClient(timeout=30.0) as client:
+        r = await client.post(url, headers=_headers(access_token), json={"query": query})
+    if r.status_code != 200:
+        logger.warning("list_change_status %s -> %s: %s", customer_id, r.status_code, r.text[:300])
+        return []
+    data = r.json()
+    chunks = data if isinstance(data, list) else [data]
+    out: list[dict[str, Any]] = []
+    for chunk in chunks:
+        for row in chunk.get("results", []) or []:
+            cs = row.get("changeStatus", {}) or {}
+            out.append(
+                {
+                    "resource_name": cs.get("resourceName"),
+                    "last_change_date_time": cs.get("lastChangeDateTime"),
+                    "resource_type": cs.get("resourceType"),
+                    "resource_status": cs.get("resourceStatus"),
+                    "campaign": cs.get("campaign"),
+                    "ad_group": cs.get("adGroup"),
+                }
+            )
+    return out
+
+
+# ---------------------------------------------------------------------------
 # Search Terms — find junk queries to add as negative keywords (Phase 3)
 # ---------------------------------------------------------------------------
 
