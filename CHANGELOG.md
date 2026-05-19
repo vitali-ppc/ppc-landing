@@ -6,6 +6,99 @@
 
 ---
 
+## [v24 migration + Sprint 6/7 — DONE] — 2026-05-19 — Multi-tenancy + Real Apply + Google Ads API v24
+
+**Статус**: ✅ DONE — продукт готов к первому платящему. Сводка марафона 2026-05-18 → 2026-05-19 (~27 коммитов от `73f0e78` до `50b2baf`).
+
+### Sprint 6 — Multi-tenancy + JWT auth
+
+- `services/auth.py` + `dependencies.py` + `routers/auth.py` — bcrypt + HS256 JWT (7-day TTL), `POST /api/auth/{register,login}` + `GET /me`
+- Все 6 protected routers переведены с `dev-user-001` defaults на `Depends(get_current_user)`
+- 3 multi-tenant дыры закрыты: `/api/campaigns` filter by user_id, `tools.py::_get_access_token_for` enforces ownership, `/api/actions/.../approve` checks owner
+- Socket.IO connect требует JWT, события scoped по `user:<id>` room
+- CORS заблокирован с `*` на explicit list
+- Alembic migration `a1b2c3d4e5f6` — `User.is_active` + `email_verified`
+- `scripts/migrate_dev_user.py` — перенос всех 33 GoogleAdsAccount + 8 actions + audit_log с dev-user-001 на реального юзера
+
+### Sprint 7 — Real apply для pause_campaign
+
+- `services/google_ads_client.py::pause_campaign` — реальный mutate через `customers/{cid}/campaigns:mutate` с PAUSED, before_status через GAQL search
+- Daily safety cap: 5 real applies / customer / 24h
+- `routers/actions.py::approve_action` — резолвит access_token через ownership-aware `_get_access_token_for`, ловит RuntimeError → after_state.error
+- Frontend `ApprovalQueue.tsx` — checkbox «Apply to Google Ads» + красная "⚠ Apply now" с `confirm()`
+- `update_bid` real apply отложен в Sprint 7.5 (нужен strategy-aware refactor)
+
+### UI polish batch
+
+- Campaign filter: `All / Active / Paused` tabs
+- Account dropdown с поиском по 33 connected accounts, `descriptive_name` (`goodevas.it` вместо `313-350-6664`)
+- `scripts/backfill_account_names.py` — backfill 23 existing descriptive_names через GAQL `customer.descriptive_name`
+- DateRangePicker как в Google Ads (8 presets + custom range)
+- Collapse/expand для Campaigns + Live stream с localStorage persistence
+- Stop-on-hover для Buzz/Vox (AbortController)
+- Eye-toggle для password полей
+- i18n: весь UI + 7 agent prompts на английский, locale `en-US`
+- `RunVoxButton.tsx` — фиолетовая Vox кнопка рядом с бирюзовой Buzz
+
+### Bug fix: Buzz и automated bid strategies
+
+- Buzz годами генерил **фантомные `propose_bid_change`** на Pmax/Brand/TARGET_ROAS — где manual CPC не существует
+- 3 слоя защиты:
+  1. System prompt — явный whitelist `MANUAL_CPC` / `ENHANCED_CPC`
+  2. Tool description — дублируется
+  3. Handler `propose_bid_change_tool` — required `bid_strategy` param, rejects non-manual с `rejected_reason: "incompatible_bid_strategy"`
+- Sprint 7.5 (strategy-aware bidding с target_roas/target_cpa/IS% tools) — отложен
+
+### Google Ads API v20 → v24 migration
+
+**Phase 1** — endpoint upgrade. No breaking changes.
+
+**Phase 2** — `RecommendationService` integration:
+- Buzz/Vox теперь вызывают `list_recommendations` ПЕРЕД своими reasoning
+- New `action_type='apply_recommendation'` с real mutate через `recommendations:apply`
+- UI: blue `📍 GOOGLE` badge на recommendation-sourced proposals
+- GAQL quirks: `WHERE recommendation.dismissed = FALSE` silently returns 0 rows (filter в Python); `recommendation.impact.*` nested raises INVALID_ARGUMENT (impact dropped)
+- **Validated**: 15 из 33 customers имеют active Google recs (FORECASTING_CAMPAIGN_BUDGET, SET_TARGET_ROAS, SHOPPING_TARGET_ALL_OFFERS, RESPONSIVE_SEARCH_AD, ...)
+
+**Phase 3** — `SearchTermView` → Sage auto-negative keywords:
+- New tools `list_search_terms_tool` + `propose_negative_keyword_tool`
+- Filter: `cost_micros > $5M AND conversions = 0` за `LAST_30_DAYS`
+- New `action_type='add_negative_keyword'` с real mutate через `campaignCriteria:mutate` (negative=true, EXACT default)
+- UI: orange `🚫 NEGATIVE` badge + `🦉 Sage proposes:` header
+- GAQL quirks: `metrics.conversions <= 0` rejects with OPERATOR_FIELD_MISMATCH (use `= 0`)
+- **Validated**: 77 junk queries найдено на 13 accounts, ~$900/мес wasted spend. Top: goodevas.it ($247/18), goodevas.com ($217/14), goodevas.de ($215/22)
+- Known limitation: hardcoded `min_cost_usd = $5` не учитывает target CPA (отложено)
+
+**Phase 4** — BenchmarksService — SKIPPED (только YouTube clients).
+
+**Phase 5/6/7** — AudienceInsights / AssetGeneration / ExperimentService — DEFERRED.
+
+**Phase 8** — Client-facing weekly PDF report:
+- Echo system prompt полностью переписан под client audience (business English, outcomes-first, under 200 слов)
+- `services/digest_pdf.py` — single-page branded PDF (reportlab, Helvetica, brand colors)
+- Endpoints: `GET /api/digest/latest/pdf` (download), `POST /api/digest/latest/email` (Resend + attachment + optional note)
+- Frontend: `📄 PDF` + `✉️ Email` buttons в DigestPanel + inline email form (вместо native window.prompt)
+- Honest UI banner: orange `⚠️ Mock mode — saved to server log, NOT actually delivered` когда RESEND_API_KEY пустой
+- `services/emailer.py::send_email` теперь принимает `attachments=[{filename, content base64, type}]`
+- `services/google_ads_client.py::list_change_status` готов для future ChangeStatus integration в Echo
+
+### Operational follow-ups (см. plan `/Users/vitaly/.claude/plans/b6-v24-migration.md` §10)
+
+1. **§10.A** Resend setup — RESEND_API_KEY пустой → email в mock-mode. Нужно DNS verify + API key + .env.prod update (~30 мин).
+2. **§10.B** Sprint 7.5 — strategy-aware bidding.
+3. **§10.C** Sage CPA threshold — fetch `campaign.target_cpa`, заменить hardcoded $5 на `2× target_cpa`.
+4. **§10.D** Aegis prompt update для новых action types.
+5. **§10.E** ChangeStatus в Echo — показывать non-B6 manual changes.
+6. **§10.F** PDF branding — логотип + графики.
+
+### Metrics
+
+- **27 коммитов**, +5000 / -800 строк
+- **Real value найдено в проде**: $900/мес junk spend (Phase 3) + 15 customers с active Google recs (Phase 2)
+- **Готово к pitch'у** Tristan/Goodevas
+
+---
+
 ## [Sprint 6 — starting] — 2026-05-16 — Multi-tenancy + JWT auth
 
 **Статус**: 🚧 IN PROGRESS — главный блокер платящих клиентов.

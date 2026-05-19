@@ -5,48 +5,66 @@
 > Архитектура системы: [`ARCHITECTURE.md`](./ARCHITECTURE.md)
 > История изменений: [`CHANGELOG.md`](./CHANGELOG.md)
 
-**Дата последнего обновления**: 2026-05-16 (Sprint 6 starting — JWT auth)
+**Дата последнего обновления**: 2026-05-19 evening (v24 migration + Sprint 6/7 closed + Phase 1/2/3/8 done)
 **Текущая ветка**: `v2-autonomous-agents`
-**Прогресс кода**: **100%** агентов + OAuth + real Google Ads (Sprint 5 done). **Sprint 6 = multi-tenancy auth, начинается сейчас.**
-**Статус**: ✅ LIVE В PRODUCTION на 1 dev-user. ⚠️ Multi-tenancy не реализована — блокер платящих клиентов.
+**Прогресс кода**: Sprint 1-7 ✅ done, v24 migration Phase 1/2/3/8 ✅ done, Phase 5/6/7 deferred.
+**Статус**: ✅ LIVE В PRODUCTION на **multi-tenant JWT auth**, на Google Ads API **v24**, real apply для pause_campaign + apply_recommendation + add_negative_keyword. Готов к **первому платящему**.
 
 ---
 
-## 🎯 ЧТО ДЕЛАТЬ СЕЙЧАС (2026-05-16)
-
-**Пользователь переключился из SEO project в B6 для Sprint 6 (JWT auth).**
-
-Это **главный блокер платящих клиентов**: сейчас в системе захардкожен `dev-user-001`, нельзя онбордить реальных юзеров без ручного `INSERT INTO users`.
-
-### Sprint 6 scope (план)
+## 🎯 ЧТО ДЕЛАТЬ ДАЛЬШЕ (приоритеты на 2026-05-20+)
 
 ```
-1. Backend (FastAPI):
-   - POST /api/auth/register  (email + password → hash → создать User row)
-   - POST /api/auth/login     (email + password → JWT token)
-   - GET  /api/auth/me        (JWT → User info)
-   - JWT middleware на все защищённые routes
-   - Replace hardcoded user_id="dev-user-001" в queries → from JWT
-
-2. Frontend (Next.js):
-   - /register page
-   - /login page (server+client split с noindex)
-   - auth context (token storage — localStorage или httpOnly cookie)
-   - protected /b6 route (redirect to /login если нет токена)
-   - Sign out button
-
-3. Data isolation:
-   - Все queries фильтруют по user_id из JWT
-   - GoogleAdsAccount, AgentAction, AuditLog — user-scoped
-
-4. Tests:
-   - register → login → /b6 access flow
-   - 2 users — каждый видит только свои данные
+1. (~30 мин)  Resend setup — RESEND_API_KEY пустой в .env.prod, email
+              сейчас в mock-mode (см. v24 plan §10.A).
+              UI честно показывает "⚠️ Mock mode" баннер.
+2. (~20 ч)    Sprint 8 — Anomaly Agent + 24/7 cron monitoring.
+              Это превращает продукт из "жми Run" в "AI сам мониторит".
+              Без него мы не L2/L3.
+3. (~15 ч)    Sprint 9 — Maximus L3 aggressive auto-apply policy +
+              client-facing Echo improvements (charts, branding).
+4. (sales)    Tristan (Goodevas) demo — есть конкретные цифры:
+              - $900/мес junk traffic найдено на 13 аккаунтах
+              - 15 customers с active Google recommendations
+              - PDF client report готов к показу
 ```
 
-### Время
+**Полный v24 plan + operational follow-ups**: [`/Users/vitaly/.claude/plans/b6-v24-migration.md`](/Users/vitaly/.claude/plans/b6-v24-migration.md). Там Phase-by-Phase статус + 6 операционных задач:
+- §10.A — Resend setup (DNS + API key + .env.prod update)
+- §10.B — Sprint 7.5 (strategy-aware bidding для automated bid strategies)
+- §10.C — Sage CPA threshold (target_cpa-aware, не hardcoded $5)
+- §10.D — Aegis prompt update (новые action types)
+- §10.E — ChangeStatus в Echo (показывать non-B6 manual changes)
+- §10.F — PDF branding (логотип, графики)
 
-Estimate: **4-6 часов работы**. После — beta-юзеры могут регистрироваться сами.
+---
+
+## ⚡ Что сделано в марафон 2026-05-18 → 2026-05-19
+
+```
+Sprint 6        ✅ JWT auth + multi-tenancy + i18n + migrate dev-user-001
+                  → твой реальный аккаунт. 33 Google Ads + 23 descriptive_names.
+Sprint 7        ✅ Real apply для pause_campaign (campaigns:mutate с PAUSED).
+                  Daily safety cap 5 real applies/customer/24h.
+                  UI Apply-to-Google-Ads checkbox + "⚠ Apply now" confirm.
+UI polish       ✅ Account dropdown (поиск по 33 акк.), Date range picker как
+                  в Google Ads, Collapse/expand секций, Stop-on-hover для
+                  Buzz/Vox, eye-toggle паролей.
+Bug fix Buzz    ✅ Запрет propose_bid_change на non-MANUAL_CPC strategies
+                  (3 слоя защиты: prompt + tool desc + handler).
+v24 Phase 1     ✅ API base v20 → v24. Никаких регрессий.
+v24 Phase 2     ✅ RecommendationService: Buzz/Vox читают Google's own recs,
+                  предлагают apply_recommendation. На проде 15/33 customers
+                  имеют active recs.
+v24 Phase 3     ✅ Sage чистит junk search terms → add_negative_keyword.
+                  77 junk queries найдено = ~$900/мес wasted spend.
+v24 Phase 8     ✅ Echo переписан client-facing tone, PDF generator
+                  (reportlab), endpoints /digest/pdf + /digest/email,
+                  inline email form вместо native popup.
+                  Honest mock-mode banner когда RESEND_API_KEY пустой.
+```
+
+Полный список commits: см. `git log v2-autonomous-agents` (от `73f0e78` до `50b2baf`, ~25+ коммитов).
 
 ---
 
