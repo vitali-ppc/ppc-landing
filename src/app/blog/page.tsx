@@ -208,6 +208,16 @@ export default function BlogPage() {
       date: '2026-05-19',
       readTime: '14 min read',
       slug: 'google-ads-attribution-models-guide'
+    },
+    {
+      id: 21,
+      title: 'Google Ads Keyword Match Types Explained (Broad, Phrase, Exact 2026)',
+      excerpt: 'Broad, phrase, and exact match in Google Ads behave nothing like they did in 2019. How each one works in 2026, how they feed Smart Bidding, and the decision rule that covers 80% of accounts we audit.',
+      category: 'google-ads',
+      author: 'By B6 Team',
+      date: '2026-05-20',
+      readTime: '13 min read',
+      slug: 'google-ads-keyword-match-types-explained'
     }
   ];
 
