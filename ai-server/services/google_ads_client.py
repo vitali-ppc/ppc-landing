@@ -218,6 +218,7 @@ def _mock_campaigns() -> list[dict[str, Any]]:
             "status": "ENABLED",
             "budget_micros": 50_000_000,  # $50/day
             "bid_strategy": "TARGET_ROAS",
+            "channel_type": "SEARCH",
         },
         {
             "id": "100002",
@@ -225,6 +226,7 @@ def _mock_campaigns() -> list[dict[str, Any]]:
             "status": "ENABLED",
             "budget_micros": 30_000_000,
             "bid_strategy": "MAXIMIZE_CONVERSIONS",
+            "channel_type": "PERFORMANCE_MAX",
         },
         {
             "id": "100003",
@@ -232,18 +234,27 @@ def _mock_campaigns() -> list[dict[str, Any]]:
             "status": "ENABLED",
             "budget_micros": 20_000_000,
             "bid_strategy": "TARGET_IMPRESSION_SHARE",
+            "channel_type": "SEARCH",
         },
     ]
 
 
 async def list_campaigns(access_token: str, customer_id: str) -> list[dict[str, Any]]:
-    """Список активных кампаний для аккаунта."""
+    """Список активных кампаний для аккаунта.
+
+    Returns campaigns with: id, name, status, budget_micros, bid_strategy,
+    channel_type (SEARCH | PERFORMANCE_MAX | DISPLAY | SHOPPING | VIDEO | ...).
+    channel_type is critical for Mira to know which RSA/Asset Group format to
+    use; for Search → 15 headlines + 4 descriptions, for PMax → asset group
+    with more headlines + image prompts, for Shopping → no ad creatives at all.
+    """
     if use_mock():
         return _mock_campaigns()
 
     query = """
         SELECT
           campaign.id, campaign.name, campaign.status,
+          campaign.advertising_channel_type,
           campaign_budget.amount_micros, campaign.bidding_strategy_type
         FROM campaign
         WHERE campaign.status != 'REMOVED'
@@ -260,7 +271,60 @@ def _campaign_row_to_dict(row: dict) -> dict[str, Any]:
         "status": campaign.get("status"),
         "budget_micros": int(budget.get("amountMicros", 0)) if budget else 0,
         "bid_strategy": campaign.get("biddingStrategyType"),
+        "channel_type": campaign.get("advertisingChannelType"),
     }
+
+
+async def get_campaign_landing_urls(
+    access_token: str, customer_id: str, campaign_id: str, limit: int = 3
+) -> list[str]:
+    """Get final URLs (landing pages) that ads in this campaign point to.
+
+    Critical for Mira so the LLM knows what product/service is being advertised
+    — without this it has to guess from campaign name only, which leads to
+    hallucinated copy (e.g. "Take Control of Your Finances" for an e-commerce
+    home goods campaign).
+
+    For Search/Display campaigns: from ad_group_ad.ad.final_urls.
+    For Performance Max: from asset_group.final_urls.
+    Falls back to empty list if no ads or assets found.
+    """
+    if use_mock():
+        return [f"https://example.com/products/winter-{campaign_id}"]
+
+    # Try ad_group_ad first (covers Search, Display, Video)
+    query = f"""
+        SELECT ad_group_ad.ad.final_urls
+        FROM ad_group_ad
+        WHERE campaign.id = {campaign_id}
+          AND ad_group_ad.status = 'ENABLED'
+        LIMIT {limit}
+    """
+    rows = await _search_stream(access_token, customer_id, query, lambda r: r)
+    urls: list[str] = []
+    for row in rows:
+        ad = row.get("adGroupAd", {}).get("ad", {}) or {}
+        for u in ad.get("finalUrls", []) or []:
+            if u and u not in urls:
+                urls.append(u)
+    if urls:
+        return urls[:limit]
+
+    # Fallback to asset_group (Performance Max)
+    query = f"""
+        SELECT asset_group.final_urls
+        FROM asset_group
+        WHERE campaign.id = {campaign_id}
+          AND asset_group.status = 'ENABLED'
+        LIMIT {limit}
+    """
+    rows = await _search_stream(access_token, customer_id, query, lambda r: r)
+    for row in rows:
+        ag = row.get("assetGroup", {}) or {}
+        for u in ag.get("finalUrls", []) or []:
+            if u and u not in urls:
+                urls.append(u)
+    return urls[:limit]
 
 
 # ---------------------------------------------------------------------------
