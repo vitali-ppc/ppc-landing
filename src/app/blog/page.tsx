@@ -443,7 +443,7 @@ export default function BlogPage() {
                   overflow: 'hidden'
                 }}>
                   <img
-                    src={`/og/${post.slug}.png`}
+                    src={`/og/thumb-${post.slug}.png`}
                     alt={post.title}
                     style={{
                       width: '100%',
