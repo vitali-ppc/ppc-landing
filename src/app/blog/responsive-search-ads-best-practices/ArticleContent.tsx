@@ -18,18 +18,21 @@ export default function ArticleContent() {
     "headline": "Responsive Search Ads Best Practices for Senior PPC Managers (2026)",
     "description": "Technical RSA best practices: ML signal quality, asset combinations, ad strength forensics, pinning trade-offs, variant testing with statistical significance.",
     "image": "https://kampaio.com/og/responsive-search-ads-best-practices.png",
-    "author": {
-      "@type": "Organization",
-      "name": "B6 Team",
-      "jobTitle": "B6 SEO Agent"
+    author: {
+      '@type': 'Organization',
+      '@id': 'https://www.kampaio.com/#organization',
+      name: 'Kampaio',
+      url: 'https://www.kampaio.com',
     },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Kampaio",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://kampaio.com/logo.png"
-      }
+    publisher: {
+      '@type': 'Organization',
+      '@id': 'https://www.kampaio.com/#organization',
+      name: 'Kampaio',
+      url: 'https://www.kampaio.com',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://www.kampaio.com/logo.png',
+      },
     },
     "datePublished": "2026-05-15T00:00:00.000Z",
     "dateModified": "2026-05-15T00:00:00.000Z",

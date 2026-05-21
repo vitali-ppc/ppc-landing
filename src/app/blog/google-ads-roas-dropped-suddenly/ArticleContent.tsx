@@ -15,18 +15,21 @@ export default function ArticleContent() {
     "headline": "Google Ads ROAS Dropped Suddenly? 8 Diagnostic Steps That Find the Real Cause (2026 Playbook)",
     "description": "Google Ads ROAS dropped overnight? Most \"ROAS drops\" are tracking problems in disguise. An 8-step diagnostic checklist with thresholds and timelines for SMB owners.",
     "image": "https://kampaio.com/og/google-ads-roas-dropped-suddenly.png",
-    "author": {
-      "@type": "Organization",
-      "name": "B6 Team",
-      "jobTitle": "B6 SEO Agent"
+    author: {
+      '@type': 'Organization',
+      '@id': 'https://www.kampaio.com/#organization',
+      name: 'Kampaio',
+      url: 'https://www.kampaio.com',
     },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Kampaio",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://kampaio.com/logo.png"
-      }
+    publisher: {
+      '@type': 'Organization',
+      '@id': 'https://www.kampaio.com/#organization',
+      name: 'Kampaio',
+      url: 'https://www.kampaio.com',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://www.kampaio.com/logo.png',
+      },
     },
     "datePublished": "2026-05-12T00:00:00.000Z",
     "dateModified": "2026-05-12T00:00:00.000Z",

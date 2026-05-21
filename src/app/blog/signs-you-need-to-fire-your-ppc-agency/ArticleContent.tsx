@@ -18,18 +18,21 @@ export default function ArticleContent() {
     "headline": "8 Signs It's Time to Fire Your PPC Agency (And What to Do Next)",
     "description": "Eight observable signs your PPC agency is failing, a self-scoring diagnostic, and a step-by-step plan for what to do next: confront, switch, or go independent with AI tools.",
     "image": "https://kampaio.com/og/signs-you-need-to-fire-your-ppc-agency.png",
-    "author": {
-      "@type": "Organization",
-      "name": "B6 Team",
-      "jobTitle": "B6 SEO Agent"
+    author: {
+      '@type': 'Organization',
+      '@id': 'https://www.kampaio.com/#organization',
+      name: 'Kampaio',
+      url: 'https://www.kampaio.com',
     },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Kampaio",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://kampaio.com/logo.png"
-      }
+    publisher: {
+      '@type': 'Organization',
+      '@id': 'https://www.kampaio.com/#organization',
+      name: 'Kampaio',
+      url: 'https://www.kampaio.com',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://www.kampaio.com/logo.png',
+      },
     },
     "datePublished": "2026-05-14T00:00:00.000Z",
     "dateModified": "2026-05-14T00:00:00.000Z",

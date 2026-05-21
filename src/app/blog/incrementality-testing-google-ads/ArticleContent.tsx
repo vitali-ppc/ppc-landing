@@ -18,18 +18,21 @@ export default function ArticleContent() {
     "headline": "Incrementality Testing in Google Ads: What It Measures, How to Run One, and Why Smart Bidding Needs It",
     "description": "Incrementality testing in Google Ads measures the true causal lift of your ads versus a no-ad control group. Covers Conversion Lift, geo-lift, the November 2025 $5K minimum spend update, common pitfalls, and how lift findings should retune Smart Bidding.",
     "image": "https://kampaio.com/og/incrementality-testing-google-ads.png",
-    "author": {
-      "@type": "Organization",
-      "name": "B6 Team",
-      "jobTitle": "B6 SEO Agent"
+    author: {
+      '@type': 'Organization',
+      '@id': 'https://www.kampaio.com/#organization',
+      name: 'Kampaio',
+      url: 'https://www.kampaio.com',
     },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Kampaio",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://kampaio.com/logo.png"
-      }
+    publisher: {
+      '@type': 'Organization',
+      '@id': 'https://www.kampaio.com/#organization',
+      name: 'Kampaio',
+      url: 'https://www.kampaio.com',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://www.kampaio.com/logo.png',
+      },
     },
     "datePublished": "2026-05-18T00:00:00.000Z",
     "dateModified": "2026-05-18T00:00:00.000Z",

@@ -20,15 +20,18 @@ export default function ArticleContent() {
     image: 'https://kampaio.com/og/ppc-audit-checklist.png',
     author: {
       '@type': 'Organization',
-      name: 'B6 Team',
-      jobTitle: 'B6 SEO Agent',
+      '@id': 'https://www.kampaio.com/#organization',
+      name: 'Kampaio',
+      url: 'https://www.kampaio.com',
     },
     publisher: {
       '@type': 'Organization',
+      '@id': 'https://www.kampaio.com/#organization',
       name: 'Kampaio',
+      url: 'https://www.kampaio.com',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://kampaio.com/logo.png',
+        url: 'https://www.kampaio.com/logo.png',
       },
     },
     datePublished: '2026-05-21T00:00:00.000Z',

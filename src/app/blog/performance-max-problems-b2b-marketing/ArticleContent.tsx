@@ -14,18 +14,21 @@ export default function ArticleContent() {
     "headline": "Why Performance Max Fails in B2B Marketing",
     "description": "The dirty secret Google won't tell you: Performance Max is built for B2C, not B2B. Learn why it fails and get the alternative strategy that actually works.",
     "image": "https://kampaio.com/og/performance-max-problems-b2b-marketing.png",
-    "author": {
-      "@type": "Person",
-      "name": "Emily Carter",
-      "jobTitle": "Paid Media Strategist at Kampaio"
+    author: {
+      '@type': 'Organization',
+      '@id': 'https://www.kampaio.com/#organization',
+      name: 'Kampaio',
+      url: 'https://www.kampaio.com',
     },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Kampaio",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://kampaio.com/logo.png"
-      }
+    publisher: {
+      '@type': 'Organization',
+      '@id': 'https://www.kampaio.com/#organization',
+      name: 'Kampaio',
+      url: 'https://www.kampaio.com',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://www.kampaio.com/logo.png',
+      },
     },
     "datePublished": "2025-07-23T00:00:00.000Z",
     "dateModified": "2026-05-15T00:00:00.000Z",
@@ -121,7 +124,7 @@ export default function ArticleContent() {
                   K
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '2px' }}>
-                  <span style={{ color: '#64748b', fontSize: '16px', fontWeight: 600 }}>by Emily Carter</span>
+                  <span style={{ color: '#64748b', fontSize: '16px', fontWeight: 600 }}>By B6 Team</span>
                   <span style={{ color: '#64748b', fontSize: '15px' }}>Paid Media Strategist at Kampaio</span>
                   <span style={{ color: '#64748b', fontSize: '15px' }}>July 23, 2025 · Updated May 15, 2026 · 9 min read</span>
                 </div>

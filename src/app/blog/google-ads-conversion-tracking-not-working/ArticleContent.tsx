@@ -17,18 +17,21 @@ export default function ArticleContent() {
     "headline": "Google Ads Conversion Tracking Not Working? The 90-Second Triage and 7 Fixes That Actually Work",
     "description": "Conversion tracking broken in Google Ads? Run this 90-second triage first, then fix the 7 most common failure modes: tag missing, duplicate conversions, GA4 mismatch, gclid stripped, enhanced conversions silent fail.",
     "image": "https://kampaio.com/og/google-ads-conversion-tracking-not-working.png",
-    "author": {
-      "@type": "Organization",
-      "name": "B6 Team",
-      "jobTitle": "B6 SEO Agent"
+    author: {
+      '@type': 'Organization',
+      '@id': 'https://www.kampaio.com/#organization',
+      name: 'Kampaio',
+      url: 'https://www.kampaio.com',
     },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Kampaio",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://kampaio.com/logo.png"
-      }
+    publisher: {
+      '@type': 'Organization',
+      '@id': 'https://www.kampaio.com/#organization',
+      name: 'Kampaio',
+      url: 'https://www.kampaio.com',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://www.kampaio.com/logo.png',
+      },
     },
     "datePublished": "2026-05-14T00:00:00.000Z",
     "dateModified": "2026-05-14T00:00:00.000Z",

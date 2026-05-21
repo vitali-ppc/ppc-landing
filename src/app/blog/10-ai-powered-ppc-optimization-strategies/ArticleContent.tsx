@@ -14,18 +14,21 @@ export default function ArticleContent() {
     "headline": "10 AI-Powered PPC Optimization Strategies That Actually Work",
     "description": "Discover how artificial intelligence is revolutionizing PPC campaigns and learn proven strategies to boost your ROI.",
     "image": "https://kampaio.com/og/10-ai-powered-ppc-optimization-strategies.png",
-    "author": {
-      "@type": "Person",
-      "name": "Emily Carter",
-      "jobTitle": "Paid Media Strategist at Kampaio"
+    author: {
+      '@type': 'Organization',
+      '@id': 'https://www.kampaio.com/#organization',
+      name: 'Kampaio',
+      url: 'https://www.kampaio.com',
     },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Kampaio",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://kampaio.com/logo.png"
-      }
+    publisher: {
+      '@type': 'Organization',
+      '@id': 'https://www.kampaio.com/#organization',
+      name: 'Kampaio',
+      url: 'https://www.kampaio.com',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://www.kampaio.com/logo.png',
+      },
     },
     "datePublished": "2025-07-14T00:00:00.000Z",
     "dateModified": "2026-05-15T00:00:00.000Z",
@@ -126,7 +129,7 @@ export default function ArticleContent() {
                   K
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '2px' }}>
-                  <span style={{ color: '#64748b', fontSize: '16px', fontWeight: 600 }}>by Emily Carter</span>
+                  <span style={{ color: '#64748b', fontSize: '16px', fontWeight: 600 }}>By B6 Team</span>
                   <span style={{ color: '#64748b', fontSize: '15px' }}>Paid Media Strategist at Kampaio</span>
                   <span style={{ color: '#64748b', fontSize: '15px' }}>July 14, 2025 · Updated May 15, 2026 · 8 min read</span>
                 </div>

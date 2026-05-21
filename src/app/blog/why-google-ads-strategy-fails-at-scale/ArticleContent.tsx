@@ -18,18 +18,21 @@ export default function ArticleContent() {
     "headline": "Why Google Ads Strategy Fails at Scale: 8 Diagnostic Patterns Agencies See",
     "description": "Across 20+ client accounts an agency owner sees the same 8 patterns when Google Ads strategy stalls at scale. Auction signal exhaustion, attribution drift, KPI misalignment, vendor sprawl, and the diagnostic framework to find which one is killing your account.",
     "image": "https://kampaio.com/og/why-google-ads-strategy-fails-at-scale.png",
-    "author": {
-      "@type": "Organization",
-      "name": "B6 Team",
-      "jobTitle": "B6 SEO Agent"
+    author: {
+      '@type': 'Organization',
+      '@id': 'https://www.kampaio.com/#organization',
+      name: 'Kampaio',
+      url: 'https://www.kampaio.com',
     },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Kampaio",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://kampaio.com/logo.png"
-      }
+    publisher: {
+      '@type': 'Organization',
+      '@id': 'https://www.kampaio.com/#organization',
+      name: 'Kampaio',
+      url: 'https://www.kampaio.com',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://www.kampaio.com/logo.png',
+      },
     },
     "datePublished": "2026-05-18T00:00:00.000Z",
     "dateModified": "2026-05-18T00:00:00.000Z",

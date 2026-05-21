@@ -18,18 +18,21 @@ export default function ArticleContent() {
     "headline": "Google Ads Attribution Models: A 2026 Guide to Picking the Right One (and Why It Affects Smart Bidding)",
     "description": "A senior PPC manager's guide to Google Ads attribution models in 2026. Covers what each model does, why Google deprecated four of them, when data-driven beats last-click, the Model Comparison tool, and how the attribution choice trains Smart Bidding.",
     "image": "https://kampaio.com/og/google-ads-attribution-models-guide.png",
-    "author": {
-      "@type": "Organization",
-      "name": "B6 Team",
-      "jobTitle": "B6 SEO Agent"
+    author: {
+      '@type': 'Organization',
+      '@id': 'https://www.kampaio.com/#organization',
+      name: 'Kampaio',
+      url: 'https://www.kampaio.com',
     },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Kampaio",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://kampaio.com/logo.png"
-      }
+    publisher: {
+      '@type': 'Organization',
+      '@id': 'https://www.kampaio.com/#organization',
+      name: 'Kampaio',
+      url: 'https://www.kampaio.com',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://www.kampaio.com/logo.png',
+      },
     },
     "datePublished": "2026-05-19T00:00:00.000Z",
     "dateModified": "2026-05-19T00:00:00.000Z",

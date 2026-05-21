@@ -15,18 +15,21 @@ export default function ArticleContent() {
     "headline": "Performance Max Not Converting? 9 Fixes That Actually Work (2026 Playbook)",
     "description": "Performance Max burning budget without conversions? 9 diagnostic steps from conversion tracking to bid strategy to landing pages - with thresholds and timelines.",
     "image": "https://kampaio.com/og/performance-max-not-converting.png",
-    "author": {
-      "@type": "Organization",
-      "name": "B6 Team",
-      "jobTitle": "B6 SEO Agent"
+    author: {
+      '@type': 'Organization',
+      '@id': 'https://www.kampaio.com/#organization',
+      name: 'Kampaio',
+      url: 'https://www.kampaio.com',
     },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Kampaio",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://kampaio.com/logo.png"
-      }
+    publisher: {
+      '@type': 'Organization',
+      '@id': 'https://www.kampaio.com/#organization',
+      name: 'Kampaio',
+      url: 'https://www.kampaio.com',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://www.kampaio.com/logo.png',
+      },
     },
     "datePublished": "2026-05-12T00:00:00.000Z",
     "dateModified": "2026-05-12T00:00:00.000Z",

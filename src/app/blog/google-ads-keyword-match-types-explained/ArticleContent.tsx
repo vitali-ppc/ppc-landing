@@ -18,18 +18,21 @@ export default function ArticleContent() {
     "headline": "Google Ads Keyword Match Types Explained: Broad, Phrase, Exact in 2026",
     "description": "Broad, phrase, and exact match in Google Ads behave nothing like they did in 2019. How each one works in 2026, how they feed Smart Bidding, and which to use when.",
     "image": "https://kampaio.com/og/google-ads-keyword-match-types-explained.png",
-    "author": {
-      "@type": "Organization",
-      "name": "B6 Team",
-      "jobTitle": "B6 SEO Agent"
+    author: {
+      '@type': 'Organization',
+      '@id': 'https://www.kampaio.com/#organization',
+      name: 'Kampaio',
+      url: 'https://www.kampaio.com',
     },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Kampaio",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://kampaio.com/logo.png"
-      }
+    publisher: {
+      '@type': 'Organization',
+      '@id': 'https://www.kampaio.com/#organization',
+      name: 'Kampaio',
+      url: 'https://www.kampaio.com',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://www.kampaio.com/logo.png',
+      },
     },
     "datePublished": "2026-05-20T00:00:00.000Z",
     "dateModified": "2026-05-20T00:00:00.000Z",

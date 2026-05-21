@@ -18,18 +18,21 @@ export default function ArticleContent() {
     "headline": "AI-Powered PPC Optimization: The Complete Guide for Senior PPC Managers",
     "description": "A senior PPC manager's complete guide to AI-powered PPC optimization. What AI actually decides in Google Ads, the recommendation vs autonomous distinction, an adoption roadmap, and where your judgment still wins.",
     "image": "https://kampaio.com/og/ai-powered-ppc-optimization-complete-guide.png",
-    "author": {
-      "@type": "Organization",
-      "name": "B6 Team",
-      "jobTitle": "B6 SEO Agent"
+    author: {
+      '@type': 'Organization',
+      '@id': 'https://www.kampaio.com/#organization',
+      name: 'Kampaio',
+      url: 'https://www.kampaio.com',
     },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Kampaio",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://kampaio.com/logo.png"
-      }
+    publisher: {
+      '@type': 'Organization',
+      '@id': 'https://www.kampaio.com/#organization',
+      name: 'Kampaio',
+      url: 'https://www.kampaio.com',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://www.kampaio.com/logo.png',
+      },
     },
     "datePublished": "2026-05-18T00:00:00.000Z",
     "dateModified": "2026-05-18T00:00:00.000Z",

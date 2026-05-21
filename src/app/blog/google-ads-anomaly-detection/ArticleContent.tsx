@@ -18,18 +18,21 @@ export default function ArticleContent() {
     "headline": "Google Ads Anomaly Detection: How to Catch Spend Spikes, Conversion Drops, and Tracking Outages Before They Cost You a Week",
     "description": "Built-in Google Ads alerts are too noisy or too late. The Account Anomaly Detector script is brittle. The detection stack that actually works in 2026: rolling baselines, severity tiers, and Aegis classification.",
     "image": "https://kampaio.com/og/google-ads-anomaly-detection.png",
-    "author": {
-      "@type": "Organization",
-      "name": "B6 Team",
-      "jobTitle": "B6 SEO Agent"
+    author: {
+      '@type': 'Organization',
+      '@id': 'https://www.kampaio.com/#organization',
+      name: 'Kampaio',
+      url: 'https://www.kampaio.com',
     },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Kampaio",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://kampaio.com/logo.png"
-      }
+    publisher: {
+      '@type': 'Organization',
+      '@id': 'https://www.kampaio.com/#organization',
+      name: 'Kampaio',
+      url: 'https://www.kampaio.com',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://www.kampaio.com/logo.png',
+      },
     },
     "datePublished": "2026-05-15T00:00:00.000Z",
     "dateModified": "2026-05-15T00:00:00.000Z",
