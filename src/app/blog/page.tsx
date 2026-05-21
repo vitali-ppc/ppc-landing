@@ -11,6 +11,7 @@ export default function BlogPage() {
   const categories = [
     { id: 'all', name: 'All Posts' },
     { id: 'ai', name: 'AI & Automation' },
+    { id: 'ai-search', name: 'AI Search & Citations' },
     { id: 'google-ads', name: 'Google Ads' },
     { id: 'strategy', name: 'Strategy' },
     { id: 'ppc', name: 'PPC Optimization' },
