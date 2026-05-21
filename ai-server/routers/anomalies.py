@@ -209,19 +209,25 @@ async def dismiss_anomaly(
 class VigilSettings(BaseModel):
     enabled: bool
     min_severity: str  # 'info' | 'warning' | 'critical'
+    schedule_mode: str  # 'off' | 'daily' | 'weekly'
 
 
 class UpdateVigilSettings(BaseModel):
     enabled: Optional[bool] = None
     min_severity: Optional[str] = None
+    schedule_mode: Optional[str] = None
 
 
 @router.get("/settings", response_model=VigilSettings)
 async def get_vigil_settings_endpoint(current_user: User = Depends(get_current_user)):
-    """Return current user's Vigil preferences (enabled + email severity threshold)."""
+    """Return current user's Vigil preferences (enabled + email severity + schedule_mode)."""
     from services import vigil_settings as vs
     s = await vs.get_vigil_settings(current_user.id)
-    return VigilSettings(enabled=s["enabled"], min_severity=s["min_severity"])
+    return VigilSettings(
+        enabled=s["enabled"],
+        min_severity=s["min_severity"],
+        schedule_mode=s["schedule_mode"],
+    )
 
 
 @router.patch("/settings", response_model=VigilSettings)
@@ -232,6 +238,8 @@ async def update_vigil_settings_endpoint(
     """Update Vigil settings — pass any subset of fields to change.
 
     enabled=False stops Vigil from scanning this user's accounts entirely.
+    schedule_mode controls background scheduler: off=manual-only, daily=once/24h,
+    weekly=once/168h. Manual "Run now" works regardless of schedule_mode.
     min_severity raises/lowers the email notification threshold; in-app feed
     still shows everything regardless of this setting.
     """
@@ -241,10 +249,43 @@ async def update_vigil_settings_endpoint(
             current_user.id,
             enabled=payload.enabled,
             min_severity=payload.min_severity,
+            schedule_mode=payload.schedule_mode,
         )
     except ValueError as e:
         raise HTTPException(400, str(e))
-    return VigilSettings(enabled=s["enabled"], min_severity=s["min_severity"])
+    return VigilSettings(
+        enabled=s["enabled"],
+        min_severity=s["min_severity"],
+        schedule_mode=s["schedule_mode"],
+    )
+
+
+class RunNowResponse(BaseModel):
+    ok: bool
+    targets: int = 0
+    scanned: int = 0
+    skipped: int = 0
+    errors: int = 0
+    alerts_total: int = 0
+    ran_at: Optional[str] = None
+    reason: Optional[str] = None
+
+
+@router.post("/run-now", response_model=RunNowResponse)
+async def run_vigil_now(current_user: User = Depends(get_current_user)):
+    """Manual one-shot Vigil scan for the current user's active Google Ads accounts.
+
+    Bypasses schedule_mode (works even when 'off') and per-mode interval (works
+    even if a scheduled scan ran 5 minutes ago). Useful when:
+    - User is in manual-only mode and wants results now
+    - User wants a fresh scan after making changes in Google Ads UI
+    - Demo / sales call needs a live tick
+
+    Cost: ~$1.14 per scan on Goodevas-scale portfolio (33 accounts × concurrency=1).
+    """
+    from services import vigil_scheduler
+    result = await vigil_scheduler.run_vigil_for_user(current_user.id, force=True)
+    return RunNowResponse(**result)
 
 
 async def _change_anomaly_status(

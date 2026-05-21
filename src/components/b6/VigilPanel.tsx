@@ -7,10 +7,24 @@ import {
   dismissAnomaly,
   getVigilSettings,
   updateVigilSettings,
+  runVigilNow,
   type AnomalyAlert,
   type AnomalyListResponse,
   type VigilSettings,
+  type VigilScheduleMode,
 } from "@/lib/b6-api";
+
+const SCHEDULE_TOOLTIPS: Record<VigilScheduleMode, string> = {
+  off: "Manual only — Vigil runs when you press 'Run once'. No background scans.",
+  daily: "Vigil scans your accounts once every 24 hours. ~$1.14/day on Goodevas-scale.",
+  weekly: "Vigil scans your accounts once every 7 days. ~$1.14/week.",
+};
+
+const SCHEDULE_COSTS: Record<VigilScheduleMode, string> = {
+  off: "(no auto cost)",
+  daily: "(~$1/day)",
+  weekly: "(~$5/mo)",
+};
 
 /**
  * VigilPanel — Sprint 8 monitoring feed for anomaly_alerts.
@@ -35,6 +49,8 @@ export function VigilPanel({
   const [settings, setSettings] = useState<VigilSettings | null>(null);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [savingSettings, setSavingSettings] = useState(false);
+  const [runningNow, setRunningNow] = useState(false);
+  const [runResult, setRunResult] = useState<string | null>(null);
 
   const load = useCallback(async () => {
     try {
@@ -67,6 +83,30 @@ export function VigilPanel({
       setError(e instanceof Error ? e.message : String(e));
     } finally {
       setSavingSettings(false);
+    }
+  };
+
+  const onRunNow = async () => {
+    setRunningNow(true);
+    setRunResult(null);
+    setError(null);
+    try {
+      const res = await runVigilNow();
+      if (!res.ok) {
+        setRunResult(res.reason ? `Skipped: ${res.reason}` : "Failed");
+      } else {
+        const parts: string[] = [];
+        parts.push(`scanned ${res.scanned ?? 0}/${res.targets ?? 0}`);
+        if (res.alerts_total) parts.push(`${res.alerts_total} alerts`);
+        if (res.skipped) parts.push(`${res.skipped} skipped`);
+        if (res.errors) parts.push(`${res.errors} errors`);
+        setRunResult(parts.join(" · "));
+      }
+      await load();
+    } catch (e) {
+      setError(e instanceof Error ? e.message : String(e));
+    } finally {
+      setRunningNow(false);
     }
   };
 
@@ -176,6 +216,40 @@ export function VigilPanel({
         </span>
         <span style={{ display: "flex", alignItems: "center", gap: 10 }}>
           <LastScanLabel iso={data?.last_scan_at ?? null} />
+          <ScheduleBadge mode={settings?.schedule_mode ?? null} />
+          <span
+            role="button"
+            tabIndex={0}
+            onClick={(e) => {
+              e.stopPropagation();
+              onRunNow();
+            }}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.stopPropagation();
+                e.preventDefault();
+                onRunNow();
+              }
+            }}
+            title="Run Vigil scan now (one-shot, ~$1.14 per scan)"
+            aria-disabled={runningNow}
+            style={{
+              padding: "3px 8px",
+              background: runningNow ? "#2D3340" : "#7F9CF522",
+              border: "1px solid #7F9CF555",
+              color: runningNow ? "#A0A0A0" : "#7F9CF5",
+              borderRadius: 4,
+              fontSize: 12,
+              fontWeight: 600,
+              cursor: runningNow ? "default" : "pointer",
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 4,
+              opacity: runningNow ? 0.7 : 1,
+            }}
+          >
+            {runningNow ? "🦇 Running…" : "🦇 Run once"}
+          </span>
           <span
             role="button"
             tabIndex={0}
@@ -208,6 +282,22 @@ export function VigilPanel({
         </span>
       </button>
 
+      {runResult && (
+        <div
+          style={{
+            marginTop: 10,
+            padding: "6px 10px",
+            background: "#7F9CF522",
+            border: "1px solid #7F9CF555",
+            color: "#7F9CF5",
+            borderRadius: 6,
+            fontSize: 12,
+          }}
+        >
+          🦇 Scan complete: {runResult}
+        </div>
+      )}
+
       {settingsOpen && settings && (
         <div
           style={{
@@ -235,6 +325,34 @@ export function VigilPanel({
               Vigil monitoring {settings.enabled ? "enabled" : "disabled"}
             </span>
           </label>
+          <span style={{ display: "flex", alignItems: "center", gap: 6 }}>
+            📅 Schedule
+            <select
+              value={settings.schedule_mode}
+              disabled={savingSettings || !settings.enabled}
+              onChange={(e) =>
+                saveSettings({
+                  schedule_mode: e.target.value as VigilScheduleMode,
+                })
+              }
+              title={SCHEDULE_TOOLTIPS[settings.schedule_mode]}
+              style={{
+                background: "#1F232B",
+                color: "#E0E6F7",
+                border: "1px solid #2D3340",
+                borderRadius: 4,
+                padding: "3px 6px",
+                fontSize: 12,
+              }}
+            >
+              <option value="off">Off (manual only)</option>
+              <option value="daily">Once a day</option>
+              <option value="weekly">Once a week</option>
+            </select>
+            <span style={{ color: "#666", fontSize: 11 }}>
+              {SCHEDULE_COSTS[settings.schedule_mode]}
+            </span>
+          </span>
           <span style={{ display: "flex", alignItems: "center", gap: 6 }}>
             Email me on severity
             <select
@@ -547,6 +665,33 @@ function TypePill({ type }: { type: string }) {
       }}
     >
       {label}
+    </span>
+  );
+}
+
+function ScheduleBadge({ mode }: { mode: VigilScheduleMode | null }) {
+  if (!mode) return null;
+  const labelMap: Record<VigilScheduleMode, { text: string; bg: string; fg: string }> = {
+    off: { text: "manual", bg: "#2D3340", fg: "#A0A0A0" },
+    daily: { text: "daily", bg: "#7F9CF522", fg: "#7F9CF5" },
+    weekly: { text: "weekly", bg: "#7F9CF522", fg: "#7F9CF5" },
+  };
+  const { text, bg, fg } = labelMap[mode];
+  return (
+    <span
+      title={SCHEDULE_TOOLTIPS[mode]}
+      style={{
+        padding: "1px 8px",
+        background: bg,
+        color: fg,
+        borderRadius: 10,
+        fontSize: 10,
+        fontWeight: 600,
+        textTransform: "uppercase",
+        letterSpacing: 0.4,
+      }}
+    >
+      📅 {text}
     </span>
   );
 }

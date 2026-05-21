@@ -81,7 +81,13 @@ async def _list_scan_targets() -> list[tuple[str, str]]:
     """Return list of (user_id, google_customer_id) pairs to scan this tick.
 
     Filters to: active user + active Google Ads account + non-empty refresh_token
-    + user's vigil_enabled setting (default on).
+    + user's vigil_enabled setting (default on)
+    + user's vigil_schedule_mode != 'off' (Sprint 8.7 — default off means
+      manual-only; user runs Vigil via "Run now" button).
+
+    Note: this only filters by mode. The per-mode interval check (don't scan
+    daily users more than once per 24h) happens inside `_was_scanned_recently`
+    which gets the schedule mode passed in.
     """
     from services import vigil_settings as _vs
 
@@ -101,6 +107,7 @@ async def _list_scan_targets() -> list[tuple[str, str]]:
 
     # Per-user opt-out check (1 DB call per distinct user, cached locally).
     enabled_cache: dict[str, bool] = {}
+    mode_cache: dict[str, str] = {}
     for ga, _user in rows:
         if not ga.oauth_refresh_token:
             continue
@@ -108,15 +115,26 @@ async def _list_scan_targets() -> list[tuple[str, str]]:
             enabled_cache[ga.user_id] = await _vs.is_vigil_enabled(ga.user_id)
         if not enabled_cache[ga.user_id]:
             continue
+        if ga.user_id not in mode_cache:
+            mode_cache[ga.user_id] = await _vs.get_schedule_mode(ga.user_id)
+        if mode_cache[ga.user_id] == "off":
+            continue
         out.append((ga.user_id, ga.google_customer_id))
     return out
 
 
-async def _was_scanned_recently(user_id: str, customer_id: str) -> bool:
+async def _was_scanned_recently(
+    user_id: str, customer_id: str, *, window_minutes: Optional[int] = None
+) -> bool:
     """Check if a `vigil.scan` AuditLog entry was written for this pair within
-    VIGIL_DEDUP_MINUTES. Used to skip overlapping ticks / post-restart storms.
+    the given window (defaults to VIGIL_DEDUP_MINUTES).
+
+    Used to skip overlapping ticks / post-restart storms (short window) AND
+    to honor per-user schedule_mode intervals (long window — 24h for daily,
+    168h for weekly).
     """
-    cutoff = datetime.utcnow() - timedelta(minutes=vigil_dedup_minutes())
+    window = window_minutes if window_minutes is not None else vigil_dedup_minutes()
+    cutoff = datetime.utcnow() - timedelta(minutes=window)
     async with AsyncSessionLocal() as session:
         stmt = (
             select(AuditLog)
@@ -128,7 +146,7 @@ async def _was_scanned_recently(user_id: str, customer_id: str) -> bool:
                 )
             )
             .order_by(AuditLog.created_at.desc())
-            .limit(5)
+            .limit(20)
         )
         rows = (await session.execute(stmt)).scalars().all()
     for r in rows:
@@ -238,9 +256,16 @@ async def vigil_tick() -> dict:
 
     Returns a summary dict for logging. Safe to call manually (e.g. from a
     test endpoint) — doesn't depend on APScheduler running.
+
+    Each target is checked against its user's `vigil_schedule_mode`:
+    - 'off'    → already filtered out by _list_scan_targets
+    - 'daily'  → skip if scanned in last 24h
+    - 'weekly' → skip if scanned in last 168h (7 days)
     """
     if not vigil_enabled():
         return {"skipped": True, "reason": "VIGIL_ENABLED=false"}
+
+    from services import vigil_settings as _vs
 
     targets = await _list_scan_targets()
     if not targets:
@@ -249,7 +274,20 @@ async def vigil_tick() -> dict:
 
     sem = asyncio.Semaphore(vigil_max_concurrent())
 
+    # Per-user schedule mode cache (one DB call per distinct user).
+    mode_cache: dict[str, str] = {}
+
     async def _maybe_run(user_id: str, customer_id: str) -> tuple[str, str, dict]:
+        if user_id not in mode_cache:
+            mode_cache[user_id] = await _vs.get_schedule_mode(user_id)
+        mode = mode_cache[user_id]
+        interval_h = _vs.SCHEDULE_INTERVAL_HOURS.get(mode, 0)
+        # Long-window check (24h daily / 168h weekly): honors user's chosen pace.
+        if interval_h > 0 and await _was_scanned_recently(
+            user_id, customer_id, window_minutes=interval_h * 60
+        ):
+            return user_id, customer_id, {"skipped": True, "reason": f"{mode}_interval"}
+        # Short-window dedup: protect against overlapping ticks / restart storms.
         if await _was_scanned_recently(user_id, customer_id):
             return user_id, customer_id, {"skipped": True, "reason": "recent_scan"}
         summary = await _run_vigil_for_account(user_id, customer_id, sem)
@@ -287,6 +325,79 @@ async def vigil_tick() -> dict:
     }
     logger.info("Vigil tick complete: %s", summary)
     return summary
+
+
+async def run_vigil_for_user(user_id: str, *, force: bool = True) -> dict:
+    """Run Vigil immediately for a single user — used by manual "Run now" button.
+
+    Scans every active Google Ads account for this user. Bypasses both the
+    schedule_mode filter and the per-mode interval check (force=True default)
+    so the user gets a scan even if they're in 'off' mode or just scanned.
+
+    Still respects the short dedup window (VIGIL_DEDUP_MINUTES) unless
+    force=True, to avoid hammering the API if user spams the button.
+    """
+    # Manual runs ignore the global VIGIL_ENABLED kill switch — that flag
+    # gates the BACKGROUND scheduler, not user-initiated scans.
+    out: list[tuple[str, str]] = []
+    async with AsyncSessionLocal() as session:
+        stmt = (
+            select(GoogleAdsAccount)
+            .where(
+                and_(
+                    GoogleAdsAccount.user_id == user_id,
+                    GoogleAdsAccount.is_active == True,  # noqa: E712
+                )
+            )
+        )
+        rows = (await session.execute(stmt)).scalars().all()
+    for ga in rows:
+        if not ga.oauth_refresh_token:
+            continue
+        out.append((ga.user_id, ga.google_customer_id))
+
+    if not out:
+        return {"ok": False, "reason": "no_active_accounts", "scanned": 0}
+
+    sem = asyncio.Semaphore(vigil_max_concurrent())
+
+    async def _run_one(uid: str, cid: str) -> tuple[str, dict]:
+        if not force and await _was_scanned_recently(uid, cid):
+            return cid, {"skipped": True, "reason": "recent_scan"}
+        summary = await _run_vigil_for_account(uid, cid, sem)
+        await _record_scan(uid, cid, {**summary, "trigger": "manual"})
+        return cid, summary
+
+    tasks = [_run_one(uid, cid) for uid, cid in out]
+    results = await asyncio.gather(*tasks, return_exceptions=True)
+
+    scanned = 0
+    skipped = 0
+    alerts_total = 0
+    errors = 0
+    for r in results:
+        if isinstance(r, BaseException):
+            errors += 1
+            logger.exception("Manual Vigil run subtask crashed: %s", r)
+            continue
+        _, summary = r
+        if summary.get("skipped"):
+            skipped += 1
+        elif summary.get("ok"):
+            scanned += 1
+            alerts_total += summary.get("alerts", 0)
+        else:
+            errors += 1
+
+    return {
+        "ok": True,
+        "targets": len(out),
+        "scanned": scanned,
+        "skipped": skipped,
+        "errors": errors,
+        "alerts_total": alerts_total,
+        "ran_at": datetime.utcnow().isoformat(),
+    }
 
 
 def start_scheduler() -> Optional[AsyncIOScheduler]:

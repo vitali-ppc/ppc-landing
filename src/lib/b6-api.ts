@@ -393,9 +393,12 @@ export async function dismissAnomaly(
   return jsonRequest("POST", `/api/anomalies/${actionId}/dismiss`);
 }
 
+export type VigilScheduleMode = "off" | "daily" | "weekly";
+
 export type VigilSettings = {
   enabled: boolean;
   min_severity: "info" | "warning" | "critical";
+  schedule_mode: VigilScheduleMode;
 };
 
 export async function getVigilSettings(): Promise<VigilSettings> {
@@ -406,6 +409,21 @@ export async function updateVigilSettings(
   patch: Partial<VigilSettings>,
 ): Promise<VigilSettings> {
   return jsonRequest("PATCH", `/api/anomalies/settings`, patch);
+}
+
+export type RunVigilNowResponse = {
+  ok: boolean;
+  targets?: number;
+  scanned?: number;
+  skipped?: number;
+  errors?: number;
+  alerts_total?: number;
+  ran_at?: string | null;
+  reason?: string | null;
+};
+
+export async function runVigilNow(): Promise<RunVigilNowResponse> {
+  return jsonRequest("POST", `/api/anomalies/run-now`);
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
