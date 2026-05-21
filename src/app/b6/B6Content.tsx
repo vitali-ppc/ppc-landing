@@ -26,6 +26,7 @@ import { GoogleAdsConnect } from "@/components/b6/GoogleAdsConnect";
 import { DateRangePicker, defaultDateRange, type DateRange } from "@/components/b6/DateRangePicker";
 import AuthGuard from "@/components/AuthGuard";
 import { useAuth } from "@/lib/useAuth";
+import { useAutoReload } from "@/lib/useAutoReload";
 import { useB6Events } from "@/lib/b6-socket";
 
 const NO_CUSTOMER_PLACEHOLDER = "..."; // shown until user connects a Google Ads account
@@ -53,6 +54,8 @@ export default function B6Content() {
 
 function B6Dashboard() {
   const { user, logout } = useAuth();
+  // Silently reload page when a new Vercel deploy ships (no Cmd+Shift+R needed)
+  useAutoReload();
   const [actions, setActions] = useState<AgentAction[]>([]);
   const [agents, setAgents] = useState<Agent[]>([]);
   const [campaigns, setCampaigns] = useState<CampaignMetrics[]>([]);
