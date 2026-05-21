@@ -40,6 +40,19 @@ export const MiraPanel: React.FC<{
   const [running, setRunning] = useState(false);
   const [variants, setVariants] = useState<CreativeVariant[]>([]);
   const [error, setError] = useState<string | null>(null);
+  // Collapsible body — persisted across page reloads. Default collapsed
+  // because the full 3-variant grid (45 headlines + 12 descriptions) eats
+  // a lot of vertical space and most of the time the user just wants to
+  // know the agent ran, then expand when they need to copy copy.
+  const [open, setOpen] = useState<boolean>(() => {
+    if (typeof window === "undefined") return false;
+    const stored = window.localStorage.getItem("b6_mira_open");
+    return stored === "1";
+  });
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    window.localStorage.setItem("b6_mira_open", open ? "1" : "0");
+  }, [open]);
 
   useEffect(() => {
     if (!selectedCampaign && campaigns[0]) setSelectedCampaign(campaigns[0].id);
@@ -136,15 +149,60 @@ export const MiraPanel: React.FC<{
           gap: "10px",
         }}
       >
-        <div>
-          <div style={{ fontSize: "14px", fontWeight: 600, color: "#E0E6F7" }}>
-            🎨 Mira — Creative Agent
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          aria-expanded={open}
+          title={open ? "Collapse Mira" : "Expand Mira"}
+          style={{
+            background: "transparent",
+            border: "none",
+            padding: 0,
+            cursor: "pointer",
+            textAlign: "left",
+            display: "flex",
+            alignItems: "center",
+            gap: 8,
+            minWidth: 0,
+          }}
+        >
+          <span
+            style={{
+              display: "inline-block",
+              width: 12,
+              color: "#A0A0A0",
+              fontSize: 11,
+              transform: open ? "rotate(90deg)" : "rotate(0deg)",
+              transition: "transform 100ms",
+            }}
+          >
+            ▶
+          </span>
+          <div>
+            <div style={{ fontSize: "14px", fontWeight: 600, color: "#E0E6F7" }}>
+              🎨 Mira — Creative Agent
+              {variants.length > 0 && (
+                <span
+                  style={{
+                    marginLeft: 8,
+                    padding: "2px 8px",
+                    background: "#FF8E5322",
+                    color: "#FF8E53",
+                    borderRadius: 12,
+                    fontSize: 11,
+                    fontWeight: 700,
+                  }}
+                >
+                  {variants.length} variants ready
+                </span>
+              )}
+            </div>
+            <div style={{ fontSize: "11px", color: "#666", marginTop: "2px" }}>
+              Generates 3 angle variants of a full asset pack for your campaign
+              type{detectedChannelType ? ` · last gen: ${detectedChannelType}` : ""}
+            </div>
           </div>
-          <div style={{ fontSize: "11px", color: "#666", marginTop: "2px" }}>
-            Generates 3 angle variants of a full asset pack for your campaign
-            type{detectedChannelType ? ` · last gen: ${detectedChannelType}` : ""}
-          </div>
-        </div>
+        </button>
         <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
           <select
             value={selectedCampaign}
@@ -202,29 +260,31 @@ export const MiraPanel: React.FC<{
         </div>
       )}
 
-      {variants.length === 0 && !running ? (
-        <div
-          style={{
-            padding: "30px 20px",
-            textAlign: "center",
-            color: "#666",
-            fontSize: "13px",
-          }}
-        >
-          Mira hasn't generated creatives for this campaign yet. Hit "Generate".
-        </div>
-      ) : (
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-            gap: "14px",
-          }}
-        >
-          {variants.map((v) => (
-            <VariantCard key={v.action_id} v={v} />
-          ))}
-        </div>
+      {open && (
+        variants.length === 0 && !running ? (
+          <div
+            style={{
+              padding: "30px 20px",
+              textAlign: "center",
+              color: "#666",
+              fontSize: "13px",
+            }}
+          >
+            Mira hasn't generated creatives for this campaign yet. Hit "Generate".
+          </div>
+        ) : (
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+              gap: "14px",
+            }}
+          >
+            {variants.map((v) => (
+              <VariantCard key={v.action_id} v={v} />
+            ))}
+          </div>
+        )
       )}
     </section>
   );
