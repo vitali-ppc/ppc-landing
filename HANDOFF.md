@@ -5,45 +5,54 @@
 > Архитектура системы: [`ARCHITECTURE.md`](./ARCHITECTURE.md)
 > История изменений: [`CHANGELOG.md`](./CHANGELOG.md)
 
-**Дата последнего обновления**: 2026-05-19 late evening (Sprint 8 — Vigil 🦇 — closed)
+**Дата последнего обновления**: 2026-05-21 mid-afternoon (Sprint 8 + 8.5 + 8.6 closed, Vigil LIVE на проде с 2026-05-20 ~19:13 UTC)
 **Текущая ветка**: `v2-autonomous-agents`
-**Прогресс кода**: Sprint 1-8 ✅ done, v24 migration Phase 1/2/3/8 ✅ done, v24 Phase 5/6/7 deferred.
-**Статус**: ✅ LIVE В PRODUCTION на multi-tenant JWT auth + Google Ads API v24 + real apply (3 типа) + **🦇 Vigil 24/7 monitoring готов к включению на проде**. Готов к **первому платящему с L2/L3 pricing**.
+**Прогресс кода**: Sprint 1-8 ✅ done + Sprint 8.5 (detector rewrite) + Sprint 8.6 (Mira type-aware) ✅ done на проде. v24 migration Phase 1/2/3/8 ✅ done, v24 Phase 5/6/7 deferred.
+**Статус**: ✅ **LIVE В PRODUCTION** на multi-tenant JWT auth + Google Ads API v24 + real apply (3 типа) + **🦇 Vigil 24/7 monitoring АКТИВЕН** (interval=60min) + **🎨 Mira type-aware** (Search RSA / PMax Asset Group). Готов к **первому платящему с L2/L3 pricing**.
+
+**Прод-инфра**: Hetzner CPX22 (178.104.124.150), 33 connected Google Ads accounts, Vigil scheduler тикает каждый час и тратит ~$1.14 за tick (~$27/день при interval=60 мин). Frontend на Vercel auto-deploy с `v2-autonomous-agents`.
 
 ---
 
-## 🎯 ЧТО ДЕЛАТЬ ДАЛЬШЕ (приоритеты на 2026-05-20+)
+## 🎯 ЧТО ДЕЛАТЬ ДАЛЬШЕ (приоритеты на 2026-05-22+)
 
 ```
-1. (~10 мин)  Enable Vigil on prod — на Hetzner добавить в .env.prod:
-              VIGIL_ENABLED=true
-              VIGIL_INTERVAL_MINUTES=60
-              docker compose up -d b6-api
-              → /health покажет vigil.running=true с next_run timestamp.
-              На текущих 33 connected accounts даст ~33 scans/час × ~$0.05 = ~$40/день
-              макс. при максимальной активности. С dedup-skip на quiet accounts
-              реальный cost ~$3-5/день.
+1. (~5 мин)   Снизить Vigil interval — сейчас тикает каждый час ($27/день).
+              Для текущего этапа (нет платящих) достаточно раз в 4-8 часов:
+                ssh root@178.104.124.150 'cd ~/ppc-landing && \
+                  sed -i "s|^VIGIL_INTERVAL_MINUTES=.*|VIGIL_INTERVAL_MINUTES=480|" .env.prod && \
+                  docker compose -f docker-compose.prod.yml --env-file .env.prod up -d b6-api'
+              480 min = 3 ticks/день = ~$3-5/день вместо $27.
+
 2. (~30 мин)  Resend setup — RESEND_API_KEY пустой в .env.prod, email digest
               Echo + Vigil critical alerts сейчас в mock-mode (логируются, но не
               доставляются). UI честно показывает "⚠️ Mock mode" баннер.
               DNS records → resend.com domain verify → API key → .env.prod.
-3. (~15 ч)    Sprint 9 — Maximus L3 aggressive auto-apply policy + auto-pause
+
+3. (~10 ч)    Sprint 9 — Maximus L3 aggressive auto-apply policy + auto-pause
               на critical anomaly. Замыкает цикл "Vigil detects → Maximus acts".
-4. (sales)    Tristan (Goodevas) demo — теперь есть еще ОДИН большой signal:
-              - 24/7 monitoring (Vigil) — фотография оффлайна
+
+4. (~30 мин)  §J: Pass landing_url to Mira — Mira всё ещё иногда галлюцинирует
+              контекст продукта когда нет ads. Fix в creative_agent.py:
+              после list_campaigns + get_campaign_landing_urls передавать в
+              prompt. Sprint 8.6 уже это частично делает, но если landing_urls
+              пустой — fallback на campaign name. Можно улучшить.
+
+5. (sales)    Tristan (Goodevas) demo — теперь есть реальные signals:
+              - 24/7 monitoring (Vigil) с реальными алертами на проде
               - $900/мес junk traffic найдено на 13 аккаунтах
-              - 15 customers с active Google recommendations
               - PDF client report готов к показу
+              - Mira генерит полные RSA-pack'и под type кампании
 ```
 
-### Sprint 8 quick reference (новые env vars)
+### Vigil env vars на проде (актуально на 2026-05-21)
 
 ```
-VIGIL_ENABLED              false   master kill-switch
-VIGIL_INTERVAL_MINUTES     60      scheduler tick frequency
+VIGIL_ENABLED              true    ✅ активен на проде с 2026-05-20
+VIGIL_INTERVAL_MINUTES     60      ← можно снизить до 240-480 чтобы экономить
 VIGIL_DEDUP_MINUTES        45      skip rescan window
-VIGIL_MAX_CONCURRENT       3       rate-limit safety
-VIGIL_DAYS_WINDOW          14      detector lookback
+VIGIL_MAX_CONCURRENT       1       ← снижено с 3 после Postgres pool overload
+VIGIL_DAYS_WINDOW          30      ✅ Sprint 8.5 — для median(28) baseline
 VIGIL_EMAIL_ENABLED        true    auto-email on critical
 VIGIL_EMAIL_DAILY_CAP      3       max emails / (user, customer) / 24h
 VIGIL_DASHBOARD_URL        https://www.kampaio.com/b6
@@ -68,6 +77,67 @@ VIGIL_DASHBOARD_URL        https://www.kampaio.com/b6
 - **§G. Echo prompt accuracy** (~10 мин) — Echo сейчас использует "blocked / held back / flagged" двусмысленно: эти слова звучат как-будто в Google Ads что-то произошло, но в реальности это только записи в БД о proposals + Aegis verdicts. Когда `status='proposed'` или Aegis `recommendation='block'` — Echo не должен говорить "we held back X" / "we blocked X", он должен явно писать "we proposed X but flagged it as risky" / "X awaits your review". Перед первым client-facing PDF reach (Tristan demo или первый платящий) этот prompt должен быть отполирован, иначе клиент откроет дашборд → увидит что "блоки" живые в Pending → потеряет доверие. **Триггер**: перед первой client-facing доставкой. **Не блокер сейчас** — никто кроме Виталия пока эти отчёты не читает.
 - **§H. Vigil scheduler — re-trigger без полного ожидания interval** — после рестарта первый scan теперь через 60 мин (Sprint 8.5 fix). Это правильно для prod stability, но иногда хочется быстро проверить новый код. Можно добавить admin endpoint `POST /api/internal/vigil/tick-now` который **игнорирует dedup** (не путать с существующим `/vigil/tick` который чтит dedup). ~20 мин. Низкий приоритет.
 - **§I. Bulk "Acknowledge all" в Vigil panel** — после big tick на новой логике может всё ещё быть 5-10 алертов; кликать каждый — нудно. Кнопка "Acknowledge all visible" / "Dismiss all on this severity". ~30 мин.
+
+---
+
+## ⚡ Что сделано в марафон 2026-05-20 → 2026-05-21 (Sprint 8.5 + 8.6 + UI polish)
+
+```
+Sprint 8.5      ✅ Detector rewrite (commit 79fc8e0):
+                  - Reference day = ВЧЕРА (не сегодня) — фикс false positives
+                    от incomplete conversion attribution на partial today
+                  - Baseline = median(28 дней) (не avg(7)) — устойчиво к ручным
+                    бюджетным изменениям
+                  - spend_spike теперь budget-aware: требует BOTH spend > 1.3×
+                    daily_budget AND > 1.5× median (operator's intentional
+                    budget bumps больше не fire'ят алерт)
+                  - VIGIL_DAYS_WINDOW default 14 → 30
+                  - Smoke test layer 1: 6 campaigns (5 anomaly + 1 intentional
+                    bump) — все 4 правила fire, quiet + bump не fire ✅
+Sprint 8.6      ✅ Mira type-aware (commit 8173c96):
+                  - CHANNEL_SPECS для SEARCH / PERFORMANCE_MAX / DISPLAY
+                  - SEARCH → 15 short headlines + 4 descriptions, no images
+                  - PMAX → 5 short + 5 long + 5 descriptions + 5 image prompts
+                  - DISPLAY → 5 short + 1 long + 5 desc + 5 image prompts
+                  - SHOPPING / VIDEO / SMART → Mira отказывается early
+                  - Tool schema динамически билдится с min/maxItems = exact count
+                  - GAQL: now SELECTs campaign.advertising_channel_type
+                  - get_campaign_landing_urls() из ad_group_ad.ad.final_urls
+                  - UI: numbered headline list + char counter (красный если over)
+                  - Copy all to clipboard button
+                  - Real cost observed: ~$0.21 per Generate (Sonnet 4.6,
+                    ~2k input + 3k output tokens)
+UI polish       ✅ Collapsible панели (паттерн ▸ Show / ▾ Hide):
+                  - Aegis flags в VigilPanel — collapsed (commit 453f2db)
+                  - Aegis flags + note в ApprovalQueue — collapsed (453f2db)
+                  - Maximus Kept/Blocked lists — collapsed (6477a67)
+                  - Echo Weekly Digest — весь блок collapsible с localStorage
+                    persistence (b6_echo_open key) (7c1d039)
+                  - Все паттерны консистентны с Vigil/Campaigns
+Bug fixes       ✅ b6a5684 — docker-compose.prod.yml forward env vars
+                    (JWT_SECRET_KEY, FROM_EMAIL, VIGIL_*) в b6-api container.
+                    Без этого VIGIL_ENABLED=true в .env.prod игнорировался.
+                ✅ 8771a48 — google_ads_client searchStream timeout 30s → 90s,
+                    graceful return [] on httpx.ReadError / ConnectError
+                ✅ 947d689 — Aegis FK guard: validate action_id ownership
+                    before audit_log insert (защита от LLM hallucinations)
+                ✅ 6f132c5 — Vigil scheduler first-tick delay: full interval
+                    instead of 30s, чтобы login не тормозил после рестарта
+                ✅ 897a774 — docker-compose VIGIL_DAYS_WINDOW default 14 → 30
+                    (синхронизация с Python default)
+Deploy events   ✅ 2026-05-20 19:13 UTC — backend рестарт с Sprint 8 + 8.5
+                    enabled, Vigil scheduler стартанул, first tick = 20:13 UTC
+                ✅ 2026-05-21 19:13 UTC деплой Sprint 8.6 Mira type-aware
+Real prod data  Vigil тикал каждый час с 19:13 UTC 2026-05-20:
+                  - First successful scan: 11 alerts на 33 accounts
+                  - Stable scans с тех пор: 0-4 alerts (false positives ушли
+                    после Sprint 8.5 detector fixes)
+                  - Shopping DE поймали с ROAS 1.11× при spend $638 ✅
+                Mira Generate на Brand / FI прошёл — 3 angles × 15 headlines
+                + 4 descriptions, корректный GoodEvas-context (landing_url
+                fix работает), но descriptions переборщали 90 char limit
+                (LLM weakness, в backlog)
+```
 
 ---
 

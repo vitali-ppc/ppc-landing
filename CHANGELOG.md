@@ -6,6 +6,117 @@
 
 ---
 
+## [Sprint 8.6 — DONE] — 2026-05-21 — Mira type-aware creative generation
+
+**Статус**: ✅ DONE на проде (commit `8173c96` + UI polish + deploy 2026-05-21 ~19:13 UTC).
+
+Реальная проблема, которую Mira до Sprint 8.6 имела: она генерила 3 коротких варианта (1 headline + 1 description каждый) **независимо от типа кампании**. Это не подходит ни одному реальному use-case:
+- Search Campaigns требуют 15 headlines + 4 descriptions для одного RSA
+- Performance Max требует Asset Group с 5 short + 5 long + 5 descriptions + 5 image prompts
+- Shopping/Video вообще не принимают custom creatives
+
+Плюс Mira не знала **что рекламируется** — только campaign name → галлюцинировала контекст (Brand / FI → "финансовые услуги" вместо e-commerce GoodEvas).
+
+### Что починили
+
+**Backend `services/google_ads_client.py`**:
+- `list_campaigns()` теперь SELECTs `campaign.advertising_channel_type`
+- Новая функция `get_campaign_landing_urls(customer_id, campaign_id)` — GAQL по `ad_group_ad.ad.final_urls` + fallback на `asset_group.final_urls` (PMax)
+
+**Backend `agents/creative_agent.py`**:
+- `CHANNEL_SPECS` table — single source of truth для format'ов:
+  - `SEARCH`: 15 short headlines (30 chars) + 4 descriptions (90), no images
+  - `PERFORMANCE_MAX`: 5 short + 5 long (90 chars) + 5 descriptions + 5 image prompts
+  - `DISPLAY`: 5 short + 1 long + 5 descriptions + 5 image prompts
+- `UNSUPPORTED_CHANNELS` (SHOPPING / VIDEO / SMART) — Mira отказывается early с одной строкой объяснения, не жжёт токены на lost-cause запросы
+- System prompt переписан: must derive offering from landing URL (not campaign name), must produce EXACT counts, distinct items only
+- Tool schema **динамически билдится** per channel — JSON Schema enforces `minItems`/`maxItems` = exact count чтобы LLM получал validation feedback если under-delivers
+- Image generation: только first prompt рендерится как preview (rest сохраняются text-only), полная multi-image gen deferred до Sprint 11 pMax pipeline
+
+**Frontend `components/b6/MiraPanel.tsx`**:
+- `VariantCard` переписан: numbered headlines list + per-item char counter (красный если over limit), descriptions list, image prompts только если `needs_images=true`
+- Channel-type badge на каждой карточке ("Search RSA (Responsive Search Ad)")
+- "📋 Copy all to clipboard" button — paste прямо в Google Ads UI
+- Сохранение backwards compatibility: старые записи `headline_1` + `headline_2` рендерятся пустыми (не падают)
+
+### Реальный prod test
+
+Brand / FI campaign (Search):
+- Mira прошла landing_url → `goodevas.fi` → корректно поняла что это финский e-com магазин
+- Сгенерила 3 angle variants × (15 short headlines + 4 descriptions) = **57 элементов**
+- Контекстуально корректные заголовки: "Official GoodEvas Store", "Trusted Finnish Retailer", "EU Consumer Rights Apply", "Limited-Time Offers Live"
+- ~$0.21 за прогон (Sonnet 4.6, наблюдаемая стоимость)
+- ⚠️ Все 4 descriptions переборщили 90 char limit (LLM weakness на жёстких char-constraints) — пометка красным в UI, юзер видит и поправит при копировании
+
+### Что НЕ сделано (backlog)
+
+- Auto-upload в Google Ads через AssetGroupService API — оператор копирует руками
+- Post-processing descriptions до 90 chars (truncate by word)
+- Real image generation (5 images через fal.ai) для pMax — пока только 1 preview
+- Filter UI: показывать только новые варианты с непустыми массивами (старые рендерятся empty)
+
+---
+
+## [Sprint 8.5 — DONE] — 2026-05-21 (deployed 2026-05-20 19:13 UTC) — Detector rewrite + first-tick fix
+
+**Статус**: ✅ DONE на проде. Триггер: первый prod tick Vigil на 33 Goodevas-аккаунтах показал систематические false positives.
+
+### Что меняли
+
+**`services/anomaly_detector.py`** (commit `79fc8e0`):
+1. **Reference day = вчера**, не сегодня. До этого Vigil сравнивал partial-today данные с baseline — каждый вечер генерил false `zero_conversions` / `conversion_drop` алерты потому что Google attribution дотягивает 1-7 дней.
+2. **Baseline = median(28 дней)**, не mean(7). До этого ручные изменения бюджета (например Shopping DE раскачали $77 → $400) уплыли в average, маскируя реальные аномалии.
+3. **spend_spike → budget-aware**: требует BOTH `spend > 1.3× daily_budget` AND `spend > 1.5× median`. Operator's intentional budget bumps больше не fire'ят.
+4. Detector принимает новое поле `daily_budget_micros` per campaign (Mira/Vigil reuse это для смысловой оценки).
+
+**`services/google_ads_client.py::list_campaigns_with_daily_metrics`**:
+- GAQL extended с `campaign_budget.amount_micros` чтобы детектор имел budget context
+
+**`services/vigil_scheduler.py`** (commit `6f132c5`):
+- First tick delay: `now() + interval_minutes` вместо `now() + 30s`. До этого каждый рестарт триггерил immediate full scan через 30 сек, забивая event loop и блокируя login.
+
+**Default bump**: `VIGIL_DAYS_WINDOW` 14 → 30 (нужно для median(28)) — синхронизировано в `vigil_scheduler.py`, `creative_agent.py`, `agents/tools.py`, `docker-compose.prod.yml` (commits `79fc8e0` + `897a774`).
+
+**`agents/risk_agent.py`** (commit `947d689`):
+- Aegis FK guard: validate action_id ownership before audit_log insert (защита от LLM hallucinations)
+
+**`services/google_ads_client.py::_search_stream`** (commit `8771a48`):
+- Timeout 30s → 90s/180s; graceful return `[]` на `httpx.ReadError / ConnectError / TimeoutException`
+- Без этого первый prod scan имел ~30% timeout-failure rate на crowded Goodevas-аккаунтах
+
+### Verification (smoke test 3-layer)
+
+Layer 1 (pure Python detector с synthetic data):
+- 6 campaigns: 4 anomaly + 1 quiet + 1 "intentional budget bump"
+- ✅ Все 4 правила fire (spend_spike, conversion_drop, ctr_collapse, roas_drop, zero_conversions)
+- ✅ Quiet campaign — 0 alerts
+- ✅ **Intentional bump** ($18 budget → $100 with $95 spent) — 0 alerts ✅ budget-aware logic работает
+
+Layer 2 (tool wrapper с mock Google Ads): 5 candidates на 3 mock campaigns
+Layer 3 (full VigilAgent с LLM): dedup-логика корректно скипает known alerts
+
+### Real prod impact
+
+До Sprint 8.5: first scan на 33 accounts дал **29 алертов** (включая шум типа "0 conversions today" вечером)
+После Sprint 8.5: scans дают **0-4 алерта** (только реальные ROAS drops + zero conversion events на yesterday's settled data)
+
+---
+
+## [UI polish — DONE] — 2026-05-21 — Collapsible панели
+
+**Статус**: ✅ DONE — последовательная UI consistency.
+
+После Sprint 8 на дашборде стало много визуального шума (Aegis flags на каждой Vigil-карточке, длинные списки Maximus, Echo Weekly Digest). Применили pattern "▸ Show / ▾ Hide" к четырём блокам:
+
+- **Aegis flags в VigilPanel** (commit `453f2db`) — collapsed by default
+- **Aegis flags + note в ApprovalQueue** через `AegisBadge` (453f2db)
+- **Maximus Kept/Blocked lists в MaximusPanel** (commit `6477a67`) — collapsed; Auto-approved остаётся open by default
+- **Echo Weekly Digest** (commit `7c1d039`) — весь блок collapsible, localStorage key `b6_echo_open`, PDF/Email/Refresh остаются доступны даже когда свёрнуто
+
+Все паттерны консистентны с уже-существующими collapsible (Vigil panel, Campaigns, Live agent stream).
+
+---
+
 ## [Sprint 8 — DONE] — 2026-05-19 — Vigil 🦇: 24/7 autonomous anomaly monitoring
 
 **Статус**: ✅ DONE. Превращает продукт из «юзер жмёт Run» в «AI сам сторожит 24/7». Гейтинговый sprint для L2/L3 pricing — без 24/7 monitoring уровни автономности не отличались бы друг от друга.
