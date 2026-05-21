@@ -60,7 +60,7 @@ VIGIL_DASHBOARD_URL        https://www.kampaio.com/b6
 **Реальные API-расходы на проде (наблюдения):**
 - **Mira Generate** (Search RSA, 3 angles × 15 headlines + 4 descriptions): **~$0.21** за прогон. Sonnet 4.6 input ~2k tokens, output ~3k tokens.
 - **Aegis review after Mira**: ~$0.05
-- **Vigil tick** (33 accounts × concurrency=1): $0.50-1.00 if half accounts have anomaly candidates
+- **Vigil tick** (33 accounts × concurrency=1): **~$1.14 per tick** observed 2026-05-21 (28 scanned, 5 dedup'd, 0 alerts, took 5m 12s). Этo пока неточно — нужно больше замеров для разных условий (с/без алертов, разная скорость Google Ads API). Прежняя оценка $0.50-1.00 была занижена.
 - **Aegis reviews of Vigil alerts**: ~$0.05 per anomaly_alert
 - **При VIGIL_INTERVAL_MINUTES=60**: $1-2/час = $700-1400/мес. Снизить до 240/480 минут для текущего этапа без платящих клиентов.
 
