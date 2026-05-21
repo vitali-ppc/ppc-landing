@@ -58,7 +58,6 @@ const ApprovalRow: React.FC<{
   campaignName?: string;
 }> = ({ action, onActionChange, campaignName }) => {
   const [busy, setBusy] = useState<"approve" | "reject" | null>(null);
-  const [applyReal, setApplyReal] = useState(false);
 
   const campaign = action.target?.campaign_id;
   const newBid = (action.target as { new_bid_usd?: number })?.new_bid_usd;
@@ -88,10 +87,15 @@ const ApprovalRow: React.FC<{
   const isSageProposal = action.action_type === "add_negative_keyword";
 
   const onApprove = async () => {
-    if (applyReal) {
+    // For action types that mutate the live Google Ads account, surface a
+    // confirm dialog so a misclick doesn't pause the user's brand campaign.
+    // For audit-only types (e.g. create_ad_variant from Mira) one click is
+    // enough — there's nothing destructive happening downstream.
+    const campaignLabel = campaignName ? `${campaignName} (${campaign})` : campaign;
+    if (supportsRealApply) {
       const ok = confirm(
         `⚠️ This will REALLY ${actionLabel.toLowerCase()} in the client's Google Ads account.\n\n` +
-        `Campaign: ${campaign}\n` +
+        `Campaign: ${campaignLabel}\n` +
         `This action is logged and counted against the daily safety cap (5 real applies/24h).\n\n` +
         `Proceed?`
       );
@@ -99,7 +103,8 @@ const ApprovalRow: React.FC<{
     }
     setBusy("approve");
     try {
-      await approveAction(action.id, applyReal);
+      // supportsRealApply → write to Google Ads. Others → DB-only acknowledge.
+      await approveAction(action.id, supportsRealApply);
       onActionChange();
     } catch (e) {
       console.error(e);
@@ -224,14 +229,22 @@ const ApprovalRow: React.FC<{
           <button
             onClick={onApprove}
             disabled={busy !== null}
-            title={applyReal ? "Approve AND apply to Google Ads now" : "Approve (dry-run, no real change)"}
+            title={
+              supportsRealApply
+                ? "Approve — applies to Google Ads (with confirm)"
+                : "Approve — marks as done (no Google Ads change)"
+            }
             style={{
               padding: "8px 14px",
               borderRadius: "6px",
               border: "none",
-              background: applyReal
+              // Real-apply types get a warning-orange tint to telegraph that
+              // the next click changes the live account. Others stay neutral
+              // teal — same as the Reject button rest-state — because the
+              // action is informational only.
+              background: supportsRealApply
                 ? busy === "approve"
-                  ? "#FF6B6B88"
+                  ? "#FF8E5388"
                   : "linear-gradient(135deg, #FF8E53, #FF6B6B)"
                 : busy === "approve"
                   ? "#4ECDC488"
@@ -243,31 +256,12 @@ const ApprovalRow: React.FC<{
               transition: "background 150ms",
             }}
           >
-            {busy === "approve" ? "..." : applyReal ? "⚠ Apply now" : "✓ Approve"}
+            {busy === "approve"
+              ? "..."
+              : supportsRealApply
+                ? "⚠ Approve & Apply"
+                : "✓ Approve"}
           </button>
-          {supportsRealApply && (
-            <label
-              title="When ON, approving will WRITE to the real Google Ads account (not dry-run)"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: 6,
-                fontSize: 10,
-                color: applyReal ? "#FF8E53" : "#A0A0A0",
-                cursor: "pointer",
-                userSelect: "none",
-              }}
-            >
-              <input
-                type="checkbox"
-                checked={applyReal}
-                onChange={(e) => setApplyReal(e.target.checked)}
-                disabled={busy !== null}
-                style={{ accentColor: "#FF6B6B", cursor: "pointer" }}
-              />
-              <span>Apply to Google Ads</span>
-            </label>
-          )}
           <button
             onClick={onReject}
             disabled={busy !== null}
