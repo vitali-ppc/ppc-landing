@@ -46,6 +46,7 @@ from routers import digest as digest_router
 from routers import orchestrator as orchestrator_router
 from routers import google_ads as google_ads_router
 from routers import anomalies as anomalies_router
+from routers import usage as usage_router
 from services import vigil_scheduler
 from ws.events import sio
 
@@ -93,6 +94,7 @@ app.include_router(digest_router.router)
 app.include_router(orchestrator_router.router)
 app.include_router(google_ads_router.router)
 app.include_router(anomalies_router.router)
+app.include_router(usage_router.router)
 
 
 @app.get("/")

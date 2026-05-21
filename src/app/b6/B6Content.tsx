@@ -21,6 +21,7 @@ import { MaximusPanel } from "@/components/b6/MaximusPanel";
 import { MiraPanel } from "@/components/b6/MiraPanel";
 import { SagePanel } from "@/components/b6/SagePanel";
 import { VigilPanel } from "@/components/b6/VigilPanel";
+import { UsagePanel } from "@/components/b6/UsagePanel";
 import { GoogleAdsConnect } from "@/components/b6/GoogleAdsConnect";
 import { DateRangePicker, defaultDateRange, type DateRange } from "@/components/b6/DateRangePicker";
 import AuthGuard from "@/components/AuthGuard";
@@ -386,6 +387,9 @@ function B6Dashboard() {
 
         {/* Vigil — 24/7 anomaly monitor */}
         <VigilPanel />
+
+        {/* Usage — per-agent LLM cost transparency (Sprint 8.8) */}
+        <UsagePanel />
 
         {/* Maximus + Echo grid */}
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px", marginBottom: "20px" }}>

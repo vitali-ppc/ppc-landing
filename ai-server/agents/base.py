@@ -114,6 +114,10 @@ class BaseAgent:
                 await self._emit("error", {"message": result.error})
                 return result
 
+            # Sprint 8.8 — record token usage + cost per LLM call.
+            # Doesn't block on errors (best-effort instrumentation).
+            await self._record_usage(response, iteration + 1)
+
             # Собираем ответ ассистента в messages (требование Anthropic — assistant turn передаётся обратно)
             assistant_content = []
             for block in response.content:
@@ -210,6 +214,54 @@ class BaseAgent:
         await self._emit("error", {"message": result.error})
         return result
 
+    # ---- Usage tracking (Sprint 8.8) -------------------------------------
+
+    async def _record_usage(self, response: Any, iteration: int) -> None:
+        """Write per-call token usage + cost to audit_log (event_type='llm.usage').
+
+        Aggregations come via GET /api/usage. Best-effort: any error here is
+        logged but does NOT fail the agent run.
+        """
+        try:
+            usage = getattr(response, "usage", None)
+            if usage is None:
+                return
+            input_tokens = int(getattr(usage, "input_tokens", 0) or 0)
+            output_tokens = int(getattr(usage, "output_tokens", 0) or 0)
+            cache_creation = int(getattr(usage, "cache_creation_input_tokens", 0) or 0)
+            cache_read = int(getattr(usage, "cache_read_input_tokens", 0) or 0)
+
+            cost_usd = _compute_cost(
+                self.model, input_tokens, output_tokens, cache_creation, cache_read
+            )
+
+            # Lazy import to avoid circular dependencies at module load time.
+            from db.models import AuditLog
+            from db.session import AsyncSessionLocal
+
+            async with AsyncSessionLocal() as session:
+                session.add(
+                    AuditLog(
+                        user_id=self.user_id,
+                        event_type="llm.usage",
+                        payload={
+                            "agent": self.name,
+                            "mascot": self.mascot_name,
+                            "model": self.model,
+                            "input_tokens": input_tokens,
+                            "output_tokens": output_tokens,
+                            "cache_creation_tokens": cache_creation,
+                            "cache_read_tokens": cache_read,
+                            "cost_usd": cost_usd,
+                            "iteration": iteration,
+                            "customer_id": getattr(self, "customer_id", None),
+                        },
+                    )
+                )
+                await session.commit()
+        except Exception:
+            logger.exception("Failed to record LLM usage for agent=%s", self.name)
+
     # ---- Event publishing -----------------------------------------------
 
     async def _emit(self, event_type: str, payload: dict) -> None:
@@ -237,3 +289,45 @@ def _stringify(obj: Any) -> str:
         return json.dumps(obj, default=str, ensure_ascii=False)
     except Exception:
         return str(obj)
+
+
+# Pricing per 1M tokens (USD). Source: anthropic.com/pricing as of 2026-05-21.
+# Sonnet 4.5/4.6 share the same rates. Haiku 4.5 is roughly 1/4 the price.
+# If the model string doesn't match a known family, defaults to Sonnet
+# (conservative — overestimates rather than under-reports).
+_PRICING: dict[str, dict[str, float]] = {
+    "sonnet": {"input": 3.0, "output": 15.0, "cache_write": 3.75, "cache_read": 0.30},
+    "opus":   {"input": 15.0, "output": 75.0, "cache_write": 18.75, "cache_read": 1.50},
+    "haiku":  {"input": 0.80, "output": 4.0, "cache_write": 1.0, "cache_read": 0.08},
+}
+
+
+def _compute_cost(
+    model: str,
+    input_tokens: int,
+    output_tokens: int,
+    cache_creation_tokens: int,
+    cache_read_tokens: int,
+) -> float:
+    """Compute USD cost for a single Anthropic call given token counts.
+
+    Returns USD rounded to 6 decimals (~$0.000001 precision). Total cost
+    on a 33-account Vigil tick lands around $0.66-1.14, so $0.000001 is
+    overkill for display but useful for aggregating thousands of small
+    calls without rounding drift.
+    """
+    family = "sonnet"  # safe default
+    model_lower = (model or "").lower()
+    for key in _PRICING:
+        if key in model_lower:
+            family = key
+            break
+
+    rates = _PRICING[family]
+    cost = (
+        input_tokens * rates["input"]
+        + output_tokens * rates["output"]
+        + cache_creation_tokens * rates["cache_write"]
+        + cache_read_tokens * rates["cache_read"]
+    ) / 1_000_000.0
+    return round(cost, 6)

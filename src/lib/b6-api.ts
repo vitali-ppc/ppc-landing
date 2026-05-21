@@ -427,6 +427,33 @@ export async function runVigilNow(): Promise<RunVigilNowResponse> {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// Usage tracking — per-agent LLM cost breakdown (Sprint 8.8)
+// ─────────────────────────────────────────────────────────────────────────────
+
+export type AgentUsage = {
+  agent: string;
+  mascot: string | null;
+  calls: number;
+  input_tokens: number;
+  output_tokens: number;
+  cache_creation_tokens: number;
+  cache_read_tokens: number;
+  cost_usd: number;
+};
+
+export type UsageResponse = {
+  days: number;
+  since: string;
+  total_cost_usd: number;
+  total_calls: number;
+  by_agent: AgentUsage[];
+};
+
+export async function getUsage(days: number = 7): Promise<UsageResponse> {
+  return jsonRequest("GET", `/api/usage?days=${days}`);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // Google Ads OAuth + connections
 // ─────────────────────────────────────────────────────────────────────────────
 
