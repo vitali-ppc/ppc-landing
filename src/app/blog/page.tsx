@@ -240,22 +240,32 @@ export default function BlogPage() {
     })
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
+  // Sort by date descending (newest first) — matches visual page order
+  // and signals freshness priority to Google.
+  const sortedBlogPosts = [...blogPosts].sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+  );
+
   const blogIndexJsonLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
+    "@id": "https://www.kampaio.com/blog#collection",
     name: "Kampaio Blog",
     description:
       "AI-powered Google Ads insights, PPC strategy, autonomous campaign management. Practical guides for SMB advertisers and agencies.",
     url: "https://www.kampaio.com/blog",
+    // Publisher references main Kampaio Organization entity via @id,
+    // inheriting knowsAbout (15 PPC expertise topics) signal.
     publisher: {
-      "@type": "Organization",
-      name: "Kampaio",
-      url: "https://www.kampaio.com",
+      "@id": "https://www.kampaio.com/#organization",
+    },
+    isPartOf: {
+      "@id": "https://www.kampaio.com/#website",
     },
     mainEntity: {
       "@type": "ItemList",
-      numberOfItems: blogPosts.length,
-      itemListElement: blogPosts.map((post, idx) => ({
+      numberOfItems: sortedBlogPosts.length,
+      itemListElement: sortedBlogPosts.map((post, idx) => ({
         "@type": "ListItem",
         position: idx + 1,
         url: `https://www.kampaio.com/blog/${post.slug}`,
