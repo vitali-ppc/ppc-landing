@@ -27,9 +27,29 @@ export const metadata = {
   }
 }
 
+// WebPage schema — links legal page to Kampaio Organization + WebSite
+// entities via @id, completing the Knowledge Graph integration.
+const privacyJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': 'https://www.kampaio.com/privacy-policy#webpage',
+  name: 'Privacy Policy',
+  url: 'https://www.kampaio.com/privacy-policy',
+  description:
+    'How Kampaio collects, processes, and protects your data. GDPR-compliant privacy policy for AI-powered Google Ads analytics service.',
+  isPartOf: { '@id': 'https://www.kampaio.com/#website' },
+  about: { '@id': 'https://www.kampaio.com/#organization' },
+  publisher: { '@id': 'https://www.kampaio.com/#organization' },
+  inLanguage: 'en',
+};
+
 export default function PrivacyPolicy() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(privacyJsonLd) }}
+      />
       <Header />
       <div className="privacy-policy-page">
         <div className="container">

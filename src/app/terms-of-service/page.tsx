@@ -27,9 +27,29 @@ export const metadata = {
   }
 }
 
+// WebPage schema — links legal page to Kampaio Organization + WebSite
+// entities via @id, completing the Knowledge Graph integration.
+const termsJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': 'https://www.kampaio.com/terms-of-service#webpage',
+  name: 'Terms of Service',
+  url: 'https://www.kampaio.com/terms-of-service',
+  description:
+    'Terms of service for Kampaio AI-powered Google Ads analytics. Your rights and obligations when using our intelligent AI assistant.',
+  isPartOf: { '@id': 'https://www.kampaio.com/#website' },
+  about: { '@id': 'https://www.kampaio.com/#organization' },
+  publisher: { '@id': 'https://www.kampaio.com/#organization' },
+  inLanguage: 'en',
+};
+
 export default function TermsOfService() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(termsJsonLd) }}
+      />
       <Header />
       <div className="terms-of-service-page">
         <div className="container">
