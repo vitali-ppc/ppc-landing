@@ -115,10 +115,12 @@ const ApprovalRow: React.FC<{
   };
 
   const onReject = async () => {
-    const reason = prompt("Reason for rejection (optional):") || undefined;
+    // No prompt — Reject is one click. The "reason" field was rarely used
+    // and the popup interrupted the user every single click. If we ever
+    // need rejection reasons for analytics, add an inline textarea instead.
     setBusy("reject");
     try {
-      await rejectAction(action.id, reason);
+      await rejectAction(action.id);
       onActionChange();
     } catch (e) {
       console.error(e);
