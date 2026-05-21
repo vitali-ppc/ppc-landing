@@ -385,6 +385,21 @@ All copy in English unless the landing URL is in another language; rationale alw
             descriptions = v.get("descriptions", []) or []
             image_prompts = v.get("image_prompts", []) or []
 
+            # Post-processing: LLMs reliably overshoot the 90-char description
+            # limit (Sonnet 4.6 weakness on long char-count constraints, while
+            # 30-char headlines work fine because they fit naturally). Trim each
+            # over-limit text to the last word that still fits. Cheaper than an
+            # auto-retry LLM call and guarantees Google Ads accepts the copy.
+            short_headlines = [
+                _truncate_to_limit(h, spec["headline_max_chars"]) for h in short_headlines
+            ]
+            long_headlines = [
+                _truncate_to_limit(h, spec["long_headline_max_chars"]) for h in long_headlines
+            ]
+            descriptions = [
+                _truncate_to_limit(d, spec["description_max_chars"]) for d in descriptions
+            ]
+
             # Optional: generate one preview image from the first prompt
             # (only for channels that show images). The other prompts are saved
             # as text only — actual image gen for 5+ images would be expensive
@@ -446,3 +461,27 @@ All copy in English unless the landing URL is in another language; rationale alw
     @property
     def proposals(self) -> list[dict]:
         return self._proposals
+
+
+def _truncate_to_limit(text: str, limit: int) -> str:
+    """Trim `text` to at most `limit` characters, preferring the last whole word.
+
+    LLM-generated Google Ads copy frequently overshoots the 90-char description
+    limit. Hard-truncating mid-word looks ugly ("...with fast deliv"), so:
+    1. If already within limit → return as-is.
+    2. Try to cut at the last space before `limit` so we end on a whole word.
+    3. If a single token is longer than `limit` (rare — long URLs, hashtags),
+       fall back to a hard cut at `limit` chars.
+
+    No ellipsis appended — Google Ads copy reads better without "...".
+    """
+    if not text or len(text) <= limit:
+        return text or ""
+    # Look for a space we can break on. text[:limit+1] so we consider the
+    # character at position `limit` as well (rfind on the prefix excluding it).
+    candidate = text[:limit]
+    last_space = candidate.rfind(" ")
+    if last_space > 0:
+        return candidate[:last_space].rstrip(" ,;.:!?-")
+    # No space — hard cut.
+    return candidate
