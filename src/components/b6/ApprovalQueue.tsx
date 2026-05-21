@@ -1,14 +1,21 @@
 "use client";
 
-import React, { useState } from "react";
-import type { AgentAction } from "@/lib/b6-api";
+import React, { useMemo, useState } from "react";
+import type { AgentAction, CampaignFromAPI } from "@/lib/b6-api";
 import { approveAction, rejectAction } from "@/lib/b6-api";
 import { AegisBadge } from "./AegisBadge";
 
 export const ApprovalQueue: React.FC<{
   pending: AgentAction[];
   onActionChange: () => void;
-}> = ({ pending, onActionChange }) => {
+  /** Optional campaign list — used to resolve campaign_id → name in rows. */
+  campaigns?: CampaignFromAPI[];
+}> = ({ pending, onActionChange, campaigns = [] }) => {
+  const campaignNameById = useMemo(() => {
+    const m = new Map<string, string>();
+    for (const c of campaigns) m.set(c.id, c.name);
+    return m;
+  }, [campaigns]);
   if (pending.length === 0) {
     return (
       <div
@@ -30,7 +37,16 @@ export const ApprovalQueue: React.FC<{
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
       {pending.map((a) => (
-        <ApprovalRow key={a.id} action={a} onActionChange={onActionChange} />
+        <ApprovalRow
+          key={a.id}
+          action={a}
+          onActionChange={onActionChange}
+          campaignName={
+            a.target?.campaign_id
+              ? campaignNameById.get(a.target.campaign_id as string)
+              : undefined
+          }
+        />
       ))}
     </div>
   );
@@ -39,7 +55,8 @@ export const ApprovalQueue: React.FC<{
 const ApprovalRow: React.FC<{
   action: AgentAction;
   onActionChange: () => void;
-}> = ({ action, onActionChange }) => {
+  campaignName?: string;
+}> = ({ action, onActionChange, campaignName }) => {
   const [busy, setBusy] = useState<"approve" | "reject" | null>(null);
   const [applyReal, setApplyReal] = useState(false);
 
@@ -169,7 +186,22 @@ const ApprovalRow: React.FC<{
             <AegisBadge review={review} compact />
           </div>
           <div style={{ color: "#A0A0A0", fontSize: "12px", marginBottom: "8px" }}>
-            {campaign && <>Campaign <code style={{ color: "#7F9CF5" }}>{campaign}</code> · </>}
+            {campaign && (
+              <>
+                Campaign{" "}
+                {campaignName ? (
+                  <span
+                    title={`ID ${campaign}`}
+                    style={{ color: "#7F9CF5", fontWeight: 600 }}
+                  >
+                    {campaignName}
+                  </span>
+                ) : (
+                  <code style={{ color: "#7F9CF5" }}>{campaign}</code>
+                )}{" "}
+                ·{" "}
+              </>
+            )}
             confidence {Math.round(action.confidence * 100)}%
             {impactSummary && <> · <span style={{ color: "#4ECDC4" }}>impact: {impactSummary}</span></>}
           </div>

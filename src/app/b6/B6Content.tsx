@@ -424,7 +424,11 @@ function B6Dashboard() {
             <h2 style={{ fontSize: "16px", fontWeight: 600, marginBottom: "12px", color: "#E0E6F7" }}>
               ⏳ Pending approval ({pending.length})
             </h2>
-            <ApprovalQueue pending={pending} onActionChange={refresh} />
+            <ApprovalQueue
+              pending={pending}
+              onActionChange={refresh}
+              campaigns={rawCampaigns}
+            />
           </section>
 
           <section>
