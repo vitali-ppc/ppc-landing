@@ -48,13 +48,17 @@ export const MiraPanel: React.FC<{
   const loadExisting = useCallback(async () => {
     try {
       const res = await listActions({ limit: 30 });
+      // One Generate run always creates exactly 3 variants. Show only the
+      // latest run — older runs stay in the DB as audit history but UI
+      // shouldn't double-render them. listActions returns newest first,
+      // so .slice(0, 3) is the most recent batch.
       const creatives = res.actions
         .filter((a: AgentAction) => a.action_type === "create_ad_variant")
         .filter(
           (a: AgentAction) =>
             !selectedCampaign || a.target?.campaign_id === selectedCampaign,
         )
-        .slice(0, 6)
+        .slice(0, 3)
         .map((a: AgentAction) => {
           const t = (a.target ?? {}) as Record<string, unknown>;
           return {
