@@ -38,13 +38,13 @@
 | 🦉 | Sage | Research (keywords + audiences + negatives) | ✅ LIVE |
 | 🦇 | Vigil | 24/7 anomaly monitoring — Sprint 8.5 detector (yesterday + median + budget-aware) | ✅ **LIVE на проде**, scheduler тикает каждый час |
 
-**Главное состояние сейчас (2026-05-21 mid-afternoon)**: 🚀 **LIVE В PRODUCTION** на https://www.kampaio.com + https://api.kampaio.com (Vercel + Hetzner CPX22 `178.104.124.150`). Multi-tenant JWT auth работает. 33 реальных Google Ads аккаунта через OAuth, активный `9673118921` (goodevas.fi). На Google Ads API v24. Real apply для 3 типов действий (`pause_campaign`, `apply_recommendation`, `add_negative_keyword`) с daily safety cap. **🦇 Vigil АКТИВЕН** (`VIGIL_ENABLED=true` на проде с 2026-05-20 19:13 UTC), тикает каждые 60 мин, тратит ~$1.14 за tick. **🎨 Mira type-aware** работает — генерит полные RSA-pack'и под Search-кампании, PMax asset groups под PMax-кампании. Полная сводка → [`HANDOFF.md`](./HANDOFF.md).
+**Главное состояние сейчас (2026-05-21 mid-afternoon)**: 🚀 **LIVE В PRODUCTION** на https://www.kampaio.com + https://api.kampaio.com (Vercel + Hetzner CPX22 `178.104.124.150`). Multi-tenant JWT auth работает. 33 реальных Google Ads аккаунта через OAuth, активный `9673118921` (goodevas.fi). На Google Ads API v24. Real apply для 3 типов действий (`pause_campaign`, `apply_recommendation`, `add_negative_keyword`) с daily safety cap. **🦇 Vigil АКТИВЕН** (`VIGIL_ENABLED=true` на проде с 2026-05-20 19:13 UTC), тикает каждые 60 мин, тратит ~$0.66-1.14 за tick. **🎨 Mira type-aware** работает — генерит полные RSA-pack'и под Search-кампании, PMax asset groups под PMax-кампании. Полная сводка → [`HANDOFF.md`](./HANDOFF.md).
 
 **API costs (наблюдаемые, не точные):**
 - Mira Generate: ~$0.21 за прогон
-- Vigil tick: ~$1.14 за прогон (33 accounts, dedup'd до 28, 0 alerts)
+- Vigil tick: ~$0.66-1.14 за прогон (33 accounts, dedup'd до 28, 0 alerts; зависит от находок и cache)
 - Aegis review: ~$0.05 per action
-- При VIGIL_INTERVAL_MINUTES=60 → ~$27/день только Vigil. Снизить до 240-480 мин для экономии до Sprint 9 / first paying customer.
+- При VIGIL_INTERVAL_MINUTES=60 → ~$16-27/день только Vigil (зависит от находок). Снизить до 240-480 мин для экономии до Sprint 9 / first paying customer.
 
 ---
 
@@ -225,7 +225,7 @@ http://localhost:8000/docs
 
 См. секцию «Open Decisions» в [`HANDOFF.md`](./HANDOFF.md).
 Главные на 2026-05-21:
-1. **Снизить VIGIL_INTERVAL_MINUTES** с 60 до 240-480 — текущий расход ~$27/день только Vigil. До платящих клиентов это слишком дорого. ~5 мин ops. Команда в HANDOFF §1.
+1. **Снизить VIGIL_INTERVAL_MINUTES** с 60 до 240-480 — текущий расход ~$16-27/день только Vigil. До платящих клиентов это слишком дорого. ~5 мин ops. Команда в HANDOFF §1.
 2. **Resend setup** — `RESEND_API_KEY` пустой. Echo PDF + Vigil critical alerts сейчас mock-mode (UI честно показывает баннер). Реальной доставки нет. ~30 мин (DNS + verify + key).
 3. **Gating Vigil по autonomy_level** — сейчас Vigil scheduler не привязан к tier'у (любой юзер с `VIGIL_ENABLED=true` global получает). Бизнес-решение: давать free trial или жёсткий paywall за L2+? 5 строк кода когда определишься.
 4. **Sprint 9 — Maximus L3 aggressive auto-apply + auto-pause на critical anomaly** — замкнёт цикл "Vigil detects → Maximus acts". ~10ч.

@@ -10,7 +10,7 @@
 **Прогресс кода**: Sprint 1-8 ✅ done + Sprint 8.5 (detector rewrite) + Sprint 8.6 (Mira type-aware) ✅ done на проде. v24 migration Phase 1/2/3/8 ✅ done, v24 Phase 5/6/7 deferred.
 **Статус**: ✅ **LIVE В PRODUCTION** на multi-tenant JWT auth + Google Ads API v24 + real apply (3 типа) + **🦇 Vigil 24/7 monitoring АКТИВЕН** (interval=60min) + **🎨 Mira type-aware** (Search RSA / PMax Asset Group). Готов к **первому платящему с L2/L3 pricing**.
 
-**Прод-инфра**: Hetzner CPX22 (178.104.124.150), 33 connected Google Ads accounts, Vigil scheduler тикает каждый час и тратит ~$1.14 за tick (~$27/день при interval=60 мин). Frontend на Vercel auto-deploy с `v2-autonomous-agents`.
+**Прод-инфра**: Hetzner CPX22 (178.104.124.150), 33 connected Google Ads accounts, Vigil scheduler тикает каждый час и тратит ~$0.66-1.14 за tick (зависит от кол-ва найденных аномалий и cache hits; ~$16-27/день при interval=60 мин). Frontend на Vercel auto-deploy с `v2-autonomous-agents`.
 
 ---
 
@@ -22,7 +22,7 @@
                 ssh root@178.104.124.150 'cd ~/ppc-landing && \
                   sed -i "s|^VIGIL_INTERVAL_MINUTES=.*|VIGIL_INTERVAL_MINUTES=480|" .env.prod && \
                   docker compose -f docker-compose.prod.yml --env-file .env.prod up -d b6-api'
-              480 min = 3 ticks/день = ~$3-5/день вместо $27.
+              480 min = 3 ticks/день = ~$2-4/день вместо $16-27.
 
 2. (~30 мин)  Resend setup — RESEND_API_KEY пустой в .env.prod, email digest
               Echo + Vigil critical alerts сейчас в mock-mode (логируются, но не
@@ -69,9 +69,9 @@ VIGIL_DASHBOARD_URL        https://www.kampaio.com/b6
 **Реальные API-расходы на проде (наблюдения):**
 - **Mira Generate** (Search RSA, 3 angles × 15 headlines + 4 descriptions): **~$0.21** за прогон. Sonnet 4.6 input ~2k tokens, output ~3k tokens.
 - **Aegis review after Mira**: ~$0.05
-- **Vigil tick** (33 accounts × concurrency=1): **~$1.14 per tick** observed 2026-05-21 (28 scanned, 5 dedup'd, 0 alerts, took 5m 12s). Этo пока неточно — нужно больше замеров для разных условий (с/без алертов, разная скорость Google Ads API). Прежняя оценка $0.50-1.00 была занижена.
+- **Vigil tick** (33 accounts × concurrency=1): **~$0.66-1.14 per tick** observed 2026-05-21 (два замера: $1.14 при scheduler tick утром + $0.66 при manual Run once днём — разница объясняется кол-вом найденных аномалий, размером данных и prompt cache hits). Реалистичная вилка для 33-account портфеля.
 - **Aegis reviews of Vigil alerts**: ~$0.05 per anomaly_alert
-- **При VIGIL_INTERVAL_MINUTES=60**: $1-2/час = $700-1400/мес. Снизить до 240/480 минут для текущего этапа без платящих клиентов.
+- **При VIGIL_INTERVAL_MINUTES=60**: $0.66-1.14/час = $475-820/мес. Снизить до 240/480 минут для текущего этапа без платящих клиентов.
 
 **Sprint 8.5 backlog (добавлено 2026-05-19 late night)**:
 - **§G. Echo prompt accuracy** (~10 мин) — Echo сейчас использует "blocked / held back / flagged" двусмысленно: эти слова звучат как-будто в Google Ads что-то произошло, но в реальности это только записи в БД о proposals + Aegis verdicts. Когда `status='proposed'` или Aegis `recommendation='block'` — Echo не должен говорить "we held back X" / "we blocked X", он должен явно писать "we proposed X but flagged it as risky" / "X awaits your review". Перед первым client-facing PDF reach (Tristan demo или первый платящий) этот prompt должен быть отполирован, иначе клиент откроет дашборд → увидит что "блоки" живые в Pending → потеряет доверие. **Триггер**: перед первой client-facing доставкой. **Не блокер сейчас** — никто кроме Виталия пока эти отчёты не читает.
