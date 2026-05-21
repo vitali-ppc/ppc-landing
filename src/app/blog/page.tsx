@@ -231,12 +231,14 @@ export default function BlogPage() {
     }
   ];
 
-  const filteredPosts = blogPosts.filter(post => {
-    const matchesCategory = selectedCategory === 'all' || post.category === selectedCategory;
-    const matchesSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         post.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCategory && matchesSearch;
-  });
+  const filteredPosts = blogPosts
+    .filter(post => {
+      const matchesCategory = selectedCategory === 'all' || post.category === selectedCategory;
+      const matchesSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                           post.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
+      return matchesCategory && matchesSearch;
+    })
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   const blogIndexJsonLd = {
     "@context": "https://schema.org",
