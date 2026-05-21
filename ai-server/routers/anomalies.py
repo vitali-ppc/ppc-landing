@@ -154,7 +154,11 @@ async def list_recent_anomalies(
     for a in actions:
         item = _serialize(a, review_map.get(a.id))
         if not include_hidden:
-            if a.status in {"dismissed", "rejected"}:
+            # 'applied'   = user clicked Acknowledge (saw it, no action needed)
+            # 'rejected'  = user clicked Dismiss   (false positive)
+            # 'dismissed' = legacy status from earlier code; treat same as rejected
+            # Aegis 'block' verdict = noise, never show by default
+            if a.status in {"applied", "dismissed", "rejected"}:
                 continue
             if item.aegis_recommendation == "block":
                 continue
