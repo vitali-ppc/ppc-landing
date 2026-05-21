@@ -235,6 +235,16 @@ const VariantCard: React.FC<{ v: CreativeVariant }> = ({ v }) => {
     ...v.descriptions.map((d) => `D: ${d}`),
     ...(v.needs_images ? v.image_prompts.map((p) => `IMG: ${p}`) : []),
   ].join("\n");
+  const [copied, setCopied] = React.useState(false);
+  const handleCopy = React.useCallback(async () => {
+    try {
+      await navigator.clipboard.writeText(allCopied);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 1500);
+    } catch {
+      // Clipboard API blocked (insecure context / old browser) — fail quietly.
+    }
+  }, [allCopied]);
 
   return (
     <div
@@ -376,26 +386,26 @@ const VariantCard: React.FC<{ v: CreativeVariant }> = ({ v }) => {
           </div>
         </div>
 
-        {/* Copy all */}
+        {/* Copy all — flips to "✓ Copied!" for 1.5s on click */}
         <button
           type="button"
-          onClick={() => {
-            navigator.clipboard?.writeText(allCopied).catch(() => {});
-          }}
+          onClick={handleCopy}
           title="Copy all headlines + descriptions to clipboard"
           style={{
             marginTop: "12px",
             padding: "6px 10px",
-            background: "transparent",
-            border: "1px solid #2D3340",
-            color: "#A0A0A0",
+            background: copied ? "#34D39922" : "transparent",
+            border: `1px solid ${copied ? "#34D39988" : "#2D3340"}`,
+            color: copied ? "#34D399" : "#A0A0A0",
             borderRadius: 6,
             fontSize: 11,
+            fontWeight: copied ? 600 : 400,
             cursor: "pointer",
             width: "100%",
+            transition: "background 120ms, border-color 120ms, color 120ms",
           }}
         >
-          📋 Copy all to clipboard
+          {copied ? "✓ Copied!" : "📋 Copy all to clipboard"}
         </button>
       </div>
     </div>
