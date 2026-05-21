@@ -27,17 +27,22 @@ type MascotInfo = {
   campaignId: string | null;
 };
 
-const IDLE_BUZZ: MascotInfo = { state: "idle", x: 0, y: 0, message: "", campaignId: null };
+const IDLE_BUZZ: MascotInfo = { state: "hidden", x: 0, y: 0, message: "", campaignId: null };
 const IDLE_AEGIS: MascotInfo = { state: "hidden", x: 0, y: 0, message: "", campaignId: null };
 
 const MESSAGE_DECAY_MS = 5000;
+// If we go this long without any new event, force-clear both mascots.
+// Protects against stuck "is gearing up…" when backend's `agent.done`
+// event doesn't reach the frontend (Socket.IO drop, network blip, etc.).
+const STALE_MASCOT_MS = 30000;
 
 export const MascotLayer: React.FC<{ events: LiveEvent[] }> = ({ events }) => {
   const [buzz, setBuzz] = useState<MascotInfo>(IDLE_BUZZ);
   const [aegis, setAegis] = useState<MascotInfo>(IDLE_AEGIS);
   const lastEventIdxRef = useRef(-1);
+  const staleTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // Reaction на новые события
+  // Reaction на новые события + safety timeout сбрасывающий зависший mascot
   useEffect(() => {
     if (events.length === 0) return;
     if (events.length - 1 <= lastEventIdxRef.current) return;
@@ -47,6 +52,18 @@ export const MascotLayer: React.FC<{ events: LiveEvent[] }> = ({ events }) => {
     newEvents.forEach((e) => {
       handleEvent(e, { setBuzz, setAegis });
     });
+
+    // Reset stale timer on every new event. If nothing arrives for 30s,
+    // assume agent is done (backend forgot to emit done) and clear mascots.
+    if (staleTimerRef.current) clearTimeout(staleTimerRef.current);
+    staleTimerRef.current = setTimeout(() => {
+      setBuzz(IDLE_BUZZ);
+      setAegis(IDLE_AEGIS);
+    }, STALE_MASCOT_MS);
+
+    return () => {
+      if (staleTimerRef.current) clearTimeout(staleTimerRef.current);
+    };
   }, [events]);
 
   return (
