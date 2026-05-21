@@ -314,22 +314,11 @@ export function VigilPanel({
             color: "#A0A0A0",
           }}
         >
-          <label style={{ display: "flex", alignItems: "center", gap: 6, cursor: "pointer" }}>
-            <input
-              type="checkbox"
-              checked={settings.enabled}
-              disabled={savingSettings}
-              onChange={(e) => saveSettings({ enabled: e.target.checked })}
-            />
-            <span style={{ color: settings.enabled ? "#E0E6F7" : "#A0A0A0" }}>
-              Vigil monitoring {settings.enabled ? "enabled" : "disabled"}
-            </span>
-          </label>
           <span style={{ display: "flex", alignItems: "center", gap: 6 }}>
             📅 Schedule
             <select
               value={settings.schedule_mode}
-              disabled={savingSettings || !settings.enabled}
+              disabled={savingSettings}
               onChange={(e) =>
                 saveSettings({
                   schedule_mode: e.target.value as VigilScheduleMode,
@@ -357,7 +346,7 @@ export function VigilPanel({
             Email me on severity
             <select
               value={settings.min_severity}
-              disabled={savingSettings || !settings.enabled}
+              disabled={savingSettings}
               onChange={(e) =>
                 saveSettings({
                   min_severity: e.target.value as VigilSettings["min_severity"],
