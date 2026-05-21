@@ -83,6 +83,13 @@ CHANNEL_SPECS: dict[str, dict[str, Any]] = {
 }
 
 # Channel types Mira refuses (no useful ad-copy output).
+# Sprint 8.9 — Mira self-validates her own output. If the LLM proposes
+# descriptions over the 90-char Google Ads limit, we refuse and ask her
+# to rewrite in-loop. Cap the retries so a stuck LLM doesn't eat all 8
+# agent iterations (leaving none for normal tool work).
+MAX_VALIDATION_RETRIES = 2
+
+
 UNSUPPORTED_CHANNELS = {
     "SHOPPING": (
         "Shopping ads are auto-generated from the Merchant Center product "
@@ -204,6 +211,11 @@ class CreativeAgent(BaseAgent):
         self.generate_images = generate_images
         self._proposals: list[dict] = []
         self._spec: dict[str, Any] = CHANNEL_SPECS["SEARCH"]  # default; reset in build_initial_prompt
+        # Sprint 8.9 — Mira self-validates char limits and asks itself to
+        # rewrite over-limit copy. This counter caps the rewrites so a
+        # pathological LLM run can't burn the agent's MAX_AGENT_ITERATIONS
+        # cap purely on char-limit retries.
+        self._validation_retries: int = 0
         super().__init__(user_id=user_id, event_publisher=event_publisher)
 
     async def build_initial_prompt(self) -> str:
@@ -395,12 +407,81 @@ All copy in English unless the landing URL is in another language; rationale alw
             ),
         ]
 
+    def _collect_char_violations(
+        self, variants: list[dict], spec: dict[str, Any]
+    ) -> list[dict]:
+        """Walk every text field across all variants, return a list of
+        over-limit items so Mira can rewrite them.
+
+        Each violation entry tells Mira exactly which variant, which field,
+        which index, the current length, and the limit — enough to surgically
+        rewrite only the bad items without regenerating the whole asset pack.
+        """
+        out: list[dict] = []
+        for vi, v in enumerate(variants):
+            label = v.get("label", f"variant_{vi+1}")
+            for field, limit_key in (
+                ("short_headlines", "headline_max_chars"),
+                ("long_headlines", "long_headline_max_chars"),
+                ("descriptions", "description_max_chars"),
+            ):
+                limit = int(spec.get(limit_key, 0) or 0)
+                if limit <= 0:
+                    continue  # channel doesn't use this field
+                items = v.get(field, []) or []
+                for idx, text in enumerate(items):
+                    if not isinstance(text, str):
+                        continue
+                    n = len(text)
+                    if n > limit:
+                        out.append(
+                            {
+                                "variant_label": label,
+                                "field": field,
+                                "index": idx,
+                                "current_length": n,
+                                "limit": limit,
+                                "over_by": n - limit,
+                                "text": text,
+                            }
+                        )
+        return out
+
     async def _handle_propose_creative_set(
         self,
         variants: list[dict],
         strategy_note: str = "",
     ) -> dict[str, Any]:
         spec = self._spec
+
+        # Step 1 — VALIDATION: walk every text field, collect anything that
+        # exceeds the char limit. If anything is over, refuse the proposal
+        # and return a structured error. Mira will see this in tool_result
+        # and rewrite the offending items in the next iteration of her loop
+        # (no separate Claude call, no external retry — same agent run).
+        violations = self._collect_char_violations(variants, spec)
+        if violations:
+            self._validation_retries += 1
+            if self._validation_retries <= MAX_VALIDATION_RETRIES:
+                return {
+                    "ok": False,
+                    "error": "char_limit_violation",
+                    "message": (
+                        f"{len(violations)} text(s) exceed Google Ads char limits. "
+                        "Rewrite ONLY the listed items shorter (drop filler words first, "
+                        "keep the key benefit/CTA), then call propose_creative_set again "
+                        "with the corrected variants."
+                    ),
+                    "violations": violations,
+                    "retries_left": MAX_VALIDATION_RETRIES - self._validation_retries,
+                }
+            # Safety net: if Mira keeps overshooting after N retries, fall
+            # back to hard truncation so we don't burn the run loop.
+            logger.warning(
+                "Mira hit char-limit retries (%d) — falling back to truncation",
+                self._validation_retries,
+            )
+
         result_variants = []
         for v in variants:
             short_headlines = v.get("short_headlines", []) or []
@@ -408,11 +489,8 @@ All copy in English unless the landing URL is in another language; rationale alw
             descriptions = v.get("descriptions", []) or []
             image_prompts = v.get("image_prompts", []) or []
 
-            # Post-processing: LLMs reliably overshoot the 90-char description
-            # limit (Sonnet 4.6 weakness on long char-count constraints, while
-            # 30-char headlines work fine because they fit naturally). Trim each
-            # over-limit text to the last word that still fits. Cheaper than an
-            # auto-retry LLM call and guarantees Google Ads accepts the copy.
+            # Safety-net truncation (only triggers if validation retries
+            # were exhausted above — normal happy path skips this).
             short_headlines = [
                 _truncate_to_limit(h, spec["headline_max_chars"]) for h in short_headlines
             ]
