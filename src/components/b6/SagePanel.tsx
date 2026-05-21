@@ -43,6 +43,16 @@ export const SagePanel: React.FC<{
   const [keywords, setKeywords] = useState<Keyword[]>([]);
   const [audiences, setAudiences] = useState<Audience[]>([]);
   const [error, setError] = useState<string | null>(null);
+  // Collapsible body — persisted across reloads. Default collapsed because
+  // the keyword + audience grids can scroll into a tall block.
+  const [open, setOpen] = useState<boolean>(() => {
+    if (typeof window === "undefined") return false;
+    return window.localStorage.getItem("b6_sage_open") === "1";
+  });
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    window.localStorage.setItem("b6_sage_open", open ? "1" : "0");
+  }, [open]);
 
   useEffect(() => {
     if (!selectedCampaign && campaigns[0]) setSelectedCampaign(campaigns[0].id);
@@ -134,14 +144,59 @@ export const SagePanel: React.FC<{
           gap: "10px",
         }}
       >
-        <div>
-          <div style={{ fontSize: "14px", fontWeight: 600, color: "#E0E6F7" }}>
-            🦉 Sage — Research Agent
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          aria-expanded={open}
+          title={open ? "Collapse Sage" : "Expand Sage"}
+          style={{
+            background: "transparent",
+            border: "none",
+            padding: 0,
+            cursor: "pointer",
+            textAlign: "left",
+            display: "flex",
+            alignItems: "center",
+            gap: 8,
+            minWidth: 0,
+          }}
+        >
+          <span
+            style={{
+              display: "inline-block",
+              width: 12,
+              color: "#A0A0A0",
+              fontSize: 11,
+              transform: open ? "rotate(90deg)" : "rotate(0deg)",
+              transition: "transform 100ms",
+            }}
+          >
+            ▶
+          </span>
+          <div>
+            <div style={{ fontSize: "14px", fontWeight: 600, color: "#E0E6F7" }}>
+              🦉 Sage — Research Agent
+              {(keywords.length > 0 || audiences.length > 0) && (
+                <span
+                  style={{
+                    marginLeft: 8,
+                    padding: "2px 8px",
+                    background: "#7F9CF522",
+                    color: "#7F9CF5",
+                    borderRadius: 12,
+                    fontSize: 11,
+                    fontWeight: 700,
+                  }}
+                >
+                  {keywords.length} kw · {audiences.length} aud
+                </span>
+              )}
+            </div>
+            <div style={{ fontSize: "11px", color: "#666", marginTop: "2px" }}>
+              Finds new keywords, audiences and competitor opportunities
+            </div>
           </div>
-          <div style={{ fontSize: "11px", color: "#666", marginTop: "2px" }}>
-            Finds new keywords, audiences and competitor opportunities
-          </div>
-        </div>
+        </button>
         <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
           <select
             value={selectedCampaign}
@@ -197,7 +252,7 @@ export const SagePanel: React.FC<{
         </div>
       )}
 
-      {keywords.length === 0 && audiences.length === 0 && !running ? (
+      {open && (keywords.length === 0 && audiences.length === 0 && !running ? (
         <div
           style={{
             padding: "30px 20px",
@@ -266,7 +321,7 @@ export const SagePanel: React.FC<{
             </div>
           </div>
         </div>
-      )}
+      ))}
     </section>
   );
 };
