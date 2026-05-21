@@ -30,6 +30,64 @@ export const metadata: Metadata = {
   },
 };
 
+// Service schema — links B6 product to Kampaio Organization entity via @id.
+// Rendered server-side so Google bot always sees it (B6Content is behind
+// AuthGuard which shows "Loading…" before client hydration).
+const b6JsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': 'https://www.kampaio.com/b6#service',
+  name: 'B6 — Autonomous PPC Cabinet',
+  serviceType: 'PPC Campaign Management',
+  category: 'Pay-Per-Click Advertising Automation',
+  description:
+    'B6 is an autonomous AI-agent team that manages Google Ads campaigns end-to-end. 8 specialized agents — Buzz (bidding), Aegis (risk review), Echo (reporting), Vox (strategy), Maximus (orchestration), Mira (creative), Sage (research), Vigil (24/7 anomaly monitoring) — work together to deliver campaign performance without manual intervention.',
+  url: 'https://www.kampaio.com/b6',
+  provider: {
+    '@id': 'https://www.kampaio.com/#organization',
+  },
+  areaServed: 'Worldwide',
+  audience: {
+    '@type': 'BusinessAudience',
+    audienceType: 'SMB and DTC advertisers with $3K-50K/month Google Ads budgets',
+  },
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'B6 Autonomy Tiers',
+    itemListElement: [
+      {
+        '@type': 'Offer',
+        name: 'L1 Co-pilot',
+        description: 'AI suggests, you approve every action',
+        price: '99',
+        priceCurrency: 'USD',
+      },
+      {
+        '@type': 'Offer',
+        name: 'L2 Autopilot',
+        description: 'AI acts on small changes, you approve major moves',
+        price: '199',
+        priceCurrency: 'USD',
+      },
+      {
+        '@type': 'Offer',
+        name: 'L3 Full Autopilot',
+        description: 'AI manages account autonomously with daily safety caps',
+        price: '399',
+        priceCurrency: 'USD',
+      },
+    ],
+  },
+};
+
 export default function Page() {
-  return <B6Content />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(b6JsonLd) }}
+      />
+      <B6Content />
+    </>
+  );
 }

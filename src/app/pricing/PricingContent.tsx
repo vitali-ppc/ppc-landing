@@ -7,6 +7,7 @@ import Footer from '../../components/Footer';
 const pricingJsonLd = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
+  "@id": "https://www.kampaio.com/pricing#software",
   name: "Kampaio",
   applicationCategory: "BusinessApplication",
   applicationSubCategory: "Advertising Management",
@@ -14,10 +15,13 @@ const pricingJsonLd = {
   description:
     "AI-powered Google Ads management platform. Plans from free to $149/mo with autonomous AI agents (Buzz, Aegis, Echo, Vox, Maximus, Mira, Sage) for SMB advertisers.",
   url: "https://www.kampaio.com/pricing",
+  // Both publisher and provider reference the main Kampaio Organization
+  // entity via @id, inheriting its 15-topic knowsAbout E-E-A-T signal.
   publisher: {
-    "@type": "Organization",
-    name: "Kampaio",
-    url: "https://www.kampaio.com",
+    "@id": "https://www.kampaio.com/#organization",
+  },
+  provider: {
+    "@id": "https://www.kampaio.com/#organization",
   },
   offers: [
     {
