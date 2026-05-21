@@ -218,6 +218,16 @@ export default function BlogPage() {
       date: '2026-05-20',
       readTime: '13 min read',
       slug: 'google-ads-keyword-match-types-explained'
+    },
+    {
+      id: 22,
+      title: 'PPC Audit Checklist: 25 Senior-Level Checks That Surface 80% of Account Problems (2026)',
+      excerpt: 'A senior PPC audit checklist organized in 6 pillars with thresholds, a 3x3 decision matrix, and the 18 checks you can automate. Built for agency owners auditing 4+ accounts a quarter.',
+      category: 'ppc',
+      author: 'By B6 Team',
+      date: '2026-05-21',
+      readTime: '11 min read',
+      slug: 'ppc-audit-checklist'
     }
   ];
 
