@@ -60,6 +60,7 @@ const ApprovalRow: React.FC<{
   const [busy, setBusy] = useState<"approve" | "reject" | null>(null);
 
   const campaign = action.target?.campaign_id;
+  const customerId = (action.target as { customer_id?: string })?.customer_id;
   const newBid = (action.target as { new_bid_usd?: number })?.new_bid_usd;
   const recType = (action.target as { recommendation_type?: string })?.recommendation_type;
   const impactSummary = (action.target as { impact_summary?: string })?.impact_summary;
@@ -193,7 +194,7 @@ const ApprovalRow: React.FC<{
             <AegisBadge review={review} compact />
           </div>
           <div style={{ color: "#A0A0A0", fontSize: "12px", marginBottom: "8px" }}>
-            {campaign && (
+            {campaign ? (
               <>
                 Campaign{" "}
                 {campaignName ? (
@@ -208,7 +209,17 @@ const ApprovalRow: React.FC<{
                 )}{" "}
                 ·{" "}
               </>
-            )}
+            ) : customerId ? (
+              <>
+                <span
+                  title={`Account-level — applies to the entire Google Ads account ${customerId}`}
+                  style={{ color: "#7F9CF5", fontWeight: 600 }}
+                >
+                  📂 Account-level
+                </span>{" "}
+                · account <code style={{ color: "#7F9CF5" }}>{customerId}</code> ·{" "}
+              </>
+            ) : null}
             confidence {Math.round(action.confidence * 100)}%
             {impactSummary && <> · <span style={{ color: "#4ECDC4" }}>impact: {impactSummary}</span></>}
           </div>
