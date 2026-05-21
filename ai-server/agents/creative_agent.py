@@ -134,12 +134,35 @@ Generate exactly **3 angle variants** for this campaign. Suggested angles:
   3. **Value / Benefit** — what the customer GAINS
 
 For each variant, produce a COMPLETE asset pack for the specific channel\
- (counts from the spec given in the user prompt). Each headline must be\
- ≤ the char limit (exact limits in the prompt). DO NOT repeat headlines or\
+ (counts from the spec given in the user prompt). DO NOT repeat headlines or\
  descriptions across variants — they must be distinct.
 
 CHANNEL_TYPE_GUIDANCE (passed in the user prompt) tells you the strategic\
  nuance for this channel; follow it.
+
+═══════════════════════════════════════════════════════════════════════════
+CHARACTER LIMITS (CRITICAL — Google Ads HARD REJECTS over-limit copy):
+═══════════════════════════════════════════════════════════════════════════
+Every short_headline ≤ 30 chars. Every long_headline ≤ 90 chars.\
+ **Every description ≤ 88 chars** (Google's limit is 90, write to 88 to be safe).
+
+Before submitting each piece of copy, COUNT THE CHARACTERS including spaces\
+ and punctuation. If a description ends up at 92 chars, REWRITE IT shorter —\
+ do not submit over-limit text. The schema's maxLength will reject the call.
+
+GOOD description (87 chars, complete thought):
+  "At GoodEvas.fi you get premium quality, fair prices and free Finnish delivery."
+
+BAD description (101 chars, gets truncated mid-sentence):
+  "Discover GoodEvas.fi's wide selection of premium quality products with fast Finland-wide delivery."
+
+Common over-limit patterns to AVOID:
+- Stacking multiple benefits with " — " separators (almost always overshoots)
+- Adding " for every purchase " / " on all orders " filler at the end
+- Long brand+location mentions: prefer "GoodEvas.fi" over "Visit GoodEvas.fi today"
+
+When you need to fit a constraint, drop filler words ("really", "simply",\
+ "everything") before cutting key info. Sharp short copy beats fluffy long copy.
 
 ═══════════════════════════════════════════════════════════════════════════
 GOOGLE ADS POLICY RULES (HARD):
