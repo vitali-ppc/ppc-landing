@@ -229,6 +229,16 @@ export default function BlogPage() {
       date: '2026-05-21',
       readTime: '11 min read',
       slug: 'ppc-audit-checklist'
+    },
+    {
+      id: 23,
+      title: 'Google Ads "Bid Strategy Limited" Status: What It Means and How to Fix It',
+      excerpt: 'What "Limited by bid strategy" and "Eligible (Limited)" mean, the four real causes, the 5-step fix, and when ignoring the warning is the right call.',
+      category: 'google-ads',
+      author: 'By B6 Team',
+      date: '2026-05-22',
+      readTime: '12 min read',
+      slug: 'google-ads-bid-strategy-status-limited'
     }
   ];
 
