@@ -9,6 +9,45 @@ Crawl-delay: 1
 
 # Disallow admin areas (if any)
 Disallow: /admin/
-Disallow: /private/ 
+Disallow: /private/
 Disallow: /api/
-Disallow: /strategy-generator 
+Disallow: /strategy-generator
+
+# Explicit AI search crawler allows
+# Per Aleyda Solis AI Search Content Optimization checklist (Day 12, 2026-05-22).
+# Best practice — explicit allow protects against future CDN/WAF bot filtering.
+# All AI crawlers already inherit Allow from User-agent: * above, but explicit
+# whitelisting gives clearer signal + defense against accidental blocks.
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: cohere-ai
+Allow: / 
