@@ -351,7 +351,7 @@ export default function ArticleContent() {
                 Most agencies maintain 3 to 5 active Responsive Search Ad variants per ad group because human creative-writing capacity is the bottleneck. At scale you need 12 to 20 to keep the Google ML signal hot. More impressions per ad group means faster decay per variant, which means more variants in rotation just to maintain the same freshness curve.
               </p>
               <p style={paragraphStyle}>
-                Threshold: median age of running ad assets. Once that crosses 45 days, CTR typically decays 0.3 to 0.6 percentage points over the following 30 days. Quality Score drifts down with it. Smart Bidding then bids less aggressively on the same auctions, compounding the effect.
+                Threshold: median age of running ad assets. Once that crosses 45 days, CTR typically decays 0.3 to 0.6 percentage points over the following 30 days. <a href="/blog/the-complete-guide-to-google-ads-quality-score-in-2025" style={{ color: '#764ba2', textDecoration: 'underline' }}>Quality Score</a> drifts down with it. Smart Bidding then bids less aggressively on the same auctions, compounding the effect.
               </p>
               <p style={paragraphStyle}>
                 Remedy: weekly creative refresh cadence with a structured replacement protocol. At our agency we replace the bottom-performing 20% of variants every Friday, regardless of whether they have hit "statistical significance". The expected value of refreshing a variant approaching fatigue is higher than running one more week of measurement on a tired ad. AI-assisted variant generation is increasingly the only practical way to keep up, which <a href="/blog/ai-powered-ppc-optimization-complete-guide" style={linkStyle}>our pillar on AI-powered PPC optimization</a> covers in depth.
@@ -550,7 +550,7 @@ export default function ArticleContent() {
                 <p style={paragraphStyle}>It works, with caveats. Above $50K per month you should layer in incrementality testing because Smart Bidding's optimization target (attributed conversions) increasingly diverges from incremental conversions. Without that cross-check you are flying on a metric that drifts further from cash truth every quarter.</p>
               </div>
               <div style={{ marginBottom: '24px' }}>
-                <p style={{ ...paragraphStyle, marginBottom: '12px' }}><strong>Why does my ROAS drop when I increase budget?</strong></p>
+                <p style={{ ...paragraphStyle, marginBottom: '12px' }}><strong>Why does my <a href="/blog/google-ads-roas-dropped-suddenly" style={{ color: '#764ba2', textDecoration: 'underline' }}>ROAS drop</a> when I increase budget?</strong></p>
                 <p style={paragraphStyle}>Usually auction signal exhaustion compounded with attribution decay. The bidder runs out of high-correlation signal at higher budget tiers, and the attribution model masks the drop by overcrediting last-touch interactions. Both patterns show up together more often than individually.</p>
               </div>
             </section>

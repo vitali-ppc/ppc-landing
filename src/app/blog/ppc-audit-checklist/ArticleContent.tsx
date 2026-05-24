@@ -726,7 +726,7 @@ flowchart TD
                 covers what to do with the client conversation that follows.
               </p>
               <p style={pStyle}>
-                <strong>Important and Quick.</strong> Add five missing sitelinks. Fix one RSA stuck at Poor Ad Strength. Tighten geo targeting on one campaign. Batch all of these into a single 30-day fix list and send one client memo at month-end. Streaming 30 micro-updates over a month trains the client to ignore your communications.
+                <strong>Important and Quick.</strong> Add five missing sitelinks. Fix one RSA stuck at Poor <a href="/blog/responsive-search-ads-best-practices" style={linkStyle}>Ad Strength</a>. Tighten geo targeting on one campaign. Batch all of these into a single 30-day fix list and send one client memo at month-end. Streaming 30 micro-updates over a month trains the client to ignore your communications.
               </p>
             </section>
 
