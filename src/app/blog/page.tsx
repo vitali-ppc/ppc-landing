@@ -239,6 +239,16 @@ export default function BlogPage() {
       date: '2026-05-22',
       readTime: '12 min read',
       slug: 'google-ads-bid-strategy-status-limited'
+    },
+    {
+      id: 24,
+      title: 'Google Ads Display Network Wasted Spend: How to Stop the Bleeding (2026 Guide)',
+      excerpt: 'Display Network silently drains 20-60% of Google Ads budgets on low-intent traffic. The 60-second fix, a 5-minute audit, and the smaller settings (Display Expansion, Search Partners) that keep leaking.',
+      category: 'ppc',
+      author: 'By B6 Team',
+      date: '2026-05-26',
+      readTime: '9 min read',
+      slug: 'google-ads-display-network-wasted-spend'
     }
   ];
 
