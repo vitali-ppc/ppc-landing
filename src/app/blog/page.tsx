@@ -249,6 +249,16 @@ export default function BlogPage() {
       date: '2026-05-26',
       readTime: '9 min read',
       slug: 'google-ads-display-network-wasted-spend'
+    },
+    {
+      id: 25,
+      title: 'Google Ads Account Restructure: The 4-Phase Playbook (2026)',
+      excerpt: 'When and how to restructure a messy Google Ads account: the 3-campaign rule, 4-phase rollout over 8 weeks, what to migrate vs what to leave alone, and the thresholds that signal it is time.',
+      category: 'ppc',
+      author: 'By B6 Team',
+      date: '2026-05-27',
+      readTime: '10 min read',
+      slug: 'google-ads-account-restructure'
     }
   ];
 
