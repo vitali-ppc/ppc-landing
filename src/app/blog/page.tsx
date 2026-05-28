@@ -259,6 +259,16 @@ export default function BlogPage() {
       date: '2026-05-27',
       readTime: '10 min read',
       slug: 'google-ads-account-restructure'
+    },
+    {
+      id: 26,
+      title: 'How to Fix Low-Quality Leads From B2B Google Ads (2026 Playbook)',
+      excerpt: 'B2B form fills look fine but pipeline does not move? The six-step fix sequence: offline conversion imports, value-based bidding, audience exclusions, form filtering, match types, lead form match-quality score.',
+      category: 'google-ads',
+      author: 'By B6 Team',
+      date: '2026-05-28',
+      readTime: '11 min read',
+      slug: 'b2b-google-ads-low-quality-leads'
     }
   ];
 
