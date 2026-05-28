@@ -279,6 +279,26 @@ export default function BlogPage() {
       date: '2026-05-29',
       readTime: '15 min read',
       slug: 'linkedin-ads-vs-google-ads-b2b-lead-generation'
+    },
+    {
+      id: 28,
+      title: 'B2B Google Ads Lead Generation: How to Build a Campaign That Feeds the Pipeline',
+      excerpt: 'B2B Google Ads requires a different structure than B2C. Here is how to set up campaigns, conversion tracking, and bidding for long sales cycles that actually produce qualified pipeline.',
+      category: 'b2b',
+      author: 'By B6 Team',
+      date: '2026-05-28',
+      readTime: '13 min read',
+      slug: 'b2b-google-ads-lead-generation'
+    },
+    {
+      id: 29,
+      title: 'B2B SaaS Google Ads Benchmarks 2026: CTR, CPC, CPA, and ROAS by Segment',
+      excerpt: 'B2B SaaS Google Ads benchmarks for 2026: average CPC $5.34 (up 29% YoY), CPA $87-$1,500+ by segment, conversion rate 3-5%. Real data from 2,000+ SaaS campaigns to tell you if your numbers are on target.',
+      category: 'b2b',
+      author: 'By B6 Team',
+      date: '2026-06-01',
+      readTime: '16 min read',
+      slug: 'b2b-saas-google-ads-benchmarks-2026'
     }
   ];
 
