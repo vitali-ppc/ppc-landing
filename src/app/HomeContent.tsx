@@ -64,8 +64,8 @@ const homeJsonLd = {
 /* ── Styles (states, responsive, motion live here — inline can't do them) ── */
 const STYLES = `
 .kx{
-  --bg:#0F1116; --surface:#15181D; --surface-2:#1F232B; --border:#2D3340;
-  --border-soft:#1F232B; --text:#F4F6FA; --muted:#9BA3B4; --muted-2:#C0C6D7;
+  --bg:#0D1320; --surface:#141C2E; --surface-2:#1C2740; --border:#2B3852;
+  --border-soft:#1E2A40; --text:#F3F6FB; --muted:#96A3BB; --muted-2:#C4CCDC;
   --accent:#00FFE7; --accent-2:#00BFAE; --teal:#4ECDC4; --warn:#FFA726;
   --danger:#FF6B6B; --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
   background:var(--bg); color:var(--text);
@@ -76,7 +76,7 @@ const STYLES = `
 
 /* top bar */
 .kx-bar{ position:sticky; top:0; z-index:50; backdrop-filter:blur(10px);
-  background:rgba(15,17,22,.72); border-bottom:1px solid var(--border-soft); }
+  background:rgba(13,19,32,.72); border-bottom:1px solid var(--border-soft); }
 .kx-bar-in{ max-width:1140px; margin:0 auto; padding:14px 24px;
   display:flex; align-items:center; justify-content:space-between; gap:16px; }
 .kx-logo{ display:flex; align-items:center; gap:9px; font-weight:700; font-size:17px;
@@ -107,7 +107,7 @@ const STYLES = `
 /* hero */
 .kx-hero{ border-bottom:1px solid var(--border-soft);
   background:radial-gradient(1100px 520px at 78% -8%,rgba(0,255,231,.10),transparent 60%),
-    linear-gradient(180deg,#13161C 0%,var(--bg) 70%); }
+    linear-gradient(180deg,#111B2E 0%,var(--bg) 70%); }
 .kx-hero-in{ max-width:1140px; margin:0 auto; padding:72px 24px 76px;
   display:grid; grid-template-columns:1.05fr .95fr; gap:56px; align-items:center; }
 .kx-eyebrow{ display:inline-flex; align-items:center; gap:8px; padding:6px 13px;
@@ -229,7 +229,7 @@ const STYLES = `
 
 /* cta + footer + form */
 .kx-cta{ background:radial-gradient(800px 300px at 50% 0%,rgba(0,255,231,.08),transparent 60%),
-  linear-gradient(180deg,var(--bg),#13161C); }
+  linear-gradient(180deg,var(--bg),#111B2E); }
 .kx-form{ display:flex; gap:10px; max-width:480px; flex-wrap:wrap; }
 .kx-input{ flex:1; min-width:230px; padding:14px 16px; font-size:15px; background:var(--surface-2);
   border:1px solid var(--border); border-radius:10px; color:var(--text); outline:none;
