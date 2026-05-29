@@ -269,6 +269,16 @@ export default function BlogPage() {
       date: '2026-05-28',
       readTime: '11 min read',
       slug: 'b2b-google-ads-low-quality-leads'
+    },
+    {
+      id: 27,
+      title: 'LinkedIn Ads vs Google Ads for B2B Lead Generation: Honest 2026 Comparison',
+      excerpt: 'LinkedIn delivers 121% ROAS for B2B in 2026, Google Search 67% (Dreamdata). But CPL, intent type, and lead quality tell a more complex story. Honest comparison across 8 axes with budget split frameworks for $20-100K/mo B2B advertisers.',
+      category: 'b2b',
+      author: 'By Kampaio Team',
+      date: '2026-05-29',
+      readTime: '15 min read',
+      slug: 'linkedin-ads-vs-google-ads-b2b-lead-generation'
     }
   ];
 
