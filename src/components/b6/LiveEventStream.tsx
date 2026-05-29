@@ -48,8 +48,8 @@ export const LiveEventStream: React.FC<{
         aria-expanded={open}
         title={open ? "Collapse live stream" : "Expand live stream"}
       >
-        <h2 style={{ fontSize: "16px", fontWeight: 600, margin: 0, color: "#E0E6F7", display: "flex", alignItems: "center", gap: 8 }}>
-          <span style={{ display: "inline-block", width: 12, color: "#A0A0A0", fontSize: 11, transition: "transform 100ms", transform: open ? "rotate(90deg)" : "rotate(0deg)" }}>▶</span>
+        <h2 style={{ fontSize: "16px", fontWeight: 600, margin: 0, color: "#0D1320", display: "flex", alignItems: "center", gap: 8 }}>
+          <span style={{ display: "inline-block", width: 12, color: "#5B6979", fontSize: 11, transition: "transform 100ms", transform: open ? "rotate(90deg)" : "rotate(0deg)" }}>▶</span>
           🎬 Live agent stream
           {!open && events.length > 0 && (
             <span style={{ fontSize: 11, fontWeight: 400, color: "#666" }}>
@@ -60,7 +60,7 @@ export const LiveEventStream: React.FC<{
         <div
           style={{
             fontSize: "11px",
-            color: connected ? "#4ECDC4" : "#FF6B6B",
+            color: connected ? "#0B7A68" : "#DC2626",
             display: "flex",
             alignItems: "center",
             gap: "6px",
@@ -71,7 +71,7 @@ export const LiveEventStream: React.FC<{
               width: "8px",
               height: "8px",
               borderRadius: "50%",
-              background: connected ? "#4ECDC4" : "#FF6B6B",
+              background: connected ? "#0B7A68" : "#DC2626",
               animation: connected ? "pulse 2s infinite" : "none",
             }}
           />
@@ -85,10 +85,10 @@ export const LiveEventStream: React.FC<{
           style={{
             maxHeight: "320px",
             overflowY: "auto",
-            background: "#15181D",
+            background: "#F6F8FB",
             borderRadius: "8px",
             padding: "10px",
-            border: "1px solid #2D3340",
+            border: "1px solid #DCE3ED",
             fontFamily: "ui-monospace, 'SF Mono', Menlo, monospace",
             fontSize: "12px",
             lineHeight: "1.6",
@@ -155,13 +155,13 @@ function describeEvent(e: LiveEvent): { color: string; mascot: string; text: str
   switch (e.event_type) {
     case "session.start":
       return {
-        color: "#7F9CF5",
+        color: "#4F5BC9",
         mascot: "▶️",
         text: `Session start (customer ${e.customer_id}, type ${e.agent_type})`,
       };
     case "session.complete":
       return {
-        color: "#4ECDC4",
+        color: "#0B7A68",
         mascot: "🏁",
         text: `Session complete — ${e.proposed_ids?.length || 0} proposed, ${
           e.reviews?.length || 0
@@ -169,13 +169,13 @@ function describeEvent(e: LiveEvent): { color: string; mascot: string; text: str
       };
     case "agent.thinking":
       return {
-        color: "#A0A0A0",
+        color: "#5B6979",
         mascot,
         text: e.message || `${e.mascot} thinking...`,
       };
     case "agent.calling_tool":
       return {
-        color: "#00FFE7",
+        color: "#0A7C8C",
         mascot,
         text: `calling ${e.tool}(${e.input ? e.input.slice(0, 80) : ""}${
           e.input && e.input.length > 80 ? "..." : ""
@@ -183,19 +183,19 @@ function describeEvent(e: LiveEvent): { color: string; mascot: string; text: str
       };
     case "agent.done":
       return {
-        color: "#4ECDC4",
+        color: "#0B7A68",
         mascot,
         text: `✓ done${e.text ? `: ${e.text.slice(0, 100)}` : ""}`,
       };
     case "agent.error":
       return {
-        color: "#FF6B6B",
+        color: "#DC2626",
         mascot,
         text: `✕ error: ${e.message}`,
       };
     default:
       return {
-        color: "#C0C6D7",
+        color: "#37445A",
         mascot,
         text: `${e.event_type}`,
       };

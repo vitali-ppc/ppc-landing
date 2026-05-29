@@ -23,10 +23,10 @@ export const CampaignCard: React.FC<{
 }> = ({ campaign, highlighted = false }) => {
   const statusColor =
     campaign.status === "ENABLED"
-      ? "#4ECDC4"
+      ? "#0B7A68"
       : campaign.status === "PAUSED"
-      ? "#FFA726"
-      : "#A0A0A0";
+      ? "#B45309"
+      : "#5B6979";
 
   return (
     <div
@@ -34,8 +34,8 @@ export const CampaignCard: React.FC<{
       style={{
         padding: "16px",
         borderRadius: "12px",
-        background: "#23272F",
-        border: highlighted ? "2px solid #00FFE7" : "1px solid #2D3340",
+        background: "#EEF2F8",
+        border: highlighted ? "2px solid #0A7C8C" : "1px solid #DCE3ED",
         transition: "border-color 200ms ease, transform 200ms ease",
         transform: highlighted ? "scale(1.02)" : "scale(1)",
         boxShadow: highlighted ? "0 0 20px rgba(0, 255, 231, 0.25)" : "none",
@@ -43,10 +43,10 @@ export const CampaignCard: React.FC<{
     >
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "12px" }}>
         <div>
-          <div style={{ color: "#FFFFFF", fontSize: "16px", fontWeight: 600 }}>
+          <div style={{ color: "#0D1320", fontSize: "16px", fontWeight: 600 }}>
             {campaign.name}
           </div>
-          <div style={{ color: "#A0A0A0", fontSize: "12px", marginTop: "2px" }}>
+          <div style={{ color: "#5B6979", fontSize: "12px", marginTop: "2px" }}>
             ID: {campaign.id} · {campaign.bid_strategy}
           </div>
         </div>
@@ -76,12 +76,12 @@ export const CampaignCard: React.FC<{
 
 const Metric: React.FC<{ label: string; value: string; accent?: boolean }> = ({ label, value, accent = false }) => (
   <div>
-    <div style={{ color: "#A0A0A0", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.5px" }}>
+    <div style={{ color: "#5B6979", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.5px" }}>
       {label}
     </div>
     <div
       style={{
-        color: accent ? "#00FFE7" : "#FFFFFF",
+        color: accent ? "#0A7C8C" : "#0D1320",
         fontSize: "16px",
         fontWeight: 600,
         marginTop: "2px",

@@ -4,10 +4,10 @@ import React, { useState } from "react";
 import type { RiskReview } from "@/lib/b6-api";
 
 const colorFor = (score: number) => {
-  if (score <= 30) return "#4ECDC4"; // safe — teal
-  if (score <= 60) return "#FFA726"; // medium — orange
-  if (score <= 80) return "#FF8E53"; // high — red-orange
-  return "#FF6B6B"; // critical — red
+  if (score <= 30) return "#0B7A68"; // safe — teal
+  if (score <= 60) return "#B45309"; // medium — orange
+  if (score <= 80) return "#C2410C"; // high — red-orange
+  return "#DC2626"; // critical — red
 };
 
 const recommendationLabel = (rec: RiskReview["recommendation"]) => {
@@ -87,7 +87,7 @@ export const AegisBadge: React.FC<{ review: RiskReview | null | undefined; compa
         <div style={{ fontWeight: 600, color }}>
           🛡️ Aegis: {recommendationLabel(review.recommendation)}
         </div>
-        <div style={{ color: "#A0A0A0", fontSize: "11px" }}>
+        <div style={{ color: "#5B6979", fontSize: "11px" }}>
           risk score: <span style={{ color, fontWeight: 700 }}>{review.risk_score}/100</span>
         </div>
       </div>
@@ -127,7 +127,7 @@ export const AegisBadge: React.FC<{ review: RiskReview | null | undefined; compa
       )}
 
       {showDetails && flagCount > 0 && (
-        <ul style={{ margin: "6px 0 0 16px", padding: 0, color: "#C0C6D7" }}>
+        <ul style={{ margin: "6px 0 0 16px", padding: 0, color: "#37445A" }}>
           {review.flags.map((flag, i) => (
             <li key={i} style={{ marginBottom: "2px" }}>
               {flag}
@@ -137,7 +137,7 @@ export const AegisBadge: React.FC<{ review: RiskReview | null | undefined; compa
       )}
 
       {showDetails && review.note && (
-        <div style={{ marginTop: "6px", color: "#A0A0A0", fontStyle: "italic" }}>
+        <div style={{ marginTop: "6px", color: "#5B6979", fontStyle: "italic" }}>
           “{review.note}”
         </div>
       )}

@@ -142,11 +142,11 @@ export function VigilPanel({
   return (
     <section
       style={{
-        background: "#1F232B",
+        background: "#FFFFFF",
         borderRadius: 10,
         padding: 16,
         marginBottom: 20,
-        border: byCritical.length > 0 ? "1px solid #FF6B6B66" : "1px solid #2D3340",
+        border: byCritical.length > 0 ? "1px solid #DC262666" : "1px solid #DCE3ED",
       }}
     >
       <button
@@ -159,7 +159,7 @@ export function VigilPanel({
           border: "none",
           padding: 0,
           cursor: "pointer",
-          color: "#E0E6F7",
+          color: "#0D1320",
           fontSize: 16,
           fontWeight: 600,
           display: "flex",
@@ -174,7 +174,7 @@ export function VigilPanel({
             style={{
               display: "inline-block",
               width: 12,
-              color: "#A0A0A0",
+              color: "#5B6979",
               fontSize: 11,
               transform: open ? "rotate(90deg)" : "rotate(0deg)",
               transition: "transform 100ms",
@@ -188,8 +188,8 @@ export function VigilPanel({
               style={{
                 marginLeft: 4,
                 padding: "2px 8px",
-                background: "#FF6B6B22",
-                color: "#FF6B6B",
+                background: "#DC262622",
+                color: "#DC2626",
                 borderRadius: 12,
                 fontSize: 11,
                 fontWeight: 700,
@@ -203,8 +203,8 @@ export function VigilPanel({
               style={{
                 marginLeft: 4,
                 padding: "2px 8px",
-                background: "#FFA72622",
-                color: "#FFA726",
+                background: "#B4530922",
+                color: "#B45309",
                 borderRadius: 12,
                 fontSize: 11,
                 fontWeight: 700,
@@ -235,9 +235,9 @@ export function VigilPanel({
             aria-disabled={runningNow}
             style={{
               padding: "3px 8px",
-              background: runningNow ? "#2D3340" : "#7F9CF522",
-              border: "1px solid #7F9CF555",
-              color: runningNow ? "#A0A0A0" : "#7F9CF5",
+              background: runningNow ? "#DCE3ED" : "#4F5BC922",
+              border: "1px solid #4F5BC955",
+              color: runningNow ? "#5B6979" : "#4F5BC9",
               borderRadius: 4,
               fontSize: 12,
               fontWeight: 600,
@@ -268,8 +268,8 @@ export function VigilPanel({
             style={{
               padding: "2px 6px",
               background: "transparent",
-              border: "1px solid #2D3340",
-              color: "#A0A0A0",
+              border: "1px solid #DCE3ED",
+              color: "#5B6979",
               borderRadius: 4,
               fontSize: 12,
               cursor: "pointer",
@@ -287,9 +287,9 @@ export function VigilPanel({
           style={{
             marginTop: 10,
             padding: "6px 10px",
-            background: "#7F9CF522",
-            border: "1px solid #7F9CF555",
-            color: "#7F9CF5",
+            background: "#4F5BC922",
+            border: "1px solid #4F5BC955",
+            color: "#4F5BC9",
             borderRadius: 6,
             fontSize: 12,
           }}
@@ -303,15 +303,15 @@ export function VigilPanel({
           style={{
             marginTop: 12,
             padding: "10px 12px",
-            background: "#15181D",
-            border: "1px solid #2D3340",
+            background: "#F6F8FB",
+            border: "1px solid #DCE3ED",
             borderRadius: 8,
             display: "flex",
             alignItems: "center",
             gap: 16,
             flexWrap: "wrap",
             fontSize: 12,
-            color: "#A0A0A0",
+            color: "#5B6979",
           }}
         >
           <span style={{ display: "flex", alignItems: "center", gap: 6 }}>
@@ -326,9 +326,9 @@ export function VigilPanel({
               }
               title={SCHEDULE_TOOLTIPS[settings.schedule_mode]}
               style={{
-                background: "#1F232B",
-                color: "#E0E6F7",
-                border: "1px solid #2D3340",
+                background: "#FFFFFF",
+                color: "#0D1320",
+                border: "1px solid #DCE3ED",
                 borderRadius: 4,
                 padding: "3px 6px",
                 fontSize: 12,
@@ -353,9 +353,9 @@ export function VigilPanel({
                 })
               }
               style={{
-                background: "#1F232B",
-                color: "#E0E6F7",
-                border: "1px solid #2D3340",
+                background: "#FFFFFF",
+                color: "#0D1320",
+                border: "1px solid #DCE3ED",
                 borderRadius: 4,
                 padding: "3px 6px",
                 fontSize: 12,
@@ -376,10 +376,10 @@ export function VigilPanel({
             <div
               style={{
                 padding: "10px 12px",
-                background: "#FF6B6B22",
-                border: "1px solid #FF6B6B66",
+                background: "#DC262622",
+                border: "1px solid #DC262666",
                 borderRadius: 8,
-                color: "#FF6B6B",
+                color: "#DC2626",
                 fontSize: 12,
                 marginBottom: 12,
               }}
@@ -391,10 +391,10 @@ export function VigilPanel({
             <div
               style={{
                 padding: "20px 12px",
-                background: "#15181D",
-                border: "1px dashed #2D3340",
+                background: "#F6F8FB",
+                border: "1px dashed #DCE3ED",
                 borderRadius: 8,
-                color: "#A0A0A0",
+                color: "#5B6979",
                 fontSize: 13,
                 textAlign: "center",
               }}
@@ -406,7 +406,7 @@ export function VigilPanel({
               {byCritical.length > 0 && (
                 <SeverityGroup
                   title="🚨 Critical"
-                  color="#FF6B6B"
+                  color="#DC2626"
                   alerts={byCritical}
                   busyId={busyId}
                   onAck={onAck}
@@ -416,7 +416,7 @@ export function VigilPanel({
               {byWarning.length > 0 && (
                 <SeverityGroup
                   title="⚠️ Warning"
-                  color="#FFA726"
+                  color="#B45309"
                   alerts={byWarning}
                   busyId={busyId}
                   onAck={onAck}
@@ -426,7 +426,7 @@ export function VigilPanel({
               {byInfo.length > 0 && (
                 <SeverityGroup
                   title="ℹ️ Info"
-                  color="#7F9CF5"
+                  color="#4F5BC9"
                   alerts={byInfo}
                   busyId={busyId}
                   onAck={onAck}
@@ -505,7 +505,7 @@ function AlertCard({
   return (
     <div
       style={{
-        background: "#15181D",
+        background: "#F6F8FB",
         borderLeft: `3px solid ${color}`,
         borderRadius: 6,
         padding: "10px 12px",
@@ -517,7 +517,7 @@ function AlertCard({
     >
       <div style={{ minWidth: 0 }}>
         <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
-          <span style={{ fontWeight: 600, color: "#E0E6F7", fontSize: 13 }}>
+          <span style={{ fontWeight: 600, color: "#0D1320", fontSize: 13 }}>
             {alert.campaign_name || `Campaign ${alert.campaign_id ?? "?"}`}
           </span>
           <TypePill type={alert.anomaly_type} />
@@ -526,8 +526,8 @@ function AlertCard({
               title={`Aegis: ${alert.aegis_recommendation ?? "?"}`}
               style={{
                 padding: "1px 6px",
-                background: alert.aegis_score >= 70 ? "#FF6B6B22" : "#7F9CF522",
-                color: alert.aegis_score >= 70 ? "#FF6B6B" : "#7F9CF5",
+                background: alert.aegis_score >= 70 ? "#DC262622" : "#4F5BC922",
+                color: alert.aegis_score >= 70 ? "#DC2626" : "#4F5BC9",
                 borderRadius: 10,
                 fontSize: 10,
                 fontWeight: 600,
@@ -537,9 +537,9 @@ function AlertCard({
             </span>
           )}
         </div>
-        <div style={{ color: "#E0E6F7", fontSize: 12, marginTop: 4 }}>{alert.summary}</div>
+        <div style={{ color: "#0D1320", fontSize: 12, marginTop: 4 }}>{alert.summary}</div>
         {alert.reasoning && (
-          <div style={{ color: "#A0A0A0", fontSize: 11, marginTop: 4, lineHeight: 1.5 }}>
+          <div style={{ color: "#5B6979", fontSize: 11, marginTop: 4, lineHeight: 1.5 }}>
             {alert.reasoning}
           </div>
         )}
@@ -583,8 +583,8 @@ function AlertCard({
                     key={i}
                     style={{
                       fontSize: 10,
-                      color: "#7F9CF5",
-                      background: "#7F9CF522",
+                      color: "#4F5BC9",
+                      background: "#4F5BC922",
                       padding: "1px 6px",
                       borderRadius: 8,
                     }}
@@ -606,8 +606,8 @@ function AlertCard({
           style={{
             padding: "4px 8px",
             background: "transparent",
-            border: "1px solid #2D3340",
-            color: "#A0A0A0",
+            border: "1px solid #DCE3ED",
+            color: "#5B6979",
             borderRadius: 4,
             fontSize: 11,
             cursor: busy ? "default" : "pointer",
@@ -624,7 +624,7 @@ function AlertCard({
           style={{
             padding: "4px 8px",
             background: "transparent",
-            border: "1px solid #2D3340",
+            border: "1px solid #DCE3ED",
             color: "#666",
             borderRadius: 4,
             fontSize: 11,
@@ -645,8 +645,8 @@ function TypePill({ type }: { type: string }) {
     <span
       style={{
         padding: "1px 6px",
-        background: "#2D3340",
-        color: "#A0A0A0",
+        background: "#DCE3ED",
+        color: "#5B6979",
         borderRadius: 10,
         fontSize: 10,
         fontWeight: 500,
@@ -661,9 +661,9 @@ function TypePill({ type }: { type: string }) {
 function ScheduleBadge({ mode }: { mode: VigilScheduleMode | null }) {
   if (!mode) return null;
   const labelMap: Record<VigilScheduleMode, { text: string; bg: string; fg: string }> = {
-    off: { text: "manual", bg: "#2D3340", fg: "#A0A0A0" },
-    daily: { text: "daily", bg: "#7F9CF522", fg: "#7F9CF5" },
-    weekly: { text: "weekly", bg: "#7F9CF522", fg: "#7F9CF5" },
+    off: { text: "manual", bg: "#DCE3ED", fg: "#5B6979" },
+    daily: { text: "daily", bg: "#4F5BC922", fg: "#4F5BC9" },
+    weekly: { text: "weekly", bg: "#4F5BC922", fg: "#4F5BC9" },
   };
   const { text, bg, fg } = labelMap[mode];
   return (
@@ -697,7 +697,7 @@ function LastScanLabel({ iso }: { iso: string | null }) {
   const label =
     minutes < 1 ? "just now" : minutes < 60 ? `${minutes}m ago` : `${Math.round(minutes / 60)}h ago`;
   return (
-    <span style={{ fontSize: 11, color: "#A0A0A0", fontWeight: 400 }}>
+    <span style={{ fontSize: 11, color: "#5B6979", fontWeight: 400 }}>
       last scan: {label}
     </span>
   );

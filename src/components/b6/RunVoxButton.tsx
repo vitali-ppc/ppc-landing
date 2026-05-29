@@ -66,11 +66,11 @@ export const RunVoxButton: React.FC<{
           borderRadius: "8px",
           border: "none",
           background: showStop
-            ? "linear-gradient(135deg, #FF6B6B, #C84343)"
+            ? "linear-gradient(135deg, #DC2626, #B91C1C)"
             : busy
-              ? "#A47AFF"
-              : "linear-gradient(135deg, #C9A3FF, #7F58E0)",
-          color: "#0F1116",
+              ? "#7C3AED"
+              : "linear-gradient(135deg, #7C3AED, #6D28D9)",
+          color: "#EEF2F8",
           fontSize: "14px",
           fontWeight: 700,
           cursor: "pointer",
@@ -97,7 +97,7 @@ export const RunVoxButton: React.FC<{
         <div
           style={{
             marginTop: "8px",
-            color: "#FF6B6B",
+            color: "#DC2626",
             fontSize: "12px",
             maxWidth: "300px",
           }}

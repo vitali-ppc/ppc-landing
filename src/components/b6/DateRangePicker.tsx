@@ -210,9 +210,9 @@ export function DateRangePicker({
         onClick={() => setOpen((v) => !v)}
         style={{
           padding: "8px 12px",
-          background: open ? "#2D3340" : "#0F1116",
-          border: "1px solid #2D3340",
-          color: "#E0E6F7",
+          background: open ? "#DCE3ED" : "#EEF2F8",
+          border: "1px solid #DCE3ED",
+          color: "#0D1320",
           borderRadius: 8,
           fontSize: 12,
           fontWeight: 500,
@@ -226,7 +226,7 @@ export function DateRangePicker({
       >
         <span>📅</span>
         <span>{value.label}</span>
-        <span style={{ color: "#A0A0A0", fontSize: 10 }}>▼</span>
+        <span style={{ color: "#5B6979", fontSize: 10 }}>▼</span>
       </button>
 
       {open && (
@@ -236,8 +236,8 @@ export function DateRangePicker({
             top: "calc(100% + 6px)",
             right: 0,
             display: "flex",
-            background: "#15181D",
-            border: "1px solid #2D3340",
+            background: "#F6F8FB",
+            border: "1px solid #DCE3ED",
             borderRadius: 10,
             boxShadow: "0 12px 28px rgba(0,0,0,0.5)",
             zIndex: 60,
@@ -246,7 +246,7 @@ export function DateRangePicker({
           }}
         >
           {/* Preset column */}
-          <div style={{ display: "flex", flexDirection: "column", borderRight: "1px solid #2D3340", minWidth: 180 }}>
+          <div style={{ display: "flex", flexDirection: "column", borderRight: "1px solid #DCE3ED", minWidth: 180 }}>
             {PRESETS.map((p) => {
               const isActive = activePresetId === p.id;
               return (
@@ -256,17 +256,17 @@ export function DateRangePicker({
                   onClick={() => onPresetClick(p)}
                   style={{
                     padding: "10px 14px",
-                    background: isActive ? "#00FFE71A" : "transparent",
+                    background: isActive ? "#0A7C8C1A" : "transparent",
                     border: "none",
-                    color: isActive ? "#00FFE7" : "#E0E6F7",
+                    color: isActive ? "#0A7C8C" : "#0D1320",
                     fontSize: 13,
                     fontWeight: isActive ? 600 : 400,
                     cursor: "pointer",
                     textAlign: "left",
-                    borderLeft: isActive ? "3px solid #00FFE7" : "3px solid transparent",
+                    borderLeft: isActive ? "3px solid #0A7C8C" : "3px solid transparent",
                   }}
                   onMouseEnter={(e) => {
-                    if (!isActive) (e.currentTarget as HTMLButtonElement).style.background = "#1F232B";
+                    if (!isActive) (e.currentTarget as HTMLButtonElement).style.background = "#FFFFFF";
                   }}
                   onMouseLeave={(e) => {
                     if (!isActive) (e.currentTarget as HTMLButtonElement).style.background = "transparent";
@@ -283,7 +283,7 @@ export function DateRangePicker({
             <div
               style={{
                 fontSize: 11,
-                color: "#A0A0A0",
+                color: "#5B6979",
                 textTransform: "uppercase",
                 letterSpacing: 0.5,
                 marginBottom: 10,
@@ -293,7 +293,7 @@ export function DateRangePicker({
             </div>
 
             <label style={{ display: "block", marginBottom: 10 }}>
-              <span style={{ fontSize: 11, color: "#A0A0A0", display: "block", marginBottom: 4 }}>From</span>
+              <span style={{ fontSize: 11, color: "#5B6979", display: "block", marginBottom: 4 }}>From</span>
               <input
                 type="date"
                 value={customFrom}
@@ -304,7 +304,7 @@ export function DateRangePicker({
             </label>
 
             <label style={{ display: "block", marginBottom: 14 }}>
-              <span style={{ fontSize: 11, color: "#A0A0A0", display: "block", marginBottom: 4 }}>To</span>
+              <span style={{ fontSize: 11, color: "#5B6979", display: "block", marginBottom: 4 }}>To</span>
               <input
                 type="date"
                 value={customTo}
@@ -322,8 +322,8 @@ export function DateRangePicker({
               style={{
                 width: "100%",
                 padding: "8px 12px",
-                background: "#00FFE7",
-                color: "#0F1116",
+                background: "#0A7C8C",
+                color: "#EEF2F8",
                 border: "none",
                 borderRadius: 6,
                 fontSize: 12,
@@ -347,10 +347,10 @@ export function DateRangePicker({
 const dateInputStyle: React.CSSProperties = {
   width: "100%",
   padding: "8px 10px",
-  background: "#0F1116",
-  border: "1px solid #2D3340",
+  background: "#EEF2F8",
+  border: "1px solid #DCE3ED",
   borderRadius: 6,
-  color: "#E0E6F7",
+  color: "#0D1320",
   fontSize: 12,
   outline: "none",
   boxSizing: "border-box",

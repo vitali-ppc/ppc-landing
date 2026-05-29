@@ -11,9 +11,9 @@ export const ActivityFeed: React.FC<{ actions: AgentAction[] }> = ({ actions }) 
         style={{
           padding: "20px",
           textAlign: "center",
-          color: "#A0A0A0",
+          color: "#5B6979",
           fontSize: "13px",
-          background: "#1F232B",
+          background: "#FFFFFF",
           borderRadius: "10px",
         }}
       >
@@ -45,22 +45,22 @@ const FeedItem: React.FC<{ action: AgentAction }> = ({ action }) => {
     <div
       style={{
         padding: "10px 12px",
-        background: "#1F232B",
+        background: "#FFFFFF",
         borderRadius: "8px",
         borderLeft: `3px solid ${statusBadgeColor(action.status)}`,
         fontSize: "13px",
       }}
     >
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "4px" }}>
-        <div style={{ color: "#E0E6F7", fontWeight: 500 }}>
+        <div style={{ color: "#0D1320", fontWeight: 500 }}>
           🐝 Buzz · {action.action_type === "update_bid" ? "raise bid" : action.action_type === "pause_campaign" ? "pause campaign" : action.action_type}
           {campaign && (
-            <span style={{ color: "#A0A0A0", marginLeft: "6px" }}>
-              on campaign <code style={{ color: "#7F9CF5" }}>{campaign}</code>
+            <span style={{ color: "#5B6979", marginLeft: "6px" }}>
+              on campaign <code style={{ color: "#4F5BC9" }}>{campaign}</code>
             </span>
           )}
           {isPositive && (
-            <span style={{ color: "#4ECDC4", marginLeft: "6px" }}>→ ${newBid}</span>
+            <span style={{ color: "#0B7A68", marginLeft: "6px" }}>→ ${newBid}</span>
           )}
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
@@ -84,7 +84,7 @@ const FeedItem: React.FC<{ action: AgentAction }> = ({ action }) => {
         <summary
           style={{
             cursor: "pointer",
-            color: "#A0A0A0",
+            color: "#5B6979",
             fontSize: "11px",
             userSelect: "none",
             outline: "none",
@@ -95,10 +95,10 @@ const FeedItem: React.FC<{ action: AgentAction }> = ({ action }) => {
         <div
           style={{
             marginTop: "6px",
-            color: "#C0C6D7",
+            color: "#37445A",
             fontSize: "12px",
             lineHeight: "1.5",
-            background: "#15181D",
+            background: "#F6F8FB",
             padding: "8px",
             borderRadius: "6px",
             whiteSpace: "pre-wrap",

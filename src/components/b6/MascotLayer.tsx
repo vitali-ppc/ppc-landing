@@ -80,10 +80,10 @@ export const MascotLayer: React.FC<{ events: LiveEvent[] }> = ({ events }) => {
     >
       <AnimatePresence>
         {buzz.state !== "hidden" && (
-          <Mascot key="buzz" emoji="🐝" glow="#FFA726" info={buzz} />
+          <Mascot key="buzz" emoji="🐝" glow="#B45309" info={buzz} />
         )}
         {aegis.state !== "hidden" && (
-          <Mascot key="aegis" emoji="🛡️" glow="#7F9CF5" info={aegis} />
+          <Mascot key="aegis" emoji="🛡️" glow="#4F5BC9" info={aegis} />
         )}
       </AnimatePresence>
     </div>
@@ -165,7 +165,7 @@ const Mascot: React.FC<{ emoji: string; glow: string; info: MascotInfo }> = ({
             transform: "translateX(-50%)",
             background: "rgba(15, 17, 22, 0.95)",
             border: `1px solid ${glow}66`,
-            color: "#E0E6F7",
+            color: "#0D1320",
             padding: "4px 10px",
             borderRadius: "10px",
             fontSize: "11px",

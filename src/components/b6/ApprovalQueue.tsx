@@ -22,11 +22,11 @@ export const ApprovalQueue: React.FC<{
         style={{
           padding: "20px",
           textAlign: "center",
-          color: "#A0A0A0",
+          color: "#5B6979",
           fontSize: "13px",
-          background: "#1F232B",
+          background: "#FFFFFF",
           borderRadius: "10px",
-          border: "1px dashed #2D3340",
+          border: "1px dashed #DCE3ED",
         }}
       >
         ✅ No actions pending approval
@@ -135,27 +135,27 @@ const ApprovalRow: React.FC<{
   const review = action.risk_review;
   const borderColor = review
     ? review.recommendation === "block"
-      ? "#FF6B6B66"
+      ? "#DC262666"
       : review.recommendation === "review"
-      ? "#FFA72666"
-      : "#4ECDC466"
-    : "#FFA72644";
+      ? "#B4530966"
+      : "#0B7A6866"
+    : "#B4530944";
 
   return (
     <div
       style={{
         padding: "14px 16px",
-        background: "#1F232B",
+        background: "#FFFFFF",
         borderRadius: "10px",
         border: `1px solid ${borderColor}`,
       }}
     >
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "12px" }}>
         <div style={{ flex: 1 }}>
-          <div style={{ color: "#FFFFFF", fontSize: "14px", fontWeight: 600, marginBottom: "4px", display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap" }}>
+          <div style={{ color: "#0D1320", fontSize: "14px", fontWeight: 600, marginBottom: "4px", display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap" }}>
             <span>
               {isSageProposal ? "🦉 Sage" : "🐝 Buzz"} proposes:{" "}
-              <span style={{ color: "#00FFE7" }}>{actionLabel}</span>
+              <span style={{ color: "#0A7C8C" }}>{actionLabel}</span>
             </span>
             {isGoogleRecommendation && (
               <span
@@ -179,9 +179,9 @@ const ApprovalRow: React.FC<{
                 title="Sage found this junk query in search terms data"
                 style={{
                   padding: "2px 8px",
-                  background: "#FFA72622",
-                  border: "1px solid #FFA72666",
-                  color: "#FFA726",
+                  background: "#B4530922",
+                  border: "1px solid #B4530966",
+                  color: "#B45309",
                   borderRadius: 4,
                   fontSize: 10,
                   fontWeight: 700,
@@ -193,19 +193,19 @@ const ApprovalRow: React.FC<{
             )}
             <AegisBadge review={review} compact />
           </div>
-          <div style={{ color: "#A0A0A0", fontSize: "12px", marginBottom: "8px" }}>
+          <div style={{ color: "#5B6979", fontSize: "12px", marginBottom: "8px" }}>
             {campaign ? (
               <>
                 Campaign{" "}
                 {campaignName ? (
                   <span
                     title={`ID ${campaign}`}
-                    style={{ color: "#7F9CF5", fontWeight: 600 }}
+                    style={{ color: "#4F5BC9", fontWeight: 600 }}
                   >
                     {campaignName}
                   </span>
                 ) : (
-                  <code style={{ color: "#7F9CF5" }}>{campaign}</code>
+                  <code style={{ color: "#4F5BC9" }}>{campaign}</code>
                 )}{" "}
                 ·{" "}
               </>
@@ -213,22 +213,22 @@ const ApprovalRow: React.FC<{
               <>
                 <span
                   title={`Account-level — applies to the entire Google Ads account ${customerId}`}
-                  style={{ color: "#7F9CF5", fontWeight: 600 }}
+                  style={{ color: "#4F5BC9", fontWeight: 600 }}
                 >
                   📂 Account-level
                 </span>{" "}
-                · account <code style={{ color: "#7F9CF5" }}>{customerId}</code> ·{" "}
+                · account <code style={{ color: "#4F5BC9" }}>{customerId}</code> ·{" "}
               </>
             ) : null}
             confidence {Math.round(action.confidence * 100)}%
-            {impactSummary && <> · <span style={{ color: "#4ECDC4" }}>impact: {impactSummary}</span></>}
+            {impactSummary && <> · <span style={{ color: "#0B7A68" }}>impact: {impactSummary}</span></>}
           </div>
           <div
             style={{
-              color: "#C0C6D7",
+              color: "#37445A",
               fontSize: "12px",
               lineHeight: "1.5",
-              background: "#15181D",
+              background: "#F6F8FB",
               padding: "8px 10px",
               borderRadius: "6px",
             }}
@@ -257,12 +257,12 @@ const ApprovalRow: React.FC<{
               // action is informational only.
               background: supportsRealApply
                 ? busy === "approve"
-                  ? "#FF8E5388"
-                  : "linear-gradient(135deg, #FF8E53, #FF6B6B)"
+                  ? "#C2410C88"
+                  : "linear-gradient(135deg, #C2410C, #DC2626)"
                 : busy === "approve"
-                  ? "#4ECDC488"
-                  : "#4ECDC4",
-              color: "#0F1116",
+                  ? "#0B7A6888"
+                  : "#0B7A68",
+              color: "#EEF2F8",
               fontSize: "13px",
               fontWeight: 600,
               cursor: busy !== null ? "wait" : "pointer",
@@ -281,9 +281,9 @@ const ApprovalRow: React.FC<{
             style={{
               padding: "8px 14px",
               borderRadius: "6px",
-              border: "1px solid #FF6B6B66",
+              border: "1px solid #DC262666",
               background: "transparent",
-              color: "#FF6B6B",
+              color: "#DC2626",
               fontSize: "13px",
               fontWeight: 600,
               cursor: busy !== null ? "wait" : "pointer",

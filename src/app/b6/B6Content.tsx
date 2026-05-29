@@ -173,9 +173,9 @@ function B6Dashboard() {
     <div
       style={{
         minHeight: "100vh",
-        background: "#15181D",
+        background: "#F6F8FB",
         padding: "24px",
-        color: "#FFFFFF",
+        color: "#0D1320",
         fontFamily: "system-ui, -apple-system, sans-serif",
       }}
     >
@@ -185,11 +185,11 @@ function B6Dashboard() {
         <header style={{ marginBottom: "24px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <div>
             <h1 style={{ fontSize: "24px", fontWeight: 700, margin: 0 }}>
-              🤖 B6, Your AI PPC Cabinet
+              B6 · Your AI PPC Cabinet
             </h1>
-            <div style={{ color: "#A0A0A0", fontSize: "13px", marginTop: "4px" }}>
+            <div style={{ color: "#5B6979", fontSize: "13px", marginTop: "4px" }}>
               {user?.email && <span style={{ marginRight: 8 }}>{user.email} ·</span>}
-              Customer <code style={{ color: "#7F9CF5" }}>{activeCustomerId || NO_CUSTOMER_PLACEHOLDER}</code>
+              Customer <code style={{ color: "#4F5BC9" }}>{activeCustomerId || NO_CUSTOMER_PLACEHOLDER}</code>
               {activeCustomerId ? " · prod data" : " · no Google Ads connected yet"} ·{" "}
               {agents.length === 0
                 ? "Buzz hasn't run yet"
@@ -207,8 +207,8 @@ function B6Dashboard() {
               style={{
                 padding: "8px 12px",
                 background: "transparent",
-                border: "1px solid #2D3340",
-                color: "#A0A0A0",
+                border: "1px solid #DCE3ED",
+                color: "#5B6979",
                 borderRadius: "6px",
                 fontSize: "12px",
                 cursor: "pointer",
@@ -222,8 +222,8 @@ function B6Dashboard() {
               style={{
                 padding: "8px 12px",
                 background: "transparent",
-                border: "1px solid #2D3340",
-                color: "#A0A0A0",
+                border: "1px solid #DCE3ED",
+                color: "#5B6979",
                 borderRadius: "6px",
                 fontSize: "12px",
                 cursor: "pointer",
@@ -264,30 +264,30 @@ function B6Dashboard() {
             marginBottom: "24px",
           }}
         >
-          <StatBox label="Pending" value={counts.proposed || 0} color="#FFA726" />
-          <StatBox label="Applied" value={counts.applied || 0} color="#4ECDC4" />
-          <StatBox label="Rejected" value={counts.rejected || 0} color="#FF6B6B" />
-          <StatBox label="🛡️ Blocks" value={aegisBlocks} color="#FF6B6B" />
-          <StatBox label="🛡️ High-risk" value={aegisHighRisk} color="#FFA726" />
-          <StatBox label="🦇 Alerts (24h)" value={vigilAlerts24h} color="#9F7AEA" />
-          <StatBox label="Tool calls (last)" value={stats.tool_calls || "..."} color="#7F9CF5" />
+          <StatBox label="Pending" value={counts.proposed || 0} color="#B45309" />
+          <StatBox label="Applied" value={counts.applied || 0} color="#0B7A68" />
+          <StatBox label="Rejected" value={counts.rejected || 0} color="#DC2626" />
+          <StatBox label="Blocks" value={aegisBlocks} color="#DC2626" />
+          <StatBox label="High-risk" value={aegisHighRisk} color="#B45309" />
+          <StatBox label="Alerts (24h)" value={vigilAlerts24h} color="#7C3AED" />
+          <StatBox label="Tool calls (last)" value={stats.tool_calls || "..."} color="#4F5BC9" />
         </div>
 
         {error && (
           <div
             style={{
               padding: "12px 16px",
-              background: "#FF6B6B22",
-              border: "1px solid #FF6B6B66",
+              background: "#DC262622",
+              border: "1px solid #DC262666",
               borderRadius: "8px",
-              color: "#FF6B6B",
+              color: "#DC2626",
               fontSize: "13px",
               marginBottom: "16px",
             }}
           >
             ⚠️ {error}
             <br />
-            <span style={{ color: "#A0A0A0", fontSize: "11px" }}>
+            <span style={{ color: "#5B6979", fontSize: "11px" }}>
               Backend at http://localhost:8000 — is it running? Start with:{" "}
               <code>cd ai-server && uvicorn app:app --port 8000</code>
             </span>
@@ -316,7 +316,7 @@ function B6Dashboard() {
                 border: "none",
                 padding: "4px 0",
                 cursor: "pointer",
-                color: "#E0E6F7",
+                color: "#0D1320",
                 fontSize: "16px",
                 fontWeight: 600,
                 display: "flex",
@@ -328,7 +328,7 @@ function B6Dashboard() {
                 style={{
                   display: "inline-block",
                   width: 12,
-                  color: "#A0A0A0",
+                  color: "#5B6979",
                   fontSize: 11,
                   transform: campaignsOpen ? "rotate(90deg)" : "rotate(0deg)",
                   transition: "transform 100ms",
@@ -336,14 +336,14 @@ function B6Dashboard() {
               >
                 ▶
               </span>
-              📊 Campaigns ({filteredCampaigns.length}
+              Campaigns ({filteredCampaigns.length}
               {campaignFilter !== "all" ? ` / ${campaigns.length}` : ""})
-              <span style={{ fontSize: 12, fontWeight: 400, color: "#A0A0A0" }}>
+              <span style={{ fontSize: 12, fontWeight: 400, color: "#5B6979" }}>
                 · {dateRange.label}
               </span>
               {highlightedCampaign && campaignsOpen && (
-                <span style={{ color: "#00FFE7", fontSize: "12px", fontWeight: 500 }}>
-                  · 🐝 Buzz is looking at {highlightedCampaign}
+                <span style={{ color: "#0A7C8C", fontSize: "12px", fontWeight: 500 }}>
+                  · Buzz is looking at {highlightedCampaign}
                 </span>
               )}
             </button>
@@ -351,9 +351,9 @@ function B6Dashboard() {
               <div style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
                 {campaigns.length > 0 && (
                   <div style={{ display: "flex", gap: 6 }}>
-                    <FilterTab label="All" count={campaigns.length} active={campaignFilter === "all"} onClick={() => setCampaignFilter("all")} color="#7F9CF5" />
-                    <FilterTab label="Active" count={enabledCount} active={campaignFilter === "enabled"} onClick={() => setCampaignFilter("enabled")} color="#4ECDC4" />
-                    <FilterTab label="Paused" count={pausedCount} active={campaignFilter === "paused"} onClick={() => setCampaignFilter("paused")} color="#FFA726" />
+                    <FilterTab label="All" count={campaigns.length} active={campaignFilter === "all"} onClick={() => setCampaignFilter("all")} color="#4F5BC9" />
+                    <FilterTab label="Active" count={enabledCount} active={campaignFilter === "enabled"} onClick={() => setCampaignFilter("enabled")} color="#0B7A68" />
+                    <FilterTab label="Paused" count={pausedCount} active={campaignFilter === "paused"} onClick={() => setCampaignFilter("paused")} color="#B45309" />
                   </div>
                 )}
                 <DateRangePicker value={dateRange} onChange={setDateRange} />
@@ -362,11 +362,11 @@ function B6Dashboard() {
           </div>
           {campaignsOpen && (
             campaigns.length === 0 ? (
-              <div style={{ padding: "20px", background: "#1F232B", borderRadius: "10px", textAlign: "center", color: "#A0A0A0" }}>
+              <div style={{ padding: "20px", background: "#FFFFFF", borderRadius: "10px", textAlign: "center", color: "#5B6979" }}>
                 Campaigns not loaded yet...
               </div>
             ) : filteredCampaigns.length === 0 ? (
-              <div style={{ padding: "20px", background: "#1F232B", borderRadius: "10px", textAlign: "center", color: "#A0A0A0", fontSize: 13 }}>
+              <div style={{ padding: "20px", background: "#FFFFFF", borderRadius: "10px", textAlign: "center", color: "#5B6979", fontSize: 13 }}>
                 No campaigns match this filter.
               </div>
             ) : (
@@ -421,8 +421,8 @@ function B6Dashboard() {
         {/* Approval queue + Activity feed */}
         <div style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr", gap: "20px" }}>
           <section>
-            <h2 style={{ fontSize: "16px", fontWeight: 600, marginBottom: "12px", color: "#E0E6F7" }}>
-              ⏳ Pending approval ({pending.length})
+            <h2 style={{ fontSize: "16px", fontWeight: 600, marginBottom: "12px", color: "#0D1320" }}>
+              Pending approval ({pending.length})
             </h2>
             <ApprovalQueue
               pending={pending}
@@ -432,15 +432,15 @@ function B6Dashboard() {
           </section>
 
           <section>
-            <h2 style={{ fontSize: "16px", fontWeight: 600, marginBottom: "12px", color: "#E0E6F7" }}>
-              📜 Activity Feed ({historical.length})
+            <h2 style={{ fontSize: "16px", fontWeight: 600, marginBottom: "12px", color: "#0D1320" }}>
+              Activity Feed ({historical.length})
             </h2>
             <ActivityFeed actions={historical.slice(0, 15)} />
           </section>
         </div>
 
         {loading && (
-          <div style={{ textAlign: "center", color: "#A0A0A0", fontSize: "12px", marginTop: "16px" }}>
+          <div style={{ textAlign: "center", color: "#5B6979", fontSize: "12px", marginTop: "16px" }}>
             Loading...
           </div>
         )}
@@ -457,12 +457,12 @@ const StatBox: React.FC<{ label: string; value: number | string; color: string }
   <div
     style={{
       padding: "12px",
-      background: "#1F232B",
+      background: "#FFFFFF",
       borderRadius: "10px",
       borderTop: `3px solid ${color}`,
     }}
   >
-    <div style={{ color: "#A0A0A0", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.5px" }}>
+    <div style={{ color: "#5B6979", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.5px" }}>
       {label}
     </div>
     <div style={{ color, fontSize: "22px", fontWeight: 700, marginTop: "4px" }}>{value}</div>
@@ -482,8 +482,8 @@ const FilterTab: React.FC<{
     style={{
       padding: "6px 12px",
       background: active ? `${color}22` : "transparent",
-      border: `1px solid ${active ? `${color}88` : "#2D3340"}`,
-      color: active ? color : "#A0A0A0",
+      border: `1px solid ${active ? `${color}88` : "#DCE3ED"}`,
+      color: active ? color : "#5B6979",
       borderRadius: 6,
       fontSize: 12,
       fontWeight: 600,

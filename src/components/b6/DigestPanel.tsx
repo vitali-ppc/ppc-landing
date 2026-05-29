@@ -125,9 +125,9 @@ export const DigestPanel: React.FC<{ customerLabel?: string }> = ({ customerLabe
     <div
       style={{
         padding: "20px",
-        background: "linear-gradient(135deg, #1F232B 0%, #15181D 100%)",
+        background: "linear-gradient(135deg, #FFFFFF 0%, #F6F8FB 100%)",
         borderRadius: "14px",
-        border: "1px solid #2D3340",
+        border: "1px solid #DCE3ED",
       }}
     >
       <div
@@ -148,7 +148,7 @@ export const DigestPanel: React.FC<{ customerLabel?: string }> = ({ customerLabe
             border: "none",
             padding: 0,
             cursor: "pointer",
-            color: "#E0E6F7",
+            color: "#0D1320",
             display: "flex",
             alignItems: "flex-start",
             gap: 8,
@@ -161,7 +161,7 @@ export const DigestPanel: React.FC<{ customerLabel?: string }> = ({ customerLabe
             style={{
               display: "inline-block",
               width: 12,
-              color: "#A0A0A0",
+              color: "#5B6979",
               fontSize: 11,
               transform: open ? "rotate(90deg)" : "rotate(0deg)",
               transition: "transform 100ms",
@@ -171,7 +171,7 @@ export const DigestPanel: React.FC<{ customerLabel?: string }> = ({ customerLabe
             ▶
           </span>
           <span style={{ minWidth: 0 }}>
-            <div style={{ fontSize: "14px", fontWeight: 600, color: "#E0E6F7" }}>
+            <div style={{ fontSize: "14px", fontWeight: 600, color: "#0D1320" }}>
               📊 Echo — Weekly Digest
             </div>
             {digest && (
@@ -190,9 +190,9 @@ export const DigestPanel: React.FC<{ customerLabel?: string }> = ({ customerLabe
                 title="Download a client-ready PDF of this digest"
                 style={{
                   padding: "6px 12px",
-                  background: busy === "pdf" ? "#2D3340" : "transparent",
-                  border: "1px solid #2D3340",
-                  color: busy === "pdf" ? "#666" : "#4ECDC4",
+                  background: busy === "pdf" ? "#DCE3ED" : "transparent",
+                  border: "1px solid #DCE3ED",
+                  color: busy === "pdf" ? "#666" : "#0B7A68",
                   borderRadius: "6px",
                   fontSize: "12px",
                   fontWeight: 600,
@@ -207,9 +207,9 @@ export const DigestPanel: React.FC<{ customerLabel?: string }> = ({ customerLabe
                 title="Email this digest to a client"
                 style={{
                   padding: "6px 12px",
-                  background: emailFormOpen ? "#FFA72622" : busy === "email" ? "#2D3340" : "transparent",
-                  border: `1px solid ${emailFormOpen ? "#FFA72688" : "#2D3340"}`,
-                  color: busy === "email" ? "#666" : "#FFA726",
+                  background: emailFormOpen ? "#B4530922" : busy === "email" ? "#DCE3ED" : "transparent",
+                  border: `1px solid ${emailFormOpen ? "#B4530988" : "#DCE3ED"}`,
+                  color: busy === "email" ? "#666" : "#B45309",
                   borderRadius: "6px",
                   fontSize: "12px",
                   fontWeight: 600,
@@ -225,9 +225,9 @@ export const DigestPanel: React.FC<{ customerLabel?: string }> = ({ customerLabe
             disabled={loading || busy !== null}
             style={{
               padding: "6px 14px",
-              background: loading ? "#2D3340" : "transparent",
-              border: "1px solid #2D3340",
-              color: loading ? "#666" : "#7F9CF5",
+              background: loading ? "#DCE3ED" : "transparent",
+              border: "1px solid #DCE3ED",
+              color: loading ? "#666" : "#4F5BC9",
               borderRadius: "6px",
               fontSize: "12px",
               fontWeight: 600,
@@ -243,13 +243,13 @@ export const DigestPanel: React.FC<{ customerLabel?: string }> = ({ customerLabe
         <div
           style={{
             padding: "12px",
-            background: "#0F1116",
-            border: "1px solid #FFA72644",
+            background: "#EEF2F8",
+            border: "1px solid #B4530944",
             borderRadius: "8px",
             marginBottom: "12px",
           }}
         >
-          <div style={{ fontSize: 11, color: "#FFA726", fontWeight: 700, marginBottom: 8, letterSpacing: 0.5 }}>
+          <div style={{ fontSize: 11, color: "#B45309", fontWeight: 700, marginBottom: 8, letterSpacing: 0.5 }}>
             ✉️ EMAIL REPORT TO CLIENT
           </div>
           <input
@@ -262,10 +262,10 @@ export const DigestPanel: React.FC<{ customerLabel?: string }> = ({ customerLabe
             style={{
               width: "100%",
               padding: "8px 10px",
-              background: "#15181D",
-              border: "1px solid #2D3340",
+              background: "#F6F8FB",
+              border: "1px solid #DCE3ED",
               borderRadius: 6,
-              color: "#E0E6F7",
+              color: "#0D1320",
               fontSize: 13,
               outline: "none",
               boxSizing: "border-box",
@@ -281,10 +281,10 @@ export const DigestPanel: React.FC<{ customerLabel?: string }> = ({ customerLabe
             style={{
               width: "100%",
               padding: "8px 10px",
-              background: "#15181D",
-              border: "1px solid #2D3340",
+              background: "#F6F8FB",
+              border: "1px solid #DCE3ED",
               borderRadius: 6,
-              color: "#E0E6F7",
+              color: "#0D1320",
               fontSize: 12,
               outline: "none",
               boxSizing: "border-box",
@@ -300,8 +300,8 @@ export const DigestPanel: React.FC<{ customerLabel?: string }> = ({ customerLabe
               style={{
                 padding: "6px 14px",
                 background: "transparent",
-                border: "1px solid #2D3340",
-                color: "#A0A0A0",
+                border: "1px solid #DCE3ED",
+                color: "#5B6979",
                 borderRadius: 6,
                 fontSize: 12,
                 fontWeight: 600,
@@ -315,9 +315,9 @@ export const DigestPanel: React.FC<{ customerLabel?: string }> = ({ customerLabe
               disabled={busy === "email" || !emailTo}
               style={{
                 padding: "6px 14px",
-                background: busy === "email" ? "#FFA72688" : "linear-gradient(135deg, #FF8E53, #FFA726)",
+                background: busy === "email" ? "#B4530988" : "linear-gradient(135deg, #C2410C, #B45309)",
                 border: "none",
-                color: "#0F1116",
+                color: "#EEF2F8",
                 borderRadius: 6,
                 fontSize: 12,
                 fontWeight: 700,
@@ -337,10 +337,10 @@ export const DigestPanel: React.FC<{ customerLabel?: string }> = ({ customerLabe
         <div
           style={{
             padding: "8px 10px",
-            background: emailStatus.startsWith("⚠️") ? "#FFA72622" : "#4ECDC422",
-            border: `1px solid ${emailStatus.startsWith("⚠️") ? "#FFA72666" : "#4ECDC444"}`,
+            background: emailStatus.startsWith("⚠️") ? "#B4530922" : "#0B7A6822",
+            border: `1px solid ${emailStatus.startsWith("⚠️") ? "#B4530966" : "#0B7A6844"}`,
             borderRadius: "6px",
-            color: emailStatus.startsWith("⚠️") ? "#FFA726" : "#4ECDC4",
+            color: emailStatus.startsWith("⚠️") ? "#B45309" : "#0B7A68",
             fontSize: "12px",
             marginBottom: "10px",
             lineHeight: 1.4,
@@ -354,10 +354,10 @@ export const DigestPanel: React.FC<{ customerLabel?: string }> = ({ customerLabe
         <div
           style={{
             padding: "10px",
-            background: "#FF6B6B22",
-            border: "1px solid #FF6B6B44",
+            background: "#DC262622",
+            border: "1px solid #DC262644",
             borderRadius: "6px",
-            color: "#FF6B6B",
+            color: "#DC2626",
             fontSize: "12px",
             marginBottom: "10px",
           }}
@@ -387,21 +387,21 @@ const DigestContent: React.FC<{ digest: EchoDigest }> = ({ digest }) => (
         marginBottom: "16px",
       }}
     >
-      <Stat label="Actions" value={digest.actions_count} color="#7F9CF5" />
-      <Stat label="Applied" value={digest.applied} color="#4ECDC4" />
-      <Stat label="Rejected" value={digest.rejected} color="#FFA726" />
-      <Stat label="🛡️ Blocks" value={digest.blocks} color="#FF6B6B" />
+      <Stat label="Actions" value={digest.actions_count} color="#4F5BC9" />
+      <Stat label="Applied" value={digest.applied} color="#0B7A68" />
+      <Stat label="Rejected" value={digest.rejected} color="#B45309" />
+      <Stat label="🛡️ Blocks" value={digest.blocks} color="#DC2626" />
     </div>
 
     <div
       style={{
         padding: "12px 14px",
-        background: "#0F1116",
+        background: "#EEF2F8",
         borderRadius: "8px",
         marginBottom: "16px",
         fontSize: "13px",
         lineHeight: 1.6,
-        color: "#C0C6D7",
+        color: "#37445A",
       }}
     >
       {digest.summary_text}
@@ -409,7 +409,7 @@ const DigestContent: React.FC<{ digest: EchoDigest }> = ({ digest }) => (
 
     {digest.top_decisions && digest.top_decisions.length > 0 && (
       <div style={{ marginBottom: "16px" }}>
-        <div style={{ fontSize: "11px", color: "#A0A0A0", textTransform: "uppercase", letterSpacing: "1px", marginBottom: "8px" }}>
+        <div style={{ fontSize: "11px", color: "#5B6979", textTransform: "uppercase", letterSpacing: "1px", marginBottom: "8px" }}>
           Top decisions
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
@@ -418,16 +418,16 @@ const DigestContent: React.FC<{ digest: EchoDigest }> = ({ digest }) => (
               key={i}
               style={{
                 padding: "8px 10px",
-                background: "#0F1116",
-                borderLeft: "2px solid #00BFAE",
+                background: "#EEF2F8",
+                borderLeft: "2px solid #0A8294",
                 borderRadius: "6px",
                 fontSize: "12px",
               }}
             >
               <span style={{ marginRight: "8px" }}>{t.emoji}</span>
-              <strong style={{ color: "#E0E6F7" }}>{t.agent}</strong>{" "}
-              <span style={{ color: "#A0A0A0" }}>· {t.when}</span>
-              <div style={{ color: "#C0C6D7", marginTop: "2px", lineHeight: 1.5 }}>{t.summary}</div>
+              <strong style={{ color: "#0D1320" }}>{t.agent}</strong>{" "}
+              <span style={{ color: "#5B6979" }}>· {t.when}</span>
+              <div style={{ color: "#37445A", marginTop: "2px", lineHeight: 1.5 }}>{t.summary}</div>
             </div>
           ))}
         </div>
@@ -438,14 +438,14 @@ const DigestContent: React.FC<{ digest: EchoDigest }> = ({ digest }) => (
       <div
         style={{
           padding: "12px 14px",
-          background: "#00BFAE15",
-          border: "1px solid #00BFAE44",
+          background: "#0A829415",
+          border: "1px solid #0A829444",
           borderRadius: "8px",
           fontSize: "13px",
-          color: "#E0E6F7",
+          color: "#0D1320",
         }}
       >
-        <div style={{ fontWeight: 600, marginBottom: "4px", color: "#00FFE7" }}>
+        <div style={{ fontWeight: 600, marginBottom: "4px", color: "#0A7C8C" }}>
           💡 Echo&apos;s advice
         </div>
         <div style={{ lineHeight: 1.6 }}>{digest.advice}</div>
@@ -458,7 +458,7 @@ const Stat: React.FC<{ label: string; value: number; color: string }> = ({ label
   <div
     style={{
       padding: "10px",
-      background: "#0F1116",
+      background: "#EEF2F8",
       borderRadius: "8px",
       borderTop: `2px solid ${color}`,
       textAlign: "center",

@@ -76,11 +76,11 @@ export function UsagePanel({ refreshIntervalMs = 30000 }: { refreshIntervalMs?: 
   return (
     <section
       style={{
-        background: "#1F232B",
+        background: "#FFFFFF",
         borderRadius: 10,
         padding: 16,
         marginBottom: 20,
-        border: "1px solid #2D3340",
+        border: "1px solid #DCE3ED",
       }}
     >
       <button
@@ -93,7 +93,7 @@ export function UsagePanel({ refreshIntervalMs = 30000 }: { refreshIntervalMs?: 
           border: "none",
           padding: 0,
           cursor: "pointer",
-          color: "#E0E6F7",
+          color: "#0D1320",
           fontSize: 16,
           fontWeight: 600,
           display: "flex",
@@ -108,7 +108,7 @@ export function UsagePanel({ refreshIntervalMs = 30000 }: { refreshIntervalMs?: 
             style={{
               display: "inline-block",
               width: 12,
-              color: "#A0A0A0",
+              color: "#5B6979",
               fontSize: 11,
               transform: open ? "rotate(90deg)" : "rotate(0deg)",
               transition: "transform 100ms",
@@ -121,8 +121,8 @@ export function UsagePanel({ refreshIntervalMs = 30000 }: { refreshIntervalMs?: 
             style={{
               marginLeft: 4,
               padding: "2px 8px",
-              background: total > 0 ? "#7F9CF522" : "#2D3340",
-              color: total > 0 ? "#7F9CF5" : "#A0A0A0",
+              background: total > 0 ? "#4F5BC922" : "#DCE3ED",
+              color: total > 0 ? "#4F5BC9" : "#5B6979",
               borderRadius: 12,
               fontSize: 12,
               fontWeight: 700,
@@ -131,7 +131,7 @@ export function UsagePanel({ refreshIntervalMs = 30000 }: { refreshIntervalMs?: 
             {fmtUsd(total)}
           </span>
         </span>
-        <span style={{ fontSize: 11, color: "#A0A0A0", fontWeight: 400 }}>
+        <span style={{ fontSize: 11, color: "#5B6979", fontWeight: 400 }}>
           {calls} LLM calls
         </span>
       </button>
@@ -145,7 +145,7 @@ export function UsagePanel({ refreshIntervalMs = 30000 }: { refreshIntervalMs?: 
               gap: 6,
               marginBottom: 12,
               fontSize: 11,
-              color: "#A0A0A0",
+              color: "#5B6979",
             }}
           >
             <span>Range:</span>
@@ -156,9 +156,9 @@ export function UsagePanel({ refreshIntervalMs = 30000 }: { refreshIntervalMs?: 
                 onClick={() => setDays(d)}
                 style={{
                   padding: "2px 8px",
-                  background: days === d ? "#7F9CF522" : "transparent",
-                  border: `1px solid ${days === d ? "#7F9CF555" : "#2D3340"}`,
-                  color: days === d ? "#7F9CF5" : "#A0A0A0",
+                  background: days === d ? "#4F5BC922" : "transparent",
+                  border: `1px solid ${days === d ? "#4F5BC955" : "#DCE3ED"}`,
+                  color: days === d ? "#4F5BC9" : "#5B6979",
                   borderRadius: 4,
                   fontSize: 11,
                   fontWeight: days === d ? 600 : 400,
@@ -174,10 +174,10 @@ export function UsagePanel({ refreshIntervalMs = 30000 }: { refreshIntervalMs?: 
             <div
               style={{
                 padding: "10px 12px",
-                background: "#FF6B6B22",
-                border: "1px solid #FF6B6B66",
+                background: "#DC262622",
+                border: "1px solid #DC262666",
                 borderRadius: 8,
-                color: "#FF6B6B",
+                color: "#DC2626",
                 fontSize: 12,
                 marginBottom: 12,
               }}
@@ -190,10 +190,10 @@ export function UsagePanel({ refreshIntervalMs = 30000 }: { refreshIntervalMs?: 
             <div
               style={{
                 padding: "20px 12px",
-                background: "#15181D",
-                border: "1px dashed #2D3340",
+                background: "#F6F8FB",
+                border: "1px dashed #DCE3ED",
                 borderRadius: 8,
-                color: "#A0A0A0",
+                color: "#5B6979",
                 fontSize: 13,
                 textAlign: "center",
               }}
@@ -223,12 +223,12 @@ export function UsagePanel({ refreshIntervalMs = 30000 }: { refreshIntervalMs?: 
                 style={{
                   marginTop: 8,
                   paddingTop: 10,
-                  borderTop: "1px solid #2D3340",
+                  borderTop: "1px solid #DCE3ED",
                   display: "flex",
                   justifyContent: "space-between",
                   fontSize: 13,
                   fontWeight: 600,
-                  color: "#E0E6F7",
+                  color: "#0D1320",
                 }}
               >
                 <span>Total ({calls} calls)</span>
@@ -269,14 +269,14 @@ function AgentRow({
         gap: 12,
         alignItems: "center",
         padding: "8px 12px",
-        background: "#15181D",
+        background: "#F6F8FB",
         borderRadius: 6,
         fontSize: 12,
       }}
     >
       <span style={{ fontSize: 18 }}>{emoji}</span>
       <div style={{ minWidth: 0 }}>
-        <div style={{ color: "#E0E6F7", fontWeight: 600 }}>{name}</div>
+        <div style={{ color: "#0D1320", fontWeight: 600 }}>{name}</div>
         <div style={{ color: "#666", fontSize: 10, marginTop: 2 }}>
           {calls} calls · {fmtTokens(inputTokens)} in · {fmtTokens(outputTokens)} out
           {cacheReadTokens > 0 && ` · ${fmtTokens(cacheReadTokens)} cached`}
@@ -285,15 +285,15 @@ function AgentRow({
       <span
         style={{
           padding: "1px 6px",
-          background: "#2D3340",
-          color: "#A0A0A0",
+          background: "#DCE3ED",
+          color: "#5B6979",
           borderRadius: 8,
           fontSize: 10,
         }}
       >
         {pctOfTotal.toFixed(0)}%
       </span>
-      <span style={{ color: "#7F9CF5", fontWeight: 600, minWidth: 60, textAlign: "right" }}>
+      <span style={{ color: "#4F5BC9", fontWeight: 600, minWidth: 60, textAlign: "right" }}>
         {fmtUsd(costUsd)}
       </span>
     </div>

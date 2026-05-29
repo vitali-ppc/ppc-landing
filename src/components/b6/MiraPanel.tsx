@@ -134,9 +134,9 @@ export const MiraPanel: React.FC<{
     <section
       style={{
         padding: "20px",
-        background: "linear-gradient(135deg, #1F232B 0%, #15181D 100%)",
+        background: "linear-gradient(135deg, #FFFFFF 0%, #F6F8FB 100%)",
         borderRadius: "14px",
-        border: "1px solid #2D3340",
+        border: "1px solid #DCE3ED",
       }}
     >
       <div
@@ -170,7 +170,7 @@ export const MiraPanel: React.FC<{
             style={{
               display: "inline-block",
               width: 12,
-              color: "#A0A0A0",
+              color: "#5B6979",
               fontSize: 11,
               transform: open ? "rotate(90deg)" : "rotate(0deg)",
               transition: "transform 100ms",
@@ -179,15 +179,15 @@ export const MiraPanel: React.FC<{
             ▶
           </span>
           <div>
-            <div style={{ fontSize: "14px", fontWeight: 600, color: "#E0E6F7" }}>
+            <div style={{ fontSize: "14px", fontWeight: 600, color: "#0D1320" }}>
               🎨 Mira — Creative Agent
               {variants.length > 0 && (
                 <span
                   style={{
                     marginLeft: 8,
                     padding: "2px 8px",
-                    background: "#FF8E5322",
-                    color: "#FF8E53",
+                    background: "#C2410C22",
+                    color: "#C2410C",
                     borderRadius: 12,
                     fontSize: 11,
                     fontWeight: 700,
@@ -210,9 +210,9 @@ export const MiraPanel: React.FC<{
             disabled={running}
             style={{
               padding: "6px 10px",
-              background: "#0F1116",
-              border: "1px solid #2D3340",
-              color: "#FFFFFF",
+              background: "#EEF2F8",
+              border: "1px solid #DCE3ED",
+              color: "#0D1320",
               borderRadius: "6px",
               fontSize: "12px",
             }}
@@ -229,10 +229,10 @@ export const MiraPanel: React.FC<{
             style={{
               padding: "6px 14px",
               background: running
-                ? "#2D3340"
-                : "linear-gradient(135deg, #FF8E53, #FF6B6B)",
+                ? "#DCE3ED"
+                : "linear-gradient(135deg, #C2410C, #DC2626)",
               border: "none",
-              color: running ? "#666" : "#FFFFFF",
+              color: running ? "#666" : "#0D1320",
               borderRadius: "6px",
               fontSize: "12px",
               fontWeight: 700,
@@ -248,10 +248,10 @@ export const MiraPanel: React.FC<{
         <div
           style={{
             padding: "8px 10px",
-            background: "#FF6B6B22",
-            border: "1px solid #FF6B6B44",
+            background: "#DC262622",
+            border: "1px solid #DC262644",
             borderRadius: "6px",
-            color: "#FF6B6B",
+            color: "#DC2626",
             fontSize: "11px",
             marginBottom: "10px",
           }}
@@ -313,8 +313,8 @@ const VariantCard: React.FC<{ v: CreativeVariant }> = ({ v }) => {
   return (
     <div
       style={{
-        background: "#0F1116",
-        border: "1px solid #2D3340",
+        background: "#EEF2F8",
+        border: "1px solid #DCE3ED",
         borderRadius: "12px",
         overflow: "hidden",
         display: "flex",
@@ -339,7 +339,7 @@ const VariantCard: React.FC<{ v: CreativeVariant }> = ({ v }) => {
                 right: "8px",
                 padding: "2px 6px",
                 background: "rgba(0,0,0,0.7)",
-                color: "#A0A0A0",
+                color: "#5B6979",
                 fontSize: "9px",
                 borderRadius: "4px",
                 textTransform: "uppercase",
@@ -366,8 +366,8 @@ const VariantCard: React.FC<{ v: CreativeVariant }> = ({ v }) => {
           <span
             style={{
               padding: "2px 8px",
-              background: "#FF8E5322",
-              color: "#FF8E53",
+              background: "#C2410C22",
+              color: "#C2410C",
               borderRadius: "999px",
               fontSize: "10px",
               fontWeight: 700,
@@ -380,8 +380,8 @@ const VariantCard: React.FC<{ v: CreativeVariant }> = ({ v }) => {
             title={`Channel: ${v.channel_type}`}
             style={{
               padding: "2px 8px",
-              background: "#7F9CF522",
-              color: "#7F9CF5",
+              background: "#4F5BC922",
+              color: "#4F5BC9",
               borderRadius: "999px",
               fontSize: "10px",
               fontWeight: 600,
@@ -418,7 +418,7 @@ const VariantCard: React.FC<{ v: CreativeVariant }> = ({ v }) => {
             label={`Descriptions (${v.descriptions.length})`}
             items={v.descriptions}
             maxChars={90}
-            color="#C0C6D7"
+            color="#37445A"
           />
         )}
 
@@ -427,7 +427,7 @@ const VariantCard: React.FC<{ v: CreativeVariant }> = ({ v }) => {
           <Section
             label={`🎨 Image prompts (${v.image_prompts.length})`}
             items={v.image_prompts}
-            color="#A0A0A0"
+            color="#5B6979"
             italic
           />
         )}
@@ -445,7 +445,7 @@ const VariantCard: React.FC<{ v: CreativeVariant }> = ({ v }) => {
           >
             💡 Why
           </div>
-          <div style={{ fontSize: "11px", color: "#C0C6D7", lineHeight: 1.5 }}>
+          <div style={{ fontSize: "11px", color: "#37445A", lineHeight: 1.5 }}>
             {v.rationale}
           </div>
         </div>
@@ -458,9 +458,9 @@ const VariantCard: React.FC<{ v: CreativeVariant }> = ({ v }) => {
           style={{
             marginTop: "12px",
             padding: "6px 10px",
-            background: copied ? "#34D39922" : "transparent",
-            border: `1px solid ${copied ? "#34D39988" : "#2D3340"}`,
-            color: copied ? "#34D399" : "#A0A0A0",
+            background: copied ? "#05966922" : "transparent",
+            border: `1px solid ${copied ? "#05966988" : "#DCE3ED"}`,
+            color: copied ? "#059669" : "#5B6979",
             borderRadius: 6,
             fontSize: 11,
             fontWeight: copied ? 600 : 400,
@@ -482,7 +482,7 @@ const Section: React.FC<{
   maxChars?: number;
   color?: string;
   italic?: boolean;
-}> = ({ label, items, maxChars, color = "#E0E6F7", italic }) => (
+}> = ({ label, items, maxChars, color = "#0D1320", italic }) => (
   <div style={{ marginBottom: "10px" }}>
     <div
       style={{
@@ -520,7 +520,7 @@ const Section: React.FC<{
               <span
                 style={{
                   fontSize: "9px",
-                  color: overLimit ? "#FF6B6B" : "#444",
+                  color: overLimit ? "#DC2626" : "#444",
                   flexShrink: 0,
                 }}
               >

@@ -64,11 +64,11 @@ export const RunBuzzButton: React.FC<{
           borderRadius: "8px",
           border: "none",
           background: showStop
-            ? "linear-gradient(135deg, #FF6B6B, #C84343)"
+            ? "linear-gradient(135deg, #DC2626, #B91C1C)"
             : busy
-              ? "#00BFAE"
-              : "linear-gradient(135deg, #00FFE7, #00BFAE)",
-          color: "#0F1116",
+              ? "#0A8294"
+              : "linear-gradient(135deg, #0A7C8C, #0A8294)",
+          color: "#EEF2F8",
           fontSize: "14px",
           fontWeight: 700,
           cursor: "pointer",
@@ -95,7 +95,7 @@ export const RunBuzzButton: React.FC<{
         <div
           style={{
             marginTop: "8px",
-            color: "#FF6B6B",
+            color: "#DC2626",
             fontSize: "12px",
             maxWidth: "300px",
           }}

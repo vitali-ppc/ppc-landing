@@ -22,9 +22,9 @@ type Audience = {
 };
 
 const MATCH_COLORS: Record<string, string> = {
-  EXACT: "#4ECDC4",
-  PHRASE: "#7F9CF5",
-  BROAD: "#FFA726",
+  EXACT: "#0B7A68",
+  PHRASE: "#4F5BC9",
+  BROAD: "#B45309",
 };
 
 const INTENT_LABEL: Record<string, string> = {
@@ -129,9 +129,9 @@ export const SagePanel: React.FC<{
     <section
       style={{
         padding: "20px",
-        background: "linear-gradient(135deg, #1F232B 0%, #15181D 100%)",
+        background: "linear-gradient(135deg, #FFFFFF 0%, #F6F8FB 100%)",
         borderRadius: "14px",
-        border: "1px solid #2D3340",
+        border: "1px solid #DCE3ED",
       }}
     >
       <div
@@ -165,7 +165,7 @@ export const SagePanel: React.FC<{
             style={{
               display: "inline-block",
               width: 12,
-              color: "#A0A0A0",
+              color: "#5B6979",
               fontSize: 11,
               transform: open ? "rotate(90deg)" : "rotate(0deg)",
               transition: "transform 100ms",
@@ -174,15 +174,15 @@ export const SagePanel: React.FC<{
             ▶
           </span>
           <div>
-            <div style={{ fontSize: "14px", fontWeight: 600, color: "#E0E6F7" }}>
+            <div style={{ fontSize: "14px", fontWeight: 600, color: "#0D1320" }}>
               🦉 Sage — Research Agent
               {(keywords.length > 0 || audiences.length > 0) && (
                 <span
                   style={{
                     marginLeft: 8,
                     padding: "2px 8px",
-                    background: "#7F9CF522",
-                    color: "#7F9CF5",
+                    background: "#4F5BC922",
+                    color: "#4F5BC9",
                     borderRadius: 12,
                     fontSize: 11,
                     fontWeight: 700,
@@ -204,9 +204,9 @@ export const SagePanel: React.FC<{
             disabled={running}
             style={{
               padding: "6px 10px",
-              background: "#0F1116",
-              border: "1px solid #2D3340",
-              color: "#FFFFFF",
+              background: "#EEF2F8",
+              border: "1px solid #DCE3ED",
+              color: "#0D1320",
               borderRadius: "6px",
               fontSize: "12px",
             }}
@@ -222,9 +222,9 @@ export const SagePanel: React.FC<{
             disabled={running}
             style={{
               padding: "6px 14px",
-              background: running ? "#2D3340" : "linear-gradient(135deg, #7F9CF5, #4A5BB8)",
+              background: running ? "#DCE3ED" : "linear-gradient(135deg, #4F5BC9, #4A5BB8)",
               border: "none",
-              color: running ? "#666" : "#FFFFFF",
+              color: running ? "#666" : "#0D1320",
               borderRadius: "6px",
               fontSize: "12px",
               fontWeight: 700,
@@ -240,10 +240,10 @@ export const SagePanel: React.FC<{
         <div
           style={{
             padding: "8px 10px",
-            background: "#FF6B6B22",
-            border: "1px solid #FF6B6B44",
+            background: "#DC262622",
+            border: "1px solid #DC262644",
             borderRadius: "6px",
-            color: "#FF6B6B",
+            color: "#DC2626",
             fontSize: "11px",
             marginBottom: "10px",
           }}
@@ -270,7 +270,7 @@ export const SagePanel: React.FC<{
             <div
               style={{
                 fontSize: "11px",
-                color: "#A0A0A0",
+                color: "#5B6979",
                 textTransform: "uppercase",
                 letterSpacing: "0.5px",
                 marginBottom: "10px",
@@ -306,7 +306,7 @@ export const SagePanel: React.FC<{
             <div
               style={{
                 fontSize: "11px",
-                color: "#A0A0A0",
+                color: "#5B6979",
                 textTransform: "uppercase",
                 letterSpacing: "0.5px",
                 marginBottom: "10px",
@@ -327,12 +327,12 @@ export const SagePanel: React.FC<{
 };
 
 const KeywordRow: React.FC<{ kw: Keyword }> = ({ kw }) => {
-  const color = MATCH_COLORS[kw.match_type] || "#A0A0A0";
+  const color = MATCH_COLORS[kw.match_type] || "#5B6979";
   return (
     <div
       style={{
         padding: "8px 10px",
-        background: "#0F1116",
+        background: "#EEF2F8",
         borderLeft: `2px solid ${color}`,
         borderRadius: "6px",
         marginBottom: "4px",
@@ -351,14 +351,14 @@ const KeywordRow: React.FC<{ kw: Keyword }> = ({ kw }) => {
         >
           {kw.match_type}
         </span>
-        <span style={{ fontSize: "13px", color: "#E0E6F7", fontWeight: 500 }}>
+        <span style={{ fontSize: "13px", color: "#0D1320", fontWeight: 500 }}>
           {kw.keyword}
         </span>
         {kw.estimated_intent && (
           <span style={{ fontSize: "10px", color: "#666" }}>{INTENT_LABEL[kw.estimated_intent] || kw.estimated_intent}</span>
         )}
       </div>
-      <div style={{ fontSize: "11px", color: "#A0A0A0", lineHeight: 1.4 }}>
+      <div style={{ fontSize: "11px", color: "#5B6979", lineHeight: 1.4 }}>
         {kw.rationale}
       </div>
     </div>
@@ -369,8 +369,8 @@ const AudienceRow: React.FC<{ a: Audience }> = ({ a }) => (
   <div
     style={{
       padding: "10px 12px",
-      background: "#0F1116",
-      borderLeft: "2px solid #7F9CF5",
+      background: "#EEF2F8",
+      borderLeft: "2px solid #4F5BC9",
       borderRadius: "8px",
     }}
   >
@@ -385,8 +385,8 @@ const AudienceRow: React.FC<{ a: Audience }> = ({ a }) => (
       <span
         style={{
           padding: "1px 6px",
-          background: "#7F9CF522",
-          color: "#7F9CF5",
+          background: "#4F5BC922",
+          color: "#4F5BC9",
           borderRadius: "4px",
           fontSize: "9px",
           fontWeight: 700,
@@ -395,20 +395,20 @@ const AudienceRow: React.FC<{ a: Audience }> = ({ a }) => (
       >
         {a.audience_type}
       </span>
-      <span style={{ fontSize: "13px", color: "#E0E6F7", fontWeight: 600 }}>
+      <span style={{ fontSize: "13px", color: "#0D1320", fontWeight: 600 }}>
         {a.audience_label}
       </span>
     </div>
-    <div style={{ fontSize: "11px", color: "#C0C6D7", lineHeight: 1.5, marginBottom: "4px" }}>
+    <div style={{ fontSize: "11px", color: "#37445A", lineHeight: 1.5, marginBottom: "4px" }}>
       {a.description}
     </div>
     <div
       style={{
         fontSize: "10px",
-        color: "#A0A0A0",
+        color: "#5B6979",
         fontStyle: "italic",
         paddingTop: "4px",
-        borderTop: "1px dashed #2D3340",
+        borderTop: "1px dashed #DCE3ED",
       }}
     >
       💡 {a.rationale}

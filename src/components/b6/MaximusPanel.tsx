@@ -62,9 +62,9 @@ export const MaximusPanel: React.FC<{ onChange?: () => void }> = ({ onChange }) 
     <div
       style={{
         padding: "20px",
-        background: "linear-gradient(135deg, #1F232B 0%, #15181D 100%)",
+        background: "linear-gradient(135deg, #FFFFFF 0%, #F6F8FB 100%)",
         borderRadius: "14px",
-        border: "1px solid #2D3340",
+        border: "1px solid #DCE3ED",
       }}
     >
       <div
@@ -76,7 +76,7 @@ export const MaximusPanel: React.FC<{ onChange?: () => void }> = ({ onChange }) 
         }}
       >
         <div>
-          <div style={{ fontSize: "14px", fontWeight: 600, color: "#E0E6F7" }}>
+          <div style={{ fontSize: "14px", fontWeight: 600, color: "#0D1320" }}>
             🐻 Maximus — Orchestrator
           </div>
           <div style={{ fontSize: "11px", color: "#666", marginTop: "2px" }}>
@@ -88,9 +88,9 @@ export const MaximusPanel: React.FC<{ onChange?: () => void }> = ({ onChange }) 
           disabled={running}
           style={{
             padding: "6px 14px",
-            background: running ? "#2D3340" : "linear-gradient(135deg, #00FFE7, #00BFAE)",
+            background: running ? "#DCE3ED" : "linear-gradient(135deg, #0A7C8C, #0A8294)",
             border: "none",
-            color: running ? "#666" : "#0F1116",
+            color: running ? "#666" : "#EEF2F8",
             borderRadius: "6px",
             fontSize: "12px",
             fontWeight: 700,
@@ -105,7 +105,7 @@ export const MaximusPanel: React.FC<{ onChange?: () => void }> = ({ onChange }) 
         <div
           style={{
             fontSize: "11px",
-            color: "#A0A0A0",
+            color: "#5B6979",
             textTransform: "uppercase",
             letterSpacing: "0.5px",
             marginBottom: "8px",
@@ -120,20 +120,20 @@ export const MaximusPanel: React.FC<{ onChange?: () => void }> = ({ onChange }) 
               onClick={() => onSetAutonomy(l.value)}
               style={{
                 padding: "8px",
-                background: autonomy === l.value ? "#00BFAE22" : "#0F1116",
+                background: autonomy === l.value ? "#0A829422" : "#EEF2F8",
                 border:
-                  autonomy === l.value ? "1px solid #00BFAE" : "1px solid #2D3340",
+                  autonomy === l.value ? "1px solid #0A8294" : "1px solid #DCE3ED",
                 borderRadius: "8px",
                 cursor: "pointer",
                 textAlign: "left",
-                color: "#FFFFFF",
+                color: "#0D1320",
               }}
             >
-              <div style={{ fontSize: "11px", fontWeight: 700, color: autonomy === l.value ? "#00FFE7" : "#E0E6F7" }}>
+              <div style={{ fontSize: "11px", fontWeight: 700, color: autonomy === l.value ? "#0A7C8C" : "#0D1320" }}>
                 {l.label}
               </div>
-              <div style={{ fontSize: "10px", color: "#A0A0A0", marginTop: "2px" }}>{l.desc}</div>
-              <div style={{ fontSize: "10px", color: "#7F9CF5", marginTop: "2px" }}>{l.price}</div>
+              <div style={{ fontSize: "10px", color: "#5B6979", marginTop: "2px" }}>{l.desc}</div>
+              <div style={{ fontSize: "10px", color: "#4F5BC9", marginTop: "2px" }}>{l.price}</div>
             </button>
           ))}
         </div>
@@ -143,10 +143,10 @@ export const MaximusPanel: React.FC<{ onChange?: () => void }> = ({ onChange }) 
         <div
           style={{
             padding: "8px 10px",
-            background: "#FF6B6B22",
-            border: "1px solid #FF6B6B44",
+            background: "#DC262622",
+            border: "1px solid #DC262644",
             borderRadius: "6px",
-            color: "#FF6B6B",
+            color: "#DC2626",
             fontSize: "11px",
             marginBottom: "10px",
           }}
@@ -169,16 +169,16 @@ export const MaximusPanel: React.FC<{ onChange?: () => void }> = ({ onChange }) 
 const CycleResult: React.FC<{ cycle: OrchestrationCycle }> = ({ cycle }) => (
   <>
     <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "8px", marginBottom: "14px" }}>
-      <Stat label="🐻 Auto-approved" value={cycle.auto_approved_count} color="#4ECDC4" />
-      <Stat label="⏳ Kept pending" value={cycle.kept_pending_count} color="#FFA726" />
-      <Stat label="🚫 Blocked" value={cycle.blocked_count} color="#FF6B6B" />
+      <Stat label="🐻 Auto-approved" value={cycle.auto_approved_count} color="#0B7A68" />
+      <Stat label="⏳ Kept pending" value={cycle.kept_pending_count} color="#B45309" />
+      <Stat label="🚫 Blocked" value={cycle.blocked_count} color="#DC2626" />
     </div>
 
     {cycle.auto_approved.length > 0 && (
       <DetailsList
         title="Auto-approved by Maximus"
         items={cycle.auto_approved}
-        color="#4ECDC4"
+        color="#0B7A68"
         defaultOpen
       />
     )}
@@ -186,14 +186,14 @@ const CycleResult: React.FC<{ cycle: OrchestrationCycle }> = ({ cycle }) => (
       <DetailsList
         title="Kept for manual approval"
         items={cycle.kept_pending}
-        color="#FFA726"
+        color="#B45309"
       />
     )}
     {cycle.blocked.length > 0 && (
       <DetailsList
         title="Blocked by Aegis"
         items={cycle.blocked}
-        color="#FF6B6B"
+        color="#DC2626"
       />
     )}
 
@@ -207,7 +207,7 @@ const Stat: React.FC<{ label: string; value: number; color: string }> = ({ label
   <div
     style={{
       padding: "10px",
-      background: "#0F1116",
+      background: "#EEF2F8",
       borderRadius: "8px",
       borderTop: `2px solid ${color}`,
       textAlign: "center",
@@ -242,7 +242,7 @@ const DetailsList: React.FC<{
           padding: 0,
           cursor: "pointer",
           fontSize: "10px",
-          color: "#A0A0A0",
+          color: "#5B6979",
           textTransform: "uppercase",
           letterSpacing: "0.5px",
           marginBottom: open ? "6px" : 0,
@@ -272,16 +272,16 @@ const DetailsList: React.FC<{
               key={x.action_id}
               style={{
                 padding: "6px 10px",
-                background: "#0F1116",
+                background: "#EEF2F8",
                 borderLeft: `2px solid ${color}`,
                 borderRadius: "4px",
                 fontSize: "11px",
-                color: "#C0C6D7",
+                color: "#37445A",
               }}
             >
-              <code style={{ color: "#7F9CF5" }}>{x.action_id.slice(0, 8)}..</code>
-              {x.campaign_id && <span style={{ color: "#A0A0A0" }}> · campaign {x.campaign_id}</span>}
-              <div style={{ color: "#A0A0A0", marginTop: "2px", lineHeight: 1.4 }}>{x.reason}</div>
+              <code style={{ color: "#4F5BC9" }}>{x.action_id.slice(0, 8)}..</code>
+              {x.campaign_id && <span style={{ color: "#5B6979" }}> · campaign {x.campaign_id}</span>}
+              <div style={{ color: "#5B6979", marginTop: "2px", lineHeight: 1.4 }}>{x.reason}</div>
             </div>
           ))}
           {hiddenCount > 0 && (

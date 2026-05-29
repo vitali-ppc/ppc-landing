@@ -136,10 +136,10 @@ export function GoogleAdsConnect({
         <div
           style={{
             padding: "10px 14px",
-            background: banner.kind === "success" ? "#10b98122" : "#FF6B6B22",
-            border: `1px solid ${banner.kind === "success" ? "#10b98166" : "#FF6B6B66"}`,
+            background: banner.kind === "success" ? "#05966922" : "#DC262622",
+            border: `1px solid ${banner.kind === "success" ? "#05966966" : "#DC262666"}`,
             borderRadius: "8px",
-            color: banner.kind === "success" ? "#10b981" : "#FF6B6B",
+            color: banner.kind === "success" ? "#059669" : "#DC2626",
             fontSize: "13px",
             marginBottom: "12px",
             display: "flex",
@@ -169,8 +169,8 @@ export function GoogleAdsConnect({
         <div
           style={{
             padding: "20px 24px",
-            background: "linear-gradient(135deg, #1F232B 0%, #1A2331 100%)",
-            border: "1px solid #2D3441",
+            background: "linear-gradient(135deg, #FFFFFF 0%, #EEF2F8 100%)",
+            border: "1px solid #DCE3ED",
             borderRadius: "12px",
             display: "flex",
             justifyContent: "space-between",
@@ -179,10 +179,10 @@ export function GoogleAdsConnect({
           }}
         >
           <div>
-            <div style={{ fontSize: "16px", fontWeight: 600, color: "#E0E6F7", marginBottom: "6px" }}>
+            <div style={{ fontSize: "16px", fontWeight: 600, color: "#0D1320", marginBottom: "6px" }}>
               🐝 Connect Google Ads to put the agents on your real data
             </div>
-            <div style={{ fontSize: "13px", color: "#A0A0A0", lineHeight: 1.5 }}>
+            <div style={{ fontSize: "13px", color: "#5B6979", lineHeight: 1.5 }}>
               Right now Buzz/Aegis/Vox are working on mock campaigns. Once connected they'll see
               your real campaigns, ROAS, conversions — and propose real changes.
             </div>
@@ -192,8 +192,8 @@ export function GoogleAdsConnect({
             disabled={connecting}
             style={{
               padding: "12px 24px",
-              background: connecting ? "#2D3441" : "#00FFE7",
-              color: connecting ? "#A0A0A0" : "#0F1116",
+              background: connecting ? "#DCE3ED" : "#0A7C8C",
+              color: connecting ? "#5B6979" : "#EEF2F8",
               border: "none",
               borderRadius: "8px",
               fontWeight: 600,
@@ -212,8 +212,8 @@ export function GoogleAdsConnect({
           style={{
             position: "relative",
             padding: "12px 16px",
-            background: "#1F232B",
-            border: "1px solid #2D3441",
+            background: "#FFFFFF",
+            border: "1px solid #DCE3ED",
             borderRadius: "10px",
             display: "flex",
             alignItems: "center",
@@ -221,7 +221,7 @@ export function GoogleAdsConnect({
             flexWrap: "wrap",
           }}
         >
-          <span style={{ fontSize: "13px", color: "#10b981", fontWeight: 600 }}>
+          <span style={{ fontSize: "13px", color: "#059669", fontWeight: 600 }}>
             ✅ Google Ads
           </span>
 
@@ -230,10 +230,10 @@ export function GoogleAdsConnect({
             onClick={() => setOpen((v) => !v)}
             style={{
               padding: "6px 12px",
-              background: open ? "#2D3441" : "#0F1116",
-              border: "1px solid #2D3441",
+              background: open ? "#DCE3ED" : "#EEF2F8",
+              border: "1px solid #DCE3ED",
               borderRadius: "8px",
-              color: "#E0E6F7",
+              color: "#0D1320",
               fontSize: "13px",
               fontWeight: 500,
               cursor: "pointer",
@@ -252,7 +252,7 @@ export function GoogleAdsConnect({
                   <span style={{ fontWeight: 600 }}>
                     {active.descriptive_name || formatCustomerId(active.google_customer_id)}
                   </span>
-                  <span style={{ marginLeft: 8, color: "#A0A0A0", fontFamily: "monospace", fontSize: 11 }}>
+                  <span style={{ marginLeft: 8, color: "#5B6979", fontFamily: "monospace", fontSize: 11 }}>
                     {formatCustomerId(active.google_customer_id)}
                   </span>
                 </>
@@ -260,10 +260,10 @@ export function GoogleAdsConnect({
                 "—"
               )}
             </span>
-            <span style={{ color: "#A0A0A0", fontSize: 11 }}>▼</span>
+            <span style={{ color: "#5B6979", fontSize: 11 }}>▼</span>
           </button>
 
-          <span style={{ fontSize: "12px", color: "#A0A0A0" }}>
+          <span style={{ fontSize: "12px", color: "#5B6979" }}>
             {accounts.length} {accounts.length === 1 ? "account" : "accounts"} total
           </span>
 
@@ -274,8 +274,8 @@ export function GoogleAdsConnect({
               marginLeft: "auto",
               padding: "6px 12px",
               background: "transparent",
-              border: "1px solid #2D3441",
-              color: "#A0A0A0",
+              border: "1px solid #DCE3ED",
+              color: "#5B6979",
               borderRadius: "6px",
               fontSize: "12px",
               cursor: connecting ? "wait" : "pointer",
@@ -291,8 +291,8 @@ export function GoogleAdsConnect({
                 top: "calc(100% + 6px)",
                 left: 16,
                 width: "min(420px, calc(100% - 32px))",
-                background: "#15181D",
-                border: "1px solid #2D3441",
+                background: "#F6F8FB",
+                border: "1px solid #DCE3ED",
                 borderRadius: 10,
                 boxShadow: "0 12px 28px rgba(0,0,0,0.4)",
                 zIndex: 50,
@@ -300,7 +300,7 @@ export function GoogleAdsConnect({
               }}
             >
               {accounts.length > 8 && (
-                <div style={{ padding: "10px 12px", borderBottom: "1px solid #2D3441" }}>
+                <div style={{ padding: "10px 12px", borderBottom: "1px solid #DCE3ED" }}>
                   <input
                     autoFocus
                     type="text"
@@ -310,10 +310,10 @@ export function GoogleAdsConnect({
                     style={{
                       width: "100%",
                       padding: "8px 10px",
-                      background: "#0F1116",
-                      border: "1px solid #2D3441",
+                      background: "#EEF2F8",
+                      border: "1px solid #DCE3ED",
                       borderRadius: 6,
-                      color: "#E0E6F7",
+                      color: "#0D1320",
                       fontSize: 12,
                       outline: "none",
                       boxSizing: "border-box",
@@ -344,13 +344,13 @@ export function GoogleAdsConnect({
                           alignItems: "center",
                           gap: 10,
                           padding: "10px 12px",
-                          background: isActive ? "#00FFE71A" : "transparent",
-                          borderLeft: isActive ? "3px solid #00FFE7" : "3px solid transparent",
+                          background: isActive ? "#0A7C8C1A" : "transparent",
+                          borderLeft: isActive ? "3px solid #0A7C8C" : "3px solid transparent",
                           cursor: "pointer",
                           transition: "background 100ms",
                         }}
                         onMouseEnter={(e) => {
-                          if (!isActive) (e.currentTarget as HTMLDivElement).style.background = "#1F232B";
+                          if (!isActive) (e.currentTarget as HTMLDivElement).style.background = "#FFFFFF";
                         }}
                         onMouseLeave={(e) => {
                           if (!isActive) (e.currentTarget as HTMLDivElement).style.background = "transparent";
@@ -365,7 +365,7 @@ export function GoogleAdsConnect({
                           <div
                             style={{
                               fontSize: 13,
-                              color: isActive ? "#00FFE7" : "#E0E6F7",
+                              color: isActive ? "#0A7C8C" : "#0D1320",
                               fontWeight: isActive ? 600 : 500,
                               overflow: "hidden",
                               textOverflow: "ellipsis",
@@ -374,7 +374,7 @@ export function GoogleAdsConnect({
                           >
                             {a.descriptive_name || formatCustomerId(a.google_customer_id)}
                             {isActive && (
-                              <span style={{ marginLeft: 8, fontSize: 10, color: "#00FFE7" }}>active</span>
+                              <span style={{ marginLeft: 8, fontSize: 10, color: "#0A7C8C" }}>active</span>
                             )}
                           </div>
                           <div
@@ -397,8 +397,8 @@ export function GoogleAdsConnect({
                           style={{
                             padding: "4px 8px",
                             background: "transparent",
-                            border: "1px solid #2D3441",
-                            color: "#A0A0A0",
+                            border: "1px solid #DCE3ED",
+                            color: "#5B6979",
                             borderRadius: 4,
                             cursor: "pointer",
                             fontSize: 10,
