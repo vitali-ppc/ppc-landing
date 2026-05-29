@@ -154,7 +154,7 @@ const STYLES = `
 .kx-row:nth-child(2){ animation-delay:.08s } .kx-row:nth-child(3){ animation-delay:.16s }
 .kx-row:nth-child(4){ animation-delay:.24s } .kx-row:nth-child(5){ animation-delay:.32s }
 .kx-ava{ flex:none; width:34px; height:34px; border-radius:9px; background:var(--surface-2);
-  display:flex; align-items:center; justify-content:center; font-size:18px; }
+  display:flex; align-items:center; justify-content:center; color:var(--accent); }
 .kx-rmain{ flex:1; min-width:0; }
 .kx-rwho{ font-size:13px; font-weight:600; color:var(--text); }
 .kx-rwhat{ font-size:12.5px; color:var(--muted-2); line-height:1.45; margin-top:2px; }
@@ -199,7 +199,10 @@ const STYLES = `
 .kx-agent.live{ border-color:rgba(78,205,196,.4); }
 .kx-agent.soon{ opacity:.62; }
 .kx-agent:hover{ transform:translateY(-2px); }
-.kx-agent .em{ font-size:38px; margin-bottom:10px; }
+.kx-ic{ width:46px; height:46px; border-radius:12px; display:flex; align-items:center;
+  justify-content:center; background:rgba(10,124,140,.10); color:var(--accent); margin-bottom:14px; }
+.kx-ttl-ic{ display:inline-flex; color:var(--accent); }
+.kx-ttl-ic svg{ width:16px; height:16px; }
 .kx-agent .nm{ display:flex; align-items:center; gap:8px; margin-bottom:4px; }
 .kx-agent .nm span{ font-size:18px; font-weight:700; }
 .kx-stat{ font-family:var(--mono); font-size:10px; padding:2px 6px; border-radius:5px; font-weight:600; }
@@ -270,20 +273,20 @@ const STYLES = `
 
 /* ── Data ──────────────────────────────────────────────────────────────── */
 const FEED = [
-  { em: "🐝", who: "Buzz · Bidding", what: <>Cut bid −12% on <span className="kx-rnum">&ldquo;winter boots&rdquo;</span> · CPA <span className="kx-rnum">$42&rarr;$31</span></>, chip: "applied", cls: "ok" },
-  { em: "🛡️", who: "Aegis · Risk", what: <>Held budget <span className="kx-rnum">+40%</span> on Campaign 3 &mdash; auction volatile today</>, chip: "held", cls: "hold" },
-  { em: "🐝", who: "Buzz · Bidding", what: <>Paused 3 search terms · <span className="kx-rnum">$86/wk</span> wasted spend recovered</>, chip: "applied", cls: "ok" },
-  { em: "📊", who: "Echo · Reporting", what: <>Weekly digest ready &mdash; ROAS <span className="kx-rnum">3.1&rarr;3.6</span> across 4 campaigns</>, chip: "sent", cls: "sent" },
+  { icon: "bid", who: "Buzz · Bidding", what: <>Cut bid −12% on <span className="kx-rnum">&ldquo;winter boots&rdquo;</span> · CPA <span className="kx-rnum">$42&rarr;$31</span></>, chip: "applied", cls: "ok" },
+  { icon: "shield", who: "Aegis · Risk", what: <>Held budget <span className="kx-rnum">+40%</span> on Campaign 3 &mdash; auction volatile today</>, chip: "held", cls: "hold" },
+  { icon: "bid", who: "Buzz · Bidding", what: <>Paused 3 search terms · <span className="kx-rnum">$86/wk</span> wasted spend recovered</>, chip: "applied", cls: "ok" },
+  { icon: "chart", who: "Echo · Reporting", what: <>Weekly digest ready &mdash; ROAS <span className="kx-rnum">3.1&rarr;3.6</span> across 4 campaigns</>, chip: "sent", cls: "sent" },
 ];
 
 const TEAM = [
-  { emoji: "🐝", name: "Buzz", role: "Bidding Agent", desc: "Adjusts bids by performance. Explains every decision.", status: "live" },
-  { emoji: "🛡️", name: "Aegis", role: "Risk Agent", desc: "Reviews Buzz's calls. Blocks the risky ones. Tells you why.", status: "live" },
-  { emoji: "🐻", name: "Maximus", role: "Orchestrator", desc: "Coordinates the team. Escalates only what actually needs you.", status: "coming" },
-  { emoji: "🦊", name: "Vox", role: "Strategy", desc: "Allocates budget across campaigns and platforms.", status: "coming" },
-  { emoji: "🎨", name: "Mira", role: "Creative", desc: "Generates ad copy and images. Runs A/B tests.", status: "coming" },
-  { emoji: "🦉", name: "Sage", role: "Research", desc: "Finds new keywords, audiences, and competitors.", status: "coming" },
-  { emoji: "📊", name: "Echo", role: "Reporting", desc: "Weekly digest by email or Telegram, in plain English.", status: "coming" },
+  { icon: "bid", name: "Buzz", role: "Bidding Agent", desc: "Adjusts bids by performance. Explains every decision.", status: "live" },
+  { icon: "shield", name: "Aegis", role: "Risk Agent", desc: "Reviews Buzz's calls. Blocks the risky ones. Tells you why.", status: "live" },
+  { icon: "stack", name: "Maximus", role: "Orchestrator", desc: "Coordinates the team. Escalates only what actually needs you.", status: "coming" },
+  { icon: "target", name: "Vox", role: "Strategy", desc: "Allocates budget across campaigns and platforms.", status: "coming" },
+  { icon: "spark", name: "Mira", role: "Creative", desc: "Generates ad copy and images. Runs A/B tests.", status: "coming" },
+  { icon: "search", name: "Sage", role: "Research", desc: "Finds new keywords, audiences, and competitors.", status: "coming" },
+  { icon: "chart", name: "Echo", role: "Reporting", desc: "Weekly digest by email or Telegram, in plain English.", status: "coming" },
 ];
 
 const TIERS = [
@@ -306,6 +309,23 @@ const TIERS = [
     highlight: false,
   },
 ];
+
+/* ── Icons (clean monoline, no emoji) ───────────────────────────────────── */
+const ICONS: Record<string, React.ReactNode> = {
+  bid: <><path d="M3 17l6-6 4 4 7-7" /><path d="M17 7h4v4" /></>,
+  shield: <path d="M12 3l7 3v5.5c0 4.2-2.9 7.3-7 8.5-4.1-1.2-7-4.3-7-8.5V6z" />,
+  stack: <><path d="M12 3l9 5-9 5-9-5 9-5z" /><path d="M3 13l9 5 9-5" /></>,
+  target: <><circle cx="12" cy="12" r="8" /><circle cx="12" cy="12" r="4" /><circle cx="12" cy="12" r="1" /></>,
+  spark: <path d="M12 3l1.9 5.4L19.5 10l-5.6 1.6L12 17l-1.9-5.4L4.5 10l5.6-1.6z" />,
+  search: <><circle cx="11" cy="11" r="7" /><path d="M21 21l-4.3-4.3" /></>,
+  chart: <><path d="M4 20V11M10 20V5M16 20v-6" /><path d="M3 20h18" /></>,
+};
+const AgentIcon: React.FC<{ id: string }> = ({ id }) => (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+    strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+    {ICONS[id]}
+  </svg>
+);
 
 /* ── Sections ──────────────────────────────────────────────────────────── */
 const TopBar: React.FC = () => (
@@ -365,13 +385,13 @@ const Hero: React.FC = () => (
       {/* live agent feed — the product's soul: visible, real-time work */}
       <div className="kx-feed" aria-label="Example of agent activity">
         <div className="kx-feed-top">
-          <div className="kx-feed-title">🐝🛡️ Agent activity</div>
+          <div className="kx-feed-title"><span className="kx-ttl-ic" aria-hidden><AgentIcon id="bid" /></span> Agent activity</div>
           <span className="kx-live">live</span>
         </div>
         <div className="kx-feed-body">
           {FEED.map((r, i) => (
             <div className="kx-row" key={i}>
-              <div className="kx-ava" aria-hidden>{r.em}</div>
+              <div className="kx-ava" aria-hidden><AgentIcon id={r.icon} /></div>
               <div className="kx-rmain">
                 <div className="kx-rwho">{r.who}</div>
                 <div className="kx-rwhat">{r.what}</div>
@@ -425,7 +445,7 @@ const MeetTheTeam: React.FC = () => (
       <div className="kx-grid-auto">
         {TEAM.map((m) => (
           <div key={m.name} className={`kx-agent ${m.status === "live" ? "live" : "soon"}`}>
-            <div className="em" aria-hidden>{m.emoji}</div>
+            <div className="kx-ic" aria-hidden><AgentIcon id={m.icon} /></div>
             <div className="nm">
               <span>{m.name}</span>
               <span className={`kx-stat ${m.status === "live" ? "l" : "s"}`}>{m.status === "live" ? "LIVE" : "SOON"}</span>
