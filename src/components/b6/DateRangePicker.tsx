@@ -224,7 +224,7 @@ export function DateRangePicker({
         }}
         title="Change date range"
       >
-        <span>📅</span>
+        <span></span>
         <span>{value.label}</span>
         <span style={{ color: "#5B6979", fontSize: 10 }}>▼</span>
       </button>

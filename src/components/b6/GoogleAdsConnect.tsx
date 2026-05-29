@@ -147,7 +147,7 @@ export function GoogleAdsConnect({
             alignItems: "center",
           }}
         >
-          <span>{banner.kind === "success" ? "✅" : "⚠️"} {banner.text}</span>
+          <span>{banner.kind === "success" ? "" : ""} {banner.text}</span>
           <button
             onClick={() => setBanner(null)}
             style={{
@@ -180,7 +180,7 @@ export function GoogleAdsConnect({
         >
           <div>
             <div style={{ fontSize: "16px", fontWeight: 600, color: "#0D1320", marginBottom: "6px" }}>
-              🐝 Connect Google Ads to put the agents on your real data
+              Connect Google Ads to put the agents on your real data
             </div>
             <div style={{ fontSize: "13px", color: "#5B6979", lineHeight: 1.5 }}>
               Right now Buzz/Aegis/Vox are working on mock campaigns. Once connected they'll see
@@ -202,7 +202,7 @@ export function GoogleAdsConnect({
               whiteSpace: "nowrap",
             }}
           >
-            {connecting ? "Opening Google..." : "🔗 Connect Google Ads"}
+            {connecting ? "Opening Google..." : "Connect Google Ads"}
           </button>
         </div>
       ) : (
@@ -222,7 +222,7 @@ export function GoogleAdsConnect({
           }}
         >
           <span style={{ fontSize: "13px", color: "#059669", fontWeight: 600 }}>
-            ✅ Google Ads
+            Google Ads
           </span>
 
           <button

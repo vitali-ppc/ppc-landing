@@ -182,7 +182,7 @@ export function VigilPanel({
           >
             ▶
           </span>
-          🦇 Vigil — Live Account Monitoring
+          Vigil — Live Account Monitoring
           {byCritical.length > 0 && (
             <span
               style={{
@@ -248,7 +248,7 @@ export function VigilPanel({
               opacity: runningNow ? 0.7 : 1,
             }}
           >
-            {runningNow ? "🦇 Running…" : "🦇 Run once"}
+            {runningNow ? "Running…" : "Run once"}
           </span>
           <span
             role="button"
@@ -277,8 +277,7 @@ export function VigilPanel({
               alignItems: "center",
             }}
           >
-            ⚙
-          </span>
+                      </span>
         </span>
       </button>
 
@@ -294,7 +293,7 @@ export function VigilPanel({
             fontSize: 12,
           }}
         >
-          🦇 Scan complete: {runResult}
+          Scan complete: {runResult}
         </div>
       )}
 
@@ -315,7 +314,7 @@ export function VigilPanel({
           }}
         >
           <span style={{ display: "flex", alignItems: "center", gap: 6 }}>
-            📅 Schedule
+            Schedule
             <select
               value={settings.schedule_mode}
               disabled={savingSettings}
@@ -384,7 +383,7 @@ export function VigilPanel({
                 marginBottom: 12,
               }}
             >
-              ⚠️ {error}
+              {error}
             </div>
           )}
           {alerts.length === 0 ? (
@@ -399,13 +398,13 @@ export function VigilPanel({
                 textAlign: "center",
               }}
             >
-              ✅ All quiet. Vigil hasn't spotted any anomalies in the last 7 days.
+              All quiet. Vigil hasn't spotted any anomalies in the last 7 days.
             </div>
           ) : (
             <>
               {byCritical.length > 0 && (
                 <SeverityGroup
-                  title="🚨 Critical"
+                  title="Critical"
                   color="#DC2626"
                   alerts={byCritical}
                   busyId={busyId}
@@ -415,7 +414,7 @@ export function VigilPanel({
               )}
               {byWarning.length > 0 && (
                 <SeverityGroup
-                  title="⚠️ Warning"
+                  title="Warning"
                   color="#B45309"
                   alerts={byWarning}
                   busyId={busyId}
@@ -425,7 +424,7 @@ export function VigilPanel({
               )}
               {byInfo.length > 0 && (
                 <SeverityGroup
-                  title="ℹ️ Info"
+                  title="ℹInfo"
                   color="#4F5BC9"
                   alerts={byInfo}
                   busyId={busyId}
@@ -533,7 +532,7 @@ function AlertCard({
                 fontWeight: 600,
               }}
             >
-              🛡️ {alert.aegis_score}
+              {alert.aegis_score}
             </span>
           )}
         </div>
@@ -680,7 +679,7 @@ function ScheduleBadge({ mode }: { mode: VigilScheduleMode | null }) {
         letterSpacing: 0.4,
       }}
     >
-      📅 {text}
+      {text}
     </span>
   );
 }

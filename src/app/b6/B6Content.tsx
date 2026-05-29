@@ -285,7 +285,7 @@ function B6Dashboard() {
               marginBottom: "16px",
             }}
           >
-            ⚠️ {error}
+            {error}
             <br />
             <span style={{ color: "#5B6979", fontSize: "11px" }}>
               Backend at http://localhost:8000 — is it running? Start with:{" "}

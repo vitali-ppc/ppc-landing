@@ -53,7 +53,7 @@ const FeedItem: React.FC<{ action: AgentAction }> = ({ action }) => {
     >
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "4px" }}>
         <div style={{ color: "#0D1320", fontWeight: 500 }}>
-          🐝 Buzz · {action.action_type === "update_bid" ? "raise bid" : action.action_type === "pause_campaign" ? "pause campaign" : action.action_type}
+          Buzz · {action.action_type === "update_bid" ? "raise bid" : action.action_type === "pause_campaign" ? "pause campaign" : action.action_type}
           {campaign && (
             <span style={{ color: "#5B6979", marginLeft: "6px" }}>
               on campaign <code style={{ color: "#4F5BC9" }}>{campaign}</code>

@@ -180,7 +180,7 @@ export const MiraPanel: React.FC<{
           </span>
           <div>
             <div style={{ fontSize: "14px", fontWeight: 600, color: "#0D1320" }}>
-              🎨 Mira — Creative Agent
+              Mira — Creative Agent
               {variants.length > 0 && (
                 <span
                   style={{
@@ -239,7 +239,7 @@ export const MiraPanel: React.FC<{
               cursor: running ? "wait" : "pointer",
             }}
           >
-            {running ? "🎨 Mira is creating..." : "Generate"}
+            {running ? "Mira is creating..." : "Generate"}
           </button>
         </div>
       </div>
@@ -256,7 +256,7 @@ export const MiraPanel: React.FC<{
             marginBottom: "10px",
           }}
         >
-          ⚠️ {error}
+          {error}
         </div>
       )}
 
@@ -425,7 +425,7 @@ const VariantCard: React.FC<{ v: CreativeVariant }> = ({ v }) => {
         {/* Image prompts — only for channels that need them */}
         {v.needs_images && v.image_prompts.length > 0 && (
           <Section
-            label={`🎨 Image prompts (${v.image_prompts.length})`}
+            label={`Image prompts (${v.image_prompts.length})`}
             items={v.image_prompts}
             color="#5B6979"
             italic
@@ -443,7 +443,7 @@ const VariantCard: React.FC<{ v: CreativeVariant }> = ({ v }) => {
               marginBottom: "2px",
             }}
           >
-            💡 Why
+            Why
           </div>
           <div style={{ fontSize: "11px", color: "#37445A", lineHeight: 1.5 }}>
             {v.rationale}
@@ -469,7 +469,7 @@ const VariantCard: React.FC<{ v: CreativeVariant }> = ({ v }) => {
             transition: "background 120ms, border-color 120ms, color 120ms",
           }}
         >
-          {copied ? "✓ Copied!" : "📋 Copy all to clipboard"}
+          {copied ? "✓ Copied!" : "Copy all to clipboard"}
         </button>
       </div>
     </div>

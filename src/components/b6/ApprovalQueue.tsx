@@ -29,7 +29,7 @@ export const ApprovalQueue: React.FC<{
           border: "1px dashed #DCE3ED",
         }}
       >
-        ✅ No actions pending approval
+        No actions pending approval
       </div>
     );
   }
@@ -95,7 +95,7 @@ const ApprovalRow: React.FC<{
     const campaignLabel = campaignName ? `${campaignName} (${campaign})` : campaign;
     if (supportsRealApply) {
       const ok = confirm(
-        `⚠️ This will REALLY ${actionLabel.toLowerCase()} in the client's Google Ads account.\n\n` +
+        `This will REALLY ${actionLabel.toLowerCase()} in the client's Google Ads account.\n\n` +
         `Campaign: ${campaignLabel}\n` +
         `This action is logged and counted against the daily safety cap (5 real applies/24h).\n\n` +
         `Proceed?`
@@ -154,7 +154,7 @@ const ApprovalRow: React.FC<{
         <div style={{ flex: 1 }}>
           <div style={{ color: "#0D1320", fontSize: "14px", fontWeight: 600, marginBottom: "4px", display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap" }}>
             <span>
-              {isSageProposal ? "🦉 Sage" : "🐝 Buzz"} proposes:{" "}
+              {isSageProposal ? "Sage" : "Buzz"} proposes:{" "}
               <span style={{ color: "#0A7C8C" }}>{actionLabel}</span>
             </span>
             {isGoogleRecommendation && (
@@ -171,7 +171,7 @@ const ApprovalRow: React.FC<{
                   letterSpacing: 0.5,
                 }}
               >
-                📍 GOOGLE
+                GOOGLE
               </span>
             )}
             {isSageProposal && (
@@ -188,7 +188,7 @@ const ApprovalRow: React.FC<{
                   letterSpacing: 0.5,
                 }}
               >
-                🚫 NEGATIVE
+                NEGATIVE
               </span>
             )}
             <AegisBadge review={review} compact />
@@ -215,7 +215,7 @@ const ApprovalRow: React.FC<{
                   title={`Account-level — applies to the entire Google Ads account ${customerId}`}
                   style={{ color: "#4F5BC9", fontWeight: 600 }}
                 >
-                  📂 Account-level
+                  Account-level
                 </span>{" "}
                 · account <code style={{ color: "#4F5BC9" }}>{customerId}</code> ·{" "}
               </>
@@ -272,7 +272,7 @@ const ApprovalRow: React.FC<{
             {busy === "approve"
               ? "..."
               : supportsRealApply
-                ? "⚠ Approve & Apply"
+                ? "Approve & Apply"
                 : "✓ Approve"}
           </button>
           <button

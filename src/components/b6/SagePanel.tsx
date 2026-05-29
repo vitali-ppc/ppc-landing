@@ -28,9 +28,9 @@ const MATCH_COLORS: Record<string, string> = {
 };
 
 const INTENT_LABEL: Record<string, string> = {
-  commercial: "💰 Commercial",
-  informational: "📚 Informational",
-  navigational: "🎯 Navigational",
+  commercial: "Commercial",
+  informational: "Informational",
+  navigational: "Navigational",
 };
 
 export const SagePanel: React.FC<{
@@ -175,7 +175,7 @@ export const SagePanel: React.FC<{
           </span>
           <div>
             <div style={{ fontSize: "14px", fontWeight: 600, color: "#0D1320" }}>
-              🦉 Sage — Research Agent
+              Sage — Research Agent
               {(keywords.length > 0 || audiences.length > 0) && (
                 <span
                   style={{
@@ -231,7 +231,7 @@ export const SagePanel: React.FC<{
               cursor: running ? "wait" : "pointer",
             }}
           >
-            {running ? "🦉 Sage is searching..." : "Run research"}
+            {running ? "Sage is searching..." : "Run research"}
           </button>
         </div>
       </div>
@@ -248,7 +248,7 @@ export const SagePanel: React.FC<{
             marginBottom: "10px",
           }}
         >
-          ⚠️ {error}
+          {error}
         </div>
       )}
 
@@ -276,7 +276,7 @@ export const SagePanel: React.FC<{
                 marginBottom: "10px",
               }}
             >
-              🔑 Suggested Keywords ({keywords.length})
+              Suggested Keywords ({keywords.length})
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: "10px", maxHeight: "400px", overflowY: "auto" }}>
               {Object.entries(groupedKeywords).map(([theme, kws]) => (
@@ -312,7 +312,7 @@ export const SagePanel: React.FC<{
                 marginBottom: "10px",
               }}
             >
-              👥 Audiences ({audiences.length})
+              Audiences ({audiences.length})
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: "8px", maxHeight: "400px", overflowY: "auto" }}>
               {audiences.map((a) => (
@@ -411,7 +411,7 @@ const AudienceRow: React.FC<{ a: Audience }> = ({ a }) => (
         borderTop: "1px dashed #DCE3ED",
       }}
     >
-      💡 {a.rationale}
+      {a.rationale}
     </div>
   </div>
 );

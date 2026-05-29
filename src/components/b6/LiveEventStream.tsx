@@ -50,7 +50,7 @@ export const LiveEventStream: React.FC<{
       >
         <h2 style={{ fontSize: "16px", fontWeight: 600, margin: 0, color: "#0D1320", display: "flex", alignItems: "center", gap: 8 }}>
           <span style={{ display: "inline-block", width: 12, color: "#5B6979", fontSize: 11, transition: "transform 100ms", transform: open ? "rotate(90deg)" : "rotate(0deg)" }}>▶</span>
-          🎬 Live agent stream
+          Live agent stream
           {!open && events.length > 0 && (
             <span style={{ fontSize: 11, fontWeight: 400, color: "#666" }}>
               ({events.length} event{events.length === 1 ? "" : "s"})
@@ -140,29 +140,29 @@ const EventLine: React.FC<{ event: LiveEvent }> = ({ event }) => {
 
 function describeEvent(e: LiveEvent): { color: string; mascot: string; text: string } {
   const MASCOT_EMOJI: Record<string, string> = {
-    Buzz: "🐝",
-    Aegis: "🛡️",
-    Echo: "📊",
-    Vox: "🦊",
-    Maximus: "🐻",
-    Mira: "🎨",
-    Sage: "🦉",
-    Vigil: "🦇",
+    Buzz: "",
+    Aegis: "",
+    Echo: "",
+    Vox: "",
+    Maximus: "",
+    Mira: "",
+    Sage: "",
+    Vigil: "",
   };
   const mascot =
-    MASCOT_EMOJI[e.mascot ?? ""] || (e.agent === "risk" ? "🛡️" : e.agent === "anomaly" ? "🦇" : "✨");
+    MASCOT_EMOJI[e.mascot ?? ""] || (e.agent === "risk" ? "" : e.agent === "anomaly" ? "" : "");
 
   switch (e.event_type) {
     case "session.start":
       return {
         color: "#4F5BC9",
-        mascot: "▶️",
+        mascot: "▶",
         text: `Session start (customer ${e.customer_id}, type ${e.agent_type})`,
       };
     case "session.complete":
       return {
         color: "#0B7A68",
-        mascot: "🏁",
+        mascot: "",
         text: `Session complete — ${e.proposed_ids?.length || 0} proposed, ${
           e.reviews?.length || 0
         } reviewed`,

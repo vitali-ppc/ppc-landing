@@ -15,7 +15,7 @@ const recommendationLabel = (rec: RiskReview["recommendation"]) => {
     case "approve":
       return "✓ Approve OK";
     case "review":
-      return "⚠ Review";
+      return "Review";
     case "block":
       return "✕ Block";
   }
@@ -36,7 +36,7 @@ export const AegisBadge: React.FC<{ review: RiskReview | null | undefined; compa
           fontStyle: "italic",
         }}
       >
-        🛡️ Aegis hasn't reviewed yet
+        Aegis hasn't reviewed yet
       </div>
     );
   }
@@ -57,7 +57,7 @@ export const AegisBadge: React.FC<{ review: RiskReview | null | undefined; compa
           textTransform: "uppercase",
         }}
       >
-        🛡️ {review.risk_score}
+        {review.risk_score}
       </span>
     );
   }
@@ -85,7 +85,7 @@ export const AegisBadge: React.FC<{ review: RiskReview | null | undefined; compa
         }}
       >
         <div style={{ fontWeight: 600, color }}>
-          🛡️ Aegis: {recommendationLabel(review.recommendation)}
+          Aegis: {recommendationLabel(review.recommendation)}
         </div>
         <div style={{ color: "#5B6979", fontSize: "11px" }}>
           risk score: <span style={{ color, fontWeight: 700 }}>{review.risk_score}/100</span>

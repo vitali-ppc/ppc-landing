@@ -77,7 +77,7 @@ export const MaximusPanel: React.FC<{ onChange?: () => void }> = ({ onChange }) 
       >
         <div>
           <div style={{ fontSize: "14px", fontWeight: 600, color: "#0D1320" }}>
-            🐻 Maximus — Orchestrator
+            Maximus — Orchestrator
           </div>
           <div style={{ fontSize: "11px", color: "#666", marginTop: "2px" }}>
             Decides what to auto-approve and what to escalate to you
@@ -97,7 +97,7 @@ export const MaximusPanel: React.FC<{ onChange?: () => void }> = ({ onChange }) 
             cursor: running ? "wait" : "pointer",
           }}
         >
-          {running ? "🐻 Maximus is thinking..." : "Run cycle"}
+          {running ? "Maximus is thinking..." : "Run cycle"}
         </button>
       </div>
 
@@ -151,7 +151,7 @@ export const MaximusPanel: React.FC<{ onChange?: () => void }> = ({ onChange }) 
             marginBottom: "10px",
           }}
         >
-          ⚠️ {error}
+          {error}
         </div>
       )}
 
@@ -169,9 +169,9 @@ export const MaximusPanel: React.FC<{ onChange?: () => void }> = ({ onChange }) 
 const CycleResult: React.FC<{ cycle: OrchestrationCycle }> = ({ cycle }) => (
   <>
     <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "8px", marginBottom: "14px" }}>
-      <Stat label="🐻 Auto-approved" value={cycle.auto_approved_count} color="#0B7A68" />
+      <Stat label="Auto-approved" value={cycle.auto_approved_count} color="#0B7A68" />
       <Stat label="⏳ Kept pending" value={cycle.kept_pending_count} color="#B45309" />
-      <Stat label="🚫 Blocked" value={cycle.blocked_count} color="#DC2626" />
+      <Stat label="Blocked" value={cycle.blocked_count} color="#DC2626" />
     </div>
 
     {cycle.auto_approved.length > 0 && (

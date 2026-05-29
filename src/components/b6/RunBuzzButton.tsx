@@ -86,10 +86,10 @@ export const RunBuzzButton: React.FC<{
         }}
       >
         {showStop
-          ? "🛑 Stop"
+          ? "Stop"
           : busy
-            ? "🐝 Buzz is thinking..."
-            : "🐝 Run Buzz now"}
+            ? "Buzz is thinking..."
+            : "Run Buzz now"}
       </button>
       {error && (
         <div

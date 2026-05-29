@@ -102,12 +102,12 @@ export const DigestPanel: React.FC<{ customerLabel?: string }> = ({ customerLabe
         note: emailNote.trim() || undefined,
       });
       if (res.success && res.delivered) {
-        setEmailStatus(`✅ Delivered to ${res.to}`);
+        setEmailStatus(`Delivered to ${res.to}`);
         setEmailFormOpen(false);
         setEmailNote("");
       } else if (res.success && res.mock_mode) {
         setEmailStatus(
-          `⚠️ Mock mode — saved to server log, NOT actually delivered. ` +
+          `Mock mode — saved to server log, NOT actually delivered. ` +
           `Set RESEND_API_KEY in .env.prod + verify domain to enable real sending.`
         );
         setEmailFormOpen(false);
@@ -172,7 +172,7 @@ export const DigestPanel: React.FC<{ customerLabel?: string }> = ({ customerLabe
           </span>
           <span style={{ minWidth: 0 }}>
             <div style={{ fontSize: "14px", fontWeight: 600, color: "#0D1320" }}>
-              📊 Echo — Weekly Digest
+              Echo — Weekly Digest
             </div>
             {digest && (
               <div style={{ fontSize: "11px", color: "#666", marginTop: "2px" }}>
@@ -199,7 +199,7 @@ export const DigestPanel: React.FC<{ customerLabel?: string }> = ({ customerLabe
                   cursor: busy ? "wait" : "pointer",
                 }}
               >
-                {busy === "pdf" ? "..." : "📄 PDF"}
+                {busy === "pdf" ? "..." : "PDF"}
               </button>
               <button
                 onClick={emailFormOpen ? closeEmailForm : openEmailForm}
@@ -216,7 +216,7 @@ export const DigestPanel: React.FC<{ customerLabel?: string }> = ({ customerLabe
                   cursor: busy ? "wait" : "pointer",
                 }}
               >
-                {busy === "email" ? "..." : emailFormOpen ? "✕ Cancel" : "✉️ Email"}
+                {busy === "email" ? "..." : emailFormOpen ? "✕ Cancel" : "Email"}
               </button>
             </>
           )}
@@ -234,7 +234,7 @@ export const DigestPanel: React.FC<{ customerLabel?: string }> = ({ customerLabe
               cursor: loading ? "wait" : "pointer",
             }}
           >
-            {loading ? "📊 Echo is thinking..." : digest ? "🔄 Refresh" : "📊 Generate"}
+            {loading ? "Echo is thinking..." : digest ? "Refresh" : "Generate"}
           </button>
         </div>
       </div>
@@ -250,7 +250,7 @@ export const DigestPanel: React.FC<{ customerLabel?: string }> = ({ customerLabe
           }}
         >
           <div style={{ fontSize: 11, color: "#B45309", fontWeight: 700, marginBottom: 8, letterSpacing: 0.5 }}>
-            ✉️ EMAIL REPORT TO CLIENT
+            EMAIL REPORT TO CLIENT
           </div>
           <input
             type="email"
@@ -337,10 +337,10 @@ export const DigestPanel: React.FC<{ customerLabel?: string }> = ({ customerLabe
         <div
           style={{
             padding: "8px 10px",
-            background: emailStatus.startsWith("⚠️") ? "#B4530922" : "#0B7A6822",
-            border: `1px solid ${emailStatus.startsWith("⚠️") ? "#B4530966" : "#0B7A6844"}`,
+            background: emailStatus.startsWith("") ? "#B4530922" : "#0B7A6822",
+            border: `1px solid ${emailStatus.startsWith("") ? "#B4530966" : "#0B7A6844"}`,
             borderRadius: "6px",
-            color: emailStatus.startsWith("⚠️") ? "#B45309" : "#0B7A68",
+            color: emailStatus.startsWith("") ? "#B45309" : "#0B7A68",
             fontSize: "12px",
             marginBottom: "10px",
             lineHeight: 1.4,
@@ -362,7 +362,7 @@ export const DigestPanel: React.FC<{ customerLabel?: string }> = ({ customerLabe
             marginBottom: "10px",
           }}
         >
-          ⚠️ {error}
+          {error}
         </div>
       )}
 
@@ -390,7 +390,7 @@ const DigestContent: React.FC<{ digest: EchoDigest }> = ({ digest }) => (
       <Stat label="Actions" value={digest.actions_count} color="#4F5BC9" />
       <Stat label="Applied" value={digest.applied} color="#0B7A68" />
       <Stat label="Rejected" value={digest.rejected} color="#B45309" />
-      <Stat label="🛡️ Blocks" value={digest.blocks} color="#DC2626" />
+      <Stat label="Blocks" value={digest.blocks} color="#DC2626" />
     </div>
 
     <div
@@ -446,7 +446,7 @@ const DigestContent: React.FC<{ digest: EchoDigest }> = ({ digest }) => (
         }}
       >
         <div style={{ fontWeight: 600, marginBottom: "4px", color: "#0A7C8C" }}>
-          💡 Echo&apos;s advice
+          Echo&apos;s advice
         </div>
         <div style={{ lineHeight: 1.6 }}>{digest.advice}</div>
       </div>

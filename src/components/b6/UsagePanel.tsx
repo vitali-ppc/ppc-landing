@@ -16,20 +16,20 @@ import React, { useEffect, useState, useCallback } from "react";
 import { getUsage, type UsageResponse, type AgentUsage } from "@/lib/b6-api";
 
 const AGENT_LABEL_MAP: Record<string, { emoji: string; name: string }> = {
-  bidding: { emoji: "🐝", name: "Buzz" },
-  risk: { emoji: "🛡️", name: "Aegis" },
-  reporting: { emoji: "📊", name: "Echo" },
-  strategy: { emoji: "🦊", name: "Vox" },
-  creative: { emoji: "🎨", name: "Mira" },
-  research: { emoji: "🦉", name: "Sage" },
-  anomaly: { emoji: "🦇", name: "Vigil" },
-  orchestrator: { emoji: "🐻", name: "Maximus" },
+  bidding: { emoji: "", name: "Buzz" },
+  risk: { emoji: "", name: "Aegis" },
+  reporting: { emoji: "", name: "Echo" },
+  strategy: { emoji: "", name: "Vox" },
+  creative: { emoji: "", name: "Mira" },
+  research: { emoji: "", name: "Sage" },
+  anomaly: { emoji: "", name: "Vigil" },
+  orchestrator: { emoji: "", name: "Maximus" },
 };
 
 function labelFor(a: AgentUsage): { emoji: string; name: string } {
   const known = AGENT_LABEL_MAP[a.agent];
   if (known) return known;
-  return { emoji: "🤖", name: a.mascot || a.agent };
+  return { emoji: "", name: a.mascot || a.agent };
 }
 
 function fmtUsd(n: number): string {
@@ -116,7 +116,7 @@ export function UsagePanel({ refreshIntervalMs = 30000 }: { refreshIntervalMs?: 
           >
             ▶
           </span>
-          💰 Usage (last {days}d)
+          Usage (last {days}d)
           <span
             style={{
               marginLeft: 4,
@@ -182,7 +182,7 @@ export function UsagePanel({ refreshIntervalMs = 30000 }: { refreshIntervalMs?: 
                 marginBottom: 12,
               }}
             >
-              ⚠️ {error}
+              {error}
             </div>
           )}
 

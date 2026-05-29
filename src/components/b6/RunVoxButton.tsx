@@ -88,10 +88,10 @@ export const RunVoxButton: React.FC<{
         }}
       >
         {showStop
-          ? "🛑 Stop"
+          ? "Stop"
           : busy
-            ? "🦊 Vox is thinking..."
-            : "🦊 Run Vox now"}
+            ? "Vox is thinking..."
+            : "Run Vox now"}
       </button>
       {error && (
         <div
