@@ -19,9 +19,7 @@ const homeJsonLd = {
         width: 512,
         height: 512,
       },
-      sameAs: [
-        "https://github.com/vitali-ppc",
-      ],
+      sameAs: ["https://github.com/vitali-ppc"],
       description:
         "Kampaio builds B6, an autonomous AI agent system that manages Google Ads campaigns for SMB and DTC advertisers.",
       knowsAbout: [
@@ -63,244 +61,377 @@ const homeJsonLd = {
   ],
 };
 
-export default function HomeContent() {
-  return (
-    <div
-      style={{
-        background: "#0F1116",
-        color: "#FFFFFF",
-        fontFamily: "system-ui, -apple-system, sans-serif",
-        minHeight: "100vh",
-      }}
-    >
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(homeJsonLd) }}
-      />
-      <Hero />
-      <HowItWorks />
-      <MeetTheTeam />
-      <Pricing />
-      <CTA />
-      <Footer />
-    </div>
-  );
+/* ── Styles (states, responsive, motion live here — inline can't do them) ── */
+const STYLES = `
+.kx{
+  --bg:#0F1116; --surface:#15181D; --surface-2:#1F232B; --border:#2D3340;
+  --border-soft:#1F232B; --text:#F4F6FA; --muted:#9BA3B4; --muted-2:#C0C6D7;
+  --accent:#00FFE7; --accent-2:#00BFAE; --teal:#4ECDC4; --warn:#FFA726;
+  --danger:#FF6B6B; --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+  background:var(--bg); color:var(--text);
+  font-family:system-ui,-apple-system,"Segoe UI",sans-serif; min-height:100vh;
 }
+.kx a{ color:inherit; }
+.kx ::selection{ background:var(--accent); color:#06231f; }
+
+/* top bar */
+.kx-bar{ position:sticky; top:0; z-index:50; backdrop-filter:blur(10px);
+  background:rgba(15,17,22,.72); border-bottom:1px solid var(--border-soft); }
+.kx-bar-in{ max-width:1140px; margin:0 auto; padding:14px 24px;
+  display:flex; align-items:center; justify-content:space-between; gap:16px; }
+.kx-logo{ display:flex; align-items:center; gap:9px; font-weight:700; font-size:17px;
+  letter-spacing:-.01em; text-decoration:none; color:var(--text); }
+.kx-dot{ width:10px; height:10px; border-radius:99px; background:var(--accent);
+  box-shadow:0 0 12px var(--accent); }
+.kx-navlinks{ display:flex; align-items:center; gap:6px; }
+.kx-navlink{ padding:8px 12px; border-radius:8px; font-size:14px; color:var(--muted);
+  text-decoration:none; transition:color .15s,background .15s; }
+.kx-navlink:hover{ color:var(--text); background:var(--surface); }
+.kx-bar-cta{ display:flex; align-items:center; gap:8px; }
+
+/* buttons */
+.kx-btn{ display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  font-weight:700; font-size:15px; border-radius:10px; text-decoration:none;
+  cursor:pointer; transition:transform .12s,box-shadow .15s,background .15s,border-color .15s;
+  border:1px solid transparent; }
+.kx-btn:focus-visible{ outline:none; box-shadow:0 0 0 3px var(--accent); }
+.kx-btn-primary{ background:linear-gradient(135deg,var(--accent),var(--accent-2));
+  color:#06231f; padding:13px 22px; }
+.kx-btn-primary:hover{ transform:translateY(-1px); box-shadow:0 10px 28px -12px var(--accent); }
+.kx-btn-ghost{ background:transparent; border-color:var(--border); color:var(--text);
+  padding:13px 20px; }
+.kx-btn-ghost:hover{ border-color:var(--accent); color:var(--accent); }
+.kx-btn-sm{ padding:9px 16px; font-size:14px; }
+.kx-btn:disabled{ opacity:.6; cursor:wait; }
+
+/* hero */
+.kx-hero{ border-bottom:1px solid var(--border-soft);
+  background:radial-gradient(1100px 520px at 78% -8%,rgba(0,255,231,.10),transparent 60%),
+    linear-gradient(180deg,#13161C 0%,var(--bg) 70%); }
+.kx-hero-in{ max-width:1140px; margin:0 auto; padding:72px 24px 76px;
+  display:grid; grid-template-columns:1.05fr .95fr; gap:56px; align-items:center; }
+.kx-eyebrow{ display:inline-flex; align-items:center; gap:8px; padding:6px 13px;
+  border:1px solid var(--border); background:var(--surface); border-radius:999px;
+  font-family:var(--mono); font-size:12px; letter-spacing:.04em; text-transform:uppercase;
+  color:var(--muted-2); margin-bottom:22px; }
+.kx-pain{ font-family:var(--mono); font-size:13.5px; color:var(--warn);
+  letter-spacing:.01em; margin:0 0 14px; }
+.kx-h1{ font-size:clamp(40px,6vw,62px); font-weight:800; line-height:1.04;
+  letter-spacing:-.02em; margin:0 0 18px;
+  background:linear-gradient(135deg,#FFFFFF 35%,var(--accent));
+  -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+.kx-sub{ font-size:clamp(16px,2.1vw,19px); color:var(--muted-2); line-height:1.55;
+  max-width:560px; margin:0 0 28px; }
+.kx-sub strong{ color:var(--text); }
+.kx-cta-row{ display:flex; gap:12px; flex-wrap:wrap; margin-bottom:30px; }
+
+/* economic wedge */
+.kx-wedge{ display:grid; grid-template-columns:repeat(3,1fr); gap:10px; max-width:560px; }
+.kx-wcell{ border:1px solid var(--border); border-radius:12px; padding:13px 14px;
+  background:var(--surface); }
+.kx-wcell.is-b6{ border-color:rgba(0,255,231,.5);
+  background:linear-gradient(180deg,rgba(0,255,231,.08),transparent); }
+.kx-wlabel{ font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); margin-bottom:6px; }
+.kx-wprice{ font-family:var(--mono); font-size:18px; font-weight:700; color:var(--text); }
+.kx-wcell.is-b6 .kx-wprice{ color:var(--accent); }
+.kx-wnote{ font-size:11px; color:var(--muted); margin-top:4px; }
+.kx-wprice.is-old{ color:var(--muted); text-decoration:line-through; text-decoration-color:var(--danger); }
+
+/* live agent feed (right column) */
+.kx-feed{ background:var(--surface); border:1px solid var(--border);
+  border-radius:18px; overflow:hidden; box-shadow:0 30px 80px -40px rgba(0,0,0,.8); }
+.kx-feed-top{ display:flex; align-items:center; justify-content:space-between;
+  padding:14px 16px; border-bottom:1px solid var(--border-soft); background:var(--surface-2); }
+.kx-feed-title{ display:flex; align-items:center; gap:8px; font-size:13px; font-weight:600; color:var(--muted-2); }
+.kx-live{ display:inline-flex; align-items:center; gap:6px; font-family:var(--mono);
+  font-size:11px; color:var(--teal); text-transform:uppercase; letter-spacing:.06em; }
+.kx-live::before{ content:""; width:7px; height:7px; border-radius:99px; background:var(--teal);
+  animation:kx-pulse 1.8s ease-in-out infinite; }
+.kx-feed-body{ padding:8px; }
+.kx-row{ display:flex; gap:11px; padding:12px 12px; border-radius:12px;
+  animation:kx-rise .5s ease both; }
+.kx-row+.kx-row{ margin-top:2px; }
+.kx-row:nth-child(2){ animation-delay:.08s } .kx-row:nth-child(3){ animation-delay:.16s }
+.kx-row:nth-child(4){ animation-delay:.24s } .kx-row:nth-child(5){ animation-delay:.32s }
+.kx-ava{ flex:none; width:34px; height:34px; border-radius:9px; background:var(--surface-2);
+  display:flex; align-items:center; justify-content:center; font-size:18px; }
+.kx-rmain{ flex:1; min-width:0; }
+.kx-rwho{ font-size:13px; font-weight:600; color:var(--text); }
+.kx-rwhat{ font-size:12.5px; color:var(--muted-2); line-height:1.45; margin-top:2px; }
+.kx-rnum{ font-family:var(--mono); color:var(--text); }
+.kx-chip{ flex:none; align-self:center; font-family:var(--mono); font-size:10px;
+  font-weight:600; letter-spacing:.05em; padding:3px 7px; border-radius:6px; }
+.kx-chip.ok{ color:var(--teal); background:rgba(78,205,196,.14); }
+.kx-chip.hold{ color:var(--warn); background:rgba(255,167,38,.14); }
+.kx-chip.sent{ color:var(--accent); background:rgba(0,255,231,.12); }
+
+/* sections */
+.kx-sec{ padding:84px 24px; }
+.kx-sec-in{ max-width:1140px; margin:0 auto; }
+.kx-sec.alt{ background:var(--surface); }
+.kx-h2{ font-size:clamp(28px,4vw,40px); font-weight:800; letter-spacing:-.02em; margin:0 0 12px; }
+.kx-sec-sub{ color:var(--muted); font-size:16px; margin:0 0 44px; max-width:620px; }
+
+/* bento / steps */
+.kx-bento{ display:grid; grid-template-columns:repeat(6,1fr); gap:16px; }
+.kx-card{ background:var(--surface-2); border:1px solid var(--border-soft);
+  border-radius:16px; padding:26px; transition:border-color .15s,transform .15s; }
+.kx-sec.alt .kx-card{ background:var(--bg); }
+.kx-card:hover{ border-color:var(--border); transform:translateY(-2px); }
+.kx-step-n{ width:38px; height:38px; border-radius:10px; background:var(--accent);
+  color:#06231f; display:flex; align-items:center; justify-content:center;
+  font-weight:800; font-size:18px; margin-bottom:16px; }
+.kx-card h3{ font-size:18px; font-weight:700; margin:0 0 8px; }
+.kx-card p{ color:var(--muted-2); font-size:14px; line-height:1.6; margin:0; }
+.kx-mono-tag{ font-family:var(--mono); font-size:11px; text-transform:uppercase;
+  letter-spacing:.06em; color:var(--accent); margin-top:18px; }
+
+/* autonomy ladder */
+.kx-ladder{ display:flex; gap:10px; flex-wrap:wrap; margin-top:4px; }
+.kx-rung{ font-family:var(--mono); font-size:12px; padding:7px 12px; border-radius:8px;
+  border:1px solid var(--border); color:var(--muted-2); }
+.kx-rung b{ color:var(--accent); }
+
+/* team */
+.kx-grid-auto{ display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; }
+.kx-agent{ background:var(--bg); border:1px solid var(--border); border-radius:14px; padding:20px;
+  transition:border-color .15s,transform .15s; }
+.kx-agent.live{ border-color:rgba(78,205,196,.4); }
+.kx-agent.soon{ opacity:.62; }
+.kx-agent:hover{ transform:translateY(-2px); }
+.kx-agent .em{ font-size:38px; margin-bottom:10px; }
+.kx-agent .nm{ display:flex; align-items:center; gap:8px; margin-bottom:4px; }
+.kx-agent .nm span{ font-size:18px; font-weight:700; }
+.kx-stat{ font-family:var(--mono); font-size:10px; padding:2px 6px; border-radius:5px; font-weight:600; }
+.kx-stat.l{ background:rgba(78,205,196,.16); color:var(--teal); }
+.kx-stat.s{ background:rgba(255,167,38,.16); color:var(--warn); }
+.kx-agent .ro{ color:var(--muted); font-size:12px; margin-bottom:10px; }
+.kx-agent .de{ color:var(--muted-2); font-size:13px; line-height:1.5; }
+
+/* pricing */
+.kx-tiers{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; align-items:start; }
+.kx-tier{ background:var(--surface); border:1px solid var(--border-soft); border-radius:18px;
+  padding:30px; position:relative; transition:transform .15s,border-color .15s; }
+.kx-tier:hover{ transform:translateY(-3px); border-color:var(--border); }
+.kx-tier.hot{ border:1.5px solid var(--accent); background:linear-gradient(180deg,rgba(0,255,231,.05),var(--surface)); }
+.kx-badge{ position:absolute; top:-12px; left:50%; transform:translateX(-50%);
+  background:var(--accent); color:#06231f; padding:4px 12px; border-radius:999px;
+  font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; white-space:nowrap; }
+.kx-tier h3{ font-size:17px; font-weight:700; margin:0 0 8px; }
+.kx-price{ font-family:var(--mono); font-size:42px; font-weight:800; }
+.kx-per{ color:var(--muted); font-size:15px; font-family:var(--mono); }
+.kx-tier .td{ color:var(--muted); font-size:14px; margin:8px 0 22px; min-height:40px; }
+.kx-tier ul{ list-style:none; padding:0; margin:0 0 26px; }
+.kx-tier li{ color:var(--muted-2); font-size:14px; margin-bottom:10px; padding-left:24px; position:relative; }
+.kx-tier li::before{ content:"✓"; position:absolute; left:0; color:var(--teal); font-weight:700; }
+.kx-fineprint{ text-align:center; color:var(--muted); font-size:12px; margin-top:30px; }
+.kx-fineprint .hi{ color:var(--muted-2); }
+
+/* cta + footer + form */
+.kx-cta{ background:radial-gradient(800px 300px at 50% 0%,rgba(0,255,231,.08),transparent 60%),
+  linear-gradient(180deg,var(--bg),#13161C); }
+.kx-form{ display:flex; gap:10px; max-width:480px; flex-wrap:wrap; }
+.kx-input{ flex:1; min-width:230px; padding:14px 16px; font-size:15px; background:var(--surface-2);
+  border:1px solid var(--border); border-radius:10px; color:var(--text); outline:none;
+  transition:border-color .15s,box-shadow .15s; }
+.kx-input:focus{ border-color:var(--accent); box-shadow:0 0 0 3px rgba(0,255,231,.18); }
+.kx-input::placeholder{ color:var(--muted); }
+.kx-ok{ padding:18px 22px; background:rgba(78,205,196,.14); border:1px solid rgba(78,205,196,.45);
+  border-radius:12px; color:var(--teal); max-width:480px; font-size:15px; }
+.kx-err{ width:100%; color:var(--danger); font-size:13px; margin-top:6px; }
+.kx-foot{ padding:44px 24px; border-top:1px solid var(--border-soft); color:var(--muted); font-size:13px; }
+.kx-foot-in{ max-width:1140px; margin:0 auto; display:flex; justify-content:space-between;
+  gap:16px; flex-wrap:wrap; align-items:center; }
+.kx-foot a{ color:var(--muted-2); text-decoration:none; }
+.kx-foot a:hover{ color:var(--accent); }
+.kx-foot-links a{ margin-left:18px; }
+
+@keyframes kx-pulse{ 0%,100%{ opacity:1 } 50%{ opacity:.35 } }
+@keyframes kx-rise{ from{ opacity:0; transform:translateY(8px) } to{ opacity:1; transform:none } }
+
+/* tablet */
+@media (max-width:960px){
+  .kx-hero-in{ grid-template-columns:1fr; gap:40px; padding:56px 24px 60px; }
+  .kx-bento{ grid-template-columns:1fr 1fr; }
+  .kx-tiers{ grid-template-columns:1fr; max-width:460px; margin:0 auto; }
+}
+/* phone */
+@media (max-width:640px){
+  .kx-navlinks{ display:none; }
+  .kx-bento{ grid-template-columns:1fr; }
+  .kx-wedge{ grid-template-columns:1fr; }
+  .kx-foot-in{ flex-direction:column; text-align:center; }
+  .kx-foot-links a{ margin:0 9px; }
+}
+@media (prefers-reduced-motion:reduce){
+  .kx *,.kx *::before,.kx *::after{ animation:none !important; transition:none !important; }
+}
+`;
+
+/* ── Data ──────────────────────────────────────────────────────────────── */
+const FEED = [
+  { em: "🐝", who: "Buzz · Bidding", what: <>Cut bid −12% on <span className="kx-rnum">&ldquo;winter boots&rdquo;</span> · CPA <span className="kx-rnum">$42&rarr;$31</span></>, chip: "applied", cls: "ok" },
+  { em: "🛡️", who: "Aegis · Risk", what: <>Held budget <span className="kx-rnum">+40%</span> on Campaign 3 &mdash; auction volatile today</>, chip: "held", cls: "hold" },
+  { em: "🐝", who: "Buzz · Bidding", what: <>Paused 3 search terms · <span className="kx-rnum">$86/wk</span> wasted spend recovered</>, chip: "applied", cls: "ok" },
+  { em: "📊", who: "Echo · Reporting", what: <>Weekly digest ready &mdash; ROAS <span className="kx-rnum">3.1&rarr;3.6</span> across 4 campaigns</>, chip: "sent", cls: "sent" },
+];
+
+const TEAM = [
+  { emoji: "🐝", name: "Buzz", role: "Bidding Agent", desc: "Adjusts bids by performance. Explains every decision.", status: "live" },
+  { emoji: "🛡️", name: "Aegis", role: "Risk Agent", desc: "Reviews Buzz's calls. Blocks the risky ones. Tells you why.", status: "live" },
+  { emoji: "🐻", name: "Maximus", role: "Orchestrator", desc: "Coordinates the team. Escalates only what actually needs you.", status: "coming" },
+  { emoji: "🦊", name: "Vox", role: "Strategy", desc: "Allocates budget across campaigns and platforms.", status: "coming" },
+  { emoji: "🎨", name: "Mira", role: "Creative", desc: "Generates ad copy and images. Runs A/B tests.", status: "coming" },
+  { emoji: "🦉", name: "Sage", role: "Research", desc: "Finds new keywords, audiences, and competitors.", status: "coming" },
+  { emoji: "📊", name: "Echo", role: "Reporting", desc: "Weekly digest by email or Telegram, in plain English.", status: "coming" },
+];
+
+const TIERS = [
+  {
+    name: "L1 Co-pilot", price: "$99", period: "/mo",
+    desc: "AI suggests; you approve every move.",
+    features: ["Buzz + Aegis active", "1 Google Ads account", "Approve every change", "Weekly digest", "Email support"],
+    highlight: false,
+  },
+  {
+    name: "L2 Approval", price: "$199", period: "/mo",
+    desc: "AI acts; you approve only the big calls.",
+    features: ["Everything in L1", "Auto-applies small changes", "Risk Agent enforcement", "Real-time alerts", "Priority support"],
+    highlight: true,
+  },
+  {
+    name: "L3 Autonomous", price: "$399", period: "/mo",
+    desc: "Full autopilot. The agents run it.",
+    features: ["Everything in L2", "Full autonomy", "Creative Agent (ad generation)", "Multi-platform (Meta, TikTok)", "Dedicated onboarding"],
+    highlight: false,
+  },
+];
+
+/* ── Sections ──────────────────────────────────────────────────────────── */
+const TopBar: React.FC = () => (
+  <header className="kx-bar">
+    <div className="kx-bar-in">
+      <a href="/" className="kx-logo"><span className="kx-dot" aria-hidden />kampaio</a>
+      <nav className="kx-navlinks" aria-label="Primary">
+        <a className="kx-navlink" href="#how">How it works</a>
+        <a className="kx-navlink" href="#team">The agents</a>
+        <a className="kx-navlink" href="#pricing">Pricing</a>
+        <a className="kx-navlink" href="/blog">Blog</a>
+      </nav>
+      <div className="kx-bar-cta">
+        <a className="kx-btn kx-btn-ghost kx-btn-sm" href="/auth/login">Sign in</a>
+        <a className="kx-btn kx-btn-primary kx-btn-sm" href="/auth/register">Start free</a>
+      </div>
+    </div>
+  </header>
+);
 
 const Hero: React.FC = () => (
-  <section
-    style={{
-      padding: "80px 24px 60px",
-      background: "linear-gradient(180deg, #15181D 0%, #0F1116 100%)",
-      borderBottom: "1px solid #1F232B",
-    }}
-  >
-    <div style={{ maxWidth: "1100px", margin: "0 auto", textAlign: "center" }}>
-      <div
-        style={{
-          display: "inline-block",
-          padding: "6px 14px",
-          background: "#00FFE71A",
-          border: "1px solid #00FFE744",
-          borderRadius: "999px",
-          color: "#00FFE7",
-          fontSize: "12px",
-          fontWeight: 600,
-          textTransform: "uppercase",
-          letterSpacing: "1px",
-          marginBottom: "24px",
-        }}
-      >
-        🚀 Private Beta · Limited Spots
-      </div>
-      <h1
-        style={{
-          fontSize: "56px",
-          fontWeight: 800,
-          lineHeight: 1.1,
-          margin: "0 0 20px",
-          background: "linear-gradient(135deg, #FFFFFF, #00FFE7)",
-          WebkitBackgroundClip: "text",
-          WebkitTextFillColor: "transparent",
-          letterSpacing: "-1px",
-        }}
-      >
-        Your PPC agency.
-        <br />
-        In a cabinet.
-      </h1>
-      <p
-        style={{
-          fontSize: "20px",
-          color: "#A0A0A0",
-          maxWidth: "680px",
-          margin: "0 auto 36px",
-          lineHeight: 1.5,
-        }}
-      >
-        AI agents that manage your Google Ads autonomously, bidding, budget,
-        creative, reporting. You see{" "}
-        <strong style={{ color: "#FFFFFF" }}>everything</strong> they do in real-time.
-        Approve big calls, the rest runs while you sleep.
-      </p>
+  <section className="kx-hero">
+    <div className="kx-hero-in">
+      <div>
+        <span className="kx-eyebrow"><span className="kx-dot" aria-hidden />Founding access · first 30 accounts</span>
+        <p className="kx-pain">ROAS tanked overnight? pMax burning budget? Agency invoice, zero answers?</p>
+        <h1 className="kx-h1">Your PPC agency.<br />In a cabinet.</h1>
+        <p className="kx-sub">
+          Seven AI agents run your Google Ads &mdash; bidding, budget, creative, reporting.
+          You watch <strong>every move</strong> in real time. Approve the big calls;
+          the rest runs while you sleep.
+        </p>
+        <div className="kx-cta-row">
+          <a className="kx-btn kx-btn-primary" href="/auth/register">Start free &rarr;</a>
+          <a className="kx-btn kx-btn-ghost" href="/b6">Watch the agents work</a>
+        </div>
 
-      <WaitlistForm source="hero" />
-
-      <div style={{ marginTop: 20, display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
-        <a
-          href="/auth/register"
-          style={{
-            padding: "10px 18px",
-            background: "#3B82F6",
-            color: "#FFFFFF",
-            textDecoration: "none",
-            borderRadius: 8,
-            fontSize: 14,
-            fontWeight: 600,
-          }}
-        >
-          Get started, free
-        </a>
-        <a
-          href="/auth/login"
-          style={{
-            padding: "10px 18px",
-            background: "transparent",
-            color: "#A0A0A0",
-            textDecoration: "none",
-            borderRadius: 8,
-            fontSize: 14,
-            fontWeight: 500,
-            border: "1px solid #2D3340",
-          }}
-        >
-          Sign in
-        </a>
+        <div className="kx-wedge" role="group" aria-label="Cost comparison">
+          <div className="kx-wcell">
+            <div className="kx-wlabel">Agency</div>
+            <div className="kx-wprice is-old">$2–5K</div>
+            <div className="kx-wnote">/mo, and you stay blind</div>
+          </div>
+          <div className="kx-wcell">
+            <div className="kx-wlabel">PPC tools</div>
+            <div className="kx-wprice">$499</div>
+            <div className="kx-wnote">/mo, you still operate it</div>
+          </div>
+          <div className="kx-wcell is-b6">
+            <div className="kx-wlabel">Kampaio</div>
+            <div className="kx-wprice">$99–399</div>
+            <div className="kx-wnote">/mo, it does the work</div>
+          </div>
+        </div>
       </div>
 
-      <a
-        href="/auth/register"
-        style={{
-          marginTop: "60px",
-          display: "block",
-          maxWidth: "900px",
-          margin: "60px auto 0",
-          padding: "60px 20px",
-          background: "linear-gradient(135deg, #15181D, #1F232B)",
-          borderRadius: "16px",
-          color: "#FFFFFF",
-          textDecoration: "none",
-          border: "1px solid #2D3340",
-        }}
-      >
-        <div style={{ color: "#A0A0A0", fontSize: "12px", marginBottom: "8px" }}>
-          🎬 Live demo (free signup)
+      {/* live agent feed — the product's soul: visible, real-time work */}
+      <div className="kx-feed" aria-label="Example of agent activity">
+        <div className="kx-feed-top">
+          <div className="kx-feed-title">🐝🛡️ Agent activity</div>
+          <span className="kx-live">live</span>
         </div>
-        <div style={{ fontSize: "32px", marginBottom: "12px" }}>🐝🛡️</div>
-        <div style={{ fontSize: "20px", fontWeight: 600, marginBottom: "8px" }}>
-          Watch Buzz &amp; Aegis work →
+        <div className="kx-feed-body">
+          {FEED.map((r, i) => (
+            <div className="kx-row" key={i}>
+              <div className="kx-ava" aria-hidden>{r.em}</div>
+              <div className="kx-rmain">
+                <div className="kx-rwho">{r.who}</div>
+                <div className="kx-rwhat">{r.what}</div>
+              </div>
+              <span className={`kx-chip ${r.cls}`}>{r.chip}</span>
+            </div>
+          ))}
         </div>
-        <div style={{ color: "#A0A0A0", fontSize: "13px" }}>
-          See 2 AI agents analyse 3 campaigns and propose changes in real-time
-        </div>
-      </a>
+      </div>
     </div>
   </section>
 );
 
 const HowItWorks: React.FC = () => (
-  <section style={{ padding: "80px 24px", background: "#0F1116" }}>
-    <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-      <SectionHeader title="How it works" subtitle="From sign-up to AI-on-autopilot in 3 steps" />
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "20px" }}>
-        <Step
-          n={1}
-          title="Connect Google Ads"
-          body="OAuth, read-only at first. We see your campaigns, you stay in control of the account."
-        />
-        <Step
-          n={2}
-          title="Pick autonomy level"
-          body="L1 Co-pilot (AI suggests, you approve) then L2 (AI acts on small changes) then L3 (full autopilot)."
-        />
-        <Step
-          n={3}
-          title="Watch agents work"
-          body="Real-time dashboard. Mascots show what each agent is doing. Every action logged with reasoning."
-        />
+  <section className="kx-sec alt" id="how">
+    <div className="kx-sec-in">
+      <h2 className="kx-h2">From sign-up to autopilot</h2>
+      <p className="kx-sec-sub">Connect, pick how much rope the AI gets, and watch every move it makes. You stay in control of the account the whole time.</p>
+      <div className="kx-bento">
+        <div className="kx-card" style={{ gridColumn: "span 2" }}>
+          <div className="kx-step-n">1</div>
+          <h3>Connect Google Ads</h3>
+          <p>OAuth, read-only at first. The agents see your campaigns; you keep ownership of the account.</p>
+        </div>
+        <div className="kx-card" style={{ gridColumn: "span 2" }}>
+          <div className="kx-step-n">2</div>
+          <h3>Pick an autonomy level</h3>
+          <p>Start as co-pilot, graduate to autopilot when you trust the work. Change it anytime.</p>
+          <div className="kx-ladder">
+            <span className="kx-rung"><b>L1</b> suggest</span>
+            <span className="kx-rung"><b>L2</b> act on small</span>
+            <span className="kx-rung"><b>L3</b> full autopilot</span>
+          </div>
+        </div>
+        <div className="kx-card" style={{ gridColumn: "span 2" }}>
+          <div className="kx-step-n">3</div>
+          <h3>Watch the agents work</h3>
+          <p>A real-time feed shows what each agent does and why. Every action is logged with its reasoning.</p>
+          <div className="kx-mono-tag">every change · logged · reversible</div>
+        </div>
       </div>
     </div>
   </section>
 );
 
-const Step: React.FC<{ n: number; title: string; body: string }> = ({ n, title, body }) => (
-  <div
-    style={{
-      padding: "28px",
-      background: "#15181D",
-      border: "1px solid #1F232B",
-      borderRadius: "16px",
-    }}
-  >
-    <div
-      style={{
-        width: "40px",
-        height: "40px",
-        borderRadius: "10px",
-        background: "#00FFE7",
-        color: "#0F1116",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        fontSize: "20px",
-        fontWeight: 800,
-        marginBottom: "16px",
-      }}
-    >
-      {n}
-    </div>
-    <h3 style={{ fontSize: "18px", fontWeight: 700, margin: "0 0 8px" }}>{title}</h3>
-    <p style={{ color: "#A0A0A0", lineHeight: 1.6, margin: 0, fontSize: "14px" }}>{body}</p>
-  </div>
-);
-
-const TEAM = [
-  { emoji: "🐝", name: "Buzz", role: "Bidding Agent", desc: "Корректирует ставки по перформансу. Объясняет каждое решение.", status: "live" },
-  { emoji: "🛡️", name: "Aegis", role: "Risk Agent", desc: "Ревьюит решения Buzz. Блокирует опасные. Поясняет почему.", status: "live" },
-  { emoji: "🐻", name: "Maximus", role: "Orchestrator", desc: "Координирует команду. Эскалирует тебе только важное.", status: "coming" },
-  { emoji: "🦊", name: "Vox", role: "Strategy", desc: "Распределяет бюджет между кампаниями и платформами.", status: "coming" },
-  { emoji: "🎨", name: "Mira", role: "Creative", desc: "Генерит ad copy + картинки. Запускает A/B тесты.", status: "coming" },
-  { emoji: "🦉", name: "Sage", role: "Research", desc: "Ищет новые ключи, аудитории, конкурентов.", status: "coming" },
-  { emoji: "📊", name: "Echo", role: "Reporting", desc: "Weekly digest по email/Telegram человеческим языком.", status: "coming" },
-];
-
 const MeetTheTeam: React.FC = () => (
-  <section style={{ padding: "80px 24px", background: "#15181D" }}>
-    <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-      <SectionHeader title="Meet your agency" subtitle="Каждый агент специалист со своей экспертизой" />
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "16px" }}>
+  <section className="kx-sec" id="team">
+    <div className="kx-sec-in">
+      <h2 className="kx-h2">Meet your agency</h2>
+      <p className="kx-sec-sub">Each agent is a specialist with one job. Two are live today; the rest ship as the cabinet grows.</p>
+      <div className="kx-grid-auto">
         {TEAM.map((m) => (
-          <div
-            key={m.name}
-            style={{
-              padding: "20px",
-              background: "#0F1116",
-              border: m.status === "live" ? "1px solid #4ECDC444" : "1px solid #2D3340",
-              borderRadius: "14px",
-              opacity: m.status === "live" ? 1 : 0.6,
-            }}
-          >
-            <div style={{ fontSize: "40px", marginBottom: "10px" }}>{m.emoji}</div>
-            <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "4px" }}>
-              <span style={{ fontSize: "18px", fontWeight: 700 }}>{m.name}</span>
-              {m.status === "live" ? (
-                <span style={{ fontSize: "10px", padding: "2px 6px", background: "#4ECDC422", color: "#4ECDC4", borderRadius: "4px", fontWeight: 600 }}>LIVE</span>
-              ) : (
-                <span style={{ fontSize: "10px", padding: "2px 6px", background: "#FFA72622", color: "#FFA726", borderRadius: "4px", fontWeight: 600 }}>SOON</span>
-              )}
+          <div key={m.name} className={`kx-agent ${m.status === "live" ? "live" : "soon"}`}>
+            <div className="em" aria-hidden>{m.emoji}</div>
+            <div className="nm">
+              <span>{m.name}</span>
+              <span className={`kx-stat ${m.status === "live" ? "l" : "s"}`}>{m.status === "live" ? "LIVE" : "SOON"}</span>
             </div>
-            <div style={{ color: "#A0A0A0", fontSize: "12px", marginBottom: "10px" }}>{m.role}</div>
-            <div style={{ color: "#C0C6D7", fontSize: "13px", lineHeight: 1.5 }}>{m.desc}</div>
+            <div className="ro">{m.role}</div>
+            <div className="de">{m.desc}</div>
           </div>
         ))}
       </div>
@@ -308,142 +439,41 @@ const MeetTheTeam: React.FC = () => (
   </section>
 );
 
-const TIERS = [
-  {
-    name: "L1 Co-pilot",
-    price: "$99",
-    period: "/month",
-    desc: "AI предлагает, ты апруваешь каждое действие",
-    features: ["Buzz + Aegis активны", "1 Google Ads аккаунт", "Approve every change", "Weekly digest", "Email support"],
-    highlight: false,
-  },
-  {
-    name: "L2 Approval",
-    price: "$199",
-    period: "/month",
-    desc: "AI действует, апрув только на крупное",
-    features: ["Всё из L1", "Auto-apply small changes", "Risk Agent enforcement", "Real-time alerts", "Priority support"],
-    highlight: true,
-  },
-  {
-    name: "L3 Autonomous",
-    price: "$399",
-    period: "/month",
-    desc: "Полный автопилот, AI ведёт сам",
-    features: ["Всё из L2", "Full autonomy", "Creative Agent (генерация креативов)", "Multi-platform (Meta, TikTok)", "Dedicated onboarding"],
-    highlight: false,
-  },
-];
-
 const Pricing: React.FC = () => (
-  <section style={{ padding: "80px 24px", background: "#0F1116" }}>
-    <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-      <SectionHeader
-        title="Pricing"
-        subtitle="Гибкая 3-уровневая модель: начинай с co-pilot, переходи к автопилоту"
-      />
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "20px" }}>
+  <section className="kx-sec alt" id="pricing">
+    <div className="kx-sec-in">
+      <h2 className="kx-h2">Pricing</h2>
+      <p className="kx-sec-sub">Three levels. Start as co-pilot, move to autopilot when you&apos;re ready. A fraction of a $2–5K/mo agency retainer.</p>
+      <div className="kx-tiers">
         {TIERS.map((t) => (
-          <div
-            key={t.name}
-            style={{
-              padding: "32px",
-              background: "#15181D",
-              border: t.highlight ? "2px solid #00FFE7" : "1px solid #1F232B",
-              borderRadius: "16px",
-              position: "relative",
-            }}
-          >
-            {t.highlight && (
-              <div
-                style={{
-                  position: "absolute",
-                  top: "-12px",
-                  left: "50%",
-                  transform: "translateX(-50%)",
-                  background: "#00FFE7",
-                  color: "#0F1116",
-                  padding: "4px 12px",
-                  borderRadius: "999px",
-                  fontSize: "11px",
-                  fontWeight: 700,
-                  textTransform: "uppercase",
-                  letterSpacing: "1px",
-                }}
-              >
-                Most Popular
-              </div>
-            )}
-            <h3 style={{ fontSize: "18px", fontWeight: 700, margin: "0 0 8px" }}>{t.name}</h3>
-            <div style={{ marginBottom: "12px" }}>
-              <span style={{ fontSize: "44px", fontWeight: 800 }}>{t.price}</span>
-              <span style={{ color: "#A0A0A0", fontSize: "16px" }}>{t.period}</span>
-            </div>
-            <p style={{ color: "#A0A0A0", margin: "0 0 24px", fontSize: "14px", minHeight: "40px" }}>
-              {t.desc}
-            </p>
-            <ul style={{ listStyle: "none", padding: 0, margin: "0 0 28px" }}>
-              {t.features.map((f) => (
-                <li
-                  key={f}
-                  style={{
-                    color: "#C0C6D7",
-                    fontSize: "14px",
-                    marginBottom: "10px",
-                    paddingLeft: "22px",
-                    position: "relative",
-                  }}
-                >
-                  <span style={{ position: "absolute", left: 0, color: "#4ECDC4" }}>✓</span>
-                  {f}
-                </li>
-              ))}
-            </ul>
-            <a
-              href="#waitlist"
-              style={{
-                display: "block",
-                padding: "12px",
-                background: t.highlight ? "linear-gradient(135deg, #00FFE7, #00BFAE)" : "transparent",
-                border: t.highlight ? "none" : "1px solid #2D3340",
-                color: t.highlight ? "#0F1116" : "#FFFFFF",
-                borderRadius: "8px",
-                fontSize: "14px",
-                fontWeight: 700,
-                textAlign: "center",
-                textDecoration: "none",
-              }}
-            >
-              Get on waitlist
+          <div key={t.name} className={`kx-tier ${t.highlight ? "hot" : ""}`}>
+            {t.highlight && <div className="kx-badge">Most popular</div>}
+            <h3>{t.name}</h3>
+            <div><span className="kx-price">{t.price}</span><span className="kx-per">{t.period}</span></div>
+            <p className="td">{t.desc}</p>
+            <ul>{t.features.map((f) => <li key={f}>{f}</li>)}</ul>
+            <a className={`kx-btn ${t.highlight ? "kx-btn-primary" : "kx-btn-ghost"}`} style={{ display: "flex", width: "100%" }} href="#waitlist">
+              Get started
             </a>
           </div>
         ))}
       </div>
-      <p style={{ textAlign: "center", color: "#666", fontSize: "12px", marginTop: "32px" }}>
-        Free 14-day trial · No credit card · Cancel anytime
-      </p>
+      <p className="kx-fineprint"><span className="hi">Free 14-day trial · No credit card · Cancel anytime</span></p>
     </div>
   </section>
 );
 
 const CTA: React.FC = () => (
-  <section
-    id="waitlist"
-    style={{
-      padding: "100px 24px",
-      background: "linear-gradient(180deg, #0F1116 0%, #15181D 100%)",
-    }}
-  >
-    <div style={{ maxWidth: "640px", margin: "0 auto", textAlign: "center" }}>
-      <h2 style={{ fontSize: "36px", fontWeight: 800, marginBottom: "16px" }}>
-        Ready to fire your agency?
-      </h2>
-      <p style={{ color: "#A0A0A0", fontSize: "18px", marginBottom: "32px", lineHeight: 1.5 }}>
-        Join the private beta. We&apos;re opening to{" "}
-        <strong style={{ color: "#FFFFFF" }}>30 first SMB owners</strong> who want their Google Ads
-        run by AI agents, not consultants.
+  <section className="kx-sec kx-cta" id="waitlist">
+    <div className="kx-sec-in" style={{ maxWidth: 640, textAlign: "center" }}>
+      <h2 className="kx-h2">Ready to fire the agency?</h2>
+      <p className="kx-sec-sub" style={{ margin: "0 auto 30px", color: "var(--muted-2)" }}>
+        Founding access is opening to the first <strong style={{ color: "var(--text)" }}>30 SMB owners</strong> who
+        want their Google Ads run by AI agents &mdash; not consultants.
       </p>
-      <WaitlistForm source="cta-bottom" />
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <WaitlistForm source="cta-bottom" />
+      </div>
     </div>
   </section>
 );
@@ -481,111 +511,60 @@ const WaitlistForm: React.FC<{ source: string }> = ({ source }) => {
 
   if (status === "success") {
     return (
-      <div
-        style={{
-          padding: "20px 24px",
-          background: "#4ECDC422",
-          border: "1px solid #4ECDC466",
-          borderRadius: "12px",
-          color: "#4ECDC4",
-          maxWidth: "480px",
-          margin: "0 auto",
-          fontSize: "15px",
-        }}
-      >
+      <div className="kx-ok">
         ✅ {message} {position && <strong>You&apos;re #{position}</strong>}
       </div>
     );
   }
 
   return (
-    <form
-      onSubmit={submit}
-      style={{
-        display: "flex",
-        gap: "10px",
-        maxWidth: "480px",
-        margin: "0 auto",
-        flexWrap: "wrap",
-        justifyContent: "center",
-      }}
-    >
+    <form onSubmit={submit} className="kx-form">
+      <label htmlFor={`wl-${source}`} style={{ position: "absolute", width: 1, height: 1, overflow: "hidden", clip: "rect(0 0 0 0)" }}>
+        Email address
+      </label>
       <input
+        id={`wl-${source}`}
+        className="kx-input"
         type="email"
         required
         placeholder="you@company.com"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        style={{
-          flex: 1,
-          minWidth: "240px",
-          padding: "14px 16px",
-          fontSize: "15px",
-          background: "#1F232B",
-          border: "1px solid #2D3340",
-          borderRadius: "10px",
-          color: "#FFFFFF",
-          outline: "none",
-        }}
       />
-      <button
-        type="submit"
-        disabled={status === "loading"}
-        style={{
-          padding: "14px 24px",
-          fontSize: "15px",
-          fontWeight: 700,
-          background: status === "loading" ? "#00BFAE" : "linear-gradient(135deg, #00FFE7, #00BFAE)",
-          color: "#0F1116",
-          border: "none",
-          borderRadius: "10px",
-          cursor: status === "loading" ? "wait" : "pointer",
-        }}
-      >
-        {status === "loading" ? "Adding..." : "Join waitlist →"}
+      <button type="submit" disabled={status === "loading"} className="kx-btn kx-btn-primary">
+        {status === "loading" ? "Adding…" : "Join waitlist →"}
       </button>
-      {status === "error" && (
-        <div style={{ width: "100%", color: "#FF6B6B", fontSize: "13px", marginTop: "8px" }}>
-          ⚠️ {message}
-        </div>
-      )}
+      {status === "error" && <div className="kx-err">⚠️ {message}</div>}
     </form>
   );
 };
 
 const Footer: React.FC = () => (
-  <footer
-    style={{
-      padding: "40px 24px",
-      borderTop: "1px solid #1F232B",
-      background: "#0F1116",
-      textAlign: "center",
-      color: "#666",
-      fontSize: "13px",
-    }}
-  >
-    <div style={{ marginBottom: "8px" }}>
-      🐝 B6, Autonomous PPC Cabinet · Private beta · 2026
-    </div>
-    <div>
-      <a href="/b6" style={{ color: "#7F9CF5", textDecoration: "none", margin: "0 8px" }}>
-        Live demo
-      </a>
-      ·
-      <a href="/privacy-policy" style={{ color: "#7F9CF5", textDecoration: "none", margin: "0 8px" }}>
-        Privacy
-      </a>
-      ·
-      <a href="/terms-of-service" style={{ color: "#7F9CF5", textDecoration: "none", margin: "0 8px" }}>
-        Terms
-      </a>
+  <footer className="kx-foot">
+    <div className="kx-foot-in">
+      <div className="kx-logo" style={{ fontSize: 15 }}><span className="kx-dot" aria-hidden />kampaio · B6 Autonomous PPC Cabinet</div>
+      <div className="kx-foot-links">
+        <a href="/b6">Live demo</a>
+        <a href="/blog">Blog</a>
+        <a href="/privacy-policy">Privacy</a>
+        <a href="/terms-of-service">Terms</a>
+      </div>
     </div>
   </footer>
 );
 
-const SectionHeader: React.FC<{ title: string; subtitle: string }> = ({ title, subtitle }) => (
-  <div style={{ textAlign: "center", marginBottom: "48px" }}>
-    <h2 style={{ fontSize: "36px", fontWeight: 800, margin: "0 0 12px" }}>{title}</h2>
-    <p style={{ color: "#A0A0A0", fontSize: "16px", margin: 0 }}>{subtitle}</p>
-  </div>
-);
+export default function HomeContent() {
+  return (
+    <div className="kx">
+      <style dangerouslySetInnerHTML={{ __html: STYLES }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(homeJsonLd) }} />
+      <TopBar />
+      <Hero />
+      <HowItWorks />
+      <MeetTheTeam />
+      <Pricing />
+      <CTA />
+      <Footer />
+    </div>
+  );
+}
