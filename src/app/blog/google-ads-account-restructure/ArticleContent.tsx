@@ -506,7 +506,7 @@ export default function ArticleContent() {
                 .
               </p>
               <p style={pStyle}>
-                <strong>5. Quality Score is stuck below 5 across more than 30% of keywords.</strong> Despite ad-copy refreshes and landing-page work. This is the signal that says: the problem is not creative, it is structural relevance. Your keywords and ad groups are not matched to ad copy or landing pages anymore.
+                <strong>5. <a href="/blog/the-complete-guide-to-google-ads-quality-score-in-2025" style={linkStyle}>Quality Score</a> is stuck below 5 across more than 30% of keywords.</strong> Despite ad-copy refreshes and landing-page work. This is the signal that says: the problem is not creative, it is structural relevance. Your keywords and ad groups are not matched to ad copy or landing pages anymore.
               </p>
               <p style={pStyle}>
                 <strong>6. Impression share lost to budget is over 30% on your top campaigns AND under 10% on the bottom 50% of campaigns.</strong> Money is locked in the wrong campaigns. The bottom half is over-funded relative to demand, the top half is starved. As{' '}

@@ -433,7 +433,7 @@ export default function ArticleContent() {
             <section id="fix-6">
               <h2 style={h2Style}>Fix #6: Audit Lead Form Match-Quality Score Weekly</h2>
               <p style={paraStyle}>
-                Google now reports a match-quality score for lead form extensions. The score is the platform telling you which ad groups are attracting wrong-intent leads. Most B2B accounts ignore the signal, which is a missed opportunity since Google is essentially flagging waste for you.
+                Google now reports a match-<a href="/blog/the-complete-guide-to-google-ads-quality-score-in-2025" style={linkStyle}>quality score</a> for lead form extensions. The score is the platform telling you which ad groups are attracting wrong-intent leads. Most B2B accounts ignore the signal, which is a missed opportunity since Google is essentially flagging waste for you.
               </p>
               <p style={paraStyle}>
                 Where to find the score: Google Ads, Campaigns, select campaign, Ads &amp; assets, Lead forms, expand the row for the Match quality column. The feature went into general availability in 2025.
@@ -470,7 +470,7 @@ export default function ArticleContent() {
                 <strong>Signal 2: Ad copy and landing page promise different offers.</strong> A perfect offline conversion setup cannot fix copy-product mismatch. Intent-matched landing pages produce conversion rates up to 4x higher than generic homepages (<a href="https://www.themarketingblender.com/google-ads-for-b2b-whats-working-in-2026-and-whats-not/" target="_blank" rel="noopener noreferrer" style={linkStyle}>The Marketing Blender, 2026</a>), so the landing page is part of the qualification chain, not a separate problem.
               </p>
               <p style={paraStyle}>
-                <strong>Signal 3: CRM data hygiene is too weak for OCI to work.</strong> If sales does not update stages reliably or contacts are duplicated and orphaned, the signal you send Google is noise. Pause the OCI rollout, fix the CRM operationally for 30-60 days, then re-attempt. As Ramsey Sanchez puts it in The Marketing Blender&apos;s 2026 B2B roundup, do not just focus on the cost per click, you need to be focusing on optimizing for lead and lead quality. Quality of the data feeding the loop matters more than quantity.
+                <strong>Signal 3: CRM data hygiene is too weak for OCI to work.</strong> If sales does not update stages reliably or contacts are duplicated and orphaned, the signal you send Google is noise. Pause the OCI rollout, fix the CRM operationally for 30-60 days, then re-attempt. As Ramsey Sanchez puts it in The Marketing Blender&apos;s 2026 B2B roundup, do not just focus on the <a href="/blog/google-ads-cost-per-click-too-high" style={linkStyle}>cost per click</a>, you need to be focusing on optimizing for lead and lead quality. Quality of the data feeding the loop matters more than quantity.
               </p>
               <p style={paraStyle}>
                 If two or more of these signals are present, sequence the rebuild before the OCI install. If only one is present, fix it in parallel.
