@@ -20,6 +20,16 @@ export default function BlogPage() {
 
   const blogPosts = [
     {
+      id: 28,
+      title: 'Why Isn\'t My Brand Showing Up in ChatGPT? (How to Diagnose It)',
+      excerpt: 'Your brand ranks on Google but never appears in ChatGPT answers? Here are the real root causes and a step-by-step way to diagnose which one is yours.',
+      category: 'ai-search',
+      author: 'By B6 Team',
+      date: '2026-06-02',
+      readTime: '9 min read',
+      slug: 'why-brand-not-showing-up-in-chatgpt'
+    },
+    {
       id: 1,
       title: 'What CEOs Want to See in Google Ads Reports',
       excerpt: 'Learn which Google Ads metrics CEOs care about (hint: it\'s not clicks) and get the exact reporting template that secures bigger budgets.',
