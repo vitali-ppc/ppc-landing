@@ -20,6 +20,16 @@ export default function BlogPage() {
 
   const blogPosts = [
     {
+      id: 30,
+      title: 'How to Scale Google Ads Without Losing ROAS (2026 Playbook)',
+      excerpt: 'Scaling Google Ads spend without tanking ROAS comes down to one rule: raise budgets 20% at a time, wait for Smart Bidding to re-stabilize, and expand demand instead of buying more of the same clicks.',
+      category: 'strategy',
+      author: 'By B6 Team',
+      date: '2026-06-03',
+      readTime: '11 min read',
+      slug: 'how-to-scale-google-ads-without-losing-roas'
+    },
+    {
       id: 28,
       title: 'Why Isn\'t My Brand Showing Up in ChatGPT? (How to Diagnose It)',
       excerpt: 'Your brand ranks on Google but never appears in ChatGPT answers? Here are the real root causes and a step-by-step way to diagnose which one is yours.',
