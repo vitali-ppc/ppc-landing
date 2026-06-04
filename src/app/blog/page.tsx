@@ -20,6 +20,16 @@ export default function BlogPage() {
 
   const blogPosts = [
     {
+      id: 31,
+      title: 'PPC Management: How In-House Teams Actually Run Paid Search (2026 Guide)',
+      excerpt: 'What PPC management really is and how an in-house team runs it: the six core disciplines, a weekly and monthly operating cadence, when to audit or restructure, and how to decide if you still need an agency.',
+      category: 'ppc',
+      author: 'By B6 Team',
+      date: '2026-06-04',
+      readTime: '13 min read',
+      slug: 'ppc-management'
+    },
+    {
       id: 30,
       title: 'How to Scale Google Ads Without Losing ROAS (2026 Playbook)',
       excerpt: 'Scaling Google Ads spend without tanking ROAS comes down to one rule: raise budgets 20% at a time, wait for Smart Bidding to re-stabilize, and expand demand instead of buying more of the same clicks.',
