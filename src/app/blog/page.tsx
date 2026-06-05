@@ -20,6 +20,16 @@ export default function BlogPage() {
 
   const blogPosts = [
     {
+      id: 32,
+      title: 'How to Improve Lead Quality in Google Ads (Complete 2026 Guide)',
+      excerpt: 'Google Ads sending leads that sales rejects? This guide covers what a qualified lead is, how to measure the gap, why quality drops, and the six levers that fix it.',
+      category: 'b2b',
+      author: 'By B6 Team',
+      date: '2026-06-05',
+      readTime: '13 min read',
+      slug: 'google-ads-lead-quality-guide'
+    },
+    {
       id: 31,
       title: 'PPC Management: How In-House Teams Actually Run Paid Search (2026 Guide)',
       excerpt: 'What PPC management really is and how an in-house team runs it: the six core disciplines, a weekly and monthly operating cadence, when to audit or restructure, and how to decide if you still need an agency.',
