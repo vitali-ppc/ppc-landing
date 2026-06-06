@@ -20,6 +20,16 @@ export default function BlogPage() {
 
   const blogPosts = [
     {
+      id: 33,
+      title: "Google Ads Strategy: A Strategic Operator's Framework (2026)",
+      excerpt: 'Most Google Ads advice is tactics. This pillar covers the strategy layer: a stack of six decisions (objective, structure, budget, bidding, measurement, organization) and how the stack shifts as spend scales from $10K to $100K per month.',
+      category: 'strategy',
+      author: 'By B6 Team',
+      date: '2026-06-06',
+      readTime: '13 min read',
+      slug: 'google-ads-strategy'
+    },
+    {
       id: 32,
       title: 'How to Improve Lead Quality in Google Ads (Complete 2026 Guide)',
       excerpt: 'Google Ads sending leads that sales rejects? This guide covers what a qualified lead is, how to measure the gap, why quality drops, and the six levers that fix it.',
