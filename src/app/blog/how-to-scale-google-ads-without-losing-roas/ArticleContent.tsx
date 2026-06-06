@@ -434,7 +434,7 @@ export default function ArticleContent() {
             <section id="step-3">
               <h2 style={h2Style}>Step 3 - Change One Lever at a Time (Budget OR Bids, Never Both)</h2>
               <p style={pStyle}>
-                Never change the budget and the bid strategy in the same week. Two simultaneous changes produce a double learning shock and make it impossible to isolate which variable moved performance.
+                Never change the budget and the bid <a href="/blog/google-ads-strategy" style={linkStyle}>strategy</a> in the same week. Two simultaneous changes produce a double learning shock and make it impossible to isolate which variable moved performance.
               </p>
               <p style={pStyle}>
                 Each significant account change restarts the learning phase independently. Raise budget 25% and switch bid strategies the same day: two compounding resets, no clean signal. When performance breaks, you cannot tell which lever caused it.

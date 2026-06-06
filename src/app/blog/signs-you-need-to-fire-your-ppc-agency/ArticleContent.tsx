@@ -357,7 +357,7 @@ export default function ArticleContent() {
                 <strong>Economics.</strong> Agencies are profitable on $20K+/month spend. For a $5K spend SMB, a $1.5K fee equals 30% of total ad budget going to management instead of working media. That math leaves zero margin for senior work. Juniors get assigned, templated strategies get applied.
               </p>
               <p style={pStyle}>
-                <strong>Performance Max changed the value-add.</strong> Before pMax launched in 2021, agencies earned fees on bid management, keyword research, and ad copy testing. By 2022, pMax had absorbed most of that into Google&apos;s algorithm. Smart Bidding now handles bid work at a level no human can match when conversion volume is adequate. Agencies that did not pivot to creative and strategy are now billing for work the platform automates.
+                <strong>Performance Max changed the value-add.</strong> Before pMax launched in 2021, agencies earned fees on bid management, keyword research, and ad copy testing. By 2022, pMax had absorbed most of that into Google&apos;s algorithm. Smart Bidding now handles bid work at a level no human can match when conversion volume is adequate. Agencies that did not pivot to creative and <a href="/blog/google-ads-strategy" style={linkStyle}>strategy</a> are now billing for work the platform automates.
               </p>
               <p style={pStyle}>
                 <strong>The reporting trap.</strong> Most agency monthly reports are PDF exports of the Google Ads dashboard with brand colors on top. You see the same numbers in the same UI. One older industry survey cited by PPC.co found that only 10% of Google Ads accounts get weekly updates from their manager.

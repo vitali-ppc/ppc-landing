@@ -432,7 +432,7 @@ export default function ArticleContent() {
             <section id="faq">
               <h2 style={h2Style}>Frequently Asked Questions</h2>
               <p style={pStyle}>
-                <strong>Why is my Performance Max campaign not converting?</strong> Almost always one of five causes: broken conversion tracking, learning period not finished, bid strategy set too aggressively, Final URL expansion sending paid traffic to irrelevant pages, or a slow/mismatched landing page. Work through the 9-step checklist above in order.
+                <strong>Why is my Performance Max campaign not converting?</strong> Almost always one of five causes: broken conversion tracking, learning period not finished, bid <a href="/blog/google-ads-strategy" style={linkStyle}>strategy</a> set too aggressively, Final URL expansion sending paid traffic to irrelevant pages, or a slow/mismatched landing page. Work through the 9-step checklist above in order.
               </p>
               <p style={pStyle}>
                 <strong>How long should I wait before judging a Performance Max campaign?</strong> Google recommends 7-14 days. Conservative answer: 14 days minimum before any structural change, and four to six weeks before you have full confidence in performance. Don&apos;t touch bid strategy or change budget by more than 20% during this window.

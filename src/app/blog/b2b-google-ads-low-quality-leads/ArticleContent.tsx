@@ -293,7 +293,7 @@ export default function ArticleContent() {
             <section id="fix-2">
               <h2 style={h2Style}>Fix #2: Switch to Value-Based Bidding (Maximize Conversion Value With Per-Stage Values)</h2>
               <p style={paraStyle}>
-                Once offline conversions are flowing, switch the bid strategy. Maximize Conversions optimizes for count. Maximize Conversion Value optimizes for revenue. That single change reshapes what Smart Bidding pursues.
+                Once offline conversions are flowing, switch the bid <a href="/blog/google-ads-strategy" style={linkStyle}>strategy</a>. Maximize Conversions optimizes for count. Maximize Conversion Value optimizes for revenue. That single change reshapes what Smart Bidding pursues.
               </p>
               {/* Callout: prerequisites */}
               <div style={{ background: '#fefce8', borderLeft: '4px solid #eab308', borderRadius: '8px', padding: '20px 24px', marginBottom: '24px' }}>

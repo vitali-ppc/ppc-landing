@@ -342,7 +342,7 @@ export default function ArticleContent() {
                 TL;DR
               </div>
               <p style={{ fontSize: '17px', lineHeight: '1.7', color: '#1e293b', margin: 0 }}>
-                PPC management is a repeatable operating discipline, not a one-time setup. Six recurring functions (research, structure, creative, bidding, budget pacing, measurement) run on a fixed daily, weekly, monthly, and quarterly cadence. This guide gives in-house PPC teams that operating system.
+                PPC management is a repeatable operating discipline, not a one-time setup. Six recurring functions (research, structure, creative, bidding, <a href="/blog/google-ads-not-spending-full-budget" style={linkStyle}>budget pacing</a>, measurement) run on a fixed daily, weekly, monthly, and quarterly cadence. This guide gives in-house PPC teams that operating system.
               </p>
             </div>
 
@@ -926,7 +926,7 @@ flowchart LR
                 .
               </p>
               <p style={pStyle}>
-                <strong>How much does PPC management cost?</strong> Three cost models: agency retainers commonly run $1,500 to $5,000 per month flat or 10 to 20 percent of ad spend, whichever is higher. An in-house PPC manager costs salary (US average roughly $75K per year; see below). AI tools like B6 run $99 to $399 per month and extend in-house capacity without a headcount hire. At $5K in ad spend, a $1,500 agency fee equals 30 percent of total budget going to management.
+                <strong>How much does PPC management cost?</strong> Three cost models: agency retainers commonly run $1,500 to $5,000 per month flat or 10 to 20 percent of ad spend, whichever is higher. An in-house PPC manager costs salary (US average roughly $75K per year; see below). <a href="/blog/5-tips-for-working-with-ai-ppc-tools" style={linkStyle}>AI tools</a> like B6 run $99 to $399 per month and extend in-house capacity without a headcount hire. At $5K in ad spend, a $1,500 agency fee equals 30 percent of total budget going to management.
               </p>
               <p style={pStyle}>
                 <strong>How much do PPC managers make in the US?</strong> The US average is approximately $75,395 per year per{' '}
@@ -1012,7 +1012,7 @@ flowchart LR
                     opacity: 0.9,
                   }}
                 >
-                  Start a B6 free trial, connect Google Ads, and let Buzz, Vox, and Echo run the mechanical hours while you keep the strategy. See{' '}
+                  Start a B6 free trial, connect Google Ads, and let Buzz, Vox, and Echo run the mechanical hours while you keep the <a href="/blog/google-ads-strategy" style={linkStyle}>strategy</a>. See{' '}
                   <a href="/pricing" style={linkStyle}>
                     pricing tiers
                   </a>{' '}

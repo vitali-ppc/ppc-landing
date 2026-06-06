@@ -360,7 +360,7 @@ export default function ArticleContent() {
                 Some ROAS drops are not new. They happened last year too. Pull Google Ads data for the same calendar week last year, and the year before. Apples-to-apples comparison, not &quot;this week vs last week&quot;.
               </p>
               <p style={pStyle}>
-                The 2026 patterns we see most: a post-holiday January slump (B2C ROAS routinely down 20 to 35 percent versus December), spring-break travel impact mid-April for non-travel verticals, and pre-BFCM ROAS dips in October as CPCs rise before the November-December conversion rebound. If your year-over-year ROAS for this week is within 10 percent of last year&apos;s same week, the market is doing what the market does. Hold spend. Don&apos;t change bid strategy. Don&apos;t pause. Just wait for the cycle.
+                The 2026 patterns we see most: a post-holiday January slump (B2C ROAS routinely down 20 to 35 percent versus December), spring-break travel impact mid-April for non-travel verticals, and pre-BFCM ROAS dips in October as CPCs rise before the November-December conversion rebound. If your year-over-year ROAS for this week is within 10 percent of last year&apos;s same week, the market is doing what the market does. Hold spend. Don&apos;t change bid <a href="/blog/google-ads-strategy" style={linkStyle}>strategy</a>. Don&apos;t pause. Just wait for the cycle.
               </p>
               <p style={pStyle}>
                 If your YoY ROAS is dramatically worse than the same week last year, something genuinely changed. Work backward through this checklist with that lens.

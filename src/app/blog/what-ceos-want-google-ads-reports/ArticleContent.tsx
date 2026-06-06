@@ -339,7 +339,7 @@ export default function ArticleContent() {
               color: '#1e293b',
               marginBottom: '32px'
             }}>
-              With a clear data-driven strategy and a commitment to business-focused reporting, organizations can achieve results that go beyond traditional marketing metrics:
+              With a clear data-driven <a href="/blog/google-ads-strategy" style={{ color: '#764ba2', textDecoration: 'underline' }}>strategy</a> and a commitment to business-focused reporting, organizations can achieve results that go beyond traditional marketing metrics:
             </p>
 
             <div className="b6-impact-grid" style={{

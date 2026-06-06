@@ -203,7 +203,7 @@ export default function ArticleContent() {
               Google Ads &quot;Bid Strategy Limited&quot; Status: What It Means and How to Fix It
             </h1>
             <p style={{ fontSize: '20px', color: '#64748b', marginBottom: '32px', lineHeight: '1.6', fontWeight: '500' }}>
-              What &quot;Limited by bid strategy&quot; and &quot;Eligible (Limited)&quot; mean, the four real causes, the 5-step fix, and when ignoring the warning is the right call.
+              What &quot;Limited by bid <a href="/blog/google-ads-strategy" style={{ color: '#764ba2', textDecoration: 'underline' }}>strategy</a>&quot; and &quot;Eligible (Limited)&quot; mean, the four real causes, the 5-step fix, and when ignoring the warning is the right call.
             </p>
             <div style={{ display: 'flex', alignItems: 'center', gap: '24px', marginBottom: '40px', paddingBottom: '32px', borderBottom: '1px solid #e5e7eb' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>

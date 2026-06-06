@@ -171,7 +171,7 @@ export default function ArticleContent() {
               Why Google Ads Strategy Fails at Scale: 8 Diagnostic Patterns Agencies See
             </h1>
             <p style={{ fontSize: '20px', color: '#64748b', marginBottom: '32px', lineHeight: 1.6, fontWeight: 500 }}>
-              Across 20+ client accounts an agency owner sees the same 8 patterns when Google Ads strategy stalls between $30K and $100K per month. Here is the diagnostic framework that finds which one is killing yours.
+              Across 20+ client accounts an agency owner sees the same 8 patterns when Google Ads <a href="/blog/google-ads-strategy" style={{ color: '#764ba2', textDecoration: 'underline' }}>strategy</a> stalls between $30K and $100K per month. Here is the diagnostic framework that finds which one is killing yours.
             </p>
             <div style={{ display: 'flex', alignItems: 'center', gap: '24px', marginBottom: '40px', paddingBottom: '32px', borderBottom: '1px solid #e5e7eb' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>

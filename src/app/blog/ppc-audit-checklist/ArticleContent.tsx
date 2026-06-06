@@ -384,7 +384,7 @@ export default function ArticleContent() {
             <section id="what-audit-tells">
               <h2 style={h2Style}>What a PPC Audit Actually Tells You (and What It Doesn&apos;t)</h2>
               <p style={pStyle}>
-                A PPC audit is a structured review of a paid-search account across six pillars: account foundation, campaign structure, conversion tracking, bidding strategy, creative and ad copy, and landing-page UX. The goal is to surface waste, identify under-served high-intent traffic, and rebuild a prioritized fix list. Budget 60 to 90 minutes for the first pass on a mid-size account.
+                A PPC audit is a structured review of a paid-search account across six pillars: account foundation, campaign structure, conversion tracking, bidding <a href="/blog/google-ads-strategy" style={linkStyle}>strategy</a>, creative and ad copy, and landing-page UX. The goal is to surface waste, identify under-served high-intent traffic, and rebuild a prioritized fix list. Budget 60 to 90 minutes for the first pass on a mid-size account.
               </p>
               <p style={pStyle}>
                 Done well, an audit will tell you exactly where the next $1,000 of ad spend should not go. It catches broken tracking, broad-match runaway, under-funded high-Quality-Score campaigns, attribution drift after a Smart Bidding migration, and the dead RSAs nobody refreshed since the last quarterly review. It builds a defensible memo you can hand a client (or a CFO) within two hours.

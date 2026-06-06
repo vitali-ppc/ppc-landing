@@ -414,7 +414,7 @@ export default function ArticleContent() {
                   Why it works. Tighter intent signal than broad, broader signal than exact. Pairs well with Maximize Conversions for accounts in the 10 to 30 conversions per month range. Wide enough for the algorithm to learn, narrow enough to keep waste under control.
                 </p>
                 <p style={pStyle}>
-                  Why it fails. It still requires negatives. Less predictable than exact, less expansive than broad. People reach for phrase as a comfort default when they cannot decide. Comfort is not a strategy.
+                  Why it fails. It still requires negatives. Less predictable than exact, less expansive than broad. People reach for phrase as a comfort default when they cannot decide. Comfort is not a <a href="/blog/google-ads-strategy" style={linkStyle}>strategy</a>.
                 </p>
                 <p style={pStyle}>
                   One concrete. We ran phrase match on &quot;plumber near me&quot; for an HVAC client. Over 90 days, 312 unique queries appeared; 87% had clear local intent. The other 13% (mostly &quot;what does a plumber do&quot;) became negatives in week 3.

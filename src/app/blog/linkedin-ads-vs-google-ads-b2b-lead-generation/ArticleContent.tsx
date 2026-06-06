@@ -625,7 +625,7 @@ export default function ArticleContent() {
                 Cross-channel budget allocation drifts. LinkedIn ROAS holds for six weeks, then audience saturation hits and pipeline-fit starts declining. A Google Performance Max campaign quietly reallocates spend toward low-intent Display placements. Neither platform surfaces this in the native dashboard with the lag time that matters for B2B decision-making.
               </p>
               <p style={paraStyle}>
-                Buzz, Kampaio&apos;s bid strategy agent, runs continuous monitoring on channel-level pipeline-CAC, ROAS drift, and budget allocation against the target split. It flags when channel performance deviates more than 15% from the rolling baseline -- before the drift becomes a quarterly miss.
+                Buzz, Kampaio&apos;s bid <a href="/blog/google-ads-strategy" style={linkStyle}>strategy</a> agent, runs continuous monitoring on channel-level pipeline-CAC, ROAS drift, and budget allocation against the target split. It flags when channel performance deviates more than 15% from the rolling baseline -- before the drift becomes a quarterly miss.
               </p>
               <p style={paraStyle}>
                 This is not about replacing the judgment call on the initial split. The framework in this article still applies: ACV, sales cycle, ICP width determine the starting allocation. Kampaio handles the monitoring and alerting layer that catches when the live allocation drifts from the intended one. See <a href="/pricing" style={linkStyle}>Kampaio pricing</a> for autonomy tiers -- the human stays in approval, the agents handle the continuous monitoring.

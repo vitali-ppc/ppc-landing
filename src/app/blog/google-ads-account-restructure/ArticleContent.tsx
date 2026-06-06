@@ -423,7 +423,7 @@ export default function ArticleContent() {
                 SKAGs (single-keyword ad groups), Alpha/Beta splits, exact-vs-broad parallels: all rational in 2017, all wrong in 2026. Smart Bidding needs aggregate conversion signal. What you have instead is 50 micro-buckets, each seeing 6 clicks a week, and an algorithm that never gets enough data to optimize anything.
               </p>
               <p style={pStyle}>
-                The modern default is the Hagakure structure: fewer campaigns, broader ad groups themed by buying intent or product line, automation-first. Some senior practitioners push it further: 3 campaigns maximum for accounts spending under $30K per month. The math is mechanical. Smart Bidding needs about 30 conversions per month per bid strategy to escape Learning Limited. Split your budget across 12 campaigns and most of them starve. Consolidate into 3 and the algorithm finally has enough signal to work.
+                The modern default is the Hagakure structure: fewer campaigns, broader ad groups themed by buying intent or product line, automation-first. Some senior practitioners push it further: 3 campaigns maximum for accounts spending under $30K per month. The math is mechanical. Smart Bidding needs about 30 conversions per month per bid <a href="/blog/google-ads-strategy" style={linkStyle}>strategy</a> to escape Learning Limited. Split your budget across 12 campaigns and most of them starve. Consolidate into 3 and the algorithm finally has enough signal to work.
               </p>
 
               <MascotQuote mascot="buzz">

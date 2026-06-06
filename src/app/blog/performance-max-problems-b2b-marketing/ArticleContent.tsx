@@ -205,7 +205,7 @@ export default function ArticleContent() {
                 Conclusion
               </h2>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
-                Performance Max is powerful, but it's not a magic bullet for B2B. If you want real pipeline, not just conversions, you need to control your data, signals, and strategy. Use PMax as a tool, not a default, and always optimize for quality over quantity.
+                Performance Max is powerful, but it's not a magic bullet for B2B. If you want real pipeline, not just conversions, you need to control your data, signals, and <a href="/blog/google-ads-strategy" style={{ color: '#764ba2', textDecoration: 'underline' }}>strategy</a>. Use PMax as a tool, not a default, and always optimize for quality over quantity.
               </p>
               <div style={{
                 background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
