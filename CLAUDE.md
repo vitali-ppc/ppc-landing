@@ -3,11 +3,21 @@
 > **Этот файл автоматически читается Claude Code на старте каждой сессии в этом проекте.**
 > Это **постоянные правила**. Текущее состояние работы → [`HANDOFF.md`](./HANDOFF.md).
 >
+> **Глобальные правила поведения агента**: `~/.claude/CLAUDE.md` (auto-loaded, anti-scope-creep).
+>
 > **Связанные документы**:
 > - [`README.md`](./README.md) — public overview
 > - [`HANDOFF.md`](./HANDOFF.md) — operational truth (что сейчас работает)
 > - [`ARCHITECTURE.md`](./ARCHITECTURE.md) — system diagrams + tech details
 > - [`CHANGELOG.md`](./CHANGELOG.md) — sprint history
+
+## 🚫 Agent behavior reminder (full rules in `~/.claude/CLAUDE.md`)
+
+- No options menus at task completion. Pattern: "Done. Что далі?" → wait.
+- No unsolicited task invention. No "while we're at it" items.
+- "продовжуй" = continue CURRENT task, NOT invent new ones.
+- User silence ≥30s = wait, don't auto-continue.
+- One clarifying question, not 4 options.
 > - [`LAUNCH.md`](./LAUNCH.md) — 2-hour deployment quickstart
 > - [`DEPLOY.md`](./DEPLOY.md) — full deployment manual
 > - [`LAUNCH-CONTENT.md`](./LAUNCH-CONTENT.md) — social media launch kit
