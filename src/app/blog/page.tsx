@@ -20,6 +20,16 @@ export default function BlogPage() {
 
   const blogPosts = [
     {
+      id: 34,
+      title: "Google Ads for B2B SaaS: The Complete Operator's Playbook (2026)",
+      excerpt: 'A complete operator playbook for running Google Ads for B2B SaaS: thin category volume, long sales cycles, buying committees, and attribution. Setup, 4-tier campaign structure, bidding progression, measurement, and scaling.',
+      category: 'b2b',
+      author: 'By Kampaio Team',
+      date: '2026-06-07',
+      readTime: '13 min read',
+      slug: 'google-ads-for-b2b-saas'
+    },
+    {
       id: 33,
       title: "Google Ads Strategy: A Strategic Operator's Framework (2026)",
       excerpt: 'Most Google Ads advice is tactics. This pillar covers the strategy layer: a stack of six decisions (objective, structure, budget, bidding, measurement, organization) and how the stack shifts as spend scales from $10K to $100K per month.',
