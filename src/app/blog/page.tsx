@@ -20,6 +20,16 @@ export default function BlogPage() {
 
   const blogPosts = [
     {
+      id: 35,
+      title: 'Google Ads Smart Bidding Strategies: How to Choose the Right One (and When to Avoid Each)',
+      excerpt: 'A decision guide to all six Google Ads Smart Bidding strategies: when to use Target CPA vs Target ROAS vs Maximize Conversions, the data thresholds each needs, and when to avoid automation entirely.',
+      category: 'google-ads',
+      author: 'By Kampaio Team',
+      date: '2026-06-08',
+      readTime: '11 min read',
+      slug: 'google-ads-smart-bidding-strategies'
+    },
+    {
       id: 34,
       title: "Google Ads for B2B SaaS: The Complete Operator's Playbook (2026)",
       excerpt: 'A complete operator playbook for running Google Ads for B2B SaaS: thin category volume, long sales cycles, buying committees, and attribution. Setup, 4-tier campaign structure, bidding progression, measurement, and scaling.',
