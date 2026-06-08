@@ -282,7 +282,7 @@ export default function ArticleContent() {
             {/* Intro */}
             <section id="intro">
               <p style={paragraphStyle}>
-                Smart Bidding is Google's auction-time AI that adjusts bids for every individual query using conversion signals. Four official strategies qualify as Smart Bidding: Target CPA, Target ROAS, Maximize Conversions, Maximize Conversion Value. The right choice depends on your campaign goal and conversion volume, not on which strategy sounds most advanced.
+                Smart Bidding is Google's auction-time AI that adjusts bids for every individual query using conversion signals. Four official strategies qualify as Smart Bidding: Target CPA, Target ROAS, Maximize Conversions, Maximize Conversion Value. The right choice depends on your campaign goal and conversion volume, not on which <a href="/blog/google-ads-strategy" style={{ color: '#764ba2', textDecoration: 'underline' }}>strategy</a> sounds most advanced.
               </p>
             </section>
 

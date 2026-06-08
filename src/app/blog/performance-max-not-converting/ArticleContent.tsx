@@ -418,7 +418,7 @@ export default function ArticleContent() {
                 <strong>Sub-$1,000 monthly budget.</strong> Smart Bidding needs roughly 30 conversions per month to stabilize. At a typical $40 CPA, that&apos;s $1,200/month minimum. Below that, pMax oscillates and never settles. Use Search with manual or eCPC bidding instead. You trade automation for predictability, which is the right trade at low volume.
               </p>
               <p style={pStyle}>
-                <strong>B2B SaaS with 30-90 day sales cycles.</strong> pMax optimizes on signal density and short feedback loops. B2B conversions are too sparse and too delayed for the algorithm to model accurately. You&apos;ll burn budget chasing signals that arrive months after the click. Use Search plus LinkedIn (or a paid newsletter sponsorship) instead.
+                <strong><a href="/blog/google-ads-for-b2b-saas" style={linkStyle}>B2B SaaS</a> with 30-90 day sales cycles.</strong> pMax optimizes on signal density and short feedback loops. B2B conversions are too sparse and too delayed for the algorithm to model accurately. You&apos;ll burn budget chasing signals that arrive months after the click. Use Search plus LinkedIn (or a paid newsletter sponsorship) instead.
               </p>
               <p style={pStyle}>
                 <strong>Single-product, single-page websites.</strong> Performance Max thrives on product feed variety and Final URL expansion. One landing page means nothing to optimize across. The campaign type was built for shopping, not for one-pagers. Use Search with tight match types.

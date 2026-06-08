@@ -599,7 +599,7 @@ export default function ArticleContent() {
 
               <h3 style={h3Style}>What does Reddit r/PPC say about LinkedIn Ads vs Google Ads for B2B?</h3>
               <p style={paraStyle}>
-                The consensus practitioner view is that Google captures existing demand while LinkedIn creates it. Most senior practitioners run a hybrid 60-70% Google / 30-40% LinkedIn split for B2B SaaS budgets in the $20-100K monthly range, adjusting up to 50%+ LinkedIn for narrow-ICP ABM motions where job-title precision justifies the CPL premium.
+                The consensus practitioner view is that Google captures existing demand while LinkedIn creates it. Most senior practitioners run a hybrid 60-70% Google / 30-40% LinkedIn split for <a href="/blog/google-ads-for-b2b-saas" style={linkStyle}>B2B SaaS</a> budgets in the $20-100K monthly range, adjusting up to 50%+ LinkedIn for narrow-ICP ABM motions where job-title precision justifies the CPL premium.
               </p>
 
               <h3 style={h3Style}>What are the pros and cons of LinkedIn Ads for B2B lead generation?</h3>

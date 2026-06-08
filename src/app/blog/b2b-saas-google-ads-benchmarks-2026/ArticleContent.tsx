@@ -142,7 +142,7 @@ export default function ArticleContent() {
   const KeyStatBlocks = () => (
     <div style={{ margin: '40px 0' }}>
       <p style={{ fontSize: '13px', fontWeight: '700', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#667eea', marginBottom: '16px' }}>
-        2026 B2B SaaS Benchmark Snapshot
+        2026 <a href="/blog/google-ads-for-b2b-saas" style={{ color: '#764ba2', textDecoration: 'underline' }}>B2B SaaS</a> Benchmark Snapshot
       </p>
       <div className="stat-grid">
         {[

@@ -310,7 +310,7 @@ export default function ArticleContent() {
             <section id="account-setup">
               <h2 style={h2}>Set Up the Account Before You Touch Campaigns</h2>
               <p style={para}>
-                The most expensive B2B SaaS Google Ads mistakes happen before the first campaign launches: bad conversion tracking and no CRM feedback loop. Fix the foundation first.
+                The most expensive B2B SaaS Google Ads mistakes happen before the first campaign launches: bad <a href="/blog/google-ads-conversion-tracking-not-working" style={{ color: '#764ba2', textDecoration: 'underline' }}>conversion tracking</a> and no CRM feedback loop. Fix the foundation first.
               </p>
 
               {/* VISUAL 2: Warning callout box - the June 15 2026 migration deadline */}
@@ -537,7 +537,7 @@ export default function ArticleContent() {
               <p style={para}>Start with Maximize Conversions while volume is low. Move to Maximize Conversion Value once OCI is wired and producing reliable pipeline values. Graduate to Target ROAS or Target CPA only after hitting Google&apos;s documented conversion minimums: 30 per month for Target CPA, 50 for Target ROAS (<a href="https://support.google.com/google-ads/answer/7065882" style={linkStyle} target="_blank" rel="noopener noreferrer">Google Ads Help</a>). Starting on tROAS with thin or junk signal optimizes for cheap junk faster.</p>
 
               <h3 style={{ fontSize: '20px', fontWeight: 700, color: '#1e293b', marginTop: '28px', marginBottom: '12px' }}>How do I structure Google Ads campaigns for B2B SaaS?</h3>
-              <p style={para}>Use four intent tiers (brand, category/non-brand, competitor/conquest, and problem-aware) plus a remarketing layer. Keep each tier in its own campaign so budget and bidding match the very different intent, CPC range, and funnel job. Mixing tiers forces one bid strategy to serve incompatible intent signals.</p>
+              <p style={para}>Use four intent tiers (brand, category/non-brand, competitor/conquest, and problem-aware) plus a remarketing layer. Keep each tier in its own campaign so budget and bidding match the very different intent, CPC range, and funnel job. Mixing tiers forces one bid <a href="/blog/google-ads-strategy" style={{ color: '#764ba2', textDecoration: 'underline' }}>strategy</a> to serve incompatible intent signals.</p>
 
               <h3 style={{ fontSize: '20px', fontWeight: 700, color: '#1e293b', marginTop: '28px', marginBottom: '12px' }}>Why are my B2B SaaS Google Ads leads low quality?</h3>
               <p style={para}>Usually because Smart Bidding is optimizing for form-fills it cannot distinguish from junk, and the buying committee researcher fills the form instead of the economic buyer. Wire offline conversion imports so the algorithm optimizes on SQL/pipeline signal. See the full fix in <a href="/blog/b2b-google-ads-low-quality-leads" style={linkStyle}>Why B2B Google Ads Produces Low-Quality Leads</a>.</p>

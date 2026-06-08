@@ -248,7 +248,7 @@ export default function ArticleContent() {
                 That gap is bigger than most teams assume. In Kevin Indig&apos;s analysis of 98,000 ChatGPT citations across 1.2 million responses, pages ranking first in Google were cited only 43.2 percent of the time (<a href="https://searchengineland.com/chatgpt-citations-domains-study-472349" target="_blank" rel="noopener noreferrer" style={linkStyle}>Kevin Indig via Search Engine Land, 2026</a>). Ranking helps. It does not buy you a seat.
               </p>
               <p style={paraStyle}>
-                This guide is written for B2B SaaS and software brands. The goal here is diagnosis: understand the mechanism, find your specific root cause, then spend on the right fix instead of guessing.
+                This guide is written for <a href="/blog/google-ads-for-b2b-saas" style={linkStyle}>B2B SaaS</a> and software brands. The goal here is diagnosis: understand the mechanism, find your specific root cause, then spend on the right fix instead of guessing.
               </p>
             </section>
 
