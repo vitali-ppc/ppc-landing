@@ -20,6 +20,16 @@ export default function BlogPage() {
 
   const blogPosts = [
     {
+      id: 36,
+      title: 'How to Choose a PPC Agency (and How to Know When You Don\'t Need One)',
+      excerpt: 'A buyer\'s framework for choosing a PPC agency: fair fees, red flags, the questions to ask, and an honest test for whether you even need an agency or just better tooling.',
+      category: 'strategy',
+      author: 'By Kampaio Team',
+      date: '2026-06-10',
+      readTime: '11 min read',
+      slug: 'how-to-choose-a-ppc-agency'
+    },
+    {
       id: 35,
       title: 'Google Ads Smart Bidding Strategies: How to Choose the Right One (and When to Avoid Each)',
       excerpt: 'A decision guide to all six Google Ads Smart Bidding strategies: when to use Target CPA vs Target ROAS vs Maximize Conversions, the data thresholds each needs, and when to avoid automation entirely.',
