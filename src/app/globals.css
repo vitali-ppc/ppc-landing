@@ -54,6 +54,25 @@
   --transition-slow: 0.5s ease;
 }
 
+/* Blog visual primitives token layer (light, blog-scoped).
+   Used ONLY by src/components/blog/primitives.tsx so chart components
+   carry no raw hex (keeps brand + future theming in one place).
+   Values mirror the kampaio blog palette in publisher-adapter.md. */
+:root {
+  --blog-primary: #667eea;
+  --blog-secondary: #764ba2;
+  --blog-on-primary: #ffffff;
+  --blog-ink: #1e293b;
+  --blog-muted: #64748b;
+  --blog-card: #ffffff;
+  --blog-surface: #f8fafc;
+  --blog-surface-2: #eef2f7;
+  --blog-border: #e5e7eb;
+  --blog-pos: #10b981;
+  --blog-warn: #f59e0b;
+  --blog-neg: #ef4444;
+}
+
 /* Светлая тема (для будущего использования) */
 [data-theme="light"] {
   --color-background: #FFFFFF;
