@@ -73,6 +73,14 @@
   --blog-neg: #ef4444;
 }
 
+/* HubSpokes blog primitive: desktop radial vs mobile list toggle
+   (inline styles cannot express breakpoints). */
+.blog-hub-mobile { display: none; }
+@media (max-width: 639px) {
+  .blog-hub-desktop { display: none; }
+  .blog-hub-mobile { display: block; }
+}
+
 /* Светлая тема (для будущего использования) */
 [data-theme="light"] {
   --color-background: #FFFFFF;
