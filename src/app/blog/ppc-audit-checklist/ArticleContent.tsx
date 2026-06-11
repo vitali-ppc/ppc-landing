@@ -4,6 +4,8 @@ import { useState } from 'react';
 import Header from '../../../components/Header';
 import Footer from '../../../components/Footer';
 import Breadcrumbs from '../../../components/Breadcrumbs';
+import ArticleHero from '../../../components/blog/ArticleHero';
+import KeepReading from '../../../components/blog/KeepReading';
 import MascotQuote from '../../../components/blog/MascotQuote';
 import ComparisonTable from '../../../components/blog/ComparisonTable';
 import MermaidDiagram from '../../../components/blog/MermaidDiagram';
@@ -228,6 +230,7 @@ export default function ArticleContent() {
         {/* Breadcrumbs */}
         <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '20px 24px 0' }}>
           <Breadcrumbs />
+          <ArticleHero slug="ppc-audit-checklist" />
         </div>
 
         {/* Article Header */}
@@ -902,7 +905,8 @@ flowchart TD
           </div>
         </div>
 
-        <Footer compact={true} />
+        <KeepReading slug="ppc-audit-checklist" category="ppc" />
+      <Footer compact={true} />
       </div>
     </>
   );

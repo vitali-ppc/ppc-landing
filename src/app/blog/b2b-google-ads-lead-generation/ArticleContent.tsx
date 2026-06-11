@@ -4,6 +4,8 @@ import { useState } from 'react';
 import Header from '../../../components/Header';
 import Footer from '../../../components/Footer';
 import Breadcrumbs from '../../../components/Breadcrumbs';
+import ArticleHero from '../../../components/blog/ArticleHero';
+import KeepReading from '../../../components/blog/KeepReading';
 import MascotQuote from '../../../components/blog/MascotQuote';
 import MermaidDiagram from '../../../components/blog/MermaidDiagram';
 
@@ -385,6 +387,7 @@ export default function ArticleContent() {
 
         <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '20px 24px 0' }}>
           <Breadcrumbs />
+          <ArticleHero slug="b2b-google-ads-lead-generation" />
         </div>
 
         {/* Article Header */}
@@ -796,7 +799,8 @@ Pipeline attributed (90-day rolling) | Smart Bidding status`}
           </div>
         </div>
 
-        <Footer compact={true} />
+        <KeepReading slug="b2b-google-ads-lead-generation" category="b2b" />
+      <Footer compact={true} />
       </div>
     </>
   );

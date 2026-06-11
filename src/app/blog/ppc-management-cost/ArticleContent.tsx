@@ -4,6 +4,8 @@ import { useState } from 'react';
 import Header from '../../../components/Header';
 import Footer from '../../../components/Footer';
 import Breadcrumbs from '../../../components/Breadcrumbs';
+import ArticleHero from '../../../components/blog/ArticleHero';
+import KeepReading from '../../../components/blog/KeepReading';
 import MascotQuote from '../../../components/blog/MascotQuote';
 import ComparisonTable from '../../../components/blog/ComparisonTable';
 import InlineSVG from '../../../components/blog/InlineSVG';
@@ -155,6 +157,7 @@ export default function ArticleContent() {
         <Header />
         <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '20px 24px 0' }}>
           <Breadcrumbs />
+          <ArticleHero slug="ppc-management-cost" />
         </div>
 
         {/* Article Header */}
@@ -423,7 +426,8 @@ export default function ArticleContent() {
 
           </div>
         </div>
-        <Footer compact={true} />
+        <KeepReading slug="ppc-management-cost" category="ppc" />
+      <Footer compact={true} />
       </div>
     </>
   );

@@ -4,6 +4,8 @@ import { useState } from 'react';
 import Header from '../../../components/Header';
 import Footer from '../../../components/Footer';
 import Breadcrumbs from '../../../components/Breadcrumbs';
+import ArticleHero from '../../../components/blog/ArticleHero';
+import KeepReading from '../../../components/blog/KeepReading';
 
 export default function ArticleContent() {
   const [isTableOfContentsOpen, setIsTableOfContentsOpen] = useState(false);
@@ -101,6 +103,7 @@ export default function ArticleContent() {
         {/* Breadcrumbs */}
         <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '20px 24px 0' }}>
           <Breadcrumbs />
+          <ArticleHero slug="how-ai-is-transforming-google-ads-in-2025" />
         </div>
         {/* Article Header */}
         <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '40px 24px 60px' }}>
@@ -266,7 +269,8 @@ export default function ArticleContent() {
             </section>
           </div>
         </div>
-        <Footer compact={true} />
+        <KeepReading slug="how-ai-is-transforming-google-ads-in-2025" category="ai" />
+      <Footer compact={true} />
       </div>
     </>
   );

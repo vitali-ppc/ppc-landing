@@ -5,6 +5,8 @@ import { motion } from 'framer-motion';
 import Header from '../../../components/Header';
 import Footer from '../../../components/Footer';
 import Breadcrumbs from '../../../components/Breadcrumbs';
+import ArticleHero from '../../../components/blog/ArticleHero';
+import KeepReading from '../../../components/blog/KeepReading';
 import MascotQuote from '../../../components/blog/MascotQuote';
 import MermaidDiagram from '../../../components/blog/MermaidDiagram';
 
@@ -339,6 +341,7 @@ export default function ArticleContent() {
 
         <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '20px 24px 0' }}>
           <Breadcrumbs />
+          <ArticleHero slug="b2b-saas-google-ads-benchmarks-2026" />
         </div>
 
         {/* Article Header */}
@@ -780,7 +783,8 @@ export default function ArticleContent() {
           </div>
         </div>
 
-        <Footer compact={true} />
+        <KeepReading slug="b2b-saas-google-ads-benchmarks-2026" category="b2b" />
+      <Footer compact={true} />
       </div>
     </>
   );

@@ -4,6 +4,8 @@ import { useState } from 'react';
 import Header from '../../../components/Header';
 import Footer from '../../../components/Footer';
 import Breadcrumbs from '../../../components/Breadcrumbs';
+import ArticleHero from '../../../components/blog/ArticleHero';
+import KeepReading from '../../../components/blog/KeepReading';
 
 export default function ArticleContent() {
   const [isTableOfContentsOpen, setIsTableOfContentsOpen] = useState(false);
@@ -119,6 +121,7 @@ export default function ArticleContent() {
         padding: '20px 24px 0'
       }}>
         <Breadcrumbs />
+          <ArticleHero slug="what-ceos-want-google-ads-reports" />
       </div>
 
       {/* Article Header */}
@@ -1015,7 +1018,8 @@ export default function ArticleContent() {
         </div>
       </div>
 
-        <Footer compact={true} />
+        <KeepReading slug="what-ceos-want-google-ads-reports" category="strategy" />
+      <Footer compact={true} />
       </div>
     </>
   );

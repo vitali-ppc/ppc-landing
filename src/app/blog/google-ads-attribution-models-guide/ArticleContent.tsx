@@ -4,6 +4,8 @@ import { useState } from 'react';
 import Header from '../../../components/Header';
 import Footer from '../../../components/Footer';
 import Breadcrumbs from '../../../components/Breadcrumbs';
+import ArticleHero from '../../../components/blog/ArticleHero';
+import KeepReading from '../../../components/blog/KeepReading';
 import MascotQuote from '../../../components/blog/MascotQuote';
 import ComparisonTable from '../../../components/blog/ComparisonTable';
 import MermaidDiagram from '../../../components/blog/MermaidDiagram';
@@ -297,6 +299,7 @@ export default function ArticleContent() {
         <Header />
         <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '20px 24px 0' }}>
           <Breadcrumbs />
+          <ArticleHero slug="google-ads-attribution-models-guide" />
         </div>
         <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '40px 24px 60px' }}>
           <div style={{ maxWidth: '800px', margin: '0 auto' }}>
@@ -613,7 +616,8 @@ sequenceDiagram
 
           </div>
         </div>
-        <Footer />
+        <KeepReading slug="google-ads-attribution-models-guide" category="google-ads" />
+      <Footer />
       </div>
     </>
   );
