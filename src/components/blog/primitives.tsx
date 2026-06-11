@@ -14,6 +14,7 @@
  *   GroupedBar      2-3 series compared across the same categories
  *   DonutBreakdown  one whole split into named parts
  *   ColumnBuckets   taxonomy "themes to tactics" (structural, not a data viz)
+ *   YouTubeEmbed    one relevant on-topic video (supporting media, not bold-viz)
  *
  * BigStat / DonutStat / HubSpokes / CompareGrid live elsewhere if present and
  * are intentionally not duplicated here.
@@ -553,6 +554,53 @@ export function DonutBreakdown({
       </div>
 
       {source && <figcaption style={{ ...captionStyle, marginTop: 20 }}>{source}</figcaption>}
+    </figure>
+  );
+}
+
+/* ---------------------------------------------------------------------------
+   YouTubeEmbed: responsive, privacy-friendly embed of ONE relevant official
+   video. youtube-nocookie sets no tracking cookie until the user plays (no
+   consent banner needed); loading="lazy" defers the iframe until it scrolls
+   into view, so it does not hurt initial page speed. Supporting media, NOT a
+   bold-viz: only embed an on-topic video from a trustworthy source, 1 per
+   article, never as decoration.
+   --------------------------------------------------------------------------- */
+export function YouTubeEmbed({
+  id,
+  title,
+  caption,
+}: {
+  id: string;
+  title: string;
+  caption?: string;
+}) {
+  return (
+    <figure style={{ margin: '32px 0' }}>
+      <div
+        style={{
+          position: 'relative',
+          aspectRatio: '16 / 9',
+          width: '100%',
+          overflow: 'hidden',
+          borderRadius: 12,
+          border: '1px solid var(--blog-border)',
+          background: 'var(--blog-surface-2)',
+        }}
+      >
+        <iframe
+          src={`https://www.youtube-nocookie.com/embed/${id}`}
+          title={title}
+          loading="lazy"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+          style={{ position: 'absolute', inset: 0, height: '100%', width: '100%', border: 0 }}
+        />
+      </div>
+      <figcaption style={{ marginTop: 12, fontFamily: MONO, fontSize: 12, color: 'var(--blog-muted)' }}>
+        {caption ?? title}
+      </figcaption>
     </figure>
   );
 }
