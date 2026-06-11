@@ -20,6 +20,16 @@ export default function BlogPage() {
 
   const blogPosts = [
     {
+      id: 37,
+      title: 'How Much Does PPC Management Cost? A Real Breakdown for DTC Owners (2026)',
+      excerpt: 'PPC management costs $500 to $10,000 a month, or 10 to 20% of ad spend. The three pricing models decoded, the honest line-item breakdown, and the math on whether the fee is worth it at your spend.',
+      category: 'ppc',
+      author: 'By Kampaio Team',
+      date: '2026-06-11',
+      readTime: '9 min read',
+      slug: 'ppc-management-cost'
+    },
+    {
       id: 36,
       title: 'How to Choose a PPC Agency (and How to Know When You Don\'t Need One)',
       excerpt: 'A buyer\'s framework for choosing a PPC agency: fair fees, red flags, the questions to ask, and an honest test for whether you even need an agency or just better tooling.',
