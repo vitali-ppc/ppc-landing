@@ -378,7 +378,7 @@ export default function ArticleContent() {
               <h3 id="sign-1" style={h3Style}>Sign 1: Their Reports Show Activity, Not Outcomes</h3>
               <p style={pStyle}>A bad report tells you what was done. A good one tells you what changed in the business.</p>
               <p style={pStyle}>
-                Bad: &quot;We made 47 bid adjustments and added 23 negative keywords this month.&quot; That is a task list.
+                Bad: &quot;We made 47 bid adjustments and added 23 <a href="/blog/google-ads-negative-keywords" style={linkStyle}>negative keywords</a> this month.&quot; That is a task list.
               </p>
               <p style={pStyle}>
                 Good: &quot;We reduced CPA from $42 to $31 in your top campaign by pausing Display partners. That freed $1,200, reallocated to Shopping, where ROAS climbed from 2.8 to 3.6 over four weeks.&quot; Cause, effect, number.

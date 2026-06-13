@@ -677,7 +677,7 @@ export default function ArticleContent() {
                 <strong>Does Smart Bidding work better with broad or exact match?</strong> Broad, in most cases, once you have 30 or more monthly conversions feeding the algorithm. The wider query stream gives Smart Bidding more learning data. Below 30 conversions per month, the math reverses and exact or phrase tends to perform better.
               </p>
               <p style={pStyle}>
-                <strong>How often should I review my search terms report for negative keywords?</strong> Every 14 days, minimum. Weekly if you are running broad match on a new account. The work is not glamorous; the savings are 18% to 28% of wasted spend on a typical $5K per month SMB account.
+                <strong>How often should I review my search terms report for <a href="/blog/google-ads-negative-keywords" style={linkStyle}>negative keywords</a>?</strong> Every 14 days, minimum. Weekly if you are running broad match on a new account. The work is not glamorous; the savings are 18% to 28% of wasted spend on a typical $5K per month SMB account.
               </p>
               <p style={pStyle}>
                 <strong>Will Google penalize me for using too many exact-match keywords?</strong> No. There is no penalty for match-type composition. The trade-off is volume: more exact match means less impression share, which can starve Smart Bidding of learning data. Use exact when control matters, not as a default.

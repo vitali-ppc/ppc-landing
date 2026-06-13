@@ -258,10 +258,10 @@ export default function ArticleContent() {
                 A negative keyword filters the auction before your ad competes: the click never happens, it is not suppressed after the fact.
               </p>
               <p style={pStyle}>
-                Negatives do not raise Quality Score directly. Removing irrelevant queries improves CTR and conversion rate on remaining traffic, which can lift Quality Score as a second-order effect. Negatives are a targeting filter, not a quality signal.
+                Negatives do not raise <a href="/blog/the-complete-guide-to-google-ads-quality-score-in-2025" style={linkStyle}>Quality Score</a> directly. Removing irrelevant queries improves CTR and conversion rate on remaining traffic, which can lift Quality Score as a second-order effect. Negatives are a targeting filter, not a quality signal.
               </p>
               <p style={pStyle}>
-                What negatives cannot do: they do not fix a bidding problem. If a query is relevant but converts poorly, the fix is bid adjustment. Our <a href="/blog/google-ads-smart-bidding-strategies" style={linkStyle}>guide to Google Ads Smart Bidding strategies</a> covers how bid strategy interacts with the signal Smart Bidding learns from. They do not work retroactively. And they do not match close variants.
+                What negatives cannot do: they do not fix a bidding problem. If a query is relevant but converts poorly, the fix is bid adjustment. Our <a href="/blog/google-ads-smart-bidding-strategies" style={linkStyle}>guide to Google Ads Smart Bidding strategies</a> covers how bid <a href="/blog/google-ads-strategy" style={linkStyle}>strategy</a> interacts with the signal Smart Bidding learns from. They do not work retroactively. And they do not match close variants.
               </p>
               <p style={pStyle}>
                 A practical scale check: a $5K/month account leaking 12% of spend to &quot;free&quot;, &quot;jobs&quot;, &quot;salary&quot;, and &quot;diy&quot; queries is losing $600/month. Smart Bidding cannot fix auction eligibility. Negatives can.

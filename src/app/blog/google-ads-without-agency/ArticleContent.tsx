@@ -274,7 +274,7 @@ export default function ArticleContent() {
                 If you&apos;re going solo, you need to own all six of these tasks or automate the hard ones.
               </p>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
-                <strong>1. Keyword research and negative keywords.</strong> Initial setup plus ongoing refinement. An agency starts with 200-500 seed keywords, structures them into ad groups, then reviews search terms weekly to add 10-30 negatives per campaign. Difficulty: medium. Time: 2-3 hours/week for a $10K account.
+                <strong>1. Keyword research and <a href="/blog/google-ads-negative-keywords" style={{ color: '#764ba2', textDecoration: 'underline' }}>negative keywords</a>.</strong> Initial setup plus ongoing refinement. An agency starts with 200-500 seed keywords, structures them into ad groups, then reviews search terms weekly to add 10-30 negatives per campaign. Difficulty: medium. Time: 2-3 hours/week for a $10K account.
               </p>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
                 <strong>2. Bid management and budget allocation.</strong> The hardest and most time-consuming task. For a campaign with 8 ad groups and 150 keywords, you&apos;re adjusting bids 2-3 times per week based on CPC changes, conversion rate shifts, and impression share. Difficulty: high. Time: 5-8 hours/week manually, or 20 minutes/week if you trust Smart Bidding with proper conversion volume (<a href="https://support.google.com/google-ads/answer/10724817" style={{ color: '#764ba2', textDecoration: 'underline' }}>you need 30+ conversions/month for the algorithm to work</a>).

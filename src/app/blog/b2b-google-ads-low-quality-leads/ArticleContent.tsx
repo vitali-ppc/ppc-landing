@@ -496,7 +496,7 @@ export default function ArticleContent() {
                 <strong>How do we handle privacy and consent with offline conversion imports?</strong> Capture explicit consent at form submission for data sharing with Google. For EU traffic, run consent mode v2. Without proper consent, OCI uploads should not transmit user-level identifiers, and Google may silently drop them.
               </p>
               <p style={paraStyle}>
-                <strong>Can negative keywords break Smart Bidding&apos;s learning?</strong> No. Adding negatives does not reset the learning phase. Changing bid strategy or shifting budget more than 20 percent does. Negative keyword maintenance is safe to do weekly without disrupting the algorithm.
+                <strong>Can <a href="/blog/google-ads-negative-keywords" style={linkStyle}>negative keywords</a> break Smart Bidding&apos;s learning?</strong> No. Adding negatives does not reset the learning phase. Changing bid strategy or shifting budget more than 20 percent does. Negative keyword maintenance is safe to do weekly without disrupting the algorithm.
               </p>
             </section>
 

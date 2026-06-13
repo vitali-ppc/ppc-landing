@@ -232,7 +232,7 @@ export default function ArticleContent() {
             <section id="not-tactics">
               <h2 style={h2Style}>Strategy Is Not a List of Tactics</h2>
               <p style={paragraphStyle}>
-                Search &quot;Google Ads strategy&quot; and you get tip lists. Add these negative keywords. Try this bid adjustment. Write three more responsive search ads. All useful, all real, and all of it is the execution layer. None of it is strategy.
+                Search &quot;Google Ads strategy&quot; and you get tip lists. Add these <a href="/blog/google-ads-negative-keywords" style={{ color: '#764ba2', textDecoration: 'underline' }}>negative keywords</a>. Try this bid adjustment. Write three more responsive search ads. All useful, all real, and all of it is the execution layer. None of it is strategy.
               </p>
               <p style={paragraphStyle}>
                 Tactics answer &quot;how do I run this campaign.&quot; Strategy answers a harder question: should this campaign exist, what is it for, and how does its budget map to something the business actually cares about. You can execute every tactic flawlessly inside a strategy that points at the wrong objective and still lose money with great efficiency.

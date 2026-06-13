@@ -679,7 +679,7 @@ Pipeline attributed (90-day rolling) | Smart Bidding status`}
               </MascotQuote>
 
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
-                Weekly reports worth pulling: Search Terms (to identify and add negative keywords), Auction Insights (to track competitive pressure changes), Conversions by campaign (to verify offline conversion import is running correctly).
+                Weekly reports worth pulling: Search Terms (to identify and add <a href="/blog/google-ads-negative-keywords" style={{ color: '#764ba2', textDecoration: 'underline' }}>negative keywords</a>), Auction Insights (to track competitive pressure changes), Conversions by campaign (to verify offline conversion import is running correctly).
               </p>
             </section>
 

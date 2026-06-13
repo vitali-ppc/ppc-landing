@@ -392,7 +392,7 @@ export default function ArticleContent() {
                 Performance Max and Search campaigns in the same account fight each other on duplicate keywords. By default, pMax wins on most overlaps, which steals impression share from a Search campaign you spent months tuning.
               </p>
               <p style={pStyle}>
-                Check Auction Insights for your Search campaigns. If impression share dropped after pMax launched, you have overlap. The fix is harder than it should be. pMax doesn&apos;t expose negative keywords directly in the UI for non-Search assets. You have to add brand-term negatives via Google Ads support, or restructure: one brand-only Search campaign, pMax for non-brand prospecting only.
+                Check Auction Insights for your Search campaigns. If impression share dropped after pMax launched, you have overlap. The fix is harder than it should be. pMax doesn&apos;t expose <a href="/blog/google-ads-negative-keywords" style={linkStyle}>negative keywords</a> directly in the UI for non-Search assets. You have to add brand-term negatives via Google Ads support, or restructure: one brand-only Search campaign, pMax for non-brand prospecting only.
               </p>
               <p style={pStyle}>
                 If you&apos;re spending more on pMax than on your Search campaign because of the overlap, you&apos;re not getting incremental performance. You&apos;re cannibalizing.

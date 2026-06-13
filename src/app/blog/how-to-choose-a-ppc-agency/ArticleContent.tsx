@@ -442,7 +442,7 @@ export default function ArticleContent() {
                 <strong>Recommendation tools</strong> &mdash; Optmyzr (starting at $499/month) and Madgicx (starting at $499/month) analyze your account and tell you what to change. You execute every change manually. At $499+ on a $5K spend, that is 10% of your budget for advice without execution.
               </p>
               <p style={pStyle}>
-                <strong>Autonomous tools</strong> &mdash; Kampaio/B6 runs the work directly. Buzz handles bids, Aegis flags risk, Echo reports, Vox manages cross-campaign strategy, Maximus orchestrates the optimization cycle, and Sage handles research. The $199 Approval tier means every change waits for your sign-off, so you learn the account rather than delegating blindly. Pricing: $99/month (Co-pilot), $199/month (Approval), $399/month (Autonomous). Synter is another tool in this category at $199/month. <a href="/b6" style={linkStyle}>See how the agents work</a>.
+                <strong>Autonomous tools</strong> &mdash; Kampaio/B6 runs the work directly. Buzz handles bids, Aegis flags risk, Echo reports, Vox manages cross-campaign <a href="/blog/google-ads-strategy" style={linkStyle}>strategy</a>, Maximus orchestrates the optimization cycle, and Sage handles research. The $199 Approval tier means every change waits for your sign-off, so you learn the account rather than delegating blindly. Pricing: $99/month (Co-pilot), $199/month (Approval), $399/month (Autonomous). Synter is another tool in this category at $199/month. <a href="/b6" style={linkStyle}>See how the agents work</a>.
               </p>
               <p style={pStyle}>
                 <strong>Honest limitation:</strong> this path fits the $3-15K/month spend band. It is not a replacement for an agency handling bundled creative production, landing page builds, or multi-market coordination.
@@ -479,7 +479,7 @@ export default function ArticleContent() {
                   <div className="path-num" style={{ background: '#f59e0b' }}>3</div>
                   <div className="path-head">DIY with Smart Bidding</div>
                   <p className="path-body">
-                    Spend is under ~$3K/month and you are willing to learn the basics. Smart Bidding handles automated bidding; your job is structure, copy, and negative keywords.
+                    Spend is under ~$3K/month and you are willing to learn the basics. Smart Bidding handles automated bidding; your job is structure, copy, and <a href="/blog/google-ads-negative-keywords" style={linkStyle}>negative keywords</a>.
                   </p>
                 </div>
               </div>
