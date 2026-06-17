@@ -398,7 +398,7 @@ export default function ArticleContent() {
                   Why it works in 2026. Smart Bidding uses the broader query stream as training data. With enough conversion volume, the algorithm finds buyers in queries you would never have added as exact keywords. We have seen broad outperform exact on lift in well-instrumented accounts with 30 plus monthly conversions.
                 </p>
                 <p style={pStyle}>
-                  Why it fails. Without that conversion volume AND a robust negative list, broad match spends budget on intent that does not match the offer. Google&apos;s algorithm optimizes for your bidding target. If the target is loose or the <a href="/blog/google-ads-conversion-tracking-not-working" style={linkStyle}>conversion tracking is broken</a>, broad match will faithfully spend your money chasing the wrong signal.
+                  Why it fails. Without that conversion volume AND a robust negative list, broad match spends budget on intent that does not match the offer. Google&apos;s algorithm <a href="/blog/google-ads-optimization" style={linkStyle}>optimize</a>s for your bidding target. If the target is loose or the <a href="/blog/google-ads-conversion-tracking-not-working" style={linkStyle}>conversion tracking is broken</a>, broad match will faithfully spend your money chasing the wrong signal.
                 </p>
                 <p style={pStyle}>
                   One concrete. On a Goodevas It client in Sprint 5, we moved 4 keywords from phrase to broad with Target ROAS. Result over 30 days: 18% more conversions at the same CPA. It worked because we added 47 negatives before flipping the switch.

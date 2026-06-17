@@ -570,7 +570,7 @@ flowchart TD
                 Fix It Once, or Let It Run Itself
               </h2>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
-                Connect your Google Ads account. On the first run, B6 surfaces every campaign with a bid-limit or target-induced &quot;Limited&quot; status, ranks them by potential impact on CPA, and proposes the change. You approve, B6 applies. <a href="/b6#buzz" style={{ color: '#764ba2', textDecoration: 'underline' }}>See how Buzz handles bidding</a>, or jump straight to <a href="/pricing" style={{ color: '#764ba2', textDecoration: 'underline' }}>B6 pricing</a>.
+                Connect your <a href="/blog/google-ads-optimization" style={{ color: '#764ba2', textDecoration: 'underline' }}>Google Ads account</a>. On the first run, B6 surfaces every campaign with a bid-limit or target-induced &quot;Limited&quot; status, ranks them by potential impact on CPA, and proposes the change. You approve, B6 applies. <a href="/b6#buzz" style={{ color: '#764ba2', textDecoration: 'underline' }}>See how Buzz handles bidding</a>, or jump straight to <a href="/pricing" style={{ color: '#764ba2', textDecoration: 'underline' }}>B6 pricing</a>.
               </p>
 
               <div style={{

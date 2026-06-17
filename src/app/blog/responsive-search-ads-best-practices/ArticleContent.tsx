@@ -230,7 +230,7 @@ export default function ArticleContent() {
   </g>
 </svg>`;
 
-  // VISUAL 5: Mermaid sequenceDiagram of the 14-day RSA optimization loop
+  // VISUAL 5: Mermaid sequenceDiagram of the 14-day RSA <a href="/blog/google-ads-optimization" style={linkStyle}>optimization</a> loop
   const optimizationLoopChart = `sequenceDiagram
     participant User as Searcher
     participant Auction as Google Auction

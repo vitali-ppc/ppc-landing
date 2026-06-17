@@ -534,7 +534,7 @@ export default function ArticleContent() {
               </div>
 
               <p style={paragraphStyle}>
-                Automation does not replace a clear objective. The algorithm optimizes toward whatever target you give it, literally. Fix the input before touching the strategy. For a broader view of how bidding fits into account-level optimization, the <a href="/blog/ai-powered-ppc-optimization-complete-guide" style={linkStyle}>complete guide to Google Ads optimization</a> covers the full diagnostic chain.
+                Automation does not replace a clear objective. The algorithm optimizes toward whatever target you give it, literally. Fix the input before touching the strategy. For a broader view of how bidding fits into account-level <a href="/blog/google-ads-optimization" style={{ color: '#764ba2', textDecoration: 'underline' }}>optimization</a>, the <a href="/blog/ai-powered-ppc-optimization-complete-guide" style={linkStyle}>complete guide to Google Ads optimization</a> covers the full diagnostic chain.
               </p>
             </section>
 

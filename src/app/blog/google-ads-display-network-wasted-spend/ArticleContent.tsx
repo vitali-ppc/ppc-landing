@@ -660,7 +660,7 @@ export default function ArticleContent() {
                 >
                   39 Celsius, 2025
                 </a>
-                ). Combining Search and Display in one campaign contaminates the data and makes optimization guesswork.
+                ). Combining Search and Display in one campaign contaminates the data and makes <a href="/blog/google-ads-optimization" style={linkStyle}>optimization</a> guesswork.
               </p>
               <p style={pStyle}>To turn off Display Expansion completely:</p>
               <ol style={olStyle}>

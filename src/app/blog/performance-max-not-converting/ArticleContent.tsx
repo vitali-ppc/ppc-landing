@@ -368,7 +368,7 @@ export default function ArticleContent() {
                 Audience signals: one to three per asset group. Piling on 20 signals doesn&apos;t give Google &quot;more data&quot;. It confuses the model. Stick to your highest-intent customer match list, one demographic, maybe one interest segment.
               </p>
               <p style={pStyle}>
-                One asset group per product category or service type. Don&apos;t mix office furniture and pet supplies in the same group. Google can&apos;t optimize creative across irrelevant verticals, and you&apos;ll see flat performance for both.
+                One asset group per product category or service type. Don&apos;t mix office furniture and pet supplies in the same group. Google can&apos;t <a href="/blog/google-ads-optimization" style={linkStyle}>optimize</a> creative across irrelevant verticals, and you&apos;ll see flat performance for both.
               </p>
 
               {/* Step 7 */}

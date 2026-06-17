@@ -568,7 +568,7 @@ export default function ArticleContent() {
             <section id="fix-sheet-3">
               <h2 style={h2Style}>Fix Sheet 3 - Bidding Strategy and Adjustments (Causes 3, 4, 6)</h2>
               <p style={pStyle}>
-                The decision tree for bid strategy is shorter than vendor marketing suggests. Are you optimizing for conversion volume? Target CPA. Optimizing for revenue value with variable order sizes? Target ROAS. Have no conversion data and pure top-of-funnel goals? Maximize Clicks, knowing CPC will be higher and you accept that for awareness. Almost no SMB account should be on Maximize Clicks for a campaign with a conversion goal.
+                The decision tree for bid strategy is shorter than vendor marketing suggests. Are you <a href="/blog/google-ads-optimization" style={linkStyle}>optimizing</a> for conversion volume? Target CPA. Optimizing for revenue value with variable order sizes? Target ROAS. Have no conversion data and pure top-of-funnel goals? Maximize Clicks, knowing CPC will be higher and you accept that for awareness. Almost no SMB account should be on Maximize Clicks for a campaign with a conversion goal.
               </p>
 
               {/* VISUAL 6: Bid strategy decision matrix (3-col grid, no orphan-prone auto-fit) */}

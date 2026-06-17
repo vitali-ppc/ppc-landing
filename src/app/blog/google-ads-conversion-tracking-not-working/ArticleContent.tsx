@@ -477,7 +477,7 @@ export default function ArticleContent() {
               />
 
               <p style={pStyle}>
-                <strong>Caveat:</strong> Smart Bidding has been optimizing against the inflated number. After deduplication, expect a 20 to 30% drop in reported conversions and a temporary &quot;Learning Limited&quot; status for 2 to 3 weeks while the algorithm recalibrates.
+                <strong>Caveat:</strong> Smart Bidding has been <a href="/blog/google-ads-optimization" style={linkStyle}>optimizing</a> against the inflated number. After deduplication, expect a 20 to 30% drop in reported conversions and a temporary &quot;Learning Limited&quot; status for 2 to 3 weeks while the algorithm recalibrates.
               </p>
 
               <h3 id="fix-5" style={h3Style}>Fix 5: Enhanced Conversions Silent Failure (Missing Hashed Email)</h3>

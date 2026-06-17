@@ -450,7 +450,7 @@ export default function ArticleContent() {
                 <strong>3. Placement exclusions (Display and pMax):</strong> Made-for-advertising (MFA) sites increased 14x year-over-year per Spider Labs&apos; 2026 data. <a href="/blog/google-ads-display-network-wasted-spend" style={linkStyle}>Display Network placement exclusions</a> are among the highest-impact fixes available. Download your placement report, sort by clicks with zero conversions, and exclude the worst offenders. Also exclude mobile app categories if app traffic is generating unqualified clicks.
               </p>
               <p style={pStyle}>
-                <strong>4. Smart Bidding signal hygiene:</strong> Keep micro-conversions (page views, scroll events) out of your primary bid target. Optimize against actions that require genuine user intent. If invalid traffic inflates clicks without conversions, Smart Bidding chases the wrong signal.
+                <strong>4. Smart Bidding signal hygiene:</strong> Keep micro-conversions (page views, scroll events) out of your primary bid target. <a href="/blog/google-ads-optimization" style={linkStyle}>Optimize</a> against actions that require genuine user intent. If invalid traffic inflates clicks without conversions, Smart Bidding chases the wrong signal.
               </p>
 
               {/* VISUAL 7: MascotQuote (Echo) */}

@@ -427,7 +427,7 @@ export default function ArticleContent() {
               <h2 style={h2Style}>Frequently Asked Questions</h2>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', marginBottom: '32px' }}>
                 <div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: '12px', padding: '20px 24px' }}>
-                  <p style={{ fontSize: '17px', fontWeight: 700, color: '#1e293b', marginBottom: '8px' }}>How do I add negative keywords to my Google Ads campaign?</p>
+                  <p style={{ fontSize: '17px', fontWeight: 700, color: '#1e293b', marginBottom: '8px' }}>How do I add negative keywords to my <a href="/blog/google-ads-optimization" style={linkStyle}>Google Ads campaign</a>?</p>
                   <p style={{ fontSize: '16px', lineHeight: '1.7', color: '#1e293b', margin: 0 }}>Go to Campaigns, open a campaign, go to Keywords &gt; Negative search keywords, and click the plus button. For a shared list, go to Tools &gt; Shared library &gt; Exclusion lists, build it there, and apply it to selected campaigns. (<a href="https://support.google.com/google-ads/answer/2453972?hl=en" style={linkStyle} target="_blank" rel="noopener noreferrer">Google Ads Help</a>)</p>
                 </div>
                 <div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: '12px', padding: '20px 24px' }}>
