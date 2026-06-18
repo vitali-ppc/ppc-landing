@@ -25,6 +25,7 @@ const STATIC_ROUTES: Array<{
 }> = [
   { path: '/', changeFrequency: 'weekly', priority: 1.0 },
   { path: '/blog', changeFrequency: 'daily', priority: 0.8 },
+  { path: '/tools/roas-calculator', changeFrequency: 'monthly', priority: 0.7 },
   { path: '/b6', changeFrequency: 'weekly', priority: 0.9 },
   { path: '/pricing', changeFrequency: 'monthly', priority: 0.7 },
   { path: '/chat', changeFrequency: 'monthly', priority: 0.5 },
