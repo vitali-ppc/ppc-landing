@@ -50,4 +50,19 @@ User-agent: Bytespider
 Allow: /
 
 User-agent: cohere-ai
-Allow: / 
+Allow: /
+
+# LIVE-RETRIEVAL crawlers (Trend 2.0 J11.1, 2026-06-19) — these decide AI-search
+# CITATION eligibility (distinct from training crawlers GPTBot/Google-Extended above).
+# OAI-SearchBot is OpenAI's live search-index crawler — the one that gets us into
+# ChatGPT Search answers; having GPTBot but missing this is the classic blind spot.
+# Bingbot matters because ChatGPT web retrieval still leans on Bing's index.
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
