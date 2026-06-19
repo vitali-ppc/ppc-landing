@@ -385,7 +385,7 @@ export default function ArticleContent() {
             <section id="bidding">
               <h2 style={h2Style}>Optimize Bidding (Where the Algorithm Helps and Where It Hurts)</h2>
               <p style={paragraphStyle}>
-                Bidding has the highest ceiling and the highest risk of any lever in the account. The right strategy, matched to the right goal and conversion volume, builds account performance over time. The wrong strategy, or a correct strategy applied at the wrong conversion volume, quietly throttles reach without any obvious error message.
+                Bidding has the highest ceiling and the highest risk of any lever in the account. The right strategy, matched to the right goal and conversion volume, builds account performance over time. The wrong strategy, or a correct strategy applied at the wrong conversion volume, quietly throttles reach without any obvious error message. Before setting a Target ROAS or CPA, anchor it to your economics: our <a href="/tools/roas-calculator" style={linkStyle}>break-even and target ROAS calculator</a> turns your margin into the break-even ROAS, the target for a profit goal, and the max CPA you can afford.
               </p>
               <p style={paragraphStyle}>
                 There is no universally &quot;best&quot; bid strategy. The correct choice depends on two things: your optimization goal and your conversion volume. A detailed breakdown of <a href="/blog/google-ads-smart-bidding-strategies" style={linkStyle}>which Smart Bidding strategy to choose</a> is in the spoke.

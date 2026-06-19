@@ -444,7 +444,7 @@ export default function ArticleContent() {
               </p>
 
               <MascotQuote mascot="aegis">
-                Before raising a Target ROAS from 350% to 500% to improve margin, I check how much auction volume survives at 500%. On one Shopping campaign I reviewed, raising tROAS to 500% cut reach by 60%. Conversions dropped from 47 to 14 per month. Margin per conversion rose, but absolute revenue fell by 38%. ROAS target is a lever between margin and volume, not a &quot;more profit&quot; button. If the math says 500% kills enough volume that total contribution margin drops, the right move is not to raise the target.
+                Before raising a Target ROAS from 350% to 500% to improve margin, I check how much auction volume survives at 500%. On one Shopping campaign I reviewed, raising tROAS to 500% cut reach by 60%. Conversions dropped from 47 to 14 per month. Margin per conversion rose, but absolute revenue fell by 38%. ROAS target is a lever between margin and volume, not a &quot;more profit&quot; button. If the math says 500% kills enough volume that total contribution margin drops, the right move is not to raise the target. To set a target grounded in your economics, our <a href="/tools/roas-calculator" style={linkStyle}>break-even and target ROAS calculator</a> turns your margin and profit goal into the ROAS you actually need.
               </MascotQuote>
             </section>
 

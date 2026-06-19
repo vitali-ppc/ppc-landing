@@ -392,7 +392,7 @@ export default function ArticleContent() {
             <section id="drop-is-real">
               <h2 style={h2Style}>When the ROAS Drop Is Real (And You Have to Accept It)</h2>
               <p style={pStyle}>
-                Honest disqualification builds more trust than another listicle promising &quot;one weird trick to recover ROAS&quot;. Three scenarios where the drop is real and the only sane response is recalibration.
+                Honest disqualification builds more trust than another listicle promising &quot;one weird trick to recover ROAS&quot;. Three scenarios where the drop is real and the only sane response is recalibration. Before you recalibrate, confirm what ROAS your margin actually requires with our <a href="/tools/roas-calculator" style={linkStyle}>break-even and target ROAS calculator</a> - a &quot;low&quot; ROAS can still be profitable.
               </p>
               <p style={pStyle}>
                 <strong>Seasonality you can&apos;t out-bid.</strong> January after the holiday spend peak. Mid-summer for non-travel verticals. Mid-week dips in B2B. Pull last year&apos;s data. If today&apos;s drop matches the historical pattern, hold spend at maintenance, lower Target ROAS by 15 to 20 percent, and wait for the cycle. Forcing higher bids during a seasonal trough burns money without lifting volume.
