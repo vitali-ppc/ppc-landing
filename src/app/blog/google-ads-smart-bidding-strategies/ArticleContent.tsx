@@ -238,7 +238,7 @@ export default function ArticleContent() {
                   S
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '2px' }}>
-                  <span style={{ color: '#64748b', fontSize: '16px', fontWeight: 600 }}>By Sara Cohen</span>
+                  <span style={{ color: '#64748b', fontSize: '16px', fontWeight: 600 }}>By B6 Team</span>
                   <span style={{ color: '#64748b', fontSize: '15px' }}>Senior PPC Manager at Kampaio</span>
                   <span style={{ color: '#64748b', fontSize: '15px' }}>June 8, 2026 · 11 min read</span>
                 </div>
