@@ -43,7 +43,7 @@ export default function ArticleContent() {
       '@id': 'https://www.kampaio.com/blog/google-ads-ai-agent',
     },
     keywords:
-      'google ads ai agent, ai agent for google ads, autonomous campaign management, Smart Bidding, Performance Max, Marketing Advisor, Agentic Expert, Data Expert, Optmyzr, Madgicx, negative keywords, anomaly detection, account control, Kampaio',
+      'google ads ai agent, ai agent for google ads, autonomous campaign management, Smart Bidding, Performance Max, Ads Advisor, Analytics Advisor, Ask Advisor, Optmyzr, Madgicx, negative keywords, anomaly detection, account control, Kampaio',
     inLanguage: 'en',
   };
 
@@ -69,7 +69,7 @@ export default function ArticleContent() {
       },
       {
         '@type': 'Question',
-        name: "Are Google's AI agents (Marketing Advisor, Agentic Expert) autonomous?",
+        name: "Are Google's AI agents (Ads Advisor, Analytics Advisor, Ask Advisor) autonomous?",
         acceptedAnswer: {
           '@type': 'Answer',
           text: "No. All three of Google's agentic products operate in an advisory or assisted model: they recommend actions or implement them with your explicit permission. None runs your account end-to-end without your involvement. This is stated in Google's own product descriptions. Roll-out availability varies by region and account type as of mid-2026.",
@@ -129,7 +129,7 @@ export default function ArticleContent() {
     { id: 'tldr', title: 'TL;DR: Google Ads AI Agents in One Table', level: 1 },
     { id: 'what-is', title: 'What Is a Google Ads AI Agent?', level: 1 },
     { id: 'what-can-do', title: 'What Can a Google Ads AI Agent Actually Do?', level: 1 },
-    { id: 'googles-agents', title: "Google's Own AI Agents: Marketing Advisor, Agentic Expert, Data Expert", level: 1 },
+    { id: 'googles-agents', title: "Google's Own AI Agents: Ads Advisor, Analytics Advisor, Ask Advisor", level: 1 },
     { id: 'where-break', title: 'Where AI Agents Break (The Honest Section)', level: 1 },
     { id: 'vs-smart-bidding', title: 'AI Agent vs Smart Bidding vs Recommendation Tools', level: 1 },
     { id: 'how-to-choose', title: 'How to Choose a Google Ads AI Agent for Your Budget', level: 1 },
@@ -167,9 +167,9 @@ export default function ArticleContent() {
 
   // TL;DR comparison table (agent type / what it does / autonomous or advisory / starting price).
   const tldrRows = [
-    { type: 'Google Agentic Expert', does: 'Personalized ad recommendations inside Google Ads', mode: 'Advisory (you implement)', price: 'Included in Google Ads' },
-    { type: 'Google Marketing Advisor', does: 'Chrome-side assistant: diagnoses issues, installs tags with permission', mode: 'Advisory / assisted', price: 'Included in Google Ads' },
-    { type: 'Google Data Expert', does: 'Surfaces GA4 insights and trends', mode: 'Advisory only', price: 'Included in Google Ads' },
+    { type: 'Google Ads Advisor', does: 'Recommendations inside Google Ads; implements with approval (GA Dec 2025)', mode: 'Advisory (you approve)', price: 'Included in Google Ads' },
+    { type: 'Google Analytics Advisor', does: 'Surfaces GA insights, trends, anomalies (GA Dec 2025)', mode: 'Advisory only', price: 'Included in Google Analytics' },
+    { type: 'Google Ask Advisor', does: 'Proactive hub across Ads, Analytics, DV360, Merchant Center (2026)', mode: 'Advisory / proactive', price: 'Included in Google Ads' },
     { type: 'Optmyzr', does: 'Budget pacing, rule-based automation, recommendations', mode: 'Advisory', price: '~$499/mo' },
     { type: 'Madgicx', does: 'Audience insights, automated rules, ad suggestions', mode: 'Advisory / semi-auto', price: '$499+/mo' },
     { type: 'AdSpyder / Adsroid / Ryze', does: 'Campaign build + copy generation', mode: 'Semi-auto (build-focused)', price: 'Pricing not published' },
@@ -355,7 +355,7 @@ export default function ArticleContent() {
                 Concrete example: an AI agent detects that a search term is burning 18% of campaign budget at 0 conversions over 14 days, adds it as a negative keyword, reallocates the freed budget to a high-ROAS ad group, and logs the action, end to end, no human click required.
               </p>
               <p style={paragraphStyle}>
-                Google announced its own agentic products at <a href="https://blog.google/products/ads-commerce/ai-agents-marketing-advisor/" style={linkStyle} target="_blank" rel="noopener noreferrer">Google Marketing Live 2025</a>: Marketing Advisor (Chrome browser side panel), Agentic Expert (inside Google Ads), and Data Expert (inside Google Analytics). We cover those in detail below.
+                Google first previewed its own agentic products at <a href="https://blog.google/products/ads-commerce/ai-agents-marketing-advisor/" style={linkStyle} target="_blank" rel="noopener noreferrer">Google Marketing Live 2025</a>, then shipped them to general availability in December 2025 as Ads Advisor (inside Google Ads) and Analytics Advisor (inside Google Analytics), unified in 2026 by Ask Advisor, a proactive cross-product hub. We cover those in detail below.
               </p>
             </section>
 
@@ -390,18 +390,18 @@ export default function ArticleContent() {
 
             {/* Google's agents */}
             <section id="googles-agents">
-              <h2 style={h2Style}>Google&apos;s Own AI Agents: Marketing Advisor, Agentic Expert, Data Expert</h2>
+              <h2 style={h2Style}>Google&apos;s Own AI Agents: Ads Advisor, Analytics Advisor, Ask Advisor</h2>
               <p style={paragraphStyle}>
-                Google now ships three agentic products. All three advise and assist; none runs your account end-to-end without your involvement.
+                Google now ships these agentic products (first previewed as &quot;Marketing Advisor&quot; and agentic concepts at Google Marketing Live in May 2025, then renamed and shipped to general availability for all English-language accounts in December 2025). All advise and assist; none runs your account end-to-end without your involvement.
               </p>
               <p style={paragraphStyle}>
-                <strong>Agentic Expert</strong> lives inside Google Ads. It delivers personalized recommendations tailored to your account&apos;s goals, can suggest multiple ad groups with tightly themed assets, and can implement recommendations on your behalf once you approve. Advisory model: you still own the execution decision.
+                <strong>Ads Advisor</strong> lives inside Google Ads (GA December 2025). It answers your questions, delivers personalized recommendations tailored to your account&apos;s goals, can suggest tightly themed ad groups and assets, and can implement recommendations on your behalf once you approve. It is reactive and advisory: you still own the execution decision.
               </p>
               <p style={paragraphStyle}>
-                <strong>Marketing Advisor</strong> is a Chrome browser side panel. Connect your Google Ads account and it works across Google Ads, Help Center, Google Analytics, and your website. It can diagnose a missing conversion tag and offer to install it, with your explicit permission. Assisted execution, not autonomous.
+                <strong>Analytics Advisor</strong> operates inside Google Analytics (GA December 2025). It surfaces insights, trends, and anomalies and answers analytics questions. No campaign execution: it reads, it tells you, you act.
               </p>
               <p style={paragraphStyle}>
-                <strong>Data Expert</strong> operates inside Google Analytics 4 only. It surfaces insights, trends, and anomalies proactively. No campaign execution: it reads, it tells you, you act.
+                <strong>Ask Advisor</strong> (introduced at Google Marketing Live 2026) is the proactive hub that orchestrates the specialist agents across Google Ads, Google Analytics, Display &amp; Video 360, and Merchant Center. Where Ads Advisor waits for your question, Ask Advisor surfaces recommendations on its own from your account data. Still permissioned: it proposes, you approve.
               </p>
               <p style={paragraphStyle}>
                 All three products operate &quot;with permission&quot; or &quot;on behalf of&quot; the advertiser, as described in <a href="https://blog.google/products/ads-commerce/ai-agents-marketing-advisor/" style={linkStyle} target="_blank" rel="noopener noreferrer">Google&apos;s announcement</a>. Roll-out was announced in May 2025 as &quot;will begin rolling out later this year.&quot; As of this writing, availability varies by region and account type. Verify current access in your own Google Ads account before planning around these features.
@@ -575,7 +575,7 @@ export default function ArticleContent() {
                 </a>
               </div>
               <p style={{ fontSize: '14px', color: '#94a3b8', fontStyle: 'italic', lineHeight: 1.7, marginTop: '8px' }}>
-                Vendor pricing and capabilities are summarized from public materials as of June 2026 and may change. Optmyzr (~$499/mo) and Madgicx ($499+/mo) are recommendation tools; AdSpyder, Adsroid, Ryze, and Markifact do not publish pricing. Google product roll-out (Marketing Advisor, Agentic Expert, Data Expert) is staged and varies by region. This article is informational and does not constitute professional advertising advice.
+                Vendor pricing and capabilities are summarized from public materials as of June 2026 and may change. Optmyzr (~$499/mo) and Madgicx ($499+/mo) are recommendation tools; AdSpyder, Adsroid, Ryze, and Markifact do not publish pricing. Google&apos;s agentic products reached general availability for English-language accounts in December 2025 as Ads Advisor and Analytics Advisor, unified in 2026 by Ask Advisor; availability still varies by region and account type. This article is informational and does not constitute professional advertising advice.
               </p>
             </section>
           </div>
