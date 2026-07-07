@@ -606,7 +606,23 @@ export default function ArticleContent() {
             </section>
           </div>
         </div>
-        <KeepReading slug="google-ads-for-b2b-saas" category="b2b" />
+        {/* cluster-downlinks:START */}
+      <div style={{ marginTop: '2.5rem', paddingTop: '1.5rem', borderTop: '1px solid #e5e7eb' }}>
+        <p style={{ fontWeight: 600, marginBottom: '0.75rem' }}>Related in this cluster</p>
+        <ul style={{ listStyle: 'disc', paddingLeft: '1.25rem', margin: 0 }}>
+          <li style={{ marginBottom: '0.4rem' }}><a href="/blog/google-ads-lead-quality-guide" style={{ color: '#764ba2', textDecoration: 'underline' }}>How to Improve Lead Quality in Google Ads (Complete 2026 Guide)</a></li>
+          <li style={{ marginBottom: '0.4rem' }}><a href="/blog/b2b-google-ads-lead-generation" style={{ color: '#764ba2', textDecoration: 'underline' }}>B2B Google Ads Lead Generation: How to Build a Campaign That Feeds the Pipeline</a></li>
+          <li style={{ marginBottom: '0.4rem' }}><a href="/blog/b2b-saas-google-ads-benchmarks-2026" style={{ color: '#764ba2', textDecoration: 'underline' }}>B2B SaaS Google Ads Benchmarks 2026: CTR, CPC, CPA, and ROAS by Segment</a></li>
+          <li style={{ marginBottom: '0.4rem' }}><a href="/blog/is-google-ads-worth-it-for-b2b-saas" style={{ color: '#764ba2', textDecoration: 'underline' }}>Is Google Ads Worth It for B2B SaaS? A Decision Framework (2026)</a></li>
+          <li style={{ marginBottom: '0.4rem' }}><a href="/blog/b2b-saas-google-ads-campaign-structure" style={{ color: '#764ba2', textDecoration: 'underline' }}>B2B SaaS Google Ads Campaign Structure: The Account Blueprint (2026)</a></li>
+          <li style={{ marginBottom: '0.4rem' }}><a href="/blog/b2b-ppc-lead-generation" style={{ color: '#764ba2', textDecoration: 'underline' }}>B2B PPC Lead Generation: How to Buy Pipeline, Not Just Leads (2026)</a></li>
+          <li style={{ marginBottom: '0.4rem' }}><a href="/blog/b2b-ppc-advertising" style={{ color: '#764ba2', textDecoration: 'underline' }}>B2B PPC Advertising: How to Set It Up Without Burning Your First Month's Budget (2026)</a></li>
+          <li style={{ marginBottom: '0.4rem' }}><a href="/blog/why-brand-not-showing-up-in-chatgpt" style={{ color: '#764ba2', textDecoration: 'underline' }}>Why Isn't My Brand Showing Up in ChatGPT? (How to Diagnose It)</a></li>
+        </ul>
+      </div>
+      {/* cluster-downlinks:END */}
+
+      <KeepReading slug="google-ads-for-b2b-saas" category="b2b" />
       <Footer compact={true} />
       </div>
 

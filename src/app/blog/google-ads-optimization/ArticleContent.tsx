@@ -597,7 +597,23 @@ export default function ArticleContent() {
 
           </div>
         </div>
-        <KeepReading slug="google-ads-optimization" category="google-ads" />
+        {/* cluster-downlinks:START */}
+      <div style={{ marginTop: '2.5rem', paddingTop: '1.5rem', borderTop: '1px solid #e5e7eb' }}>
+        <p style={{ fontWeight: 600, marginBottom: '0.75rem' }}>Related in this cluster</p>
+        <ul style={{ listStyle: 'disc', paddingLeft: '1.25rem', margin: 0 }}>
+          <li style={{ marginBottom: '0.4rem' }}><a href="/blog/google-shopping-feed-optimization" style={{ color: '#764ba2', textDecoration: 'underline' }}>Google Shopping Feed Optimization: The Attribute-by-Attribute Build Order (2026)</a></li>
+          <li style={{ marginBottom: '0.4rem' }}><a href="/blog/google-shopping-optimization" style={{ color: '#764ba2', textDecoration: 'underline' }}>Google Shopping Optimization: Diagnose First, Fix Second</a></li>
+          <li style={{ marginBottom: '0.4rem' }}><a href="/blog/google-ads-optimizer-software-compared" style={{ color: '#764ba2', textDecoration: 'underline' }}>Google Ads Optimizer Software, Compared: Do You Actually Need One?</a></li>
+          <li style={{ marginBottom: '0.4rem' }}><a href="/blog/why-is-my-google-ads-account-suspended" style={{ color: '#764ba2', textDecoration: 'underline' }}>Why Is My Google Ads Account Suspended? Causes, Fixes, and How to Appeal</a></li>
+          <li style={{ marginBottom: '0.4rem' }}><a href="/blog/google-ads-ai-agent" style={{ color: '#764ba2', textDecoration: 'underline' }}>Google Ads AI Agent: What They Actually Do, Where They Break, and How to Choose (2026)</a></li>
+          <li style={{ marginBottom: '0.4rem' }}><a href="/blog/landing-page-optimization-for-google-ads" style={{ color: '#764ba2', textDecoration: 'underline' }}>Landing Page Optimization for Google Ads (Quality Score Fix)</a></li>
+          <li style={{ marginBottom: '0.4rem' }}><a href="/blog/performance-max-optimization" style={{ color: '#764ba2', textDecoration: 'underline' }}>Performance Max Optimization: The 7-Lever Playbook (In the Right Order)</a></li>
+          <li style={{ marginBottom: '0.4rem' }}><a href="/blog/google-ads-agency-vs-in-house-vs-software" style={{ color: '#764ba2', textDecoration: 'underline' }}>Google Ads Agency vs In-House vs Software: Which Is Right for Your Budget?</a></li>
+        </ul>
+      </div>
+      {/* cluster-downlinks:END */}
+
+      <KeepReading slug="google-ads-optimization" category="google-ads" />
         <Footer />
       </div>
     </>
