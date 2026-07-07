@@ -12,6 +12,7 @@ const homeJsonLd = {
       "@type": "Organization",
       "@id": "https://www.kampaio.com/#organization",
       name: "Kampaio",
+      alternateName: ["B6", "Kampaio B6"],
       url: "https://www.kampaio.com",
       logo: {
         "@type": "ImageObject",
