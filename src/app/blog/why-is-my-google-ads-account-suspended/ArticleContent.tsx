@@ -42,7 +42,7 @@ export default function ArticleContent() {
       },
     },
     "datePublished": "2026-06-22T00:00:00.000Z",
-    "dateModified": "2026-06-22T00:00:00.000Z",
+    "dateModified": "2026-07-07T00:00:00.000Z",
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https://kampaio.com/blog/why-is-my-google-ads-account-suspended"
@@ -232,7 +232,7 @@ export default function ArticleContent() {
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '2px' }}>
                   <span style={{ color: '#64748b', fontSize: '16px', fontWeight: 600 }}>By Marcus</span>
                   <span style={{ color: '#64748b', fontSize: '15px' }}>PPC Analyst at Kampaio</span>
-                  <span style={{ color: '#64748b', fontSize: '15px' }}>June 22, 2026 · 11 min read</span>
+                  <span style={{ color: '#64748b', fontSize: '15px' }}>June 22, 2026 · Updated July 7, 2026 · 11 min read</span>
                 </div>
               </div>
             </div>
@@ -335,7 +335,7 @@ export default function ArticleContent() {
                 In our analysis of 104 public discussion items for this query (Reddit 71, Hacker News 25, Stack Exchange 4, X live 4), circumventing systems is the single most-raised cause at 13% of threads. Payment and credit card issues follow at 11%. Merchant Center cascades account for 10-19% when &quot;merchant center&quot; and &quot;google merchant&quot; threads are combined. Those three buckets cover roughly a third of all community complaints.
               </p>
               <p style={paragraphStyle}>
-                In the past year alone, Google flagged over 5.5 billion ads and suspended around 12.7 million advertiser accounts, according to John Horn, CEO of StubGroup (<a href="https://ppchero.com/how-to-navigate-your-google-ads-suspension/" target="_blank" rel="noopener noreferrer" style={linkStyle}>PPC Hero, May 2024</a>). Suspensions are common. They are also often fixable.
+                In 2025, Google blocked or removed 8.3 billion ads and suspended 24.9 million advertiser accounts, according to Google&apos;s own <a href="https://blog.google/products/ads-commerce/2025-ads-safety-report/" target="_blank" rel="noopener noreferrer" style={linkStyle}>2025 Ads Safety Report</a> (published April 2026), up from 5.5 billion ads in 2023. Suspensions are common. They are also often fixable, and the odds are improving: Google says its Gemini models cut <em>incorrect</em> advertiser suspensions by roughly 80% last year, and account suspensions overall fell about 36% year over year. If you believe your suspension was a mistake, that is now a more winnable appeal than it was a year ago.
               </p>
               <p style={paragraphStyle}>
                 If your account is running but your <a href="/blog/google-ads-roas-dropped-suddenly" style={linkStyle}>ROAS dropped suddenly</a>, a billing flag or policy hold may be the hidden cause, not bid strategy.
@@ -670,6 +670,7 @@ export default function ArticleContent() {
               <h2 style={{ fontSize: '20px', fontWeight: 700, color: '#1e293b', marginBottom: '16px' }}>Sources</h2>
               <ul style={{ fontSize: '15px', color: '#64748b', lineHeight: 1.7, paddingLeft: '20px', marginBottom: 0 }}>
                 <li style={{ marginBottom: '8px' }}><a href="https://support.google.com/google-ads/answer/9841640?hl=en" target="_blank" rel="noopener noreferrer" style={linkStyle}>Google Ads account suspensions overview</a>. Google Ads Help, 2024</li>
+                <li style={{ marginBottom: '8px' }}><a href="https://blog.google/products/ads-commerce/2025-ads-safety-report/" target="_blank" rel="noopener noreferrer" style={linkStyle}>2025 Ads Safety Report</a>. Google, April 2026 (8.3B ads removed, 24.9M accounts suspended, incorrect suspensions down ~80% via Gemini)</li>
                 <li style={{ marginBottom: '8px' }}><a href="https://support.google.com/adspolicy/answer/6008942" target="_blank" rel="noopener noreferrer" style={linkStyle}>Google Ads advertising policies overview</a>. Google Ads Policy Center</li>
                 <li style={{ marginBottom: '8px' }}><a href="https://ppchero.com/how-to-navigate-your-google-ads-suspension/" target="_blank" rel="noopener noreferrer" style={linkStyle}>How to Navigate Your Google Ads Suspension</a>. John Horn (StubGroup CEO), PPC Hero, May 2024</li>
                 <li style={{ marginBottom: '8px' }}><a href="https://www.reddit.com/r/PPC/comments/146kcrp/google_ads_account_suspended/" target="_blank" rel="noopener noreferrer" style={linkStyle}>Google Ads account Suspended</a>. u/Stunning-Cat-5471, u/Omblae, Reddit r/PPC, June 2023</li>
