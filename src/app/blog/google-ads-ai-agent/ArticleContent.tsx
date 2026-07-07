@@ -37,7 +37,7 @@ export default function ArticleContent() {
       },
     },
     datePublished: '2026-06-23T00:00:00.000Z',
-    dateModified: '2026-06-23T00:00:00.000Z',
+    dateModified: '2026-07-07T00:00:00.000Z',
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': 'https://www.kampaio.com/blog/google-ads-ai-agent',
@@ -169,7 +169,7 @@ export default function ArticleContent() {
   const tldrRows = [
     { type: 'Google Ads Advisor', does: 'Recommendations inside Google Ads; implements with approval (GA Dec 2025)', mode: 'Advisory (you approve)', price: 'Included in Google Ads' },
     { type: 'Google Analytics Advisor', does: 'Surfaces GA insights, trends, anomalies (GA Dec 2025)', mode: 'Advisory only', price: 'Included in Google Analytics' },
-    { type: 'Google Ask Advisor', does: 'Proactive hub across Ads, Analytics, DV360, Merchant Center (2026)', mode: 'Advisory / proactive', price: 'Included in Google Ads' },
+    { type: 'Google Ask Advisor', does: 'Proactive hub across Ads, Analytics, DV360, Merchant Center (beta, May 2026)', mode: 'Advisory / proactive', price: 'Included in Google Ads' },
     { type: 'Optmyzr', does: 'Budget pacing, rule-based automation, recommendations', mode: 'Advisory', price: '~$499/mo' },
     { type: 'Madgicx', does: 'Audience insights, automated rules, ad suggestions', mode: 'Advisory / semi-auto', price: '$499+/mo' },
     { type: 'AdSpyder / Adsroid / Ryze', does: 'Campaign build + copy generation', mode: 'Semi-auto (build-focused)', price: 'Pricing not published' },
@@ -233,7 +233,7 @@ export default function ArticleContent() {
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '2px' }}>
                   <span style={{ color: '#64748b', fontSize: '16px', fontWeight: 600 }}>By Kampaio Team</span>
                   <span style={{ color: '#64748b', fontSize: '15px' }}>AI-native Google Ads optimization</span>
-                  <span style={{ color: '#64748b', fontSize: '15px' }}>June 23, 2026 · 12 min read</span>
+                  <span style={{ color: '#64748b', fontSize: '15px' }}>June 23, 2026 · Updated July 7, 2026 · 12 min read</span>
                 </div>
               </div>
             </div>
@@ -401,7 +401,7 @@ export default function ArticleContent() {
                 <strong>Analytics Advisor</strong> operates inside Google Analytics (GA December 2025). It surfaces insights, trends, and anomalies and answers analytics questions. No campaign execution: it reads, it tells you, you act.
               </p>
               <p style={paragraphStyle}>
-                <strong>Ask Advisor</strong> (introduced at Google Marketing Live 2026) is the proactive hub that orchestrates the specialist agents across Google Ads, Google Analytics, Display &amp; Video 360, and Merchant Center. Where Ads Advisor waits for your question, Ask Advisor surfaces recommendations on its own from your account data. Still permissioned: it proposes, you approve.
+                <strong>Ask Advisor</strong> (announced May 20, 2026 at Google Marketing Live 2026, and in beta for English-language accounts as of this writing) is the proactive, Gemini-powered hub that orchestrates the specialist agents across Google Ads, Google Analytics, Display &amp; Video 360, and Merchant Center. Where Ads Advisor waits for your question, Ask Advisor surfaces recommendations on its own from your account data. Still permissioned: it proposes, you approve. Because it is a rolling beta, treat availability as a moving target and confirm access in your own account.
               </p>
               <p style={paragraphStyle}>
                 All three products operate &quot;with permission&quot; or &quot;on behalf of&quot; the advertiser, as described in <a href="https://blog.google/products/ads-commerce/ai-agents-marketing-advisor/" style={linkStyle} target="_blank" rel="noopener noreferrer">Google&apos;s announcement</a>. Roll-out was announced in May 2025 as &quot;will begin rolling out later this year.&quot; As of this writing, availability varies by region and account type. Verify current access in your own Google Ads account before planning around these features.
@@ -575,7 +575,7 @@ export default function ArticleContent() {
                 </a>
               </div>
               <p style={{ fontSize: '14px', color: '#94a3b8', fontStyle: 'italic', lineHeight: 1.7, marginTop: '8px' }}>
-                Vendor pricing and capabilities are summarized from public materials as of June 2026 and may change. Optmyzr (~$499/mo) and Madgicx ($499+/mo) are recommendation tools; AdSpyder, Adsroid, Ryze, and Markifact do not publish pricing. Google&apos;s agentic products reached general availability for English-language accounts in December 2025 as Ads Advisor and Analytics Advisor, unified in 2026 by Ask Advisor; availability still varies by region and account type. This article is informational and does not constitute professional advertising advice.
+                Vendor pricing and capabilities are summarized from public materials as of July 2026 and may change. Optmyzr (~$499/mo) and Madgicx ($499+/mo) are recommendation tools; AdSpyder, Adsroid, Ryze, and Markifact do not publish pricing. Google&apos;s agentic products reached general availability for English-language accounts in December 2025 as Ads Advisor and Analytics Advisor, unified on May 20, 2026 by Ask Advisor (in beta for English-language accounts); availability still varies by region and account type. This article is informational and does not constitute professional advertising advice.
               </p>
             </section>
           </div>

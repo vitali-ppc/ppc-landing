@@ -34,7 +34,7 @@ export default function ArticleContent() {
       },
     },
     "datePublished": "2026-06-02T00:00:00.000Z",
-    "dateModified": "2026-06-02T00:00:00.000Z",
+    "dateModified": "2026-07-07T00:00:00.000Z",
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https://kampaio.com/blog/why-brand-not-showing-up-in-chatgpt"
@@ -200,7 +200,7 @@ export default function ArticleContent() {
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '2px' }}>
                   <span style={{ color: '#64748b', fontSize: '16px', fontWeight: 600 }}>By B6 Team</span>
                   <span style={{ color: '#64748b', fontSize: '15px' }}>AI Search Strategist at Kampaio</span>
-                  <span style={{ color: '#64748b', fontSize: '15px' }}>June 2, 2026 · 9 min read</span>
+                  <span style={{ color: '#64748b', fontSize: '15px' }}>June 2, 2026 · Updated July 7, 2026 · 9 min read</span>
                 </div>
               </div>
             </div>
@@ -265,7 +265,7 @@ export default function ArticleContent() {
                 The data makes the split concrete. Indig found that ChatGPT retrieved roughly six times more pages than it actually cited, and 85 percent of the retrieved pages were never named (<a href="https://www.growth-memo.com/p/the-science-of-how-ai-picks-its-sources" target="_blank" rel="noopener noreferrer" style={linkStyle}>Kevin Indig, 2026</a>). Top-ranked pages were cited 3.5 times more often than pages beyond position 20, so ranking is necessary-ish. It is not sufficient.
               </p>
               <p style={paraStyle}>
-                The dangerous part for a founder is the attribution gap. Your organic traffic holds steady, your dashboards look fine, and meanwhile a growing share of buyers never enter that funnel because they asked an AI first. Roughly a fifth of B2B buyers now use generative AI for vendor research (Responsive, 2025), and Gartner has predicted a steep decline in traditional search volume this decade. None of that shows up in your existing reporting stack until it shows up in pipeline. It is the same blind-spot dynamic as <a href="/blog/b2b-google-ads-low-quality-leads" style={linkStyle}>B2B campaigns that report healthy lead volume but never move pipeline</a>: the metric you watch looks fine while the outcome quietly erodes.
+                The dangerous part for a founder is the attribution gap. Your organic traffic holds steady, your dashboards look fine, and meanwhile a growing share of buyers never enter that funnel because they asked an AI first. Roughly a fifth of B2B buyers now use generative AI for vendor research (Responsive, 2025), and Gartner has predicted a steep decline in traditional search volume this decade. And the invisibility is close to universal: an April 2026 study by 2X&apos;s AI Innovation Lab found that 96 percent of B2B companies surface only in late-stage AI queries from buyers who already know their name, while just 4.3 percent appear in the early-stage questions where shortlists actually form (<a href="https://www.demandgenreport.com/industry-news/news-brief/2x-survey-finds-96-of-b2b-companies-are-invisible-in-ai-discovery/52536/" target="_blank" rel="noopener noreferrer" style={linkStyle}>2X via Demand Gen Report, 2026</a>). None of that shows up in your existing reporting stack until it shows up in pipeline. It is the same blind-spot dynamic as <a href="/blog/b2b-google-ads-low-quality-leads" style={linkStyle}>B2B campaigns that report healthy lead volume but never move pipeline</a>: the metric you watch looks fine while the outcome quietly erodes.
               </p>
               <MascotQuote mascot="sage">
                 I ran the same buyer prompt across ChatGPT three weeks running and the cited brands changed 74 percent of the time. Only domains with a verified entity and consistent category data held their spot every week. Chasing one mention is noise. The stable core is what compounds.
@@ -471,7 +471,8 @@ export default function ArticleContent() {
               <ol style={{ fontSize: '17px', color: '#1e293b', lineHeight: '1.8', paddingLeft: '24px', marginBottom: '32px' }}>
                 <li style={{ marginBottom: '10px' }}>Kevin Indig (2026): &quot;The science of how AI picks its sources&quot; (<a href="https://www.growth-memo.com/p/the-science-of-how-ai-picks-its-sources" target="_blank" rel="noopener noreferrer" style={linkStyle}>growth-memo.com</a>)</li>
                 <li style={{ marginBottom: '10px' }}>Search Engine Land (2026): &quot;New study reveals how ChatGPT chooses which domains to cite&quot; (<a href="https://searchengineland.com/chatgpt-citations-domains-study-472349" target="_blank" rel="noopener noreferrer" style={linkStyle}>searchengineland.com</a>)</li>
-                <li>SISTRIX (2026): &quot;AI Citation Drift: How Stable Are Sources in AI Search Results?&quot; (<a href="https://www.sistrix.com/blog/ai-citation-drift-how-stable-are-sources-in-ai-search-results/" target="_blank" rel="noopener noreferrer" style={linkStyle}>sistrix.com</a>)</li>
+                <li style={{ marginBottom: '10px' }}>SISTRIX (2026): &quot;AI Citation Drift: How Stable Are Sources in AI Search Results?&quot; (<a href="https://www.sistrix.com/blog/ai-citation-drift-how-stable-are-sources-in-ai-search-results/" target="_blank" rel="noopener noreferrer" style={linkStyle}>sistrix.com</a>)</li>
+                <li>2X AI Innovation Lab (2026): &quot;96% of B2B Companies Are Invisible in AI Discovery&quot; (70 B2B companies analyzed, published April 2026) (<a href="https://www.demandgenreport.com/industry-news/news-brief/2x-survey-finds-96-of-b2b-companies-are-invisible-in-ai-discovery/52536/" target="_blank" rel="noopener noreferrer" style={linkStyle}>Demand Gen Report</a>)</li>
               </ol>
             </section>
 
