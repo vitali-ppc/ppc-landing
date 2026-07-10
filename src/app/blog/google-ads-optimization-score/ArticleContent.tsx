@@ -265,7 +265,7 @@ export default function ArticleContent() {
             {/* Intro */}
             <section>
               <p style={para}>
-                Google Ads optimization score measures how many of Google&apos;s recommendations you&apos;ve applied to an account, not how well that account actually performs. A high score means high adoption of Google&apos;s suggestions. It does not mean higher ROAS, lower CPC, or more profit, and treating it like it does is where most of the confusion starts. It is one signal inside a broader <a href="/blog/google-ads-optimization" style={linkStyle}>Google Ads optimization</a> workflow, not the scoreboard.
+                Google Ads optimization score measures how many of Google&apos;s recommendations you&apos;ve applied to an account, not how well that account actually performs. A high score means high adoption of Google&apos;s suggestions. It does not mean higher ROAS, lower CPC, or more profit, and treating it like it does is where most of the confusion starts.
               </p>
 
               {/* VISUAL 1: KeyTakeaways TL;DR summary card */}
