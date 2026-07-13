@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import StickyTOC from '../../components/blog/StickyTOC';
 
 export const metadata: Metadata = {
   title: 'Kampaio Blog: AI-Powered Google Ads Insights',
@@ -14,5 +15,10 @@ export const metadata: Metadata = {
 };
 
 export default function BlogLayout({ children }: { children: React.ReactNode }) {
-  return children;
+  return (
+    <>
+      {children}
+      <StickyTOC />
+    </>
+  );
 }
