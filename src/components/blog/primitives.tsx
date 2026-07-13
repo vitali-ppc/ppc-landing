@@ -910,6 +910,24 @@ export function CompareGrid({ columns }: { columns: CompareColumn[] }) {
             {col.traits.map((t) => (
               <li key={t.label} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, fontSize: 14, color: t.has ? 'var(--blog-ink)' : 'var(--blog-muted)' }}>
                 {t.has ? <CheckIcon /> : <CrossIcon />}
+                {/* Machine-readable yes/no: the ✓/✗ icons are aria-hidden SVGs, so
+                    without this the two columns read identically to LLMs, screen
+                    readers, and text extraction. Visually hidden, extractable. */}
+                <span
+                  style={{
+                    position: 'absolute',
+                    width: 1,
+                    height: 1,
+                    padding: 0,
+                    margin: -1,
+                    overflow: 'hidden',
+                    clip: 'rect(0 0 0 0)',
+                    whiteSpace: 'nowrap',
+                    border: 0,
+                  }}
+                >
+                  {t.has ? 'Yes: ' : 'No: '}
+                </span>
                 <span style={{ lineHeight: 1.35 }}>{t.label}</span>
               </li>
             ))}
