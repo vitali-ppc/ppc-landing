@@ -25,6 +25,10 @@ const twoColCss = `
   html.has-toc .blog-shell > div > [style*="max-width:1200px"] {
     transform: translateX(-134px);
   }
+  /* The right rail replaces the in-article collapsible ToC box on desktop. */
+  html.has-toc .toc-inline {
+    display: none !important;
+  }
 }
 `;
 

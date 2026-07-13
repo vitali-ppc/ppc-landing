@@ -48,13 +48,23 @@ export default function StickyTOC() {
       if (el) observer.observe(el);
     });
 
-    // Keep the sidebar visible while reading; hide it once past the footer.
-    const lastEl = document.getElementById(sections[sections.length - 1].id);
+    // The in-article collapsible "Table of Contents" box is redundant on desktop
+    // (the right rail replaces it). Tag its container so CSS hides it on desktop
+    // while keeping it for mobile. Located by the toggle button's text.
+    const inlineTocBox = Array.from(document.querySelectorAll('button'))
+      .find((b) => (b.textContent || '').trim().startsWith('Table of Contents'))
+      ?.parentElement;
+    inlineTocBox?.classList.add('toc-inline');
+
+    // Keep the sidebar visible while reading; hide it once the recirculation
+    // ("Keep reading") block or footer starts entering the viewport, so it never
+    // overlaps them at the end of the article.
+    const endEl =
+      document.querySelector('.keep-reading-grid')?.closest('section') ||
+      document.querySelector('footer');
     const onScroll = () => {
-      const bottom = lastEl?.getBoundingClientRect().bottom ?? Infinity;
-      // Always visible in the right rail (the hero is now constrained to the
-      // content column, so nothing to overlap); only hide once past the footer.
-      setShown(bottom > 240);
+      const endTop = endEl?.getBoundingClientRect().top ?? Infinity;
+      setShown(endTop > window.innerHeight - 60);
     };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
