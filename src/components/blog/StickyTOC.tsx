@@ -25,7 +25,13 @@ export default function StickyTOC() {
       .filter((i) => i.id && i.text.length > 0);
 
     setItems(sections);
-    if (sections.length < 2) return;
+    if (sections.length < 2) {
+      document.documentElement.classList.remove('has-toc');
+      return;
+    }
+    // Marks the page as a two-column article so the layout shifts the content
+    // column left to make room for the rail (scoped away from the /blog index).
+    document.documentElement.classList.add('has-toc');
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -55,6 +61,7 @@ export default function StickyTOC() {
     return () => {
       observer.disconnect();
       window.removeEventListener('scroll', onScroll);
+      document.documentElement.classList.remove('has-toc');
     };
   }, [pathname]);
 
@@ -85,8 +92,8 @@ export default function StickyTOC() {
         .sticky-toc {
           position: fixed;
           top: 140px;
-          left: calc(50% + 408px);
-          width: 210px;
+          left: calc(50% + 294px);
+          width: 240px;
           max-height: calc(100vh - 200px);
           overflow-y: auto;
           display: none;
