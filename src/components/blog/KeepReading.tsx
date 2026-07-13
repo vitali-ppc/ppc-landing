@@ -9,7 +9,7 @@ export default function KeepReading({ slug, category }: { slug: string; category
   if (posts.length === 0) return null;
 
   return (
-    <section style={{ marginTop: '56px', paddingTop: '40px', borderTop: '1px solid #e5e7eb' }}>
+    <section style={{ maxWidth: '1200px', margin: '-40px auto 0', padding: '40px 24px 0', borderTop: '1px solid #e5e7eb' }}>
       <h2
         style={{
           fontSize: '13px',
