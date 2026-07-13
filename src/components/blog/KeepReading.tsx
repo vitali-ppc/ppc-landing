@@ -10,6 +10,9 @@ export default function KeepReading({ slug, category }: { slug: string; category
 
   return (
     <section style={{ maxWidth: '1200px', margin: '-40px auto 0', padding: '40px 24px 0', borderTop: '1px solid #e5e7eb' }}>
+      {/* Inner column matches the 800px article body so the cards align under the
+          content and never sit beneath the right-rail ToC. */}
+      <div style={{ maxWidth: '800px', margin: '0 auto' }}>
       <h2
         style={{
           fontSize: '13px',
@@ -25,7 +28,7 @@ export default function KeepReading({ slug, category }: { slug: string; category
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(3, 1fr)',
+          gridTemplateColumns: 'repeat(2, 1fr)',
           gap: '24px',
         }}
         className="keep-reading-grid"
@@ -70,6 +73,12 @@ export default function KeepReading({ slug, category }: { slug: string; category
           </a>
         ))}
       </div>
+      </div>
+      <style
+        dangerouslySetInnerHTML={{
+          __html: '@media (max-width: 640px){.keep-reading-grid{grid-template-columns:1fr !important}}',
+        }}
+      />
     </section>
   );
 }

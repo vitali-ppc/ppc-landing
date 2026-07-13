@@ -56,15 +56,13 @@ export default function StickyTOC() {
       ?.parentElement;
     inlineTocBox?.classList.add('toc-inline');
 
-    // Keep the sidebar visible while reading; hide it once the recirculation
-    // ("Keep reading") block or footer starts entering the viewport, so it never
-    // overlaps them at the end of the article.
-    const endEl =
-      document.querySelector('.keep-reading-grid')?.closest('section') ||
-      document.querySelector('footer');
+    // Keep the sidebar visible through the article and the "Keep reading" block
+    // (both now sit in the left column, so no overlap); hide it only once the
+    // footer starts entering the viewport.
+    const endEl = document.querySelector('footer');
     const onScroll = () => {
       const endTop = endEl?.getBoundingClientRect().top ?? Infinity;
-      setShown(endTop > window.innerHeight - 60);
+      setShown(endTop > window.innerHeight - 40);
     };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
