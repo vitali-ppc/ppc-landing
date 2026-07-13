@@ -295,7 +295,7 @@ export default function ArticleContent() {
                 Google Ads CPL looks 2-4x cheaper than LinkedIn for the same B2B vertical. That gap is real at the form-fill level. The problem shows up when those leads hit the CRM: without offline conversion imports (OCI), Google Ads B2B accounts commonly see 60-80% rejection rates from sales. Real pipeline-CAC on Google frequently lands at 2-3x the stated CPL, often exceeding LinkedIn&apos;s pipeline-CAC despite a 3x cheaper cost-per-lead.
               </p>
               <p style={paraStyle}>
-                LinkedIn lead quality is structurally higher because LinkedIn targets by job title, company size, industry, and seniority before the click happens. Google targets by query intent, which leaks across buyer types. A search for &quot;enterprise HR software&quot; attracts HR coordinators, students researching the market, consultants auditing clients, and actual buyers. LinkedIn targets the VP of People at a 500-person SaaS company and shows nothing to anyone else.
+                LinkedIn lead quality is structurally higher because LinkedIn targets by job title, company size, industry, and seniority before the click happens. Google targets by query intent, which leaks across buyer types. A search for &quot;enterprise HR software&quot; attracts HR coordinators, students researching the market, <a href="/blog/google-ads-consultant" style={linkStyle}>consultant</a>s auditing clients, and actual buyers. LinkedIn targets the VP of People at a 500-person SaaS company and shows nothing to anyone else.
               </p>
 
               {/* VISUAL 2: Pipeline-CAC math stat blocks */}
@@ -570,7 +570,7 @@ export default function ArticleContent() {
               </MascotQuote>
 
               <p style={paraStyle}>
-                One execution note: do not shift more than 15-20% of total budget between channels in a single week. Smart Bidding interprets large budget swings as a learning signal and resets optimization. Gradual rebalancing over 6-8 weeks preserves algorithm stability on both platforms. If the Google side of your account shows structural problems beyond budget allocation, the <a href="/blog/ppc-audit-checklist" style={linkStyle}>PPC audit checklist</a> covers the 25 senior-level checks that surface 80% of account problems.
+                One execution note: do not shift more than 15-20% of total budget between channels in a single week. Smart Bidding interprets large budget swings as a learning signal and resets <a href="/blog/google-ads-optimization" style={linkStyle}>optimization</a>. Gradual rebalancing over 6-8 weeks preserves algorithm stability on both platforms. If the Google side of your account shows structural problems beyond budget allocation, the <a href="/blog/ppc-audit-checklist" style={linkStyle}>PPC audit checklist</a> covers the 25 senior-level checks that surface 80% of account problems.
               </p>
             </section>
 
@@ -628,7 +628,7 @@ export default function ArticleContent() {
                 Cross-channel budget allocation drifts. LinkedIn ROAS holds for six weeks, then audience saturation hits and pipeline-fit starts declining. A Google Performance Max campaign quietly reallocates spend toward low-intent Display placements. Neither platform surfaces this in the native dashboard with the lag time that matters for B2B decision-making.
               </p>
               <p style={paraStyle}>
-                Buzz, Kampaio&apos;s bid <a href="/blog/google-ads-strategy" style={linkStyle}>strategy</a> agent, runs continuous monitoring on channel-level pipeline-CAC, ROAS drift, and budget allocation against the target split. It flags when channel performance deviates more than 15% from the rolling baseline -- before the drift becomes a quarterly miss.
+                Buzz, Kampaio&apos;s bid <a href="/blog/google-ads-strategy" style={linkStyle}>strategy</a> <a href="/blog/google-ads-ai-agent" style={linkStyle}>agent</a>, runs continuous monitoring on channel-level pipeline-CAC, ROAS drift, and budget allocation against the target split. It flags when channel performance deviates more than 15% from the rolling baseline -- before the drift becomes a quarterly miss.
               </p>
               <p style={paraStyle}>
                 This is not about replacing the judgment call on the initial split. The framework in this article still applies: ACV, sales cycle, ICP width determine the starting allocation. Kampaio handles the monitoring and alerting layer that catches when the live allocation drifts from the intended one. See <a href="/pricing" style={linkStyle}>Kampaio pricing</a> for autonomy tiers -- the human stays in approval, the agents handle the continuous monitoring.

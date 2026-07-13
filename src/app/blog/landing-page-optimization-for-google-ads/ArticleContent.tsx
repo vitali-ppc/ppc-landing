@@ -257,7 +257,7 @@ export default function ArticleContent() {
             {/* Intro */}
             <section>
               <p style={pStyle}>
-                Landing page optimization for Google Ads is an auction-economics problem: Landing Page Experience is an auction-time quality signal that feeds Ad Rank, and Ad Rank sets the price per click in Google&rsquo;s second-price auction. A &ldquo;Below average&rdquo; LPE flag is not a UX note. It is a tax on every impression the ad serves.
+                Landing page <a href="/blog/google-ads-optimization" style={{ color: '#764ba2', textDecoration: 'underline' }}>optimization</a> for Google Ads is an auction-economics problem: Landing Page Experience is an auction-time quality signal that feeds Ad Rank, and Ad Rank sets the price per click in Google&rsquo;s second-price auction. A &ldquo;Below average&rdquo; LPE flag is not a UX note. It is a tax on every impression the ad serves.
               </p>
             </section>
 

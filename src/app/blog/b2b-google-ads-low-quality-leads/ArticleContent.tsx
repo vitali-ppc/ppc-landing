@@ -249,7 +249,7 @@ export default function ArticleContent() {
                 <strong>Reason 2: B2B intent is harder to read from a single query.</strong> A search for &quot;CRM software&quot; can mean a senior buyer evaluating tools (high value), a junior researcher building a longlist (medium), a student writing a case study (zero), or a freelancer wanting a free trial (zero). Same query, four very different leads. Without feedback, Smart Bidding bids the same on all four.
               </p>
               <p style={paraStyle}>
-                <strong>Reason 3: The form does not qualify.</strong> A four-field form (name, email, company, phone) accepts anyone. No business-email validation, no company-size gate, no qualifying questions. Gmail addresses and freelance consultants flow through unfiltered, then sit in sales queues as rejected.
+                <strong>Reason 3: The form does not qualify.</strong> A four-field form (name, email, company, phone) accepts anyone. No business-email validation, no company-size gate, no qualifying questions. Gmail addresses and freelance <a href="/blog/google-ads-consultant" style={linkStyle}>consultant</a>s flow through unfiltered, then sit in sales queues as rejected.
               </p>
               <p style={paraStyle}>
                 If you have not isolated the root cause yet, start with our breakdown of <a href="/blog/performance-max-problems-b2b-marketing" style={linkStyle}>why Performance Max fails in B2B marketing</a>. It walks through the diagnose side of the same problem. This article is the fix side.
@@ -504,7 +504,7 @@ export default function ArticleContent() {
             <section id="cta">
               <h2 style={h2Style}>How Kampaio Handles the Monitoring Loop</h2>
               <p style={paraStyle}>
-                Even with all six fixes in place, lead quality drifts. CRM API tokens expire. Sales reps stop updating stages. A new audience signal goes live and skews mid-funnel. <strong>Aegis</strong> (the B6 risk-review agent) runs weekly drift detection on MQL conversion rate by ad group, lead form match-quality trend, and OCI upload health. The detection fires before budget burns rather than after.
+                Even with all six fixes in place, lead quality drifts. CRM API tokens expire. Sales reps stop updating stages. A new audience signal goes live and skews mid-funnel. <strong>Aegis</strong> (the B6 risk-review <a href="/blog/google-ads-ai-agent" style={linkStyle}>agent</a>) runs weekly drift detection on MQL conversion rate by ad group, lead form match-quality trend, and OCI upload health. The detection fires before budget burns rather than after.
               </p>
               <p style={paraStyle}>
                 Once direction is confirmed by a human, <strong>Maximus</strong> orchestrates the apply: pause underperforming ad groups, push negative keyword updates, refresh OCI configurations. The human stays in approval, the agents do the click work. The same teams who land in Cometly&apos;s 20-40 percent CAC reduction band (<a href="https://www.cometly.com/post/poor-quality-leads-from-ads" target="_blank" rel="noopener noreferrer" style={linkStyle}>Cometly, 2026</a>) are the ones who automate the maintenance loop, not just the initial fix.

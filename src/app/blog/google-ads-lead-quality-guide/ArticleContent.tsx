@@ -808,7 +808,7 @@ export default function ArticleContent() {
             <section id="kampaio">
               <h2 style={h2Style}>Where Kampaio Fits (Running the Quality Loop)</h2>
               <p style={pStyle}>
-                Lead quality drifts the moment you stop watching. Sage, Kampaio&apos;s research agent, defines and tracks the
+                Lead quality drifts the moment you stop watching. Sage, Kampaio&apos;s research <a href="/blog/google-ads-ai-agent" style={linkStyle}>agent</a>, defines and tracks the
                 qualified-lead signal: which ad groups are feeding pipeline, where match-quality is sliding, and whether OCI
                 uploads are healthy. The weekly quality loop runs automatically, surfacing drift before it compounds.
               </p>

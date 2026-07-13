@@ -388,7 +388,7 @@ export default function ArticleContent() {
                   lineHeight: '1.6',
                   opacity: '0.9'
                 }}>
-                  Proper attribution and targeting optimization lead to significantly lower customer acquisition costs while maintaining quality.
+                  Proper attribution and targeting <a href="/blog/google-ads-optimization" style={{ color: '#764ba2', textDecoration: 'underline' }}>optimization</a> lead to significantly lower customer acquisition costs while maintaining quality.
                 </p>
               </div>
 

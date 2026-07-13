@@ -783,7 +783,7 @@ export default function ArticleContent() {
             <section id="b6-agents">
               <h2 style={h2Style}>How B6 Agents Cut CPC Faster Than Manual Audits</h2>
               <p style={pStyle}>
-                The structural work above is what a careful operator does in 12 to 20 hours per account. The B6 agents do it nightly, on every keyword, with risk review baked in.
+                The structural work above is what a careful operator does in 12 to 20 hours per account. The B6 <a href="/blog/google-ads-ai-agent" style={linkStyle}>agent</a>s do it nightly, on every keyword, with risk review baked in.
               </p>
               <p style={pStyle}>
                 <strong><a href="/b6#buzz" style={linkStyle}>Buzz</a></strong> is the bidding agent. Every night Buzz scans the full keyword inventory: bid headroom, predicted CPC impact for each candidate change, 80%+ confidence interval before proposing. It does not raise bids on losing keywords. It does not cut bids on winning keywords. The proposed changes appear in the operator&apos;s queue with the math attached.

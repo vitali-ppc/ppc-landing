@@ -394,7 +394,7 @@ export default function ArticleContent() {
             <section id="what-changes">
               <h2 style={h2Style}>What Actually Changes Between Manual and AI Bidding</h2>
               <p style={paragraphStyle}>
-                Manual CPC bidding is a strategy where you set a fixed maximum bid per click and Google serves your ad based on that ceiling. Smart Bidding is Google&apos;s family of automated bid strategies that sets a unique bid at every auction based on real-time signals: device, location, time of day, audience membership, and query context (<a href="https://support.google.com/google-ads/answer/2979071" style={linkStyle} target="_blank" rel="noopener noreferrer">Google Ads Help</a>).
+                Manual CPC bidding is a <a href="/blog/google-ads-strategy" style={{ color: '#764ba2', textDecoration: 'underline' }}>strategy</a> where you set a fixed maximum bid per click and Google serves your ad based on that ceiling. Smart Bidding is Google&apos;s family of automated bid strategies that sets a unique bid at every auction based on real-time signals: device, location, time of day, audience membership, and query context (<a href="https://support.google.com/google-ads/answer/2979071" style={linkStyle} target="_blank" rel="noopener noreferrer">Google Ads Help</a>).
               </p>
               <p style={paragraphStyle}>
                 The real difference is who sets the bid and on what signal volume. With manual CPC, you set one aggregate bid using whatever data you have in front of you. Smart Bidding reads dozens of per-auction signals you cannot observe and acts in milliseconds.
@@ -403,7 +403,7 @@ export default function ArticleContent() {
                 That tradeoff is direct: manual CPC trades data richness for full control; Smart Bidding trades control for per-auction signal access. One is not universally better, one is a better fit depending on what your account can supply.
               </p>
               <p style={paragraphStyle}>
-                For a full breakdown of the six Smart Bidding strategy options (Target CPA, Target ROAS, Maximize Conversions, Maximize Conversion Value, Enhanced CPC, and Target Impression Share), see <a href="/blog/google-ads-smart-bidding-strategies" style={linkStyle}>choosing the right Smart Bidding strategy</a>. For what AI optimization covers beyond bids, see <a href="/blog/ai-powered-ppc-optimization-complete-guide" style={linkStyle}>what AI optimization covers beyond bids</a>. This article focuses on the layer above: AI bidding or manual at all?
+                For a full breakdown of the six Smart Bidding strategy options (Target CPA, Target ROAS, Maximize Conversions, Maximize Conversion Value, Enhanced CPC, and Target Impression Share), see <a href="/blog/google-ads-smart-bidding-strategies" style={linkStyle}>choosing the right Smart Bidding strategy</a>. For what <a href="/blog/10-ai-powered-ppc-optimization-strategies" style={{ color: '#764ba2', textDecoration: 'underline' }}>AI optimization</a> covers beyond bids, see <a href="/blog/ai-powered-ppc-optimization-complete-guide" style={linkStyle}>what AI optimization covers beyond bids</a>. This article focuses on the layer above: AI bidding or manual at all?
               </p>
             </section>
 

@@ -584,7 +584,7 @@ export default function ArticleContent() {
                 The fix is daily auditing, not annual setup. Most accounts get a clean tracking implementation once, then nobody checks it again until something breaks visibly.
               </p>
               <p style={pStyle}>
-                This is what <a href="/b6#aegis" style={linkStyle}>Aegis</a> (the audit agent in B6) does. Daily scan across all conversion actions in your account. Flags: zero-fire-but-was-firing within 48 hours, duplicate-fire rate above baseline, primary/secondary misclassification, GA4 conversions imported but not active, enhanced conversions recording with missing user data. On a typical 12-conversion-action account we see 3 to 4 issues surfaced on the first audit run.
+                This is what <a href="/b6#aegis" style={linkStyle}>Aegis</a> (the audit <a href="/blog/google-ads-ai-agent" style={linkStyle}>agent</a> in B6) does. Daily scan across all conversion actions in your account. Flags: zero-fire-but-was-firing within 48 hours, duplicate-fire rate above baseline, primary/secondary misclassification, GA4 conversions imported but not active, enhanced conversions recording with missing user data. On a typical 12-conversion-action account we see 3 to 4 issues surfaced on the first audit run.
               </p>
               <p style={pStyle}>
                 <a href="/chat" style={linkStyle}>Scan your account in 60 seconds</a>. We are not selling a tracking setup service (that is a one-time agency job). We are the always-on auditor that catches what humans miss on day 8.

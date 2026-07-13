@@ -232,7 +232,7 @@ export default function ArticleContent() {
             {/* Intro */}
             <section id="intro">
               <p style={P}>
-                Performance Max optimization works best when you treat it like a runbook: fix conversion signals first, then asset groups, audience signals, search themes, exclusions, bid targets, and finally the product feed. Touch one lever. Wait for data. Then move to the next. Random tweaking during the learning phase almost always makes results worse.
+                Performance Max <a href="/blog/google-ads-optimization" style={{ color: '#764ba2', textDecoration: 'underline' }}>optimization</a> works best when you treat it like a runbook: fix conversion signals first, then asset groups, audience signals, search themes, exclusions, bid targets, and finally the product feed. Touch one lever. Wait for data. Then move to the next. Random tweaking during the learning phase almost always makes results worse.
               </p>
             </section>
 
@@ -243,7 +243,7 @@ export default function ArticleContent() {
                 Performance Max is Google's fully automated campaign type that serves ads across Search, Shopping, Display, YouTube, Discover, Gmail, and Maps from a single campaign. When it underperforms, most advertisers pull the wrong lever first.
               </p>
               <p style={P}>
-                Across 52 PMax optimization discussions we analyzed, conversion tracking and landing pages tie as the #1 raised issue (29% each), which is exactly why Lever 1 is signals, not bids. The correct sequence: (1) conversion tracking and values, (2) asset groups, (3) audience signals, (4) search themes, (5) brand and junk exclusions, (6) bid strategy and target, (7) product feed (ecom). This sequenced approach is what we call the <strong>7-Lever Priority Order</strong>.
+                Across 52 PMax optimization discussions we analyzed, conversion tracking and landing pages tie as the #1 raised issue (29% each), which is exactly why Lever 1 is signals, not bids. The correct sequence: (1) conversion tracking and values, (2) asset groups, (3) audience signals, (4) search themes, (5) brand and junk exclusions, (6) bid <a href="/blog/google-ads-strategy" style={{ color: '#764ba2', textDecoration: 'underline' }}>strategy</a> and target, (7) product feed (ecom). This sequenced approach is what we call the <strong>7-Lever Priority Order</strong>.
               </p>
               <KeyTakeaways
                 items={[
@@ -470,7 +470,7 @@ export default function ArticleContent() {
             <section id="optimize-without-guesswork">
               <h2 style={H2}>Optimize Without the Guesswork</h2>
               <p style={P}>
-                Running this 7-lever cadence manually takes 2-3 hours per campaign per week. Kampaio's agents run the same playbook continuously: Buzz monitors bid strategy and tROAS targets, Sage manages audience signals and search themes, Mira flags underperforming assets, and Aegis enforces the learning guardrail.
+                Running this 7-lever cadence manually takes 2-3 hours per campaign per week. Kampaio's <a href="/blog/google-ads-ai-agent" style={{ color: '#764ba2', textDecoration: 'underline' }}>agent</a>s run the same playbook continuously: Buzz monitors bid strategy and tROAS targets, Sage manages audience signals and search themes, Mira flags underperforming assets, and Aegis enforces the learning guardrail.
               </p>
               <p style={P}>
                 Optmyzr and Madgicx start at $499+/month for automated oversight at this level. Kampaio starts at $99/month, with full agent autonomy at $199 and multi-account coverage at $399.

@@ -335,7 +335,7 @@ export default function ArticleContent() {
                 <strong>In-house or DIY.</strong> Your time is the cost here. Under $20,000 a month, with Smart Bidding doing the heavy bid work and decent tooling on top, running it yourself is genuinely viable. <a href="/blog/google-ads-without-agency" style={linkStyle}>Going solo on Google Ads</a> lays out the real tradeoffs, and understanding <a href="/blog/google-ads-smart-bidding-strategies" style={linkStyle}>what Smart Bidding now automates</a> tells you how much manual work is actually left.
               </p>
               <p style={pStyle}>
-                <strong>Automation tools.</strong> This is where the management line item collapses. Recommendation tools like Optmyzr and Madgicx start around $499 a month and tell you what to do. Autonomous tools go further and execute. Kampaio runs seven AI agents that handle bidding, reporting, creative, and research for a flat $99 to $399 a month, and that number does not climb when your budget does. The percentage-of-spend trap simply disappears: at $20,000 in spend your fee is the same $399 it was at $5,000.
+                <strong>Automation tools.</strong> This is where the management line item collapses. Recommendation tools like Optmyzr and Madgicx start around $499 a month and tell you what to do. Autonomous tools go further and execute. Kampaio runs seven AI <a href="/blog/google-ads-ai-agent" style={linkStyle}>agent</a>s that handle bidding, reporting, creative, and research for a flat $99 to $399 a month, and that number does not climb when your budget does. The percentage-of-spend trap simply disappears: at $20,000 in spend your fee is the same $399 it was at $5,000.
               </p>
             </section>
 
@@ -366,7 +366,7 @@ export default function ArticleContent() {
                 </div>
                 <div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: '12px', padding: '20px 24px' }}>
                   <p style={{ fontSize: '17px', fontWeight: 700, color: '#1e293b', marginBottom: '8px' }}>Why is PPC so expensive?</p>
-                  <p style={{ fontSize: '16px', lineHeight: '1.7', color: '#1e293b', margin: 0 }}>PPC management is labor-intensive: account builds, keyword and negative research, bid strategy, conversion tracking, creative, and ongoing optimization. A senior strategist costs an agency six figures a year, and that salary is baked into your fee. The catch is that Smart Bidding now handles much of the bid work, so part of what feels expensive is paying human prices for automated tasks.</p>
+                  <p style={{ fontSize: '16px', lineHeight: '1.7', color: '#1e293b', margin: 0 }}>PPC management is labor-intensive: account builds, keyword and negative research, bid strategy, conversion tracking, creative, and ongoing <a href="/blog/google-ads-optimization" style={linkStyle}>optimization</a>. A senior strategist costs an agency six figures a year, and that salary is baked into your fee. The catch is that Smart Bidding now handles much of the bid work, so part of what feels expensive is paying human prices for automated tasks.</p>
                 </div>
                 <div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: '12px', padding: '20px 24px' }}>
                   <p style={{ fontSize: '17px', fontWeight: 700, color: '#1e293b', marginBottom: '8px' }}>How much does PPC management cost per month?</p>

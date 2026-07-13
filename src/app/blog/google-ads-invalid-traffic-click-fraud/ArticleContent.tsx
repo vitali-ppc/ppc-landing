@@ -523,10 +523,10 @@ export default function ArticleContent() {
             <section id="cta">
               <h2 style={h2Style}>Hand Invalid-Traffic Monitoring to Kampaio</h2>
               <p style={pStyle}>
-                Manual monitoring catches problems after they compound. Kampaio&apos;s Aegis agent runs a weekly risk review: it flags suspicious IP patterns, geo anomalies, and device-cluster irregularities, then queues IP exclusions for your approval before spend accumulates.
+                Manual monitoring catches problems after they compound. Kampaio&apos;s Aegis <a href="/blog/google-ads-ai-agent" style={linkStyle}>agent</a> runs a weekly risk review: it flags suspicious IP patterns, geo anomalies, and device-cluster irregularities, then queues IP exclusions for your approval before spend accumulates.
               </p>
               <p style={pStyle}>
-                Last week across 12 accounts, Aegis caught 47 anomalies. Three needed action: one tracking outage, one click-bombing pattern on a small geo campaign, one Smart Bidding strategy that flipped overnight. Forty-four were noise, filtered without interrupting your week.
+                Last week across 12 accounts, Aegis caught 47 anomalies. Three needed action: one tracking outage, one click-bombing pattern on a small geo campaign, one Smart Bidding <a href="/blog/google-ads-strategy" style={linkStyle}>strategy</a> that flipped overnight. Forty-four were noise, filtered without interrupting your week.
               </p>
               <p style={pStyle}>
                 Echo sends a Monday digest with invalid traffic adjustments credited, IPs excluded, and your wasted-spend trend. Buzz identifies recovered budget and reallocates it to top-converting ad groups.

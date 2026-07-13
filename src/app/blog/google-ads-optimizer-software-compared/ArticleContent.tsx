@@ -341,7 +341,7 @@ export default function ArticleContent() {
                 This article is about choosing an optimizer, not running optimizations. If you came for the tactics (negative keywords, bid adjustments, pMax fixes), the full playbook lives in our <a href="/blog/google-ads-optimization" style={linkStyle}>Google Ads optimization guide</a>. Here we answer a different question: which tool, and do you even need one?
               </p>
               <p style={paragraphStyle}>
-                Worth knowing before you shop: even Google&apos;s free, built-in recommendations help. Advertisers who raised their optimization score by 10 points saw a median 14 percent lift in conversions, per <a href="https://business.google.com/us/ad-tools/campaign-recommendations/" style={linkStyle} target="_blank" rel="noopener noreferrer">Google Ads (2026)</a>. That is the baseline any paid tool has to beat. Google is also testing its own <a href="https://searchengineland.com/google-ads-tests-new-website-optimizer-tool-465493" style={linkStyle} target="_blank" rel="noopener noreferrer">Website Optimizer A/B tool</a>, a sign the native layer keeps expanding.
+                Worth knowing before you shop: even Google&apos;s free, built-in recommendations help. Advertisers who raised their <a href="/blog/google-ads-optimization-score" style={{ color: '#764ba2', textDecoration: 'underline' }}>optimization score</a> by 10 points saw a median 14 percent lift in conversions, per <a href="https://business.google.com/us/ad-tools/campaign-recommendations/" style={linkStyle} target="_blank" rel="noopener noreferrer">Google Ads (2026)</a>. That is the baseline any paid tool has to beat. Google is also testing its own <a href="https://searchengineland.com/google-ads-tests-new-website-optimizer-tool-465493" style={linkStyle} target="_blank" rel="noopener noreferrer">Website Optimizer A/B tool</a>, a sign the native layer keeps expanding.
               </p>
 
               {/* VISUAL 2: BigStat (bold-viz), the optimization-score conversion lift */}
@@ -382,7 +382,7 @@ export default function ArticleContent() {
                 <strong>AI-native operators</strong> decide and execute on their own. Instead of waiting for your rules, they read the account, choose the action, and make the change, ideally showing every step so you can audit it. This is the category Kampaio occupies, with separate agents handling bids, budgets, creative, and reporting.
               </p>
               <p style={paragraphStyle}>
-                Here is the trap in most &quot;best tools&quot; roundups: they compare brands without ever naming the level. An advisor and an autonomous operator solve genuinely different problems, even when both stamp &quot;AI optimization&quot; across the homepage. Knowing which one you are buying saves you from paying for a category you did not want.
+                Here is the trap in most &quot;best tools&quot; roundups: they compare brands without ever naming the level. An advisor and an autonomous operator solve genuinely different problems, even when both stamp &quot;<a href="/blog/10-ai-powered-ppc-optimization-strategies" style={{ color: '#764ba2', textDecoration: 'underline' }}>AI optimization</a>&quot; across the homepage. Knowing which one you are buying saves you from paying for a category you did not want.
               </p>
 
               <MascotQuote mascot="maximus">

@@ -338,7 +338,7 @@ export default function ArticleContent() {
                 In 2025, Google blocked or removed 8.3 billion ads and suspended 24.9 million advertiser accounts, according to Google&apos;s own <a href="https://blog.google/products/ads-commerce/2025-ads-safety-report/" target="_blank" rel="noopener noreferrer" style={linkStyle}>2025 Ads Safety Report</a> (published April 2026), up from 5.5 billion ads in 2023. Suspensions are common. They are also often fixable, and the odds are improving: Google says its Gemini models cut <em>incorrect</em> advertiser suspensions by roughly 80% last year, and account suspensions overall fell about 36% year over year. If you believe your suspension was a mistake, that is now a more winnable appeal than it was a year ago.
               </p>
               <p style={paragraphStyle}>
-                If your account is running but your <a href="/blog/google-ads-roas-dropped-suddenly" style={linkStyle}>ROAS dropped suddenly</a>, a billing flag or policy hold may be the hidden cause, not bid strategy.
+                If your account is running but your <a href="/blog/google-ads-roas-dropped-suddenly" style={linkStyle}>ROAS dropped suddenly</a>, a billing flag or policy hold may be the hidden cause, not bid <a href="/blog/google-ads-strategy" style={{ color: '#764ba2', textDecoration: 'underline' }}>strategy</a>.
               </p>
             </section>
 
@@ -583,7 +583,7 @@ export default function ArticleContent() {
                 The difficulty with prevention is that most issues only surface after Google has already started enforcement. By the time the banner appears, the strike count may already be at two or three.
               </p>
               <p style={paragraphStyle}>
-                This is where continuous monitoring changes the math. B6&apos;s Aegis agent watches billing health, policy compliance signals, and account anomalies daily. It works similarly to <a href="/blog/google-ads-anomaly-detection" style={linkStyle}>Google Ads anomaly detection</a> for spend spikes and conversion drops, but applied specifically to compliance and billing risk. When a payment method approaches expiry or a landing page change introduces a flagged claim, Aegis surfaces the flag before the strike system starts, not after the suspension banner appears. <a href="/b6#aegis" style={linkStyle}>See how Aegis works in B6</a> and <a href="/b6" style={linkStyle}>how B6 monitors accounts live</a>.
+                This is where continuous monitoring changes the math. B6&apos;s Aegis <a href="/blog/google-ads-ai-agent" style={{ color: '#764ba2', textDecoration: 'underline' }}>agent</a> watches billing health, policy compliance signals, and account anomalies daily. It works similarly to <a href="/blog/google-ads-anomaly-detection" style={linkStyle}>Google Ads anomaly detection</a> for spend spikes and conversion drops, but applied specifically to compliance and billing risk. When a payment method approaches expiry or a landing page change introduces a flagged claim, Aegis surfaces the flag before the strike system starts, not after the suspension banner appears. <a href="/b6#aegis" style={linkStyle}>See how Aegis works in B6</a> and <a href="/b6" style={linkStyle}>how B6 monitors accounts live</a>.
               </p>
             </section>
 

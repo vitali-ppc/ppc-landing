@@ -447,7 +447,7 @@ export default function ArticleContent() {
                 <strong>Why does Performance Max get clicks but no sales?</strong> Either targeting is too broad (Final URL expansion sending traffic to non-converting pages), landing page doesn&apos;t match the ad message, or your offer doesn&apos;t compete in the market. Check landing page speed first. Under three seconds on mobile is the threshold.
               </p>
               <p style={pStyle}>
-                <strong>Can Performance Max work for small budgets under $1,000/month?</strong> Usually no. Smart Bidding needs ~30 conversions per month, which at a typical $40 CPA requires $1,200+ budget. Below that, use Search or Standard Shopping with manual bidding.
+                <strong>Can Performance Max work for small budgets under $1,000/month?</strong> Usually no. Smart Bidding needs ~30 conversions per month, which at a typical $40 CPA requires $1,200+ budget. Below that, use Search or Standard Shopping with <a href="/blog/google-ads-ai-vs-manual-bidding" style={linkStyle}>manual bidding</a>.
               </p>
               <p style={pStyle}>
                 <strong>Should I use Maximize Conversions or Target ROAS for Performance Max?</strong> Start with Maximize Conversion Value (no target) for the first 30 days to find your real baseline. Once you have 30+ conversions, switch to Target ROAS at ~80% of the baseline you observed. Don&apos;t set targets based on aspiration - set them based on observed performance.

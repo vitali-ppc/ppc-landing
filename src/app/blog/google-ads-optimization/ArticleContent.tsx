@@ -239,7 +239,7 @@ export default function ArticleContent() {
 
             {/* Featured snippet intro */}
             <p style={{ ...paragraphStyle, fontSize: '20px', fontWeight: 500, background: '#f8fafc', borderLeft: '4px solid #764ba2', padding: '20px 24px', borderRadius: '8px' }}>
-              Google Ads optimization is a diagnostic process, not a checklist. At any moment, one constraint is holding your account back: dirty measurement, a mismatched bid strategy, keyword leakage, or wasted spend on irrelevant placements. Find that constraint, apply the highest-leverage lever against it, measure the lift, then repeat.
+              Google Ads optimization is a diagnostic process, not a checklist. At any moment, one constraint is holding your account back: dirty measurement, a mismatched bid <a href="/blog/google-ads-strategy" style={{ color: '#764ba2', textDecoration: 'underline' }}>strategy</a>, keyword leakage, or wasted spend on irrelevant placements. Find that constraint, apply the highest-leverage lever against it, measure the lift, then repeat.
             </p>
 
             <section id="quick-answer">
@@ -553,7 +553,7 @@ export default function ArticleContent() {
                 <p style={paragraphStyle}>Fix tracking first, Smart Bidding cannot optimize for conversions it cannot measure. Once tracking is clean, choose a bid strategy matched to conversion volume (the commonly cited threshold is roughly 15 conversions per 30 days for Target CPA to learn reliably). Then run Search Terms hygiene: negative keyword gaps are typically the fastest direct lift in conversion efficiency.</p>
               </div>
               <div style={{ marginBottom: '24px' }}>
-                <p style={{ ...paragraphStyle, marginBottom: '12px' }}><strong>What is the Google Ads optimization score, and should I follow it?</strong></p>
+                <p style={{ ...paragraphStyle, marginBottom: '12px' }}><strong>What is the Google Ads <a href="/blog/google-ads-optimization-score" style={{ color: '#764ba2', textDecoration: 'underline' }}>optimization score</a>, and should I follow it?</strong></p>
                 <p style={paragraphStyle}>The Optimization Score measures recommendation acceptance rate, not account health. Review each recommendation before accepting. Act on tracking issues, disapproved ads, and policy warnings. Treat match type expansions to broad, budget increases, and new keyword additions as requiring your own review first. Per <a href="https://business.google.com/us/ad-tools/campaign-recommendations/" target="_blank" rel="noopener noreferrer" style={linkStyle}>Google&apos;s own campaign recommendations</a>, the score reflects alignment with Google&apos;s suggested settings, not an independent performance audit.</p>
               </div>
               <div style={{ marginBottom: '24px' }}>

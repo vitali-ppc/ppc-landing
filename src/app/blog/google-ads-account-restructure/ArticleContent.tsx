@@ -416,7 +416,7 @@ export default function ArticleContent() {
             <section id="three-campaign-rule">
               <h2 style={h2Style}>The 3-Campaign Rule (Why Most Accounts Are Over-Structured)</h2>
               <p style={pStyle}>
-                If you opened your account this morning and counted 47 campaigns, you are not unusual. You are inheriting a decade of optimization patterns that no longer apply. (If you have not run the audit that surfaced the mess yet, our{' '}
+                If you opened your account this morning and counted 47 campaigns, you are not unusual. You are inheriting a decade of <a href="/blog/google-ads-optimization" style={linkStyle}>optimization</a> patterns that no longer apply. (If you have not run the audit that surfaced the mess yet, our{' '}
                 <a href="/blog/ppc-audit-checklist" style={linkStyle}>
                   25-point PPC audit checklist
                 </a>{' '}
@@ -666,7 +666,7 @@ export default function ArticleContent() {
                 >
                   Pete Bowen
                 </a>{' '}
-                (paid-search consultant) frames the cognitive work behind this matrix with three questions worth asking before every action: What was the original designer trying to achieve? Do we still want to achieve the same thing today? If we were starting from scratch today, how would we do this? His honest reminder: &quot;My predecessors were not all idiots.&quot; Most legacy structures had a reason at the time. Best practice evolves. The reason for the original choice may simply have aged out.
+                (paid-search <a href="/blog/google-ads-consultant" style={linkStyle}>consultant</a>) frames the cognitive work behind this matrix with three questions worth asking before every action: What was the original designer trying to achieve? Do we still want to achieve the same thing today? If we were starting from scratch today, how would we do this? His honest reminder: &quot;My predecessors were not all idiots.&quot; Most legacy structures had a reason at the time. Best practice evolves. The reason for the original choice may simply have aged out.
               </p>
             </section>
 
@@ -708,7 +708,7 @@ export default function ArticleContent() {
                 Phases 2 and 3 are where most restructures stall. They require daily bid-strategy monitoring, budget reallocation decisions, and the discipline to NOT panic-rollback on day 3 of a learning dip. This is exactly the work that should be automated.
               </p>
               <p style={pStyle}>
-                Here is how the B6 mascot agents map to the playbook:
+                Here is how the B6 mascot <a href="/blog/google-ads-ai-agent" style={linkStyle}>agent</a>s map to the playbook:
               </p>
               <ul style={ulStyle}>
                 <li style={liStyle}>

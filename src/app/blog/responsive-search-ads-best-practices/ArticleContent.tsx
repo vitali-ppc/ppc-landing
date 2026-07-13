@@ -607,7 +607,7 @@ export default function ArticleContent() {
                 <strong>What is the difference between expanded text ads and responsive search ads?</strong> Expanded text ads (ETAs) were sunset by Google in June 2022. RSAs are the only text ad format for new creation since. ETAs were fixed creative with 3 headlines and 2 descriptions. RSAs hold up to 15 headlines and 4 descriptions that the ML rotates at auction.
               </p>
               <p style={pStyle}>
-                <strong>What are the benefits of using broad match, Smart Bidding, and RSA together?</strong> This is Google&apos;s &quot;power trio&quot; since 2022. Broad match feeds the maximum query signal to the ML. Smart Bidding (Target ROAS or Target CPA) bids on conversion probability per impression. RSAs rotate creative per impression. The three together give the ML signal at three layers: query interpretation, bid optimization, and creative selection. Google&apos;s reported lift is roughly 20% more conversions versus exact match plus manual bidding plus static creative.
+                <strong>What are the benefits of using broad match, Smart Bidding, and RSA together?</strong> This is Google&apos;s &quot;power trio&quot; since 2022. Broad match feeds the maximum query signal to the ML. Smart Bidding (Target ROAS or Target CPA) bids on conversion probability per impression. RSAs rotate creative per impression. The three together give the ML signal at three layers: query interpretation, bid optimization, and creative selection. Google&apos;s reported lift is roughly 20% more conversions versus exact match plus <a href="/blog/google-ads-ai-vs-manual-bidding" style={linkStyle}>manual bidding</a> plus static creative.
               </p>
             </section>
 

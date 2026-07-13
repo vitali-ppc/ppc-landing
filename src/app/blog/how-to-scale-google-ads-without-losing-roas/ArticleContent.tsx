@@ -428,7 +428,7 @@ export default function ArticleContent() {
                   <span>Category error to avoid</span>
                 </div>
                 <p style={{ fontSize: '16px', lineHeight: '1.7', color: '#1e293b', margin: 0 }}>
-                  The &quot;15-30% every 48-72 hours&quot; figure that appears in search results is Meta Ads guidance, not Google Ads. Google&apos;s Smart Bidding learning phase is slower than Meta&apos;s optimization cycle. Applying Meta cadence to Google Search or Shopping causes exactly the three-week ROAS crater this playbook prevents.
+                  The &quot;15-30% every 48-72 hours&quot; figure that appears in search results is Meta Ads guidance, not Google Ads. Google&apos;s Smart Bidding learning phase is slower than Meta&apos;s <a href="/blog/google-ads-optimization" style={linkStyle}>optimization</a> cycle. Applying Meta cadence to Google Search or Shopping causes exactly the three-week ROAS crater this playbook prevents.
                 </p>
               </div>
             </section>
@@ -620,7 +620,7 @@ export default function ArticleContent() {
                 The 20% rule works. Running it by hand is tedious: bump budget, wait 7-14 days, check ROAS, decide, repeat across multiple campaigns for months. Most PPC managers land in one of two failure modes, scaling too conservatively (leaving headroom untouched) or losing patience and scaling too fast (triggering the reset they were avoiding).
               </p>
               <p style={pStyle}>
-                <a href="/b6#buzz" style={linkStyle}>Buzz</a>, Kampaio&apos;s bid-strategy agent, runs the ramp: raises each campaign&apos;s budget by 20% when ROAS is stable, holds when volatile, and never stacks two learning-phase changes in one week. <a href="/b6#vox" style={linkStyle}>Vox</a> handles cross-campaign reallocation, pulling budget from saturated campaigns and routing it to ones with impression-share headroom. <a href="/b6#aegis" style={linkStyle}>Aegis</a> flags unsafe conditions (thin conversion volume, tracking drift) before budget burns on a weak signal. You set the direction and budget tier; the agents run the cadence. See <a href="/pricing" style={linkStyle}>Kampaio pricing</a> for the autonomy tiers.
+                <a href="/b6#buzz" style={linkStyle}>Buzz</a>, Kampaio&apos;s bid-strategy <a href="/blog/google-ads-ai-agent" style={linkStyle}>agent</a>, runs the ramp: raises each campaign&apos;s budget by 20% when ROAS is stable, holds when volatile, and never stacks two learning-phase changes in one week. <a href="/b6#vox" style={linkStyle}>Vox</a> handles cross-campaign reallocation, pulling budget from saturated campaigns and routing it to ones with impression-share headroom. <a href="/b6#aegis" style={linkStyle}>Aegis</a> flags unsafe conditions (thin conversion volume, tracking drift) before budget burns on a weak signal. You set the direction and budget tier; the agents run the cadence. See <a href="/pricing" style={linkStyle}>Kampaio pricing</a> for the autonomy tiers.
               </p>
 
               <div style={{

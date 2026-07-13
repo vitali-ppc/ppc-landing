@@ -535,7 +535,7 @@ export default function ArticleContent() {
               />
 
               <p style={para}>
-                ChatGPT is free or ChatGPT Plus; purpose-built tools typically run $99 to $499+/month depending on the tool. For a DTC owner running $3-50K/month with no in-house PPC hire, this is where Kampaio fits. It&apos;s built to monitor the live account and apply account-safe changes (pausing an underperforming campaign, applying a recommendation, adding negative keywords) with human oversight on every action, every step visible. Not a ChatGPT replacement. The next layer, for what ChatGPT can&apos;t reach from a chat window. If you want the fuller picture of what an <a href="/blog/google-ads-ai-agent" style={linkStyle}>autonomous AI agent</a> does versus a copilot you&apos;re still driving by hand, that&apos;s a separate, deeper read.
+                ChatGPT is free or ChatGPT Plus; purpose-built tools typically run $99 to $499+/month depending on the tool. For a DTC owner running $3-50K/month with no <a href="/blog/google-ads-without-agency" style={{ color: '#764ba2', textDecoration: 'underline' }}>in-house PPC</a> hire, this is where Kampaio fits. It&apos;s built to monitor the live account and apply account-safe changes (pausing an underperforming campaign, applying a recommendation, adding negative keywords) with human oversight on every action, every step visible. Not a ChatGPT replacement. The next layer, for what ChatGPT can&apos;t reach from a chat window. If you want the fuller picture of what an <a href="/blog/google-ads-ai-agent" style={linkStyle}>autonomous AI agent</a> does versus a copilot you&apos;re still driving by hand, that&apos;s a separate, deeper read.
               </p>
               <p style={para}>
                 Optmyzr and Madgicx are recommendation engines starting around $499/month; they surface suggestions for a human to apply. Kampaio applies account-safe actions directly and logs them, at $99, $199, or $399/month. ChatGPT does neither with your live data. See the full <a href="/pricing" style={linkStyle}>pricing breakdown</a> if you want the plan detail.
@@ -574,7 +574,7 @@ export default function ArticleContent() {
               <p style={para}>It can draft pieces (copy, keyword lists, ad-group structure), but can&apos;t safely assemble and launch a live campaign without account data or conversion history.</p>
 
               <h3 style={{ fontSize: '20px', fontWeight: 700, color: '#1e293b', marginTop: '28px', marginBottom: '12px' }}>Which AI is best for Google Ads?</h3>
-              <p style={para}>Depends on the task. ChatGPT is strong for copy and ideation; purpose-built PPC tools connected to your account are better for bid and structural decisions needing live data.</p>
+              <p style={para}>Depends on the task. ChatGPT is strong for copy and ideation; purpose-built <a href="/blog/5-tips-for-working-with-ai-ppc-tools" style={{ color: '#764ba2', textDecoration: 'underline' }}>PPC tools</a> connected to your account are better for bid and structural decisions needing live data.</p>
 
               <h3 style={{ fontSize: '20px', fontWeight: 700, color: '#1e293b', marginTop: '28px', marginBottom: '12px' }}>Is it safe to use ChatGPT to manage my Google Ads account?</h3>
               <p style={para}>Not on its own. No default account connection means no real performance visibility and no safe way to make a change. Draft with it, apply changes yourself.</p>

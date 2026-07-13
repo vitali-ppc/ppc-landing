@@ -159,7 +159,7 @@ export default function ArticleContent() {
               B2B SaaS Google Ads Campaign Structure: The Account Blueprint (2026)
             </h1>
             <p style={{ fontSize: '20px', color: '#64748b', marginBottom: '32px', lineHeight: '1.6', fontWeight: 500 }}>
-              Structure a B2B SaaS account by intent and funnel stage, not product feature: five campaign tiers, each with its own budget and bid strategy, with Performance Max added only once Search has a working feedback loop.
+              Structure a <a href="/blog/google-ads-for-b2b-saas" style={linkStyle}>B2B SaaS</a> account by intent and funnel stage, not product feature: five campaign tiers, each with its own budget and bid <a href="/blog/google-ads-strategy" style={linkStyle}>strategy</a>, with Performance Max added only once Search has a working feedback loop.
             </p>
             <div style={{ display: 'flex', alignItems: 'center', gap: '24px', marginBottom: '40px', paddingBottom: '32px', borderBottom: '1px solid #e5e7eb' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -486,7 +486,7 @@ PMax_AllGeo_PipelineValue`}</code></pre>
                 A well-built campaign structure decays. Conversion volume shifts between tiers. A competitor enters your highest-intent keyword cluster and CPCs jump past the tier&apos;s cap. A problem-aware query starts converting at demo rates that justify its own campaign. Most accounts catch this in quarterly reviews - three months of misallocated spend before anyone notices.
               </p>
               <p style={pStyle}>
-                <a href="/b6#vox" style={linkStyle}>Vox</a>, Kampaio&apos;s cross-campaign strategy agent, monitors budget distribution across tiers continuously and flags when a segment has earned its own campaign or should be consolidated back. <a href="/b6#sage" style={linkStyle}>Sage</a> handles keyword and audience clustering under each tier. The human approves the direction; the agents execute the rebalancing.
+                <a href="/b6#vox" style={linkStyle}>Vox</a>, Kampaio&apos;s cross-campaign strategy <a href="/blog/google-ads-ai-agent" style={linkStyle}>agent</a>, monitors budget distribution across tiers continuously and flags when a segment has earned its own campaign or should be consolidated back. <a href="/b6#sage" style={linkStyle}>Sage</a> handles keyword and audience clustering under each tier. The human approves the direction; the agents execute the rebalancing.
               </p>
               <div style={{ background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)', borderRadius: '16px', padding: '40px', textAlign: 'center', marginTop: '40px', marginBottom: '40px' }}>
                 <h3 style={{ fontSize: '22px', fontWeight: 700, color: '#1e293b', marginBottom: '18px', lineHeight: '1.3' }}>

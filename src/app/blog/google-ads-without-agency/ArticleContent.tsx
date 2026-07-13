@@ -394,7 +394,7 @@ flowchart TD
               />
 
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
-                B6 runs seven specialized AI agents: Buzz for bid management, Aegis for risk detection, Echo for reporting, Vox for strategy, Maximus for orchestration, Mira for creative analysis, and Sage for competitive research. Three pricing tiers:
+                B6 runs seven specialized AI <a href="/blog/google-ads-ai-agent" style={{ color: '#764ba2', textDecoration: 'underline' }}>agent</a>s: Buzz for bid management, Aegis for risk detection, Echo for reporting, Vox for strategy, Maximus for orchestration, Mira for creative analysis, and Sage for competitive research. Three pricing tiers:
               </p>
               <ul style={{ fontSize: '18px', color: '#1e293b', lineHeight: '1.8', paddingLeft: '24px', marginBottom: '32px' }}>
                 <li style={{ marginBottom: '16px' }}><strong>$99 Co-pilot</strong>: AI makes recommendations, you execute manually</li>
@@ -443,7 +443,7 @@ flowchart TD
                 <strong>Step 5: Start with one campaign.</strong> Apply changes to your smallest campaign first (your Brand campaign is usually safest). Adjust one thing (add 5 negative keywords, or lower max CPC by 10%), wait 5-7 days, measure impact. Once you&apos;re comfortable, scale the approach to larger campaigns. Don&apos;t touch Performance Max until you&apos;ve mastered Search.
               </p>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
-                <strong>Step 6: Connect a management tool for ongoing optimization.</strong> Whether it&apos;s B6, Optmyzr, or another platform, automate the repetitive tasks (bid updates, budget pacing, negative keyword mining, anomaly alerts). This keeps your time commitment to 3-5 hours/week instead of 10-15 hours. Tools catch mistakes you&apos;d miss when reviewing manually.
+                <strong>Step 6: Connect a management tool for ongoing <a href="/blog/google-ads-optimization" style={{ color: '#764ba2', textDecoration: 'underline' }}>optimization</a>.</strong> Whether it&apos;s B6, Optmyzr, or another platform, automate the repetitive tasks (bid updates, budget pacing, negative keyword mining, anomaly alerts). This keeps your time commitment to 3-5 hours/week instead of 10-15 hours. Tools catch mistakes you&apos;d miss when reviewing manually.
               </p>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
                 Most transitions take 4-6 weeks. Expect a 10-20% performance dip in weeks 2-3 as campaigns adjust to new management patterns. If you&apos;re using Smart Bidding, the algorithm needs time to recalibrate. Don&apos;t panic and revert to the agency in week three. Give it six weeks minimum before deciding if it&apos;s working.

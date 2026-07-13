@@ -270,7 +270,7 @@ export default function ArticleContent() {
               Google Ads Anomaly Detection: How to Catch Spend Spikes, Conversion Drops, and Tracking Outages Before They Cost You a Week
             </h1>
             <p style={{ fontSize: '20px', color: '#64748b', marginBottom: '32px', lineHeight: '1.6', fontWeight: '500' }}>
-              Built-in alerts are too noisy or too late. The Account Anomaly Detector script is brittle. The stack that actually works in 2026: rolling baselines, severity tiers, and an agent that classifies before it pages.
+              Built-in alerts are too noisy or too late. The Account Anomaly Detector script is brittle. The stack that actually works in 2026: rolling baselines, severity tiers, and an <a href="/blog/google-ads-ai-agent" style={linkStyle}>agent</a> that classifies before it pages.
             </p>
             <div style={{ display: 'flex', alignItems: 'center', gap: '24px', marginBottom: '40px', paddingBottom: '32px', borderBottom: '1px solid #e5e7eb' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>

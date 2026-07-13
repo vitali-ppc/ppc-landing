@@ -703,7 +703,7 @@ export default function ArticleContent() {
             <section id="restructure">
               <h2 style={h2Style}>When PPC Management Means Rebuilding the Account (Restructure)</h2>
               <p style={pStyle}>
-                Sometimes optimization isn&apos;t enough and the account structure itself is the bottleneck.
+                Sometimes <a href="/blog/google-ads-optimization" style={linkStyle}>optimization</a> isn&apos;t enough and the account structure itself is the bottleneck.
               </p>
               <p style={pStyle}>
                 Four signals indicate a restructure, not incremental fixes:
@@ -906,7 +906,7 @@ flowchart LR
                 </li>
               </ul>
               <p style={pStyle}>
-                B6 maps three agents directly to the operating loop: Buzz for weekly bidding, Vox for monthly reallocation, Echo for the Monday digest.
+                B6 maps three <a href="/blog/google-ads-ai-agent" style={linkStyle}>agent</a>s directly to the operating loop: Buzz for weekly bidding, Vox for monthly reallocation, Echo for the Monday digest.
               </p>
 
               <MascotQuote mascot="echo">

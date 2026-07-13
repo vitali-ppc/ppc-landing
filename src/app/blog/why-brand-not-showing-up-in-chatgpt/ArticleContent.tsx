@@ -190,7 +190,7 @@ export default function ArticleContent() {
               Why Isn&apos;t My Brand Showing Up in ChatGPT? (How to Diagnose It)
             </h1>
             <p style={{ fontSize: '20px', color: '#64748b', marginBottom: '32px', lineHeight: '1.6', fontWeight: 500 }}>
-              Ranking on Google does not buy AI visibility. The real root causes behind brand invisibility in ChatGPT, Gemini, and Perplexity, plus a step-by-step way to find which one is yours.
+              Ranking on Google does not buy AI visibility. The real root causes behind brand invisibility in <a href="/blog/chatgpt-google-ads" style={linkStyle}>ChatGPT</a>, Gemini, and Perplexity, plus a step-by-step way to find which one is yours.
             </p>
             <div style={{ display: 'flex', alignItems: 'center', gap: '24px', marginBottom: '40px', paddingBottom: '32px', borderBottom: '1px solid #e5e7eb' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>

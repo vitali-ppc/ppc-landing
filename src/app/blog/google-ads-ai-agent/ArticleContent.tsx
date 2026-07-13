@@ -378,13 +378,13 @@ export default function ArticleContent() {
               </div>
 
               <p style={paragraphStyle}>
-                Those workflows connect across the account, which is the part Smart Bidding cannot do. Search-term mining feeds <a href="/blog/google-ads-negative-keywords" style={linkStyle}>negative keyword</a> management; anomaly detection catches <a href="/blog/google-ads-conversion-tracking-not-working" style={linkStyle}>conversion tracking breaks</a> before the day&apos;s budget is gone; landing page correlation is where landing page optimization starts.
+                Those workflows connect across the account, which is the part Smart Bidding cannot do. Search-term mining feeds <a href="/blog/google-ads-negative-keywords" style={linkStyle}>negative keyword</a> management; <a href="/blog/google-ads-anomaly-detection" style={{ color: '#764ba2', textDecoration: 'underline' }}>anomaly detection</a> catches <a href="/blog/google-ads-conversion-tracking-not-working" style={linkStyle}>conversion tracking breaks</a> before the day&apos;s budget is gone; landing page correlation is where landing page optimization starts.
               </p>
               <p style={paragraphStyle}>
-                In Kampaio, these workflows map to specific agents: <a href="/b6#buzz" style={linkStyle}>Buzz handles bid and budget reallocation</a>, Aegis runs anomaly detection and guardrails, Echo manages ad copy testing and reporting. The other four agents (Vox, Maximus, Mira, Sage) handle competitive intelligence, audience signals, feed optimization, and strategy.
+                In Kampaio, these workflows map to specific agents: <a href="/b6#buzz" style={linkStyle}>Buzz handles bid and budget reallocation</a>, Aegis runs anomaly detection and guardrails, Echo manages ad copy testing and reporting. The other four agents (Vox, Maximus, Mira, Sage) handle competitive intelligence, audience signals, feed optimization, and <a href="/blog/google-ads-strategy" style={{ color: '#764ba2', textDecoration: 'underline' }}>strategy</a>.
               </p>
               <p style={paragraphStyle}>
-                Generic vendors like AdSpyder and Adsroid position around workflow 3 (build campaigns 5x faster, generate copy). That is a useful capability. But building a campaign once is the easy part. Managing it week after week, reallocating budget as search intent shifts, killing waste before it compounds: that is the harder, higher-value job. The full breakdown of AI-powered PPC optimization workflows is in our <a href="/blog/ai-powered-ppc-optimization-complete-guide" style={linkStyle}>complete guide to AI PPC optimization</a>.
+                Generic vendors like AdSpyder and Adsroid position around workflow 3 (build campaigns 5x faster, generate copy). That is a useful capability. But building a campaign once is the easy part. Managing it week after week, reallocating budget as search intent shifts, killing waste before it compounds: that is the harder, higher-value job. The full breakdown of <a href="/blog/10-ai-powered-ppc-optimization-strategies" style={{ color: '#764ba2', textDecoration: 'underline' }}>AI-powered PPC</a> optimization workflows is in our <a href="/blog/ai-powered-ppc-optimization-complete-guide" style={linkStyle}>complete guide to AI PPC optimization</a>.
               </p>
             </section>
 

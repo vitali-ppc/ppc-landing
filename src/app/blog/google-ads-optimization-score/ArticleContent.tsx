@@ -318,7 +318,7 @@ export default function ArticleContent() {
                 <li style={{ marginBottom: 0 }}><strong>Measurement</strong> (conversion tracking and tag-coverage fixes)</li>
               </ol>
               <p style={para}>
-                Optimization score is shown only for active Search, Display, Video Action, App, Performance Max, Demand Gen, and Shopping campaigns, not for paused or ended ones (<a href="https://support.google.com/google-ads/answer/9061546?hl=en" style={linkStyle} target="_blank" rel="noopener noreferrer">Google Ads Help, 2026</a>). That&apos;s a different scope entirely from Quality Score, which we&apos;ll separate cleanly in the FAQ below.
+                Optimization score is shown only for active Search, Display, Video Action, App, Performance Max, Demand Gen, and Shopping campaigns, not for paused or ended ones (<a href="https://support.google.com/google-ads/answer/9061546?hl=en" style={linkStyle} target="_blank" rel="noopener noreferrer">Google Ads Help, 2026</a>). That&apos;s a different scope entirely from <a href="/blog/the-complete-guide-to-google-ads-quality-score-in-2025" style={{ color: '#764ba2', textDecoration: 'underline' }}>Quality Score</a>, which we&apos;ll separate cleanly in the FAQ below.
               </p>
             </section>
 
@@ -556,7 +556,7 @@ export default function ArticleContent() {
                 This lines up with where the practitioner debate already lands. Threads on r/PPC and in Google&apos;s own Ads Community keep asking versions of the same question: is the score &quot;a legit and relevant metric in driving higher ROI?&quot; The consensus that surfaces is consistent with the process above. Use the score as a checklist, review manually, and judge the account by ROAS and CPA instead. For a deeper walkthrough of manual review across a full account, see B6&apos;s <a href="/blog/ppc-audit-checklist" style={linkStyle}>Google Ads audit checklist</a>, the wider system in our <a href="/blog/google-ads-optimization" style={linkStyle}>complete guide to Google Ads optimization</a>, and the breakdown of <a href="/blog/google-ads-ai-vs-manual-bidding" style={linkStyle}>AI vs. manual bidding control</a>.
               </p>
               <p style={para}>
-                If your account already leans on Smart Bidding, it&apos;s worth reading how bid strategy choice interacts with this same recommendation stream in B6&apos;s guide to <a href="/blog/google-ads-smart-bidding-strategies" style={linkStyle}>Smart Bidding strategies</a>, since several of the highest-risk recommendations in the table above are bid-strategy opt-ins.
+                If your account already leans on Smart Bidding, it&apos;s worth reading how bid <a href="/blog/google-ads-strategy" style={{ color: '#764ba2', textDecoration: 'underline' }}>strategy</a> choice interacts with this same recommendation stream in B6&apos;s guide to <a href="/blog/google-ads-smart-bidding-strategies" style={linkStyle}>Smart Bidding strategies</a>, since several of the highest-risk recommendations in the table above are bid-strategy opt-ins.
               </p>
             </section>
 

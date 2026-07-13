@@ -346,7 +346,7 @@ export default function ArticleContent() {
                 Search captures demand that already exists: someone is looking for what you sell. It costs more per click and usually earns its keep. Performance Max produces the cheapest leads and the most dangerous ones, because in B2B it tends to find volume in low-intent placements and, without a strong quality feedback loop, optimizes straight toward cheap form fills. Search Engine Land&apos;s practitioners go further, calling PMax and Display leads &quot;abundant but often fraudulent and bot-driven&quot; and advising caution for lead gen (<a href="https://searchengineland.com/improve-ppc-lead-quality-b2b-campaigns-448840" style={linkStyle} target="_blank" rel="noopener noreferrer">Search Engine Land, 2024</a>). The full diagnosis of why PMax misfires for B2B is in <a href="/blog/performance-max-not-converting" style={linkStyle}>why Performance Max is not converting</a>.
               </p>
               <p style={pStyle}>
-                LinkedIn flips the model: you do not buy intent, you buy precision. You target by job title, company size, and industry, accept a much higher cost per click, and trade volume for fit. The head-to-head trade-off, including when each channel wins, is laid out in <a href="/blog/linkedin-ads-vs-google-ads-b2b-lead-generation" style={linkStyle}>LinkedIn Ads vs Google Ads for B2B lead generation</a>.
+                LinkedIn flips the model: you do not buy intent, you buy precision. You target by job title, company size, and industry, accept a much higher <a href="/blog/google-ads-cost-per-click-too-high" style={linkStyle}>cost per click</a>, and trade volume for fit. The head-to-head trade-off, including when each channel wins, is laid out in <a href="/blog/linkedin-ads-vs-google-ads-b2b-lead-generation" style={linkStyle}>LinkedIn Ads vs Google Ads for B2B lead generation</a>.
               </p>
 
               <MascotQuote mascot="vox">
@@ -440,7 +440,7 @@ export default function ArticleContent() {
                   <p style={{ fontSize: '16px', lineHeight: '1.7', color: '#1e293b', margin: 0 }}>B2B cost per lead is typically much higher than B2C because the audience is narrower and the intent more valuable, but a single benchmark number is misleading: a $40 CPL that never closes is more expensive than a $300 CPL that does. Judge cost at the closed-won level. The full economics are worked through in <a href="/blog/is-google-ads-worth-it-for-b2b-saas" style={linkStyle}>is Google Ads worth it for B2B SaaS</a>.</p>
                 </div>
                 <div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: '12px', padding: '20px 24px' }}>
-                  <p style={{ fontSize: '17px', fontWeight: 700, color: '#1e293b', marginBottom: '8px' }}>Should you use Performance Max for B2B lead generation?</p>
+                  <p style={{ fontSize: '17px', fontWeight: 700, color: '#1e293b', marginBottom: '8px' }}>Should you use <a href="/blog/performance-max-problems-b2b-marketing" style={linkStyle}>Performance Max for B2B</a> lead generation?</p>
                   <p style={{ fontSize: '16px', lineHeight: '1.7', color: '#1e293b', margin: 0 }}>Use it with caution and only behind a strong conversion feedback loop. Without CRM outcomes feeding bidding, PMax tends to optimize toward cheap, low-quality leads in B2B. The detailed diagnosis is in <a href="/blog/performance-max-not-converting" style={linkStyle}>why Performance Max is not converting</a>.</p>
                 </div>
               </div>

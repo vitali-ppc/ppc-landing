@@ -363,7 +363,7 @@ export default function ArticleContent() {
             {/* Intro paragraph */}
             <p style={pStyle}>
               Google Shopping optimization means something different depending on whether your problem
-              is feed quality, bid strategy, campaign structure, or asset quality in Performance Max.
+              is feed quality, bid <a href="/blog/google-ads-strategy" style={linkStyle}>strategy</a>, campaign structure, or asset quality in Performance Max.
               Fix the wrong lever first and you waste two weeks. This guide is a diagnostic framework:
               identify the broken component before touching any setting. See{' '}
               <a href="/blog/google-ads-optimization" style={linkStyle}>
@@ -820,12 +820,12 @@ export default function ArticleContent() {
               <p style={pStyle}>
                 Consider a real scenario: impression share drops 40% over 3 days. A manual check
                 flags a feed disapproval batch. But that same window also shows bid strategy status
-                shifting to &quot;Learning&quot; (triggered by a conversion tracking gap) and new Merchant
+                shifting to &quot;Learning&quot; (triggered by a <a href="/blog/google-ads-conversion-tracking-not-working" style={linkStyle}>conversion tracking</a> gap) and new Merchant
                 Center disapprovals. Individually, each signal looks manageable. Together, they
                 explain a 35% ROAS drop in 72 hours.
               </p>
               <p style={pStyle}>
-                Kampaio&apos;s Buzz agent monitors bid strategy status changes in real time. Mira flags
+                Kampaio&apos;s Buzz <a href="/blog/google-ads-ai-agent" style={linkStyle}>agent</a> monitors bid strategy status changes in real time. Mira flags
                 feed attribute regressions when disapprovals spike. When both fire in the same
                 window, the account gets one correlated alert instead of three separate dashboard
                 checks to connect manually.

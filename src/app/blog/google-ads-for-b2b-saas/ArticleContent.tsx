@@ -487,7 +487,7 @@ export default function ArticleContent() {
               </figure>
 
               <p style={para}>
-                <strong>The closed loop, concretely.</strong> Push GCLID plus CRM stage back to Google as <a href="https://developers.google.com/google-ads/api/docs/conversions/overview" style={linkStyle} target="_blank" rel="noopener noreferrer">offline conversions</a> at each milestone: MQL, SQL, Opportunity, Closed-Won, each with a revenue value. Google&apos;s algorithm then sees which ad clicks became pipeline 90 days later and adjusts bids accordingly. Without it, you are paying a sophisticated optimization engine to optimize for the wrong signal.
+                <strong>The closed loop, concretely.</strong> Push GCLID plus CRM stage back to Google as <a href="https://developers.google.com/google-ads/api/docs/conversions/overview" style={linkStyle} target="_blank" rel="noopener noreferrer">offline conversions</a> at each milestone: MQL, SQL, Opportunity, Closed-Won, each with a revenue value. Google&apos;s algorithm then sees which ad clicks became pipeline 90 days later and adjusts bids accordingly. Without it, you are paying a sophisticated <a href="/blog/google-ads-optimization" style={{ color: '#764ba2', textDecoration: 'underline' }}>optimization</a> engine to optimize for the wrong signal.
               </p>
               <p style={para}>
                 <strong>Report on unit economics.</strong> Pipeline-CAC by tier, blended CAC, LTV:CAC by keyword theme. A CPL dashboard reads as noise when the sales cycle runs 120 days. A pipeline-CAC report by tier, updated monthly, becomes the decision framework the CFO will actually trust.
@@ -556,7 +556,7 @@ export default function ArticleContent() {
             <section id="autopilot">
               <h2 style={h2}>Run It on Autopilot Once the Loop Is Wired</h2>
               <p style={para}>
-                The hard part of B2B SaaS Google Ads is not the launch. It is the ongoing discipline: catching when Smart Bidding learning stalls on thin volume, when a tier&apos;s pipeline-CAC drifts over six weeks, when a budget change resets learning in a campaign you assumed was stable. Buzz, kampaio&apos;s bid-strategy agent, runs that monitoring continuously once your offline-conversion loop is wired, flagging learning stalls, pipeline-CAC drift, and budget-triggered resets before they compound into quarterly surprises.
+                The hard part of B2B SaaS Google Ads is not the launch. It is the ongoing discipline: catching when Smart Bidding learning stalls on thin volume, when a tier&apos;s pipeline-CAC drifts over six weeks, when a budget change resets learning in a campaign you assumed was stable. Buzz, kampaio&apos;s bid-strategy <a href="/blog/google-ads-ai-agent" style={{ color: '#764ba2', textDecoration: 'underline' }}>agent</a>, runs that monitoring continuously once your offline-conversion loop is wired, flagging learning stalls, pipeline-CAC drift, and budget-triggered resets before they compound into quarterly surprises.
               </p>
               <p style={para}>
                 This does not replace the structural decisions in this playbook. It keeps them on track. The human stays in approval; the agent handles monitoring and alerting. See <a href="/pricing" style={linkStyle}>Kampaio&apos;s autonomy tiers</a> for the monitoring plans.

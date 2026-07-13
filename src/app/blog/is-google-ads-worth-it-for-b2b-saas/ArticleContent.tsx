@@ -320,7 +320,7 @@ export default function ArticleContent() {
             <section id="cpl-to-cac">
               <h2 style={h2Style}>Will It Actually Pay Back? The CPL-to-CAC Math</h2>
               <p style={pStyle}>
-                The real question is whether the channel pays back. For B2B SaaS, the math starts with expensive clicks and low conversion rates and ends at a CAC your ACV either supports or doesn&apos;t. Here is what that chain looks like.
+                The real question is whether the channel pays back. For B2B SaaS, the math starts with <a href="/blog/google-ads-cost-per-click-too-high" style={linkStyle}>expensive clicks</a> and low conversion rates and ends at a CAC your ACV either supports or doesn&apos;t. Here is what that chain looks like.
               </p>
 
               {/* VISUAL 3: BigStat (bold-viz) - sourced benchmark figure */}
@@ -355,7 +355,7 @@ export default function ArticleContent() {
                 ACV is the hidden variable in &quot;is Google Ads worth it.&quot; The same $240 CPL is a bargain for a high-ACV enterprise tool and a disaster for a low-ACV self-serve app. Same channel, same clicks, different verdict.
               </p>
               <p style={pStyle}>
-                <a href="https://www.farsiight.com/resources/google-ads-for-saas/" style={linkStyle} target="_blank" rel="noopener noreferrer">Farsiight&apos;s 2026 research</a> makes the point sharper: a $150 CPL with a 5% SQL rate equals $3,000 per sales-qualified lead, while a $250 CPL with a 20% SQL rate equals only $1,250 per SQL. CPL is the wrong optimization target. Pipeline cost per SQL is the real number. That&apos;s why attribution readiness is Factor 4 on the scorecard. Without it, you&apos;re optimizing the wrong metric from day one.
+                <a href="https://www.farsiight.com/resources/google-ads-for-saas/" style={linkStyle} target="_blank" rel="noopener noreferrer">Farsiight&apos;s 2026 research</a> makes the point sharper: a $150 CPL with a 5% SQL rate equals $3,000 per sales-qualified lead, while a $250 CPL with a 20% SQL rate equals only $1,250 per SQL. CPL is the wrong <a href="/blog/google-ads-optimization" style={linkStyle}>optimization</a> target. Pipeline cost per SQL is the real number. That&apos;s why attribution readiness is Factor 4 on the scorecard. Without it, you&apos;re optimizing the wrong metric from day one.
               </p>
 
               {/* VISUAL 5: MascotQuote (Buzz) - converted blockquote */}
@@ -482,7 +482,7 @@ export default function ArticleContent() {
                 The answer to &quot;is Google Ads worth it for B2B SaaS&quot; is never a category verdict. It&apos;s your scorecard. Strong demand plus ACV that supports the math plus an attribution loop means go. A borderline scorecard means run the $2-5K test before committing. A brand-new category or sub-economics ACV means capture demand elsewhere first and revisit when the conditions change.
               </p>
               <p style={pStyle}>
-                The reason many founders avoid even testing Google Ads is the overhead cost of doing it right: an agency retainer on top of ad spend just to validate a channel that might not work. Kampaio&apos;s agents (<a href="/b6#buzz" style={linkStyle}>Buzz</a> on bids, <a href="/b6#vox" style={linkStyle}>Vox</a> on budget allocation) run the test and ongoing management without the retainer, with you in the approval seat. That makes &quot;test first&quot; cheaper than the default assumption.
+                The reason many founders avoid even testing Google Ads is the overhead cost of doing it right: an agency retainer on top of ad spend just to validate a channel that might not work. Kampaio&apos;s <a href="/blog/google-ads-ai-agent" style={linkStyle}>agent</a>s (<a href="/b6#buzz" style={linkStyle}>Buzz</a> on bids, <a href="/b6#vox" style={linkStyle}>Vox</a> on budget allocation) run the test and ongoing management without the retainer, with you in the approval seat. That makes &quot;test first&quot; cheaper than the default assumption.
               </p>
               <div style={{ background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)', borderRadius: '16px', padding: '40px', textAlign: 'center', marginTop: '40px', marginBottom: '40px' }}>
                 <h3 style={{ fontSize: '22px', fontWeight: 700, color: '#1e293b', marginBottom: '18px', lineHeight: '1.3' }}>

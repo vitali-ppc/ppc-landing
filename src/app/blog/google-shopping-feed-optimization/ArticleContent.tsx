@@ -862,7 +862,7 @@ export default function ArticleContent() {
                 the tiers in order, push the optimization layer into a supplemental feed you can edit
                 fast, and the same catalog matches more queries at a higher CTR every week. That is
                 the Kampaio approach to Shopping and PMax: treat the feed as the controllable surface
-                and let the agents bid against a catalog that is already pulling its weight.{' '}
+                and let the <a href="/blog/google-ads-ai-agent" style={linkStyle}>agent</a>s bid against a catalog that is already pulling its weight.{' '}
                 <a href="/b6" style={linkStyle}>
                   See how Kampaio manages feed-aware Shopping and PMax
                 </a>
