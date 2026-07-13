@@ -50,7 +50,9 @@ export default function StickyTOC() {
     const onScroll = () => {
       const top = firstEl?.getBoundingClientRect().top ?? Infinity;
       const bottom = lastEl?.getBoundingClientRect().bottom ?? Infinity;
-      setShown(top < 160 && bottom > 200);
+      // Appear as soon as the article body enters the upper part of the viewport
+      // (hero mostly scrolled off), hide again near the footer.
+      setShown(top < window.innerHeight * 0.6 && bottom > 240);
     };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
@@ -87,8 +89,8 @@ export default function StickyTOC() {
         .sticky-toc {
           position: fixed;
           top: 140px;
-          left: calc(50% + 412px);
-          width: 250px;
+          left: calc(50% + 408px);
+          width: 210px;
           max-height: calc(100vh - 200px);
           overflow-y: auto;
           display: none;
@@ -98,7 +100,7 @@ export default function StickyTOC() {
           pointer-events: none;
           z-index: 10;
         }
-        @media (min-width: 1340px) {
+        @media (min-width: 1260px) {
           .sticky-toc {
             display: block;
           }
