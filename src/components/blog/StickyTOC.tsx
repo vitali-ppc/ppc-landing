@@ -42,17 +42,13 @@ export default function StickyTOC() {
       if (el) observer.observe(el);
     });
 
-    // Show the sidebar only once the reader has scrolled into the article body
-    // (past the hero cover), and hide it again near the footer, so it never
-    // floats over the hero or the recirculation block.
-    const firstEl = document.getElementById(sections[0].id);
+    // Keep the sidebar visible while reading; hide it once past the footer.
     const lastEl = document.getElementById(sections[sections.length - 1].id);
     const onScroll = () => {
-      const top = firstEl?.getBoundingClientRect().top ?? Infinity;
       const bottom = lastEl?.getBoundingClientRect().bottom ?? Infinity;
-      // Appear as soon as the article body enters the upper part of the viewport
-      // (hero mostly scrolled off), hide again near the footer.
-      setShown(top < window.innerHeight * 0.6 && bottom > 240);
+      // Always visible in the right rail (the hero is now constrained to the
+      // content column, so nothing to overlap); only hide once past the footer.
+      setShown(bottom > 240);
     };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });

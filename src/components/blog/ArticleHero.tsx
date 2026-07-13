@@ -5,20 +5,25 @@
 
 export default function ArticleHero({ slug }: { slug: string }) {
   return (
-    <img
-      src={`/blog/${slug}/opengraph-image`}
-      width={1200}
-      height={630}
-      alt=""
-      style={{
-        display: 'block',
-        width: '100%',
-        height: 'auto',
-        aspectRatio: '1200 / 630',
-        borderRadius: '16px',
-        border: '1px solid #e5e7eb',
-        marginBottom: '32px',
-      }}
-    />
+    // Constrained to the 800px content column (not full 1200px width) so the
+    // article sits in a left column and leaves a clear right rail for the sticky
+    // "On this page" ToC — matching the two-column article layout on sister sites.
+    <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+      <img
+        src={`/blog/${slug}/opengraph-image`}
+        width={1200}
+        height={630}
+        alt=""
+        style={{
+          display: 'block',
+          width: '100%',
+          height: 'auto',
+          aspectRatio: '1200 / 630',
+          borderRadius: '16px',
+          border: '1px solid #e5e7eb',
+          marginBottom: '32px',
+        }}
+      />
+    </div>
   );
 }
