@@ -8,6 +8,7 @@ import ArticleHero from '../../../components/blog/ArticleHero';
 import KeepReading from '../../../components/blog/KeepReading';
 import MascotQuote from '../../../components/blog/MascotQuote';
 import { KeyTakeaways, Callout, BigStat } from '../../../components/blog/primitives';
+import ResponsiveTable from '../../../components/blog/ResponsiveTable';
 
 export default function ArticleContent() {
   const [isTableOfContentsOpen, setIsTableOfContentsOpen] = useState(false);
@@ -352,78 +353,67 @@ export default function ArticleContent() {
               </p>
 
               {/* VISUAL 2: keep/kill decision table (extractable HTML) */}
-              <div style={{ overflowX: 'auto', marginBottom: '32px' }}>
-                <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '15px', minWidth: '820px' }}>
-                  <thead>
-                    <tr style={{ background: '#f8fafc' }}>
-                      <th style={thStyle}>AI feature</th>
-                      <th style={thStyle}>What it is</th>
-                      <th style={thStyle}>What it silently changes</th>
-                      <th style={thStyle}>Default</th>
-                      <th style={thStyle}>Control location</th>
-                      <th style={thStyle}>Our call</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td style={tdStyle}>AI Max for Search</td>
-                      <td style={tdStyle}>Bundles search term matching, query expansion, text customization, final URL expansion</td>
-                      <td style={tdStyle}>Expands matched search terms, sometimes past what you&apos;d bid on manually</td>
-                      <td style={tdStyle}>ON for new Search campaigns; existing broad match being upgraded</td>
-                      <td style={tdStyle}>Campaign Settings &gt; AI Max panel</td>
-                      <td style={{ ...callCell, color: '#f59e0b' }}>Monitor. Audit search terms weekly.</td>
-                    </tr>
-                    <tr style={{ background: '#fafafa' }}>
-                      <td style={tdStyle}>Final URL expansion</td>
-                      <td style={tdStyle}>Lets Google send clicks to any relevant URL on your domain</td>
-                      <td style={tdStyle}>Can route a click away from the landing page you built</td>
-                      <td style={tdStyle}>ON with AI Max (<a href="https://support.google.com/google-ads/answer/15910187" style={linkStyle} target="_blank" rel="noopener noreferrer">answer/15910187</a>)</td>
-                      <td style={tdStyle}>AI Max panel, uncheck individually</td>
-                      <td style={{ ...callCell, color: '#ef4444' }}>Kill or restrict if a specific path must stay protected.</td>
-                    </tr>
-                    <tr>
-                      <td style={tdStyle}>Text customization (formerly auto-created assets)</td>
-                      <td style={tdStyle}>Google auto-writes headlines/descriptions from your site</td>
-                      <td style={tdStyle}>Toggling off also disables Final URL expansion (<a href="https://support.google.com/google-ads/answer/16230205" style={linkStyle} target="_blank" rel="noopener noreferrer">answer/16230205</a>)</td>
-                      <td style={tdStyle}>ON by default</td>
-                      <td style={tdStyle}>AI Max panel &gt; Text customization</td>
-                      <td style={{ ...callCell, color: '#f59e0b' }}>Monitor. Review assets weekly for off-brand copy.</td>
-                    </tr>
-                    <tr style={{ background: '#fafafa' }}>
-                      <td style={tdStyle}>Ads in AI Overviews</td>
-                      <td style={tdStyle}>Ad shown inside an AI-generated summary box</td>
-                      <td style={tdStyle}>Reports only as generic &quot;Top Ads,&quot; no segmented data (<a href="https://support.google.com/google-ads/answer/16297775" style={linkStyle} target="_blank" rel="noopener noreferrer">answer/16297775</a>)</td>
-                      <td style={tdStyle}>ON, no opt-out</td>
-                      <td style={tdStyle}>Not a toggle, controlled via campaign eligibility</td>
-                      <td style={{ ...callCell, color: '#10b981' }}>Keep, don&apos;t trust the dashboard alone.</td>
-                    </tr>
-                    <tr>
-                      <td style={tdStyle}>Ads in AI Mode</td>
-                      <td style={tdStyle}>Ad shown inside conversational Search</td>
-                      <td style={tdStyle}>Newest surface, thinner documentation than AI Overviews</td>
-                      <td style={tdStyle}>ON where eligible</td>
-                      <td style={tdStyle}>Same as above, no opt-out documented</td>
-                      <td style={{ ...callCell, color: '#10b981' }}>Keep and watch. Reach, not a lever.</td>
-                    </tr>
-                    <tr style={{ background: '#fafafa' }}>
-                      <td style={tdStyle}>AI-generated ad creative (Veo)</td>
-                      <td style={tdStyle}>Fully AI-generated video ad assets</td>
-                      <td style={tdStyle}>Nothing forced, opt-in only</td>
-                      <td style={tdStyle}>OFF unless generated</td>
-                      <td style={tdStyle}>Asset Studio</td>
-                      <td style={{ ...callCell, color: '#667eea' }}>Optional. Try, don&apos;t depend on it.</td>
-                    </tr>
-                    <tr>
-                      <td style={tdStyle}>Ads Advisor (Gemini beta)</td>
-                      <td style={tdStyle}>Chat assistant in the Ads UI</td>
-                      <td style={tdStyle}>Nothing, answers questions, no autonomous changes</td>
-                      <td style={tdStyle}>Opt-in usage</td>
-                      <td style={tdStyle}>Ads UI, Advisor panel</td>
-                      <td style={{ ...callCell, color: '#10b981' }}>Keep as reference, not decision-maker.</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+              <ResponsiveTable
+                headers={['AI feature', 'What it is', 'What it silently changes', 'Default', 'Control location', 'Our call']}
+                rows={[
+                  [
+                    'AI Max for Search',
+                    'Bundles search term matching, query expansion, text customization, final URL expansion',
+                    "Expands matched search terms, sometimes past what you'd bid on manually",
+                    'ON for new Search campaigns; existing broad match being upgraded',
+                    'Campaign Settings > AI Max panel',
+                    <span style={{ color: '#f59e0b', fontWeight: 600 }}>Monitor. Audit search terms weekly.</span>,
+                  ],
+                  [
+                    'Final URL expansion',
+                    'Lets Google send clicks to any relevant URL on your domain',
+                    'Can route a click away from the landing page you built',
+                    <>ON with AI Max (<a href="https://support.google.com/google-ads/answer/15910187" style={linkStyle} target="_blank" rel="noopener noreferrer">answer/15910187</a>)</>,
+                    'AI Max panel, uncheck individually',
+                    <span style={{ color: '#ef4444', fontWeight: 600 }}>Kill or restrict if a specific path must stay protected.</span>,
+                  ],
+                  [
+                    'Text customization (formerly auto-created assets)',
+                    'Google auto-writes headlines/descriptions from your site',
+                    <>Toggling off also disables Final URL expansion (<a href="https://support.google.com/google-ads/answer/16230205" style={linkStyle} target="_blank" rel="noopener noreferrer">answer/16230205</a>)</>,
+                    'ON by default',
+                    'AI Max panel > Text customization',
+                    <span style={{ color: '#f59e0b', fontWeight: 600 }}>Monitor. Review assets weekly for off-brand copy.</span>,
+                  ],
+                  [
+                    'Ads in AI Overviews',
+                    'Ad shown inside an AI-generated summary box',
+                    <>Reports only as generic &quot;Top Ads,&quot; no segmented data (<a href="https://support.google.com/google-ads/answer/16297775" style={linkStyle} target="_blank" rel="noopener noreferrer">answer/16297775</a>)</>,
+                    'ON, no opt-out',
+                    'Not a toggle, controlled via campaign eligibility',
+                    <span style={{ color: '#10b981', fontWeight: 600 }}>Keep, don&apos;t trust the dashboard alone.</span>,
+                  ],
+                  [
+                    'Ads in AI Mode',
+                    'Ad shown inside conversational Search',
+                    'Newest surface, thinner documentation than AI Overviews',
+                    'ON where eligible',
+                    'Same as above, no opt-out documented',
+                    <span style={{ color: '#10b981', fontWeight: 600 }}>Keep and watch. Reach, not a lever.</span>,
+                  ],
+                  [
+                    'AI-generated ad creative (Veo)',
+                    'Fully AI-generated video ad assets',
+                    'Nothing forced, opt-in only',
+                    'OFF unless generated',
+                    'Asset Studio',
+                    <span style={{ color: '#667eea', fontWeight: 600 }}>Optional. Try, don&apos;t depend on it.</span>,
+                  ],
+                  [
+                    'Ads Advisor (Gemini beta)',
+                    'Chat assistant in the Ads UI',
+                    'Nothing, answers questions, no autonomous changes',
+                    'Opt-in usage',
+                    'Ads UI, Advisor panel',
+                    <span style={{ color: '#10b981', fontWeight: 600 }}>Keep as reference, not decision-maker.</span>,
+                  ],
+                ]}
+              />
 
               {/* VISUAL 3: MascotQuote - Aegis (risk, concrete number) */}
               <MascotQuote mascot="aegis">
