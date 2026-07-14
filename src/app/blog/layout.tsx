@@ -30,6 +30,14 @@ const twoColCss = `
     display: none !important;
   }
 }
+/* Retrofit: old raw article tables (NOT the new ResponsiveTable, class .rt) scroll
+   horizontally on mobile instead of crushing columns to 1-char stacks. New tables
+   use ResponsiveTable (cards on mobile); this just stops the legacy ones being unreadable. */
+@media (max-width: 760px) {
+  .blog-shell table:not(.rt) { display: block; width: 100%; max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .blog-shell table:not(.rt) thead,
+  .blog-shell table:not(.rt) tbody { display: table; width: 100%; min-width: 560px; }
+}
 `;
 
 export default function BlogLayout({ children }: { children: React.ReactNode }) {
