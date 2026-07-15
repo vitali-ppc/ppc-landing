@@ -20,7 +20,10 @@ const homeJsonLd = {
         width: 512,
         height: 512,
       },
-      sameAs: ["https://github.com/vitali-ppc"],
+      sameAs: [
+        "https://www.linkedin.com/company/kampaio",
+        "https://github.com/vitali-ppc",
+      ],
       description:
         "Kampaio builds B6, an autonomous AI agent system that manages Google Ads campaigns for SMB and DTC advertisers.",
       knowsAbout: [
