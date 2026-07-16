@@ -23,6 +23,7 @@ const homeJsonLd = {
       sameAs: [
         "https://www.linkedin.com/company/kampaio",
         "https://www.crunchbase.com/organization/kampaio",
+        "https://x.com/kampaio_ai",
         "https://github.com/vitali-ppc",
       ],
       description:
