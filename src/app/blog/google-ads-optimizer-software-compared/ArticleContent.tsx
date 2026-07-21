@@ -37,7 +37,7 @@ export default function ArticleContent() {
       },
     },
     datePublished: '2026-06-22T00:00:00.000Z',
-    dateModified: '2026-06-22T00:00:00.000Z',
+    dateModified: '2026-07-21T00:00:00.000Z',
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': 'https://www.kampaio.com/blog/google-ads-optimizer-software-compared',
@@ -271,7 +271,7 @@ export default function ArticleContent() {
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '2px' }}>
                   <span style={{ color: '#64748b', fontSize: '16px', fontWeight: 600 }}>By Kampaio Team</span>
                   <span style={{ color: '#64748b', fontSize: '15px' }}>AI-native Google Ads optimization</span>
-                  <span style={{ color: '#64748b', fontSize: '15px' }}>June 22, 2026 · 9 min read</span>
+                  <span style={{ color: '#64748b', fontSize: '15px' }}>June 22, 2026 · Updated July 21, 2026 · 9 min read</span>
                 </div>
               </div>
             </div>
@@ -341,7 +341,7 @@ export default function ArticleContent() {
                 This article is about choosing an optimizer, not running optimizations. If you came for the tactics (negative keywords, bid adjustments, pMax fixes), the full playbook lives in our <a href="/blog/google-ads-optimization" style={linkStyle}>Google Ads optimization guide</a>. Here we answer a different question: which tool, and do you even need one?
               </p>
               <p style={paragraphStyle}>
-                Worth knowing before you shop: even Google&apos;s free, built-in recommendations help. Advertisers who raised their <a href="/blog/google-ads-optimization-score" style={{ color: '#764ba2', textDecoration: 'underline' }}>optimization score</a> by 10 points saw a median 14 percent lift in conversions, per <a href="https://business.google.com/us/ad-tools/campaign-recommendations/" style={linkStyle} target="_blank" rel="noopener noreferrer">Google Ads (2026)</a>. That is the baseline any paid tool has to beat. Google is also testing its own <a href="https://searchengineland.com/google-ads-tests-new-website-optimizer-tool-465493" style={linkStyle} target="_blank" rel="noopener noreferrer">Website Optimizer A/B tool</a>, a sign the native layer keeps expanding.
+                Worth knowing before you shop: even Google&apos;s free, built-in recommendations help. Advertisers who raised their <a href="/blog/google-ads-optimization-score" style={{ color: '#764ba2', textDecoration: 'underline' }}>optimization score</a> by 10 points saw a median 14 percent lift in conversions, per <a href="https://business.google.com/us/ad-tools/campaign-recommendations/" style={linkStyle} target="_blank" rel="noopener noreferrer">Google Ads (2026)</a>. That is the baseline any paid tool has to beat. Google is also testing its own <a href="https://searchengineland.com/google-ads-tests-new-website-optimizer-tool-465493" style={linkStyle} target="_blank" rel="noopener noreferrer">Website Optimizer A/B tool</a>, a sign the native layer keeps expanding. And as of mid-2026 that native layer is climbing the autonomy ladder: per <a href="https://blog.google/products/ads-commerce/dsa-upgrade-to-ai-max-2026/" style={linkStyle} target="_blank" rel="noopener noreferrer">Google&apos;s Ads &amp; Commerce blog (June 11, 2026)</a>, Search campaigns using automatically created assets and campaign-level broad match begin auto-upgrading to the more autonomous AI Max from September 2026, with the Dynamic Search Ads sunset and upgrade extended to February 2027. Google reports AI Max campaigns see an average of 7 percent more conversions or conversion value at a similar CPA or ROAS when the full feature suite is on, so even the free native tier is moving toward the AI-native-operator model this article maps.
               </p>
 
               {/* VISUAL 2: BigStat (bold-viz), the optimization-score conversion lift */}
