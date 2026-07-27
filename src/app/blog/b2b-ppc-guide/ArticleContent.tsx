@@ -413,7 +413,7 @@ export default function ArticleContent() {
             <section id="channels">
               <h2 style={h2}>Which channels to run: Google Ads vs LinkedIn vs Microsoft Advertising</h2>
               <p style={para}>
-                Pick the channel by where your buyer sits in the intent curve, not by hype. Google Ads captures active demand from people already searching, LinkedIn Ads targets by firmographic and job-title data when demand is still latent, and Microsoft Advertising reaches an older, higher-income B2B desktop audience at a lower cost per click.
+                Pick the channel by where your buyer sits in the intent curve, not by hype. Google Ads captures active demand from people already searching, LinkedIn Ads targets by firmographic and job-title data when demand is still latent, and Microsoft Advertising reaches an older, higher-income B2B desktop audience at a lower <a href="/blog/google-ads-cost-per-click-too-high" style={{ color: '#764ba2', textDecoration: 'underline' }}>cost per click</a>.
               </p>
 
               {/* VISUAL 3: ResponsiveTable - channel-selection decision grid */}
@@ -526,7 +526,7 @@ export default function ArticleContent() {
                 The highest-impact move in B2B PPC is feeding Google a revenue-weighted conversion signal from your CRM, so bidding optimizes for pipeline instead of raw form-fills. Without that signal, the account cannot tell a closed-won deal from a form-fill that went nowhere.
               </p>
               <p style={para}>
-                The clearest fully-verified description of this move in the mined dataset: &quot;If you have a good amount of lead volume (30+ leads per campaign) then use max conversion value. Collect GCLID and assign values for leads as they go through the sales process. When the lead closes as won, assign the actual revenue generated to that lead&quot; (
+                The clearest fully-verified description of this move in the mined dataset: &quot;If you have a good amount of lead volume (30+ leads per campaign) then use max conversion value. Collect <a href="/blog/google-ads-conversion-tracking-not-working" style={{ color: '#764ba2', textDecoration: 'underline' }}>GCLID</a> and assign values for leads as they go through the sales process. When the lead closes as won, assign the actual revenue generated to that lead&quot; (
                 <a href="https://www.reddit.com/r/PPC/comments/qakzui/b2b_ppc_strategy/" style={linkStyle} target="_blank" rel="noopener noreferrer">r/PPC, 2026</a>
                 ). That recipe describes the older manual-upload method. The modern first-party path is{' '}
                 <a href="https://support.google.com/google-ads/answer/15713840" style={linkStyle} target="_blank" rel="noopener noreferrer">Enhanced Conversions for Leads</a>, Google&apos;s dedicated mechanism for matching CRM outcomes back to the original ad click (

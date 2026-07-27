@@ -477,7 +477,7 @@ export default function ArticleContent() {
                 Three surfaces carry the detail: the search terms report&apos;s AI Max match type plus Source column, the landing pages report&apos;s Selected by column, and the Assets view&apos;s Added by column marked &quot;Google AI.&quot; Bulk removal requires the API or Editor, not the web UI.
               </p>
               <p style={paragraphStyle}>
-                Monthly, check Quality Score and Landing page experience alongside lead quality from your CRM (see our <a href="/blog/google-ads-optimization" style={linkStyle}>Google Ads optimization</a> guide).
+                Monthly, check <a href="/blog/the-complete-guide-to-google-ads-quality-score-in-2025" style={{ color: '#764ba2', textDecoration: 'underline' }}>Quality Score</a> and Landing page experience alongside lead quality from your CRM (see our <a href="/blog/google-ads-optimization" style={linkStyle}>Google Ads optimization</a> guide).
               </p>
             </section>
 
@@ -507,7 +507,7 @@ export default function ArticleContent() {
                 AI Max doesn&apos;t remove the PPC manager&apos;s job; it turns it into a weekly rhythm of auditing search terms, keeping negatives current, and watching for brand term bleed.
               </p>
               <p style={paragraphStyle}>
-                <a href="/blog/google-ads-ai-agent" style={linkStyle}>Kampaio&apos;s agents</a> split that rhythm by function: Aegis handles risk review and guardrails, Buzz manages bid strategy, Sage works the search terms report, flagging queries worth excluding before they compound into wasted spend.
+                <a href="/blog/google-ads-ai-agent" style={linkStyle}>Kampaio&apos;s agents</a> split that rhythm by function: Aegis handles risk review and guardrails, Buzz manages bid <a href="/blog/google-ads-strategy" style={{ color: '#764ba2', textDecoration: 'underline' }}>strategy</a>, Sage works the search terms report, flagging queries worth excluding before they compound into wasted spend.
               </p>
             </section>
 

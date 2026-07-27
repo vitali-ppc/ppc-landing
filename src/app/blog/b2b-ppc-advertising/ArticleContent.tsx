@@ -232,7 +232,7 @@ export default function ArticleContent() {
                 That gap is also the opportunity. Because B2B lifetime value is so high, a cost per acquisition can exceed $1,000 and still be profitable, where a B2C store working on $85 to $120 orders could never absorb that (<a href="https://unbounce.com/ppc/is-paid-search-effective-for-b2b/" style={linkStyle} target="_blank" rel="noopener noreferrer">Unbounce, 2024</a>). The high margin buys you room to fund a real learning phase. It does not buy you forgiveness for wiring the account up wrong, and a wrongly wired B2B account fails quietly: the dashboard looks fine while the leads do not close.
               </p>
               <p style={pStyle}>
-                This guide is the setup layer. The strategy layer above it, the economics of buying qualified pipeline instead of raw leads, lives in our <a href="/blog/b2b-ppc-lead-generation" style={linkStyle}>B2B PPC lead generation pillar</a>. Read that for the why. Read this for the how.
+                This guide is the setup layer. The <a href="/blog/google-ads-strategy" style={linkStyle}>strategy</a> layer above it, the economics of buying qualified pipeline instead of raw leads, lives in our <a href="/blog/b2b-ppc-lead-generation" style={linkStyle}>B2B PPC lead generation pillar</a>. Read that for the why. Read this for the how.
               </p>
             </section>
 

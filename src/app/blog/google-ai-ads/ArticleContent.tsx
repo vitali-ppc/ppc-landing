@@ -494,7 +494,7 @@ export default function ArticleContent() {
             <section id="is-it-working">
               <h2 style={h2}>How to tell if Google&apos;s AI is actually working (or quietly burning budget)</h2>
               <p style={para}>
-                Don&apos;t judge AI Max by Google&apos;s optimization score or that &quot;recommended&quot; label sitting in your dashboard. Judge it by your search terms report, your brand-versus-non-brand split, and the CPA or ROAS trend across the two weeks before and after any upgrade.
+                Don&apos;t judge AI Max by Google&apos;s <a href="/blog/google-ads-optimization" style={{ color: '#764ba2', textDecoration: 'underline' }}>optimization</a> score or that &quot;recommended&quot; label sitting in your dashboard. Judge it by your search terms report, your brand-versus-non-brand split, and the CPA or ROAS trend across the two weeks before and after any upgrade.
               </p>
 
               {/* VISUAL 5: BigStat - the 14% conversions figure (bold-viz) */}
@@ -567,7 +567,7 @@ export default function ArticleContent() {
               <p style={para}>For AI Overviews, no (<a href="https://support.google.com/google-ads/answer/16297775" style={linkStyle} target="_blank" rel="noopener noreferrer">Google Ads Help, answer/16297775</a>). For AI Mode, not yet documented, treat as unconfirmed.</p>
 
               <h3 style={h3}>How do I tell if AI Max is actually working?</h3>
-              <p style={para}>Check your search terms report, brand-versus-non-brand split, and CPA/ROAS trend 14 days before and after activation, not Google&apos;s optimization score.</p>
+              <p style={para}>Check your search terms report, brand-versus-non-brand split, and CPA/ROAS trend 14 days before and after activation, not Google&apos;s <a href="/blog/google-ads-optimization-score" style={{ color: '#764ba2', textDecoration: 'underline' }}>optimization score</a>.</p>
 
               <h3 style={h3}>Did Google automatically upgrade my campaigns to AI Max?</h3>
               <p style={para}>Possibly. Check campaign notifications directly. Confirmed upgrades are scoped to campaigns adopting AI Max, not a blanket account-wide deadline.</p>

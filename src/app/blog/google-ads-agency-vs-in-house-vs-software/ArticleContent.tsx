@@ -239,7 +239,7 @@ export default function ArticleContent() {
                 Agency vs In-House vs Software: The Quick Answer
               </h2>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
-                Pick by monthly ad spend and how much control you want. Under about $20K a month, self-serve software gives you agency-level optimization without the retainer. Above $20K, an agency or an in-house hire both start to pencil out. In-house buys the most control, an agency buys the least owner effort, and software sits in the middle on cost, control, and effort.
+                Pick by monthly ad spend and how much control you want. Under about $20K a month, self-serve software gives you agency-level <a href="/blog/google-ads-optimization" style={{ color: '#764ba2', textDecoration: 'underline' }}>optimization</a> without the retainer. Above $20K, an agency or an in-house hire both start to pencil out. In-house buys the most control, an agency buys the least owner effort, and software sits in the middle on cost, control, and effort.
               </p>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '24px' }}>
                 A quick read on where you land:

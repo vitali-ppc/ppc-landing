@@ -473,7 +473,7 @@ export default function ArticleContent() {
                 <strong>DIY</strong> is good under roughly $3,000/month with time to learn Smart Bidding and Target ROAS; bad with zero spare hours or real compliance risk.
               </p>
               <p style={paragraphStyle}>
-                <strong>Software</strong> splits into recommendation tools (Optmyzr, WordStream, Adzooma) that surface suggestions you still execute by hand, and self-serve AI tools like kampaio that execute the change directly and show each step live for approval. Good for the $3-20K/mo band if you want agency-level optimization without the retainer; bad if you want zero involvement whatsoever.
+                <strong>Software</strong> splits into recommendation tools (Optmyzr, WordStream, Adzooma) that surface suggestions you still execute by hand, and self-serve <a href="/blog/5-tips-for-working-with-ai-ppc-tools" style={{ color: '#764ba2', textDecoration: 'underline' }}>AI tools</a> like kampaio that execute the change directly and show each step live for approval. Good for the $3-20K/mo band if you want agency-level optimization without the retainer; bad if you want zero involvement whatsoever.
               </p>
               <p style={paragraphStyle}>
                 <strong>Consultant</strong> is good for senior, part-time or project-based expertise, typically $75-200/hour; bad if you need bench depth across channels or after-hours coverage.

@@ -421,7 +421,7 @@ export default function ArticleContent() {
             <section id="kampaio-fits">
               <h2 style={h2Style}>Where kampaio Fits (the Agentic Option)</h2>
               <p style={paragraphStyle}>
-                <a href="/b6" style={linkStyle}>kampaio</a> is an AI-autonomous manager: agents run bids, budgets, creatives, and strategy, and show every action live rather than surfacing a suggestion queue. It sits in the agentic category above, alongside Ryze and DIY Claude-plus-MCP, not above them.
+                <a href="/b6" style={linkStyle}>kampaio</a> is an AI-autonomous manager: agents run bids, budgets, creatives, and <a href="/blog/google-ads-strategy" style={{ color: '#764ba2', textDecoration: 'underline' }}>strategy</a>, and show every action live rather than surfacing a suggestion queue. It sits in the agentic category above, alongside Ryze and DIY Claude-plus-MCP, not above them.
               </p>
 
               {/* VISUAL 8 (bold-viz): suggest vs act control model */}
