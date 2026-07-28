@@ -308,6 +308,15 @@ const STYLES = `
 @media (prefers-reduced-motion:reduce){
   .kx *,.kx *::before,.kx *::after{ animation:none !important; transition:none !important; }
 }
+.kx-faq{ margin-top:28px; display:flex; flex-direction:column; gap:12px; }
+.kx-faq-item{ background:var(--surface); border:1px solid var(--border); border-radius:14px; overflow:hidden; transition:border-color .15s ease, box-shadow .15s ease; }
+.kx-faq-item:hover{ border-color:var(--accent); }
+.kx-faq-item[open]{ border-color:var(--accent); box-shadow:0 1px 3px rgba(13,19,32,.06); }
+.kx-faq-q{ display:flex; align-items:center; justify-content:space-between; gap:16px; cursor:pointer; padding:18px 22px; font-size:17px; font-weight:600; color:var(--text); list-style:none; }
+.kx-faq-q::-webkit-details-marker{ display:none; }
+.kx-faq-chev{ flex:0 0 auto; color:var(--muted); transition:transform .2s ease; }
+.kx-faq-item[open] .kx-faq-chev{ transform:rotate(180deg); color:var(--accent); }
+.kx-faq-a{ margin:0; padding:0 22px 20px; color:var(--muted-2); line-height:1.65; }
 `;
 
 /* ── Data ──────────────────────────────────────────────────────────────── */
@@ -523,16 +532,21 @@ const Pricing: React.FC = () => (
 );
 
 const FAQ: React.FC = () => (
-  <section className="kx-sec" id="faq">
+  <section className="kx-sec alt" id="faq">
     <div className="kx-sec-in" style={{ maxWidth: 760 }}>
       <h2 className="kx-h2">Common questions</h2>
       <p className="kx-sec-sub">Real answers on control, safety, and how the agents work.</p>
-      <div style={{ marginTop: 28 }}>
-        {FAQ_ITEMS.map((f) => (
-          <div key={f.q} style={{ borderTop: "1px solid var(--border-soft)", padding: "20px 0" }}>
-            <h3 style={{ fontSize: 18, fontWeight: 600, color: "var(--text)", margin: "0 0 8px" }}>{f.q}</h3>
-            <p style={{ color: "var(--muted-2)", lineHeight: 1.6, margin: 0 }}>{f.a}</p>
-          </div>
+      <div className="kx-faq">
+        {FAQ_ITEMS.map((f, i) => (
+          <details key={f.q} className="kx-faq-item" {...(i === 0 ? { open: true } : {})}>
+            <summary className="kx-faq-q">
+              <span>{f.q}</span>
+              <svg className="kx-faq-chev" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </summary>
+            <p className="kx-faq-a">{f.a}</p>
+          </details>
         ))}
       </div>
     </div>
