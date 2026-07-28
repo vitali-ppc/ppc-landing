@@ -120,20 +120,6 @@ export default function ArticleContent() {
     ],
   };
 
-  const howToSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'HowTo',
-    name: 'How to See Invalid Clicks and Credits in Your Google Ads Account',
-    description: 'Add the Invalid clicks column and find invalid traffic adjustments in billing to see what Google already caught.',
-    step: [
-      { '@type': 'HowToStep', name: 'Open Campaigns', text: 'Go to Campaigns in Google Ads.' },
-      { '@type': 'HowToStep', name: 'Open the Columns menu', text: 'Click the Columns icon above the data table.' },
-      { '@type': 'HowToStep', name: 'Modify columns', text: 'Select Modify columns, then search for Invalid clicks.' },
-      { '@type': 'HowToStep', name: 'Add the columns', text: 'Add Invalid clicks and Invalid click rate, then click Apply.' },
-      { '@type': 'HowToStep', name: 'Find billing credits', text: 'Go to Tools then Billing then Summary, open the Adjustments dropdown, and look for line items labeled Invalid Activity.' },
-    ],
-  };
-
   const tableOfContents = [
     { id: 'tldr', title: 'TL;DR: Is It Click Fraud, and What to Do Right Now', level: 1 },
     { id: 'what-is-invalid-traffic', title: 'What Is Invalid Traffic in Google Ads?', level: 1 },
@@ -185,7 +171,6 @@ export default function ArticleContent() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       <div style={{ minHeight: '100vh', background: 'white' }}>
         <Header />
         <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '20px 24px 0' }}>

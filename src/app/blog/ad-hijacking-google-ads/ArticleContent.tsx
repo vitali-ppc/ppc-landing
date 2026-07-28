@@ -48,46 +48,6 @@ export default function ArticleContent() {
     inLanguage: 'en',
   };
 
-  const howToSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'HowTo',
-    name: 'How to Stop and Prevent Ad Hijacking in Google Ads',
-    description:
-      'A five-step method to shut down brand-bidding ad hijacking and keep it from returning, using free first-party Google Ads controls.',
-    step: [
-      {
-        '@type': 'HowToStep',
-        position: 1,
-        name: 'File a Google Ads trademark complaint',
-        text: 'Use Google Ads Help’s dedicated trademark complaint form with screenshots, not a general support ticket, so the report is routed to the correct review team.',
-      },
-      {
-        '@type': 'HowToStep',
-        position: 2,
-        name: 'Set up brand lists or brand exclusions',
-        text: 'Use Google Ads brand controls for Search and Performance Max to flag brand terms and block other advertisers’ automated targeting.',
-      },
-      {
-        '@type': 'HowToStep',
-        position: 3,
-        name: 'Rewrite your affiliate program terms',
-        text: 'Ban brand bidding and ad cloning explicitly in the affiliate agreement, since most affiliate hijacking happens because the agreement never prohibited it.',
-      },
-      {
-        '@type': 'HowToStep',
-        position: 4,
-        name: 'Set up continuous multi-geo and off-hours monitoring',
-        text: 'Hijackers rely on dayparting and geo-targeting to dodge working hours, so monitoring across geographies and off-peak windows is required to catch them.',
-      },
-      {
-        '@type': 'HowToStep',
-        position: 5,
-        name: 'Turn on Google Alerts for your branded terms',
-        text: 'Google Alerts is a free way to catch cloned ad copy or unauthorized affiliate pages between manual checks.',
-      },
-    ],
-  };
-
   const faqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -238,7 +198,6 @@ export default function ArticleContent() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <div style={{ minHeight: '100vh', background: 'white' }}>

@@ -87,47 +87,6 @@ export default function ArticleContent() {
     ],
   };
 
-  const howToSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'HowTo',
-    name: 'A 20-Minute Evaluation Checklist Before You Sign Up',
-    description:
-      'Five checks to run during an AI-powered PPC platform free trial, before you connect a live Google Ads account.',
-    totalTime: 'PT20M',
-    step: [
-      {
-        '@type': 'HowToStep',
-        position: 1,
-        name: 'Ask what it reads',
-        text: 'Does it need write access just to prove value, or does it already read account data to show you something useful first?',
-      },
-      {
-        '@type': 'HowToStep',
-        position: 2,
-        name: "Ask it to explain one Google Ads mechanic, then check against Google's own docs",
-        text: 'Smart Bidding is a good test case: a vague answer is the same hallucination symptom flagged above.',
-      },
-      {
-        '@type': 'HowToStep',
-        position: 3,
-        name: 'Ask for the guardrail model',
-        text: 'Can it act without approval, and can you dial that to review-first for account types that matter to you?',
-      },
-      {
-        '@type': 'HowToStep',
-        position: 4,
-        name: 'Ask for one real before/after example with dates',
-        text: "A platform that can't produce one is asking you to be its first case study.",
-      },
-      {
-        '@type': 'HowToStep',
-        position: 5,
-        name: 'Check the pricing model against your budget band',
-        text: 'Flat tiers are predictable; spend-scaled tiers can outgrow your results.',
-      },
-    ],
-  };
-
   const breadcrumbSchema = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -227,7 +186,6 @@ export default function ArticleContent() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <div style={{ minHeight: '100vh', background: 'white' }}>
         <Header />

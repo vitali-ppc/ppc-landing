@@ -46,51 +46,6 @@ export default function ArticleContent() {
     "inLanguage": "en"
   };
 
-  const howToSchema = {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    "name": "How to Scale Google Ads Without Losing ROAS",
-    "description": "Scale Google Ads spend while keeping ROAS within roughly 10% of baseline by raising budgets in 20% steps, waiting for Smart Bidding to re-stabilize, and expanding demand.",
-    "totalTime": "P84D",
-    "step": [
-      {
-        "@type": "HowToStep",
-        "position": 1,
-        "name": "Build the foundation before you raise a dollar",
-        "text": "Confirm conversion tracking is honest, document your Max CPA and margin floor, establish a 30-day baseline, and run Performance Planner as a directional sanity check.",
-        "url": "https://www.kampaio.com/blog/how-to-scale-google-ads-without-losing-roas#step-1"
-      },
-      {
-        "@type": "HowToStep",
-        "position": 2,
-        "name": "Raise budgets in 20% steps",
-        "text": "Raise the daily budget by 20% or less per step, then wait 7-14 days for Smart Bidding to re-stabilize before the next increase. Never double overnight.",
-        "url": "https://www.kampaio.com/blog/how-to-scale-google-ads-without-losing-roas#step-2"
-      },
-      {
-        "@type": "HowToStep",
-        "position": 3,
-        "name": "Change one lever at a time",
-        "text": "Never change the budget and the bid strategy in the same week. Settle budget first, stabilize for 7-14 days, then change bid strategy on a separate week.",
-        "url": "https://www.kampaio.com/blog/how-to-scale-google-ads-without-losing-roas#step-3"
-      },
-      {
-        "@type": "HowToStep",
-        "position": 4,
-        "name": "Scale demand, not just spend",
-        "text": "When CPC rises for two straight weeks with flat conversions, expand the demand surface: mine the search terms report, segment by product or geography, separate brand from non-brand, and expand Performance Max and Demand Gen.",
-        "url": "https://www.kampaio.com/blog/how-to-scale-google-ads-without-losing-roas#step-4"
-      },
-      {
-        "@type": "HowToStep",
-        "position": 5,
-        "name": "Keep Target ROAS loose while you scale",
-        "text": "Start on Maximize Conversion Value or a tROAS set 20-30% below current actual ROAS. Accumulate 4-6 weeks of value data, then tighten in 10-15% increments per stabilization window.",
-        "url": "https://www.kampaio.com/blog/how-to-scale-google-ads-without-losing-roas#step-5"
-      }
-    ]
-  };
-
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -219,10 +174,6 @@ export default function ArticleContent() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
       />
       <script
         type="application/ld+json"

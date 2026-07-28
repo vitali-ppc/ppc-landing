@@ -53,40 +53,6 @@ export default function ArticleContent() {
     "inLanguage": "en"
   };
 
-  const howToSchema = {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    "name": "How to appeal and reinstate a suspended Google Ads account",
-    "description": "Reinstatement requires fixing the root cause first, then submitting one clear, evidence-backed appeal. Follow these four steps to give your appeal the best chance of success.",
-    "totalTime": "P21D",
-    "step": [
-      {
-        "@type": "HowToStep",
-        "position": 1,
-        "name": "Diagnose the exact cause",
-        "text": "Use the in-account banner, the suspension email, Policy Manager, your payment profile, and the Merchant Center issues tab to identify which suspension bucket you are in. Do not proceed until you know whether it is a policy violation, a billing issue, or a Merchant Center cascade."
-      },
-      {
-        "@type": "HowToStep",
-        "position": 2,
-        "name": "Fix the underlying issue completely",
-        "text": "Update landing pages for content issues, resolve billing discrepancies for payment issues, or fix and appeal Merchant Center for a cascade. Document every change with screenshots before touching the appeal form."
-      },
-      {
-        "@type": "HowToStep",
-        "position": 3,
-        "name": "Submit one clear, specific appeal",
-        "text": "Click Contact Us in the suspension banner. Describe what the violation was, exactly what you fixed, and what evidence you have. Attach screenshots and keep the tone factual and calm."
-      },
-      {
-        "@type": "HowToStep",
-        "position": 4,
-        "name": "Wait for a response before re-appealing",
-        "text": "Standard timelines run from a few days to a few weeks. Filing too many appeals can pause appeal processing for 7 days. One thorough submission is worth more than three follow-ups."
-      }
-    ]
-  };
-
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -204,7 +170,6 @@ export default function ArticleContent() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <div style={{ minHeight: '100vh', background: 'white' }}>
