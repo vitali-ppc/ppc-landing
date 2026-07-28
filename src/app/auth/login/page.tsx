@@ -39,29 +39,57 @@ export default function LoginPage() {
     <main
       style={{
         minHeight: "100vh",
-        background: "#15181D",
-        color: "#FFFFFF",
+        background: "#F6F8FB",
+        color: "#0D1320",
         display: "flex",
+        flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
+        gap: 20,
         padding: 24,
         fontFamily: "system-ui, -apple-system, sans-serif",
       }}
     >
+      <Link
+        href="/"
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 9,
+          fontWeight: 700,
+          fontSize: 17,
+          letterSpacing: "-0.01em",
+          color: "#0D1320",
+          textDecoration: "none",
+        }}
+      >
+        <span
+          aria-hidden
+          style={{
+            width: 10,
+            height: 10,
+            borderRadius: 99,
+            background: "#0A7C8C",
+            boxShadow: "0 0 12px #0A7C8C",
+          }}
+        />
+        kampaio
+      </Link>
       <div
         style={{
           width: "100%",
           maxWidth: 400,
-          background: "#1F232B",
+          background: "#FFFFFF",
           borderRadius: 12,
           padding: 28,
-          border: "1px solid #2D3340",
+          border: "1px solid #DCE3ED",
+          boxShadow: "0 24px 60px -34px rgba(13,19,32,.20)",
         }}
       >
         <h1 style={{ fontSize: 22, fontWeight: 700, margin: 0, marginBottom: 4 }}>
-          Sign in to B6
+          Sign in
         </h1>
-        <p style={{ color: "#A0A0A0", fontSize: 13, margin: 0, marginBottom: 20 }}>
+        <p style={{ color: "#5B6979", fontSize: 13, margin: 0, marginBottom: 20 }}>
           Your AI PPC team is waiting.
         </p>
 
@@ -105,13 +133,13 @@ export default function LoginPage() {
             style={{
               marginTop: 18,
               width: "100%",
-              padding: "10px 14px",
-              background: submitting ? "#3B82F6AA" : "#3B82F6",
+              padding: "12px 14px",
+              background: submitting ? "#0A7C8CAA" : "#0A7C8C",
               color: "#FFFFFF",
               border: "none",
               borderRadius: 8,
               fontSize: 14,
-              fontWeight: 600,
+              fontWeight: 700,
               cursor: submitting ? "wait" : "pointer",
             }}
           >
@@ -119,9 +147,9 @@ export default function LoginPage() {
           </button>
         </form>
 
-        <p style={{ marginTop: 18, color: "#A0A0A0", fontSize: 13 }}>
+        <p style={{ marginTop: 18, color: "#5B6979", fontSize: 13 }}>
           No account?{" "}
-          <Link href="/auth/register" style={{ color: "#7F9CF5" }}>
+          <Link href="/auth/register" style={{ color: "#0A7C8C", fontWeight: 600 }}>
             Create one
           </Link>
         </p>
@@ -144,7 +172,7 @@ function Field(props: {
   const effectiveType = isPassword && revealed ? "text" : props.type;
   return (
     <label style={{ display: "block", marginBottom: 12 }}>
-      <span style={{ fontSize: 12, color: "#A0A0A0", marginBottom: 4, display: "block" }}>
+      <span style={{ fontSize: 12, color: "#5B6979", marginBottom: 4, display: "block" }}>
         {props.label}
       </span>
       <div style={{ position: "relative" }}>
@@ -159,10 +187,10 @@ function Field(props: {
           width: "100%",
           padding: "10px 12px",
           paddingRight: isPassword ? 40 : 12,
-          background: "#15181D",
-          border: "1px solid #2D3340",
+          background: "#FFFFFF",
+          border: "1px solid #DCE3ED",
           borderRadius: 8,
-          color: "#FFFFFF",
+          color: "#0D1320",
           fontSize: 14,
           outline: "none",
           boxSizing: "border-box",
@@ -181,7 +209,7 @@ function Field(props: {
             transform: "translateY(-50%)",
             background: "transparent",
             border: "none",
-            color: revealed ? "#7F9CF5" : "#A0A0A0",
+            color: revealed ? "#0A7C8C" : "#5B6979",
             cursor: "pointer",
             padding: 6,
             fontSize: 16,

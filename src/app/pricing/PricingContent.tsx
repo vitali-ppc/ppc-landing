@@ -1,145 +1,93 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 
+/* Tiers mirror the homepage (HomeContent.tsx TIERS). Keep both in sync:
+   the prices also ship in structured data below and in /b6 OfferCatalog. */
+const plans = [
+  {
+    id: 'l1',
+    name: 'L1 Co-pilot',
+    description: 'AI suggests; you approve every move.',
+    price: 99,
+    features: [
+      'Buzz + Aegis active',
+      '1 Google Ads account',
+      'Approve every change',
+      'Weekly digest',
+      'Email support',
+    ],
+    popular: false,
+  },
+  {
+    id: 'l2',
+    name: 'L2 Approval',
+    description: 'AI acts; you approve only the big calls.',
+    price: 199,
+    features: [
+      'Everything in L1',
+      'Auto-applies small changes',
+      'Risk Agent enforcement',
+      'Real-time alerts',
+      'Priority support',
+    ],
+    popular: true,
+  },
+  {
+    id: 'l3',
+    name: 'L3 Autonomous',
+    description: 'Full autopilot. The agents run it.',
+    price: 399,
+    features: [
+      'Everything in L2',
+      'Full autonomy',
+      'Creative Agent (ad generation)',
+      'Multi-platform (Meta, TikTok)',
+      'Dedicated onboarding',
+    ],
+    popular: false,
+  },
+];
+
 const pricingJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "@id": "https://www.kampaio.com/pricing#software",
-  name: "Kampaio",
-  applicationCategory: "BusinessApplication",
-  applicationSubCategory: "Advertising Management",
-  operatingSystem: "Web",
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  '@id': 'https://www.kampaio.com/pricing#software',
+  name: 'Kampaio',
+  applicationCategory: 'BusinessApplication',
+  applicationSubCategory: 'Advertising Management',
+  operatingSystem: 'Web',
   description:
-    "AI-powered Google Ads management platform. Plans from free to $149/mo with autonomous AI agents (Buzz, Aegis, Echo, Vox, Maximus, Mira, Sage) for SMB advertisers.",
-  url: "https://www.kampaio.com/pricing",
+    'AI-powered Google Ads management platform. Three autonomy tiers: L1 Co-pilot $99/mo, L2 Approval $199/mo, L3 Autonomous $399/mo. Access is free for founding accounts while the agent team is being completed.',
+  url: 'https://www.kampaio.com/pricing',
   // Both publisher and provider reference the main Kampaio Organization
   // entity via @id, inheriting its 15-topic knowsAbout E-E-A-T signal.
   publisher: {
-    "@id": "https://www.kampaio.com/#organization",
+    '@id': 'https://www.kampaio.com/#organization',
   },
   provider: {
-    "@id": "https://www.kampaio.com/#organization",
+    '@id': 'https://www.kampaio.com/#organization',
   },
-  offers: [
-    {
-      "@type": "Offer",
-      name: "Free",
-      price: "0",
-      priceCurrency: "USD",
-      description: "25 AI queries/month, 1 Google Ads account, basic analytics",
-      availability: "https://schema.org/InStock",
+  offers: plans.map((plan) => ({
+    '@type': 'Offer',
+    name: plan.name,
+    price: String(plan.price),
+    priceCurrency: 'USD',
+    priceSpecification: {
+      '@type': 'UnitPriceSpecification',
+      price: String(plan.price),
+      priceCurrency: 'USD',
+      unitText: 'MONTH',
     },
-    {
-      "@type": "Offer",
-      name: "Professional",
-      price: "49",
-      priceCurrency: "USD",
-      priceSpecification: {
-        "@type": "UnitPriceSpecification",
-        price: "49",
-        priceCurrency: "USD",
-        unitText: "MONTH",
-      },
-      description:
-        "Unlimited AI queries, up to 5 Google Ads accounts, advanced analytics, email support",
-      availability: "https://schema.org/InStock",
-    },
-    {
-      "@type": "Offer",
-      name: "Business",
-      price: "149",
-      priceCurrency: "USD",
-      priceSpecification: {
-        "@type": "UnitPriceSpecification",
-        price: "149",
-        priceCurrency: "USD",
-        unitText: "MONTH",
-      },
-      description:
-        "All Professional features plus dedicated support, custom integrations, SLA",
-      availability: "https://schema.org/InStock",
-    },
-  ],
+    description: plan.description,
+    availability: 'https://schema.org/PreOrder',
+  })),
 };
 
 export default function PricingContent() {
-  const [isAnnual, setIsAnnual] = useState(false);
   const [hoveredPlan, setHoveredPlan] = useState<string | null>(null);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  // Перевірка авторизації при завантаженні
-  useEffect(() => {
-    const userEmail = localStorage.getItem('userEmail');
-    setIsAuthenticated(!!userEmail);
-  }, []);
-
-  const plans = [
-    {
-      id: 'starter',
-      name: 'Free',
-      description: 'Perfect for testing AI-powered Google Ads optimization',
-      price: isAnnual ? 0 : 0,
-      originalPrice: isAnnual ? 0 : 0,
-      features: [
-        '25 AI queries per month',
-        '1 Google Ads account',
-        'Basic campaign analytics',
-        'CSV export only',
-        'Community support',
-        'Chat history (7 days)'
-      ],
-      popular: false,
-      gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-      buttonColor: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
-    },
-    {
-      id: 'professional',
-      name: 'Professional',
-      description: 'Complete AI solution for growing businesses',
-      price: isAnnual ? 39 : 49,
-      originalPrice: isAnnual ? 49 : 49,
-      features: [
-        'Unlimited AI queries',
-        'Up to 5 Google Ads accounts',
-        'Advanced analytics & insights',
-        'All export formats (CSV, TXT, XLSX, PDF)',
-        'Email support',
-        'Unlimited chat history',
-        'Performance recommendations',
-        'Keyword research & optimization'
-      ],
-      popular: true,
-      gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-      buttonColor: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
-    },
-    {
-      id: 'enterprise',
-      name: 'Business',
-      description: 'Advanced automation for enterprise-level campaigns',
-      price: isAnnual ? 119 : 149,
-      originalPrice: isAnnual ? 149 : 149,
-      features: [
-        'Everything in Professional',
-        'Unlimited Google Ads accounts',
-        'Google Sheets integration',
-        'Automated report delivery',
-        'GA4 integration',
-        'MCP automation agent',
-        'Automated campaign changes',
-        'Custom integrations',
-        'Priority email support',
-        'Dedicated account manager',
-        'White-label reports',
-        'API access'
-      ],
-      popular: false,
-      gradient: 'linear-gradient(135deg, #764ba2 0%, #667eea 100%)',
-      buttonColor: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
-    }
-  ];
 
   return (
     <div style={{
@@ -166,7 +114,7 @@ export default function PricingContent() {
           padding: '0 24px'
         }}>
           <div style={{
-            maxWidth: '600px',
+            maxWidth: '640px',
             margin: '0 auto'
           }}>
             <h1 style={{
@@ -176,71 +124,34 @@ export default function PricingContent() {
               marginBottom: '24px',
               lineHeight: '1.2'
             }}>
-              Simple Pricing for Smarter Ads
+              Three levels of autonomy
             </h1>
             <p style={{
               fontSize: '18px',
               lineHeight: '1.6',
               color: '#666',
-              marginBottom: '32px'
+              marginBottom: '24px'
             }}>
-              Start free and scale as you grow. All plans include advanced AI-powered optimization and real-time insights
+              Start as co-pilot where you approve every move, then graduate to autopilot
+              when you trust the work. A fraction of a $2-5K/mo agency retainer.
             </p>
 
-            {/* Billing Toggle */}
+            {/* Founding access notice: billing is not live yet, say so plainly */}
             <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '16px',
-              marginBottom: '32px'
+              display: 'inline-block',
+              padding: '14px 20px',
+              borderRadius: '12px',
+              background: 'rgba(102, 126, 234, 0.08)',
+              border: '1px solid rgba(102, 126, 234, 0.25)',
+              color: '#374151',
+              fontSize: '15px',
+              lineHeight: '1.55',
+              textAlign: 'left',
+              maxWidth: '560px'
             }}>
-              <span style={{
-                fontSize: '14px',
-                fontWeight: '500',
-                color: !isAnnual ? '#1e293b' : '#64748b'
-              }}>
-                Monthly
-              </span>
-                              <button
-                  onClick={() => setIsAnnual(!isAnnual)}
-                  style={{
-                    position: 'relative',
-                    width: '44px',
-                    height: '24px',
-                    borderRadius: '12px',
-                    border: 'none',
-                    background: isAnnual ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' : '#e2e8f0',
-                    cursor: 'pointer',
-                    transition: 'all 0.3s ease'
-                  }}
-                >
-                <span style={{
-                  position: 'absolute',
-                  top: '2px',
-                  left: isAnnual ? '22px' : '2px',
-                  width: '20px',
-                  height: '20px',
-                  borderRadius: '50%',
-                  background: 'white',
-                  transition: 'all 0.3s ease',
-                  boxShadow: '0 2px 4px rgba(0,0,0,0.2)'
-                }} />
-              </button>
-              <span style={{
-                fontSize: '14px',
-                fontWeight: '500',
-                color: isAnnual ? '#1e293b' : '#64748b'
-              }}>
-                Annual
-                <span style={{
-                  marginLeft: '4px',
-                  fontSize: '12px',
-                  color: '#667eea'
-                }}>
-                  Save 20%
-                </span>
-              </span>
+              <strong style={{ color: '#1e293b' }}>Founding access is free.</strong>{' '}
+              We are not charging yet. The prices below are what each tier will cost
+              once billing opens. Join the founding list and use it at no cost until then.
             </div>
           </div>
         </div>
@@ -254,9 +165,9 @@ export default function PricingContent() {
       }}>
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
           gap: '32px',
-          marginTop: '32px'
+          marginTop: '48px'
         }}>
           {plans.map((plan) => (
             <div
@@ -280,12 +191,13 @@ export default function PricingContent() {
                   top: '-16px',
                   left: '50%',
                   transform: 'translateX(-50%)',
-                  background: plan.gradient,
+                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                   color: 'white',
                   padding: '8px 16px',
                   borderRadius: '20px',
                   fontSize: '14px',
-                  fontWeight: '600'
+                  fontWeight: '600',
+                  whiteSpace: 'nowrap'
                 }}>
                   Most Popular
                 </div>
@@ -303,7 +215,8 @@ export default function PricingContent() {
                 <p style={{
                   fontSize: '16px',
                   color: '#666',
-                  marginBottom: '32px'
+                  marginBottom: '32px',
+                  minHeight: '48px'
                 }}>
                   {plan.description}
                 </p>
@@ -329,16 +242,14 @@ export default function PricingContent() {
                       /month
                     </span>
                   </div>
-                  {plan.originalPrice !== plan.price && (
-                    <p style={{
-                      marginTop: '8px',
-                      fontSize: '14px',
-                      color: '#64748b',
-                      textDecoration: 'line-through'
-                    }}>
-                      ${plan.originalPrice}/month
-                    </p>
-                  )}
+                  <p style={{
+                    marginTop: '8px',
+                    fontSize: '14px',
+                    color: '#667eea',
+                    fontWeight: 600
+                  }}>
+                    Free during founding access
+                  </p>
                 </div>
 
                 <ul style={{
@@ -377,19 +288,24 @@ export default function PricingContent() {
                   ))}
                 </ul>
 
-                <button
+                <a
+                  href="/auth/register"
                   style={{
+                    display: 'block',
                     width: '100%',
                     padding: '16px 24px',
                     borderRadius: '12px',
                     border: 'none',
-                    background: plan.buttonColor,
+                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                     color: 'white',
                     fontSize: '16px',
                     fontWeight: '600',
                     cursor: 'pointer',
                     transition: 'all 0.3s ease',
-                    boxShadow: '0 4px 12px rgba(0,0,0,0.15)'
+                    boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+                    textDecoration: 'none',
+                    textAlign: 'center',
+                    boxSizing: 'border-box'
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.transform = 'translateY(-2px)';
@@ -399,29 +315,24 @@ export default function PricingContent() {
                     e.currentTarget.style.transform = 'translateY(0)';
                     e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
                   }}
-                  onClick={() => {
-                    if (plan.id === 'starter') {
-                      window.location.href = '/chat';
-                    } else {
-                      // Для платних планів: авторизовані → checkout, неавторизовані → register
-                      if (isAuthenticated) {
-                        window.location.href = '/checkout';
-                      } else {
-                        window.location.href = '/register';
-                      }
-                    }
-                  }}
                 >
-                  Get Started
-                </button>
+                  Join founding access
+                </a>
               </div>
             </div>
           ))}
         </div>
+
+        <p style={{
+          textAlign: 'center',
+          color: '#64748b',
+          fontSize: '14px',
+          marginTop: '40px'
+        }}>
+          No credit card. No contract. Two agents are live today (Buzz and Aegis);
+          the rest ship as the cabinet grows.
+        </p>
       </div>
-
-
-
 
       <Footer compact={true} />
     </div>

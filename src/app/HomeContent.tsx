@@ -1,9 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
-
-const API_BASE =
-  process.env.NEXT_PUBLIC_B6_API_BASE || "http://localhost:8000";
+import React from "react";
 
 /* FAQ content, one source for both the visible section and the FAQPage schema */
 const FAQ_ITEMS: { q: string; a: string }[] = [
@@ -20,8 +17,8 @@ const FAQ_ITEMS: { q: string; a: string }[] = [
     a: "A tool you still operate yourself. Kampaio's agents do the work, bidding, budget, creative, and reporting, and explain every move in plain English while you watch it happen.",
   },
   {
-    q: "How do I start, and can I cancel?",
-    a: "14-day free trial, no credit card. You begin as co-pilot where you approve every move, then graduate to autopilot when you trust the work. Cancel anytime.",
+    q: "How do I start, and what does it cost right now?",
+    a: "Founding access is free and needs no credit card, because billing is not open yet. You begin as co-pilot where you approve every move, then graduate to autopilot when you trust the work. When billing opens you pick a tier or walk away; nothing is charged automatically.",
   },
   {
     q: "Will it work for my account size?",
@@ -520,13 +517,13 @@ const Pricing: React.FC = () => (
             <div><span className="kx-price">{t.price}</span><span className="kx-per">{t.period}</span></div>
             <p className="td">{t.desc}</p>
             <ul>{t.features.map((f) => <li key={f}>{f}</li>)}</ul>
-            <a className={`kx-btn ${t.highlight ? "kx-btn-primary" : "kx-btn-ghost"}`} style={{ display: "flex", width: "100%" }} href="#waitlist">
+            <a className={`kx-btn ${t.highlight ? "kx-btn-primary" : "kx-btn-ghost"}`} style={{ display: "flex", width: "100%" }} href="/auth/register">
               Get started
             </a>
           </div>
         ))}
       </div>
-      <p className="kx-fineprint"><span className="hi">Free 14-day trial · No credit card · Cancel anytime</span></p>
+      <p className="kx-fineprint"><span className="hi">Founding access is free · No credit card · Prices apply once billing opens</span></p>
     </div>
   </section>
 );
@@ -554,80 +551,22 @@ const FAQ: React.FC = () => (
 );
 
 const CTA: React.FC = () => (
-  <section className="kx-sec kx-cta" id="waitlist">
+  <section className="kx-sec kx-cta" id="start">
     <div className="kx-sec-in" style={{ maxWidth: 640, textAlign: "center" }}>
       <h2 className="kx-h2">Ready to fire the agency?</h2>
       <p className="kx-sec-sub" style={{ margin: "0 auto 30px", color: "var(--muted-2)" }}>
-        Founding access is opening to the first <strong style={{ color: "var(--text)" }}>30 SMB owners</strong> who
-        want their Google Ads run by AI agents &mdash; not consultants.
+        Founding access is open to the first <strong style={{ color: "var(--text)" }}>30 SMB owners</strong> who
+        want their Google Ads run by AI agents, not consultants. Free while we finish the cabinet.
       </p>
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <WaitlistForm source="cta-bottom" />
+        <a className="kx-btn kx-btn-primary" href="/auth/register">Create your account &rarr;</a>
       </div>
+      <p className="kx-fineprint" style={{ marginTop: 18 }}>
+        <span className="hi">No credit card · Buzz and Aegis start on your account today</span>
+      </p>
     </div>
   </section>
 );
-
-const WaitlistForm: React.FC<{ source: string }> = ({ source }) => {
-  const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-  const [message, setMessage] = useState("");
-  const [position, setPosition] = useState<number | null>(null);
-
-  const submit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email.trim()) return;
-    setStatus("loading");
-    try {
-      const res = await fetch(`${API_BASE}/api/waitlist/signup`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: email.trim(), source }),
-      });
-      const data = await res.json();
-      if (res.ok) {
-        setStatus("success");
-        setMessage(data.message);
-        setPosition(data.position);
-      } else {
-        setStatus("error");
-        setMessage(data.detail || "Something went wrong");
-      }
-    } catch {
-      setStatus("error");
-      setMessage("Server unreachable. Try again later.");
-    }
-  };
-
-  if (status === "success") {
-    return (
-      <div className="kx-ok">
-        ✅ {message} {position && <strong>You&apos;re #{position}</strong>}
-      </div>
-    );
-  }
-
-  return (
-    <form onSubmit={submit} className="kx-form">
-      <label htmlFor={`wl-${source}`} style={{ position: "absolute", width: 1, height: 1, overflow: "hidden", clip: "rect(0 0 0 0)" }}>
-        Email address
-      </label>
-      <input
-        id={`wl-${source}`}
-        className="kx-input"
-        type="email"
-        required
-        placeholder="you@company.com"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <button type="submit" disabled={status === "loading"} className="kx-btn kx-btn-primary">
-        {status === "loading" ? "Adding…" : "Join waitlist →"}
-      </button>
-      {status === "error" && <div className="kx-err">⚠️ {message}</div>}
-    </form>
-  );
-};
 
 const Footer: React.FC = () => (
   <footer className="kx-foot">
