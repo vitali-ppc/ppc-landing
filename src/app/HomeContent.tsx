@@ -5,6 +5,30 @@ import React, { useState } from "react";
 const API_BASE =
   process.env.NEXT_PUBLIC_B6_API_BASE || "http://localhost:8000";
 
+/* FAQ content, one source for both the visible section and the FAQPage schema */
+const FAQ_ITEMS: { q: string; a: string }[] = [
+  {
+    q: "What if the agents make a bad change?",
+    a: "They start read-only, so at first they only suggest. Aegis, the Risk Agent, reviews every bidding call and blocks the risky ones before they apply. Every change is logged with its reasoning and reversible in one click.",
+  },
+  {
+    q: "Is my Google Ads data safe?",
+    a: "You connect through Google OAuth, read-only by default. You keep full ownership of your account the whole time, and the agents only write once you have granted a higher autonomy level.",
+  },
+  {
+    q: "How is this different from a PPC tool I already pay for?",
+    a: "A tool you still operate yourself. Kampaio's agents do the work, bidding, budget, creative, and reporting, and explain every move in plain English while you watch it happen.",
+  },
+  {
+    q: "How do I start, and can I cancel?",
+    a: "14-day free trial, no credit card. You begin as co-pilot where you approve every move, then graduate to autopilot when you trust the work. Cancel anytime.",
+  },
+  {
+    q: "Will it work for my account size?",
+    a: "Yes. Start on L1 co-pilot at any budget and raise the autonomy level as results come in. You choose how much the agents handle.",
+  },
+];
+
 const homeJsonLd = {
   "@context": "https://schema.org",
   "@graph": [
@@ -63,6 +87,15 @@ const homeJsonLd = {
         },
         "query-input": "required name=search_term_string",
       },
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.kampaio.com/#faq",
+      mainEntity: FAQ_ITEMS.map((f) => ({
+        "@type": "Question",
+        name: f.q,
+        acceptedAnswer: { "@type": "Answer", text: f.a },
+      })),
     },
   ],
 };
@@ -489,6 +522,23 @@ const Pricing: React.FC = () => (
   </section>
 );
 
+const FAQ: React.FC = () => (
+  <section className="kx-sec" id="faq">
+    <div className="kx-sec-in" style={{ maxWidth: 760 }}>
+      <h2 className="kx-h2">Common questions</h2>
+      <p className="kx-sec-sub">Real answers on control, safety, and how the agents work.</p>
+      <div style={{ marginTop: 28 }}>
+        {FAQ_ITEMS.map((f) => (
+          <div key={f.q} style={{ borderTop: "1px solid var(--border-soft)", padding: "20px 0" }}>
+            <h3 style={{ fontSize: 18, fontWeight: 600, color: "var(--text)", margin: "0 0 8px" }}>{f.q}</h3>
+            <p style={{ color: "var(--muted-2)", lineHeight: 1.6, margin: 0 }}>{f.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
 const CTA: React.FC = () => (
   <section className="kx-sec kx-cta" id="waitlist">
     <div className="kx-sec-in" style={{ maxWidth: 640, textAlign: "center" }}>
@@ -589,6 +639,7 @@ export default function HomeContent() {
       <HowItWorks />
       <MeetTheTeam />
       <Pricing />
+      <FAQ />
       <CTA />
       <Footer />
     </div>
