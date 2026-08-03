@@ -37,14 +37,14 @@ export default function ArticleContent() {
       },
     },
     datePublished: '2026-05-21T00:00:00.000Z',
-    dateModified: '2026-05-21T00:00:00.000Z',
+    dateModified: '2026-08-03T00:00:00.000Z',
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': 'https://kampaio.com/blog/ppc-audit-checklist',
     },
     keywords:
-      'ppc audit, audit checklist, google ads audit, quality score, smart bidding, conversion tracking, performance max, search terms report, auction insights, impression share, target roas, ad strength, asset group, landing page, consent mode v2, attribution, agency audit, ppc automation',
-    wordCount: 2411,
+      'ppc audit, ppc review checklist, audit checklist, google ads audit, quality score, smart bidding, conversion tracking, performance max, search terms report, auction insights, impression share, target roas, ad strength, asset group, landing page, consent mode v2, attribution, agency audit, ppc automation, limited ad serving, brand clarity',
+    wordCount: 2600,
     articleSection: 'PPC Strategy',
     inLanguage: 'en',
   };
@@ -305,7 +305,9 @@ export default function ArticleContent() {
                 >
                   <span style={{ color: '#64748b', fontSize: '16px', fontWeight: 600 }}>By B6 Team</span>
                   <span style={{ color: '#64748b', fontSize: '15px' }}>B6 SEO Agent</span>
-                  <span style={{ color: '#64748b', fontSize: '15px' }}>May 21, 2026 &middot; 11 min read</span>
+                  <span style={{ color: '#64748b', fontSize: '15px' }}>
+                    May 21, 2026 &middot; Updated August 3, 2026 &middot; 11 min read
+                  </span>
                 </div>
               </div>
             </div>
@@ -469,7 +471,7 @@ export default function ArticleContent() {
             <section id="checklist">
               <h2 style={h2Style}>The 25-Point Audit Checklist (6 Pillars)</h2>
               <p style={pStyle}>
-                Walk these in pillar order. Foundation first, because it gates everything downstream. Structure second, because misnamed campaigns waste the next two hours. Tracking third, because every bid decision rides on it. The remaining three pillars (bidding, creative, landing) only matter if the first three are clean.
+                Treat this as a working PPC review checklist, not a one-time exercise. Walk these in pillar order. Foundation first, because it gates everything downstream. Structure second, because misnamed campaigns waste the next two hours. Tracking third, because every bid decision rides on it. The remaining three pillars (bidding, creative, landing) only matter if the first three are clean.
               </p>
 
               {/* Pillar card grid: repeat(3, 1fr) + @media query collapse (NOT auto-fit) */}
@@ -643,6 +645,51 @@ export default function ArticleContent() {
                   <strong>Creative refresh recency under 90 days.</strong> Top campaigns should see new headlines, descriptions, or images at least quarterly.
                 </li>
               </ol>
+
+              {/* Added Aug 2026: brand-clarity / Limited ad serving check folded into Pillar 5 */}
+              <div
+                style={{
+                  background: '#fffbeb',
+                  border: '1px solid #fcd34d',
+                  borderRadius: '12px',
+                  padding: '22px 26px',
+                  marginBottom: '32px',
+                }}
+              >
+                <div
+                  style={{
+                    fontSize: '13px',
+                    fontWeight: 700,
+                    color: '#b45309',
+                    letterSpacing: '0.04em',
+                    textTransform: 'uppercase',
+                    marginBottom: '10px',
+                  }}
+                >
+                  Added August 2026 &middot; run this alongside check 18
+                </div>
+                <div style={{ fontSize: '19px', fontWeight: 700, color: '#1e293b', marginBottom: '12px' }}>
+                  Brand clarity and Limited ad serving exposure
+                </div>
+                <p style={{ ...pStyle, marginBottom: '16px' }}>
+                  This one did not exist when the checklist was first published. In June 2026, Google updated its{' '}
+                  <a
+                    href="https://support.google.com/adspolicy/answer/17122370"
+                    style={linkStyle}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Limited ad serving policy
+                  </a>{' '}
+                  to cover additional scenarios on Google Search, with implementation beginning gradually and completing by 2028. Under it, Google may limit ad impressions from unqualified advertisers on searches that are more likely than others to result in negative ads experiences. Google names two drivers: persistent user complaints about an advertiser&apos;s content or behavior, and brand clarity, because ads that reference other brands and generic ads with no branding at all may confuse users about the identity of the advertiser.
+                </p>
+                <p style={{ ...pStyle, marginBottom: '16px' }}>
+                  <strong>What to look for.</strong> Pull the live RSAs on your top three spending campaigns and read them as a stranger would. Flag any ad where no headline identifies who is advertising, any copy so generic it could belong to five competitors in the same category, and any ad that leans on another brand&apos;s name. Then check whether impressions on those campaigns thinned out without a bid, budget, or Quality Score explanation, which is what a serving limitation looks like from inside the account.
+                </p>
+                <p style={{ ...pStyle, marginBottom: 0 }}>
+                  <strong>What to do.</strong> Apply the mitigations Google states directly: pin the domain to ad titles and replace generic copy with specific claims about the actual offer. Treat an account with a history of user complaints as a Critical and Strategic finding in the matrix below. That is a client call about the offer and the post-click experience, not a bid tweak.
+                </p>
+              </div>
 
               {/* Pillar 6 */}
               <h3 id="pillar-6" style={h3Style}>
