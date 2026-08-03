@@ -470,7 +470,7 @@ export default function ArticleContent() {
             <section id="optimize-without-guesswork">
               <h2 style={H2}>Optimize Without the Guesswork</h2>
               <p style={P}>
-                Running this 7-lever cadence manually takes 2-3 hours per campaign per week. Kampaio's <a href="/blog/google-ads-ai-agent" style={{ color: '#764ba2', textDecoration: 'underline' }}>agent</a>s run the same playbook continuously: Buzz monitors bid strategy and tROAS targets, Sage manages audience signals and search themes, Mira flags underperforming assets, and Aegis enforces the learning guardrail.
+                Running this 7-lever cadence manually takes 2-3 hours per campaign per week. Kampaio's <a href="/blog/google-ads-ai-agent" style={{ color: '#764ba2', textDecoration: 'underline' }}>agents</a> run the same playbook continuously: Buzz monitors bid strategy and tROAS targets, Sage manages audience signals and search themes, Mira flags underperforming assets, and Aegis enforces the learning guardrail.
               </p>
               <p style={P}>
                 Optmyzr and Madgicx start at $499+/month for automated oversight at this level. Kampaio starts at $99/month, with full agent autonomy at $199 and multi-account coverage at $399.

@@ -310,7 +310,7 @@ export default function ArticleContent() {
               </Callout>
 
               <p style={{ ...paragraphStyle, marginTop: '32px' }}>
-                Google auto-labels assets built with its own AI tools. Anything made with Midjourney, Runway, or a freelancer&apos;s own workflow is on you to label manually.
+                Google auto-labels assets built with its own <a href="/blog/5-tips-for-working-with-ai-ppc-tools" style={{ color: '#764ba2', textDecoration: 'underline' }}>AI tools</a>. Anything made with Midjourney, Runway, or a freelancer&apos;s own workflow is on you to label manually.
               </p>
               <p style={paragraphStyle}>
                 Two more details worth knowing. The latest version of Google Ads Editor now carries an &quot;AI label&quot; column that &quot;indicates whether the labeling has been activated in your account&quot; (<a href="https://ppcnewsfeed.com/ppc-news/2026-07/google-ads-ai-content-labels/" style={linkStyle} target="_blank" rel="noopener noreferrer">ppcnewsfeed.com, July 28, 2026</a>). And separately, Google is already watermarking its own output under the hood: it embeds &quot;non-visible SynthID digital watermarks and C2PA (Coalition for Content Provenance and Authenticity) open-standard markup into all images and videos generated within Google Ads tools&quot; (<a href="https://support.google.com/google-ads/answer/17140115?hl=en" style={linkStyle} target="_blank" rel="noopener noreferrer">Google Ads Help</a>). That part is automatic, not something you configure.
@@ -500,7 +500,7 @@ export default function ArticleContent() {
               </ul>
 
               <p style={paragraphStyle}>
-                <a href="/blog/google-ads-ai-agent" style={linkStyle}>Who owns a policy setting like this</a> matters here, the same way conversion tracking ownership gets resolved rather than assumed.
+                <a href="/blog/google-ads-ai-agent" style={linkStyle}>Who owns a policy setting like this</a> matters here, the same way <a href="/blog/google-ads-conversion-tracking-not-working" style={{ color: '#764ba2', textDecoration: 'underline' }}>conversion tracking</a> ownership gets resolved rather than assumed.
               </p>
               <p style={paragraphStyle}>
                 Honestly, this is a small change for most small teams: one field on a brief, one audit pass. The anxiety around it is bigger than the actual lift.

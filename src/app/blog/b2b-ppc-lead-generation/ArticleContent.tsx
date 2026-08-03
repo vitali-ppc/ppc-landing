@@ -294,7 +294,7 @@ export default function ArticleContent() {
                 Broad match is where most B2B intent quality leaks out. It is built to maximize reach, and reach is exactly the wrong objective when your total addressable market is ten thousand companies, not ten million consumers. Broad match in a niche B2B account hands the auction permission to spend your budget on adjacent, lower-intent queries that look related to the algorithm and are worthless to your sales team. The discipline is to buy commercial and transactional intent deliberately, and to treat informational queries as something you earn with content, not something you rent at a B2B click price.
               </p>
               <p style={pStyle}>
-                This is also where account structure becomes a quality tool rather than an organizational one. Segmenting campaigns by intent tier lets you fund high-intent queries differently from exploratory ones and keeps the bidder learning on a clean signal. The full structural how-to, including how to group ad groups and themes, lives in <a href="/blog/b2b-saas-google-ads-campaign-structure" style={linkStyle}>B2B SaaS Google Ads campaign structure</a>.
+                This is also where <a href="/blog/google-ads-account-structure" style={linkStyle}>account structure</a> becomes a quality tool rather than an organizational one. Segmenting campaigns by intent tier lets you fund high-intent queries differently from exploratory ones and keeps the bidder learning on a clean signal. The full structural how-to, including how to group ad groups and themes, lives in <a href="/blog/b2b-saas-google-ads-campaign-structure" style={linkStyle}>B2B SaaS Google Ads campaign structure</a>.
               </p>
             </section>
 

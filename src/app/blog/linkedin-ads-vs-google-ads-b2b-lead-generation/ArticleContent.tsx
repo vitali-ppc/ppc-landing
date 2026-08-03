@@ -295,7 +295,7 @@ export default function ArticleContent() {
                 Google Ads CPL looks 2-4x cheaper than LinkedIn for the same B2B vertical. That gap is real at the form-fill level. The problem shows up when those leads hit the CRM: without offline conversion imports (OCI), Google Ads B2B accounts commonly see 60-80% rejection rates from sales. Real pipeline-CAC on Google frequently lands at 2-3x the stated CPL, often exceeding LinkedIn&apos;s pipeline-CAC despite a 3x cheaper cost-per-lead.
               </p>
               <p style={paraStyle}>
-                LinkedIn lead quality is structurally higher because LinkedIn targets by job title, company size, industry, and seniority before the click happens. Google targets by query intent, which leaks across buyer types. A search for &quot;enterprise HR software&quot; attracts HR coordinators, students researching the market, <a href="/blog/google-ads-consultant" style={linkStyle}>consultant</a>s auditing clients, and actual buyers. LinkedIn targets the VP of People at a 500-person SaaS company and shows nothing to anyone else.
+                LinkedIn lead quality is structurally higher because LinkedIn targets by job title, company size, industry, and seniority before the click happens. Google targets by query intent, which leaks across buyer types. A search for &quot;enterprise HR software&quot; attracts HR coordinators, students researching the market, <a href="/blog/google-ads-consultant" style={linkStyle}>consultants</a> auditing clients, and actual buyers. LinkedIn targets the VP of People at a 500-person SaaS company and shows nothing to anyone else.
               </p>
 
               {/* VISUAL 2: Pipeline-CAC math stat blocks */}

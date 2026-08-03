@@ -561,7 +561,7 @@ export default function ArticleContent() {
             <section id="software-alternative">
               <h2 style={h2Style}>The Software Alternative: Running Google Ads Without an Agency</h2>
               <p style={paragraphStyle}>
-                Self-serve PPC software now does much of what an agency does, bid and budget optimization, negative keywords, creative, alerts, at a fraction of the cost, while you keep full control and account ownership. It is the fastest-growing path for the $3-20K/mo band.
+                Self-serve PPC software now does much of what an agency does, bid and budget optimization, <a href="/blog/google-ads-negative-keywords" style={{ color: '#764ba2', textDecoration: 'underline' }}>negative keywords</a>, creative, alerts, at a fraction of the cost, while you keep full control and account ownership. It is the fastest-growing path for the $3-20K/mo band.
               </p>
               <p style={paragraphStyle}>
                 kampaio prices this at Free to start, $49/month Professional, or $149/month Business, against an agency retainer of $1,000-5,000/month, and runs changes in approval mode: you sign off before anything ships. Real limit worth naming: it still assumes you spend a little time each week reviewing changes, and it does not replace strategy for very large or multi-channel accounts. For the strategy layer, read <a href="/blog/google-ads-optimization" style={linkStyle}>how Google Ads optimization actually works</a>.

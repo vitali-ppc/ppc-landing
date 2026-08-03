@@ -354,7 +354,7 @@ export default function ArticleContent() {
               </MascotQuote>
 
               <p style={pStyle}>
-                Software does not replace a consultant for every job, though, and we're not going to pretend it does. A one-time strategic rebuild, an unusual account structure, or bundled creative production still benefit from a human specialist's judgment. The point is matching the option to the job, not declaring a universal winner.
+                Software does not replace a consultant for every job, though, and we're not going to pretend it does. A one-time strategic rebuild, an unusual <a href="/blog/google-ads-account-structure" style={linkStyle}>account structure</a>, or bundled creative production still benefit from a human specialist's judgment. The point is matching the option to the job, not declaring a universal winner.
               </p>
             </section>
 

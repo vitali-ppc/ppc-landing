@@ -453,7 +453,7 @@ export default function ArticleContent() {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '32px' }}>
                 <div style={{ background: '#fef2f2', borderLeft: '4px solid #ef4444', borderRadius: '8px', padding: '18px 22px' }}>
                   <p style={{ fontSize: '17px', fontWeight: 700, color: '#1e293b', marginBottom: '6px' }}>Broad match bleed</p>
-                  <p style={{ fontSize: '16px', lineHeight: '1.7', color: '#1e293b', margin: 0 }}>Broad keywords pull semantically related queries with no purchase intent. High clicks, low conversions, high CTR on irrelevant queries: this is a match-type and negative keyword problem, not fraud. Check your Search Terms report. If unrelated queries are generating volume, fix match types first.</p>
+                  <p style={{ fontSize: '16px', lineHeight: '1.7', color: '#1e293b', margin: 0 }}>Broad keywords pull semantically related queries with no purchase intent. High clicks, low conversions, high CTR on irrelevant queries: this is a match-type and negative keyword problem, not fraud. Check your <a href="/blog/google-ads-search-terms-report" style={linkStyle}>Search Terms report</a>. If unrelated queries are generating volume, fix match types first.</p>
                 </div>
                 <div style={{ background: '#fffbeb', borderLeft: '4px solid #f59e0b', borderRadius: '8px', padding: '18px 22px' }}>
                   <p style={{ fontSize: '17px', fontWeight: 700, color: '#1e293b', marginBottom: '6px' }}>Tracking or landing page break</p>

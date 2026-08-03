@@ -204,7 +204,7 @@ export default function ArticleContent() {
               AI-Powered PPC Platform: How to Evaluate One Before You Buy (2026)
             </h1>
             <p style={{ fontSize: '20px', color: '#64748b', marginBottom: '32px', lineHeight: '1.6', fontWeight: 500 }}>
-              What actually separates an AI-powered PPC platform from a chatbot with a dashboard, the evaluation criteria that matter, and where kampaio fits,
+              What actually separates an <a href="/blog/10-ai-powered-ppc-optimization-strategies" style={{ color: '#764ba2', textDecoration: 'underline' }}>AI-powered PPC</a> platform from a chatbot with a dashboard, the evaluation criteria that matter, and where kampaio fits,
               grounded in real 2026 practitioner discussion.
             </p>
             <div style={{ display: 'flex', alignItems: 'center', gap: '24px', marginBottom: '40px', paddingBottom: '32px', borderBottom: '1px solid #e5e7eb' }}>

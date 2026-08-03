@@ -488,7 +488,7 @@ export default function ArticleContent() {
                 Broad match in 2025 is not the broad match you remember from 2018. Google&apos;s intent matching now interprets queries against entire semantic clusters. A broad match on &quot;leather laptop bag&quot; can trigger on &quot;leather backpack school,&quot; &quot;messenger bag for women,&quot; and &quot;laptop sleeve cheap.&quot; Some of those convert, most do not, all of them charge you.
               </p>
               <p style={pStyle}>
-                The 30-minute audit. Pull the Search Terms report for the past 30 days. Sort descending by cost. Filter for cost over $20 with zero conversions. For each query: read it, ask if it could ever realistically convert for this product, add as a negative keyword if not. Stop when you have processed the top 50 by spend.
+                The 30-minute audit. Pull the <a href="/blog/google-ads-search-terms-report" style={linkStyle}>Search Terms report</a> for the past 30 days. Sort descending by cost. Filter for cost over $20 with zero conversions. For each query: read it, ask if it could ever realistically convert for this product, add as a negative keyword if not. Stop when you have processed the top 50 by spend.
               </p>
               <p style={pStyle}>
                 Match type policy that holds up in 2026:
@@ -783,7 +783,7 @@ export default function ArticleContent() {
             <section id="b6-agents">
               <h2 style={h2Style}>How B6 Agents Cut CPC Faster Than Manual Audits</h2>
               <p style={pStyle}>
-                The structural work above is what a careful operator does in 12 to 20 hours per account. The B6 <a href="/blog/google-ads-ai-agent" style={linkStyle}>agent</a>s do it nightly, on every keyword, with risk review baked in.
+                The structural work above is what a careful operator does in 12 to 20 hours per account. The B6 <a href="/blog/google-ads-ai-agent" style={linkStyle}>agents</a> do it nightly, on every keyword, with risk review baked in.
               </p>
               <p style={pStyle}>
                 <strong><a href="/b6#buzz" style={linkStyle}>Buzz</a></strong> is the bidding agent. Every night Buzz scans the full keyword inventory: bid headroom, predicted CPC impact for each candidate change, 80%+ confidence interval before proposing. It does not raise bids on losing keywords. It does not cut bids on winning keywords. The proposed changes appear in the operator&apos;s queue with the math attached.

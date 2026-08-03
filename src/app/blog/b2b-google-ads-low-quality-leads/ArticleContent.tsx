@@ -249,7 +249,7 @@ export default function ArticleContent() {
                 <strong>Reason 2: B2B intent is harder to read from a single query.</strong> A search for &quot;CRM software&quot; can mean a senior buyer evaluating tools (high value), a junior researcher building a longlist (medium), a student writing a case study (zero), or a freelancer wanting a free trial (zero). Same query, four very different leads. Without feedback, Smart Bidding bids the same on all four.
               </p>
               <p style={paraStyle}>
-                <strong>Reason 3: The form does not qualify.</strong> A four-field form (name, email, company, phone) accepts anyone. No business-email validation, no company-size gate, no qualifying questions. Gmail addresses and freelance <a href="/blog/google-ads-consultant" style={linkStyle}>consultant</a>s flow through unfiltered, then sit in sales queues as rejected.
+                <strong>Reason 3: The form does not qualify.</strong> A four-field form (name, email, company, phone) accepts anyone. No business-email validation, no company-size gate, no qualifying questions. Gmail addresses and freelance <a href="/blog/google-ads-consultant" style={linkStyle}>consultants</a> flow through unfiltered, then sit in sales queues as rejected.
               </p>
               <p style={paraStyle}>
                 If you have not isolated the root cause yet, start with our breakdown of <a href="/blog/performance-max-problems-b2b-marketing" style={linkStyle}>why Performance Max fails in B2B marketing</a>. It walks through the diagnose side of the same problem. This article is the fix side.

@@ -252,7 +252,7 @@ export default function ArticleContent() {
                 <strong>Cost.</strong> Agencies charge $1-3K/month or 10-20% of ad spend. For an SMB spending $5K/month on ads, a $1.5K agency fee means 30% of your total budget goes to management instead of advertising. You&apos;re spending $6,500 to deploy $5,000. That math stops working fast.
               </p>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
-                <strong>Attention.</strong> Small accounts with $3-10K monthly spend are the agency&apos;s lowest priority. You get assigned to a junior account manager handling 15 other accounts. They apply templated strategies and check in once a month. When your <a href="/blog/google-ads-roas-dropped-suddenly" style={{ color: '#764ba2', textDecoration: 'underline' }}>ROAS drop</a>s 40% in week two, you find out in week four via PDF report. By then you&apos;ve burned through a week&apos;s budget on broken campaigns.
+                <strong>Attention.</strong> Small accounts with $3-10K monthly spend are the agency&apos;s lowest priority. You get assigned to a junior account manager handling 15 other accounts. They apply templated strategies and check in once a month. When your <a href="/blog/google-ads-roas-dropped-suddenly" style={{ color: '#764ba2', textDecoration: 'underline' }}>ROAS drops</a> 40% in week two, you find out in week four via PDF report. By then you&apos;ve burned through a week&apos;s budget on broken campaigns.
               </p>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
                 <strong>Opacity.</strong> Many SMB owners can&apos;t explain what their agency actually does between monthly reports. The deck shows graphs and percentages, but you can&apos;t act on it. You don&apos;t see the search terms report, the bid changes, or the budget allocation decisions. You&apos;re paying for a black box with a dashboard on top.
@@ -394,7 +394,7 @@ flowchart TD
               />
 
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
-                B6 runs seven specialized AI <a href="/blog/google-ads-ai-agent" style={{ color: '#764ba2', textDecoration: 'underline' }}>agent</a>s: Buzz for bid management, Aegis for risk detection, Echo for reporting, Vox for strategy, Maximus for orchestration, Mira for creative analysis, and Sage for competitive research. Three pricing tiers:
+                B6 runs seven specialized AI <a href="/blog/google-ads-ai-agent" style={{ color: '#764ba2', textDecoration: 'underline' }}>agents</a>: Buzz for bid management, Aegis for risk detection, Echo for reporting, Vox for strategy, Maximus for orchestration, Mira for creative analysis, and Sage for competitive research. Three pricing tiers:
               </p>
               <ul style={{ fontSize: '18px', color: '#1e293b', lineHeight: '1.8', paddingLeft: '24px', marginBottom: '32px' }}>
                 <li style={{ marginBottom: '16px' }}><strong>$99 Co-pilot</strong>: AI makes recommendations, you execute manually</li>

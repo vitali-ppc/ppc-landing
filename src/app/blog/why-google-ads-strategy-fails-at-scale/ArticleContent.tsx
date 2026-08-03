@@ -407,7 +407,7 @@ export default function ArticleContent() {
                 Point tools that just recommend (Optmyzr at ~$499/mo, Madgicx at $499+/mo) each solve one part of the workflow. None of them orchestrate. The analyst still actions recommendations manually, reconciles outputs, and explains conflicting suggestions to the client.
               </p>
               <p style={paragraphStyle}>
-                Remedy: annual stack review with consolidation as default. Prefer <a href="/blog/google-ads-ai-agent" style={{ color: '#764ba2', textDecoration: 'underline' }}>agent</a>s that orchestrate (read the account, decide, execute or queue for approval) over point tools that recommend. That is the model behind B6's $99-$399 tier, which replaces multiple point tools with one agent-based system. If you are stuck in vendor sprawl, <a href="/blog/signs-you-need-to-fire-your-ppc-agency" style={linkStyle}>our piece on the eight signs it is time to fire your PPC agency</a> covers the decision frame.
+                Remedy: annual stack review with consolidation as default. Prefer <a href="/blog/google-ads-ai-agent" style={{ color: '#764ba2', textDecoration: 'underline' }}>agents</a> that orchestrate (read the account, decide, execute or queue for approval) over point tools that recommend. That is the model behind B6's $99-$399 tier, which replaces multiple point tools with one agent-based system. If you are stuck in vendor sprawl, <a href="/blog/signs-you-need-to-fire-your-ppc-agency" style={linkStyle}>our piece on the eight signs it is time to fire your PPC agency</a> covers the decision frame.
               </p>
             </section>
 

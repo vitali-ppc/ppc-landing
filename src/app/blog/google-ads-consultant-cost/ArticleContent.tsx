@@ -362,7 +362,7 @@ export default function ArticleContent() {
               </MascotQuote>
 
               <p style={paragraphStyle}>
-                Honest boundary: for a one-time strategic rebuild, an unusual account structure, or a big pivot needing a human strategist&apos;s judgment, a consultant&apos;s fee is worth it even without a continuous-recovery payback. Costs vary by account size and scope, so treat every range here as a starting point, not a quote.
+                Honest boundary: for a one-time strategic rebuild, an unusual <a href="/blog/google-ads-account-structure" style={{ color: '#764ba2', textDecoration: 'underline' }}>account structure</a>, or a big pivot needing a human strategist&apos;s judgment, a consultant&apos;s fee is worth it even without a continuous-recovery payback. Costs vary by account size and scope, so treat every range here as a starting point, not a quote.
               </p>
             </section>
 

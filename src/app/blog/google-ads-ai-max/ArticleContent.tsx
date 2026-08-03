@@ -474,7 +474,7 @@ export default function ArticleContent() {
                 The first 14 days call for a tight audit; after that, a monthly rhythm is enough. Review search terms every two to three days; don&apos;t cut aggressively, since an adjacent-intent query isn&apos;t automatically waste.
               </p>
               <p style={paragraphStyle}>
-                Three surfaces carry the detail: the search terms report&apos;s AI Max match type plus Source column, the landing pages report&apos;s Selected by column, and the Assets view&apos;s Added by column marked &quot;Google AI.&quot; Bulk removal requires the API or Editor, not the web UI.
+                Three surfaces carry the detail: the <a href="/blog/google-ads-search-terms-report" style={{ color: '#764ba2', textDecoration: 'underline' }}>search terms report</a>&apos;s AI Max match type plus Source column, the landing pages report&apos;s Selected by column, and the Assets view&apos;s Added by column marked &quot;Google AI.&quot; Bulk removal requires the API or Editor, not the web UI.
               </p>
               <p style={paragraphStyle}>
                 Monthly, check <a href="/blog/the-complete-guide-to-google-ads-quality-score-in-2025" style={{ color: '#764ba2', textDecoration: 'underline' }}>Quality Score</a> and Landing page experience alongside lead quality from your CRM (see our <a href="/blog/google-ads-optimization" style={linkStyle}>Google Ads optimization</a> guide).

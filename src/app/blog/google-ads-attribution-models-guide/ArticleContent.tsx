@@ -310,7 +310,7 @@ export default function ArticleContent() {
               Google Ads Attribution Models: A 2026 Guide to Picking the Right One (and Why It Affects Smart Bidding)
             </h1>
             <p style={{ fontSize: '20px', color: '#64748b', marginBottom: '32px', lineHeight: '1.6', fontWeight: '500' }}>
-              Google Ads in 2026 only lets you select two of the six classic models. The setting you pick is the conversion column Smart Bidding <a href="/blog/google-ads-optimization" style={linkStyle}>optimize</a>s against, which makes a model switch a Smart Bidding training reset in practical terms.
+              Google Ads in 2026 only lets you select two of the six classic models. The setting you pick is the conversion column Smart Bidding <a href="/blog/google-ads-optimization" style={linkStyle}>optimizes</a> against, which makes a model switch a Smart Bidding training reset in practical terms.
             </p>
             <div style={{ display: 'flex', alignItems: 'center', gap: '24px', marginBottom: '40px', paddingBottom: '32px', borderBottom: '1px solid #e5e7eb' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>

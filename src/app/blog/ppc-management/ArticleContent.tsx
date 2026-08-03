@@ -906,7 +906,7 @@ flowchart LR
                 </li>
               </ul>
               <p style={pStyle}>
-                B6 maps three <a href="/blog/google-ads-ai-agent" style={linkStyle}>agent</a>s directly to the operating loop: Buzz for weekly bidding, Vox for monthly reallocation, Echo for the Monday digest.
+                B6 maps three <a href="/blog/google-ads-ai-agent" style={linkStyle}>agents</a> directly to the operating loop: Buzz for weekly bidding, Vox for monthly reallocation, Echo for the Monday digest.
               </p>
 
               <MascotQuote mascot="echo">

@@ -346,7 +346,7 @@ export default function ArticleContent() {
             <section id="what-is-b2b-ppc">
               <h2 style={h2}>What is B2B PPC?</h2>
               <p style={para}>
-                B2B PPC is pay-per-click advertising, paid search plus paid social, that targets business decision-makers and is measured on lead quality and pipeline contribution rather than raw clicks or transactions. A single click from a business buyer routinely costs $5-25 depending on vertical and competition, and an illustrative CPL for a mid-market B2B SaaS campaign can land anywhere from $50 to $400 (results vary widely by ACV and category).
+                B2B PPC is pay-per-click advertising, paid search plus paid social, that targets business decision-makers and is measured on lead quality and pipeline contribution rather than raw clicks or transactions. A single click from a business buyer routinely costs $5-25 depending on vertical and competition, and an illustrative CPL for a mid-market <a href="/blog/google-ads-for-b2b-saas" style={{ color: '#764ba2', textDecoration: 'underline' }}>B2B SaaS</a> campaign can land anywhere from $50 to $400 (results vary widely by ACV and category).
               </p>
               <p style={para}>
                 Three channels carry almost all B2B PPC spend today: Google Ads, LinkedIn Ads, and Microsoft Advertising. Each captures a different buyer signal, and the channel section below turns that difference into a decision, not a menu.
@@ -491,7 +491,7 @@ export default function ArticleContent() {
             <section id="keywords">
               <h2 style={h2}>Keyword and match-type strategy for B2B</h2>
               <p style={para}>
-                The winning keyword strategy in B2B is narrow and defensive: mostly phrase and exact match, aggressive negative keywords, and daily search-term review to stop consumer traffic from bleeding into business campaigns. Broad match on thin B2B signal starves Smart Bidding of clean data before it ever gets a chance to learn.
+                The winning keyword strategy in B2B is narrow and defensive: mostly phrase and exact match, aggressive <a href="/blog/google-ads-negative-keywords" style={{ color: '#764ba2', textDecoration: 'underline' }}>negative keywords</a>, and daily search-term review to stop consumer traffic from bleeding into business campaigns. Broad match on thin B2B signal starves Smart Bidding of clean data before it ever gets a chance to learn.
               </p>
               <p style={para}>
                 The single most-named practitioner problem in the mined dataset is B2C bleed: consumer search terms that happen to match a B2B keyword. One commenter&apos;s example is a vacuum-sealer company whose B2B keywords kept pulling in home cooks shopping for a $30 kitchen gadget, not a warehouse buyer (

@@ -157,7 +157,7 @@ export default function ArticleContent() {
               B2B PPC Advertising: How to Set It Up Without Burning Your First Month&apos;s Budget (2026)
             </h1>
             <p style={{ fontSize: '20px', color: '#64748b', marginBottom: '32px', lineHeight: '1.6', fontWeight: '500' }}>
-              The channels, account structure, match types, tracking, and bidding to launch B2B paid search in the right order, before it bleeds budget on the wrong clicks.
+              The channels, <a href="/blog/google-ads-account-structure" style={linkStyle}>account structure</a>, match types, tracking, and bidding to launch B2B paid search in the right order, before it bleeds budget on the wrong clicks.
             </p>
             <div style={{ display: 'flex', alignItems: 'center', gap: '24px', marginBottom: '40px', paddingBottom: '32px', borderBottom: '1px solid #e5e7eb' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -309,7 +309,7 @@ export default function ArticleContent() {
                 The three match types trade reach for control. Exact match shows your ad on &quot;searches that have the same meaning or same intent as the keyword,&quot; phrase match on &quot;searches that include the meaning of your keyword,&quot; and broad match on anything Google judges related (<a href="https://support.google.com/google-ads/answer/2497836" style={linkStyle} target="_blank" rel="noopener noreferrer">Google Ads Help, 2024</a>). For a B2B account with no history, exact and phrase keep you on the few hundred searches that actually matter. Broad match needs Smart Bidding and accumulated data to behave, so unleashing it early is how budgets vanish.
               </p>
               <p style={pStyle}>
-                Build a negative keyword list on day one, before you spend a dollar. In B2B the predictable money-wasters are terms like &quot;jobs,&quot; &quot;careers,&quot; &quot;salary,&quot; &quot;free,&quot; &quot;cheap,&quot; &quot;template,&quot; &quot;course,&quot; &quot;student,&quot; and &quot;for sale.&quot; Add competitor brand terms only if you have a deliberate reason to bid on them. Then check your search terms report every few days and add new negatives as the junk reveals itself.
+                Build a negative keyword list on day one, before you spend a dollar. In B2B the predictable money-wasters are terms like &quot;jobs,&quot; &quot;careers,&quot; &quot;salary,&quot; &quot;free,&quot; &quot;cheap,&quot; &quot;template,&quot; &quot;course,&quot; &quot;student,&quot; and &quot;for sale.&quot; Add competitor brand terms only if you have a deliberate reason to bid on them. Then check your <a href="/blog/google-ads-search-terms-report" style={linkStyle}>search terms report</a> every few days and add new negatives as the junk reveals itself.
               </p>
 
               <MascotQuote mascot="sage">

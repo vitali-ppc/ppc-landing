@@ -708,7 +708,7 @@ export default function ArticleContent() {
                 Phases 2 and 3 are where most restructures stall. They require daily bid-strategy monitoring, budget reallocation decisions, and the discipline to NOT panic-rollback on day 3 of a learning dip. This is exactly the work that should be automated.
               </p>
               <p style={pStyle}>
-                Here is how the B6 mascot <a href="/blog/google-ads-ai-agent" style={linkStyle}>agent</a>s map to the playbook:
+                Here is how the B6 mascot <a href="/blog/google-ads-ai-agent" style={linkStyle}>agents</a> map to the playbook:
               </p>
               <ul style={ulStyle}>
                 <li style={liStyle}>

@@ -394,7 +394,7 @@ export default function ArticleContent() {
             <section id="naming">
               <h2 style={h2Style}>Naming Conventions and Settings That Are Easy to Skip on Day One</h2>
               <p style={paragraphStyle}>
-                Pick a naming pattern before you create the first campaign, and lock down account-level settings (conversion tracking, negative keyword lists, auto-tagging) before you touch bid strategy.
+                Pick a naming pattern before you create the first campaign, and lock down account-level settings (<a href="/blog/google-ads-conversion-tracking-not-working" style={{ color: '#764ba2', textDecoration: 'underline' }}>conversion tracking</a>, negative keyword lists, auto-tagging) before you touch bid strategy.
               </p>
               <p style={paragraphStyle}>
                 A pattern that scales past month six: <code style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: '6px', padding: '2px 8px', fontSize: '16px', fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', color: '#1e293b' }}>[Network]_[Intent]_[GEO]_[Theme]</code>.
