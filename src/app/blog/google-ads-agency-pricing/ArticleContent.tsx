@@ -398,7 +398,7 @@ export default function ArticleContent() {
                 ]}
               />
               <p style={{ fontSize: '14px', color: '#94a3b8', fontStyle: 'italic', lineHeight: 1.6, marginTop: '-12px', marginBottom: '32px' }}>
-                Typical Google Ads management fee by ad spend tier. Source: OuterBox PPC management pricing, 2026.
+                Typical Google Ads management fee by ad spend tier. Source: OuterBox <a href="/blog/ppc-management" style={{ color: '#764ba2', textDecoration: 'underline' }}>PPC management</a> pricing, 2026.
               </p>
 
               <MascotQuote mascot="buzz">

@@ -20,16 +20,10 @@ export default function ArticleContent() {
     "description": "Your Google Ads account got suspended and Google's email is vague. Here are the real causes, how to find yours, and a step-by-step appeal that actually works.",
     "image": "https://kampaio.com/og/why-is-my-google-ads-account-suspended.png",
     author: {
-      '@type': 'Person',
-      name: 'Marcus',
-      jobTitle: 'PPC Analyst',
-      description: 'B6 PPC Analyst. Specializes in Google Ads account management, Smart Bidding strategy, and policy compliance for SMB e-commerce advertisers.',
-      worksFor: {
-        '@type': 'Organization',
-        '@id': 'https://www.kampaio.com/#organization',
-        name: 'Kampaio',
-        url: 'https://www.kampaio.com',
-      },
+      '@type': 'Organization',
+      '@id': 'https://www.kampaio.com/#organization',
+      name: 'Kampaio',
+      url: 'https://www.kampaio.com',
     },
     publisher: {
       '@type': 'Organization',
