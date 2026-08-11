@@ -70,9 +70,9 @@ function normalizeNiche(niche: string): string {
 }
 
 const cities = [
-  { slug: 'chicago', name: 'Chicago', hasPage: true },
-  { slug: 'miami', name: 'Miami', hasPage: true },
-  { slug: 'austin', name: 'Austin', hasPage: true },
+  { slug: 'chicago', name: 'Chicago', hasPage: false },
+  { slug: 'miami', name: 'Miami', hasPage: false },
+  { slug: 'austin', name: 'Austin', hasPage: false },
   { slug: 'phoenix', name: 'Phoenix', hasPage: false },
   { slug: 'san-diego', name: 'San Diego', hasPage: false },
 ];
