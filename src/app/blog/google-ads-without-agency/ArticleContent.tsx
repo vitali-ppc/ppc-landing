@@ -546,7 +546,26 @@ flowchart TD
 
           </div>
         </div>
-        <KeepReading slug="google-ads-without-agency" category="strategy" />
+        {/* cluster-downlinks:START */}
+      <div style={{ marginTop: '2.5rem', paddingTop: '1.5rem', borderTop: '1px solid #e5e7eb' }}>
+        <p style={{ fontWeight: 600, marginBottom: '0.75rem' }}>Related in this cluster</p>
+        <ul style={{ listStyle: 'disc', paddingLeft: '1.25rem', margin: 0 }}>
+          <li style={{ marginBottom: '0.4rem' }}><a href="/blog/what-ceos-want-google-ads-reports" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>What CEOs Want to See in Google Ads Reports</a></li>
+          <li style={{ marginBottom: '0.4rem' }}><a href="/blog/why-google-ads-strategy-fails-at-scale" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>Why Google Ads Strategy Fails at Scale: 8 Diagnostic Patterns Agencies See</a></li>
+          <li style={{ marginBottom: '0.4rem' }}><a href="/blog/how-to-scale-google-ads-without-losing-roas" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>How to Scale Google Ads Without Losing ROAS (2026 Playbook)</a></li>
+          <li style={{ marginBottom: '0.4rem' }}><a href="/blog/how-to-choose-a-ppc-agency" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>How to Choose a PPC Agency (and How to Know When You Don't Need One)</a></li>
+          <li style={{ marginBottom: '0.4rem' }}><a href="/blog/white-label-google-ads" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>White Label Google Ads: When to Outsource, Hire, or Use Software (A Neutral Decision Guide)</a></li>
+          <li style={{ marginBottom: '0.4rem' }}><a href="/blog/google-ads-consultant" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>Google Ads Consultant: What They Do, What They Cost, and When to Hire One</a></li>
+          <li style={{ marginBottom: '0.4rem' }}><a href="/blog/google-ads-consultant-cost" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>Google Ads Consultant Cost: What to Pay (and When Software or DIY Beats Hiring One)</a></li>
+          <li style={{ marginBottom: '0.4rem' }}><a href="/blog/google-ads-agency-pricing" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>Google Ads Agency Pricing: What Agencies Charge and Which Model Fits You (2026)</a></li>
+          <li style={{ marginBottom: '0.4rem' }}><a href="/blog/google-ads-agency-guide" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>Google Ads Agency Guide: Do You Need One, What It Costs, and Your Alternatives</a></li>
+          <li style={{ marginBottom: '0.4rem' }}><a href="/blog/google-ads-agency-account-ownership" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>Google Ads Agency Account Ownership: Who Owns What, and How Exposed Are You</a></li>
+          <li style={{ marginBottom: '0.4rem' }}><a href="/blog/google-ads-certification-worth-it" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>Is Google Ads Certification Worth It? What It Proves (and What It Doesn't)</a></li>
+        </ul>
+      </div>
+      {/* cluster-downlinks:END */}
+
+      <KeepReading slug="google-ads-without-agency" category="strategy" />
       <Footer compact={true} />
       </div>
     </>

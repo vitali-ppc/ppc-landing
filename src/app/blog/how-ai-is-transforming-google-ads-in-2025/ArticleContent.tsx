@@ -269,7 +269,25 @@ export default function ArticleContent() {
             </section>
           </div>
         </div>
-        <KeepReading slug="how-ai-is-transforming-google-ads-in-2025" category="ai" />
+        {/* cluster-downlinks:START */}
+      <div style={{ marginTop: '2.5rem', paddingTop: '1.5rem', borderTop: '1px solid #e5e7eb' }}>
+        <p style={{ fontWeight: 600, marginBottom: '0.75rem' }}>Related in this cluster</p>
+        <ul style={{ listStyle: 'disc', paddingLeft: '1.25rem', margin: 0 }}>
+          <li style={{ marginBottom: '0.4rem' }}><a href="/blog/5-tips-for-working-with-ai-ppc-tools" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>5 Tips for Working with AI-Powered PPC Tools</a></li>
+          <li style={{ marginBottom: '0.4rem' }}><a href="/blog/incrementality-testing-google-ads" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>Incrementality Testing in Google Ads: What It Measures, How to Run One, and Why Smart Bidding Needs It</a></li>
+          <li style={{ marginBottom: '0.4rem' }}><a href="/blog/ai-powered-ppc-optimization-complete-guide" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>AI-Powered PPC Optimization: The Complete Guide for Senior PPC Managers</a></li>
+          <li style={{ marginBottom: '0.4rem' }}><a href="/blog/google-ads-ai-vs-manual-bidding" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>Google Ads AI vs Manual Bidding: How to Decide (with Real Data)</a></li>
+          <li style={{ marginBottom: '0.4rem' }}><a href="/blog/chatgpt-google-ads" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>ChatGPT for Google Ads: What It Does Well, Where It Falls Short (Honest 2026 Guide)</a></li>
+          <li style={{ marginBottom: '0.4rem' }}><a href="/blog/google-ai-ads" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>Google AI Ads: What Google Turned On in Your Account, and What to Keep vs Kill</a></li>
+          <li style={{ marginBottom: '0.4rem' }}><a href="/blog/google-ads-ai-max" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>Google Ads AI Max: Should You Turn It On? (2026 Decision Guide)</a></li>
+          <li style={{ marginBottom: '0.4rem' }}><a href="/blog/ai-powered-ppc-platform" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>AI-Powered PPC Platform: How to Evaluate One Before You Buy (2026)</a></li>
+          <li style={{ marginBottom: '0.4rem' }}><a href="/blog/google-ads-ai-content-labels" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>Google Ads AI Content Labels: What Changed in July 2026 and What You Must Do</a></li>
+          <li style={{ marginBottom: '0.4rem' }}><a href="/blog/opteo-alternative" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>Opteo Alternatives: Verified Pricing, Honest Picks for 2026</a></li>
+        </ul>
+      </div>
+      {/* cluster-downlinks:END */}
+
+      <KeepReading slug="how-ai-is-transforming-google-ads-in-2025" category="ai" />
       <Footer compact={true} />
       </div>
     </>
