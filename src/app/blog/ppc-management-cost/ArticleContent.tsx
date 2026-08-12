@@ -167,7 +167,7 @@ export default function ArticleContent() {
               PPC · Pricing
             </div>
             <h1 style={{ fontSize: 'clamp(32px, 4vw, 48px)', fontWeight: 800, color: '#1e293b', marginBottom: '24px', lineHeight: '1.2' }}>
-              How Much Does PPC Management Cost? A Real Breakdown for DTC Owners (2026)
+              PPC Management Pricing: What Agencies Actually Charge (2026)
             </h1>
             <p style={{ fontSize: '20px', color: '#64748b', marginBottom: '32px', lineHeight: '1.6', fontWeight: 500 }}>
               The three pricing models decoded, the honest line-item breakdown, and the math on whether the fee is worth it at your spend.
