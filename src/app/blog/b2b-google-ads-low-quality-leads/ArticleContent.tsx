@@ -572,6 +572,7 @@ export default function ArticleContent() {
           <li style={{ marginBottom: '0.4rem' }}><a href="/blog/b2b-ppc-advertising" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>B2B PPC Advertising: How to Set It Up Without Burning Your First Month's Budget (2026)</a></li>
           <li style={{ marginBottom: '0.4rem' }}><a href="/blog/b2b-ppc-strategy" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>B2B PPC Strategy: How to Scale Paid Search Without Efficiency Collapse</a></li>
           <li style={{ marginBottom: '0.4rem' }}><a href="/blog/b2b-ppc-guide" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>B2B PPC: The Complete Operator's Guide to Paid Search That Fills the Pipeline</a></li>
+          <li style={{ marginBottom: '0.4rem' }}><a href="/blog/b2b-paid-search-agency" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>B2B Paid Search Agency: How to Tell If Yours Is Actually Working</a></li>
         </ul>
       </div>
       {/* cluster-downlinks:END */}

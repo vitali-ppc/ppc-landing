@@ -514,15 +514,7 @@ export default function ArticleContent() {
 
           </div>
         </div>
-        {/* cluster-downlinks:START */}
-      <div style={{ marginTop: '2.5rem', paddingTop: '1.5rem', borderTop: '1px solid #e5e7eb' }}>
-        <p style={{ fontWeight: 600, marginBottom: '0.75rem' }}>Related in this cluster</p>
-        <ul style={{ listStyle: 'disc', paddingLeft: '1.25rem', margin: 0 }}>
-          <li style={{ marginBottom: '0.4rem' }}><a href="/blog/incrementality-testing-google-ads" style={{ color: '#764ba2', textDecoration: 'underline' }}>Incrementality Testing in Google Ads: What It Measures, How to Run One, and Why Smart Bidding Needs It</a></li>
-          <li style={{ marginBottom: '0.4rem' }}><a href="/blog/google-ads-ai-vs-manual-bidding" style={{ color: '#764ba2', textDecoration: 'underline' }}>Google Ads AI vs Manual Bidding: How to Decide (with Real Data)</a></li>
-        </ul>
-      </div>
-      {/* cluster-downlinks:END */}
+        
 
       <KeepReading slug="ai-powered-ppc-optimization-complete-guide" category="google-ads" />
       <Footer compact={true} />
