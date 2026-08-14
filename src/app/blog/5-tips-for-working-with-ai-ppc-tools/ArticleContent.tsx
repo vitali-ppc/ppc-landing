@@ -114,7 +114,7 @@ export default function ArticleContent() {
             </div>
             {/* Title */}
             <h1 style={{ fontSize: 'clamp(32px, 4vw, 48px)', fontWeight: '800', color: '#1e293b', marginBottom: '24px', lineHeight: '1.2' }}>
-              5 Tips for Working with AI-Powered PPC Tools
+              Using AI for PPC: 5 Tips for Better Campaigns
             </h1>
             {/* Subtitle */}
             <p style={{ fontSize: '20px', color: '#64748b', marginBottom: '32px', lineHeight: '1.6', fontWeight: '500' }}>
