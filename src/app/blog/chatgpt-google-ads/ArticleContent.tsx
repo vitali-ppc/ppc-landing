@@ -468,6 +468,10 @@ export default function ArticleContent() {
                 One newer layer worth naming: ChatGPT connectors (MCP integrations) let it read Google Ads data directly instead of relying on copy-pasted exports. Windsor.ai, one connector vendor, describes its default as read-only, with a separately-gated &quot;write-enabled actions&quot; tier requiring approval for changes like pausing a campaign. Even with a connector attached, that read layer is analysis, not safe, reversible execution. It closes the &quot;can&apos;t see my account&quot; gap partway. It does nothing for the &quot;can safely act&quot; gap. There&apos;s also a code path for the technically inclined: <a href="https://searchengineland.com/how-to-automate-your-google-ads-workflow-with-the-chatgpt-api-454527" style={linkStyle} target="_blank" rel="noopener noreferrer">Search Engine Land walks through scripting a ChatGPT API workflow</a> against Google Ads data, but it requires an API key and Apps Script, not something most owners are opening a chat window to avoid.
               </p>
 
+              <p style={para}>
+                There is a second question hiding behind all of this, and it is the one that costs advertisers money quietly: not what ChatGPT can do for your account, but whether ChatGPT names your brand at all when a buyer asks it for options. That is a separate discipline with its own failure modes, and we covered it in <a href="/blog/why-brand-not-showing-up-in-chatgpt" style={linkStyle}>why your brand does not show up in ChatGPT</a>.
+              </p>
+
               {/* VISUAL 5: Callout warning - the connector caveat */}
               <Callout variant="warning" title="Connectors close one gap, not the other">
                 A read-only connector fixes &quot;ChatGPT can&apos;t see my account.&quot; It does nothing for &quot;ChatGPT can safely change my account.&quot; Reading live data is analysis; applying changes safely needs an undo path, a spend cap, and an approval gate that a chat window does not have.
