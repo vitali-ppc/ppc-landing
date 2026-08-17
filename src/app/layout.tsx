@@ -9,13 +9,17 @@ import ScrollToTop from '../components/ScrollToTop'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://kampaio.com'),
+  // www, matching what the site actually serves: the apex 308-redirects to www,
+  // the sitemap is built from www, and every page-level canonical is www. A
+  // non-www metadataBase resolved relative OG paths onto a hostname that only
+  // ever redirects.
+  metadataBase: new URL('https://www.kampaio.com'),
   title: {
-    default: 'Kampaio - Digital Ecosystem',
+    default: 'Kampaio: AI-Powered Google Ads Management',
     template: '%s | Kampaio'
   },
-  description: 'Premium digital ecosystem: advertising, analytics, web development. For businesses that want more.',
-  keywords: 'PPC, Google Ads, analytics, Node.js development, digital marketing, SEO, web development',
+  description: 'Kampaio runs your Google Ads with a team of AI agents: bidding, risk review, anomaly monitoring and reporting, with every proposed change shown before it executes.',
+  keywords: 'Google Ads, PPC, Google Ads automation, AI Google Ads management, campaign optimization, PPC agency alternative',
   authors: [{ name: 'Kampaio' }],
   creator: 'Kampaio',
   publisher: 'Kampaio',
@@ -23,10 +27,10 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://kampaio.com',
+    url: 'https://www.kampaio.com',
     siteName: 'Kampaio',
-    title: 'Kampaio - Digital Ecosystem',
-    description: 'Premium digital ecosystem: advertising, analytics, web development. For businesses that want more.',
+    title: 'Kampaio: AI-Powered Google Ads Management',
+    description: 'Kampaio runs your Google Ads with a team of AI agents: bidding, risk review, anomaly monitoring and reporting, with every proposed change shown before it executes.',
     images: [
       {
         url: '/logo.png',
@@ -38,8 +42,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Kampaio - Digital Ecosystem',
-    description: 'Premium digital ecosystem: advertising, analytics, web development. For businesses that want more.',
+    title: 'Kampaio: AI-Powered Google Ads Management',
+    description: 'Kampaio runs your Google Ads with a team of AI agents: bidding, risk review, anomaly monitoring and reporting, with every proposed change shown before it executes.',
     images: ['/logo.png'],
   },
   icons: {
@@ -52,9 +56,12 @@ export const metadata: Metadata = {
   verification: {
     google: 'rfakIoGZslX3ywBADcoRGc73d3zofSCJwY5X9UKyifI',
   },
-  alternates: {
-    canonical: 'https://kampaio.com',
-  },
+  // No root-level canonical on purpose. Next.js inherits `alternates` into every
+  // route that does not declare its own, so a canonical here does not mean "the
+  // homepage is canonical". It means eight routes (/ads/*, /auth/login,
+  // /auth/register, /dashboard) were telling Google they are duplicates of the
+  // homepage. Pages that need one declare it themselves; the rest self-
+  // canonicalise, which is the correct default.
 }
 
 export const viewport: Viewport = {
@@ -71,9 +78,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+        {/* Inter comes from next/font (self-hosted, applied on <body> below).
+            The render-blocking fonts.googleapis stylesheet fetched the same
+            family a second time, from a third party, on every page. */}
         <link rel="stylesheet" href="/styles.css" />
       </head>
       <body className={inter.className}>

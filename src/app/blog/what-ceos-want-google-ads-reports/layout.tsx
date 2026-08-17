@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     images: ['/logo.png']
   },
   alternates: {
-    canonical: 'https://kampaio.com/blog/what-ceos-want-google-ads-reports'
+    canonical: 'https://www.kampaio.com/blog/what-ceos-want-google-ads-reports'
   },
   robots: {
     index: true,

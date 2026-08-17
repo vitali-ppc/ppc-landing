@@ -23,7 +23,7 @@ export const metadata = {
     images: ['https://kampaio.com/logo.png']
   },
   alternates: {
-    canonical: 'https://kampaio.com/privacy-policy'
+    canonical: 'https://www.kampaio.com/privacy-policy'
   }
 }
 

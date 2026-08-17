@@ -2,8 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Import our custom styles */
-@import url('/styles.css');
+/* /styles.css is linked from the document head in layout.tsx. It used to be
+   pulled here as well, so the same sheet was requested twice: once
+   discoverable in <head>, once nested inside this bundle where the browser
+   cannot see it until globals.css itself has downloaded. Head link only. */
 
 :root {
   /* Основная палитра */
