@@ -36,13 +36,13 @@ export default function ArticleContent() {
       },
     },
     datePublished: '2026-06-01T00:00:00.000Z',
-    dateModified: '2026-06-01T00:00:00.000Z',
+    dateModified: '2026-08-17T00:00:00.000Z',
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': 'https://www.kampaio.com/blog/b2b-saas-google-ads-benchmarks-2026',
     },
     keywords: 'B2B SaaS Google Ads benchmarks, cost per click CPC B2B SaaS, conversion rate B2B SaaS, cost per lead CPL, Google Ads 2026, B2B SaaS campaign performance, Performance Max B2B SaaS, ROAS benchmarks SaaS, cost per acquisition CPA, CTR benchmarks B2B, Smart Bidding SaaS, LTV CAC ratio SaaS, AI Max Google Ads, non-branded SaaS keywords, Kampaio',
-    wordCount: 3281,
+    wordCount: 3640,
     articleSection: 'B2B Marketing',
     inLanguage: 'en',
   };
@@ -82,7 +82,7 @@ export default function ArticleContent() {
         name: 'What is the average cost per lead for B2B SaaS Google Ads?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'B2B SaaS cost per lead varies by segment: SMB-targeting SaaS averages $87-$200 CPL, mid-market SaaS $200-$900, and enterprise SaaS $1,500-$4,500 (42 Agency, real Google Ads campaign exports, 2022-2026). The flat industry CPL average of $66.69 (WordStream, 2026) is not applicable to SaaS - it blends e-commerce and local services with structurally lower-friction conversions.',
+          text: 'B2B SaaS cost per lead varies by segment: SMB-targeting SaaS averages $87-$200 CPL, mid-market SaaS $200-$900, and enterprise SaaS $1,500-$4,500 (42 Agency, real Google Ads campaign exports, 2022-2026). Blended CPL across 65+ managed B2B SaaS accounts was $84 in the 24 months to June 2026, down 44% year over year, but that blend hides the split: $207 per lead on non-brand traffic vs. $34 on brand (Pipe Rocket Digital, July 2024 to June 2026). The flat industry CPL average of $66.69 (WordStream, 2026) is not applicable to SaaS - it blends e-commerce and local services with structurally lower-friction conversions.',
         },
       },
       {
@@ -362,7 +362,7 @@ export default function ArticleContent() {
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '2px' }}>
                   <span style={{ color: '#64748b', fontSize: '16px', fontWeight: 600 }}>By Kampaio Team</span>
                   <span style={{ color: '#64748b', fontSize: '15px' }}>B2B PPC Analysts</span>
-                  <span style={{ color: '#64748b', fontSize: '15px' }}>June 1, 2026 · 16 min read</span>
+                  <span style={{ color: '#64748b', fontSize: '15px' }}>June 1, 2026 · Updated August 17, 2026 · 16 min read</span>
                 </div>
               </div>
             </div>
@@ -547,6 +547,14 @@ export default function ArticleContent() {
                 Second, AI Max - Google's new campaign management layer - is being adopted by sophisticated SaaS advertisers, increasing bidding competition on exact-match intent keywords. Involve Digital reports AI Max generated 14% more conversions at similar CPA compared to standard Search campaigns, and a 27% improvement specifically for exact and phrase match campaigns. As more accounts activate AI Max, auction density on high-intent terms increases further.
               </p>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '24px' }}>
+                <strong>Updated August 2026:</strong> a dataset published after this article went live reframes the cost story. Pipe Rocket Digital&apos;s{' '}
+                <a href="https://piperocket.digital/research/google-ads-benchmarks/" style={{ color: '#764ba2', textDecoration: 'underline' }} target="_blank" rel="noopener noreferrer">100+ B2B SaaS Google Ads benchmarks</a>{' '}
+                report, built from 65+ B2B SaaS accounts the agency actively manages across 24 months of real performance data (July 2024 through June 2026), puts blended CPC at $6.81 and essentially flat year over year at -1%. Over that same window blended cost per lead fell 44% to $84, because conversion rate rose 48% to 2.57% at a 3.60% CTR. The efficiency B2B SaaS accounts gained in 2026 came from the landing page and the conversion side of the funnel, not from cheaper clicks.
+              </p>
+              <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '24px' }}>
+                The two figures are not in conflict, and neither one replaces the other. Involve Digital&apos;s $5.34, up 29%, measures non-branded Search keywords: the price of attention from a buyer who has never heard of you. Pipe Rocket&apos;s $6.81, down 1%, is a blended average across every campaign type in a managed portfolio, brand traffic included. Both numbers can describe the same account in the same quarter. If your non-branded CPC is climbing while your blended CPC sits still, that is exactly what the two datasets predict.
+              </p>
+              <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '24px' }}>
                 The match type split matters more than raw CPC. Understanding{' '}
                 <a href="/blog/google-ads-keyword-match-types-explained" style={{ color: '#764ba2', textDecoration: 'underline' }}>how keyword match types affect your Google Ads spend</a>{' '}
                 is the prerequisite for reading this data correctly. Using 42 Agency campaign data, cost per MQL breaks down as follows:
@@ -587,10 +595,15 @@ export default function ArticleContent() {
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '24px' }}>
                 Connecting conversion rate to CPL targets requires the math that matters before a quarterly review. A SaaS product with a $15,000 average ARR and a 3:1 LTV:CAC target (assuming 3-year retention at $15K = $45K LTV, maximum CAC = $15,000) means the maximum allowable CPL at a 30-day trial-to-paid rate of 18-25% is approximately $300-$600 per qualified lead. That number, not the industry median, is the CPL ceiling for that specific product.
               </p>
-              <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
+              <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '24px' }}>
                 Trial-to-paid conversion benchmarks from Involve Digital: opt-in trials (no card required) convert at 18-25%, with 7-day trials converting higher than 14-day trials in current data. For SaaS teams running free trial campaigns, this is the conversion event to track in Google Ads - not form fills. For the upstream campaign structure that feeds this funnel, our{' '}
                 <a href="/blog/b2b-google-ads-lead-generation" style={{ color: '#764ba2', textDecoration: 'underline' }}>B2B Google Ads lead generation guide</a>{' '}
                 covers account setup, targeting, and lead qualification in detail.
+              </p>
+              <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
+                One caveat before you compare your own CPL against any blended figure. In the{' '}
+                <a href="https://piperocket.digital/research/google-ads-benchmarks/" style={{ color: '#764ba2', textDecoration: 'underline' }} target="_blank" rel="noopener noreferrer">Pipe Rocket Digital dataset</a>{' '}
+                covering 65+ managed B2B SaaS accounts from July 2024 to June 2026, non-brand traffic costs $207 per lead at a $13.75 CPC, while brand traffic costs $34 per lead at a $3.12 CPC. Brand CTR runs 22.2% against 3.6% for non-brand. That means the blended $84 CPL is less a measure of media efficiency than a measure of how much brand demand sits in the mix. Two accounts can report an identical blended CPL while one is buying new pipeline and the other is invoicing itself for demand it already had.
               </p>
 
               <MascotQuote mascot="sage">
@@ -736,7 +749,7 @@ export default function ArticleContent() {
                 },
                 {
                   q: 'What is the average cost per lead for B2B SaaS Google Ads?',
-                  a: 'B2B SaaS cost per lead varies by segment: SMB-targeting SaaS averages $87-$200 CPL, mid-market SaaS $200-$900, and enterprise SaaS $1,500-$4,500 (42 Agency, real Google Ads campaign exports, 2022-2026). The flat industry CPL average of $66.69 (WordStream, 2026) is not applicable to SaaS - it blends e-commerce and local services with structurally lower-friction conversions.',
+                  a: 'B2B SaaS cost per lead varies by segment: SMB-targeting SaaS averages $87-$200 CPL, mid-market SaaS $200-$900, and enterprise SaaS $1,500-$4,500 (42 Agency, real Google Ads campaign exports, 2022-2026). Blended CPL across 65+ managed B2B SaaS accounts was $84 in the 24 months to June 2026, down 44% year over year, but that blend hides the split: $207 per lead on non-brand traffic vs. $34 on brand (Pipe Rocket Digital, July 2024 to June 2026). The flat industry CPL average of $66.69 (WordStream, 2026) is not applicable to SaaS - it blends e-commerce and local services with structurally lower-friction conversions.',
                 },
                 {
                   q: 'Should B2B SaaS companies use Performance Max?',
@@ -772,6 +785,7 @@ export default function ArticleContent() {
                 <li>42 Agency. "B2B Google Ads Benchmarks 2026." <a href="https://intel.42agency.com/b2b-benchmarks/google-ads-benchmarks/" style={{ color: '#764ba2', textDecoration: 'underline' }} target="_blank" rel="noopener noreferrer">intel.42agency.com</a></li>
                 <li>WordStream. "Google Ads Benchmarks 2026: Competitive Data &amp; Insights for Every Industry." <a href="https://www.wordstream.com/blog/2026-google-ads-benchmarks" style={{ color: '#764ba2', textDecoration: 'underline' }} target="_blank" rel="noopener noreferrer">wordstream.com</a></li>
                 <li>DigitalApplied. "Google Ads Benchmarks 2026: CPC, CTR, CVR by Industry." <a href="https://www.digitalapplied.com/blog/google-ads-benchmarks-2026-cpc-ctr-cvr-industry" style={{ color: '#764ba2', textDecoration: 'underline' }} target="_blank" rel="noopener noreferrer">digitalapplied.com</a></li>
+                <li>Pipe Rocket Digital. &quot;100+ B2B SaaS Google Ads Benchmarks.&quot; First-party dataset, 65+ actively managed B2B SaaS accounts, July 2024 to June 2026. Updated August 6, 2026. <a href="https://piperocket.digital/research/google-ads-benchmarks/" style={{ color: '#764ba2', textDecoration: 'underline' }} target="_blank" rel="noopener noreferrer">piperocket.digital</a></li>
                 <li>Sopro. B2B buyer research behavior data. 2025. Cited via SalesHive. <a href="https://saleshive.com/blog/b2b-lead-generation-use-google-adwords/" style={{ color: '#764ba2', textDecoration: 'underline' }} target="_blank" rel="noopener noreferrer">saleshive.com</a></li>
                 <li>Google Ads Help. "Smart Bidding: About bidding strategies." 2024. <a href="https://support.google.com/google-ads/answer/7065882" style={{ color: '#764ba2', textDecoration: 'underline' }} target="_blank" rel="noopener noreferrer">support.google.com</a></li>
               </ol>
