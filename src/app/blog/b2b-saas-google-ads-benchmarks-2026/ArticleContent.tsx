@@ -127,6 +127,7 @@ export default function ArticleContent() {
     { id: 'conversion-rate-cpl', title: 'Conversion Rate and CPL Benchmarks by Segment', level: 1 },
     { id: 'roas-benchmarks', title: 'ROAS Benchmarks and How SaaS ROAS Is Calculated', level: 1 },
     { id: 'performance-max', title: 'Performance Max Benchmarks for B2B SaaS', level: 1 },
+    { id: 'linkedin-comparison', title: 'How These Compare to LinkedIn Ads Benchmarks', level: 1 },
     { id: 'how-to-read', title: 'How to Read These Benchmarks for Your Account', level: 1 },
     { id: 'faq', title: 'FAQ', level: 1 },
     { id: 'sources', title: 'Sources', level: 1 },
@@ -680,6 +681,71 @@ export default function ArticleContent() {
               </p>
             </section>
 
+            {/* H2: LinkedIn Ads comparison */}
+            <section id="linkedin-comparison">
+              <h2 style={{ fontSize: '32px', fontWeight: '700', color: '#1e293b', marginBottom: '24px', marginTop: '56px' }}>
+                How These Compare to LinkedIn Ads Benchmarks
+              </h2>
+              <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '16px' }}>
+                Google Ads is rarely the only paid channel in a B2B SaaS mix, and the second one is almost always LinkedIn. The two are usually compared on cost per click, which is the least useful comparison available: they buy different intent at different points in the funnel. Google captures someone already searching for a solution. LinkedIn interrupts someone who fits the profile but is not looking yet. The numbers below are worth reading as two different purchases, not as a price list.
+              </p>
+              <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '16px' }}>
+                <strong>The published benchmarks disagree with each other, and that is the first thing to know.</strong> Two 2026 sources with different methods put B2B SaaS LinkedIn CPC almost two-fold apart:
+              </p>
+              <div style={{ overflowX: 'auto', marginBottom: '24px' }}>
+                <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '520px' }}>
+                  <thead>
+                    <tr>
+                      <th style={{ padding: '12px 14px', borderBottom: '2px solid #cbd5e1', fontSize: '15px', fontWeight: 700, color: '#475569', textAlign: 'left' }}>B2B SaaS on LinkedIn</th>
+                      <th style={{ padding: '12px 14px', borderBottom: '2px solid #cbd5e1', fontSize: '15px', fontWeight: 700, color: '#475569', textAlign: 'left' }}>Digital Applied, Q1 2026</th>
+                      <th style={{ padding: '12px 14px', borderBottom: '2px solid #cbd5e1', fontSize: '15px', fontWeight: 700, color: '#475569', textAlign: 'left' }}>GrowthSpree, 2026</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style={{ padding: '12px 14px', borderBottom: '1px solid #e5e7eb', fontSize: '17px', color: '#1e293b' }}>CPC</td>
+                      <td style={{ padding: '12px 14px', borderBottom: '1px solid #e5e7eb', fontSize: '17px', color: '#1e293b' }}>$6.04</td>
+                      <td style={{ padding: '12px 14px', borderBottom: '1px solid #e5e7eb', fontSize: '17px', color: '#1e293b' }}>$8 to $15</td>
+                    </tr>
+                    <tr>
+                      <td style={{ padding: '12px 14px', borderBottom: '1px solid #e5e7eb', fontSize: '17px', color: '#1e293b' }}>CTR</td>
+                      <td style={{ padding: '12px 14px', borderBottom: '1px solid #e5e7eb', fontSize: '17px', color: '#1e293b' }}>0.74%</td>
+                      <td style={{ padding: '12px 14px', borderBottom: '1px solid #e5e7eb', fontSize: '17px', color: '#1e293b' }}>0.44% to 0.65%</td>
+                    </tr>
+                    <tr>
+                      <td style={{ padding: '12px 14px', borderBottom: '1px solid #e5e7eb', fontSize: '17px', color: '#1e293b' }}>CPL, lead gen form</td>
+                      <td style={{ padding: '12px 14px', borderBottom: '1px solid #e5e7eb', fontSize: '17px', color: '#1e293b' }}>$79</td>
+                      <td style={{ padding: '12px 14px', borderBottom: '1px solid #e5e7eb', fontSize: '17px', color: '#1e293b' }}>$75 to $150</td>
+                    </tr>
+                    <tr>
+                      <td style={{ padding: '12px 14px', borderBottom: '1px solid #e5e7eb', fontSize: '17px', color: '#1e293b' }}>CPL, landing page</td>
+                      <td style={{ padding: '12px 14px', borderBottom: '1px solid #e5e7eb', fontSize: '17px', color: '#1e293b' }}>not reported</td>
+                      <td style={{ padding: '12px 14px', borderBottom: '1px solid #e5e7eb', fontSize: '17px', color: '#1e293b' }}>$100 to $250</td>
+                    </tr>
+                    <tr>
+                      <td style={{ padding: '12px 14px', borderBottom: '1px solid #e5e7eb', fontSize: '17px', color: '#1e293b' }}>Lead gen form CVR</td>
+                      <td style={{ padding: '12px 14px', borderBottom: '1px solid #e5e7eb', fontSize: '17px', color: '#1e293b' }}>8.2%</td>
+                      <td style={{ padding: '12px 14px', borderBottom: '1px solid #e5e7eb', fontSize: '17px', color: '#1e293b' }}>not reported</td>
+                    </tr>
+                    <tr>
+                      <td style={{ padding: '12px 14px', borderBottom: '1px solid #e5e7eb', fontSize: '17px', color: '#1e293b' }}>Cost per SQL</td>
+                      <td style={{ padding: '12px 14px', borderBottom: '1px solid #e5e7eb', fontSize: '17px', color: '#1e293b' }}>not reported</td>
+                      <td style={{ padding: '12px 14px', borderBottom: '1px solid #e5e7eb', fontSize: '17px', color: '#1e293b' }}>$500 to $1,500</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '16px' }}>
+                <strong>Both are vendor-stated, and neither is an independent audit.</strong> Digital Applied describes its figures as aggregated from LinkedIn Marketing Solutions, AdStage, Hootsuite, Demand Gen Report and HubSpot survey data cross-referenced with agency-managed accounts, comparing Q1 2026 against Q1 2025. GrowthSpree states its numbers come from managing more than $60M in ad spend across 300+ B2B SaaS accounts, without publishing the period or whether the figures are medians or means. Treat the ranges as calibration, not as a target, and weight the source whose method resembles your own account.
+              </p>
+              <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '16px' }}>
+                <strong>Vertical spread is wider than the gap between sources.</strong> GrowthSpree reports cybersecurity and fintech at $12 to $18 CPC against $5 to $9 for HR tech and manufacturing. A single blended LinkedIn CPC number describes almost no real account, which is the same warning that applies to the Google Ads figures earlier on this page.
+              </p>
+              <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '28px' }}>
+                <strong>What this means for the channel split.</strong> On the Google Ads side of this page, B2B SaaS search CPC sits well below the LinkedIn range while search CVR sits well above LinkedIn landing page CVR, which is what you would expect when one channel serves demand and the other creates it. The practical read is not that one channel is cheaper. It is that LinkedIn CPL and Google CPL are not the same unit, and comparing them directly is how B2B SaaS teams end up defunding the channel that fills the top of the funnel. If you are running both, compare them at cost per SQL and at deal size, not at cost per click. And if LinkedIn top-of-funnel cost is the problem you are actually trying to solve, the Demand Gen comparison in the section above is the cheaper first test.
+              </p>
+            </section>
+
             {/* H2: How to Read Benchmarks */}
             <section id="how-to-read">
               <h2 style={{ fontSize: '32px', fontWeight: '700', color: '#1e293b', marginBottom: '24px', marginTop: '56px' }}>
@@ -786,6 +852,8 @@ export default function ArticleContent() {
                 <li>WordStream. "Google Ads Benchmarks 2026: Competitive Data &amp; Insights for Every Industry." <a href="https://www.wordstream.com/blog/2026-google-ads-benchmarks" style={{ color: '#764ba2', textDecoration: 'underline' }} target="_blank" rel="noopener noreferrer">wordstream.com</a></li>
                 <li>DigitalApplied. "Google Ads Benchmarks 2026: CPC, CTR, CVR by Industry." <a href="https://www.digitalapplied.com/blog/google-ads-benchmarks-2026-cpc-ctr-cvr-industry" style={{ color: '#764ba2', textDecoration: 'underline' }} target="_blank" rel="noopener noreferrer">digitalapplied.com</a></li>
                 <li>Pipe Rocket Digital. &quot;100+ B2B SaaS Google Ads Benchmarks.&quot; First-party dataset, 65+ actively managed B2B SaaS accounts, July 2024 to June 2026. Updated August 6, 2026. <a href="https://piperocket.digital/research/google-ads-benchmarks/" style={{ color: '#764ba2', textDecoration: 'underline' }} target="_blank" rel="noopener noreferrer">piperocket.digital</a></li>
+                <li>DigitalApplied. &quot;LinkedIn Ads Benchmarks 2026: CPC, CTR, CVR by Industry.&quot; Vendor-stated; aggregated from LinkedIn Marketing Solutions, AdStage, Hootsuite, Demand Gen Report and HubSpot survey data cross-referenced with agency-managed accounts, Q1 2026 vs Q1 2025. <a href="https://www.digitalapplied.com/blog/linkedin-ads-benchmarks-2026-cpc-ctr-cvr-industry" style={{ color: '#764ba2', textDecoration: 'underline' }} target="_blank" rel="noopener noreferrer">digitalapplied.com</a></li>
+                <li>GrowthSpree. &quot;B2B SaaS LinkedIn Ads Benchmarks 2026.&quot; Vendor-stated; from management of $60M+ in ad spend across 300+ B2B SaaS accounts. Period and central-tendency method not published. <a href="https://www.growthspreeofficial.com/blogs/b2b-saas-linkedin-ads-benchmarks-2026-cpc-cpl-ctr-conversion-rate-by-vertical" style={{ color: '#764ba2', textDecoration: 'underline' }} target="_blank" rel="noopener noreferrer">growthspreeofficial.com</a></li>
                 <li>Sopro. B2B buyer research behavior data. 2025. Cited via SalesHive. <a href="https://saleshive.com/blog/b2b-lead-generation-use-google-adwords/" style={{ color: '#764ba2', textDecoration: 'underline' }} target="_blank" rel="noopener noreferrer">saleshive.com</a></li>
                 <li>Google Ads Help. "Smart Bidding: About bidding strategies." 2024. <a href="https://support.google.com/google-ads/answer/7065882" style={{ color: '#764ba2', textDecoration: 'underline' }} target="_blank" rel="noopener noreferrer">support.google.com</a></li>
               </ol>
