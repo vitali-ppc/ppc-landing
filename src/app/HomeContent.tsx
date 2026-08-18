@@ -319,9 +319,9 @@ const STYLES = `
 /* ── Data ──────────────────────────────────────────────────────────────── */
 const FEED = [
   { icon: "bid", who: "Buzz · Bidding", what: <>Cut bid −12% on <span className="kx-rnum">&ldquo;winter boots&rdquo;</span> · CPA <span className="kx-rnum">$42&rarr;$31</span></>, chip: "applied", cls: "ok" },
-  { icon: "shield", who: "Aegis · Risk", what: <>Held budget <span className="kx-rnum">+40%</span> on Campaign 3 &mdash; auction volatile today</>, chip: "held", cls: "hold" },
+  { icon: "shield", who: "Aegis · Risk", what: <>Held budget <span className="kx-rnum">+40%</span> on Campaign 3, auction volatile today</>, chip: "held", cls: "hold" },
   { icon: "bid", who: "Buzz · Bidding", what: <>Paused 3 search terms · <span className="kx-rnum">$86/wk</span> wasted spend recovered</>, chip: "applied", cls: "ok" },
-  { icon: "chart", who: "Echo · Reporting", what: <>Weekly digest ready &mdash; ROAS <span className="kx-rnum">3.1&rarr;3.6</span> across 4 campaigns</>, chip: "sent", cls: "sent" },
+  { icon: "chart", who: "Echo · Reporting", what: <>Weekly digest ready: ROAS <span className="kx-rnum">3.1&rarr;3.6</span> across 4 campaigns</>, chip: "sent", cls: "sent" },
 ];
 
 const TEAM = [
@@ -403,7 +403,7 @@ const Hero: React.FC = () => (
         <p className="kx-pain">ROAS tanked overnight? pMax burning budget? Agency invoice, zero answers?</p>
         <h1 className="kx-h1">Your PPC agency.<br />In a cabinet.</h1>
         <p className="kx-sub">
-          Seven AI agents run your Google Ads &mdash; bidding, budget, creative, reporting.
+          Seven AI agents run your Google Ads: bidding, budget, creative, reporting.
           You watch <strong>every move</strong> in real time. Approve the big calls;
           the rest runs while you sleep.
         </p>

@@ -7,27 +7,16 @@ import Footer from '../../components/Footer';
 import { formatNiche } from '../../../utils/seo';
 import React from 'react';
 
+// Only niches with a real page. The 16 'Coming Soon' stubs were removed on
+// 2026-08-18: they advertised verticals the site has no content for, and the
+// decision recorded in ADTURBO-2.0 5f is that niche pages come later and with
+// real text, not from a template. An empty promise on a live page is worse than
+// no card.
 const niches = [
   { slug: 'dentist', name: 'Dentist', hasPage: true },
   { slug: 'lawyer', name: 'Lawyers', hasPage: true },
   { slug: 'real-estate', name: 'Real Estate', hasPage: true },
   { slug: 'saas', name: 'SaaS', hasPage: true },
-  { slug: 'plumber', name: 'Plumbers', hasPage: false },
-  { slug: 'roofer', name: 'Roofers', hasPage: false },
-  { slug: 'electrician', name: 'Electricians', hasPage: false },
-  { slug: 'gym', name: 'Gyms & Fitness Studios', hasPage: false },
-  { slug: 'therapist', name: 'Therapists & Counselors', hasPage: false },
-  { slug: 'ecommerce', name: 'Ecommerce Stores', hasPage: false },
-  { slug: 'wedding-photographer', name: 'Wedding Photographers', hasPage: false },
-  { slug: 'home-cleaning', name: 'Home Cleaning Services', hasPage: false },
-  { slug: 'digital-agency', name: 'Digital Agencies', hasPage: false },
-  { slug: 'auto-repair', name: 'Auto Repair Shops', hasPage: false },
-  { slug: 'pet-services', name: 'Pet Services', hasPage: false },
-  { slug: 'education-courses', name: 'Education Courses', hasPage: false },
-  { slug: 'cosmetic-clinic', name: 'Cosmetic Clinics', hasPage: false },
-  { slug: 'moving-company', name: 'Moving Companies', hasPage: false },
-  { slug: 'hvac', name: 'HVAC Services', hasPage: false },
-  { slug: 'chiropractor', name: 'Chiropractors', hasPage: false },
 ];
 
 // 2. IconLawyer как отдельный компонент
