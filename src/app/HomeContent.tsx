@@ -161,6 +161,11 @@ const STYLES = `
 .kx-sub strong{ color:var(--text); }
 .kx-cta-row{ display:flex; gap:12px; flex-wrap:wrap; margin-bottom:30px; }
 
+.kx-trust{ list-style:none; margin:22px 0 0; padding:0; display:flex; flex-wrap:wrap; gap:10px 18px; }
+.kx-trust li{ position:relative; padding-left:22px; font-size:14px; line-height:1.45; color:var(--ink-2, #475569); }
+.kx-trust li::before{ content:""; position:absolute; left:0; top:6px; width:12px; height:12px; border-radius:99px;
+  border:2px solid var(--teal, #14b8a6); }
+@media (max-width:720px){ .kx-trust{ flex-direction:column; gap:8px; } }
 /* economic wedge */
 .kx-wedge{ display:grid; grid-template-columns:repeat(3,1fr); gap:10px; max-width:560px; }
 .kx-wcell{ border:1px solid var(--border); border-radius:12px; padding:13px 14px;
@@ -412,6 +417,16 @@ const Hero: React.FC = () => (
           <a className="kx-btn kx-btn-ghost" href="/b6">Watch the agents work</a>
         </div>
 
+        {/* Four facts, each one checkable on the product itself. No customer
+            counts, no ratings, no badges we have not earned: an unearned trust
+            row costs more than an empty one. */}
+        <ul className="kx-trust" aria-label="What you are agreeing to">
+          <li>Your Google Ads account, connected by OAuth and still in your name</li>
+          <li>Nothing executes until you approve it</li>
+          <li>Billing is not open yet, so there is nothing to cancel</li>
+          <li>Founding access is free while it stays that way</li>
+        </ul>
+
         <div className="kx-wedge" role="group" aria-label="Cost comparison">
           <div className="kx-wcell">
             <div className="kx-wlabel">Agency</div>
@@ -435,7 +450,10 @@ const Hero: React.FC = () => (
       <div className="kx-feed" aria-label="Example of agent activity">
         <div className="kx-feed-top">
           <div className="kx-feed-title"><span className="kx-ttl-ic" aria-hidden><AgentIcon id="bid" /></span> Agent activity</div>
-          <span className="kx-live">live</span>
+          {/* The rows below are an illustration of the kind of call each agent
+              makes, not a feed of live accounts. The badge used to read "live",
+              which turned the sample numbers into claims. */}
+          <span className="kx-live">example</span>
         </div>
         <div className="kx-feed-body">
           {FEED.map((r, i) => (
@@ -490,14 +508,14 @@ const MeetTheTeam: React.FC = () => (
   <section className="kx-sec" id="team">
     <div className="kx-sec-in">
       <h2 className="kx-h2">Meet your agency</h2>
-      <p className="kx-sec-sub">Each agent is a specialist with one job. Two are live today; the rest ship as the cabinet grows.</p>
+      <p className="kx-sec-sub">Each agent is a specialist with one job. Buzz and Aegis run on live accounts today. The rest are built in the same order you would hire them.</p>
       <div className="kx-grid-auto">
         {TEAM.map((m) => (
           <div key={m.name} className={`kx-agent ${m.status === "live" ? "live" : "soon"}`}>
             <div className="kx-ic" aria-hidden><AgentIcon id={m.icon} /></div>
             <div className="nm">
               <span>{m.name}</span>
-              <span className={`kx-stat ${m.status === "live" ? "l" : "s"}`}>{m.status === "live" ? "LIVE" : "SOON"}</span>
+              <span className={`kx-stat ${m.status === "live" ? "l" : "s"}`}>{m.status === "live" ? "LIVE" : "NEXT"}</span>
             </div>
             <div className="ro">{m.role}</div>
             <div className="de">{m.desc}</div>
