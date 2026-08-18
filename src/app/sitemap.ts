@@ -29,6 +29,7 @@ const STATIC_ROUTES: Array<{
   { path: '/b6', changeFrequency: 'weekly', priority: 0.9 },
   { path: '/pricing', changeFrequency: 'monthly', priority: 0.7 },
   { path: '/replace-google-ads-agency', changeFrequency: 'monthly', priority: 0.8 },
+  { path: '/fix-google-ads-account', changeFrequency: 'monthly', priority: 0.8 },
   { path: '/chat', changeFrequency: 'monthly', priority: 0.5 },
   { path: '/terms-of-service', changeFrequency: 'yearly', priority: 0.3 },
   { path: '/privacy-policy', changeFrequency: 'yearly', priority: 0.3 },

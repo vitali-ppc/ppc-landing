@@ -235,6 +235,7 @@ export default function Header({ variant = 'full' }: HeaderProps) {
                 </div>
               </div>
               <a href="/replace-google-ads-agency">Agency alternative</a>
+              <a href="/fix-google-ads-account">Fix my account</a>
               <a href="/blog">Blog</a>
               <a href="/pricing">Pricing</a>
             </nav>
@@ -320,6 +321,7 @@ export default function Header({ variant = 'full' }: HeaderProps) {
              </div>
            </li>
            <li><a href="/replace-google-ads-agency">Agency alternative</a></li>
+           <li><a href="/fix-google-ads-account">Fix my account</a></li>
            <li><a href="/blog">Blog</a></li>
            <li><a href="/pricing">Pricing</a></li>
          </ul>
