@@ -437,11 +437,11 @@ export default function ArticleContent() {
                 </div>
                 <div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: '12px', padding: '20px 24px' }}>
                   <p style={{ fontSize: '17px', fontWeight: 700, color: '#1e293b', marginBottom: '8px' }}>How much does B2B PPC cost?</p>
-                  <p style={{ fontSize: '16px', lineHeight: '1.7', color: '#1e293b', margin: 0 }}>B2B cost per lead is typically much higher than B2C because the audience is narrower and the intent more valuable, but a single benchmark number is misleading: a $40 CPL that never closes is more expensive than a $300 CPL that does. Judge cost at the closed-won level. The full economics are worked through in <a href="/blog/is-google-ads-worth-it-for-b2b-saas" style={linkStyle}>is Google Ads worth it for B2B SaaS</a>.</p>
+                  <p style={{ fontSize: '16px', lineHeight: '1.7', color: '#1e293b', margin: 0 }}>B2B cost per lead is typically much higher than B2C because the audience is narrower and the intent more valuable, but a single benchmark number is misleading: a $40 CPL that never closes is more expensive than a $300 CPL that does. Judge cost at the closed-won level. The full economics are worked through in is Google Ads worth it for B2B SaaS.</p>
                 </div>
                 <div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: '12px', padding: '20px 24px' }}>
                   <p style={{ fontSize: '17px', fontWeight: 700, color: '#1e293b', marginBottom: '8px' }}>Should you use <a href="/blog/performance-max-problems-b2b-marketing" style={linkStyle}>Performance Max for B2B</a> lead generation?</p>
-                  <p style={{ fontSize: '16px', lineHeight: '1.7', color: '#1e293b', margin: 0 }}>Use it with caution and only behind a strong conversion feedback loop. Without CRM outcomes feeding bidding, PMax tends to optimize toward cheap, low-quality leads in B2B. The detailed diagnosis is in <a href="/blog/performance-max-not-converting" style={linkStyle}>why Performance Max is not converting</a>.</p>
+                  <p style={{ fontSize: '16px', lineHeight: '1.7', color: '#1e293b', margin: 0 }}>Use it with caution and only behind a strong conversion feedback loop. Without CRM outcomes feeding bidding, PMax tends to optimize toward cheap, low-quality leads in B2B. The detailed diagnosis is in why Performance Max is not converting.</p>
                 </div>
               </div>
             </section>

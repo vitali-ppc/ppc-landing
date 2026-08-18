@@ -755,9 +755,9 @@ export default function ArticleContent() {
                 <p style={pStyle}>
                   CPQL is typically 3-5x your raw CPL because most form fills do not pass the sales qualification bar. Judge it
                   against pipeline-CAC and average contract value, not against CPL. For benchmarks by vertical, see our{' '}
-                  <a href="/blog/b2b-saas-google-ads-benchmarks-2026" style={linkStyle}>
+                  
                     B2B SaaS Google Ads benchmarks for 2026
-                  </a>
+                  
                   . Google requires at least 15 conversions in the last 30 days before switching Smart Bidding to a downstream
                   goal like &quot;qualified lead&quot; (
                   <a href="https://support.google.com/google-ads/answer/13489421?hl=en" style={linkStyle} target="_blank" rel="noopener noreferrer">

@@ -341,7 +341,7 @@ export default function ArticleContent() {
                       <td style={{ padding: '12px 14px', color: '#1e293b', verticalAlign: 'top' }}>Learning phase restarts repeatedly</td>
                       <td style={{ padding: '12px 14px', color: '#1e293b', verticalAlign: 'top' }}>Too many changes during the learning window</td>
                       <td style={{ padding: '12px 14px', color: '#1e293b', verticalAlign: 'top' }}>Pause all changes until Smart Bidding reaches sufficient conversion volume</td>
-                      <td style={{ padding: '12px 14px', verticalAlign: 'top' }}><a href="/blog/google-ads-not-spending-full-budget" style={linkStyle}>when your campaign won&apos;t spend its full budget</a></td>
+                      <td style={{ padding: '12px 14px', verticalAlign: 'top' }}>when your campaign won&apos;t spend its full budget</td>
                     </tr>
                   </tbody>
                 </table>
@@ -371,7 +371,7 @@ export default function ArticleContent() {
 
               <p style={paragraphStyle}>The measurement pillar covers four components:</p>
               <ul style={{ paddingLeft: '24px', marginBottom: '24px' }}>
-                <li style={liStyle}><strong>Conversion tracking integrity:</strong> No duplicate conversion actions, correct counting (one-per-click for lead gen, every conversion for e-commerce), server-side tracking where client-side is blocked. One operator recovered 53% of previously unmeasured revenue after implementing server-side tagging (<a href="https://stape.io/blog/improve-google-ads-performance" target="_blank" rel="noopener noreferrer" style={linkStyle}>Stape&apos;s 2026 analysis</a>). See the full fix sequence <a href="/blog/google-ads-conversion-tracking-not-working" style={linkStyle}>when conversion tracking stops working</a>.</li>
+                <li style={liStyle}><strong>Conversion tracking integrity:</strong> No duplicate conversion actions, correct counting (one-per-click for lead gen, every conversion for e-commerce), server-side tracking where client-side is blocked. One operator recovered 53% of previously unmeasured revenue after implementing server-side tagging (<a href="https://stape.io/blog/improve-google-ads-performance" target="_blank" rel="noopener noreferrer" style={linkStyle}>Stape&apos;s 2026 analysis</a>). See the full fix sequence when conversion tracking stops working.</li>
                 <li style={liStyle}><strong>Conversion values:</strong> For Target ROAS or Maximize Conversion Value, every conversion must carry an accurate value. Missing or flat values turn value bidding into volume bidding, you&apos;re asking the algorithm to optimize for something it can&apos;t see.</li>
                 <li style={liStyle}><strong>Attribution model:</strong> Data-driven attribution (DDA) is the current Google default and generally the right choice. Last-click attribution systematically undercredits upper-funnel activity and changes which campaigns appear to be working. <a href="/blog/google-ads-attribution-models-guide" style={linkStyle}>Pick the right attribution model</a> before optimizing to its output.</li>
                 <li style={liStyle}><strong>Anomaly detection:</strong> A tracking break undetected for seven days corrupts a full week of Smart Bidding learning data. Automated alerts, through Google Ads or an external monitoring layer, <a href="/blog/google-ads-anomaly-detection" style={linkStyle}>catch a tracking break early with anomaly detection</a> before they distort decisions.</li>
@@ -405,7 +405,7 @@ export default function ArticleContent() {
               </MascotQuote>
 
               <p style={paragraphStyle}>
-                When CPC is your primary constraint, the root cause is usually Quality Score, match type leakage, or auction competition, not the bid strategy itself. Raising bids to win expensive auctions compounds the problem rather than fixing it. See the full diagnostic in <a href="/blog/google-ads-cost-per-click-too-high" style={linkStyle}>when CPC is your real constraint</a>.
+                When CPC is your primary constraint, the root cause is usually Quality Score, match type leakage, or auction competition, not the bid strategy itself. Raising bids to win expensive auctions compounds the problem rather than fixing it. See the full diagnostic in when CPC is your real constraint.
               </p>
             </section>
 

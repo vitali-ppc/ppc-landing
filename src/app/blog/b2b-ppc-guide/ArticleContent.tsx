@@ -353,7 +353,7 @@ export default function ArticleContent() {
               </p>
               <p style={para}>
                 Founders asking whether any of this is worth funding at all should start with{' '}
-                <a href="/blog/is-google-ads-worth-it-for-b2b-saas" style={internalLink}>is Google Ads worth it for B2B SaaS?</a> We are keeping this section at definition depth on purpose.
+                is Google Ads worth it for B2B SaaS? We are keeping this section at definition depth on purpose.
               </p>
             </section>
 
@@ -465,7 +465,7 @@ export default function ArticleContent() {
 
               <p style={para}>
                 For the deep channel comparison, see{' '}
-                <a href="/blog/linkedin-ads-vs-google-ads-b2b-lead-generation" style={internalLink}>LinkedIn Ads vs Google Ads for B2B lead generation</a> and{' '}
+                LinkedIn Ads vs Google Ads for B2B lead generation and{' '}
                 <a href="/blog/b2b-ppc-advertising" style={internalLink}>B2B PPC advertising</a>.
               </p>
             </section>
@@ -482,7 +482,7 @@ export default function ArticleContent() {
               </p>
               <p style={para}>
                 We are keeping this section at map depth on purpose. The full account-structure build, tier by tier, lives in{' '}
-                <a href="/blog/b2b-saas-google-ads-campaign-structure" style={internalLink}>B2B SaaS Google Ads campaign structure</a>, and the layer above structure, how to scale a working account without breaking its signal, lives in{' '}
+                B2B SaaS Google Ads campaign structure, and the layer above structure, how to scale a working account without breaking its signal, lives in{' '}
                 <a href="/blog/b2b-ppc-strategy" style={internalLink}>B2B PPC strategy</a>.
               </p>
             </section>
@@ -515,7 +515,7 @@ export default function ArticleContent() {
               <p style={para}>
                 For the deep keyword-to-lead mechanics, see{' '}
                 <a href="/blog/b2b-google-ads-lead-generation" style={internalLink}>B2B Google Ads lead generation</a> and{' '}
-                <a href="/blog/b2b-ppc-lead-generation" style={internalLink}>B2B PPC lead generation</a>.
+                B2B PPC lead generation.
               </p>
             </section>
 
@@ -562,7 +562,7 @@ export default function ArticleContent() {
 
               <p style={para}>
                 For the deep fix when leads are already coming in low-quality, see{' '}
-                <a href="/blog/b2b-google-ads-low-quality-leads" style={internalLink}>fixing low-quality B2B Google Ads leads</a>.
+                fixing low-quality B2B Google Ads leads.
               </p>
             </section>
 
@@ -586,7 +586,7 @@ export default function ArticleContent() {
               </p>
               <p style={para}>
                 For the deeper economics question, whether the math works at all for a given SaaS business, see{' '}
-                <a href="/blog/is-google-ads-worth-it-for-b2b-saas" style={internalLink}>is Google Ads worth it for B2B SaaS?</a>
+                is Google Ads worth it for B2B SaaS?
               </p>
             </section>
 
@@ -603,7 +603,7 @@ export default function ArticleContent() {
               </p>
               <p style={para}>
                 The full measurement-and-scale layer, including how to know when an account is ready to move up in budget, lives in{' '}
-                <a href="/blog/b2b-ppc-strategy" style={internalLink}>B2B PPC strategy</a>.
+                B2B PPC strategy.
               </p>
             </section>
 

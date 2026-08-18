@@ -437,7 +437,7 @@ export default function ArticleContent() {
               </ul>
 
               <p style={pStyle}>
-                A clean test answers the question this article is asking, with real numbers from your account instead of someone else&apos;s benchmark. Once it pays back, scaling is a known quantity. Once it doesn&apos;t, you saved a quarter&apos;s budget. For the actual account build, see the <a href="/blog/google-ads-for-b2b-saas" style={linkStyle}>complete operator&apos;s playbook for Google Ads</a>.
+                A clean test answers the question this article is asking, with real numbers from your account instead of someone else&apos;s benchmark. Once it pays back, scaling is a known quantity. Once it doesn&apos;t, you saved a quarter&apos;s budget. For the actual account build, see the complete operator&apos;s playbook for Google Ads.
               </p>
               <p style={pStyle}>
                 One critical setup step before you launch: connect your CRM&apos;s pipeline signal back to Google Ads via offline conversion import. Without it, <a href="/blog/google-ads-smart-bidding-strategies" style={linkStyle}>Smart Bidding</a> optimizes on raw form-fills and you can&apos;t measure the test accurately. Google&apos;s <a href="https://support.google.com/google-ads/answer/2998031" style={linkStyle} target="_blank" rel="noopener noreferrer">guide to importing offline conversions</a> covers the setup in full. The same gap is why <a href="/blog/b2b-google-ads-low-quality-leads" style={linkStyle}>B2B Google Ads produces low-quality leads</a> when the loop is missing.
@@ -454,7 +454,7 @@ export default function ArticleContent() {
                 </div>
                 <div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: '12px', padding: '20px 24px' }}>
                   <p style={{ fontSize: '17px', fontWeight: 700, color: '#1e293b', marginBottom: '8px' }}>How much does Google Ads cost for B2B SaaS?</p>
-                  <p style={{ fontSize: '16px', lineHeight: '1.7', color: '#1e293b', margin: 0 }}><a href="https://www.poweredbysearch.com/learn/b2b-saas-google-ads-stats-benchmarks/" style={linkStyle} target="_blank" rel="noopener noreferrer">Powered by Search&apos;s 2026 B2B benchmark</a> puts the average CPC at $4.22 and average CPL at $53.52, but competitive SaaS terms regularly run $10-30+ per click. After sales filters out unqualified leads, cost-per-qualified-opportunity is a multiple of CPL. A real validation test runs ~$2-5K over 4-6 weeks. For full segmented ranges, see our <a href="/blog/b2b-saas-google-ads-benchmarks-2026" style={linkStyle}>B2B SaaS Google Ads benchmarks</a>.</p>
+                  <p style={{ fontSize: '16px', lineHeight: '1.7', color: '#1e293b', margin: 0 }}><a href="https://www.poweredbysearch.com/learn/b2b-saas-google-ads-stats-benchmarks/" style={linkStyle} target="_blank" rel="noopener noreferrer">Powered by Search&apos;s 2026 B2B benchmark</a> puts the average CPC at $4.22 and average CPL at $53.52, but competitive SaaS terms regularly run $10-30+ per click. After sales filters out unqualified leads, cost-per-qualified-opportunity is a multiple of CPL. A real validation test runs ~$2-5K over 4-6 weeks. For full segmented ranges, see our B2B SaaS Google Ads benchmarks.</p>
                 </div>
                 <div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: '12px', padding: '20px 24px' }}>
                   <p style={{ fontSize: '17px', fontWeight: 700, color: '#1e293b', marginBottom: '8px' }}>Why are my B2B SaaS Google Ads leads low quality?</p>
@@ -462,7 +462,7 @@ export default function ArticleContent() {
                 </div>
                 <div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: '12px', padding: '20px 24px' }}>
                   <p style={{ fontSize: '17px', fontWeight: 700, color: '#1e293b', marginBottom: '8px' }}>Is Google Ads or LinkedIn Ads better for B2B SaaS?</p>
-                  <p style={{ fontSize: '16px', lineHeight: '1.7', color: '#1e293b', margin: 0 }}>Google Ads captures existing demand (people searching for your category). LinkedIn Ads creates demand (reaching buyers by job title before they search). If demand already exists and your ACV supports the math, start with Google. If your category is new or ACV is low, LinkedIn or content comes first. The full trade-off is in our <a href="/blog/linkedin-ads-vs-google-ads-b2b-lead-generation" style={linkStyle}>LinkedIn Ads vs Google Ads for B2B</a> comparison.</p>
+                  <p style={{ fontSize: '16px', lineHeight: '1.7', color: '#1e293b', margin: 0 }}>Google Ads captures existing demand (people searching for your category). LinkedIn Ads creates demand (reaching buyers by job title before they search). If demand already exists and your ACV supports the math, start with Google. If your category is new or ACV is low, LinkedIn or content comes first. The full trade-off is in our LinkedIn Ads vs Google Ads for B2B comparison.</p>
                 </div>
                 <div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: '12px', padding: '20px 24px' }}>
                   <p style={{ fontSize: '17px', fontWeight: 700, color: '#1e293b', marginBottom: '8px' }}>How long before Google Ads shows results for B2B SaaS?</p>

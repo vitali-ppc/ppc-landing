@@ -612,7 +612,7 @@ export default function ArticleContent() {
 
               <h3 style={h3Style}>Can you do B2B lead generation with only Google Ads?</h3>
               <p style={paraStyle}>
-                Yes, for categories with strong bottom-funnel search demand, mature buyer awareness, and ACV under $20K. The fix requires offline conversion imports and value-based bidding so Smart Bidding optimizes for revenue-grade leads rather than raw form fills. See the <a href="/blog/b2b-google-ads-low-quality-leads" style={linkStyle}>B2B Google Ads low-quality leads playbook</a> for the configuration steps.
+                Yes, for categories with strong bottom-funnel search demand, mature buyer awareness, and ACV under $20K. The fix requires offline conversion imports and value-based bidding so Smart Bidding optimizes for revenue-grade leads rather than raw form fills. See the B2B Google Ads low-quality leads playbook for the configuration steps.
               </p>
 
               <h3 style={h3Style}>How long until LinkedIn Ads B2B campaigns show meaningful results?</h3>
