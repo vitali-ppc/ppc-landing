@@ -381,6 +381,7 @@ const TopBar: React.FC = () => (
         <a className="kx-navlink" href="#how">How it works</a>
         <a className="kx-navlink" href="#team">The agents</a>
         <a className="kx-navlink" href="#pricing">Pricing</a>
+        <a className="kx-navlink" href="/replace-google-ads-agency">Agency alternative</a>
         <a className="kx-navlink" href="/blog">Blog</a>
       </nav>
       <div className="kx-bar-cta">
