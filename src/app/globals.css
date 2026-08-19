@@ -1468,3 +1468,13 @@ body {
   from { transform: translateY(30px); opacity: 0; }
   to { transform: translateY(0); opacity: 1; }
 }
+/* Tailwind v4 removed the browser default `cursor: pointer` on <button>.
+   Restores it site-wide; :disabled deliberately keeps the default arrow.
+   Found 2026-08-19 by the Argus knowledge check (Google agent-friendly Rule 5)
+   independently on three sites; the affected buttons include the sites' only
+   conversion CTAs. */
+@layer base {
+  button:not(:disabled) {
+    cursor: pointer;
+  }
+}
