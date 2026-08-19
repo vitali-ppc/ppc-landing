@@ -383,7 +383,7 @@ export default function ArticleContent() {
                 One structural reality: a single account manager often oversees 10-20 client accounts, so a small account rarely gets the senior strategist. Fit matters more than the headline rate.
               </p>
               <p style={paragraphStyle}>
-                For the full numbers, read <a href="/blog/google-ads-agency-pricing" style={linkStyle}>the full breakdown of Google Ads agency pricing</a> and what PPC management actually costs.
+                For the full numbers, read <a href="/blog/google-ads-agency-pricing" style={linkStyle}>the full breakdown of Google Ads agency pricing</a> and what <a href="/blog/ppc-management" style={{ color: '#764ba2', textDecoration: 'underline' }}>PPC management</a> actually costs.
               </p>
             </section>
 

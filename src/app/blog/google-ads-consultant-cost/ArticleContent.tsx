@@ -17,7 +17,7 @@ export default function ArticleContent() {
     '@context': 'https://schema.org',
     '@type': 'Article',
     '@id': 'https://www.kampaio.com/blog/google-ads-consultant-cost#article',
-    headline: 'Google Ads Consultant Cost: What to Pay (and When Software or DIY Beats Hiring One)',
+    headline: 'Hire a Google Ads Consultant: Cost, Rates and Salary',
     description:
       'A Google Ads consultant costs $75-250/hour or $500-5,000/month, but the rate is the wrong question. Here are the honest ranges, the break-even math, and a neutral consultant vs agency vs software vs DIY grid for a lean B2B team.',
     image: 'https://www.kampaio.com/og/google-ads-consultant-cost.png',
@@ -104,7 +104,7 @@ export default function ArticleContent() {
       {
         '@type': 'ListItem',
         position: 3,
-        name: 'Google Ads Consultant Cost: What to Pay (and When Software or DIY Beats Hiring One)',
+        name: 'Hire a Google Ads Consultant: Cost, Rates and Salary',
         item: 'https://www.kampaio.com/blog/google-ads-consultant-cost',
       },
     ],
@@ -183,7 +183,7 @@ export default function ArticleContent() {
               Strategy &middot; Google Ads
             </div>
             <h1 style={{ fontSize: 'clamp(32px, 4vw, 48px)', fontWeight: 800, color: '#1e293b', marginBottom: '24px', lineHeight: '1.2' }}>
-              Google Ads Consultant Cost: What to Pay (and When Software or DIY Beats Hiring One)
+              Hire a Google Ads Consultant: Cost, Rates and Salary
             </h1>
             <p style={{ fontSize: '20px', color: '#64748b', marginBottom: '32px', lineHeight: '1.6', fontWeight: 500 }}>
               The rate card is the wrong question. What decides a fair fee is how much recoverable spend it claws back at your budget, and here is the math for every spend level.

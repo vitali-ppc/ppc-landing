@@ -16,7 +16,7 @@ export default function ArticleContent() {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
-    headline: 'B2B SaaS Google Ads Benchmarks 2026: CTR, CPC, CPA, and ROAS by Segment',
+    headline: 'B2B SaaS Google Ads Benchmarks 2026: CPC, CPA vs LinkedIn',
     description: 'B2B SaaS Google Ads benchmarks for 2026: average CPC $5.34 (up 29% YoY), CPA $87-$1,500+ by segment, conversion rate 3-5%. Real data from 2,000+ SaaS campaigns to tell you if your numbers are on target.',
     image: 'https://kampaio.com/og/b2b-saas-google-ads-benchmarks-2026.png',
     author: {
@@ -352,7 +352,7 @@ export default function ArticleContent() {
               B2B Marketing · Benchmarks 2026
             </div>
             <h1 style={{ fontSize: 'clamp(28px, 4vw, 46px)', fontWeight: '800', color: '#1e293b', marginBottom: '24px', lineHeight: '1.2' }}>
-              B2B SaaS Google Ads Benchmarks 2026: CTR, CPC, CPA, and ROAS by Segment
+              B2B SaaS Google Ads Benchmarks 2026: CPC, CPA vs LinkedIn
             </h1>
             <p style={{ fontSize: '20px', color: '#64748b', marginBottom: '32px', lineHeight: '1.6', fontWeight: '500' }}>
               Real data from 2,000+ SaaS campaigns to tell you whether your CPC, CVR, CPL, and ROAS are on target, above, or below the market for your segment.

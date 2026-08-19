@@ -549,7 +549,7 @@ export default function ArticleContent() {
               <p style={para}>Plan for the sales cycle. On a 90-180 day cycle, expect 60-90 days before pipeline-attributed performance is readable. Offline conversion import compresses the feedback lag from 90+ days to the latency of your MQL or SQL stage.</p>
 
               <h3 style={{ fontSize: '20px', fontWeight: 700, color: '#1e293b', marginTop: '28px', marginBottom: '12px' }}>Should I use Performance Max for B2B SaaS?</h3>
-              <p style={para}>Only after your offline-conversion feedback loop is confirmed with SQL-weighted values. Without that signal, pMax scales junk at full speed. See Performance Max Problems in B2B Marketing for the failure modes and correct sequencing.</p>
+              <p style={para}>Only after your offline-conversion feedback loop is confirmed with SQL-weighted values. Without that signal, pMax scales junk at full speed. See <a href="/blog/performance-max-not-converting" style={{ color: '#764ba2', textDecoration: 'underline' }}>Performance Max Problems</a> in B2B Marketing for the failure modes and correct sequencing.</p>
             </section>
 
             {/* Autopilot + CTA */}

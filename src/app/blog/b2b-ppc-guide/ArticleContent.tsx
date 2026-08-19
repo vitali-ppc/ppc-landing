@@ -734,7 +734,19 @@ export default function ArticleContent() {
           </div>
         </div>
 
-        <KeepReading slug="b2b-ppc-guide" category="b2b" />
+        {/* cluster-downlinks:START */}
+      <div style={{ marginTop: '2.5rem', paddingTop: '1.5rem', borderTop: '1px solid #e5e7eb' }}>
+        <p style={{ fontWeight: 600, marginBottom: '0.75rem' }}>Related in this cluster</p>
+        <ul style={{ listStyle: 'disc', paddingLeft: '1.25rem', margin: 0 }}>
+          <li style={{ marginBottom: '0.4rem' }}><a href="/blog/performance-max-problems-b2b-marketing" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>Why Performance Max Fails in B2B Marketing</a></li>
+          <li style={{ marginBottom: '0.4rem' }}><a href="/blog/google-ads-lead-quality-guide" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>How to Improve Lead Quality in Google Ads (Complete 2026 Guide)</a></li>
+          <li style={{ marginBottom: '0.4rem' }}><a href="/blog/b2b-saas-google-ads-benchmarks-2026" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>B2B SaaS Google Ads Benchmarks 2026: CTR, CPC, CPA, and ROAS by Segment</a></li>
+          <li style={{ marginBottom: '0.4rem' }}><a href="/blog/b2b-paid-search-agency" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>B2B Paid Search Agency: How to Tell If Yours Is Actually Working</a></li>
+        </ul>
+      </div>
+      {/* cluster-downlinks:END */}
+
+      <KeepReading slug="b2b-ppc-guide" category="b2b" />
         <Footer compact={true} />
       </div>
 

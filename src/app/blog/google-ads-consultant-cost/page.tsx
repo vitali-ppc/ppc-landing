@@ -2,14 +2,14 @@ import type { Metadata } from 'next';
 import ArticleContent from './ArticleContent';
 
 export const metadata: Metadata = {
-  title: 'Google Ads Consultant Cost: What to Pay (and When Software or DIY Beats Hiring One)',
+  title: 'Hire a Google Ads Consultant: Cost, Rates and Salary',
   description:
-    'A Google Ads consultant costs $75-250/hour or $500-5,000/month, but the rate is the wrong question. Here are the honest ranges, the break-even math, and a neutral consultant vs agency vs software vs DIY grid for a lean B2B team.',
+    'A Google Ads consultant costs $75-250/hour or $500-5,000/month. The honest ranges, the break-even math at your spend, and how it compares to an in-house salary.',
   alternates: {
     canonical: 'https://www.kampaio.com/blog/google-ads-consultant-cost',
   },
   openGraph: {
-    title: 'Google Ads Consultant Cost: What to Pay (and When Software or DIY Beats Hiring One)',
+    title: 'Hire a Google Ads Consultant: Cost, Rates and Salary',
     description:
       'The honest cost ranges for a Google Ads consultant, the break-even math at your spend, and a neutral consultant vs agency vs in-house vs software vs DIY grid.',
     url: 'https://www.kampaio.com/blog/google-ads-consultant-cost',
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Google Ads Consultant Cost: What to Pay (and When Software or DIY Beats Hiring One)',
+    title: 'Hire a Google Ads Consultant: Cost, Rates and Salary',
     description:
       'The honest cost ranges for a Google Ads consultant, the break-even math at your spend, and a neutral consultant vs agency vs software vs DIY grid.',
     images: ['/og/google-ads-consultant-cost.png'],
