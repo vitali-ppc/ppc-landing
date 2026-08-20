@@ -400,48 +400,43 @@ export default function ArticleContent() {
             <section id="ownership-models">
               <h2 style={h2}>The Four Ownership Models, Side by Side</h2>
               <p style={para}>
-                Four ownership models cover almost every real setup, and each one is defined by who holds System 1 and who holds System 2.
+                Four ownership models cover almost every real setup, and each one is defined by who holds System 1 and who holds System 2. Read the second column as Merchant Center first, campaigns second.
               </p>
 
               {/* VISUAL 4: ResponsiveTable : the four ownership models */}
               <ResponsiveTable
                 headers={[
                   'Model',
-                  'Merchant Center',
-                  'Campaigns',
-                  'Typical monthly cost',
-                  'Best-fit spend and catalog',
-                  'Biggest failure mode',
+                  'Merchant Center / Campaigns',
+                  'Cost per month',
+                  'Best fit',
+                  'Failure mode',
                 ]}
                 rows={[
                   [
                     <strong key="m1">Full-service Shopping specialist</strong>,
-                    'Agency',
-                    'Agency',
-                    '7-15% of spend plus a flat fee (OuterBox, 2026-08-20) or flat scoped pricing (ZATO, 2026-08-20)',
+                    'Agency / Agency',
+                    '7-15% of spend plus a flat fee (OuterBox, 2026-08-20), or flat scoped pricing (ZATO, 2026-08-20)',
                     'ZATO publicly targets $25,000 to $1,000,000/mo; large or volatile catalogs',
                     'At low spend the fee exceeds the margin it recovers',
                   ],
                   [
                     <strong key="m2">General PPC agency</strong>,
-                    'You, by default',
-                    'Agency',
+                    'You, by default / Agency',
                     'Similar fee, narrower scope; no page on this SERP publishes a separate rate',
                     'Shopping is a minority of spend and the feed is clean',
                     'Nobody owns the feed (Vysta, 2026-08-20)',
                   ],
                   [
                     <strong key="m3">In-house or owner-run with a feed tool</strong>,
-                    'You',
-                    'You',
-                    'ShoppingFeeder $20/$120/$500 per month; Channable Core EUR 59-89 per month; GoDataFeed $5 per 1,000 SKUs (vendor pricing pages, 2026-08-20)',
+                    'You / You',
+                    'ShoppingFeeder $20/$120/$500, Channable Core EUR 59-89, GoDataFeed $5 per 1,000 SKUs, all per month (vendor pricing pages, 2026-08-20)',
                     'Owner-operators with real time and a smaller catalog',
                     "Works until the catalog or the owner's calendar grows",
                   ],
                   [
                     <strong key="m4">Self-serve software on campaigns, you keep Merchant Center hygiene</strong>,
-                    'You',
-                    'Software',
+                    'You / Software',
                     'Kampaio published tiers $99/$199/$399 per month (2026-08-20)',
                     '$3,000-25,000/mo with a manageable catalog',
                     'Software does not fix a suspended Merchant Center account or argue a misrepresentation appeal',
