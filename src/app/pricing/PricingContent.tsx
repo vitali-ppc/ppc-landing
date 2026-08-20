@@ -60,7 +60,7 @@ const pricingJsonLd = {
   applicationSubCategory: 'Advertising Management',
   operatingSystem: 'Web',
   description:
-    'AI-powered Google Ads management platform. Three autonomy tiers: L1 Co-pilot $99/mo, L2 Approval $199/mo, L3 Autonomous $399/mo. Access is free for founding accounts while the agent team is being completed.',
+    'AI-powered Google Ads management platform. Three autonomy tiers: L1 Co-pilot, L2 Approval, L3 Autonomous. Free during early access; paid plans are not open yet.',
   url: 'https://www.kampaio.com/pricing',
   // Both publisher and provider reference the main Kampaio Organization
   // entity via @id, inheriting its 15-topic knowsAbout E-E-A-T signal.
@@ -73,11 +73,15 @@ const pricingJsonLd = {
   offers: plans.map((plan) => ({
     '@type': 'Offer',
     name: plan.name,
-    price: String(plan.price),
+    // Early access is free, so the offer price is 0. Shipping the old 99/199/399 here
+    // while the page says "Free" would put a price in the SERP that we do not charge.
+    price: '0',
     priceCurrency: 'USD',
     priceSpecification: {
       '@type': 'UnitPriceSpecification',
-      price: String(plan.price),
+      // Also 0: this is the SECOND place the price reaches the SERP. Fixing only the
+      // offer price above left 199 and 399 in the built HTML — verified in .next output.
+      price: '0',
       priceCurrency: 'USD',
       unitText: 'MONTH',
     },
@@ -233,13 +237,13 @@ export default function PricingContent() {
                       fontWeight: '800',
                       color: '#1e293b'
                     }}>
-                      ${plan.price}
+                      Free
                     </span>
                     <span style={{
                       fontSize: '20px',
                       color: '#64748b'
                     }}>
-                      /month
+                      during early access
                     </span>
                   </div>
                   <p style={{
@@ -248,7 +252,7 @@ export default function PricingContent() {
                     color: '#667eea',
                     fontWeight: 600
                   }}>
-                    Free during founding access
+                    No card. Paid plans open later; founding accounts keep this tier free.
                   </p>
                 </div>
 

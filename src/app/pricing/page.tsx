@@ -4,10 +4,10 @@ import PricingContent from './PricingContent';
 export const metadata: Metadata = {
   title: 'B6 Pricing: 3 Tiers of Google Ads AI Autonomy',
   description:
-    'B6 pricing: L1 $99 (assistant), L2 $199 (autopilot), L3 $399 (full autonomy). All tiers include 7 AI agents plus Aegis safety reviewer.',
+    'B6 pricing: three autonomy tiers, L1 assistant, L2 autopilot, L3 full autonomy. Free during early access; paid plans are not open yet.',
   alternates: { canonical: 'https://www.kampaio.com/pricing' },
   openGraph: {
-    title: 'B6 Pricing: $99 / $199 / $399 per month',
+    title: 'B6 Pricing: Free During Early Access',
     description:
       'Three tiers of autonomy. All include 7 AI agents + Aegis safety reviewer.',
     url: 'https://www.kampaio.com/pricing',
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'B6 Pricing: $99 / $199 / $399 per month',
+    title: 'B6 Pricing: Free During Early Access',
     description:
       'Three tiers of autonomy. All include 7 AI agents + Aegis safety reviewer.',
     images: ['/og/pricing.png'],
