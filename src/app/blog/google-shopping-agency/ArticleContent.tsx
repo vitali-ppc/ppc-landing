@@ -430,7 +430,7 @@ export default function ArticleContent() {
                   [
                     <strong key="m3">In-house or owner-run with a feed tool</strong>,
                     'You / You',
-                    'ShoppingFeeder $20/$120/$500, Channable Core EUR 59-89, GoDataFeed $5 per 1,000 SKUs, all per month (vendor pricing pages, 2026-08-20)',
+                    'ShoppingFeeder $20/$120/$500 and GoDataFeed $5 per 1,000 SKUs, both per month (vendor pricing pages, 2026-08-20)',
                     'Owner-operators with real time and a smaller catalog',
                     "Works until the catalog or the owner's calendar grows",
                   ],
@@ -642,7 +642,7 @@ export default function ArticleContent() {
                 <li style={{ marginBottom: '10px' }}>Google: <a href="https://support.google.com/google-ads/answer/10724817" style={linkStyle} target="_blank" rel="noopener noreferrer">About Performance Max</a> (verified 2026-08-20)</li>
                 <li style={{ marginBottom: '10px' }}>Google: <a href="https://support.google.com/merchants/answer/2906014" style={linkStyle} target="_blank" rel="noopener noreferrer">Promotions data specification</a> (verified 2026-08-20)</li>
                 <li style={{ marginBottom: '10px' }}>John Horn (StubGroup), Search Engine Land: <a href="https://searchengineland.com/fix-suspended-google-merchant-center-account-474404" style={linkStyle} target="_blank" rel="noopener noreferrer">How to fix a suspended Google Merchant Center account</a> (2026-04-16)</li>
-                <li style={{ marginBottom: '10px' }}>Feed tool pricing: <a href="https://www.shoppingfeeder.com/pricing" style={linkStyle} target="_blank" rel="noopener noreferrer">ShoppingFeeder</a>, <a href="https://www.channable.com/pricing" style={linkStyle} target="_blank" rel="noopener noreferrer">Channable</a>, <a href="https://www.godatafeed.com/pricing" style={linkStyle} target="_blank" rel="noopener noreferrer">GoDataFeed</a> (read 2026-08-20)</li>
+                <li style={{ marginBottom: '10px' }}>Feed tool pricing: <a href="https://www.shoppingfeeder.com/pricing" style={linkStyle} target="_blank" rel="noopener noreferrer">ShoppingFeeder</a>, <a href="https://www.godatafeed.com/pricing" style={linkStyle} target="_blank" rel="noopener noreferrer">GoDataFeed</a> (read 2026-08-20)</li>
                 <li style={{ marginBottom: 0 }}>Kampaio pricing: <a href="/pricing" style={linkStyle}>kampaio.com/pricing</a> (verified 2026-08-20)</li>
               </ul>
 
