@@ -139,15 +139,7 @@ export default function PricingContent() {
               Start as co-pilot where you approve every move, then graduate to autopilot
               when you trust the work. A fraction of a $2-5K/mo agency retainer.
             </p>
-            <p style={{
-              fontSize: '17px',
-              fontWeight: 600,
-              color: '#0f766e',
-              marginBottom: '24px'
-            }}>
-              Free while in beta. No card required. Paid plans come later, and founding
-              accounts keep their tier free.
-            </p>
+
 
             {/* Founding access notice: billing is not live yet, say so plainly */}
             <div style={{
@@ -176,11 +168,30 @@ export default function PricingContent() {
         margin: '0 auto',
         padding: '0 24px 96px'
       }}>
+        {/* One banner for all three tiers, not a "Free" repeated in every card:
+            three identical zeroes read as an unfinished price list. */}
+        <div style={{
+          marginTop: '48px',
+          padding: '18px 28px',
+          borderRadius: '14px',
+          background: 'linear-gradient(135deg, #0f766e 0%, #14b8a6 100%)',
+          color: '#fff',
+          textAlign: 'center',
+          boxShadow: '0 8px 24px rgba(15, 118, 110, 0.25)'
+        }}>
+          <div style={{ fontSize: '22px', fontWeight: 800, letterSpacing: '-0.01em' }}>
+            All three levels are free while B6 is in beta
+          </div>
+          <div style={{ fontSize: '15px', opacity: 0.92, marginTop: '6px' }}>
+            No card required. Paid plans come later, and founding accounts keep their level free.
+          </div>
+        </div>
+
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
           gap: '32px',
-          marginTop: '48px'
+          marginTop: '32px'
         }}>
           {plans.map((plan) => (
             <div
