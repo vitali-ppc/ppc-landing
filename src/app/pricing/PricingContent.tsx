@@ -141,23 +141,6 @@ export default function PricingContent() {
             </p>
 
 
-            {/* Founding access notice: billing is not live yet, say so plainly */}
-            <div style={{
-              display: 'inline-block',
-              padding: '14px 20px',
-              borderRadius: '12px',
-              background: 'rgba(102, 126, 234, 0.08)',
-              border: '1px solid rgba(102, 126, 234, 0.25)',
-              color: '#374151',
-              fontSize: '15px',
-              lineHeight: '1.55',
-              textAlign: 'left',
-              maxWidth: '560px'
-            }}>
-              <strong style={{ color: '#1e293b' }}>Founding access is free.</strong>{' '}
-              We are not charging yet. The prices below are what each tier will cost
-              once billing opens. Join the founding list and use it at no cost until then.
-            </div>
           </div>
         </div>
       </div>
@@ -183,7 +166,7 @@ export default function PricingContent() {
             All three levels are free while B6 is in beta
           </div>
           <div style={{ fontSize: '15px', opacity: 0.92, marginTop: '6px' }}>
-            No card required. Paid plans come later, and founding accounts keep their level free.
+            No card required. Paid plans come later.
           </div>
         </div>
 
