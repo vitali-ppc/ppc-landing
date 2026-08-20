@@ -11,9 +11,9 @@ import {
 
 const LEVELS: { value: AutonomyLevel; label: string; desc: string; price: string }[] = [
   { value: "l0", label: "L0 Observer", desc: "AI watches, does nothing", price: "free" },
-  { value: "l1", label: "L1 Co-pilot", desc: "Every action via approval", price: "$99" },
-  { value: "l2", label: "L2 Approval", desc: "Auto-apply once approved", price: "$199" },
-  { value: "l3", label: "L3 Autonomous", desc: "Full autonomy", price: "$399" },
+  { value: "l1", label: "L1 Co-pilot", desc: "Every action via approval", price: "Free" },
+  { value: "l2", label: "L2 Approval", desc: "Auto-apply once approved", price: "Free" },
+  { value: "l3", label: "L3 Autonomous", desc: "Full autonomy", price: "Free" },
 ];
 
 export const MaximusPanel: React.FC<{ onChange?: () => void }> = ({ onChange }) => {

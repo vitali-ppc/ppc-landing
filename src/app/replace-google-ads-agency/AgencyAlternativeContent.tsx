@@ -179,7 +179,7 @@ export default function AgencyAlternativeContent() {
             its own account, that is the whole difference.
           </p>
           <p style={{ fontSize: '17px', lineHeight: 1.6, color: '#475569', maxWidth: '760px' }}>
-            Tiers are $99, $199 and $399 a month depending on how much you want to approve by hand.
+            Three tiers, depending on how much you want to approve by hand. All of them are free during early access; paid plans are not open yet.
             Billing is not open yet; founding access is free until it is.{' '}
             <Link href="/pricing" style={{ color: '#667eea', textDecoration: 'underline' }}>
               See what each tier covers

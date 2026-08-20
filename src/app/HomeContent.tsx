@@ -341,19 +341,19 @@ const TEAM = [
 
 const TIERS = [
   {
-    name: "L1 Co-pilot", price: "$99", period: "/mo",
+    name: "L1 Co-pilot", price: "Free", period: "early access",
     desc: "AI suggests; you approve every move.",
     features: ["Buzz + Aegis active", "1 Google Ads account", "Approve every change", "Weekly digest", "Email support"],
     highlight: false,
   },
   {
-    name: "L2 Approval", price: "$199", period: "/mo",
+    name: "L2 Approval", price: "Free", period: "early access",
     desc: "AI acts; you approve only the big calls.",
     features: ["Everything in L1", "Auto-applies small changes", "Risk Agent enforcement", "Real-time alerts", "Priority support"],
     highlight: true,
   },
   {
-    name: "L3 Autonomous", price: "$399", period: "/mo",
+    name: "L3 Autonomous", price: "Free", period: "early access",
     desc: "Full autopilot. The agents run it.",
     features: ["Everything in L2", "Full autonomy", "Creative Agent (ad generation)", "Multi-platform (Meta, TikTok)", "Dedicated onboarding"],
     highlight: false,
@@ -440,8 +440,8 @@ const Hero: React.FC = () => (
           </div>
           <div className="kx-wcell is-b6">
             <div className="kx-wlabel">Kampaio</div>
-            <div className="kx-wprice">$99–399</div>
-            <div className="kx-wnote">/mo, it does the work</div>
+            <div className="kx-wprice">Free</div>
+            <div className="kx-wnote">early access, it does the work</div>
           </div>
         </div>
       </div>

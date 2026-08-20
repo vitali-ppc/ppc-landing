@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Kampaio: AI-Powered Google Ads Platform',
     description:
-      '7 AI agents work 24/7 on your Google Ads. Built for SMBs. From $99/month.',
+      '7 AI agents work 24/7 on your Google Ads. Built for SMBs. Free during early access.',
     url: 'https://www.kampaio.com',
     type: 'website',
     images: [
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Kampaio: AI-Powered Google Ads Platform',
     description:
-      '7 AI agents work 24/7 on your Google Ads. Built for SMBs. From $99/month.',
+      '7 AI agents work 24/7 on your Google Ads. Built for SMBs. Free during early access.',
     images: ['/og/home.png'],
   },
 };

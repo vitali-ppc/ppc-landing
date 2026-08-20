@@ -4,12 +4,12 @@ import B6Content from './B6Content';
 export const metadata: Metadata = {
   title: 'B6 Autonomous PPC Cabinet: AI Agents for Google Ads',
   description:
-    'B6 is an AI-agent team that manages Google Ads campaigns end-to-end. Buzz bids, Aegis reviews, Echo reports. From $99/month. Watch them work in real-time.',
+    'B6 is an AI-agent team that manages Google Ads campaigns end-to-end. Buzz bids, Aegis reviews, Echo reports. Free during early access. Watch them work in real-time.',
   alternates: { canonical: 'https://www.kampaio.com/b6' },
   openGraph: {
     title: 'B6: 7 AI Agents Running Your Google Ads',
     description:
-      'Autonomous PPC cabinet. Buzz, Aegis, Echo work 24/7. From $99/month.',
+      'Autonomous PPC cabinet. Buzz, Aegis, Echo work 24/7. Free during early access.',
     url: 'https://www.kampaio.com/b6',
     type: 'website',
     images: [
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'B6: 7 AI Agents Running Your Google Ads',
     description:
-      'Autonomous PPC cabinet. Buzz, Aegis, Echo work 24/7. From $99/month.',
+      'Autonomous PPC cabinet. Buzz, Aegis, Echo work 24/7. Free during early access.',
     images: ['/og/b6.png'],
   },
 };
