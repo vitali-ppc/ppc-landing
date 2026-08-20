@@ -958,7 +958,7 @@ flowchart TD
         <ul style={{ listStyle: 'disc', paddingLeft: '1.25rem', margin: 0 }}>
           <li style={{ marginBottom: '0.4rem' }}><a href="/blog/google-ads-account-restructure" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>Google Ads Account Restructure: The 4-Phase Playbook (2026)</a></li>
           <li style={{ marginBottom: '0.4rem' }}><a href="/blog/ppc-management" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>PPC Management: How In-House Teams Actually Run Paid Search (2026 Guide)</a></li>
-          <li style={{ marginBottom: '0.4rem' }}><a href="/blog/ppc-management-cost" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>How Much Does PPC Management Cost? A Real Breakdown for DTC Owners (2026)</a></li>
+          <li style={{ marginBottom: '0.4rem' }}><a href="/blog/ppc-management-cost" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>PPC Management Pricing: What Agencies Actually Charge (2026)</a></li>
           <li style={{ marginBottom: '0.4rem' }}><a href="/blog/how-to-switch-google-ads-agencies" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>How to Switch Google Ads Agencies Without Losing Your Account or Your Data</a></li>
         </ul>
       </div>

@@ -44,6 +44,8 @@ export default function ArticleContent() {
     },
     keywords: 'google ads consultant, google ads consultant cost, hire google ads consultant, ppc consultant, freelance google ads, google ads expert, retainer, percent of spend, red flags, account ownership, google ads consultant vs agency',
     inLanguage: 'en',
+    "wordCount": 2292,
+    "articleSection": "Strategy"
   };
 
   const breadcrumbSchema = {

@@ -43,6 +43,8 @@ export default function ArticleContent() {
     },
     keywords: 'is google ads worth it for b2b saas, google ads b2b saas, b2b saas cpl, cpl to cac, google ads decision framework, b2b saas ppc, google ads test budget, offline conversion import',
     inLanguage: 'en',
+    "wordCount": 1828,
+    "articleSection": "B2B Marketing"
   };
 
   const breadcrumbSchema = {

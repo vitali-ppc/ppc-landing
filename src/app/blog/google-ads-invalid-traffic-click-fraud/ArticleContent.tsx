@@ -45,6 +45,8 @@ export default function ArticleContent() {
     },
     keywords: 'google ads invalid traffic, click fraud, invalid clicks, invalid click rate, IP exclusions, click farm, bot traffic, invalid activity credit, ad fraud, competitor clicking',
     inLanguage: 'en',
+    "wordCount": 2131,
+    "articleSection": "Google Ads"
   };
 
   const breadcrumbSchema = {

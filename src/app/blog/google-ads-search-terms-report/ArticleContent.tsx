@@ -47,6 +47,8 @@ export default function ArticleContent() {
     keywords:
       'google ads search terms report, search terms vs keywords, hidden search terms, other search terms, negative keywords, search terms insights, performance max search terms, ai max for search, keep kill watch framework, search term match type',
     inLanguage: 'en',
+    "wordCount": 1649,
+    "articleSection": "Google Ads"
   };
 
   const faqSchema = {

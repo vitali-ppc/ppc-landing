@@ -43,6 +43,8 @@ export default function ArticleContent() {
     },
     keywords: 'b2b ppc lead generation, b2b ppc, b2b pay per click, lead quality, cost per closed-won, offline conversion import, enhanced conversions for leads, performance max b2b, linkedin ads vs google ads',
     inLanguage: 'en',
+    "wordCount": 2471,
+    "articleSection": "B2B Marketing"
   };
 
   const breadcrumbSchema = {

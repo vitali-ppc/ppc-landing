@@ -50,6 +50,7 @@ export default function ArticleContent() {
       'google ads experiments, drafts and experiments, campaign experiment, split ratio, traffic split, statistically significant, p-value, point estimate, margin of error, confidence interval, campaign guidance, experiment power score',
     articleSection: 'Google Ads',
     inLanguage: 'en',
+    "wordCount": 1846
   };
 
   const breadcrumbSchema = {

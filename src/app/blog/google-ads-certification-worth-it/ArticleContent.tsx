@@ -53,6 +53,8 @@ export default function ArticleContent() {
     keywords:
       'google ads certification, is google ads certification worth it, google ads certification cost, skillshop, google partner badge, google partner requirements, ppc hiring, adwords certification, ppc interview questions',
     inLanguage: 'en',
+    "wordCount": 1395,
+    "articleSection": "Strategy"
   };
 
   const faqSchema = {

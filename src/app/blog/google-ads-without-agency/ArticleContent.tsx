@@ -555,12 +555,12 @@ flowchart TD
           <li style={{ marginBottom: '0.4rem' }}><a href="/blog/how-to-scale-google-ads-without-losing-roas" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>How to Scale Google Ads Without Losing ROAS (2026 Playbook)</a></li>
           <li style={{ marginBottom: '0.4rem' }}><a href="/blog/how-to-choose-a-ppc-agency" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>How to Choose a PPC Agency (and How to Know When You Don't Need One)</a></li>
           <li style={{ marginBottom: '0.4rem' }}><a href="/blog/white-label-google-ads" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>White Label Google Ads: When to Outsource, Hire, or Use Software (A Neutral Decision Guide)</a></li>
-          <li style={{ marginBottom: '0.4rem' }}><a href="/blog/google-ads-consultant" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>Google Ads Consultant: What They Do, What They Cost, and When to Hire One</a></li>
-          <li style={{ marginBottom: '0.4rem' }}><a href="/blog/google-ads-consultant-cost" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>Google Ads Consultant Cost: What to Pay (and When Software or DIY Beats Hiring One)</a></li>
+          <li style={{ marginBottom: '0.4rem' }}><a href="/blog/google-ads-consultant" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>Google Ads Consultant: What They Do, Cost, and When to Hire One</a></li>
+          <li style={{ marginBottom: '0.4rem' }}><a href="/blog/google-ads-consultant-cost" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>Hire a Google Ads Consultant: Cost, Rates and Salary</a></li>
           <li style={{ marginBottom: '0.4rem' }}><a href="/blog/google-ads-agency-pricing" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>Google Ads Agency Pricing: What Agencies Charge and Which Model Fits You (2026)</a></li>
           <li style={{ marginBottom: '0.4rem' }}><a href="/blog/google-ads-agency-guide" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>Google Ads Agency Guide: Do You Need One, What It Costs, and Your Alternatives</a></li>
           <li style={{ marginBottom: '0.4rem' }}><a href="/blog/google-ads-agency-account-ownership" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>Google Ads Agency Account Ownership: Who Owns What, and How Exposed Are You</a></li>
-          <li style={{ marginBottom: '0.4rem' }}><a href="/blog/google-ads-certification-worth-it" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>Is Google Ads Certification Worth It? What It Proves (and What It Doesn't)</a></li>
+          <li style={{ marginBottom: '0.4rem' }}><a href="/blog/google-ads-certification-worth-it" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>Is Google Ads Certification Worth It?</a></li>
         </ul>
       </div>
       {/* cluster-downlinks:END */}

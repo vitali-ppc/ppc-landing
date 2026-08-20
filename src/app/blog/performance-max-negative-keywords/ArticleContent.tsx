@@ -55,6 +55,8 @@ export default function ArticleContent() {
     keywords:
       'performance max negative keywords, pmax negative keywords, campaign level negative keywords, negative keyword list, account level negatives, negative keyword precedence, smart bidding, ai max, performance max search terms',
     inLanguage: 'en',
+    "wordCount": 1436,
+    "articleSection": "Google Ads"
   };
 
   const faqSchema = {

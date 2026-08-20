@@ -46,6 +46,8 @@ export default function ArticleContent() {
     keywords:
       'ad hijacking, brand bidding, affiliate hijacking, competitor hijacking, ad cloning, cloaking, Auction Insights, Search lost IS rank, Meta Ad Library, trademark complaint, brand exclusions, branded keywords',
     inLanguage: 'en',
+    "wordCount": 1594,
+    "articleSection": "Google Ads"
   };
 
   const faqSchema = {

@@ -44,6 +44,8 @@ export default function ArticleContent() {
     },
     keywords: 'PPC agency, choose a PPC agency, PPC management fees, PPC agency questions, in-house vs agency, AI PPC tooling',
     inLanguage: 'en',
+    "wordCount": 1969,
+    "articleSection": "Strategy"
   };
 
   const breadcrumbSchema = {

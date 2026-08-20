@@ -51,6 +51,8 @@ export default function ArticleContent() {
     keywords:
       'google ads account structure, campaign structure, ad group structure, skag vs stag, single theme ad groups, dtc google ads structure, naming conventions, ai max, dynamic search ads sunset, google ads audit',
     inLanguage: 'en',
+    "wordCount": 1657,
+    "articleSection": "Google Ads"
   };
 
   const faqSchema = {

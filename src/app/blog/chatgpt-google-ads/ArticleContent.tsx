@@ -46,6 +46,7 @@ export default function ArticleContent() {
       'chatgpt google ads, chatgpt for google ads, chatgpt ppc prompts, ai for google ads, chatgpt keyword research, chatgpt ad copy, google ads copilot',
     articleSection: 'AI & Automation',
     inLanguage: 'en',
+    "wordCount": 1665
   };
 
   const breadcrumbSchema = {

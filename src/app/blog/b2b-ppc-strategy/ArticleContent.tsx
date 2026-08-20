@@ -46,6 +46,7 @@ export default function ArticleContent() {
       'b2b ppc strategy, scale paid search, offline conversions, value-based bidding, smart bidding threshold, sales cycle, search term review, ppc automation',
     articleSection: 'B2B Marketing',
     inLanguage: 'en',
+    "wordCount": 2316
   };
 
   const breadcrumbSchema = {

@@ -44,6 +44,8 @@ export default function ArticleContent() {
     },
     keywords: 'google ads negative keywords, negative keyword match types, search terms report, negative keyword lists, performance max negative keywords, wasted spend, over-negation, negative keyword hierarchy',
     inLanguage: 'en',
+    "wordCount": 1928,
+    "articleSection": "Google Ads"
   };
 
   const breadcrumbSchema = {

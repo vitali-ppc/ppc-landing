@@ -48,6 +48,7 @@ export default function ArticleContent() {
       'google ads lead quality, qualified lead, CPQL, pipeline-CAC, offline conversion imports, value-based bidding, B2B PPC, Smart Bidding',
     articleSection: 'B2B Marketing',
     inLanguage: 'en',
+    "wordCount": 2206
   };
 
   const breadcrumbSchema = {

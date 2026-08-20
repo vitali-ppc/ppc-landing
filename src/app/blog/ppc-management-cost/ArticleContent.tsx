@@ -44,6 +44,8 @@ export default function ArticleContent() {
     },
     keywords: 'ppc management cost, ppc management pricing, cost of ppc, ppc management fees, percentage of ad spend, flat monthly retainer, google ads management cost, average cost of ppc, ppc agency pricing',
     inLanguage: 'en',
+    "wordCount": 1779,
+    "articleSection": "PPC Optimization"
   };
 
   const breadcrumbSchema = {

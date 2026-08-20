@@ -46,6 +46,8 @@ export default function ArticleContent() {
     keywords:
       'google ads consultant cost, google ads consultant fees, ppc consultant cost, google ads consultant hourly rate, google ads management cost, ppc management fees, consultant vs agency vs software, break-even math',
     inLanguage: 'en',
+    "wordCount": 1651,
+    "articleSection": "Strategy"
   };
 
   const faqSchema = {

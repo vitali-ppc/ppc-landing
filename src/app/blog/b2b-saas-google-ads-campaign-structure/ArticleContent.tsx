@@ -43,6 +43,8 @@ export default function ArticleContent() {
     },
     keywords: 'b2b saas google ads campaign structure, google ads account structure, intent based campaign structure, b2b ppc campaign tiers, google ads naming conventions, performance max b2b saas, smart bidding conversion threshold',
     inLanguage: 'en',
+    "wordCount": 2090,
+    "articleSection": "B2B Marketing"
   };
 
   const breadcrumbSchema = {

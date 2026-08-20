@@ -48,6 +48,7 @@ export default function ArticleContent() {
     keywords: 'B2B PPC advertising, paid search, Google Ads, Performance Max, LinkedIn Ads, match types, negative keywords, conversion tracking, offline conversion import, Smart Bidding, campaign structure, B2B SaaS',
     articleSection: 'B2B',
     inLanguage: 'en',
+    "wordCount": 2132
   };
 
   const breadcrumbSchema = {

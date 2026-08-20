@@ -44,6 +44,8 @@ export default function ArticleContent() {
     },
     keywords: 'Smart Bidding, Target CPA, Target ROAS, Maximize Conversions, Maximize Conversion Value, Maximize Clicks, Target Impression Share, bid strategy, automated bidding, Google Ads, conversion tracking, Performance Max',
     inLanguage: 'en',
+    "wordCount": 1502,
+    "articleSection": "Google Ads"
   };
 
   const faqSchema = {

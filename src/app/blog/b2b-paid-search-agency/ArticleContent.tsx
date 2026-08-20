@@ -50,6 +50,7 @@ export default function ArticleContent() {
       'b2b paid search agency, b2b ppc agency, sales cycle, pipeline lag, SQL rate, cost per opportunity, MQL, raw CPL, closed-won attribution, agency evaluation, in-house vs agency',
     articleSection: 'B2B',
     inLanguage: 'en',
+    "wordCount": 1859
   };
 
   const breadcrumbSchema = {

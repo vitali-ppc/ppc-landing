@@ -46,6 +46,7 @@ export default function ArticleContent() {
       'google ads for b2b saas, b2b saas ppc, offline conversion import, smart bidding, sales cycle, buying committee, pipeline-CAC, performance max, campaign structure',
     articleSection: 'B2B Marketing',
     inLanguage: 'en',
+    "wordCount": 2289
   };
 
   const breadcrumbSchema = {

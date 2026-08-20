@@ -18,7 +18,7 @@ export default function ArticleContent() {
     "@type": "Article",
     "headline": "White Label Google Ads: When to Outsource, Hire, or Use Software (A Neutral Decision Guide)",
     "description": "A neutral decision guide for agency owners weighing white label Google Ads vs hiring in-house vs software. The real margin math, provider red flags, and when each model actually wins.",
-    "image": "https://kampaio.com/blog/white-label-google-ads/opengraph-image",
+    "image": "https://kampaio.com/og/white-label-google-ads.png",
     author: {
       '@type': 'Organization',
       '@id': 'https://www.kampaio.com/#organization',

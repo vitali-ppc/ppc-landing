@@ -47,6 +47,7 @@ export default function ArticleContent() {
       'b2b ppc, b2b ppc guide, paid search, google ads, linkedin ads, microsoft advertising, offline conversions, lead quality, long sales cycle, cac, smart bidding, match types',
     articleSection: 'B2B Marketing',
     inLanguage: 'en',
+    "wordCount": 2666
   };
 
   const breadcrumbSchema = {
@@ -740,7 +741,7 @@ export default function ArticleContent() {
         <ul style={{ listStyle: 'disc', paddingLeft: '1.25rem', margin: 0 }}>
           <li style={{ marginBottom: '0.4rem' }}><a href="/blog/performance-max-problems-b2b-marketing" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>Why Performance Max Fails in B2B Marketing</a></li>
           <li style={{ marginBottom: '0.4rem' }}><a href="/blog/google-ads-lead-quality-guide" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>How to Improve Lead Quality in Google Ads (Complete 2026 Guide)</a></li>
-          <li style={{ marginBottom: '0.4rem' }}><a href="/blog/b2b-saas-google-ads-benchmarks-2026" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>B2B SaaS Google Ads Benchmarks 2026: CTR, CPC, CPA, and ROAS by Segment</a></li>
+          <li style={{ marginBottom: '0.4rem' }}><a href="/blog/b2b-saas-google-ads-benchmarks-2026" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>B2B SaaS Google Ads Benchmarks 2026: CPC, CPA vs LinkedIn</a></li>
           <li style={{ marginBottom: '0.4rem' }}><a href="/blog/b2b-paid-search-agency" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>B2B Paid Search Agency: How to Tell If Yours Is Actually Working</a></li>
         </ul>
       </div>
