@@ -4,7 +4,7 @@ import ArticleContent from './ArticleContent';
 export const metadata: Metadata = {
   title: 'Google Ads Optimizer Software, Compared: Do You Actually Need One?',
   description:
-    'A neutral comparison of Google Ads optimizer software (Optmyzr, TheOptimizer, Google Recommendations, AI-native tools) plus a framework for deciding when an optimizer beats doing it manually.',
+    'Optmyzr, TheOptimizer, Google Recommendations and AI-native tools compared, plus how to tell when a Google Ads optimizer beats optimizing manually.',
   alternates: {
     canonical: 'https://www.kampaio.com/blog/google-ads-optimizer-software-compared',
   },

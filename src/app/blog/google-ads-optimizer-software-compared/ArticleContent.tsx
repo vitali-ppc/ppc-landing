@@ -37,7 +37,7 @@ export default function ArticleContent() {
       },
     },
     datePublished: '2026-06-22T00:00:00.000Z',
-    dateModified: '2026-07-21T00:00:00.000Z',
+    dateModified: '2026-08-25T00:00:00.000Z',
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': 'https://www.kampaio.com/blog/google-ads-optimizer-software-compared',
@@ -88,7 +88,7 @@ export default function ArticleContent() {
         name: 'How much does Google Ads optimization software cost?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'It varies widely. Google Recommendations is free, most third-party tools (Optmyzr, TheOptimizer) use spend-based pricing they do not publish, and some AI-native tools use flat tiers (Kampaio lists $99 to $399 per month). Model any spend-based plan at your real ad spend before buying.',
+          text: 'It varies widely. Google Recommendations is free, most third-party tools (Optmyzr, TheOptimizer) use spend-based pricing they do not publish, and some AI-native tools are free during beta (Kampaio is free while in beta, no card required, with paid plans coming later). Model any spend-based plan at your real ad spend before buying.',
         },
       },
       {
@@ -206,7 +206,7 @@ export default function ArticleContent() {
     {
       name: 'Kampaio',
       level: 'AI-native operator',
-      pricing: '$99 / $199 / $399, flat',
+      pricing: 'Free while in beta',
       bestFor: 'Owners who want the work done',
       shows: 'High (every action live)',
     },
@@ -218,7 +218,7 @@ export default function ArticleContent() {
     { n: '2', title: 'Rollback and safety', body: 'Are there guardrails, spend caps, and an undo? Autonomous changes without a safety net are a liability.', accent: '#764ba2' },
     { n: '3', title: 'Autonomy level', body: 'Does it only suggest, only run your rules, or actually decide and act? Match this to how much work you want gone.', accent: '#10b981' },
     { n: '4', title: 'Pricing model fit', body: 'Flat pricing is predictable. Spend-based pricing can scale faster than your results, so model it at your real ad spend before committing.', accent: '#f59e0b' },
-    { n: '5', title: 'Integrations', body: 'Does it cover the networks you run (Search, Shopping, pMax)? A Search-only tool leaves your pMax spend unmanaged.', accent: '#ef4444' },
+    { n: '5', title: 'Integrations and API currency', body: 'Does it cover the networks you run (Search, Shopping, pMax), and how current is the Google Ads API version it targets? A Search-only tool leaves your pMax spend unmanaged, and a tool sitting on an outdated API version breaks as Google retires the entities underneath it.', accent: '#ef4444' },
     { n: '6', title: 'Support and onboarding', body: 'When an automation misfires at 2 a.m., how fast can you reach a human?', accent: '#0ea5e9' },
   ];
 
@@ -271,7 +271,7 @@ export default function ArticleContent() {
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '2px' }}>
                   <span style={{ color: '#64748b', fontSize: '16px', fontWeight: 600 }}>By Kampaio Team</span>
                   <span style={{ color: '#64748b', fontSize: '15px' }}>AI-native Google Ads optimization</span>
-                  <span style={{ color: '#64748b', fontSize: '15px' }}>June 22, 2026 · Updated July 21, 2026 · 9 min read</span>
+                  <span style={{ color: '#64748b', fontSize: '15px' }}>June 22, 2026 · Updated August 25, 2026 · 9 min read</span>
                 </div>
               </div>
             </div>
@@ -396,6 +396,9 @@ export default function ArticleContent() {
               <p style={paragraphStyle}>
                 The table below maps the main optimizers to their capability level, pricing model, and who they suit. Pricing honesty matters here: most incumbents do not list public prices.
               </p>
+              <p style={paragraphStyle}>
+                One change from the past few weeks now belongs on every shortlist. Since August 3, 2026, Google blocks the creation of new campaign-level broad match configurations and legacy automatically created assets across the UI, Google Ads Editor, and all versions of the API, per the <a href="https://ads-developers.googleblog.com/2026/08/migrate-campaign-level-broad-match-and.html" style={linkStyle} target="_blank" rel="noopener noreferrer">Google Ads Developer Blog (August 12, 2026)</a>. Existing campaigns are migrated to AI Max progressively between September 1 and 30, 2026, and they arrive carrying defaults nobody on your side picked: campaign-level broad match lands with text customization off, final URL expansion off, and search term matching on, while standalone automatically created assets land with text customization on, final URL expansion off, and search term matching on. That turns into two questions to ask any vendor. First, any rule engine, script, or third-party optimizer whose automations still try to create those legacy structures now fails outright rather than degrading quietly. Second, Google Ads API versions released after September 1, 2026 drop the entities entirely, and older versions keep them only until their own sunset, around September 2027, so a tool pinned to an old version is running on a clock. Ask which API version an optimizer targets, and what its rules actually do on a migrated campaign, before you commit to a year of it.
+              </p>
 
               {/* VISUAL 4: Comparison table (extractable block) */}
               <div style={{ overflowX: 'auto', margin: '32px 0' }}>
@@ -436,7 +439,7 @@ export default function ArticleContent() {
                 <strong>Adalysis</strong> focuses on automated ad testing and account audits. It is strong for teams who want disciplined A/B testing and alerting rather than hands-off execution.
               </p>
               <p style={paragraphStyle}>
-                <strong>Kampaio</strong> is the AI-native operator: agents decide and execute, with each action shown live. Pricing is public and flat at $99, $199, and $399 per month, which removes the spend-based-pricing guesswork. It suits owners who want the work done, not just advised. Most of what any of these tools touch first is bidding, so it helps to know <a href="/blog/google-ads-smart-bidding-strategies" style={linkStyle}>which Smart Bidding strategy fits your account</a> before you hand it over.
+                <strong>Kampaio</strong> is the AI-native operator: agents decide and execute, with each action shown live. It is free while in beta with no card required, and paid plans come later, so there is no spend-based pricing to model against your budget. It suits owners who want the work done, not just advised. Most of what any of these tools touch first is bidding, so it helps to know <a href="/blog/google-ads-smart-bidding-strategies" style={linkStyle}>which Smart Bidding strategy fits your account</a> before you hand it over.
               </p>
             </section>
 
@@ -515,7 +518,7 @@ export default function ArticleContent() {
                       { label: 'Surfaces recommendations', has: true },
                       { label: 'Runs rules you configure', has: true },
                       { label: 'Decides and acts on its own', has: false },
-                      { label: 'Flat, public pricing', has: false },
+                      { label: 'Pricing not tied to your ad spend', has: false },
                       { label: 'Shows every action live', has: false },
                     ],
                   },
@@ -526,7 +529,7 @@ export default function ArticleContent() {
                       { label: 'Surfaces recommendations', has: true },
                       { label: 'Runs rules you configure', has: true },
                       { label: 'Decides and acts on its own', has: true },
-                      { label: 'Flat, public pricing', has: true },
+                      { label: 'Pricing not tied to your ad spend', has: true },
                       { label: 'Shows every action live', has: true },
                     ],
                     highlight: true,
@@ -535,7 +538,7 @@ export default function ArticleContent() {
               />
 
               <p style={paragraphStyle}>
-                The practical differences from the incumbents are two. First, pricing is public and flat at $99, $199, and $399 per month, with no spend-based surprises. Second, the default is doing the work, not just advising it, while keeping you in control through the suggest-then-auto-apply dial. If your bottleneck is hours rather than knowledge, that is the gap it closes. <a href="/chat" style={linkStyle}>Start a free account</a> and watch the agents work before you commit.
+                The practical differences from the incumbents are two. First, there is no spend-based pricing to model: it is free while in beta, no card required, with paid plans coming later. Second, the default is doing the work, not just advising it, while keeping you in control through the suggest-then-auto-apply dial. If your bottleneck is hours rather than knowledge, that is the gap it closes. <a href="/chat" style={linkStyle}>Start a free account</a> and watch the agents work before you commit.
               </p>
             </section>
 
@@ -568,7 +571,7 @@ export default function ArticleContent() {
                   See autonomous optimization in action
                 </h3>
                 <p style={{ fontSize: '17px', color: '#475569', marginBottom: '28px', lineHeight: 1.6, fontWeight: 500, maxWidth: '620px', marginLeft: 'auto', marginRight: 'auto' }}>
-                  Connect your Google Ads account to Kampaio and watch the agents read your account, choose each change, and show the rationale live, before anything applies. Flat pricing <a href="/pricing" style={linkStyle}>from $99/mo</a>, no spend-based surprises.
+                  Connect your Google Ads account to Kampaio and watch the agents read your account, choose each change, and show the rationale live, before anything applies. <a href="/pricing" style={linkStyle}>Free while in beta</a>, no card required, and no spend-based surprises.
                 </p>
                 <a
                   href="/chat"
