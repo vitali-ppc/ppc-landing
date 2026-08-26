@@ -46,6 +46,7 @@ export default function ArticleContent() {
       'google ads optimization score, what is a good optimization score, optimization score vs quality score, google ads recommendations, auto-apply recommendations, roas, cpc',
     articleSection: 'Google Ads',
     inLanguage: 'en',
+    "wordCount": 2236
   };
 
   const breadcrumbSchema = {

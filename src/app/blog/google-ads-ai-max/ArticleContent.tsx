@@ -46,6 +46,8 @@ export default function ArticleContent() {
     keywords:
       'google ads ai max, ai max for search campaigns, search term matching, text customization, final url expansion, dsa sunset, automatically created assets, ai max vs performance max, smart bidding, ai max for shopping',
     inLanguage: 'en',
+    "wordCount": 1178,
+    "articleSection": "AI"
   };
 
   const faqSchema = {

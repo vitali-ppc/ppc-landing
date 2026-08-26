@@ -45,6 +45,8 @@ export default function ArticleContent() {
     keywords:
       'Smart Bidding, manual bidding, manual CPC, automated bidding, Google Ads AI, Target CPA, Target ROAS, conversion tracking, learning phase, 30-conversion threshold, bid strategy experiment, account maturity',
     inLanguage: 'en',
+    "wordCount": 1394,
+    "articleSection": "AI"
   };
 
   const faqSchema = {

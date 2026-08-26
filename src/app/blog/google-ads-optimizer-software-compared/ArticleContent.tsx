@@ -45,6 +45,8 @@ export default function ArticleContent() {
     keywords:
       'google ads optimizer, google ads optimization software, Optmyzr, TheOptimizer, Google Recommendations, Adalysis, optimization score, Smart Bidding, AI PPC tool, bid management, budget optimization, Kampaio',
     inLanguage: 'en',
+    "wordCount": 1918,
+    "articleSection": "Google Ads"
   };
 
   const faqSchema = {

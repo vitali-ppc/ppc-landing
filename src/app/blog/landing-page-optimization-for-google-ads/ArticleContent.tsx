@@ -46,6 +46,7 @@ export default function ArticleContent() {
       'landing page optimization, Google Ads, Quality Score, Landing Page Experience, Ad Rank, CPC, message match, Core Web Vitals, message match audit',
     articleSection: 'Google Ads',
     inLanguage: 'en',
+    "wordCount": 1799
   };
 
   const faqLd = {

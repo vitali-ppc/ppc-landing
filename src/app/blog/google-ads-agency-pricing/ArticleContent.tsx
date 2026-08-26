@@ -46,6 +46,8 @@ export default function ArticleContent() {
     keywords:
       'google ads agency pricing, ppc management pricing, percentage of ad spend, flat fee, performance pricing, hourly ppc rate, google ads management cost, agency fees, hidden fees, small budget',
     inLanguage: 'en',
+    "wordCount": 1517,
+    "articleSection": "Strategy"
   };
 
   const faqSchema = {

@@ -46,6 +46,8 @@ export default function ArticleContent() {
     keywords:
       'google ads agency account ownership, who owns google ads account, google ads manager account, mcc account, google ads access levels, admin access google ads, agency account access, google ads account ownership transfer',
     inLanguage: 'en',
+    "wordCount": 1781,
+    "articleSection": "Strategy"
   };
 
   const faqSchema = {

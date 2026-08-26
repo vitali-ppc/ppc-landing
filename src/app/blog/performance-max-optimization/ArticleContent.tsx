@@ -59,6 +59,7 @@ export default function ArticleContent() {
       'Performance Max optimization, PMax, Google Ads, asset groups, audience signals, search themes, brand exclusions, tROAS, smart bidding, product feed, learning phase',
     articleSection: 'Google Ads',
     inLanguage: 'en',
+    "wordCount": 1700
   };
 
   const breadcrumbSchema = {

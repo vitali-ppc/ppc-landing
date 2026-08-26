@@ -47,6 +47,8 @@ export default function ArticleContent() {
     keywords:
       'google ads ai content labels, ai label setting, asset studio ai label, ai generated ad disclosure, eu ai act article 50, new york synthetic performer law, merchant center ai label, google ads editor ai label column, c2pa, synthid',
     inLanguage: 'en',
+    "wordCount": 1382,
+    "articleSection": "AI"
   };
 
   const faqSchema = {

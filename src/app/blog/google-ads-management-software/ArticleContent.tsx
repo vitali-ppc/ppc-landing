@@ -46,6 +46,8 @@ export default function ArticleContent() {
     keywords:
       'google ads management software, ppc management software, google ads tools, google ads automation, optmyzr, adalysis, opteo, skai, madgicx, wordstream, agentic ppc, ai google ads management',
     inLanguage: 'en',
+    "wordCount": 1632,
+    "articleSection": "Google Ads"
   };
 
   const faqSchema = {

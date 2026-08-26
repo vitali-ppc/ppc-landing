@@ -45,6 +45,8 @@ export default function ArticleContent() {
     keywords:
       'google ads ai agent, ai agent for google ads, autonomous campaign management, Smart Bidding, Performance Max, Ads Advisor, Analytics Advisor, Ask Advisor, Optmyzr, Madgicx, negative keywords, anomaly detection, account control, Kampaio',
     inLanguage: 'en',
+    "wordCount": 1859,
+    "articleSection": "Google Ads"
   };
 
   const faqSchema = {

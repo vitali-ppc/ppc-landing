@@ -47,6 +47,7 @@ export default function ArticleContent() {
       'google ai ads, ai max for search, ads in ai overviews, ads in ai mode, text customization, automatically created assets, ads advisor, google ads ai',
     articleSection: 'AI & Automation',
     inLanguage: 'en',
+    "wordCount": 2041
   };
 
   const breadcrumbSchema = {

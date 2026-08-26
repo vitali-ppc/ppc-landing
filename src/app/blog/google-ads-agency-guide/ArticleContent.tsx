@@ -46,6 +46,8 @@ export default function ArticleContent() {
     keywords:
       'google ads agency, google ads agency cost, google ads agency fees, hire a google ads agency, google ads agency vs consultant, google ads agency alternatives, ppc agency, google ads management, run google ads without an agency',
     inLanguage: 'en',
+    "wordCount": 1822,
+    "articleSection": "Strategy"
   };
 
   const faqSchema = {
