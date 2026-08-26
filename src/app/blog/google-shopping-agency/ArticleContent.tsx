@@ -173,7 +173,7 @@ export default function ArticleContent() {
     marginTop: '28px',
     marginBottom: '12px',
   };
-  const linkStyle: React.CSSProperties = { color: '#667eea', textDecoration: 'underline' };
+  const linkStyle: React.CSSProperties = { color: '#764ba2', textDecoration: 'underline' };
   const listStyle: React.CSSProperties = {
     fontSize: '18px',
     color: '#1e293b',

@@ -158,7 +158,7 @@ export default function ArticleContent() {
     paddingLeft: '24px',
     marginBottom: '32px',
   };
-  const linkStyle: React.CSSProperties = { color: '#667eea', textDecoration: 'underline' };
+  const linkStyle: React.CSSProperties = { color: '#764ba2', textDecoration: 'underline' };
 
   const thStyle: React.CSSProperties = {
     padding: '12px 16px',

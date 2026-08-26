@@ -181,7 +181,7 @@ export default function ArticleContent() {
     marginTop: '28px',
     marginBottom: '12px',
   };
-  const linkStyle: React.CSSProperties = { color: '#667eea', textDecoration: 'underline' };
+  const linkStyle: React.CSSProperties = { color: '#764ba2', textDecoration: 'underline' };
   const internalLink: React.CSSProperties = { color: '#764ba2', textDecoration: 'underline' };
   const listStyle: React.CSSProperties = {
     fontSize: '18px',
@@ -705,7 +705,7 @@ export default function ArticleContent() {
                   </a>
                   <a
                     href="/pricing"
-                    style={{ background: 'white', color: '#667eea', border: '1px solid #667eea', padding: '16px 32px', borderRadius: '10px', fontSize: '16px', fontWeight: 600, cursor: 'pointer', transition: 'all 0.3s ease', display: 'inline-block', textDecoration: 'none' }}
+                    style={{ background: 'white', color: '#764ba2', border: '1px solid #667eea', padding: '16px 32px', borderRadius: '10px', fontSize: '16px', fontWeight: 600, cursor: 'pointer', transition: 'all 0.3s ease', display: 'inline-block', textDecoration: 'none' }}
                   >
                     See Plans
                   </a>

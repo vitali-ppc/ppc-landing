@@ -172,7 +172,7 @@ export default function ArticleContent() {
     color: '#1e293b',
     marginBottom: '32px',
   };
-  const linkStyle = { color: '#667eea', textDecoration: 'underline' as const };
+  const linkStyle = { color: '#764ba2', textDecoration: 'underline' as const };
 
   return (
     <>
