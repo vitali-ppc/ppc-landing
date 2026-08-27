@@ -616,6 +616,7 @@ export default function ArticleContent() {
           <li style={{ marginBottom: '0.4rem' }}><a href="/blog/performance-max-negative-keywords" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>Performance Max Negative Keywords: Levels & Limits</a></li>
           <li style={{ marginBottom: '0.4rem' }}><a href="/blog/google-ads-experiments" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>Google Ads Experiments: A/B Tests You Can Trust</a></li>
           <li style={{ marginBottom: '0.4rem' }}><a href="/blog/google-shopping-agency" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>Google Shopping Agency: Should You Hire One, or Run Shopping Yourself?</a></li>
+          <li style={{ marginBottom: '0.4rem' }}><a href="/blog/performance-max-single-conversion-signal-steering" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>Performance Max Single-Conversion-Signal Steering: Why the 2026 LSA Migration Makes It Worse (and How to Fix It)</a></li>
         </ul>
       </div>
       {/* cluster-downlinks:END */}
