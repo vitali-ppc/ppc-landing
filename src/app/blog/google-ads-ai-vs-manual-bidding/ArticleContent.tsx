@@ -580,7 +580,7 @@ export default function ArticleContent() {
             <section id="how-to-test">
               <h2 style={h2Style}>How to Test One Against the Other Without Guessing</h2>
               <p style={paragraphStyle}>
-                Run a bid-strategy experiment so the data decides, not the vendor. Google Ads campaign experiments split live traffic between a control (current strategy) and a treatment (the strategy you are testing), using the same campaign settings otherwise.
+                Run a bid-strategy experiment so the data decides, not the vendor. Google Ads campaign <a href="/blog/google-ads-experiments" style={{ color: '#764ba2', textDecoration: 'underline' }}>experiments</a> split live traffic between a control (current strategy) and a treatment (the strategy you are testing), using the same campaign settings otherwise.
               </p>
 
               {/* VISUAL 5: Five-step experiment card grid (2x2+1, explicit columns, no auto-fit) */}

@@ -447,7 +447,7 @@ export default function ArticleContent() {
                 same bad queries the negative list would block.
               </p>
               <p style={paragraphStyle}>
-                PPC consultant Andrew Lolk made the sharper version of this case publicly ({ext(lolkUrl, 'X')}, 2025-05-27): Smart Bidding
+                PPC <a href="/blog/google-ads-consultant" style={{ color: '#764ba2', textDecoration: 'underline' }}>consultant</a> Andrew Lolk made the sharper version of this case publicly ({ext(lolkUrl, 'X')}, 2025-05-27): Smart Bidding
                 already discounts low-quality queries algorithmically, so manually blocking them is often redundant, and can strip out signal
                 Smart Bidding was using to learn. Lolk is right about mature campaigns: a PMax campaign converged on Target ROAS with a
                 healthy weekly conversion count has already told Smart Bidding which query patterns convert, and a negative list on top mostly

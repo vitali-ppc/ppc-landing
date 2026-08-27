@@ -369,7 +369,7 @@ export default function ArticleContent() {
                 14 percent answers whether to enable AI Max at all. 7 percent answers the question a cautious advertiser actually has: run the full suite, or hold at matching alone. That 7 percent is effectively the measured price of keeping control over ad copy and landing page selection.
               </p>
               <p style={paragraphStyle}>
-                Both are Google&apos;s own internal data: self-reported, not independently audited, and both exclude Retail advertisers. Neither number applies formally to an ecommerce account running Shopping alongside Search (Retail has its own figure, covered later). Treat both as an upper-bound benchmark, not a forecast for one account: run AI Max as a measured test against a documented baseline, using Google&apos;s one-click experiments.
+                Both are Google&apos;s own internal data: self-reported, not independently audited, and both exclude Retail advertisers. Neither number applies formally to an ecommerce account running Shopping alongside Search (Retail has its own figure, covered later). Treat both as an upper-bound benchmark, not a forecast for one account: run AI Max as a measured test against a documented baseline, using Google&apos;s one-click <a href="/blog/google-ads-experiments" style={{ color: '#764ba2', textDecoration: 'underline' }}>experiments</a>.
               </p>
 
               <MascotQuote mascot="aegis">

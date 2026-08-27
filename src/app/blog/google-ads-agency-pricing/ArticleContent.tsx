@@ -476,7 +476,7 @@ export default function ArticleContent() {
               </p>
 
               <p style={paragraphStyle}>
-                The structural difference worth noticing: agency and consultant fees both tend to rise with your ad spend, either directly through a percentage or indirectly as the account grows more complex. Software prices on a flat subscription instead, so the cost does not climb just because your budget does. That is the model <a href="/b6" style={linkStyle}>Kampaio</a> runs on, a flat monthly fee rather than a cut of spend, which is why it tends to make sense for the same $3,000 to $50,000/month accounts where an agency percentage would take an outsized bite. It is a different cost curve, not a better one for everyone: an agency&apos;s hands-on team is worth the premium when the account genuinely needs one.
+                The structural difference worth noticing: agency and <a href="/blog/google-ads-consultant" style={{ color: '#764ba2', textDecoration: 'underline' }}>consultant</a> fees both tend to rise with your ad spend, either directly through a percentage or indirectly as the account grows more complex. Software prices on a flat subscription instead, so the cost does not climb just because your budget does. That is the model <a href="/b6" style={linkStyle}>Kampaio</a> runs on, a flat monthly fee rather than a cut of spend, which is why it tends to make sense for the same $3,000 to $50,000/month accounts where an agency percentage would take an outsized bite. It is a different cost curve, not a better one for everyone: an agency&apos;s hands-on team is worth the premium when the account genuinely needs one.
               </p>
             </section>
 
