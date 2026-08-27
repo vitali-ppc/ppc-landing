@@ -398,7 +398,7 @@ export default function ArticleContent() {
                 rows={[
                   { cells: ['Point recommender', 'Surfaces suggestions, analyst applies', 'Optmyzr, Adalysis', '$99-499/mo'] },
                   { cells: ['Multi-tool stack', '4-6 best-of-breed tools chained manually', 'Optmyzr + Madgicx + scripts + reporting', '$1,200-2,500/mo combined'] },
-                  { cells: ['Autonomous orchestrator', 'Reads, decides, executes within guardrails', 'B6 (Buzz, Aegis, Maximus, Mira, Sage)', '$99-399/mo'], highlight: true },
+                  { cells: ['Autonomous orchestrator', 'Reads, decides, executes within guardrails', 'B6 (Buzz, Aegis, Maximus, Mira, Sage)', 'Flat subscription'], highlight: true },
                 ]}
                 caption="The three vendor-stack configurations agencies run at scale, and the cost they push into the management-fee P&L."
               />
@@ -407,7 +407,7 @@ export default function ArticleContent() {
                 Point tools that just recommend (Optmyzr at ~$499/mo, Madgicx at $499+/mo) each solve one part of the workflow. None of them orchestrate. The analyst still actions recommendations manually, reconciles outputs, and explains conflicting suggestions to the client.
               </p>
               <p style={paragraphStyle}>
-                Remedy: annual stack review with consolidation as default. Prefer <a href="/blog/google-ads-ai-agent" style={{ color: '#764ba2', textDecoration: 'underline' }}>agents</a> that orchestrate (read the account, decide, execute or queue for approval) over point tools that recommend. That is the model behind B6's $99-$399 tier, which replaces multiple point tools with one agent-based system. If you are stuck in vendor sprawl, <a href="/blog/signs-you-need-to-fire-your-ppc-agency" style={linkStyle}>our piece on the eight signs it is time to fire your PPC agency</a> covers the decision frame.
+                Remedy: annual stack review with consolidation as default. Prefer <a href="/blog/google-ads-ai-agent" style={{ color: '#764ba2', textDecoration: 'underline' }}>agents</a> that orchestrate (read the account, decide, execute or queue for approval) over point tools that recommend. That is the model behind B6's flat subscription, which replaces multiple point tools with one agent-based system. If you are stuck in vendor sprawl, <a href="/blog/signs-you-need-to-fire-your-ppc-agency" style={linkStyle}>our piece on the eight signs it is time to fire your PPC agency</a> covers the decision frame.
               </p>
             </section>
 
@@ -573,7 +573,7 @@ export default function ArticleContent() {
               <div style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', borderRadius: '16px', padding: '32px', color: 'white', textAlign: 'center', marginTop: '40px' }}>
                 <h3 style={{ fontSize: '24px', fontWeight: 700, marginBottom: '12px' }}>Stop diagnosing patterns after the client sees them</h3>
                 <p style={{ fontSize: '16px', opacity: 0.95, marginBottom: '24px', lineHeight: 1.6 }}>
-                  B6 monitors all 8 patterns automatically across every account in your portfolio. Maximus orchestrates, Aegis reviews risk, Mira watches incrementality drift. From $99/mo.
+                  B6 monitors all 8 patterns automatically across every account in your portfolio. Maximus orchestrates, Aegis reviews risk, Mira watches incrementality drift. Free while B6 is in beta.
                 </p>
                 <a href="/chat" style={{ display: 'inline-block', background: 'white', color: '#764ba2', padding: '14px 28px', borderRadius: '8px', fontWeight: 700, textDecoration: 'none', fontSize: '16px' }}>
                   Start a free conversation

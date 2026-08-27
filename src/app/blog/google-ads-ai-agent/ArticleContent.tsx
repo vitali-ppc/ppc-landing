@@ -90,7 +90,7 @@ export default function ArticleContent() {
         name: 'How much does an AI agent for Google Ads cost?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: "Costs range from included (Google's native agents) to $499+/mo for recommendation tools (Optmyzr, Madgicx) to $99 to $399/mo for autonomous agents like Kampaio. Evaluate cost as a percentage of your managed spend: $499/mo on a $5K budget is a 10% fee, which makes advisory tools a poor value for smaller accounts. Many vendors (AdSpyder, Adsroid, Ryze, Markifact) do not publish pricing.",
+          text: "Costs range from included (Google's native agents) to $499+/mo for recommendation tools (Optmyzr, Madgicx) to flat-subscription autonomous agents like Kampaio. Evaluate cost as a percentage of your managed spend: $499/mo on a $5K budget is a 10% fee, which makes advisory tools a poor value for smaller accounts. Many vendors (AdSpyder, Adsroid, Ryze, Markifact) do not publish pricing.",
         },
       },
       {
@@ -175,7 +175,7 @@ export default function ArticleContent() {
     { type: 'Optmyzr', does: 'Budget pacing, rule-based automation, recommendations', mode: 'Advisory', price: '~$499/mo' },
     { type: 'Madgicx', does: 'Audience insights, automated rules, ad suggestions', mode: 'Advisory / semi-auto', price: '$499+/mo' },
     { type: 'AdSpyder / Adsroid / Ryze', does: 'Campaign build + copy generation', mode: 'Semi-auto (build-focused)', price: 'Pricing not published' },
-    { type: 'Kampaio', does: 'Bids, budgets, negatives, copy, anomaly detection, reporting', mode: 'Autonomous with approval gates', price: '$99/mo', highlight: true },
+    { type: 'Kampaio', does: 'Bids, budgets, negatives, copy, anomaly detection, reporting', mode: 'Autonomous with approval gates', price: 'Flat subscription', highlight: true },
   ];
 
   // Six core workflow areas a full-account agent covers.
@@ -200,7 +200,7 @@ export default function ArticleContent() {
     { tool: 'Smart Bidding (Google)', scope: 'Bid adjustments only, using Google\'s data', auto: 'Autonomous within bidding only', price: 'Included in Google Ads' },
     { tool: 'Optmyzr', scope: 'Rules, budget pacing, recommendations across account', auto: 'Advisory (you implement)', price: '~$499/mo' },
     { tool: 'Madgicx', scope: 'Audience insights, automated rules, ad suggestions', auto: 'Semi-autonomous (rules-based)', price: '$499+/mo' },
-    { tool: 'Kampaio', scope: 'Bids, budgets, negatives, copy, anomaly detection', auto: 'Autonomous with approval gates', price: '$99 to $399/mo', highlight: true },
+    { tool: 'Kampaio', scope: 'Bids, budgets, negatives, copy, anomaly detection', auto: 'Autonomous with approval gates', price: 'Flat subscription', highlight: true },
   ];
 
   return (
@@ -510,7 +510,7 @@ export default function ArticleContent() {
                 <li style={{ marginBottom: 0 }}><strong>What percentage of your monthly ad spend is the monthly fee?</strong> Above 8% for advisory tools is hard to justify for SMBs with budgets under $10K/mo.</li>
               </ol>
               <p style={paragraphStyle}>
-                Kampaio is built for the $3 to 50K/mo segment. At $99/mo (Co-pilot tier), it runs bids and surfaces recommendations. At $199/mo (Approval tier), it executes with your sign-off on each action. At $399/mo (Autonomous tier), it runs the account end-to-end with spend caps and a live action log. Every tier shows every step. See current plan details at <a href="/pricing" style={linkStyle}>kampaio.com/pricing</a>.
+                Kampaio is built for the $3 to 50K/mo segment. At the Co-pilot level it runs bids and surfaces recommendations. At the Approval level it executes with your sign-off on each action. At the Autonomous level it runs the account end-to-end with spend caps and a live action log. Every tier shows every step. See current plan details at <a href="/pricing" style={linkStyle}>kampaio.com/pricing</a>.
               </p>
             </section>
 
@@ -535,11 +535,11 @@ export default function ArticleContent() {
                 The advisory-vs-autonomous line is where most of the market still sits. Google&apos;s own agents advise. Recommendation tools advise at $499/mo. The value gap for SMB owners with no in-house PPC support is not better advice: it is execution without the full-time headcount.
               </p>
               <p style={paragraphStyle}>
-                Kampaio runs bids, moves budget, mines negatives, tests copy, and catches anomalies before they burn through daily cap. Every action is visible, every step is logged, and every tier comes with approval gates that keep you in control of the big decisions. From $99/mo on accounts starting at $3K/month ad spend.
+                Kampaio runs bids, moves budget, mines negatives, tests copy, and catches anomalies before they burn through daily cap. Every action is visible, every step is logged, and every tier comes with approval gates that keep you in control of the big decisions. A flat subscription, on accounts starting at $3K/month ad spend.
               </p>
 
               <MascotQuote mascot="buzz">
-                The math is simple. At $99/mo on a $5K ad budget, that is 2% of spend. If I save one wasted search term cluster per month, the average recapture is $300 to $500 in redirected budget. The fee pays back inside the first week.
+                The math is simple. A flat monthly fee on a $5K ad budget is a low single-digit share of spend, and it stays flat as the budget grows. If I save one wasted search term cluster per month, the average recapture is $300 to $500 in redirected budget. The fee pays back inside the first week.
               </MascotQuote>
 
               <div style={{ background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)', borderRadius: '16px', padding: '40px', textAlign: 'center', marginTop: '40px', marginBottom: '40px' }}>
@@ -547,7 +547,7 @@ export default function ArticleContent() {
                   See an AI agent run on your real account
                 </h3>
                 <p style={{ fontSize: '17px', color: '#475569', marginBottom: '28px', lineHeight: 1.6, fontWeight: 500, maxWidth: '620px', marginLeft: 'auto', marginRight: 'auto' }}>
-                  Connect Google Ads to Kampaio and watch the agents read your account, choose each change, and show the rationale live, before anything applies. Flat pricing <a href="/pricing" style={linkStyle}>from $99/mo</a>, with approval gates on by default.
+                  Connect Google Ads to Kampaio and watch the agents read your account, choose each change, and show the rationale live, before anything applies. Flat pricing, <a href="/pricing" style={linkStyle}>free while B6 is in beta</a>, with approval gates on by default.
                 </p>
                 <a
                   href="/chat"

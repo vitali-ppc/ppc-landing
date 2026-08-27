@@ -473,7 +473,7 @@ export default function ArticleContent() {
             <section id="where-kampaio-fits">
               <h2 style={h2Style}>Where Kampaio fits (if you want more than recommendations)</h2>
               <p style={paragraphStyle}>
-                Kampaio prices at $99 (Co-pilot), $199 (Approval), and $399 (Autonomous) against Opteo&apos;s $129, $249, and $499: same shape, lower entry point at every level.
+                Kampaio has the same three-level shape as Opteo&apos;s $129, $249 and $499 plans, and all three levels are free while B6 is in beta: same shape, no entry cost at every level.
               </p>
               <p style={paragraphStyle}>
                 Every price here, including Opteo&apos;s, is verified on a live vendor page, but Madgicx&apos;s core plan is gated and Optmyzr&apos;s top tiers need a sales call, both documented above. Kampaio&apos;s tiers are public and fixed, no &quot;talk to sales&quot; step.
@@ -517,7 +517,7 @@ export default function ArticleContent() {
                   'Opteo prices Basic-to-Agency at $129-$499/mo; three competitor roundups cite it wrong.',
                   'Opteo’s changelog has logged zero entries since November 2024.',
                   'Match spend, platforms, and hands-on preference before comparing price alone.',
-                  'Kampaio’s tiers ($99/$199/$399) are public, no gated “talk to sales” step.',
+                  'Kampaio’s levels are public and free while in beta, no gated “talk to sales” step.',
                 ]}
               />
             </section>
@@ -537,7 +537,7 @@ export default function ArticleContent() {
             <section id="cta">
               <h2 style={h2Style}>Try Kampaio free</h2>
               <p style={paragraphStyle}>
-                Kampaio starts at $99/mo, connects to your Google Ads account, and shows every bid or budget change live, not buried in a queue you check yourself. Access is free for founding accounts while the full team ships.
+                Kampaio is free while B6 is in beta, connects to your Google Ads account, and shows every bid or budget change live, not buried in a queue you check yourself. Access is free for founding accounts while the full team ships.
               </p>
 
               <div style={{ background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)', borderRadius: '16px', padding: '40px', textAlign: 'center', marginTop: '40px', marginBottom: '40px' }}>
@@ -545,7 +545,7 @@ export default function ArticleContent() {
                   See what Buzz would change this week
                 </h3>
                 <p style={{ fontSize: '17px', color: '#475569', marginBottom: '28px', lineHeight: 1.6, fontWeight: 500, maxWidth: '620px', marginLeft: 'auto', marginRight: 'auto' }}>
-                  Connect your Google Ads account and watch the agents read it, choose each change, and show the rationale live, before anything applies. Public, flat pricing <a href="/pricing" style={linkStyle}>from $99/mo</a>, no gated sales call.
+                  Connect your Google Ads account and watch the agents read it, choose each change, and show the rationale live, before anything applies. Public, flat pricing, <a href="/pricing" style={linkStyle}>free while B6 is in beta</a>, no gated sales call.
                 </p>
                 <a
                   href="/chat"

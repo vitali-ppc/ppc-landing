@@ -107,7 +107,7 @@ export default function ArticleContent() {
         name: 'Is a PPC agency worth it for a small business?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'For most businesses spending under $15K per month, usually not at full agency rates. The economics result in junior management of your account. A freelancer ($500 to $2K per month) or AI tooling ($99 to $399 per month) typically delivers more consistent attention per dollar at that spend level.',
+          text: 'For most businesses spending under $15K per month, usually not at full agency rates. The economics result in junior management of your account. A freelancer ($500 to $2K per month) or flat-fee AI tooling typically delivers more consistent attention per dollar at that spend level.',
         },
       },
     ],
@@ -317,7 +317,7 @@ export default function ArticleContent() {
                   { cells: ['PPC agency', '$1,000-$5,000/mo or 10-20% of spend', 'Agency team (senior + junior)', '$15K+ spend, multi-channel, zero owner time'] },
                   { cells: ['Freelancer', '$500-$2,000/mo', 'Single specialist', '$5K-$25K spend, simpler structure, owner oversight'] },
                   { cells: ['AI tooling (recommendation: Optmyzr, Madgicx)', '$499+/mo', 'You execute the recommendations', '$5K-$50K, owner with 3-5 hrs/week'] },
-                  { cells: ['AI tooling (autonomous: Kampaio/B6)', '$99-$399/mo', 'AI agents execute, owner approves', '$3K-$50K, limited owner time, full audit trail'], highlight: true },
+                  { cells: ['AI tooling (autonomous: Kampaio/B6)', 'Flat monthly subscription', 'AI agents execute, owner approves', '$3K-$50K, limited owner time, full audit trail'], highlight: true },
                 ]}
                 caption="Management options for $3-50K monthly Google Ads spend. Pricing reflects industry benchmarks as of mid-2026 and may vary; verify current rates directly with any provider."
               />
@@ -444,7 +444,7 @@ export default function ArticleContent() {
                 <strong>Recommendation tools</strong> &mdash; Optmyzr (starting at $499/month) and Madgicx (starting at $499/month) analyze your account and tell you what to change. You execute every change manually. At $499+ on a $5K spend, that is 10% of your budget for advice without execution.
               </p>
               <p style={pStyle}>
-                <strong>Autonomous tools</strong> &mdash; Kampaio/B6 runs the work directly. Buzz handles bids, Aegis flags risk, Echo reports, Vox manages cross-campaign <a href="/blog/google-ads-strategy" style={linkStyle}>strategy</a>, Maximus orchestrates the <a href="/blog/google-ads-optimization" style={linkStyle}>optimization</a> cycle, and Sage handles research. The $199 Approval tier means every change waits for your sign-off, so you learn the account rather than delegating blindly. Pricing: $99/month (Co-pilot), $199/month (Approval), $399/month (Autonomous). Synter is another tool in this category at $199/month. <a href="/b6" style={linkStyle}>See how the agents work</a>.
+                <strong>Autonomous tools</strong> &mdash; Kampaio/B6 runs the work directly. Buzz handles bids, Aegis flags risk, Echo reports, Vox manages cross-campaign <a href="/blog/google-ads-strategy" style={linkStyle}>strategy</a>, Maximus orchestrates the <a href="/blog/google-ads-optimization" style={linkStyle}>optimization</a> cycle, and Sage handles research. The Approval level means every change waits for your sign-off, so you learn the account rather than delegating blindly. The three levels are Co-pilot, Approval and Autonomous, on a flat subscription. Synter is another tool in this category at $199/month. <a href="/b6" style={linkStyle}>See how the agents work</a>.
               </p>
               <p style={pStyle}>
                 <strong>Honest limitation:</strong> this path fits the $3-15K/month spend band. It is not a replacement for an agency handling bundled creative production, landing page builds, or multi-market coordination.
@@ -522,7 +522,7 @@ export default function ArticleContent() {
 
               <h3 style={{ fontSize: '22px', fontWeight: 700, color: '#1e293b', marginTop: '32px', marginBottom: '12px' }}>Is a PPC agency worth it for a small business?</h3>
               <p style={pStyle}>
-                For most businesses spending under $15K/month: usually not at full agency rates. The economics result in junior management of your account. A freelancer ($500-$2K/month) or AI tooling ($99-$399/month) typically delivers more consistent attention per dollar at that spend level.
+                For most businesses spending under $15K/month: usually not at full agency rates. The economics result in junior management of your account. A freelancer ($500-$2K/month) or flat-fee AI tooling typically delivers more consistent attention per dollar at that spend level.
               </p>
             </section>
 
@@ -538,7 +538,7 @@ export default function ArticleContent() {
                   Spend under $15K/month? Try the tooling path first.
                 </h3>
                 <p style={{ fontSize: '17px', color: '#64748b', marginBottom: '28px', lineHeight: '1.6', fontWeight: '500', opacity: 0.9 }}>
-                  <a href="/pricing" style={linkStyle}>Kampaio pricing starts at $99/month</a>. Or start with your account and see what the first audit surfaces.
+                  <a href="/pricing" style={linkStyle}>See what each Kampaio level does</a>. Or start with your account and see what the first audit surfaces.
                 </p>
                 <a
                   href="/chat"

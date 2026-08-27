@@ -468,7 +468,7 @@ flowchart TD
                 Stop Guessing, Start Monitoring
               </h2>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
-                Connect your Google Ads account to B6. Buzz runs the first diagnostic in 90 seconds. You will see exactly which campaigns are underspending, why, and what to change - without digging through five different report tabs manually. <a href="/pricing" style={{ color: '#764ba2', textDecoration: 'underline' }}>B6 pricing starts at $99/month</a>. No commitment, no credit card required. <a href="/chat" style={{ color: '#764ba2', textDecoration: 'underline' }}>Connect your Google Ads account</a>.
+                Connect your Google Ads account to B6. Buzz runs the first diagnostic in 90 seconds. You will see exactly which campaigns are underspending, why, and what to change - without digging through five different report tabs manually. <a href="/pricing" style={{ color: '#764ba2', textDecoration: 'underline' }}>B6 is free while in beta</a>. No commitment, no credit card required. <a href="/chat" style={{ color: '#764ba2', textDecoration: 'underline' }}>Connect your Google Ads account</a>.
               </p>
 
               <div style={{

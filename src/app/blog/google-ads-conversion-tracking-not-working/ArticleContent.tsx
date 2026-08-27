@@ -618,7 +618,7 @@ export default function ArticleContent() {
             <section id="cta">
               <h2 style={h2Style}>Run an Account Audit in 60 Seconds</h2>
               <p style={pStyle}>
-                Connect your Google Ads account to B6 in read-only Co-pilot mode at $99/month. Within 60 seconds, Aegis audits every conversion action: tag fires, duplicate flags, primary/secondary classification, enhanced conversion match rate, GA4 import status. You see a scorecard that lists each issue with the specific fix path, in the same structure as this article.
+                Connect your Google Ads account to B6 in read-only Co-pilot mode, free while B6 is in beta. Within 60 seconds, Aegis audits every conversion action: tag fires, duplicate flags, primary/secondary classification, enhanced conversion match rate, GA4 import status. You see a scorecard that lists each issue with the specific fix path, in the same structure as this article.
               </p>
               <p style={pStyle}>
                 If you fix tracking once and check it once a quarter, you accept three weeks of degraded Smart Bidding every time something breaks. Daily auditing turns three weeks of damage into 24 hours.

@@ -517,7 +517,7 @@ flowchart TD
                 B6 is an AI agency that lives inside the cabinet. The <a href="/blog/google-ads-ai-agent" style={{ color: '#764ba2', textDecoration: 'underline' }}>agents</a> do the watching and the comparing, then show their reasoning before they apply anything. Buzz tracks bid limits and impression share. Maximus keeps Target CPA and Target ROAS aligned with the account&apos;s profitability bands. Aegis reviews any risky change before it goes live. Echo packages the week into a digest you can read in three minutes. It is not &quot;AI advises&quot;. It is &quot;AI does, and shows every step&quot;.
               </p>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
-                Pricing is straightforward: $99 Co-pilot, $199 Approval, $399 Autonomous. No setup fees. <a href="/pricing" style={{ color: '#764ba2', textDecoration: 'underline' }}>See B6 pricing</a>.
+                Pricing is straightforward: three levels, Co-pilot, Approval and Autonomous, all free while B6 is in beta. No setup fees. <a href="/pricing" style={{ color: '#764ba2', textDecoration: 'underline' }}>See B6 pricing</a>.
               </p>
 
               <MascotQuote mascot="echo">

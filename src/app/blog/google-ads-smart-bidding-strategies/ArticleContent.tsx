@@ -555,7 +555,7 @@ export default function ArticleContent() {
               </MascotQuote>
 
               <p style={paragraphStyle}>
-                B6 plans start at $99 (Co-pilot) / $199 (Approval) / $399 (Autonomous). The difference is how much you approve before changes apply. See <a href="/pricing" style={linkStyle}>full pricing</a>.
+                B6 has three levels, Co-pilot, Approval and Autonomous, all free while in beta. The difference is how much you approve before changes apply. See <a href="/pricing" style={linkStyle}>full pricing</a>.
               </p>
             </section>
 

@@ -538,7 +538,7 @@ export default function ArticleContent() {
               </MascotQuote>
 
               <p style={paragraphStyle}>
-                Kampaio runs as Co-pilot at $99, Approval-required at $199, or fully Autonomous at $399, versus the $499+ entry point for Optmyzr or Madgicx. The difference is that kampaio doesn&apos;t give you a list of recommendations to act on. It holds each campaign at its constraint and shows you every step it took.
+                Kampaio runs as Co-pilot, Approval-required, or fully Autonomous, all free while B6 is in beta, versus the $499+ entry point for Optmyzr or Madgicx. The difference is that kampaio doesn&apos;t give you a list of recommendations to act on. It holds each campaign at its constraint and shows you every step it took.
               </p>
             </section>
 
@@ -587,7 +587,7 @@ export default function ArticleContent() {
               <div style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', borderRadius: '16px', padding: '32px', color: 'white', textAlign: 'center', marginTop: '40px' }}>
                 <h3 style={{ fontSize: '24px', fontWeight: 700, marginBottom: '12px' }}>Let kampaio find your biggest constraint</h3>
                 <p style={{ fontSize: '16px', opacity: 0.95, marginBottom: '24px', lineHeight: 1.6 }}>
-                  Connect your account and kampaio surfaces the one binding constraint in each campaign, with an estimated impact on CPA or ROAS. You decide whether to apply it. From $99/mo.
+                  Connect your account and kampaio surfaces the one binding constraint in each campaign, with an estimated impact on CPA or ROAS. You decide whether to apply it. Free while B6 is in beta.
                 </p>
                 <a href="/chat" style={{ display: 'inline-block', background: 'white', color: '#764ba2', padding: '14px 28px', borderRadius: '8px', fontWeight: 700, textDecoration: 'none', fontSize: '16px' }}>
                   Start a free conversation

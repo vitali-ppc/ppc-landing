@@ -563,7 +563,7 @@ export default function ArticleContent() {
                 <strong>Hire a freelancer.</strong> $500-2,000/month, sometimes excellent expertise, often a single point of failure. Vacation gaps. Skill gaps in one or two domains.
               </p>
               <p style={pStyle}>
-                <strong>Go independent with an AI tool.</strong> $99-399/month for autonomous tools (B6 and a small number of competitors). $499-899/month for recommendation tools (Optmyzr, Madgicx). No retainer minimums. You stay in control of strategy; the tool handles bid adjustments, <a href="/blog/google-ads-anomaly-detection" style={linkStyle}>anomaly detection</a>, and reporting.
+                <strong>Go independent with an AI tool.</strong> A flat monthly fee for autonomous tools (B6, free while in beta, and a small number of competitors). $499-899/month for recommendation tools (Optmyzr, Madgicx). No retainer minimums. You stay in control of strategy; the tool handles bid adjustments, <a href="/blog/google-ads-anomaly-detection" style={linkStyle}>anomaly detection</a>, and reporting.
               </p>
               <p style={pStyle}>
                 B6 sits in the third category as <a href="/b6" style={linkStyle}>7 AI agents</a> doing the work an agency was supposed to do. Buzz handles bids, Aegis flags risk and access issues, Echo sends weekly reports, Vox handles cross-campaign strategy, Maximus orchestrates the rules, Mira generates ad copy and image variants, Sage handles keyword and audience research. Pricing: $99 Co-pilot (read-only audit), $199 Approval (every change needs your OK), $399 Autonomous (agents execute within your guardrails).
@@ -582,7 +582,7 @@ export default function ArticleContent() {
               <ComparisonTable
                 headers={['', 'Agency', 'Freelancer', 'B6']}
                 rows={[
-                  { cells: ['Monthly cost', '$1,500-3,000', '$500-2,000', '$99-399'] },
+                  { cells: ['Monthly cost', '$1,500-3,000', '$500-2,000', 'Flat fee, free in beta'] },
                   { cells: ['Your time', '0-2 h/week', '1-3 h/week', '3-5 h/week'] },
                   { cells: ['Who does the work', 'Junior AM', 'One person', '7 AI agents'], highlight: true },
                   { cells: ['Response time', '24-72 hours', 'Hours to days', 'Real-time'] },
@@ -629,7 +629,7 @@ export default function ArticleContent() {
                 <strong>Step 3: Set up independent conversion tracking.</strong> Many agencies use their own GA4 property or GTM container. Create yours in parallel. Verify numbers match for 7-14 days before firing. If the numbers don&apos;t match, work the <a href="/blog/google-ads-conversion-tracking-not-working" style={linkStyle}>conversion tracking diagnostic</a> before you sign the cancellation letter - agency-installed tracking is one of the most common places we find tag misfires and Consent Mode v2 traps that distort every report you&apos;ve seen for months.
               </p>
               <p style={pStyle}>
-                <strong>Step 4: Run the agency and a tool in parallel for 30 days.</strong> Connect B6 in read-only Co-pilot mode at $99/month. Compare what B6 proposes vs. what the agency actually does. The gap is visible immediately.
+                <strong>Step 4: Run the agency and a tool in parallel for 30 days.</strong> Connect B6 in read-only Co-pilot mode, free while in beta. Compare what B6 proposes vs. what the agency actually does. The gap is visible immediately.
               </p>
               <p style={pStyle}>
                 <strong>Step 5: Send the cancellation notice.</strong> Most contracts require 30-60 days notice. Written, clear effective date, request access transfer in the same email. Polite but unambiguous.
@@ -690,7 +690,7 @@ export default function ArticleContent() {
                   lineHeight: '1.6',
                   fontWeight: 500,
                 }}>
-                  Audit your account in 90 seconds. <a href="/pricing" style={linkStyle}>B6 pricing starts at $99/month</a>.
+                  Audit your account in 90 seconds. <a href="/pricing" style={linkStyle}>See what each B6 level does</a>.
                 </p>
                 <a
                   href="/chat"

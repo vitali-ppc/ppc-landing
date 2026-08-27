@@ -72,7 +72,7 @@ export default function ArticleContent() {
         "name": "How much does a Google Ads agency cost vs in-house?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "An agency typically costs $2,000 to $5,000 a month or 10 to 20 percent of ad spend. An in-house manager costs roughly $85,000 to $130,000 a year fully loaded, about $7,000 to $11,000 a month. Self-serve software sits well below both at $99 to $399 a month."
+          "text": "An agency typically costs $2,000 to $5,000 a month or 10 to 20 percent of ad spend. An in-house manager costs roughly $85,000 to $130,000 a year fully loaded, about $7,000 to $11,000 a month. Self-serve software sits well below both, on a flat monthly subscription that does not scale with spend."
         }
       },
       {
@@ -293,10 +293,10 @@ export default function ArticleContent() {
                 <strong>In-house.</strong> Fully loaded (salary, benefits, and tools), one capable PPC manager runs about $85,000 to $130,000 a year, before recruitment costs and turnover risk. That works out to roughly $7,000 to $11,000 a month, which is why in-house only makes sense at higher spend.
               </p>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
-                <strong>Software.</strong> Recommendation tools run $249 to $499 or more a month, and you still execute the changes yourself. Self-serve AI software like Kampaio runs $99, $199, or $399 a month, and the tool does the work while you approve it.
+                <strong>Software.</strong> Recommendation tools run $249 to $499 or more a month, and you still execute the changes yourself. Self-serve AI software like Kampaio is a flat monthly subscription, and the tool does the work while you approve it.
               </p>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
-                The clearest way to read these numbers is as a share of spend. A $1,500 retainer on a $5,000 a month account is 30 percent of your budget going to management, not media. The same account on $199 a month software is closer to 4 percent. Whether that management premium is worth it depends entirely on what it buys you in results and time saved.
+                The clearest way to read these numbers is as a share of spend. A $1,500 retainer on a $5,000 a month account is 30 percent of your budget going to management, not media. The same account on flat-fee software is closer to 4 percent. Whether that management premium is worth it depends entirely on what it buys you in results and time saved.
               </p>
 
               <MascotQuote mascot="maximus">
@@ -338,7 +338,7 @@ export default function ArticleContent() {
                 rows={[
                   { cells: ['Agency', '$2,000–5,000/mo or 10–20% of spend', 'Agency team, often shared across 10–20 accounts', 'Low (verify account ownership)', 'Low', '$20K+/mo'] },
                   { cells: ['In-house', '~$7,000–11,000/mo ($85K–130K/yr loaded)', 'Your employee', 'High', 'Medium (you manage the hire)', '$20K+/mo'] },
-                  { cells: ['Software (self-serve AI, e.g. Kampaio)', '$99–399/mo', 'The tool, with your approval', 'High (you own the account)', 'Medium (a few hours/week)', '$3K–20K/mo'], highlight: true },
+                  { cells: ['Software (self-serve AI, e.g. Kampaio)', 'Flat monthly subscription', 'The tool, with your approval', 'High (you own the account)', 'Medium (a few hours/week)', '$3K–20K/mo'], highlight: true },
                 ]}
                 caption="Agency vs in-house vs software for Google Ads. A starting grid, not a law: spend, structure, and time shift the answer."
               />
@@ -416,7 +416,7 @@ export default function ArticleContent() {
                 Self-serve AI software is for the budget owner who wants the optimization done but keeps the account and the final say. It is strongest in the $3K to $20K a month band, where an agency&apos;s economics do not favor senior attention and a full salary is overkill. That is the gap it fills, and it is worth being precise about both the fit and the limits.
               </p>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
-                Kampaio is an example of the category: an AI PPC cabinet of specialist agents. Maximus orchestrates the optimization cycle, Buzz handles bids, Vox manages cross-campaign <a href="/blog/google-ads-strategy" style={{ color: '#764ba2', textDecoration: 'underline' }}>strategy</a>, Aegis flags risk, Echo reports, Sage handles research, and Mira handles creative. Tiers run $99 (Co-pilot), $199 (Approval), and $399 (Autonomous), against agencies at $2,000 to $5,000 a month. The $199 Approval tier means every change waits for your sign-off, so you keep control while the system does the heavy lifting. You can <a href="/b6" style={{ color: '#764ba2', textDecoration: 'underline' }}>see how the agents work</a> before connecting anything.
+                Kampaio is an example of the category: an AI PPC cabinet of specialist agents. Maximus orchestrates the optimization cycle, Buzz handles bids, Vox manages cross-campaign <a href="/blog/google-ads-strategy" style={{ color: '#764ba2', textDecoration: 'underline' }}>strategy</a>, Aegis flags risk, Echo reports, Sage handles research, and Mira handles creative. Three levels run Co-pilot, Approval and Autonomous, on a flat subscription rather than a percentage of spend, against agencies at $2,000 to $5,000 a month. The Approval level means every change waits for your sign-off, so you keep control while the system does the heavy lifting. You can <a href="/b6" style={{ color: '#764ba2', textDecoration: 'underline' }}>see how the agents work</a> before connecting anything.
               </p>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
                 Software is not a full replacement for every path. An agency that does multi-market coordination or heavy creative production does things software does not, and an owner who wants zero involvement is better served by a retainer. If you are leaning toward managing the account yourself with better tooling, the deeper case is in <a href="/blog/google-ads-without-agency" style={{ color: '#764ba2', textDecoration: 'underline' }}>running Google Ads without an agency</a>. That honesty about where software does not fit is the difference between a comparison and a sales pitch.
@@ -453,7 +453,7 @@ export default function ArticleContent() {
                 How much does a Google Ads agency cost vs in-house?
               </p>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
-                An agency typically costs $2,000 to $5,000 a month or 10 to 20 percent of ad spend. An in-house manager costs roughly $85,000 to $130,000 a year fully loaded, about $7,000 to $11,000 a month. Self-serve software sits well below both at $99 to $399 a month.
+                An agency typically costs $2,000 to $5,000 a month or 10 to 20 percent of ad spend. An in-house manager costs roughly $85,000 to $130,000 a year fully loaded, about $7,000 to $11,000 a month. Self-serve software sits well below both, on a flat monthly subscription that does not scale with spend.
               </p>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '16px', fontWeight: '600' }}>
                 Can software really replace a Google Ads agency?
@@ -502,7 +502,7 @@ export default function ArticleContent() {
                   fontWeight: '500',
                   opacity: 0.9
                 }}>
-                  If your spend is in the $3K to $20K range, you probably do not need a $3,000 retainer or a six-figure hire to run Google Ads well. Connect your account to Kampaio, watch Maximus run the first optimization cycle, and approve or reject every change. You keep the account, you keep control, and there is no contract. <a href="/pricing" style={{ color: '#764ba2', textDecoration: 'underline' }}>Kampaio pricing starts at $99/month</a>.
+                  If your spend is in the $3K to $20K range, you probably do not need a $3,000 retainer or a six-figure hire to run Google Ads well. Connect your account to Kampaio, watch Maximus run the first optimization cycle, and approve or reject every change. You keep the account, you keep control, and there is no contract. <a href="/pricing" style={{ color: '#764ba2', textDecoration: 'underline' }}>See what each Kampaio level does</a>.
                 </p>
                 <a
                   href="/chat"

@@ -523,7 +523,7 @@ export default function ArticleContent() {
                   Let Aegis run the monitoring you have been doing manually
                 </h3>
                 <p style={{ fontSize: '17px', color: '#64748b', marginBottom: '28px', lineHeight: '1.6', fontWeight: 500, opacity: 0.9 }}>
-                  <a href="/b6#aegis" style={linkStyle}>Kampaio&apos;s Aegis agent</a> watches for suspicious IP and geo patterns, queues IP exclusions and invalid-traffic reports for your approval, and shows every proposed action before anything executes. <a href="/pricing" style={linkStyle}>See Kampaio plans from $99/month.</a>
+                  <a href="/b6#aegis" style={linkStyle}>Kampaio&apos;s Aegis agent</a> watches for suspicious IP and geo patterns, queues IP exclusions and invalid-traffic reports for your approval, and shows every proposed action before anything executes. <a href="/pricing" style={linkStyle}>See what each Kampaio level does.</a>
                 </p>
                 <a
                   href="/chat"

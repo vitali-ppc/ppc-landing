@@ -394,7 +394,7 @@ export default function ArticleContent() {
                 The automated detection threshold ($5 spend, 0 conversions, 30 days) is lower than the manual one because context-based filtering runs on top, keeping false positives low.
               </p>
               <p style={pStyle}>
-                Judgment calls, like whether &quot;cheap&quot; belongs as a negative on a value-positioned campaign, still need you. Pricing: Kampaio from $99/$199/$399 vs. Optmyzr and Madgicx from $499+/month.
+                Judgment calls, like whether &quot;cheap&quot; belongs as a negative on a value-positioned campaign, still need you. Pricing: Kampaio is free while B6 is in beta, against $499+/month entry points for Optmyzr and Madgicx.
               </p>
             </section>
 
@@ -466,7 +466,7 @@ export default function ArticleContent() {
                   Let the search-terms scan run on its own
                 </h3>
                 <p style={{ fontSize: '17px', color: '#64748b', marginBottom: '28px', lineHeight: '1.6', fontWeight: 500, opacity: 0.9 }}>
-                  <a href="/b6#vigil" style={linkStyle}>Kampaio&apos;s Vigil and Sage agents</a> watch the search terms report continuously, detect wasted spend, and propose negatives for approval, showing every proposed action before anything executes. You keep control of the judgment calls; the weekly grind goes away. <a href="/pricing" style={linkStyle}>See Kampaio plans from $99/month.</a>
+                  <a href="/b6#vigil" style={linkStyle}>Kampaio&apos;s Vigil and Sage agents</a> watch the search terms report continuously, detect wasted spend, and propose negatives for approval, showing every proposed action before anything executes. You keep control of the judgment calls; the weekly grind goes away. <a href="/pricing" style={linkStyle}>See what each Kampaio level does.</a>
                 </p>
                 <a
                   href="/chat"

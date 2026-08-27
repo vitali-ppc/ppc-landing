@@ -437,7 +437,7 @@ export default function ArticleContent() {
                   [
                     <strong key="m4">Self-serve software on campaigns, you keep Merchant Center hygiene</strong>,
                     'You / Software',
-                    'Kampaio published tiers $99/$199/$399 per month (2026-08-20)',
+                    'Kampaio, flat monthly subscription, free while in beta (checked 2026-08-27)',
                     '$3,000-25,000/mo with a manageable catalog',
                     'Software does not fix a suspended Merchant Center account or argue a misrepresentation appeal',
                   ],
@@ -454,7 +454,7 @@ export default function ArticleContent() {
                 Model 3, in-house with a feed tool, works for owner-operators with genuine time, which is rarer than owners think. DataFeedWatch (which Hunter Digital states it uses), Feedonomics, Channable, GoDataFeed, ShoppingFeeder and Shopify&apos;s native Google channel sit in this lane.
               </p>
               <p style={para}>
-                Model 4 is self-serve software on campaigns, with Merchant Center hygiene still yours. Kampaio&apos;s published tiers are $99, $199 and $399 per month. The limitation in that table cell is real, and we will not bury it: no software argues a policy appeal for you.
+                Model 4 is self-serve software on campaigns, with Merchant Center hygiene still yours. Kampaio is a flat monthly subscription rather than a percentage of ad spend, and all three levels are free while the product is in beta. The limitation in that table cell is real, and we will not bury it: no software argues a policy appeal for you.
               </p>
             </section>
 
@@ -597,7 +597,7 @@ export default function ArticleContent() {
                 Monday action: open Merchant Center, open the diagnostics tab, count the disapprovals and out-of-stock products, and ask who is accountable for that number. If the answer is nobody, you have found the actual problem. Then pick the model that gives that number an owner, whether or not that model has our name on it.
               </p>
               <p style={para}>
-                Kampaio runs the campaign side continuously and shows every change, and both accounts stay in your name. <a href="/pricing" style={linkStyle}>Kampaio pricing starts at $99/month</a>.
+                Kampaio runs the campaign side continuously and shows every change, and both accounts stay in your name. <a href="/pricing" style={linkStyle}>See what each Kampaio level does</a>.
               </p>
 
               <div style={{ background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)', borderRadius: '16px', padding: '40px', textAlign: 'center', marginTop: '48px', marginBottom: '40px' }}>

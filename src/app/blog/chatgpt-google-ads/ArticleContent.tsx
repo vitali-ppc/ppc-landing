@@ -543,7 +543,7 @@ export default function ArticleContent() {
                 ChatGPT is free or ChatGPT Plus; purpose-built tools typically run $99 to $499+/month depending on the tool. For a DTC owner running $3-50K/month with no <a href="/blog/google-ads-without-agency" style={{ color: '#764ba2', textDecoration: 'underline' }}>in-house PPC</a> hire, this is where Kampaio fits. It&apos;s built to monitor the live account and apply account-safe changes (pausing an underperforming campaign, applying a recommendation, adding negative keywords) with human oversight on every action, every step visible. Not a ChatGPT replacement. The next layer, for what ChatGPT can&apos;t reach from a chat window. If you want the fuller picture of what an <a href="/blog/google-ads-ai-agent" style={linkStyle}>autonomous AI agent</a> does versus a copilot you&apos;re still driving by hand, that&apos;s a separate, deeper read.
               </p>
               <p style={para}>
-                Optmyzr and Madgicx are recommendation engines starting around $499/month; they surface suggestions for a human to apply. Kampaio applies account-safe actions directly and logs them, at $99, $199, or $399/month. ChatGPT does neither with your live data. See the full <a href="/pricing" style={linkStyle}>pricing breakdown</a> if you want the plan detail.
+                Optmyzr and Madgicx are recommendation engines starting around $499/month; they surface suggestions for a human to apply. Kampaio applies account-safe actions directly and logs them, on a flat monthly subscription. ChatGPT does neither with your live data. See the full <a href="/pricing" style={linkStyle}>pricing breakdown</a> if you want the plan detail.
               </p>
 
               <div style={{ background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)', borderRadius: '16px', padding: '40px', textAlign: 'center', marginTop: '48px', marginBottom: '40px' }}>
@@ -551,7 +551,7 @@ export default function ArticleContent() {
                   See it run on a real account, every action visible
                 </h3>
                 <p style={{ fontSize: '17px', color: '#64748b', marginBottom: '28px', lineHeight: '1.6', fontWeight: 500, opacity: 0.9 }}>
-                  From $99/month. Kampaio monitors the live account and applies account-safe changes with oversight on every step.
+                  Free while B6 is in beta. Kampaio monitors the live account and applies account-safe changes with oversight on every step.
                 </p>
                 <a
                   href="/chat"
@@ -613,7 +613,7 @@ export default function ArticleContent() {
               </MascotQuote>
 
               <p style={para}>
-                Ready for something that reads your live account and acts safely, every step visible? That&apos;s Kampaio, starting at $99/month.
+                Ready for something that reads your live account and acts safely, every step visible? That&apos;s Kampaio, free while B6 is in beta.
               </p>
 
               <p style={{ fontSize: '14px', color: '#94a3b8', fontStyle: 'italic', lineHeight: '1.7', marginBottom: '40px' }}>

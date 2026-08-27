@@ -67,7 +67,7 @@ export default function ArticleContent() {
         name: 'How much does PPC management cost?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'There are three cost models. Agency retainers commonly run $1,500 to $5,000 per month flat or 10 to 20 percent of ad spend. An in-house PPC manager costs salary (US average roughly $75K per year). AI tools like B6 run $99 to $399 per month and extend in-house capacity without a headcount hire. At $5K in ad spend, a $1,500 agency fee equals 30 percent of total budget going to management.',
+          text: 'There are three cost models. Agency retainers commonly run $1,500 to $5,000 per month flat or 10 to 20 percent of ad spend. An in-house PPC manager costs salary (US average roughly $75K per year). AI tools like B6 run on a flat monthly subscription and extend in-house capacity without a headcount hire. At $5K in ad spend, a $1,500 agency fee equals 30 percent of total budget going to management.',
         },
       },
       {
@@ -536,7 +536,7 @@ export default function ArticleContent() {
                       'Monthly cost',
                       'Salary (US avg ~$75K/yr per Indeed)',
                       '$1,500 to $5,000/mo flat, or 10 to 20% of spend',
-                      '$99 to $399/mo',
+                      'Flat subscription, free in beta',
                     ],
                   },
                   {
@@ -929,7 +929,7 @@ flowchart LR
                 .
               </p>
               <p style={pStyle}>
-                <strong>How much does <a href="/blog/ppc-management-cost" style={linkStyle}>PPC management cost</a>?</strong> Three cost models: agency retainers commonly run $1,500 to $5,000 per month flat or 10 to 20 percent of ad spend, whichever is higher. An in-house PPC manager costs salary (US average roughly $75K per year; see below). <a href="/blog/5-tips-for-working-with-ai-ppc-tools" style={linkStyle}>AI tools</a> like B6 run $99 to $399 per month and extend in-house capacity without a headcount hire. At $5K in ad spend, a $1,500 agency fee equals 30 percent of total budget going to management.
+                <strong>How much does <a href="/blog/ppc-management-cost" style={linkStyle}>PPC management cost</a>?</strong> Three cost models: agency retainers commonly run $1,500 to $5,000 per month flat or 10 to 20 percent of ad spend, whichever is higher. An in-house PPC manager costs salary (US average roughly $75K per year; see below). <a href="/blog/5-tips-for-working-with-ai-ppc-tools" style={linkStyle}>AI tools</a> like B6 run on a flat monthly subscription and extend in-house capacity without a headcount hire. At $5K in ad spend, a $1,500 agency fee equals 30 percent of total budget going to management.
               </p>
               <p style={pStyle}>
                 <strong>How much do PPC managers make in the US?</strong> The US average is approximately $75,395 per year per{' '}

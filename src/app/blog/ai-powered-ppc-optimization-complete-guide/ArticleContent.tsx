@@ -301,7 +301,7 @@ export default function ArticleContent() {
                 rows={[
                   { cells: ['Native Google AI', 'Bids only, no account-wide strategy', 'Smart Bidding, PMax, asset-AI', 'Free, inside Ads'] },
                   { cells: ['Recommendation tools', 'Analyze + suggest, you click apply', 'Optmyzr, Adalysis, Adzooma', '$69-499/mo'] },
-                  { cells: ['Autonomous agents', 'Apply with approval or by rule, audit trail', 'B6 (Buzz, Aegis, Sage, Vox)', '$99-399/mo'], highlight: true },
+                  { cells: ['Autonomous agents', 'Apply with approval or by rule, audit trail', 'B6 (Buzz, Aegis, Sage, Vox)', 'Flat subscription'], highlight: true },
                 ]}
                 caption="Three tiers of AI-PPC optimization in 2026. Native + autonomous is the senior-team default; recommendation tools only pay off when you have bandwidth to action suggestions daily."
               />
@@ -310,7 +310,7 @@ export default function ArticleContent() {
                 Recommendation tools work for teams with bandwidth to action suggestions daily. The math fails on under-staffed accounts. A $499/mo Optmyzr subscription on a $5K/mo spend is 10% of media budget paying for analysis, with the actual optimization work still on a human calendar.
               </p>
               <p style={paragraphStyle}>
-                Autonomous <a href="/blog/google-ads-ai-agent" style={{ color: '#764ba2', textDecoration: 'underline' }}>agents</a> close that loop. B6 sits in the $99-399 band and executes within guardrails you set. Approval mode applies safe changes automatically with an audit log and holds risky changes for your sign-off. Autonomous mode lets the Maximus orchestrator run defined rules and send a weekly report. The senior manager keeps <a href="/blog/google-ads-strategy" style={{ color: '#764ba2', textDecoration: 'underline' }}>strategy</a> and oversight. The agent absorbs the high-frequency mechanical work.
+                Autonomous <a href="/blog/google-ads-ai-agent" style={{ color: '#764ba2', textDecoration: 'underline' }}>agents</a> close that loop. B6 runs on a flat subscription and executes within guardrails you set. Approval mode applies safe changes automatically with an audit log and holds risky changes for your sign-off. Autonomous mode lets the Maximus orchestrator run defined rules and send a weekly report. The senior manager keeps <a href="/blog/google-ads-strategy" style={{ color: '#764ba2', textDecoration: 'underline' }}>strategy</a> and oversight. The agent absorbs the high-frequency mechanical work.
               </p>
               <p style={paragraphStyle}>
                 We compare every tier in detail on our <a href="/pricing" style={linkStyle}>pricing page</a>, including which guardrails ship at each level.

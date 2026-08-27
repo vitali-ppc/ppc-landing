@@ -595,13 +595,13 @@ export default function ArticleContent() {
                 B6 is an autonomous PPC cabinet. Aegis, B6&apos;s compliance and protection agent, monitors billing health, policy signals, and account anomalies every day. When something drifts toward risk, Aegis flags it in the dashboard before the strike system starts. Not a monthly audit. Not a weekly report. Daily, automated, and specific.
               </p>
               <p style={paragraphStyle}>
-                B6 plans start at $99/month, versus competitors from $499+. That difference buys you the monitoring layer that catches suspension risk before it costs you revenue.
+                B6 is free while in beta, versus competitors from $499+. That difference buys you the monitoring layer that catches suspension risk before it costs you revenue.
               </p>
 
               <div style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', borderRadius: '16px', padding: '32px', color: 'white', textAlign: 'center', marginTop: '40px' }}>
                 <h3 style={{ fontSize: '24px', fontWeight: 700, marginBottom: '12px' }}>Catch suspension risk before the banner appears</h3>
                 <p style={{ fontSize: '16px', opacity: 0.95, marginBottom: '24px', lineHeight: 1.6 }}>
-                  Aegis monitors billing health, policy signals, and account anomalies daily, flagging risk before the strike system starts. From $99/mo.
+                  Aegis monitors billing health, policy signals, and account anomalies daily, flagging risk before the strike system starts. Free while B6 is in beta.
                 </p>
                 <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
                   <a href="/pricing" style={{ display: 'inline-block', background: 'white', color: '#764ba2', padding: '14px 28px', borderRadius: '8px', fontWeight: 700, textDecoration: 'none', fontSize: '16px' }}>

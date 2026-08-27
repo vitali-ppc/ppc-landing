@@ -418,7 +418,7 @@ export default function ArticleContent() {
                   Want the operational layer handled for you?
                 </h3>
                 <p style={{ fontSize: '17px', color: '#64748b', marginBottom: '28px', lineHeight: '1.6', fontWeight: '500' }}>
-                  Kampaio runs the bids, budgets, and optimization with a team of AI agents, from $99 to $399 a month, well under the $499-plus that tools like Optmyzr and Madgicx charge. See <a href="/b6" style={linkStyle}>how it works</a> or compare <a href="/pricing" style={linkStyle}>pricing</a>.
+                  Kampaio runs the bids, budgets, and optimization with a team of AI agents on a flat monthly subscription, well under the $499-plus that tools like Optmyzr and Madgicx charge. See <a href="/b6" style={linkStyle}>how it works</a> or compare <a href="/pricing" style={linkStyle}>pricing</a>.
                 </p>
                 <a
                   href="/chat"

@@ -545,8 +545,8 @@ export default function ArticleContent() {
                 mechanism. It does not ask whether they would trust it unsupervised.
               </p>
               <p style={paragraphStyle}>
-                Recommendation tools like Optmyzr and Madgicx (from $499/month) tell a user what to change. Autonomous tools like Kampaio
-                ($99 to $399/month) run the change and show the step. Neither one tests a candidate before letting them touch a client&apos;s
+                Recommendation tools like Optmyzr and Madgicx (from $499/month) tell a user what to change. Autonomous tools like Kampaio,
+                on a flat monthly fee, run the change and show the step. Neither one tests a candidate before letting them touch a client&apos;s
                 account.
               </p>
 
@@ -587,7 +587,7 @@ export default function ArticleContent() {
               </p>
               <p style={paragraphStyle}>
                 <a href="/chat" style={linkStyle}>Start with your account</a> or see{' '}
-                <a href="/pricing" style={linkStyle}>Kampaio pricing starts at $99/month</a>.
+                <a href="/pricing" style={linkStyle}>See what each Kampaio level does</a>.
               </p>
 
               <div style={{ background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)', borderRadius: '16px', padding: '40px', textAlign: 'center', marginTop: '40px', marginBottom: '40px' }}>

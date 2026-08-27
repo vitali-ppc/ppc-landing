@@ -388,7 +388,7 @@ flowchart TD
                   { cells: ['Full agency', '$1,500–3,000', '0–2 h/week', 'Approve monthly report, sometimes ignored'] },
                   { cells: ['Pure DIY', '$0 (tool cost)', '10–15 h/week', 'Manual bid management in Google Ads UI'] },
                   { cells: ['Recommendation tool (Optmyzr, Madgicx)', '$499–899', '5–8 h/week', 'Review AI suggestions, execute manually'] },
-                  { cells: ['B6 (autonomous tool)', '$99–399', '3–5 h/week', 'Set guardrails, review weekly digest from Echo'], highlight: true },
+                  { cells: ['B6 (autonomous tool)', 'Flat subscription', '3–5 h/week', 'Set guardrails, review weekly digest from Echo'], highlight: true },
                 ]}
                 caption="Cost vs time for a $10K/month Google Ads spend. B6 sits between DIY and agency at a fraction of agency cost."
               />
@@ -402,7 +402,7 @@ flowchart TD
                 <li style={{ marginBottom: '16px' }}><strong>$399 Autonomous</strong>: AI executes changes within guardrails you set, reports what it did</li>
               </ul>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
-                The key difference: B6 is not &quot;AI gives advice you act on later.&quot; It&apos;s &quot;AI does the work and shows you every step live.&quot; The $199 Approval tier is the sweet spot for most SMB owners. You learn by seeing what the AI proposes. After 2-3 months, you understand bid management deeply because you&apos;ve reviewed 200+ proposed changes with explanations. It&apos;s hands-on education while the work gets done.
+                The key difference: B6 is not &quot;AI gives advice you act on later.&quot; It&apos;s &quot;AI does the work and shows you every step live.&quot; The Approval level is the sweet spot for most SMB owners. You learn by seeing what the AI proposes. After 2-3 months, you understand bid management deeply because you&apos;ve reviewed 200+ proposed changes with explanations. It&apos;s hands-on education while the work gets done.
               </p>
 
               <MascotQuote mascot="aegis">
@@ -415,7 +415,7 @@ flowchart TD
               <ul style={{ fontSize: '18px', color: '#1e293b', lineHeight: '1.8', paddingLeft: '24px', marginBottom: '32px' }}>
                 <li style={{ marginBottom: '16px' }}><strong>Agency</strong> ($1-3K/month): They do all the work. You spend 1 hour/month reviewing reports. Response time: 1-5 business days for changes. Best for $20K+ budgets or if you need creative production.</li>
                 <li style={{ marginBottom: '16px' }}><strong>Freelancer</strong> ($500-2K/month): Mix of done-for-you and collaborative. You spend 2-4 hours/month in calls and reviews. Response time: 1-3 business days. Best if you want more control than agency but less work than DIY.</li>
-                <li style={{ marginBottom: '16px' }}><strong>DIY with B6</strong> ($99-399/month): AI does optimization work, you handle strategy and approvals. You spend 3-5 hours/week reviewing and making decisions. Response time: real-time for AI actions, instant for your approvals. Best for $3-20K budgets where agency fees don&apos;t make economic sense.</li>
+                <li style={{ marginBottom: '16px' }}><strong>DIY with B6</strong> (flat monthly fee): AI does optimization work, you handle strategy and approvals. You spend 3-5 hours/week reviewing and making decisions. Response time: real-time for AI actions, instant for your approvals. Best for $3-20K budgets where agency fees don&apos;t make economic sense.</li>
               </ul>
             </section>
 
@@ -483,7 +483,7 @@ flowchart TD
                 Stop Paying Agency Fees for Work AI Can Do Better
               </h2>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
-                Connect your Google Ads account to B6. Buzz runs the first optimization cycle in 90 seconds. You see exactly what he would change and why. Approve or reject each action. No contracts, no minimums, no $2K/month retainer. <a href="/pricing" style={{ color: '#764ba2', textDecoration: 'underline' }}>B6 pricing starts at $99/month</a>. <a href="/chat" style={{ color: '#764ba2', textDecoration: 'underline' }}>Start your free trial</a> and see the first round of recommendations live. <a href="/b6#buzz" style={{ color: '#764ba2', textDecoration: 'underline' }}>See how Buzz optimizes bids</a> or <a href="/b6" style={{ color: '#764ba2', textDecoration: 'underline' }}>learn how all seven B6 agents work together</a>.
+                Connect your Google Ads account to B6. Buzz runs the first optimization cycle in 90 seconds. You see exactly what he would change and why. Approve or reject each action. No contracts, no minimums, no $2K/month retainer. <a href="/pricing" style={{ color: '#764ba2', textDecoration: 'underline' }}>See what each B6 level does</a>. <a href="/chat" style={{ color: '#764ba2', textDecoration: 'underline' }}>Start your free trial</a> and see the first round of recommendations live. <a href="/b6#buzz" style={{ color: '#764ba2', textDecoration: 'underline' }}>See how Buzz optimizes bids</a> or <a href="/b6" style={{ color: '#764ba2', textDecoration: 'underline' }}>learn how all seven B6 agents work together</a>.
               </p>
 
               <div style={{

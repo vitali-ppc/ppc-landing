@@ -456,7 +456,7 @@ export default function ArticleContent() {
               <div style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', borderRadius: '16px', padding: '32px', color: 'white', textAlign: 'center', marginTop: '40px' }}>
                 <h3 style={{ fontSize: '24px', fontWeight: 700, marginBottom: '12px' }}>Your account, your data, AI agents doing the work.</h3>
                 <p style={{ fontSize: '16px', opacity: 0.95, marginBottom: '24px', lineHeight: 1.6 }}>
-                  End the switching cycle entirely. B6 connects to your own Google Ads account via OAuth and runs the operational layer for you. From $99/mo.
+                  End the switching cycle entirely. B6 connects to your own Google Ads account via OAuth and runs the operational layer for you. Free while B6 is in beta.
                 </p>
                 <a href="/chat" style={{ display: 'inline-block', background: 'white', color: '#764ba2', padding: '14px 28px', borderRadius: '8px', fontWeight: 700, textDecoration: 'none', fontSize: '16px' }}>
                   Chat with B6 on your account

@@ -683,9 +683,9 @@ export default function ArticleContent() {
                 B6 is an autonomous PPC cabinet, not a recommendation tool. Buzz, our bidding agent, ships with Display Network defaults set to off on every new Search campaign and reviews the placement report nightly to exclude MFA, mobile-game, and low-CTR placements based on rules. Aegis layers risk warnings before any apply: Smart Bidding learning windows, audience overlap, budget exposure.
               </p>
               <p style={pStyle}>
-                Plans run $99 (Co-pilot, you approve every change), $199 (Approval, batched daily summary), and $399 (Autonomous, Buzz applies and reports). See{' '}
+                The three levels are Co-pilot (you approve every change), Approval (batched daily summary), and Autonomous ( Buzz applies and reports). See{' '}
                 <a href="/pricing" style={linkStyle}>
-                  B6 pricing: $99 / $199 / $399
+                  B6 pricing: free while in beta
                 </a>{' '}
                 for the full comparison. Connect your Google Ads account,{' '}
                 <a href="/chat" style={linkStyle}>

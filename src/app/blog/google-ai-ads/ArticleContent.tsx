@@ -595,7 +595,7 @@ export default function ArticleContent() {
                   Let Google&apos;s AI run. Kampaio watches every move.
                 </h3>
                 <p style={{ fontSize: '17px', color: '#64748b', marginBottom: '28px', lineHeight: '1.6', fontWeight: 500, opacity: 0.9 }}>
-                  From $99/month. Kampaio flags AI Max query drift, off-brand assets, and post-upgrade CPA jumps, with oversight on every action.
+                  Free while B6 is in beta. Kampaio flags AI Max query drift, off-brand assets, and post-upgrade CPA jumps, with oversight on every action.
                 </p>
                 <a
                   href="/chat"

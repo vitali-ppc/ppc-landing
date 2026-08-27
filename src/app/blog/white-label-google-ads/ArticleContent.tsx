@@ -277,8 +277,8 @@ export default function ArticleContent() {
                 headers={['Dimension', 'White-label provider', 'In-house hire', 'Software (e.g. Kampaio)']}
                 rows={[
                   { cells: ['Upfront cost', 'None to low (some setup fees)', 'Recruiting cost + 3-6 month ramp', 'None (SaaS subscription)'] },
-                  { cells: ['Monthly cost', '$300-1,500/account fixed OR 10-20% of ad spend', '$5,400-7,900/mo fully-loaded salary', '$99-399/mo flat, regardless of account count'] },
-                  { cells: ['Agency margin', '30-60% of fee (compresses on large spend or small retainers)', 'High once amortized; negative first 6-12 months', '>80% of fee at the $199/mo tier'] },
+                  { cells: ['Monthly cost', '$300-1,500/account fixed OR 10-20% of ad spend', '$5,400-7,900/mo fully-loaded salary', 'Flat monthly subscription, regardless of account count'] },
+                  { cells: ['Agency margin', '30-60% of fee (compresses on large spend or small retainers)', 'High once amortized; negative first 6-12 months', '>80% of fee on a flat mid-level tool fee'] },
                   { cells: ['Control / quality', 'Low; provider makes decisions, quality varies by vendor', 'Full; you own every optimization', 'Full; you set strategy, software executes'] },
                   { cells: ['Scalability', 'Easy to add accounts; provider absorbs volume', 'Hard; each hire covers ~6-10 accounts', 'Moderate; depends on operator capacity'] },
                   { cells: ['Breakeven vs in-house', 'Immediate; cheaper than hiring for 1-5 accounts', '~4-6 accounts at $1,500 retainer to justify one hire', 'Immediate; fixed cost regardless of account count'] },
@@ -292,7 +292,7 @@ export default function ArticleContent() {
               </p>
 
               <MascotQuote mascot="vox">
-                Across an 8-account book running $3,000 average monthly ad spend per client, white-label provider fees at 15 percent of spend came to $3,600 a month total. Moving four of those accounts to a $199-a-month software tier cut fulfillment cost to $1,399 a month combined, same four accounts, margin jumped from 34 percent to 81 percent.
+                Across an 8-account book running $3,000 average monthly ad spend per client, white-label provider fees at 15 percent of spend came to $3,600 a month total. Moving four of those accounts to a flat software fee, $199 a month for the sake of this worked example, cut fulfillment cost to $1,399 a month combined, same four accounts, margin jumped from 34 percent to 81 percent.
               </MascotQuote>
             </section>
 
@@ -312,7 +312,7 @@ export default function ArticleContent() {
                 <Step title="Path B: in-house hire">
                   Fully-loaded monthly cost ~$5,417/mo minimum (vendor-advertised $65K/year basis). Requires ~4 clients at $1,500 retainer to break even, negative margin until then.
                 </Step>
-                <Step title="Path C: software at $199/mo flat">
+                <Step title="Path C: flat software fee, $199/mo assumed">
                   Agency nets $1,301, an 87 percent gross margin, fixed cost regardless of account count.
                 </Step>
               </Steps>
@@ -437,7 +437,7 @@ export default function ArticleContent() {
                 <strong>Hire in-house when</strong> PPC is core to your positioning, you have steady volume (4+ accounts at $1,500+ retainer), and a 6 to 12 month horizon to amortize the ramp cost.
               </p>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
-                <strong>Use software when</strong> PPC skill exists in-house, you want full strategic control and margin, and you need to scale delivery without headcount. The software path means your agency runs the campaigns directly, with automation handling bid management, <a href="/blog/google-ads-not-spending-full-budget" style={{ color: '#764ba2', textDecoration: 'underline' }}>budget pacing</a>, and reporting. Kampaio is built for this model, with tiers at $99, $199, and $399/mo flat regardless of account count. If you are evaluating this path for the first time, <a href="/blog/google-ads-without-agency" style={{ color: '#764ba2', textDecoration: 'underline' }}>running Google Ads without an agency</a> covers the real tradeoffs of going direct.
+                <strong>Use software when</strong> PPC skill exists in-house, you want full strategic control and margin, and you need to scale delivery without headcount. The software path means your agency runs the campaigns directly, with automation handling bid management, <a href="/blog/google-ads-not-spending-full-budget" style={{ color: '#764ba2', textDecoration: 'underline' }}>budget pacing</a>, and reporting. Kampaio is built for this model, on a flat subscription regardless of account count. If you are evaluating this path for the first time, <a href="/blog/google-ads-without-agency" style={{ color: '#764ba2', textDecoration: 'underline' }}>running Google Ads without an agency</a> covers the real tradeoffs of going direct.
               </p>
             </section>
 
@@ -540,7 +540,7 @@ export default function ArticleContent() {
                   fontWeight: '500',
                   opacity: 0.9
                 }}>
-                  If you have PPC skill in-house and want to stop handing 30 to 60 percent of your fee to an invisible provider, software runs the campaigns directly while you keep the account and the client. For agencies weighing the software path before signing a white-label contract, see the <a href="/blog/google-ads-agency-vs-in-house-vs-software" style={{ color: '#764ba2', textDecoration: 'underline' }}>full agency vs in-house vs software comparison</a>, or explore <a href="/pricing" style={{ color: '#764ba2', textDecoration: 'underline' }}>Kampaio pricing</a> at $99, $199, and $399 a month flat.
+                  If you have PPC skill in-house and want to stop handing 30 to 60 percent of your fee to an invisible provider, software runs the campaigns directly while you keep the account and the client. For agencies weighing the software path before signing a white-label contract, see the <a href="/blog/google-ads-agency-vs-in-house-vs-software" style={{ color: '#764ba2', textDecoration: 'underline' }}>full agency vs in-house vs software comparison</a>, or explore <a href="/pricing" style={{ color: '#764ba2', textDecoration: 'underline' }}>Kampaio pricing</a>, free while B6 is in beta.
                 </p>
                 <a
                   href="/chat"

@@ -623,7 +623,7 @@ export default function ArticleContent() {
                 B6 is an autonomous management layer on top of your Google Ads account. It does not replace Smart Bidding at the auction level. Google&apos;s AI still sets individual bids in real time. B6 adds the management layer: monitoring performance, flagging anomalies, and acting on account-level decisions with full transparency. Buzz monitors bid strategy performance and auto-applies changes based on your autonomy tier. Vigil catches CPC spikes before they compound. Aegis reviews proposed changes for risk. Vox handles cross-campaign reallocation when campaigns are at different maturity stages.
               </p>
               <p style={paragraphStyle}>
-                The autonomy tier is the &quot;third option&quot;: at L1 Co-pilot ($99/mo), B6 suggests and you approve. At L2 Autopilot ($199/mo), B6 acts on smaller decisions and flags larger ones. At L3 Full Autopilot ($399/mo), B6 manages autonomously with daily safety caps. Optmyzr and Madgicx start at $499+ and advise without acting. B6 <a href="/pricing" style={linkStyle}>from $99/mo</a> acts, shows every step live, and keeps your manual override in place.
+                The autonomy tier is the &quot;third option&quot;: at L1 Co-pilot, B6 suggests and you approve. At L2 Autopilot, B6 acts on smaller decisions and flags larger ones. At L3 Full Autopilot, B6 manages autonomously with daily safety caps. Optmyzr and Madgicx start at $499+ and advise without acting. B6, <a href="/pricing" style={linkStyle}>free while in beta</a>, acts, shows every step live, and keeps your manual override in place.
               </p>
 
               <MascotQuote mascot="buzz">
