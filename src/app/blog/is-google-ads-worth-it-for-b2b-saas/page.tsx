@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import ArticleContent from './ArticleContent';
 
 export const metadata: Metadata = {
-  title: 'Is Google Ads Worth It for B2B SaaS? A Decision Framework (2026)',
+  title: 'Is Google Ads Worth It for B2B SaaS? (2026)',
   description: 'Is Google Ads worth it for your B2B SaaS, or a money-pit? An honest decision framework: a 6-factor scorecard, the real CPL-to-CAC economics, the alternatives, and a cheap 4-6 week test to de-risk the commitment.',
   alternates: {
     canonical: 'https://www.kampaio.com/blog/is-google-ads-worth-it-for-b2b-saas',

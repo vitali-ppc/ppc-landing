@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import ArticleContent from './ArticleContent';
 
 export const metadata: Metadata = {
-  title: 'AI-Powered PPC Optimization: The Complete Guide for Senior PPC Managers',
+  title: 'AI-Powered PPC Optimization: The Complete Guide',
   description: "A senior PPC manager's complete guide to AI-powered PPC optimization. What AI actually decides in Google Ads, the recommendation vs autonomous distinction, an adoption roadmap, and where your judgment still wins.",
   alternates: {
     canonical: 'https://www.kampaio.com/blog/ai-powered-ppc-optimization-complete-guide',

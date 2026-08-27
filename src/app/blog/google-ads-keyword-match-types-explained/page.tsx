@@ -2,13 +2,13 @@ import type { Metadata } from 'next';
 import ArticleContent from './ArticleContent';
 
 export const metadata: Metadata = {
-  title: 'Google Ads Keyword Match Types Explained (Broad, Phrase, Exact 2026)',
+  title: 'Google Ads Keyword Match Types Explained (2026)',
   description: 'Broad, phrase, and exact match in Google Ads behave nothing like they did in 2019. How each one works in 2026, how they feed Smart Bidding, and which to use when.',
   alternates: {
     canonical: 'https://www.kampaio.com/blog/google-ads-keyword-match-types-explained',
   },
   openGraph: {
-    title: 'Google Ads Keyword Match Types Explained (2026)',
+    title: 'Google Ads Keyword Match Types Explained (Broad, Phrase, Exact 2026)',
     description: 'Broad, phrase, and exact match in Google Ads in 2026. How each feeds Smart Bidding, the decision framework, and the negative-keyword discipline that makes any of this work.',
     url: 'https://www.kampaio.com/blog/google-ads-keyword-match-types-explained',
     type: 'article',

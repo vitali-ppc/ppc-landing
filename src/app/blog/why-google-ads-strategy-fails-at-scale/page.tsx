@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import ArticleContent from './ArticleContent';
 
 export const metadata: Metadata = {
-  title: 'Why Google Ads Strategy Fails at Scale: 8 Diagnostic Patterns Agencies See',
+  title: 'Why Google Ads Strategy Fails at Scale: 8 Patterns',
   description: "Across 20+ client accounts an agency owner sees the same 8 patterns when Google Ads strategy stalls at scale. Auction signal exhaustion, attribution drift, KPI misalignment, vendor sprawl, and the diagnostic framework to find which one is killing your account.",
   alternates: {
     canonical: 'https://www.kampaio.com/blog/why-google-ads-strategy-fails-at-scale',

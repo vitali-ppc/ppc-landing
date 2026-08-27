@@ -2,13 +2,13 @@ import type { Metadata } from 'next';
 import ArticleContent from './ArticleContent';
 
 export const metadata: Metadata = {
-  title: 'Google Ads "Bid Strategy Limited" Status: What It Means and How to Fix It',
+  title: 'Google Ads "Bid Strategy Limited" Status: Causes and Fixes',
   description: 'Your Google Ads bid strategy shows "Limited"? Here is what "Limited by bid strategy" and "Eligible (Limited)" mean, the real causes, and how to fix (or safely ignore) it.',
   alternates: {
     canonical: 'https://www.kampaio.com/blog/google-ads-bid-strategy-status-limited',
   },
   openGraph: {
-    title: 'Google Ads "Bid Strategy Limited" Status: Causes and Fixes',
+    title: 'Google Ads "Bid Strategy Limited" Status: What It Means and How to Fix It',
     description: 'What "Limited by bid strategy" and "Eligible (Limited)" mean, the four real causes, the 5-step fix, and when ignoring the warning is the right call.',
     url: 'https://www.kampaio.com/blog/google-ads-bid-strategy-status-limited',
     type: 'article',

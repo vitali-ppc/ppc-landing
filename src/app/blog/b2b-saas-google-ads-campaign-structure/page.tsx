@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import ArticleContent from './ArticleContent';
 
 export const metadata: Metadata = {
-  title: 'B2B SaaS Google Ads Campaign Structure: The Account Blueprint (2026)',
+  title: 'B2B SaaS Google Ads Campaign Structure (2026)',
   description: 'How to structure a B2B SaaS Google Ads account from scratch: segment campaigns by intent and funnel stage, isolate brand and competitor traffic, name for scale, and add Performance Max only after Search has a feedback loop. Full blueprint with example layout.',
   alternates: {
     canonical: 'https://www.kampaio.com/blog/b2b-saas-google-ads-campaign-structure',

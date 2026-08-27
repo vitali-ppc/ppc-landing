@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import ArticleContent from './ArticleContent';
 
 export const metadata: Metadata = {
-  title: 'How to Switch Google Ads Agencies Without Losing Your Account or Your Data',
+  title: 'How to Switch Google Ads Agencies Without Losing Your Account',
   description: 'A step-by-step guide to switching Google Ads agencies safely: who owns the account, how to transfer the MCC and billing, export your history, and avoid the agency that will not hand over access.',
   alternates: {
     canonical: 'https://www.kampaio.com/blog/how-to-switch-google-ads-agencies',

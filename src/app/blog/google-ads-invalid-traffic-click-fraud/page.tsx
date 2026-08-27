@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import ArticleContent from './ArticleContent';
 
 export const metadata: Metadata = {
-  title: 'Google Ads Invalid Traffic & Click Fraud: How to Spot It, Stop It, and Get Refunded (2026)',
+  title: 'Google Ads Invalid Traffic & Click Fraud (2026)',
   description: 'Suspicious clicks draining your Google Ads budget? Learn how to tell real click fraud from invalid traffic, diagnose it in 5 minutes, claim Google\'s automatic credits, and lock it down with IP and audience exclusions.',
   alternates: {
     canonical: 'https://www.kampaio.com/blog/google-ads-invalid-traffic-click-fraud',

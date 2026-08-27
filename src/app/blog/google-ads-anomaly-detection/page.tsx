@@ -2,13 +2,13 @@ import type { Metadata } from 'next';
 import ArticleContent from './ArticleContent';
 
 export const metadata: Metadata = {
-  title: 'Google Ads Anomaly Detection: Spend Spikes, Conversion Drops, Tracking Outages',
+  title: 'Google Ads Anomaly Detection: The Stack That Actually Works',
   description: 'Built-in Google Ads alerts are too noisy or too late. The Account Anomaly Detector script is brittle. The detection stack that actually works in 2026: rolling baselines, severity tiers, and Aegis classification.',
   alternates: {
     canonical: 'https://www.kampaio.com/blog/google-ads-anomaly-detection',
   },
   openGraph: {
-    title: 'Google Ads Anomaly Detection: The Stack That Actually Works',
+    title: 'Google Ads Anomaly Detection: Spend Spikes, Conversion Drops, Tracking Outages',
     description: 'Comparison of built-in alerts vs Account Anomaly Detector script vs CAD v2 vs commercial monitors vs Aegis. Threshold math, severity tiers, routing rules. Sara-targeted technical guide.',
     url: 'https://www.kampaio.com/blog/google-ads-anomaly-detection',
     type: 'article',

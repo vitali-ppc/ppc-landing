@@ -2,13 +2,13 @@ import type { Metadata } from 'next';
 import ArticleContent from './ArticleContent';
 
 export const metadata: Metadata = {
-  title: 'Incrementality Testing in Google Ads: What It Measures and How to Run One',
+  title: 'Incrementality Testing in Google Ads: Causal Lift, Not Last-Click',
   description: 'Incrementality testing in Google Ads measures the true causal lift of your ads versus a no-ad control group. Covers Conversion Lift, geo-lift, the November 2025 $5K minimum spend update, common pitfalls, and how lift findings should retune Smart Bidding.',
   alternates: {
     canonical: 'https://www.kampaio.com/blog/incrementality-testing-google-ads',
   },
   openGraph: {
-    title: 'Incrementality Testing in Google Ads: Causal Lift, Not Last-Click',
+    title: 'Incrementality Testing in Google Ads: What It Measures and How to Run One',
     description: 'Conversion Lift, geo experiments, the $5K minimum, design pitfalls, and how to feed lift findings back into Smart Bidding. Technical guide for Senior PPC Managers.',
     url: 'https://www.kampaio.com/blog/incrementality-testing-google-ads',
     type: 'article',
