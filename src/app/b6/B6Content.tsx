@@ -288,7 +288,7 @@ function B6Dashboard() {
             {error}
             <br />
             <span style={{ color: "#5B6979", fontSize: "11px" }}>
-              Backend at http://localhost:8000 — is it running? Start with:{" "}
+              Backend at http://localhost:8000. Is it running? Start with:{" "}
               <code>cd ai-server && uvicorn app:app --port 8000</code>
             </span>
           </div>
@@ -388,10 +388,10 @@ function B6Dashboard() {
           <LiveEventStream events={liveEvents} connected={connected} />
         </section>
 
-        {/* Vigil — 24/7 anomaly monitor */}
+        {/* Vigil: 24/7 anomaly monitor */}
         <VigilPanel />
 
-        {/* Usage — per-agent LLM cost transparency (Sprint 8.8) */}
+        {/* Usage: per-agent LLM cost transparency (Sprint 8.8) */}
         <UsagePanel />
 
         {/* Maximus + Echo grid */}

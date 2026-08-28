@@ -30,18 +30,18 @@ export const metadata: Metadata = {
   },
 };
 
-// Service schema — links B6 product to Kampaio Organization entity via @id.
+// Service schema: links B6 product to Kampaio Organization entity via @id.
 // Rendered server-side so Google bot always sees it (B6Content is behind
 // AuthGuard which shows "Loading…" before client hydration).
 const b6JsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Service',
   '@id': 'https://www.kampaio.com/b6#service',
-  name: 'B6 — Autonomous PPC Cabinet',
+  name: 'B6 Autonomous PPC Cabinet',
   serviceType: 'PPC Campaign Management',
   category: 'Pay-Per-Click Advertising Automation',
   description:
-    'B6 is an autonomous AI-agent team that manages Google Ads campaigns end-to-end. 8 specialized agents — Buzz (bidding), Aegis (risk review), Echo (reporting), Vox (strategy), Maximus (orchestration), Mira (creative), Sage (research), Vigil (24/7 anomaly monitoring) — work together to deliver campaign performance without manual intervention.',
+    'B6 is an autonomous AI-agent team that manages Google Ads campaigns end-to-end. 8 specialized agents (Buzz for bidding, Aegis for risk review, Echo for reporting, Vox for strategy, Maximus for orchestration, Mira for creative, Sage for research, Vigil for 24/7 anomaly monitoring) work together to deliver campaign performance without manual intervention.',
   url: 'https://www.kampaio.com/b6',
   provider: {
     '@id': 'https://www.kampaio.com/#organization',
