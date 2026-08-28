@@ -21,36 +21,80 @@ Disallow: /strategy-generator
 
 User-agent: GPTBot
 Allow: /
+Disallow: /admin/
+Disallow: /private/
+Disallow: /api/
+Disallow: /strategy-generator
 
 User-agent: ChatGPT-User
 Allow: /
+Disallow: /admin/
+Disallow: /private/
+Disallow: /api/
+Disallow: /strategy-generator
 
 User-agent: Google-Extended
 Allow: /
+Disallow: /admin/
+Disallow: /private/
+Disallow: /api/
+Disallow: /strategy-generator
 
 User-agent: ClaudeBot
 Allow: /
+Disallow: /admin/
+Disallow: /private/
+Disallow: /api/
+Disallow: /strategy-generator
 
 User-agent: Claude-User
 Allow: /
+Disallow: /admin/
+Disallow: /private/
+Disallow: /api/
+Disallow: /strategy-generator
 
 User-agent: Claude-SearchBot
 Allow: /
+Disallow: /admin/
+Disallow: /private/
+Disallow: /api/
+Disallow: /strategy-generator
 
 User-agent: PerplexityBot
 Allow: /
+Disallow: /admin/
+Disallow: /private/
+Disallow: /api/
+Disallow: /strategy-generator
 
 User-agent: Perplexity-User
 Allow: /
+Disallow: /admin/
+Disallow: /private/
+Disallow: /api/
+Disallow: /strategy-generator
 
 User-agent: CCBot
 Allow: /
+Disallow: /admin/
+Disallow: /private/
+Disallow: /api/
+Disallow: /strategy-generator
 
 User-agent: Bytespider
 Allow: /
+Disallow: /admin/
+Disallow: /private/
+Disallow: /api/
+Disallow: /strategy-generator
 
 User-agent: cohere-ai
 Allow: /
+Disallow: /admin/
+Disallow: /private/
+Disallow: /api/
+Disallow: /strategy-generator
 
 # LIVE-RETRIEVAL crawlers (Trend 2.0 J11.1, 2026-06-19) — these decide AI-search
 # CITATION eligibility (distinct from training crawlers GPTBot/Google-Extended above).
@@ -60,9 +104,21 @@ Allow: /
 
 User-agent: OAI-SearchBot
 Allow: /
+Disallow: /admin/
+Disallow: /private/
+Disallow: /api/
+Disallow: /strategy-generator
 
 User-agent: Bingbot
 Allow: /
+Disallow: /admin/
+Disallow: /private/
+Disallow: /api/
+Disallow: /strategy-generator
 
 User-agent: Applebot-Extended
 Allow: /
+Disallow: /admin/
+Disallow: /private/
+Disallow: /api/
+Disallow: /strategy-generator
