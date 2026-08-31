@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import RoasCalculator from './RoasCalculator';
 
 export const metadata: Metadata = {
-  title: 'Break-even & Target ROAS Calculator (with POAS) | kampaio',
+  title: 'Break-even & Target ROAS Calculator (with POAS)',
   description:
     'Free break-even ROAS calculator. Enter your margin to get the ROAS you actually need, your target ROAS for a profit goal, POAS (profit on ad spend), and max CPA. No signup.',
   alternates: {

@@ -4,7 +4,7 @@ import Footer from '@/components/Footer'
 import ScrollToTop from '@/components/ScrollToTop'
 
 export const metadata = {
-  title: 'Privacy Policy — AI Service Data Protection | Kampaio',
+  title: 'Privacy Policy — AI Service Data Protection',
   description: 'Learn how Kampaio AI service collects, processes, and protects your data. Our privacy policy ensures transparency and compliance with data protection regulations for AI-powered Google Ads analytics.',
   keywords: 'privacy policy, AI data protection, GDPR, personal data, Kampaio privacy, Google Ads AI, data security',
   authors: [{ name: 'Kampaio' }],

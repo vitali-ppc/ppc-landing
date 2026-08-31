@@ -4,7 +4,7 @@ import Footer from '@/components/Footer'
 import ScrollToTop from '@/components/ScrollToTop'
 
 export const metadata = {
-  title: 'Terms of Service — AI Service Agreement | Kampaio',
+  title: 'Terms of Service — AI Service Agreement',
   description: 'Read Kampaio terms of service for our AI-powered Google Ads analytics service. Understand your rights and obligations when using our intelligent AI assistant.',
   keywords: 'terms of service, AI service agreement, Kampaio terms, Google Ads AI, service conditions',
   authors: [{ name: 'Kampaio' }],

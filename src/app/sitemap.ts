@@ -31,7 +31,9 @@ const STATIC_ROUTES: Array<{
   { path: '/replace-google-ads-agency', changeFrequency: 'monthly', priority: 0.8 },
   { path: '/fix-google-ads-account', changeFrequency: 'monthly', priority: 0.8 },
   { path: '/ai-google-ads-management', changeFrequency: 'monthly', priority: 0.8 },
-  { path: '/chat', changeFrequency: 'monthly', priority: 0.5 },
+  // '/chat' is deliberately absent: `chat/layout.tsx` sets `robots: 'noindex, nofollow'`,
+  // and a sitemap entry is a request to index. Listing it told Google to index a page the
+  // page itself refuses — the two instructions cannot both be honoured, so one was noise.
   { path: '/terms-of-service', changeFrequency: 'yearly', priority: 0.3 },
   { path: '/privacy-policy', changeFrequency: 'yearly', priority: 0.3 },
 ];

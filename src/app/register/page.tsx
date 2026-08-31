@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import RegisterContent from './RegisterContent';
 
 export const metadata: Metadata = {
-  title: 'Sign Up | Kampaio',
+  title: 'Sign Up',
   description: 'Create your Kampaio account and start managing Google Ads with AI agents.',
   robots: 'noindex, nofollow',
   alternates: { canonical: 'https://www.kampaio.com/register' },
