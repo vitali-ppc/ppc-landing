@@ -302,7 +302,7 @@ export default function ArticleContent() {
                   ['Individual consultant', '$75-250/hr, or $500-5,000/mo retainer', 'One named specialist (sometimes a junior)', '$5,000-20,000/mo, or a one-off audit/rebuild at any spend'],
                   ['Agency', '$1,500-10,000/mo, or 10-20% of spend', 'A team; small accounts often get junior staff', '$20,000+/mo, multi-channel, or zero owner time'],
                   ['In-house hire', 'Loaded, six-figure-adjacent annual cost (base salary avg $66,806-$70,915/yr)', 'A full-time employee, full oversight', 'High spend and complexity, control outweighs fixed cost'],
-                  [<><a href="/pricing" style={linkStyle}>AI software (e.g. Kampaio)</a></>, '$0-149/mo (Free, $49, $149 tiers)', 'Software optimizes continuously; you approve changes', 'Continuous optimization at SMB / lean-B2B spend, no scaling retainer'],
+                  [<><a href="/pricing" style={linkStyle}>AI software (e.g. Kampaio)</a></>, 'Free while in beta', 'Software optimizes continuously; you approve changes', 'Continuous optimization at SMB / lean-B2B spend, no scaling retainer'],
                   ['DIY', 'Your time, plus ad spend', 'You', 'Under roughly $20,000/mo with decent reporting and a few hours a week'],
                 ]}
               />
@@ -437,7 +437,7 @@ export default function ArticleContent() {
                 The tools out there split into two camps. Recommendation tools like Optmyzr ($499+), Madgicx ($499+), and Adalysis tell you what to change, but you still have to go execute it yourself. Autonomous software like Kampaio runs the work continuously and shows every step live; Synter is a newer entrant worth knowing about too.
               </p>
               <p style={paragraphStyle}>
-                Kampaio is an AI PPC cabinet built around specialist agents: Maximus orchestrates, Buzz handles bids and budgets, Aegis flags risk, Echo reports results. Pricing is Free at $0, Professional at $49/month, Business at $149/month, versus a consultant at $500-5,000/month or an agency at $1,500-10,000/month. Every change waits for your approval, so the fee doesn&apos;t scale with your spend. <a href="/b6" style={linkStyle}>See how the agents run your account</a>. Or check <a href="/pricing" style={linkStyle}>Kampaio pricing (free to start, paid tiers $49-149/month)</a> directly.
+                Kampaio is an AI PPC cabinet built around specialist agents: Maximus orchestrates, Buzz handles bids and budgets, Aegis flags risk, Echo reports results. It is free while in beta, versus a consultant at $500-5,000/month or an agency at $1,500-10,000/month. Every change waits for your approval, so the fee doesn&apos;t scale with your spend. <a href="/b6" style={linkStyle}>See how the agents run your account</a>. Or check <a href="/pricing" style={linkStyle}>Kampaio pricing</a> directly.
               </p>
               <p style={paragraphStyle}>
                 Software wins on continuous optimization and cost at SMB / lean-B2B spend. A consultant still wins on a strategic rebuild or unusual account structure. Both are true at once.

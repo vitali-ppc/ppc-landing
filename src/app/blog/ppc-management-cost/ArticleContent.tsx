@@ -83,7 +83,7 @@ export default function ArticleContent() {
         name: 'How much does PPC management cost per month?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Most SMB accounts pay $500 to $2,000 a month flat, or 10 to 20% of ad spend. Freelancers run $1,000 to $3,000, and automation tools run a flat $99 to $399.',
+          text: 'Most SMB accounts pay $500 to $2,000 a month flat, or 10 to 20% of ad spend. Freelancers run $1,000 to $3,000, and automation tools run a flat monthly fee that does not scale with spend.',
         },
       },
       {
@@ -91,7 +91,7 @@ export default function ArticleContent() {
         name: 'How much does PPC management cost per year?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Annualize the monthly fee: a $1,500 retainer is $18,000 a year in management alone, on top of your ad spend. A flat $399 automation tool is about $4,788 a year, regardless of how much your budget grows.',
+          text: 'Annualize the monthly fee: a $1,500 retainer is $18,000 a year in management alone, on top of your ad spend. A flat automation fee is the same total every year, regardless of how much your budget grows.',
         },
       },
       {
@@ -232,7 +232,7 @@ export default function ArticleContent() {
                   <li style={{ marginBottom: '12px' }}><strong>Flat retainer:</strong> $500 to $2,000 a month for most SMB accounts, climbing past $10,000 for large or complex ones (<a href="https://agencyanalytics.com/blog/ppc-pricing" style={linkStyle} target="_blank" rel="noopener noreferrer">AgencyAnalytics, 2026</a>).</li>
                   <li style={{ marginBottom: '12px' }}><strong>Percentage of ad spend:</strong> 10 to 20% is standard, and some agencies charge up to 30% (<a href="https://www.lyfemarketing.com/ppc-management-pricing/" style={linkStyle} target="_blank" rel="noopener noreferrer">LyfeMarketing, 2026</a>).</li>
                   <li style={{ marginBottom: '12px' }}><strong>Freelancer:</strong> $1,000 to $3,000 a month, usually one person.</li>
-                  <li style={{ marginBottom: 0 }}><strong>Automation tools:</strong> a flat $99 to $399 a month that does not move when your budget does.</li>
+                  <li style={{ marginBottom: 0 }}><strong>Automation tools:</strong> a flat monthly fee that does not move when your budget does.</li>
                 </ul>
               </div>
               <p style={pStyle}>
@@ -315,7 +315,7 @@ export default function ArticleContent() {
                   <tr><td style={{ padding: '12px 16px', borderBottom: '1px solid #e5e7eb', color: '#1e293b' }}>Flat agency fee</td><td style={{ padding: '12px 16px', borderBottom: '1px solid #e5e7eb', color: '#1e293b' }}>$1,500</td><td style={{ padding: '12px 16px', borderBottom: '1px solid #e5e7eb', color: '#1e293b' }}>$1,500</td></tr>
                   <tr><td style={{ padding: '12px 16px', borderBottom: '1px solid #e5e7eb', color: '#1e293b', fontWeight: 600 }}>Fee as % of total</td><td style={{ padding: '12px 16px', borderBottom: '1px solid #e5e7eb', color: '#ef4444', fontWeight: 600 }}>23%</td><td style={{ padding: '12px 16px', borderBottom: '1px solid #e5e7eb', color: '#10b981', fontWeight: 600 }}>7%</td></tr>
                   <tr><td style={{ padding: '12px 16px', borderBottom: '1px solid #e5e7eb', color: '#1e293b' }}>Who manages it</td><td style={{ padding: '12px 16px', borderBottom: '1px solid #e5e7eb', color: '#1e293b' }}>Junior account manager</td><td style={{ padding: '12px 16px', borderBottom: '1px solid #e5e7eb', color: '#1e293b' }}>Senior team</td></tr>
-                  <tr><td style={{ padding: '12px 16px', color: '#1e293b' }}>Same work via automation</td><td style={{ padding: '12px 16px', color: '#1e293b' }}>~$199 to $399 flat</td><td style={{ padding: '12px 16px', color: '#1e293b' }}>~$199 to $399 flat</td></tr>
+                  <tr><td style={{ padding: '12px 16px', color: '#1e293b' }}>Same work via automation</td><td style={{ padding: '12px 16px', color: '#1e293b' }}>flat monthly fee</td><td style={{ padding: '12px 16px', color: '#1e293b' }}>flat monthly fee</td></tr>
                 </tbody>
               </table>
 
@@ -372,11 +372,11 @@ export default function ArticleContent() {
                 </div>
                 <div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: '12px', padding: '20px 24px' }}>
                   <p style={{ fontSize: '17px', fontWeight: 700, color: '#1e293b', marginBottom: '8px' }}>How much does PPC management cost per month?</p>
-                  <p style={{ fontSize: '16px', lineHeight: '1.7', color: '#1e293b', margin: 0 }}>Most SMB accounts pay $500 to $2,000 a month flat, or 10 to 20% of ad spend. Freelancers run $1,000 to $3,000, and automation tools run a flat $99 to $399.</p>
+                  <p style={{ fontSize: '16px', lineHeight: '1.7', color: '#1e293b', margin: 0 }}>Most SMB accounts pay $500 to $2,000 a month flat, or 10 to 20% of ad spend. Freelancers run $1,000 to $3,000, and automation tools run a flat monthly fee that does not scale with spend.</p>
                 </div>
                 <div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: '12px', padding: '20px 24px' }}>
                   <p style={{ fontSize: '17px', fontWeight: 700, color: '#1e293b', marginBottom: '8px' }}>How much does PPC management cost per year?</p>
-                  <p style={{ fontSize: '16px', lineHeight: '1.7', color: '#1e293b', margin: 0 }}>Annualize the monthly fee: a $1,500 retainer is $18,000 a year in management alone, on top of your ad spend. A flat $399 automation tool is about $4,788 a year, regardless of how much your budget grows.</p>
+                  <p style={{ fontSize: '16px', lineHeight: '1.7', color: '#1e293b', margin: 0 }}>Annualize the monthly fee: a $1,500 retainer is $18,000 a year in management alone, on top of your ad spend. A flat automation fee is the same total every year, regardless of how much your budget grows.</p>
                 </div>
                 <div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: '12px', padding: '20px 24px' }}>
                   <p style={{ fontSize: '17px', fontWeight: 700, color: '#1e293b', marginBottom: '8px' }}>How much does PPC management cost per hour?</p>

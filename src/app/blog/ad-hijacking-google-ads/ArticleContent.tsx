@@ -439,7 +439,7 @@ export default function ArticleContent() {
                 That&apos;s the honest limit most <a href="/blog/google-ads-management-software" style={linkStyle}>Google Ads management software</a> vendor pages gloss over. A hijacker skimming clicks at 2 a.m. in a city you don&apos;t check keeps running against a once-a-week manual pass.
               </p>
               <p style={paragraphStyle}>
-                <a href="/b6#aegis" style={linkStyle}>Aegis, Kampaio&apos;s brand-safety agent</a>, runs that side continuously: it watches your branded impression share and &quot;Search lost IS (rank)&quot; trend for the row-one pattern above, flags cloned ad copy the way row two describes, and surfaces the alert before a week&apos;s budget leaks to an affiliate. Kampaio runs Free, Professional at $49/month, and Business at $149/month, for the same $3K-$50K/month accounts this guide is written for.
+                <a href="/b6#aegis" style={linkStyle}>Aegis, Kampaio&apos;s brand-safety agent</a>, runs that side continuously: it watches your branded impression share and &quot;Search lost IS (rank)&quot; trend for the row-one pattern above, flags cloned ad copy the way row two describes, and surfaces the alert before a week&apos;s budget leaks to an affiliate. Kampaio is free while it is in beta, for the same $3K-$50K/month accounts this guide is written for.
               </p>
             </section>
 

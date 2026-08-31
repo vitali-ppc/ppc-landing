@@ -379,7 +379,7 @@ export default function ArticleContent() {
               </p>
 
               <p style={paragraphStyle}>
-                The fee-share math is worth doing plainly: a $1,500/month retainer on a $5,000/month account is 30% of budget going to management, not media. The same account on kampaio&apos;s Professional plan ($49/month) puts roughly 1% of that budget toward the software. That does not make software automatically the right call, but it is the arithmetic behind the decision.
+                The fee-share math is worth doing plainly: a $1,500/month retainer on a $5,000/month account is 30% of budget going to management, not media. The same account on kampaio, free while it is in beta, puts nothing of that budget toward the software. That does not make software automatically the right call, but it is the arithmetic behind the decision.
               </p>
               <p style={paragraphStyle}>
                 One structural reality: a single account manager often oversees 10-20 client accounts, so a small account rarely gets the senior strategist. Fit matters more than the headline rate.
@@ -566,7 +566,7 @@ export default function ArticleContent() {
                 Self-serve PPC software now does much of what an agency does, bid and budget optimization, <a href="/blog/google-ads-negative-keywords" style={{ color: '#764ba2', textDecoration: 'underline' }}>negative keywords</a>, creative, alerts, at a fraction of the cost, while you keep full control and account ownership. It is the fastest-growing path for the $3-20K/mo band.
               </p>
               <p style={paragraphStyle}>
-                kampaio prices this at Free to start, $49/month Professional, or $149/month Business, against an agency retainer of $1,000-5,000/month, and runs changes in approval mode: you sign off before anything ships. Real limit worth naming: it still assumes you spend a little time each week reviewing changes, and it does not replace strategy for very large or multi-channel accounts. For the strategy layer, read <a href="/blog/google-ads-optimization" style={linkStyle}>how Google Ads optimization actually works</a>.
+                kampaio is free while it is in beta, against an agency retainer of $1,000-5,000/month, and runs changes in approval mode: you sign off before anything ships. Real limit worth naming: it still assumes you spend a little time each week reviewing changes, and it does not replace strategy for very large or multi-channel accounts. For the strategy layer, read <a href="/blog/google-ads-optimization" style={linkStyle}>how Google Ads optimization actually works</a>.
               </p>
             </section>
 
@@ -606,7 +606,7 @@ export default function ArticleContent() {
                   Skip the retainer, keep the control
                 </h3>
                 <p style={{ fontSize: '17px', color: '#475569', marginBottom: '28px', lineHeight: 1.6, fontWeight: 500, maxWidth: '620px', marginLeft: 'auto', marginRight: 'auto' }}>
-                  kampaio runs your Google Ads from $49/month and shows every step live before it ships. See <a href="/pricing" style={linkStyle}>kampaio&apos;s plans</a>, or connect your own account and watch what it would change first.
+                  kampaio runs your Google Ads and shows every step live before it ships. It is free while it is in beta. See <a href="/pricing" style={linkStyle}>kampaio&apos;s plans</a>, or connect your own account and watch what it would change first.
                 </p>
                 <a
                   href="/chat"

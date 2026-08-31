@@ -556,7 +556,7 @@ export default function ArticleContent() {
                 specialist agents that read and write to a Google Ads account, each showing its work live.
               </p>
               <p style={paragraphStyle}>
-                Pricing sits in the $99 to $399 a month band, a flat alternative to spend-scaled pricing common among recommendation-tier tools. The guardrail
+                Pricing is a flat monthly subscription rather than a share of spend, unlike the spend-scaled pricing common among recommendation-tier tools. The product is free while it is in beta. The guardrail
                 question from the criteria table above maps onto how it runs: agents start at co-pilot (suggest only), move to approval (you confirm each
                 change), and graduate to autonomous only for actions you&apos;ve chosen to hand over. See{' '}
                 <a href="/b6" style={linkStyle}>

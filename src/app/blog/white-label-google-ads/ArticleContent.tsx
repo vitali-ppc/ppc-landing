@@ -312,7 +312,7 @@ export default function ArticleContent() {
                 <Step title="Path B: in-house hire">
                   Fully-loaded monthly cost ~$5,417/mo minimum (vendor-advertised $65K/year basis). Requires ~4 clients at $1,500 retainer to break even, negative margin until then.
                 </Step>
-                <Step title="Path C: flat software fee, $199/mo assumed">
+                <Step title="Path C: flat software fee">
                   Agency nets $1,301, an 87 percent gross margin, fixed cost regardless of account count.
                 </Step>
               </Steps>

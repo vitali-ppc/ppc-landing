@@ -324,7 +324,7 @@ export default function ArticleContent() {
               </p>
 
               <MascotQuote mascot="maximus">
-                A $209-a-month tool on a $5K-a-month budget is already over 4% of spend before it saves a dollar. On a $149 plan, that same account sits under 3%. The math changes with every tier, that&apos;s why category matters more than brand name.
+                A $209-a-month tool on a $5K-a-month budget is already over 4% of spend before it saves a dollar. On a flat-fee plan, that same account sits far lower. The math changes with every tier, that&apos;s why category matters more than brand name.
               </MascotQuote>
             </section>
 
@@ -380,7 +380,7 @@ export default function ArticleContent() {
                     'Agentic',
                     'AI acts, visible reviewable log',
                     'Act, with visibility and rollback',
-                    'Free / $49 / $149',
+                    'Free while in beta',
                   ],
                 ]}
               />
@@ -452,7 +452,7 @@ export default function ArticleContent() {
               />
 
               <p style={paragraphStyle}>
-                Mapped to the scorecard: control model is &quot;act, with visibility and rollback,&quot; the direct answer to the transparency criterion. Pricing runs Free, $49, $149: the top tier sits below Optmyzr&apos;s own $209/mo starting price and nowhere near Skai&apos;s six-figure annual tier.
+                Mapped to the scorecard: control model is &quot;act, with visibility and rollback,&quot; the direct answer to the transparency criterion. It is free while in beta, which sits below Optmyzr&apos;s own $209/mo starting price and nowhere near Skai&apos;s six-figure annual tier.
               </p>
               <p style={paragraphStyle}>
                 Said plainly: kampaio suits lean teams wanting automation to act while keeping a visible log. Want a suggest-only tool where you approve every change? Optmyzr fits better.
@@ -512,7 +512,7 @@ export default function ArticleContent() {
                   Score the agentic option on your real account
                 </h3>
                 <p style={{ fontSize: '17px', color: '#475569', marginBottom: '28px', lineHeight: 1.6, fontWeight: 500, maxWidth: '620px', marginLeft: 'auto', marginRight: 'auto' }}>
-                  Connect your Google Ads account to kampaio and watch the agents act while you review every step. <a href="/pricing" style={linkStyle}>Free, $49, and $149 plans</a>, no long-term contract.
+                  Connect your Google Ads account to kampaio and watch the agents act while you review every step. <a href="/pricing" style={linkStyle}>Free while in beta</a>, no long-term contract.
                 </p>
                 <a
                   href="/chat"

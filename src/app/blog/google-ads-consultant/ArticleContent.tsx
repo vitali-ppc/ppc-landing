@@ -139,7 +139,7 @@ export default function ArticleContent() {
 
   // BOLD-VIZ: fee-as-share-of-budget at $5K spend. Consultant retainer eats 30%
   // of the monthly budget; autonomous software is a flat slice at SMB spend.
-  // Numbers from the article body: $5,000 spend, $1,500 retainer = 30%; software $49-149/mo.
+  // Numbers from the article body: $5,000 spend, $1,500 retainer = 30%; software is a flat fee, not a share of spend.
   const feeShareSvg = `
 <svg viewBox="0 0 640 250" xmlns="http://www.w3.org/2000/svg" role="img" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">
   <text x="0" y="24" font-size="15" font-weight="700" fill="#1e293b">Management cost as a share of a $5,000/month budget</text>
@@ -157,7 +157,7 @@ export default function ArticleContent() {
   <text x="556" y="144" font-size="13" font-weight="700" fill="#10b981">2%</text>
 
   <text x="0" y="196" font-size="13" fill="#64748b">Consultant: a $1,500 retainer against $5,000 spend is 30% going to management, not media.</text>
-  <text x="0" y="216" font-size="13" fill="#64748b">Software: a flat $49-149/month is roughly 1-3% of the same budget, and it does not climb.</text>
+  <text x="0" y="216" font-size="13" fill="#64748b">Software: a flat monthly fee is a small share of the same budget, and it does not climb.</text>
 
   <rect x="0" y="234" width="14" height="14" rx="3" fill="#10b981"/>
   <text x="22" y="245" font-size="12" fill="#64748b">money in the auction</text>
@@ -292,7 +292,7 @@ export default function ArticleContent() {
                   { cells: ['Agency', '$1,500-10,000/month or 10-20% of ad spend', 'A team (strategist, account manager, sometimes creative)', 'Higher spend, multi-channel, or zero owner bandwidth'] },
                   { cells: ['In-house hire', 'Loaded salary, the highest fixed cost', 'A full-time employee', 'High spend and complexity that justify a dedicated headcount'] },
                   { cells: ['Google Ads Expert (free)', '$0', "Google's own onboarding staff", 'First 30 days only, setup help, not ongoing management'] },
-                  { cells: ['AI software (Kampaio)', 'Free, then $49-149/month', 'Autonomous agents, you approve changes', 'Continuous optimization at SMB spend, no retainer'], highlight: true },
+                  { cells: ['AI software (Kampaio)', 'Free while in beta', 'Autonomous agents, you approve changes', 'Continuous optimization at SMB spend, no retainer'], highlight: true },
                 ]}
                 caption="Google Ads consultant vs agency vs in-house vs software: cost and best fit"
               />
@@ -427,7 +427,7 @@ export default function ArticleContent() {
                 The software landscape splits into two categories. <strong>Recommendation tools</strong> like Optmyzr ($499+), Madgicx ($499+), and Adalysis tell you what to do, but you still execute every change yourself. <strong>Autonomous software</strong> runs the optimization work continuously and shows every step live. Synter is one more name worth knowing here, priced around $199/month as a universal management layer.
               </p>
               <p style={pStyle}>
-                Kampaio sits in the autonomous category: an AI PPC cabinet with specialist agents. Maximus orchestrates the account; Buzz handles bids and budgets; Aegis flags risk; Echo handles reporting; Vox works cross-campaign strategy; Sage runs research. You can <a href="/b6" style={linkStyle}>see how the agents run your account</a> before connecting anything. Pricing is Free to start, then Professional at $49/month or Business at $149/month, versus a consultant's $500-5,000/month retainer (<a href="/pricing" style={linkStyle}>Kampaio pricing</a>). Every change waits for your approval, so you keep control while the agents do the continuous work a periodic check-in simply cannot match.
+                Kampaio sits in the autonomous category: an AI PPC cabinet with specialist agents. Maximus orchestrates the account; Buzz handles bids and budgets; Aegis flags risk; Echo handles reporting; Vox works cross-campaign strategy; Sage runs research. You can <a href="/b6" style={linkStyle}>see how the agents run your account</a> before connecting anything. It is free while in beta, versus a consultant's $500-5,000/month retainer (<a href="/pricing" style={linkStyle}>Kampaio pricing</a>). Every change waits for your approval, so you keep control while the agents do the continuous work a periodic check-in simply cannot match.
               </p>
               <p style={pStyle}>
                 The honest boundary is worth repeating, because it's what a page selling consulting would never say out loud: software wins on continuous optimization and cost at SMB spend. A consultant wins on a one-time rebuild, an unusual account structure, or a human strategist's judgment on a decision big enough to justify the fee. Both things are true at once, and pretending otherwise is how you end up buying the wrong thing.

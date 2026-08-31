@@ -379,7 +379,7 @@ flowchart TD
                 <strong>Recommendation tools</strong> (Optmyzr, Adalysis, Madgicx) analyze your account and tell you what to do. &quot;Lower bid on Keyword X by 12%.&quot; &quot;Add these 8 negative keywords.&quot; You still execute every change manually in Google Ads. Pricing: $499-899/month for SMB plans. Value: saves analysis time, but you still do the work. The cognitive load is lighter but the time commitment isn&apos;t.
               </p>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
-                <strong>Autonomous tools</strong> (B6 and a small handful of competitors) execute changes with your approval or fully autonomously. You connect your account, set guardrails (max CPC, daily budget limits, approval requirements), and the AI handles bid updates, budget pacing, negative keyword additions, and anomaly detection. Pricing: $99-399/month depending on autonomy level.
+                <strong>Autonomous tools</strong> (B6 and a small handful of competitors) execute changes with your approval or fully autonomously. You connect your account, set guardrails (max CPC, daily budget limits, approval requirements), and the AI handles bid updates, budget pacing, negative keyword additions, and anomaly detection. Free while in beta, at every autonomy level.
               </p>
 
               <ComparisonTable
@@ -397,9 +397,9 @@ flowchart TD
                 B6 runs seven specialized AI <a href="/blog/google-ads-ai-agent" style={{ color: '#764ba2', textDecoration: 'underline' }}>agents</a>: Buzz for bid management, Aegis for risk detection, Echo for reporting, Vox for strategy, Maximus for orchestration, Mira for creative analysis, and Sage for competitive research. Three pricing tiers:
               </p>
               <ul style={{ fontSize: '18px', color: '#1e293b', lineHeight: '1.8', paddingLeft: '24px', marginBottom: '32px' }}>
-                <li style={{ marginBottom: '16px' }}><strong>$99 Co-pilot</strong>: AI makes recommendations, you execute manually</li>
-                <li style={{ marginBottom: '16px' }}><strong>$199 Approval</strong>: AI executes changes after you approve each action (you see the proposal, click approve or reject)</li>
-                <li style={{ marginBottom: '16px' }}><strong>$399 Autonomous</strong>: AI executes changes within guardrails you set, reports what it did</li>
+                <li style={{ marginBottom: '16px' }}><strong>Co-pilot</strong>: AI makes recommendations, you execute manually</li>
+                <li style={{ marginBottom: '16px' }}><strong>Approval</strong>: AI executes changes after you approve each action (you see the proposal, click approve or reject)</li>
+                <li style={{ marginBottom: '16px' }}><strong>Autonomous</strong>: AI executes changes within guardrails you set, reports what it did</li>
               </ul>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
                 The key difference: B6 is not &quot;AI gives advice you act on later.&quot; It&apos;s &quot;AI does the work and shows you every step live.&quot; The Approval level is the sweet spot for most SMB owners. You learn by seeing what the AI proposes. After 2-3 months, you understand bid management deeply because you&apos;ve reviewed 200+ proposed changes with explanations. It&apos;s hands-on education while the work gets done.

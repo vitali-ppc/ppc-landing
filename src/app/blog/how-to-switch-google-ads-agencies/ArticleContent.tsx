@@ -408,7 +408,7 @@ export default function ArticleContent() {
                 <a href="/b6" style={linkStyle}>B6</a> connects to your own Google Ads account via OAuth. The account stays in your name, with no agency MCC and no &quot;they built it in their system&quot; problem. Maximus orchestrates <a href="/blog/google-ads-strategy" style={{ color: '#764ba2', textDecoration: 'underline' }}>strategy</a>, Aegis monitors risk, Vox runs bid logic, and Vigil watches 24/7.
               </p>
               <p style={paragraphStyle}>
-                Pricing is $99, $199, and $399 per month, against a typical SMB agency retainer of $1,500 to $3,000 per month (the full <a href="/blog/ppc-management-cost" style={linkStyle}>breakdown of what PPC management costs</a> shows where that money goes), or Optmyzr and Madgicx at $499 and up for tools that still need a human to act. If you are looking for a new agency instead, <a href="/blog/how-to-choose-a-ppc-agency" style={linkStyle}>choosing a Google Ads agency</a> covers the selection framework.
+                It is free while in beta, against a typical SMB agency retainer of $1,500 to $3,000 per month (the full <a href="/blog/ppc-management-cost" style={linkStyle}>breakdown of what PPC management costs</a> shows where that money goes), or Optmyzr and Madgicx at $499 and up for tools that still need a human to act. If you are looking for a new agency instead, <a href="/blog/how-to-choose-a-ppc-agency" style={linkStyle}>choosing a Google Ads agency</a> covers the selection framework.
               </p>
 
               <MascotQuote mascot="maximus">
