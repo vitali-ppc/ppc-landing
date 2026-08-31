@@ -1,11 +1,21 @@
 import type { Metadata } from 'next';
 import ArticleContent from './ArticleContent';
 
-// Full editorial title (82 chars) is too long for the SERP once the
-// "| Kampaio" template is appended, so `metadata.title` carries a trimmed
-// SERP-safe variant. The full title stays on the H1, JSON-LD headline,
-// openGraph and twitter titles.
-const SEO_TITLE = 'Google Ads Search Terms Report: What It Hides';
+// Two titles on purpose. The full editorial title (82 chars) is too long for
+// the SERP, so `metadata.title` carries a shorter, query-led variant; the full
+// title stays on the H1, JSON-LD headline, openGraph and twitter titles.
+// Measured 2026-08-31 on the live page: article titles render WITHOUT the root
+// layout's "| Kampaio" template (src/app/blog/layout.tsx sets a plain-string
+// title, which stops the template propagating), so the budget here is the full
+// 60 chars, not 50. The earlier note in this spot claimed the suffix was
+// appended and cost the page ~10 characters of SERP wording that never existed.
+// SERP title retargeted 2026-08-31 (Argus F2): the page was titled for
+// "google ads search terms report" (pos 31.1, 7 impressions) while the demand
+// it actually receives is the hidden-terms cluster - "uncategorised search
+// terms" 32 impressions at position 20.1, plus ~44 more across the
+// "total: search terms" variants at 12-14. Body already answers it (see the
+// "two total rows" section, flag #67).
+const SEO_TITLE = 'Uncategorised Search Terms in Google Ads: What\'s Hidden';
 const FULL_TITLE =
   'Google Ads Search Terms Report: What It Shows, What It Hides, and How to Act On It';
 const DESCRIPTION =
