@@ -611,7 +611,7 @@ export default function ArticleContent() {
                 </li>
               </ul>
 
-              <p style={{ fontSize: '14px', color: '#94a3b8', fontStyle: 'italic', lineHeight: 1.7, marginTop: '8px' }}>
+              <p style={{ fontSize: '14px', color: '#64748b', fontStyle: 'italic', lineHeight: 1.7, marginTop: '8px' }}>
                 Third-party pricing and capabilities are summarized from each vendor&apos;s own public pages, checked 2026-08-10, and may change. Madgicx&apos;s core plan price and Optmyzr&apos;s top tiers are not publicly listed. Practitioner quotes are attributed to public r/PPC discussion. This article is informational and does not constitute professional advertising advice.
               </p>
             </section>

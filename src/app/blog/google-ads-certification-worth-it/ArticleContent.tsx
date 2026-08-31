@@ -150,7 +150,7 @@ export default function ArticleContent() {
   const linkStyle: React.CSSProperties = { color: '#764ba2', textDecoration: 'underline' };
   const paragraphStyle: React.CSSProperties = { fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' };
   const h2Style: React.CSSProperties = { fontSize: '30px', fontWeight: 700, color: '#1e293b', marginBottom: '24px', marginTop: '56px', scrollMarginTop: '24px' };
-  const captionStyle: React.CSSProperties = { fontSize: '14px', color: '#94a3b8', fontStyle: 'italic', lineHeight: 1.6, marginTop: '-12px', marginBottom: '32px' };
+  const captionStyle: React.CSSProperties = { fontSize: '14px', color: '#64748b', fontStyle: 'italic', lineHeight: 1.6, marginTop: '-12px', marginBottom: '32px' };
 
   const certHelpUrl = 'https://support.google.com/google-ads/answer/9702955?hl=en';
   const partnerHelpUrl = 'https://support.google.com/google-ads/answer/9702452?hl=en';
@@ -636,7 +636,7 @@ export default function ArticleContent() {
                   </li>
                 ))}
               </ul>
-              <p style={{ fontSize: '14px', color: '#94a3b8', fontStyle: 'italic', lineHeight: 1.7, marginTop: '8px' }}>
+              <p style={{ fontSize: '14px', color: '#64748b', fontStyle: 'italic', lineHeight: 1.7, marginTop: '8px' }}>
                 Exam mechanics and Partner Program thresholds are quoted from Google&apos;s own documentation. Reddit quotes are practitioner
                 opinion from the ranking r/googleads threads, cited as sentiment rather than as verified fact. The Sage quote illustrates how
                 Kampaio&apos;s agents apply the same judgment test, not an audited result from a named advertiser.

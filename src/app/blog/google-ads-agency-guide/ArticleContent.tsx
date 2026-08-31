@@ -374,7 +374,7 @@ export default function ArticleContent() {
                   ['Performance / hybrid', 'Lower base fee plus a bonus tied to results', 'Base + 5-15% of measured results', '$750-1,500/mo base, plus bonus', 'Agencies confident enough to tie pay to outcomes'],
                 ]}
               />
-              <p style={{ fontSize: '14px', color: '#94a3b8', fontStyle: 'italic', lineHeight: 1.6, marginTop: '-12px', marginBottom: '32px' }}>
+              <p style={{ fontSize: '14px', color: '#64748b', fontStyle: 'italic', lineHeight: 1.6, marginTop: '-12px', marginBottom: '32px' }}>
                 Common Google Ads agency fee models and what each costs on a $5,000/month account.
               </p>
 
@@ -456,7 +456,7 @@ export default function ArticleContent() {
                   ['$20K+', 'Available, wants control', 'Some', 'In-house hire'],
                 ]}
               />
-              <p style={{ fontSize: '14px', color: '#94a3b8', fontStyle: 'italic', lineHeight: 1.6, marginTop: '-12px', marginBottom: '32px' }}>
+              <p style={{ fontSize: '14px', color: '#64748b', fontStyle: 'italic', lineHeight: 1.6, marginTop: '-12px', marginBottom: '32px' }}>
                 The Spend-Time-Expertise grid: match your spend, time, and in-house knowledge to a path.
               </p>
 
@@ -640,7 +640,7 @@ export default function ArticleContent() {
                 Results vary by account size, vertical, and tracking quality. This article is informational and does not constitute professional advice.
               </p>
 
-              <p style={{ fontSize: '14px', color: '#94a3b8', lineHeight: 1.7, marginTop: '8px' }}>
+              <p style={{ fontSize: '14px', color: '#64748b', lineHeight: 1.7, marginTop: '8px' }}>
                 Sources: Google Ads Help, &quot;About Google Ads manager accounts&quot; (2026); Google Ads Help, &quot;Unlink accounts from your manager account&quot; (2026); Google Ads Help, &quot;Know your billing options&quot; (2026); Reddit r/smallbusiness, &quot;Struggling to find an honest Google Ads agency&quot; (2026); Reddit r/PPC, community discussion on running Google Ads (2026). Dollar and percentage ranges are typical US market figures from independent sources, not a quote from any single agency.
               </p>
             </section>

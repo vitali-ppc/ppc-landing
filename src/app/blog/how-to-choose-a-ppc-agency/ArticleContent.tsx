@@ -276,7 +276,7 @@ export default function ArticleContent() {
 
               {/* VISUAL 2: self-test checklist card */}
               <div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderLeft: '4px solid #667eea', borderRadius: '12px', padding: '28px 32px', margin: '32px 0' }}>
-                <div style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#667eea', marginBottom: '16px' }}>
+                <div style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#764ba2', marginBottom: '16px' }}>
                   Quick self-test
                 </div>
                 <ol style={{ fontSize: '17px', lineHeight: '1.7', color: '#1e293b', paddingLeft: '22px', margin: 0 }}>

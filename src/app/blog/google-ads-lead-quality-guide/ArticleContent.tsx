@@ -866,7 +866,7 @@ export default function ArticleContent() {
                   Start Free
                 </a>
               </div>
-              <p style={{ fontSize: '14px', color: '#94a3b8', lineHeight: '1.7', marginBottom: '40px', fontStyle: 'italic' }}>
+              <p style={{ fontSize: '14px', color: '#64748b', lineHeight: '1.7', marginBottom: '40px', fontStyle: 'italic' }}>
                 Results vary by account size, vertical, and tracking setup. All example numbers in this article (71% rejection
                 rate, $142 CPL, $470 CPQL, $1,900 pipeline-CAC, Buzz&apos;s $48K account data) are illustrative of scale and
                 direction, not universal benchmarks. Nothing here constitutes professional advertising advice.

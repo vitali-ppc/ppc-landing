@@ -181,7 +181,7 @@ export default function AgencyAlternativeContent() {
           <p style={{ fontSize: '17px', lineHeight: 1.6, color: '#475569', maxWidth: '760px' }}>
             Three tiers, depending on how much you want to approve by hand. All of them are free during early access; paid plans are not open yet.
             Billing is not open yet; founding access is free until it is.{' '}
-            <Link href="/pricing" style={{ color: '#667eea', textDecoration: 'underline' }}>
+            <Link href="/pricing" style={{ color: '#764ba2', textDecoration: 'underline' }}>
               See what each tier covers
             </Link>
             .

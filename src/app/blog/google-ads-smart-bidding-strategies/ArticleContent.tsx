@@ -609,7 +609,7 @@ export default function ArticleContent() {
                   Audit My Bid Strategies
                 </a>
               </div>
-              <p style={{ fontSize: '14px', color: '#94a3b8', fontStyle: 'italic', lineHeight: 1.7, marginTop: '8px' }}>
+              <p style={{ fontSize: '14px', color: '#64748b', fontStyle: 'italic', lineHeight: 1.7, marginTop: '8px' }}>
                 Results vary by account, campaign structure, conversion volume, and market conditions. This article is informational and does not constitute professional financial or advertising advice.
               </p>
             </section>

@@ -2394,7 +2394,7 @@ const ChatFormGPT: React.FC = () => {
                 }}
                 style={{
                   background: '#fff',
-                  color: '#667eea',
+                  color: '#764ba2',
                   border: '1.5px solid #667eea',
                   borderRadius: 8,
                   padding: '10px 28px',
@@ -3010,7 +3010,7 @@ const ChatFormGPT: React.FC = () => {
                            </div>
                            <div style={{
                              fontSize: '12px',
-                             color: '#667eea',
+                             color: '#764ba2',
                              fontWeight: '500',
                            }}>
                              ✓ Email Verified

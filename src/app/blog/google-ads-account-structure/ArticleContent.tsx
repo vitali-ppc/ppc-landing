@@ -148,7 +148,7 @@ export default function ArticleContent() {
   const linkStyle: React.CSSProperties = { color: '#764ba2', textDecoration: 'underline' };
   const paragraphStyle: React.CSSProperties = { fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' };
   const h2Style: React.CSSProperties = { fontSize: '30px', fontWeight: 700, color: '#1e293b', marginBottom: '24px', marginTop: '56px', scrollMarginTop: '24px' };
-  const captionStyle: React.CSSProperties = { fontSize: '14px', color: '#94a3b8', fontStyle: 'italic', lineHeight: 1.6, marginTop: '-12px', marginBottom: '32px' };
+  const captionStyle: React.CSSProperties = { fontSize: '14px', color: '#64748b', fontStyle: 'italic', lineHeight: 1.6, marginTop: '-12px', marginBottom: '32px' };
   const listStyle: React.CSSProperties = { fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px', paddingLeft: '24px' };
 
   const faqItems = [
@@ -613,7 +613,7 @@ DemandGen_US_Remarketing`}
                 </a>
               </div>
 
-              <p style={{ fontSize: '14px', color: '#94a3b8', fontStyle: 'italic', lineHeight: 1.7, marginTop: '8px' }}>
+              <p style={{ fontSize: '14px', color: '#64748b', fontStyle: 'italic', lineHeight: 1.7, marginTop: '8px' }}>
                 Sources:{' '}
                 <a href="https://support.google.com/google-ads/answer/1704396?hl=en-GB" style={linkStyle} target="_blank" rel="noopener noreferrer">Google Ads Help, Organize your account (2026)</a>;{' '}
                 <a href="https://support.google.com/google-ads/answer/15910366?hl=en" style={linkStyle} target="_blank" rel="noopener noreferrer">Google Ads Help, About AI Max for Search (2026)</a>;{' '}

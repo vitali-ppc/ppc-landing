@@ -267,7 +267,7 @@ export default function ArticleContent() {
               {/* VISUAL 1: StatBlock-style four-constraint cards (HTML/CSS grid, 4 items, 2x2 collapse) */}
               <div className="b2b-constraint-grid">
                 <div className="b2b-constraint-card" style={{ borderTopColor: '#667eea' }}>
-                  <div className="b2b-constraint-tag" style={{ color: '#667eea' }}>Constraint 1</div>
+                  <div className="b2b-constraint-tag" style={{ color: '#764ba2' }}>Constraint 1</div>
                   <div className="b2b-constraint-title">Low category search volume</div>
                   <div className="b2b-constraint-body">Build a 4-tier keyword architecture (brand, category, competitor, problem-aware). Google captures existing demand; it cannot create it. Set volume expectations before the CFO does.</div>
                 </div>
@@ -587,7 +587,7 @@ export default function ArticleContent() {
                 </a>
               </div>
 
-              <p style={{ fontSize: '14px', color: '#94a3b8', fontStyle: 'italic', lineHeight: '1.7', marginBottom: '40px' }}>
+              <p style={{ fontSize: '14px', color: '#64748b', fontStyle: 'italic', lineHeight: '1.7', marginBottom: '40px' }}>
                 Results may vary. This article is informational and does not constitute professional advice. CPC ranges, conversion thresholds, and pipeline-CAC figures used as examples are illustrative ranges from practitioner data and Google&apos;s documented learning minimums. Verify all figures against your own account data before making budget decisions.
               </p>
             </section>

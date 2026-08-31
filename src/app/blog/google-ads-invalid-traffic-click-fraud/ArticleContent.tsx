@@ -251,15 +251,15 @@ export default function ArticleContent() {
               <p style={{ ...pStyle, marginBottom: '20px', fontWeight: 600 }}>3-symptom self-check (in order):</p>
               <div className="symptom-grid">
                 <div style={{ background: 'linear-gradient(135deg, #f5f3ff 0%, #eef2ff 100%)', border: '1px solid #ddd6fe', borderRadius: '14px', padding: '22px 24px' }}>
-                  <div style={{ fontSize: '13px', fontWeight: 700, color: '#667eea', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '8px' }}>Symptom 1</div>
+                  <div style={{ fontSize: '13px', fontWeight: 700, color: '#764ba2', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '8px' }}>Symptom 1</div>
                   <p style={{ fontSize: '16px', lineHeight: '1.6', color: '#1e293b', margin: 0 }}><strong>High CTR + near-zero conversions</strong> over a short window (7 days or less).</p>
                 </div>
                 <div style={{ background: 'linear-gradient(135deg, #f5f3ff 0%, #eef2ff 100%)', border: '1px solid #ddd6fe', borderRadius: '14px', padding: '22px 24px' }}>
-                  <div style={{ fontSize: '13px', fontWeight: 700, color: '#667eea', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '8px' }}>Symptom 2</div>
+                  <div style={{ fontSize: '13px', fontWeight: 700, color: '#764ba2', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '8px' }}>Symptom 2</div>
                   <p style={{ fontSize: '16px', lineHeight: '1.6', color: '#1e293b', margin: 0 }}><strong>Repeat clicks from the same IP or narrow geo</strong> you do not target.</p>
                 </div>
                 <div style={{ background: 'linear-gradient(135deg, #f5f3ff 0%, #eef2ff 100%)', border: '1px solid #ddd6fe', borderRadius: '14px', padding: '22px 24px' }}>
-                  <div style={{ fontSize: '13px', fontWeight: 700, color: '#667eea', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '8px' }}>Symptom 3</div>
+                  <div style={{ fontSize: '13px', fontWeight: 700, color: '#764ba2', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '8px' }}>Symptom 3</div>
                   <p style={{ fontSize: '16px', lineHeight: '1.6', color: '#1e293b', margin: 0 }}><strong>Click spike with no conversion or revenue lift.</strong> Budget burns faster, results stay flat.</p>
                 </div>
               </div>
@@ -532,7 +532,7 @@ export default function ArticleContent() {
                   Start Your Free Trial
                 </a>
               </div>
-              <p style={{ fontSize: '14px', color: '#94a3b8', fontStyle: 'italic', marginBottom: '32px' }}>
+              <p style={{ fontSize: '14px', color: '#64748b', fontStyle: 'italic', marginBottom: '32px' }}>
                 Results may vary. This article is informational and does not constitute professional advice.
               </p>
             </section>

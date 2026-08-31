@@ -616,7 +616,7 @@ export default function ArticleContent() {
                 Ready for something that reads your live account and acts safely, every step visible? That&apos;s Kampaio, free while B6 is in beta.
               </p>
 
-              <p style={{ fontSize: '14px', color: '#94a3b8', fontStyle: 'italic', lineHeight: '1.7', marginBottom: '40px' }}>
+              <p style={{ fontSize: '14px', color: '#64748b', fontStyle: 'italic', lineHeight: '1.7', marginBottom: '40px' }}>
                 Results may vary. This article is informational and does not constitute professional advice. Verify all figures and settings against your own account data before making budget decisions.
               </p>
             </section>

@@ -144,7 +144,7 @@ export default function ArticleContent() {
   // Three phase cards: explicit 3-column grid, collapses to 1 on mobile
   const BiddingPhaseTimeline = () => (
     <div style={{ margin: '40px 0' }}>
-      <p style={{ fontSize: '13px', fontWeight: '700', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#667eea', marginBottom: '16px' }}>
+      <p style={{ fontSize: '13px', fontWeight: '700', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#764ba2', marginBottom: '16px' }}>
         Smart Bidding Sequencing for B2B
       </p>
       <div className="bidding-phases">
@@ -156,7 +156,7 @@ export default function ArticleContent() {
             constraint: 'No CPA target',
             goal: 'Data collection',
             goalDetail: 'Reach 30+ conversions in 30 days',
-            color: '#667eea',
+            color: '#764ba2',
             bg: '#f0f4ff',
           },
           {
@@ -220,11 +220,11 @@ export default function ArticleContent() {
   // VISUAL 2: Funnel budget allocation bar chart (HTML/CSS)
   const BudgetAllocationBar = () => (
     <div style={{ margin: '40px 0', background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: '12px', padding: '28px 28px 20px' }}>
-      <p style={{ fontSize: '13px', fontWeight: '700', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#667eea', marginBottom: '20px' }}>
+      <p style={{ fontSize: '13px', fontWeight: '700', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#764ba2', marginBottom: '20px' }}>
         Budget Allocation by Funnel Stage (Starting Proportion)
       </p>
       {[
-        { label: 'BOFU', sublabel: 'Demo, pricing, competitor, brand', pct: 55, color: '#667eea', textColor: '#fff' },
+        { label: 'BOFU', sublabel: 'Demo, pricing, competitor, brand', pct: 55, color: '#764ba2', textColor: '#fff' },
         { label: 'MOFU', sublabel: 'Solution-aware keywords', pct: 35, color: '#764ba2', textColor: '#fff' },
         { label: 'TOFU', sublabel: 'Awareness, audience building', pct: 10, color: '#a78bfa', textColor: '#fff' },
       ].map((row) => (
@@ -255,7 +255,7 @@ export default function ArticleContent() {
           </div>
         </div>
       ))}
-      <p style={{ fontSize: '12px', color: '#94a3b8', marginTop: '8px' }}>Adjust based on pipeline data after 60 days. Most budget belongs in BOFU where buying intent is highest.</p>
+      <p style={{ fontSize: '12px', color: '#64748b', marginTop: '8px' }}>Adjust based on pipeline data after 60 days. Most budget belongs in BOFU where buying intent is highest.</p>
     </div>
   );
 
@@ -358,7 +358,7 @@ export default function ArticleContent() {
         >
           <div style={{ fontSize: '28px', fontWeight: '800', color: '#667eea22', lineHeight: 1, marginBottom: '8px' }}>05</div>
           <p style={{ fontSize: '15px', fontWeight: '700', color: '#1e293b', marginBottom: '10px', lineHeight: '1.4' }}>Launching Performance Max Before Establishing Search Baselines</p>
-          <p style={{ fontSize: '14px', color: '#475569', lineHeight: '1.5', margin: 0 }}><strong style={{ color: '#667eea' }}>Fix:</strong> Establish Search with 60+ conversions before launching pMax. Exclude your Search keywords from pMax using account-level negative lists to prevent cannibalization.</p>
+          <p style={{ fontSize: '14px', color: '#475569', lineHeight: '1.5', margin: 0 }}><strong style={{ color: '#764ba2' }}>Fix:</strong> Establish Search with 60+ conversions before launching pMax. Exclude your Search keywords from pMax using account-level negative lists to prevent cannibalization.</p>
         </div>
       </div>
       <style jsx>{`
@@ -452,7 +452,7 @@ export default function ArticleContent() {
 
             {/* TL;DR callout */}
             <div style={{ background: '#f0f4ff', border: '1px solid #c7d2fe', borderLeft: '4px solid #667eea', borderRadius: '10px', padding: '24px 28px', marginBottom: '48px' }}>
-              <p style={{ fontSize: '15px', fontWeight: '700', color: '#667eea', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '14px' }}>TL;DR</p>
+              <p style={{ fontSize: '15px', fontWeight: '700', color: '#764ba2', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '14px' }}>TL;DR</p>
               <ul style={{ margin: 0, padding: '0 0 0 20px', color: '#1e293b', fontSize: '16px', lineHeight: '1.7' }}>
                 <li style={{ marginBottom: '10px' }}>B2B Google Ads works when you optimize for lead quality, not form fill volume. Tracking form submits as primary conversions trains Smart Bidding to find more form-fillers, not buyers.</li>
                 <li style={{ marginBottom: '10px' }}>Import offline conversions from your CRM, or Smart Bidding has no signal on which clicks produced revenue.</li>

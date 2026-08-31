@@ -646,7 +646,7 @@ export default function ArticleContent() {
                 <li style={{ marginBottom: 0 }}>Kampaio pricing: <a href="/pricing" style={linkStyle}>kampaio.com/pricing</a> (verified 2026-08-20)</li>
               </ul>
 
-              <p style={{ fontSize: '14px', color: '#94a3b8', fontStyle: 'italic', lineHeight: '1.7', marginBottom: '40px' }}>
+              <p style={{ fontSize: '14px', color: '#64748b', fontStyle: 'italic', lineHeight: '1.7', marginBottom: '40px' }}>
                 Results may vary. This article is informational and does not constitute professional advice. Fee ranges and vendor prices are cited to their original sources and were verified on August 20, 2026; your own spend, catalog and margins will differ, so use the models as a starting frame, not a quote.
               </p>
             </section>

@@ -355,7 +355,7 @@ export default function ArticleContent() {
                     }}>
                       <div style={{ fontSize: '13px', color: '#64748b', fontWeight: 600, marginBottom: '4px' }}>{s.step}</div>
                       <div style={{ fontSize: '22px', fontWeight: 800, color: i === 7 ? '#10b981' : '#1e293b' }}>{s.val}</div>
-                      <div style={{ fontSize: '12px', color: '#94a3b8', marginTop: '4px' }}>{s.hold}</div>
+                      <div style={{ fontSize: '12px', color: '#64748b', marginTop: '4px' }}>{s.hold}</div>
                     </div>
                   ))}
                 </div>
@@ -618,7 +618,7 @@ export default function ArticleContent() {
                 </a>
               </div>
 
-              <p style={{ fontSize: '14px', color: '#94a3b8', lineHeight: '1.7', marginBottom: '0', fontStyle: 'italic' }}>
+              <p style={{ fontSize: '14px', color: '#64748b', lineHeight: '1.7', marginBottom: '0', fontStyle: 'italic' }}>
                 Results vary by account size, vertical, and conversion tracking quality. This article is informational and does not constitute professional advertising advice.
               </p>
             </section>

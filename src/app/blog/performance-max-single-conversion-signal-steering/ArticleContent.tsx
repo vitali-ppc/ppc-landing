@@ -170,7 +170,7 @@ export default function ArticleContent() {
   };
   const captionStyle: React.CSSProperties = {
     fontSize: '14px',
-    color: '#94a3b8',
+    color: '#64748b',
     lineHeight: '1.6',
     marginTop: '-16px',
     marginBottom: '32px',
@@ -613,7 +613,7 @@ export default function ArticleContent() {
                 </a>
               </div>
 
-              <p style={{ fontSize: '14px', color: '#94a3b8', fontStyle: 'italic', lineHeight: '1.7', marginBottom: '40px' }}>
+              <p style={{ fontSize: '14px', color: '#64748b', fontStyle: 'italic', lineHeight: '1.7', marginBottom: '40px' }}>
                 Migration dates, budget arithmetic and bidding changes are cited to Google Ads Help (answers 17213585 and 10724817) and to Google&apos;s Ads Community announcement (thread 456909801), all verified on August 27, 2026. Mascot figures are illustrative, not client results. Practitioner posts on X are individual sentiment, not measured data. This article is informational and does not constitute professional advice.
               </p>
             </section>

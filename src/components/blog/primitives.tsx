@@ -732,7 +732,7 @@ export function KeyTakeaways({
         {items.map((item, i) => (
           <li key={i} style={{ display: 'flex', gap: 12, color: 'var(--blog-ink)' }}>
             <svg
-              style={{ marginTop: 4, height: 16, width: 16, flexShrink: 0, color: 'var(--blog-primary)' }}
+              style={{ marginTop: 4, height: 16, width: 16, flexShrink: 0, color: 'var(--blog-secondary)' }}
               viewBox="0 0 20 20"
               fill="currentColor"
               aria-hidden
@@ -826,7 +826,7 @@ export function Step({
       >
         {num ?? ''}
       </span>
-      <h4 style={{ margin: '2px 0 6px', fontSize: 18, fontWeight: 600, color: 'var(--blog-ink)' }}>{title}</h4>
+      <div style={{ margin: '2px 0 6px', fontSize: 18, fontWeight: 600, color: 'var(--blog-ink)' }}>{title}</div>
       <div style={{ color: 'var(--blog-ink)', lineHeight: 1.6 }}>{children}</div>
     </li>
   );
@@ -898,9 +898,9 @@ export function CompareGrid({ columns }: { columns: CompareColumn[] }) {
           }}
         >
           <div style={{ borderBottom: '1px solid var(--blog-border)', paddingBottom: 12 }}>
-            <h4 style={{ margin: 0, fontSize: 16, fontWeight: 600, color: 'var(--blog-ink)' }}>{col.name}</h4>
+            <div style={{ margin: 0, fontSize: 16, fontWeight: 600, color: 'var(--blog-ink)' }}>{col.name}</div>
             <p style={{ margin: '4px 0 0', fontSize: 14, lineHeight: 1.35, color: 'var(--blog-muted)' }}>
-              <span style={{ fontFamily: MONO, fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--blog-primary)' }}>
+              <span style={{ fontFamily: MONO, fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--blog-secondary)' }}>
                 Best for{' '}
               </span>
               {col.bestFor}
@@ -981,7 +981,7 @@ export function SignalStack({ layers, caption }: { layers: SignalLayer[]; captio
               {i + 1}
             </span>
             <div>
-              <h4 style={{ margin: 0, fontSize: 16, fontWeight: 600, color: 'var(--blog-ink)' }}>
+              <div style={{ margin: 0, fontSize: 16, fontWeight: 600, color: 'var(--blog-ink)' }}>
                 {layer.title}
                 {layer.badge && (
                   <span
@@ -994,13 +994,13 @@ export function SignalStack({ layers, caption }: { layers: SignalLayer[]; captio
                       fontSize: '0.65rem',
                       textTransform: 'uppercase',
                       letterSpacing: '0.06em',
-                      color: 'var(--blog-primary)',
+                      color: 'var(--blog-secondary)',
                     }}
                   >
                     {layer.badge}
                   </span>
                 )}
-              </h4>
+              </div>
               <p style={{ margin: '2px 0 0', fontSize: 14, lineHeight: 1.35, color: 'var(--blog-muted)' }}>{layer.desc}</p>
             </div>
           </div>
@@ -1031,7 +1031,7 @@ export function BigStat({
     <figure style={{ ...cardStyle, padding: 'clamp(28px, 5vw, 36px)' }}>
       <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 'clamp(20px, 4vw, 32px)' }}>
         <div>
-          <div style={{ fontFamily: MONO, fontSize: 'clamp(56px, 10vw, 72px)', fontWeight: 700, lineHeight: 1, color: 'var(--blog-primary)' }}>
+          <div style={{ fontFamily: MONO, fontSize: 'clamp(56px, 10vw, 72px)', fontWeight: 700, lineHeight: 1, color: 'var(--blog-secondary)' }}>
             {value}
           </div>
           {label && (

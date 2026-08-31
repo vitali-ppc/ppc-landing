@@ -145,7 +145,7 @@ export default function ArticleContent() {
   const linkStyle: React.CSSProperties = { color: '#764ba2', textDecoration: 'underline' };
   const paragraphStyle: React.CSSProperties = { fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' };
   const h2Style: React.CSSProperties = { fontSize: '30px', fontWeight: 700, color: '#1e293b', marginBottom: '24px', marginTop: '56px', scrollMarginTop: '24px' };
-  const captionStyle: React.CSSProperties = { fontSize: '14px', color: '#94a3b8', fontStyle: 'italic', lineHeight: 1.6, marginTop: '-12px', marginBottom: '32px' };
+  const captionStyle: React.CSSProperties = { fontSize: '14px', color: '#64748b', fontStyle: 'italic', lineHeight: 1.6, marginTop: '-12px', marginBottom: '32px' };
   const holdStyle: React.CSSProperties = { color: '#ef4444', fontWeight: 600 };
   const enableStyle: React.CSSProperties = { color: '#10b981', fontWeight: 600 };
   const partialStyle: React.CSSProperties = { color: '#f59e0b', fontWeight: 600 };
@@ -555,7 +555,7 @@ export default function ArticleContent() {
                 </a>
               </div>
 
-              <p style={{ fontSize: '14px', color: '#94a3b8', fontStyle: 'italic', lineHeight: 1.7, marginTop: '8px' }}>
+              <p style={{ fontSize: '14px', color: '#64748b', fontStyle: 'italic', lineHeight: 1.7, marginTop: '8px' }}>
                 Sources: <a href="https://support.google.com/google-ads/answer/15910366" style={linkStyle} target="_blank" rel="noopener noreferrer">Google Ads Help, About AI Max for Search (2026)</a>; <a href="https://blog.google/products/ads-commerce/dsa-upgrade-to-ai-max-2026/" style={linkStyle} target="_blank" rel="noopener noreferrer">blog.google, DSA to AI Max upgrade (2026)</a>; <a href="https://support.google.com/google-ads/answer/15910187" style={linkStyle} target="_blank" rel="noopener noreferrer">Google Ads Help, How AI Max works (2026)</a>; <a href="https://support.google.com/google-ads/answer/15909989" style={linkStyle} target="_blank" rel="noopener noreferrer">Google Ads Help, Set up AI Max (2026)</a>; <a href="https://support.google.com/google-ads/answer/16489313" style={linkStyle} target="_blank" rel="noopener noreferrer">Google Ads Help, Text guidelines (2026)</a>; <a href="https://support.google.com/google-ads/topic/17090059" style={linkStyle} target="_blank" rel="noopener noreferrer">Google Ads Help, AI Max for Shopping beta (2026)</a>; <a href="https://support.google.com/google-ads/answer/17091277" style={linkStyle} target="_blank" rel="noopener noreferrer">Google Ads Help, AI Max for Shopping campaigns (2026)</a>. All performance figures are Google&apos;s own internal data, self-reported and not independently audited. This article is informational and does not constitute financial or business advice.
               </p>
             </section>

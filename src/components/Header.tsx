@@ -176,6 +176,8 @@ export default function Header({ variant = 'full' }: HeaderProps) {
                   <a href="/ads" className="industries-link">Industries</a>
                   <button 
                     className="industries-dropdown-button"
+                    aria-label="Open the industries menu"
+                    aria-expanded={isIndustriesDropdownOpen}
                     onClick={() => setIsIndustriesDropdownOpen(!isIndustriesDropdownOpen)}
                     onMouseEnter={() => setIsIndustriesDropdownOpen(true)}
                   >

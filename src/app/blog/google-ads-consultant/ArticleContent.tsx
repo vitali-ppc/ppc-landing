@@ -485,7 +485,7 @@ export default function ArticleContent() {
                   Connect Google Ads to Kampaio
                 </a>
               </div>
-              <p style={{ fontSize: '14px', color: '#94a3b8', fontStyle: 'italic', marginBottom: '24px' }}>
+              <p style={{ fontSize: '14px', color: '#64748b', fontStyle: 'italic', marginBottom: '24px' }}>
                 Results may vary. This article is informational and does not constitute professional advice.
               </p>
             </section>

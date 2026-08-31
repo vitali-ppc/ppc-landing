@@ -712,7 +712,7 @@ export default function ArticleContent() {
                 </div>
               </div>
 
-              <p style={{ fontSize: '14px', color: '#94a3b8', fontStyle: 'italic', lineHeight: '1.7', marginBottom: '20px' }}>
+              <p style={{ fontSize: '14px', color: '#64748b', fontStyle: 'italic', lineHeight: '1.7', marginBottom: '20px' }}>
                 Results may vary. Illustrative CPL, CAC, and budget-split figures in this guide are directional ranges, not benchmarks or guarantees, and this article is informational and does not constitute professional advice.
               </p>
               <p style={para}>

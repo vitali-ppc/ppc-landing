@@ -257,7 +257,7 @@ export default function LoginContent() {
                    style={{
                      background: 'none',
                      border: 'none',
-                     color: '#667eea',
+                     color: '#764ba2',
                      cursor: 'pointer',
                      fontSize: '12px',
                      fontWeight: '500',
@@ -284,7 +284,7 @@ export default function LoginContent() {
                  </button>
                  <Link href="/reset" style={{
                    fontSize: '14px',
-                   color: '#667eea',
+                   color: '#764ba2',
                    textDecoration: 'none',
                    fontWeight: '500',
                    transition: 'color 0.2s ease'
@@ -369,7 +369,7 @@ export default function LoginContent() {
                    style={{
                      background: 'none',
                      border: 'none',
-                     color: '#667eea',
+                     color: '#764ba2',
                      cursor: 'pointer',
                      fontSize: '12px',
                      fontWeight: '500',
@@ -520,7 +520,7 @@ export default function LoginContent() {
         }}>
           New to Kampaio?{' '}
           <Link href="/register" style={{
-            color: '#667eea',
+            color: '#764ba2',
             textDecoration: 'none',
             fontWeight: '500',
             transition: 'color 0.2s ease'

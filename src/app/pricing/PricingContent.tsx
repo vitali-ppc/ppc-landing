@@ -251,7 +251,7 @@ export default function PricingContent() {
                         style={{
                           width: '20px',
                           height: '20px',
-                          color: '#667eea',
+                          color: '#764ba2',
                           marginRight: '12px',
                           flexShrink: 0
                         }}

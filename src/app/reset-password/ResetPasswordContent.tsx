@@ -745,7 +745,7 @@ function ResetPasswordInner() {
         }}>
           <Link href="/login" style={{
             fontSize: '14px',
-            color: '#667eea',
+            color: '#764ba2',
             textDecoration: 'none',
             fontWeight: '500',
             transition: 'color 0.2s ease'

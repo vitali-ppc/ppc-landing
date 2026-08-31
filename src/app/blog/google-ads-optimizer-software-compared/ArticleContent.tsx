@@ -331,7 +331,7 @@ export default function ArticleContent() {
 
               {/* VISUAL 1: Key takeaways card (the short version) */}
               <div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderLeft: '4px solid #667eea', borderRadius: '12px', padding: '24px 28px', margin: '32px 0' }}>
-                <div style={{ fontSize: '13px', fontWeight: 700, color: '#667eea', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '14px' }}>The short version</div>
+                <div style={{ fontSize: '13px', fontWeight: 700, color: '#764ba2', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '14px' }}>The short version</div>
                 <ul style={{ fontSize: '17px', color: '#1e293b', lineHeight: '1.7', paddingLeft: '20px', margin: 0 }}>
                   <li style={{ marginBottom: '10px' }}>Optimizers split into three kinds: advisors that suggest, rule engines that execute your rules, and AI-native operators that decide and act for you.</li>
                   <li style={{ marginBottom: '10px' }}>Pick by how much manual work you want removed, mapped to your account size and time budget.</li>
@@ -368,7 +368,7 @@ export default function ArticleContent() {
                   <div key={c.n} style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderTop: `4px solid ${c.accent}`, borderRadius: '12px', padding: '20px' }}>
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', borderRadius: '50%', background: c.accent, color: 'white', fontWeight: 800, fontSize: '15px', marginBottom: '12px' }}>{c.n}</div>
                     <div style={{ fontSize: '17px', fontWeight: 700, color: '#1e293b', marginBottom: '8px', lineHeight: 1.35 }}>{c.title}</div>
-                    <div style={{ fontSize: '13px', color: '#94a3b8', marginBottom: '10px', lineHeight: 1.5 }}>{c.examples}</div>
+                    <div style={{ fontSize: '13px', color: '#64748b', marginBottom: '10px', lineHeight: 1.5 }}>{c.examples}</div>
                     <div style={{ fontSize: '14px', color: '#475569', lineHeight: 1.6 }}><strong>Removes:</strong> {c.removes}</div>
                   </div>
                 ))}
@@ -602,7 +602,7 @@ export default function ArticleContent() {
                   Try Kampaio Free
                 </a>
               </div>
-              <p style={{ fontSize: '14px', color: '#94a3b8', fontStyle: 'italic', lineHeight: 1.7, marginTop: '8px' }}>
+              <p style={{ fontSize: '14px', color: '#64748b', fontStyle: 'italic', lineHeight: 1.7, marginTop: '8px' }}>
                 Pricing and capabilities for third-party tools are summarized from public vendor materials as of June 2026 and may change. Optmyzr and TheOptimizer pricing is spend-based and not publicly listed. This article is informational and does not constitute professional advertising advice.
               </p>
             </section>

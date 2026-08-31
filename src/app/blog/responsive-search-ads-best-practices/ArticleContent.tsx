@@ -145,7 +145,7 @@ export default function ArticleContent() {
 
   // VISUAL 1 data: 5-bucket headline diversity (5 keyword-led / 4 benefit-led / 3 CTA-led / 2 social proof / 1 urgency)
   const headlineBuckets = [
-    { count: 5, label: 'Keyword-led', example: '"Leather Laptop Bag 15"', color: '#667eea', tint: '#eef2ff' },
+    { count: 5, label: 'Keyword-led', example: '"Leather Laptop Bag 15"', color: '#764ba2', tint: '#eef2ff' },
     { count: 4, label: 'Benefit-led', example: '"Free 30-Day Returns"', color: '#10b981', tint: '#ecfdf5' },
     { count: 3, label: 'CTA-led', example: '"Shop Today"', color: '#f59e0b', tint: '#fffbeb' },
     { count: 2, label: 'Social proof', example: '"Trusted by 12k Pros"', color: '#764ba2', tint: '#faf5ff' },
@@ -156,7 +156,7 @@ export default function ArticleContent() {
   const sprint5Stats = [
     { value: '47', label: 'Headlines Mira generated across 4 ad groups', color: '#1e293b' },
     { value: '39', label: 'Approved live by Maximus after safety gating', color: '#10b981' },
-    { value: '18 min', label: 'Generation time for the full 47-headline batch', color: '#667eea' },
+    { value: '18 min', label: 'Generation time for the full 47-headline batch', color: '#764ba2' },
     { value: '+0.6 pp', label: 'CTR lift (4.1% to 4.7%) on 3 of 4 ad groups', color: '#764ba2' },
   ];
 

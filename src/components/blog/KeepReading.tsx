@@ -62,7 +62,7 @@ export default function KeepReading({ slug, category }: { slug: string; category
                   fontSize: '11px',
                   textTransform: 'uppercase',
                   letterSpacing: '0.06em',
-                  color: '#667eea',
+                  color: '#764ba2',
                   marginBottom: '8px',
                 }}
               >

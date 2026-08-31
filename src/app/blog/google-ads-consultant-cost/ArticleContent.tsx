@@ -306,7 +306,7 @@ export default function ArticleContent() {
                   ['DIY', 'Your time, plus ad spend', 'You', 'Under roughly $20,000/mo with decent reporting and a few hours a week'],
                 ]}
               />
-              <p style={{ fontSize: '14px', color: '#94a3b8', fontStyle: 'italic', lineHeight: 1.6, marginTop: '-12px', marginBottom: '32px' }}>
+              <p style={{ fontSize: '14px', color: '#64748b', fontStyle: 'italic', lineHeight: 1.6, marginTop: '-12px', marginBottom: '32px' }}>
                 Comparison of consultant, agency, in-house, software, and DIY cost by monthly spend.
               </p>
 
@@ -344,14 +344,14 @@ export default function ArticleContent() {
               <div className="be-grid" style={{ display: 'grid', gap: '16px', margin: '32px 0' }}>
                 {breakEven.map((b) => (
                   <div key={b.spend} style={{ background: '#0f172a', borderRadius: '12px', padding: '20px', color: '#e2e8f0' }}>
-                    <div style={{ fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#94a3b8', marginBottom: '8px' }}>Monthly spend</div>
+                    <div style={{ fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#64748b', marginBottom: '8px' }}>Monthly spend</div>
                     <div style={{ fontSize: '24px', fontWeight: 800, color: 'white', fontVariantNumeric: 'tabular-nums', marginBottom: '14px' }}>{b.spend}</div>
                     <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '14px', padding: '6px 0', borderTop: '1px solid #1e293b' }}>
-                      <span style={{ color: '#94a3b8' }}>Recoverable (20-30%)</span>
+                      <span style={{ color: '#64748b' }}>Recoverable (20-30%)</span>
                       <span style={{ fontWeight: 700, fontVariantNumeric: 'tabular-nums' }}>{b.recover}</span>
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '14px', padding: '6px 0', borderTop: '1px solid #1e293b' }}>
-                      <span style={{ color: '#94a3b8' }}>Fee to clear</span>
+                      <span style={{ color: '#64748b' }}>Fee to clear</span>
                       <span style={{ fontWeight: 700, fontVariantNumeric: 'tabular-nums' }}>{b.fee}</span>
                     </div>
                     <div style={{ marginTop: '14px', display: 'inline-block', background: verdictColor(b.tone), color: 'white', fontSize: '13px', fontWeight: 700, padding: '6px 12px', borderRadius: '999px' }}>{b.verdict}</div>
@@ -521,7 +521,7 @@ export default function ArticleContent() {
                 </a>
               </div>
 
-              <p style={{ fontSize: '14px', color: '#94a3b8', fontStyle: 'italic', lineHeight: 1.7, marginTop: '8px' }}>
+              <p style={{ fontSize: '14px', color: '#64748b', fontStyle: 'italic', lineHeight: 1.7, marginTop: '8px' }}>
                 Sources: Google Ads Help, &quot;Manager Accounts (MCC): About ownership of client accounts&quot; (2026); Glassdoor, &quot;PPC Specialist Salaries&quot; (2026, average total pay $70,915/yr; bot-blocked, cited as plain-text attribution); Indeed, &quot;PPC Specialist Salaries&quot; (2026, $66,806/yr average base). Cost ranges are summarized from public materials and practitioner discussions as of July 2026 and vary by account size and scope. This article is informational and does not constitute professional advertising advice.
               </p>
             </section>

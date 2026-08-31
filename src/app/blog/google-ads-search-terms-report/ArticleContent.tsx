@@ -161,7 +161,7 @@ export default function ArticleContent() {
   const linkStyle: React.CSSProperties = { color: '#764ba2', textDecoration: 'underline' };
   const paragraphStyle: React.CSSProperties = { fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' };
   const h2Style: React.CSSProperties = { fontSize: '30px', fontWeight: 700, color: '#1e293b', marginBottom: '24px', marginTop: '56px', scrollMarginTop: '24px' };
-  const captionStyle: React.CSSProperties = { fontSize: '14px', color: '#94a3b8', fontStyle: 'italic', lineHeight: 1.6, marginTop: '-12px', marginBottom: '32px' };
+  const captionStyle: React.CSSProperties = { fontSize: '14px', color: '#64748b', fontStyle: 'italic', lineHeight: 1.6, marginTop: '-12px', marginBottom: '32px' };
   const yesStyle: React.CSSProperties = { color: '#10b981', fontWeight: 600 };
   const noStyle: React.CSSProperties = { color: '#f59e0b', fontWeight: 600 };
 
@@ -621,7 +621,7 @@ export default function ArticleContent() {
                   </li>
                 ))}
               </ul>
-              <p style={{ fontSize: '14px', color: '#94a3b8', fontStyle: 'italic', lineHeight: 1.7, marginTop: '8px' }}>
+              <p style={{ fontSize: '14px', color: '#64748b', fontStyle: 'italic', lineHeight: 1.7, marginTop: '8px' }}>
                 The $0.85 figure is scoped to spend on hidden, non-disclosed queries specifically, not to total account spend. The Keep / Kill / Watch thresholds are our practical operating defaults for a mid-size account, not Google guidance; scale them to your own spend and conversion lag. Buzz and Sage quotes are illustrative of how Kampaio&apos;s agents apply the framework, not audited results from a named advertiser.
               </p>
             </section>

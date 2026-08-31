@@ -315,7 +315,7 @@ export default function ArticleContent() {
                   ['Learning curve', 'Days to first useful action.', 'When the tool pays for itself.', 'Medium'],
                 ]}
               />
-              <p style={{ fontSize: '14px', color: '#94a3b8', fontStyle: 'italic', lineHeight: 1.6, marginTop: '-12px', marginBottom: '32px' }}>
+              <p style={{ fontSize: '14px', color: '#64748b', fontStyle: 'italic', lineHeight: 1.6, marginTop: '-12px', marginBottom: '32px' }}>
                 Six criteria for scoring any Google Ads management tool.
               </p>
 
@@ -351,7 +351,7 @@ export default function ArticleContent() {
                   ['Agency / portfolio', 'Multi-account rules layer or suite', 'Per-account cost', 'Judge cost per managed account, not headline price.'],
                 ]}
               />
-              <p style={{ fontSize: '14px', color: '#94a3b8', fontStyle: 'italic', lineHeight: 1.6, marginTop: '-12px', marginBottom: '32px' }}>
+              <p style={{ fontSize: '14px', color: '#64748b', fontStyle: 'italic', lineHeight: 1.6, marginTop: '-12px', marginBottom: '32px' }}>
                 Sensible tool class and price ceiling by monthly ad spend.
               </p>
             </section>
@@ -384,7 +384,7 @@ export default function ArticleContent() {
                   ],
                 ]}
               />
-              <p style={{ fontSize: '14px', color: '#94a3b8', fontStyle: 'italic', lineHeight: 1.6, marginTop: '-12px', marginBottom: '32px' }}>
+              <p style={{ fontSize: '14px', color: '#64748b', fontStyle: 'italic', lineHeight: 1.6, marginTop: '-12px', marginBottom: '32px' }}>
                 Contenders by category and job to be done, not ranked. Pricing verified 2026-07.
               </p>
 
@@ -542,7 +542,7 @@ export default function ArticleContent() {
                 </a>
               </div>
 
-              <p style={{ fontSize: '14px', color: '#94a3b8', fontStyle: 'italic', lineHeight: 1.7, marginTop: '8px' }}>
+              <p style={{ fontSize: '14px', color: '#64748b', fontStyle: 'italic', lineHeight: 1.7, marginTop: '8px' }}>
                 Sources: Google Ads Editor documentation and Google Ad Manager Help (2026); vendor pricing verified first-party as of July 2026 and subject to change; practitioner signal from 107 public discussions (Reddit, Hacker News, Stack Exchange) gathered 2026-07-16. This article is informational and does not constitute professional advertising advice.
               </p>
             </section>

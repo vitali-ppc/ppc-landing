@@ -294,7 +294,7 @@ export default function ResetContent() {
               lineHeight: '1.5',
               marginBottom: '24px'
             }}>
-              We've sent a password reset link to <strong style={{ color: '#667eea' }}>{email}</strong>
+              We've sent a password reset link to <strong style={{ color: '#764ba2' }}>{email}</strong>
             </p>
             <p style={{
               fontSize: '14px',
@@ -342,7 +342,7 @@ export default function ResetContent() {
         }}>
           <Link href="/login" style={{
             fontSize: '14px',
-            color: '#667eea',
+            color: '#764ba2',
             textDecoration: 'none',
             fontWeight: '500',
             transition: 'color 0.2s ease'
@@ -362,7 +362,7 @@ export default function ResetContent() {
         }}>
           New to Kampaio?{' '}
           <Link href="/chat" style={{
-            color: '#667eea',
+            color: '#764ba2',
             textDecoration: 'none',
             fontWeight: '500',
             transition: 'color 0.2s ease'

@@ -279,7 +279,7 @@ export default function ArticleContent() {
 
               {/* Quick answer box */}
               <div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderLeft: '4px solid #667eea', borderRadius: '12px', padding: '24px', marginBottom: '40px' }}>
-                <div style={{ fontSize: '13px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: '#667eea', marginBottom: '14px' }}>Quick answer</div>
+                <div style={{ fontSize: '13px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: '#764ba2', marginBottom: '14px' }}>Quick answer</div>
                 <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
                   {[
                     'Someone else, usually an affiliate, is showing an ad that looks like yours under your branded keyword.',
@@ -288,7 +288,7 @@ export default function ArticleContent() {
                     'Free tools (Auction Insights, Ad Preview, Meta Ad Library) catch most cases; continuous monitoring catches the rest.',
                   ].map((t, i) => (
                     <li key={i} style={{ display: 'flex', gap: '10px', fontSize: '16px', color: '#334155', lineHeight: 1.65, marginBottom: i === 3 ? 0 : '10px' }}>
-                      <span aria-hidden="true" style={{ color: '#667eea', fontWeight: 800, flex: '0 0 auto' }}>&rarr;</span>
+                      <span aria-hidden="true" style={{ color: '#764ba2', fontWeight: 800, flex: '0 0 auto' }}>&rarr;</span>
                       <span>{t}</span>
                     </li>
                   ))}
@@ -398,7 +398,7 @@ export default function ArticleContent() {
                   ['One affiliate’s reported sales spike abnormally', 'Affiliate dashboard cross-checked against GA4 attribution', 'Affiliate skimming brand-term clicks', 'Audit that affiliate; enforce your program’s brand-bidding terms'],
                 ]}
               />
-              <p style={{ fontSize: '14px', color: '#94a3b8', fontStyle: 'italic', lineHeight: 1.6, marginTop: '-12px', marginBottom: '32px' }}>
+              <p style={{ fontSize: '14px', color: '#64748b', fontStyle: 'italic', lineHeight: 1.6, marginTop: '-12px', marginBottom: '32px' }}>
                 Ad-hijacking detection matrix: symptom, where to check, what it means, and the counter-action.
               </p>
 
@@ -496,7 +496,7 @@ export default function ArticleContent() {
                 </a>
               </div>
 
-              <p style={{ fontSize: '14px', color: '#94a3b8', fontStyle: 'italic', lineHeight: 1.7, marginTop: '8px' }}>
+              <p style={{ fontSize: '14px', color: '#64748b', fontStyle: 'italic', lineHeight: 1.7, marginTop: '8px' }}>
                 Sources: Juniper Research, via Search Engine Journal, &quot;Ad Hijacking Explained&quot; (2023, $84B global ad-fraud losses); JumpFly, &quot;Protect Your Google Ads Account from Being Hijacked&quot; (Nikki Kuhlman); Neil Patel / NP Digital, &quot;Ad Hijacking: The Hidden Threat&quot; (Brittany Hubler; AARP Meta Ad Library audit); AdPolice, &quot;Ad Hijacking&quot;; Google Ads Help, Trademark Policy and trademark complaint form. The 75% affiliate share is an attributed industry estimate, not a verified statistic. Illustrative cost figures are modeled scenarios, not real accounts. This article is informational and does not constitute legal or advertising advice.
               </p>
             </section>

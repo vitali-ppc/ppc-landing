@@ -670,7 +670,7 @@ export default function ArticleContent() {
                 </a>
               </div>
 
-              <p style={{ fontSize: '14px', color: '#94a3b8', fontStyle: 'italic', lineHeight: '1.7', marginBottom: '40px' }}>
+              <p style={{ fontSize: '14px', color: '#64748b', fontStyle: 'italic', lineHeight: '1.7', marginBottom: '40px' }}>
                 Results may vary. This article is informational and does not constitute professional advice. Scenario figures for CPC, ROAS, and score movement are illustrative, not measured data from a specific account. Verify all figures against your own account data before making budget decisions.
               </p>
             </section>

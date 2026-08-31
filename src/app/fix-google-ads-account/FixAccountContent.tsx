@@ -137,7 +137,7 @@ export default function FixAccountContent() {
                 <p style={{ fontSize: '15px', lineHeight: 1.6, color: '#475569', margin: '0 0 10px' }}>
                   {s.reads}
                 </p>
-                <span style={{ fontSize: '14px', color: '#667eea', fontWeight: 600 }}>{s.title}</span>
+                <span style={{ fontSize: '14px', color: '#764ba2', fontWeight: 600 }}>{s.title}</span>
               </Link>
             ))}
           </div>
@@ -159,7 +159,7 @@ export default function FixAccountContent() {
             continuously. Two agents run on live accounts today: Buzz proposes bidding changes and
             Aegis reviews every proposal for risk before you approve it. The rest ship as the
             cabinet grows. Founding access is free while billing is not open.{' '}
-            <Link href="/pricing" style={{ color: '#667eea', textDecoration: 'underline' }}>
+            <Link href="/pricing" style={{ color: '#764ba2', textDecoration: 'underline' }}>
               See what each tier covers
             </Link>
             .

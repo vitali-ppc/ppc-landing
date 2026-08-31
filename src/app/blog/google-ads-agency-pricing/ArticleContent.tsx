@@ -264,7 +264,7 @@ export default function ArticleContent() {
 
               {/* Quick answer box */}
               <div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderLeft: '4px solid #667eea', borderRadius: '12px', padding: '24px', marginBottom: '40px' }}>
-                <div style={{ fontSize: '13px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: '#667eea', marginBottom: '14px' }}>Quick answer</div>
+                <div style={{ fontSize: '13px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: '#764ba2', marginBottom: '14px' }}>Quick answer</div>
                 <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
                   {[
                     'Flat monthly fee: $500 to $5,000+ (freelancers low, full agencies high).',
@@ -274,7 +274,7 @@ export default function ArticleContent() {
                     'Plus a one-time setup fee of $1,000 to $5,000 that many agencies bill separately.',
                   ].map((t, i, arr) => (
                     <li key={i} style={{ display: 'flex', gap: '10px', fontSize: '16px', color: '#334155', lineHeight: 1.65, marginBottom: i === arr.length - 1 ? 0 : '10px' }}>
-                      <span aria-hidden="true" style={{ color: '#667eea', fontWeight: 800, flex: '0 0 auto' }}>&rarr;</span>
+                      <span aria-hidden="true" style={{ color: '#764ba2', fontWeight: 800, flex: '0 0 auto' }}>&rarr;</span>
                       <span>{t}</span>
                     </li>
                   ))}
@@ -399,7 +399,7 @@ export default function ArticleContent() {
                   ['$100,000+', '$10,000 - $25,000+', 'Enterprise, complex account structure'],
                 ]}
               />
-              <p style={{ fontSize: '14px', color: '#94a3b8', fontStyle: 'italic', lineHeight: 1.6, marginTop: '-12px', marginBottom: '32px' }}>
+              <p style={{ fontSize: '14px', color: '#64748b', fontStyle: 'italic', lineHeight: 1.6, marginTop: '-12px', marginBottom: '32px' }}>
                 Typical Google Ads management fee by ad spend tier. Source: OuterBox <a href="/blog/ppc-management" style={{ color: '#764ba2', textDecoration: 'underline' }}>PPC management</a> pricing, 2026.
               </p>
 
@@ -471,7 +471,7 @@ export default function ArticleContent() {
                   ['In-house', 'Salary plus tools', 'Spend is high enough to justify a full-time hire'],
                 ]}
               />
-              <p style={{ fontSize: '14px', color: '#94a3b8', fontStyle: 'italic', lineHeight: 1.6, marginTop: '-12px', marginBottom: '32px' }}>
+              <p style={{ fontSize: '14px', color: '#64748b', fontStyle: 'italic', lineHeight: 1.6, marginTop: '-12px', marginBottom: '32px' }}>
                 Cost structure of each Google Ads management option.
               </p>
 
@@ -533,7 +533,7 @@ export default function ArticleContent() {
                 </a>
               </div>
 
-              <p style={{ fontSize: '14px', color: '#94a3b8', fontStyle: 'italic', lineHeight: 1.7, marginTop: '8px' }}>
+              <p style={{ fontSize: '14px', color: '#64748b', fontStyle: 'italic', lineHeight: 1.7, marginTop: '8px' }}>
                 Sources: Yael Consulting, &quot;Google Ads Management Fees: Unpacking Agency Pricing Models&quot; (2026); Bootstrap Creative, &quot;How Much Does Google Ads Management Cost&quot; (2026); OuterBox, &quot;PPC Management Pricing and Fees&quot; (2026); r/PPC community discussion on percentage-of-spend pricing; Menachem Ani (@MenachemAni) on X, on Google Ads budget math (Feb 2026). Dollar and percentage ranges are typical market figures from independent pricing guides, not quotes from any single agency. This article is informational and does not constitute financial or business advice.
               </p>
             </section>

@@ -548,7 +548,7 @@ export default function ArticleContent() {
                 </a>
               </div>
 
-              <p style={{ fontSize: '14px', color: '#94a3b8', fontStyle: 'italic', lineHeight: '1.7', marginBottom: '40px' }}>
+              <p style={{ fontSize: '14px', color: '#64748b', fontStyle: 'italic', lineHeight: '1.7', marginBottom: '40px' }}>
                 Results may vary. This article is informational and does not constitute professional advice. Conversion thresholds and sales-cycle figures used as examples are illustrative ranges drawn from practitioner discussions and Google&apos;s documented guidance. Verify all figures against your own account data before making budget decisions.
               </p>
             </section>

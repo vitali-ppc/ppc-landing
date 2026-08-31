@@ -377,7 +377,7 @@ export default function ArticleContent() {
                     <div style={{ fontSize: '36px', fontWeight: 800, lineHeight: 1, background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', marginBottom: '8px' }}>
                       {s.n}
                     </div>
-                    <div style={{ fontSize: '13px', fontWeight: 600, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: '12px' }}>{s.label}</div>
+                    <div style={{ fontSize: '13px', fontWeight: 600, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: '12px' }}>{s.label}</div>
                     <div style={{ fontSize: '14px', color: '#475569', lineHeight: 1.5 }}>{s.verdict}</div>
                   </div>
                 ))}
@@ -664,7 +664,7 @@ export default function ArticleContent() {
                   See Buzz in Action
                 </a>
               </div>
-              <p style={{ fontSize: '14px', color: '#94a3b8', fontStyle: 'italic', lineHeight: 1.7, marginTop: '8px' }}>
+              <p style={{ fontSize: '14px', color: '#64748b', fontStyle: 'italic', lineHeight: 1.7, marginTop: '8px' }}>
                 Results vary by account, campaign structure, conversion volume, and market conditions. Performance figures cited from echelonn.io and level.agency are single-vendor client data, not industry guarantees. This article is informational and does not constitute professional financial or advertising advice.
               </p>
             </section>

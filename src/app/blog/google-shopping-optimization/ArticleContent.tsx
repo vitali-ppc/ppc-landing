@@ -957,7 +957,7 @@ export default function ArticleContent() {
               <p
                 style={{
                   fontSize: '14px',
-                  color: '#94a3b8',
+                  color: '#64748b',
                   fontStyle: 'italic',
                   marginBottom: '16px',
                 }}

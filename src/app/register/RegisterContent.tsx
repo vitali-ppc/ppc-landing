@@ -218,7 +218,7 @@ export default function RegisterContent() {
             lineHeight: '1.5',
             marginBottom: '24px'
           }}>
-            We've sent a verification link to <strong style={{ color: '#667eea' }}>{email}</strong>. Please check your email and click the link to verify your account.
+            We've sent a verification link to <strong style={{ color: '#764ba2' }}>{email}</strong>. Please check your email and click the link to verify your account.
           </p>
 
           <div style={{
@@ -245,7 +245,7 @@ export default function RegisterContent() {
                   style={{
                     background: 'none',
                     border: 'none',
-                    color: '#667eea',
+                    color: '#764ba2',
                     cursor: 'pointer',
                     textDecoration: 'underline',
                     fontSize: 'inherit'
@@ -434,7 +434,7 @@ export default function RegisterContent() {
               <>
                 An account with this email already exists. You can{' '}
                 <Link href={`/login?email=${encodeURIComponent(email)}`} style={{
-                  color: '#667eea',
+                  color: '#764ba2',
                   textDecoration: 'none',
                   fontWeight: '500',
                   transition: 'color 0.2s ease'
@@ -575,7 +575,7 @@ export default function RegisterContent() {
                     style={{
                       background: 'none',
                       border: 'none',
-                      color: '#667eea',
+                      color: '#764ba2',
                       cursor: 'pointer',
                       fontSize: '14px',
                       fontWeight: '500',
@@ -821,7 +821,7 @@ export default function RegisterContent() {
           </span>
                      <Link href="/login" style={{
              fontSize: '14px',
-             color: '#667eea',
+             color: '#764ba2',
              textDecoration: 'none',
              fontWeight: '500',
              transition: 'color 0.2s ease'
@@ -852,7 +852,7 @@ export default function RegisterContent() {
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
             </svg>
             <div>
-                             By creating an account, you agree to our <Link href="/terms-of-service" style={{ color: '#667eea', textDecoration: 'none' }}>Terms of Service</Link> and <Link href="/privacy-policy" style={{ color: '#667eea', textDecoration: 'none' }}>Privacy Policy</Link>.
+                             By creating an account, you agree to our <Link href="/terms-of-service" style={{ color: '#764ba2', textDecoration: 'none' }}>Terms of Service</Link> and <Link href="/privacy-policy" style={{ color: '#764ba2', textDecoration: 'none' }}>Privacy Policy</Link>.
             </div>
           </div>
         </div>

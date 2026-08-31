@@ -384,7 +384,7 @@ function VerifyEmailInner() {
             color: '#64748b'
           }}>
             Need help? <Link href="mailto:support@kampaio.com" style={{
-              color: '#667eea',
+              color: '#764ba2',
               textDecoration: 'none',
               fontWeight: '500'
             }}>Contact support</Link>
@@ -531,7 +531,7 @@ function VerifyEmailInner() {
           lineHeight: '1.5',
           marginBottom: '24px'
         }}>
-          Your email <strong style={{ color: '#667eea' }}>{email}</strong> has been verified. Your account is now active and ready to use.
+          Your email <strong style={{ color: '#764ba2' }}>{email}</strong> has been verified. Your account is now active and ready to use.
         </p>
 
         <div style={{

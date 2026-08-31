@@ -44,7 +44,11 @@ export default function BlogLayout({ children }: { children: React.ReactNode }) 
   return (
     <div className="blog-shell">
       <style dangerouslySetInnerHTML={{ __html: twoColCss }} />
-      {children}
+      {/* The primary-content landmark. Every article was missing one, which is what
+          `landmark-one-main` reported on every Lighthouse sample since June (flag #1):
+          assistive tech and content extractors both use it to find where the article
+          starts. One element here covers the whole blog. */}
+      <main>{children}</main>
       <StickyTOC />
     </div>
   );

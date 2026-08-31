@@ -500,7 +500,7 @@ export default function ArticleContent() {
                   Start Your Free Trial
                 </a>
               </div>
-              <p style={{ fontSize: '14px', color: '#94a3b8', fontStyle: 'italic', marginBottom: '32px' }}>
+              <p style={{ fontSize: '14px', color: '#64748b', fontStyle: 'italic', marginBottom: '32px' }}>
                 Results may vary. This article is informational and does not constitute financial or professional advice.
               </p>
             </section>

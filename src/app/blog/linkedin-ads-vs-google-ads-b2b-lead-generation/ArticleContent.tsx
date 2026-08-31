@@ -258,18 +258,18 @@ export default function ArticleContent() {
                   </ul>
                 </div>
                 <div style={{ background: '#eff6ff', border: '2px solid #667eea', borderRadius: '12px', padding: '24px' }}>
-                  <div style={{ fontSize: '13px', fontWeight: 700, color: '#667eea', textTransform: 'uppercase' as const, letterSpacing: '0.08em', marginBottom: '12px' }}>Pick Google as primary when</div>
+                  <div style={{ fontSize: '13px', fontWeight: 700, color: '#764ba2', textTransform: 'uppercase' as const, letterSpacing: '0.08em', marginBottom: '12px' }}>Pick Google as primary when</div>
                   <ul style={{ listStyle: 'none', padding: 0, margin: 0, fontSize: '15px', color: '#1e293b', lineHeight: '1.8' }}>
-                    <li style={{ paddingLeft: '20px', position: 'relative', marginBottom: '6px' }}><span style={{ position: 'absolute', left: 0, color: '#667eea' }}>&#10003;</span> Bottom-funnel search demand is strong</li>
-                    <li style={{ paddingLeft: '20px', position: 'relative', marginBottom: '6px' }}><span style={{ position: 'absolute', left: 0, color: '#667eea' }}>&#10003;</span> Volume requirement is high</li>
-                    <li style={{ paddingLeft: '20px', position: 'relative', marginBottom: '6px' }}><span style={{ position: 'absolute', left: 0, color: '#667eea' }}>&#10003;</span> ACV is $1-20K</li>
-                    <li style={{ paddingLeft: '20px', position: 'relative' }}><span style={{ position: 'absolute', left: 0, color: '#667eea' }}>&#10003;</span> Sales cycle is under 60 days</li>
+                    <li style={{ paddingLeft: '20px', position: 'relative', marginBottom: '6px' }}><span style={{ position: 'absolute', left: 0, color: '#764ba2' }}>&#10003;</span> Bottom-funnel search demand is strong</li>
+                    <li style={{ paddingLeft: '20px', position: 'relative', marginBottom: '6px' }}><span style={{ position: 'absolute', left: 0, color: '#764ba2' }}>&#10003;</span> Volume requirement is high</li>
+                    <li style={{ paddingLeft: '20px', position: 'relative', marginBottom: '6px' }}><span style={{ position: 'absolute', left: 0, color: '#764ba2' }}>&#10003;</span> ACV is $1-20K</li>
+                    <li style={{ paddingLeft: '20px', position: 'relative' }}><span style={{ position: 'absolute', left: 0, color: '#764ba2' }}>&#10003;</span> Sales cycle is under 60 days</li>
                   </ul>
                 </div>
               </div>
 
               <div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: '10px', padding: '20px 24px', marginBottom: '24px' }}>
-                <div style={{ fontSize: '13px', fontWeight: 700, color: '#667eea', textTransform: 'uppercase' as const, letterSpacing: '0.08em', marginBottom: '10px' }}>Default hybrid for most B2B budgets ($20-100K/mo)</div>
+                <div style={{ fontSize: '13px', fontWeight: 700, color: '#764ba2', textTransform: 'uppercase' as const, letterSpacing: '0.08em', marginBottom: '10px' }}>Default hybrid for most B2B budgets ($20-100K/mo)</div>
                 <p style={{ fontSize: '16px', color: '#1e293b', margin: '0 0 8px', lineHeight: '1.6' }}>50-70% Google for demand capture</p>
                 <p style={{ fontSize: '16px', color: '#1e293b', margin: '0 0 12px', lineHeight: '1.6' }}>30-50% LinkedIn for ICP-precision awareness and retargeting bridge</p>
                 <div style={{ fontSize: '13px', color: '#64748b', borderTop: '1px solid #e5e7eb', paddingTop: '10px', marginTop: '4px' }}>
@@ -310,7 +310,7 @@ export default function ArticleContent() {
                     }
                   `}</style>
                   <div style={{ background: '#eff6ff', border: '1px solid #bfdbfe', borderRadius: '10px', padding: '20px' }}>
-                    <div style={{ fontSize: '13px', fontWeight: 600, color: '#667eea', marginBottom: '8px' }}>Google Ads</div>
+                    <div style={{ fontSize: '13px', fontWeight: 600, color: '#764ba2', marginBottom: '8px' }}>Google Ads</div>
                     <div style={{ fontSize: '28px', fontWeight: 800, color: '#1e293b', lineHeight: '1.1', marginBottom: '6px' }}>$320</div>
                     <div style={{ fontSize: '13px', color: '#64748b', marginBottom: '12px' }}>pipeline-CAC</div>
                     <div style={{ fontSize: '13px', color: '#475569', lineHeight: '1.6' }}>
@@ -353,7 +353,7 @@ export default function ArticleContent() {
                 <thead>
                   <tr style={{ background: '#f8fafc' }}>
                     <th style={{ padding: '12px 14px', borderBottom: '2px solid #e5e7eb', textAlign: 'left', fontWeight: 700, color: '#1e293b', fontSize: '14px' }}>Metric</th>
-                    <th style={{ padding: '12px 14px', borderBottom: '2px solid #e5e7eb', textAlign: 'left', fontWeight: 700, color: '#667eea', fontSize: '14px' }}>Google Ads (B2B)</th>
+                    <th style={{ padding: '12px 14px', borderBottom: '2px solid #e5e7eb', textAlign: 'left', fontWeight: 700, color: '#764ba2', fontSize: '14px' }}>Google Ads (B2B)</th>
                     <th style={{ padding: '12px 14px', borderBottom: '2px solid #e5e7eb', textAlign: 'left', fontWeight: 700, color: '#10b981', fontSize: '14px' }}>LinkedIn Ads (B2B)</th>
                     <th style={{ padding: '12px 14px', borderBottom: '2px solid #e5e7eb', textAlign: 'left', fontWeight: 600, color: '#64748b', fontSize: '13px' }}>Source / Note</th>
                   </tr>
@@ -373,7 +373,7 @@ export default function ArticleContent() {
                       <td style={{ padding: '11px 14px', borderBottom: '1px solid #e5e7eb', color: '#1e293b', fontWeight: 500, fontSize: '14px' }}>{metric}</td>
                       <td style={{ padding: '11px 14px', borderBottom: '1px solid #e5e7eb', color: '#475569', fontSize: '14px' }}>{google}</td>
                       <td style={{ padding: '11px 14px', borderBottom: '1px solid #e5e7eb', color: '#475569', fontSize: '14px' }}>{linkedin}</td>
-                      <td style={{ padding: '11px 14px', borderBottom: '1px solid #e5e7eb', color: '#94a3b8', fontSize: '13px', fontStyle: 'italic' as const }}>{source}</td>
+                      <td style={{ padding: '11px 14px', borderBottom: '1px solid #e5e7eb', color: '#64748b', fontSize: '13px', fontStyle: 'italic' as const }}>{source}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -525,12 +525,12 @@ export default function ArticleContent() {
                     }
                   `}</style>
                   <div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: '10px', padding: '20px' }}>
-                    <div style={{ fontSize: '13px', fontWeight: 700, color: '#667eea', textTransform: 'uppercase' as const, letterSpacing: '0.06em', marginBottom: '8px' }}>Under $5K ACV</div>
+                    <div style={{ fontSize: '13px', fontWeight: 700, color: '#764ba2', textTransform: 'uppercase' as const, letterSpacing: '0.06em', marginBottom: '8px' }}>Under $5K ACV</div>
                     <div style={{ fontSize: '22px', fontWeight: 800, color: '#1e293b', marginBottom: '6px' }}>70-80% Google</div>
                     <p style={{ fontSize: '13px', color: '#64748b', margin: 0, lineHeight: '1.6' }}>Volume motion. LinkedIn CPL rarely justified at sub-$5K deal size.</p>
                   </div>
                   <div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: '10px', padding: '20px' }}>
-                    <div style={{ fontSize: '13px', fontWeight: 700, color: '#667eea', textTransform: 'uppercase' as const, letterSpacing: '0.06em', marginBottom: '8px' }}>$5-25K ACV</div>
+                    <div style={{ fontSize: '13px', fontWeight: 700, color: '#764ba2', textTransform: 'uppercase' as const, letterSpacing: '0.06em', marginBottom: '8px' }}>$5-25K ACV</div>
                     <div style={{ fontSize: '22px', fontWeight: 800, color: '#1e293b', marginBottom: '6px' }}>50-60% Google</div>
                     <div style={{ fontSize: '14px', color: '#64748b', marginBottom: '4px' }}>40-50% LinkedIn</div>
                     <p style={{ fontSize: '13px', color: '#64748b', margin: 0, lineHeight: '1.6' }}>Balanced. Both channels pull weight at mid-market ACV.</p>

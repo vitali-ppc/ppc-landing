@@ -297,7 +297,7 @@ export default function ArticleContent() {
                       }}>{s.n}</div>
                       <div>
                         <div style={{ fontSize: '17px', fontWeight: 700, color: '#1e293b', marginBottom: '4px' }}>{s.title}</div>
-                        <div style={{ fontSize: '13px', color: '#667eea', fontWeight: 600, marginBottom: '6px', fontFamily: 'ui-monospace, SFMono-Regular, monospace' }}>{s.where}</div>
+                        <div style={{ fontSize: '13px', color: '#764ba2', fontWeight: 600, marginBottom: '6px', fontFamily: 'ui-monospace, SFMono-Regular, monospace' }}>{s.where}</div>
                         <div style={{ fontSize: '14px', color: '#475569', lineHeight: '1.55' }}>{s.check}</div>
                       </div>
                     </div>

@@ -376,15 +376,15 @@ export default function ArticleContent() {
                       lineHeight: '1.5',
                     }}>
                       <div>
-                        <div style={{ fontSize: '11px', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase' as const, letterSpacing: '0.05em', marginBottom: '4px' }}>Symptom</div>
+                        <div style={{ fontSize: '11px', fontWeight: 700, color: '#64748b', textTransform: 'uppercase' as const, letterSpacing: '0.05em', marginBottom: '4px' }}>Symptom</div>
                         <div style={{ color: '#1e293b', fontWeight: 600 }}>{r.symptom}</div>
                       </div>
                       <div>
-                        <div style={{ fontSize: '11px', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase' as const, letterSpacing: '0.05em', marginBottom: '4px' }}>Likely Cause</div>
+                        <div style={{ fontSize: '11px', fontWeight: 700, color: '#64748b', textTransform: 'uppercase' as const, letterSpacing: '0.05em', marginBottom: '4px' }}>Likely Cause</div>
                         <div style={{ color: '#475569' }}>{r.cause}</div>
                       </div>
                       <div>
-                        <div style={{ fontSize: '11px', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase' as const, letterSpacing: '0.05em', marginBottom: '4px' }}>First Action</div>
+                        <div style={{ fontSize: '11px', fontWeight: 700, color: '#64748b', textTransform: 'uppercase' as const, letterSpacing: '0.05em', marginBottom: '4px' }}>First Action</div>
                         <div style={{ color: '#0f766e', fontWeight: 600 }}>{r.action}</div>
                       </div>
                     </div>
@@ -625,7 +625,7 @@ export default function ArticleContent() {
                             <div
                               style={{
                                 fontSize: '10px',
-                                color: '#94a3b8',
+                                color: '#64748b',
                                 fontWeight: 700,
                                 letterSpacing: '0.08em',
                                 textTransform: 'uppercase',
@@ -752,7 +752,7 @@ export default function ArticleContent() {
                   30 / 60 / 90 day fix sequence &middot; expected CPC impact
                 </div>
                 {[
-                  { label: 'Day 0-30', title: 'Search terms audit, bid strategy fix, device adjustments', drop: '15-25%', color: '#667eea', width: '33%' },
+                  { label: 'Day 0-30', title: 'Search terms audit, bid strategy fix, device adjustments', drop: '15-25%', color: '#764ba2', width: '33%' },
                   { label: 'Day 30-60', title: 'Quality Score repair on top 20 spend keywords', drop: '+10-18%', color: '#8b5cf6', width: '66%' },
                   { label: 'Day 60-90', title: 'Ad group restructure into Single-Theme Ad Groups', drop: '+8-15%', color: '#a855f7', width: '100%' },
                 ].map((phase, i) => (

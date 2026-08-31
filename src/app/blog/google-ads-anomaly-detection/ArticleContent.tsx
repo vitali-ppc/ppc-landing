@@ -438,7 +438,7 @@ pie showData
                     <div key={i} className="b6-threshold-card" style={{
                       borderLeft: `4px solid ${r.color}`,
                     }}>
-                      <div style={{ fontSize: '11px', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase' as const, letterSpacing: '0.05em', marginBottom: '6px' }}>
+                      <div style={{ fontSize: '11px', fontWeight: 700, color: '#64748b', textTransform: 'uppercase' as const, letterSpacing: '0.05em', marginBottom: '6px' }}>
                         Metric
                       </div>
                       <div style={{ fontSize: '17px', fontWeight: 700, color: '#1e293b', marginBottom: '12px' }}>

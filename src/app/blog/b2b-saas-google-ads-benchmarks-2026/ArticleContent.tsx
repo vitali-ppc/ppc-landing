@@ -144,12 +144,12 @@ export default function ArticleContent() {
   // Uses Framer Motion staggered fade-in. Placed after article intro.
   const KeyStatBlocks = () => (
     <div style={{ margin: '40px 0' }}>
-      <p style={{ fontSize: '13px', fontWeight: '700', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#667eea', marginBottom: '16px' }}>
+      <p style={{ fontSize: '13px', fontWeight: '700', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#764ba2', marginBottom: '16px' }}>
         2026 <a href="/blog/google-ads-for-b2b-saas" style={{ color: '#764ba2', textDecoration: 'underline' }}>B2B SaaS</a> Benchmark Snapshot
       </p>
       <div className="stat-grid">
         {[
-          { value: '$5.34', label: 'Avg. non-branded CPC', sub: '+29% YoY (Involve Digital)', color: '#667eea', bg: '#f0f4ff' },
+          { value: '$5.34', label: 'Avg. non-branded CPC', sub: '+29% YoY (Involve Digital)', color: '#764ba2', bg: '#f0f4ff' },
           { value: '3-5%', label: 'Search CVR (click to demo)', sub: 'vs. 8.18% cross-industry (WordStream)', color: '#10b981', bg: '#ecfdf5' },
           { value: '$87-$1,500+', label: 'CPL range by segment', sub: 'SMB to Enterprise (42 Agency)', color: '#764ba2', bg: '#f5f0ff' },
           { value: '553%', label: 'Search pipeline ROAS', sub: 'vs. 436% PMax (42 Agency, 2022-2026)', color: '#f59e0b', bg: '#fffbeb' },
@@ -197,7 +197,7 @@ export default function ArticleContent() {
   // Shows exact $1,200 / phrase $2,800 / broad $4,000+ CPL from 42 Agency data
   const MatchTypeCPLChart = () => (
     <div style={{ margin: '40px 0', background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: '12px', padding: '28px 28px 20px' }}>
-      <p style={{ fontSize: '13px', fontWeight: '700', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#667eea', marginBottom: '8px' }}>
+      <p style={{ fontSize: '13px', fontWeight: '700', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#764ba2', marginBottom: '8px' }}>
         Cost per MQL by Match Type
       </p>
       <p style={{ fontSize: '13px', color: '#64748b', marginBottom: '24px' }}>Source: 42 Agency B2B client accounts, 2022-2026 campaign exports</p>
@@ -230,7 +230,7 @@ export default function ArticleContent() {
           </div>
         </div>
       ))}
-      <p style={{ fontSize: '12px', color: '#94a3b8', marginTop: '8px' }}>
+      <p style={{ fontSize: '12px', color: '#64748b', marginTop: '8px' }}>
         A $12 CPC on exact match that converts at 8% beats a $4 CPC on broad match that converts at 1%. Cost per MQL is the signal that matters.
       </p>
     </div>
@@ -250,12 +250,12 @@ export default function ArticleContent() {
   const RoasComparisonBars = () => {
     const roasData = [
       { label: 'Pipeline-attributed Search ROAS', value: 553, maxVal: 700, color: '#10b981', note: '42 Agency, 2022-2026' },
-      { label: 'Performance Max ROAS', value: 436, maxVal: 700, color: '#667eea', note: '42 Agency, 2022-2026' },
+      { label: 'Performance Max ROAS', value: 436, maxVal: 700, color: '#764ba2', note: '42 Agency, 2022-2026' },
       { label: 'First-touch Search ROAS', value: 78, maxVal: 700, color: '#ef4444', note: 'Involve Digital (30-day window)' },
     ];
     return (
       <div style={{ margin: '40px 0', background: 'white', border: '1px solid #e5e7eb', borderRadius: '12px', padding: '28px' }}>
-        <p style={{ fontSize: '13px', fontWeight: '700', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#667eea', marginBottom: '6px' }}>
+        <p style={{ fontSize: '13px', fontWeight: '700', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#764ba2', marginBottom: '6px' }}>
           ROAS by Attribution Method and Campaign Type
         </p>
         <p style={{ fontSize: '13px', color: '#64748b', marginBottom: '28px' }}>All three numbers are arithmetically correct for their respective methods. They are not interchangeable.</p>
@@ -274,7 +274,7 @@ export default function ArticleContent() {
                 style={{ height: '100%', background: item.color, borderRadius: '6px' }}
               />
             </div>
-            <span style={{ fontSize: '12px', color: '#94a3b8' }}>{item.note}</span>
+            <span style={{ fontSize: '12px', color: '#64748b' }}>{item.note}</span>
           </div>
         ))}
         <p style={{ fontSize: '13px', color: '#475569', marginTop: '20px', borderTop: '1px solid #e5e7eb', paddingTop: '16px', fontStyle: 'italic' }}>
@@ -287,7 +287,7 @@ export default function ArticleContent() {
   // VISUAL 5: PMax decision framework (2-column card grid: When to use vs. When NOT to use)
   const PMaxDecisionCards = () => (
     <div style={{ margin: '40px 0' }}>
-      <p style={{ fontSize: '13px', fontWeight: '700', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#667eea', marginBottom: '16px' }}>
+      <p style={{ fontSize: '13px', fontWeight: '700', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#764ba2', marginBottom: '16px' }}>
         Performance Max: Use vs. Skip
       </p>
       <div className="pmax-decision-grid">
@@ -410,7 +410,7 @@ export default function ArticleContent() {
 
             {/* TL;DR callout */}
             <div style={{ background: '#f0f4ff', border: '1px solid #c7d2fe', borderLeft: '4px solid #667eea', borderRadius: '10px', padding: '24px 28px', marginBottom: '48px' }}>
-              <p style={{ fontSize: '15px', fontWeight: '700', color: '#667eea', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '14px' }}>TL;DR</p>
+              <p style={{ fontSize: '15px', fontWeight: '700', color: '#764ba2', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '14px' }}>TL;DR</p>
               <ul style={{ margin: 0, padding: '0 0 0 20px', color: '#1e293b', fontSize: '16px', lineHeight: '1.7' }}>
                 <li style={{ marginBottom: '10px' }}>B2B SaaS average CPC on Search: $5.34 in 2026, up 29% year-over-year (Involve Digital, 500+ SaaS campaigns).</li>
                 <li style={{ marginBottom: '10px' }}>Average conversion rate (click to demo/trial): 3-5% for Search campaigns; 0.64% for Display.</li>
@@ -857,7 +857,7 @@ export default function ArticleContent() {
                 <li>Sopro. B2B buyer research behavior data. 2025. Cited via SalesHive. <a href="https://saleshive.com/blog/b2b-lead-generation-use-google-adwords/" style={{ color: '#764ba2', textDecoration: 'underline' }} target="_blank" rel="noopener noreferrer">saleshive.com</a></li>
                 <li>Google Ads Help. "Smart Bidding: About bidding strategies." 2024. <a href="https://support.google.com/google-ads/answer/7065882" style={{ color: '#764ba2', textDecoration: 'underline' }} target="_blank" rel="noopener noreferrer">support.google.com</a></li>
               </ol>
-              <p style={{ fontSize: '14px', color: '#94a3b8', marginTop: '24px', fontStyle: 'italic' }}>
+              <p style={{ fontSize: '14px', color: '#64748b', marginTop: '24px', fontStyle: 'italic' }}>
                 Results may vary. This article is informational and does not constitute professional advice. Benchmark figures are sourced from third-party datasets and represent aggregated campaign data, not guarantees of individual account performance.
               </p>
             </section>

@@ -504,7 +504,7 @@ export default function ArticleContent() {
                 </a>
               </div>
 
-              <p style={{ fontSize: '14px', color: '#94a3b8', fontStyle: 'italic', lineHeight: '1.7', marginBottom: '40px' }}>
+              <p style={{ fontSize: '14px', color: '#64748b', fontStyle: 'italic', lineHeight: '1.7', marginBottom: '40px' }}>
                 Results may vary. This article is informational and does not constitute professional advice. Benchmark figures are cited to their original sources and were verified on August 13, 2026; your own sales cycle and win rates will differ, so use the grid as a starting frame, not a guarantee.
               </p>
             </section>

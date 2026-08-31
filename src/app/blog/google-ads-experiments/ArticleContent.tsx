@@ -612,7 +612,7 @@ export default function ArticleContent() {
                 </a>
               </div>
 
-              <p style={{ fontSize: '14px', color: '#94a3b8', fontStyle: 'italic', lineHeight: '1.7', marginBottom: '40px' }}>
+              <p style={{ fontSize: '14px', color: '#64748b', fontStyle: 'italic', lineHeight: '1.7', marginBottom: '40px' }}>
                 Results may vary. This article is informational and does not constitute professional advice. Feature availability (including Campaign Guidance and the Experiment Power score) was verified against Google&apos;s own documentation on August 11, 2026, and can change; check your own account before acting.
               </p>
             </section>

@@ -576,7 +576,7 @@ export default function ArticleContent() {
                   Try Kampaio Free
                 </a>
               </div>
-              <p style={{ fontSize: '14px', color: '#94a3b8', fontStyle: 'italic', lineHeight: 1.7, marginTop: '8px' }}>
+              <p style={{ fontSize: '14px', color: '#64748b', fontStyle: 'italic', lineHeight: 1.7, marginTop: '8px' }}>
                 Vendor pricing and capabilities are summarized from public materials as of July 2026 and may change. Optmyzr (~$499/mo) and Madgicx ($499+/mo) are recommendation tools; AdSpyder, Adsroid, Ryze, and Markifact do not publish pricing. Google&apos;s agentic products reached general availability for English-language accounts in December 2025 as Ads Advisor and Analytics Advisor, unified on May 20, 2026 by Ask Advisor (in beta for English-language accounts); availability still varies by region and account type. This article is informational and does not constitute professional advertising advice.
               </p>
             </section>
