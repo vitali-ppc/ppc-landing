@@ -51,33 +51,15 @@ const b6JsonLd = {
     '@type': 'BusinessAudience',
     audienceType: 'SMB and DTC advertisers with $3K-50K/month Google Ads budgets',
   },
-  hasOfferCatalog: {
-    '@type': 'OfferCatalog',
-    name: 'B6 Autonomy Tiers',
-    itemListElement: [
-      {
-        '@type': 'Offer',
-        name: 'L1 Co-pilot',
-        description: 'AI suggests, you approve every action',
-        price: '99',
-        priceCurrency: 'USD',
-      },
-      {
-        '@type': 'Offer',
-        name: 'L2 Autopilot',
-        description: 'AI acts on small changes, you approve major moves',
-        price: '199',
-        priceCurrency: 'USD',
-      },
-      {
-        '@type': 'Offer',
-        name: 'L3 Full Autopilot',
-        description: 'AI manages account autonomously with daily safety caps',
-        price: '399',
-        priceCurrency: 'USD',
-      },
-    ],
-  },
+  // `hasOfferCatalog` removed 2026-08-31 (kampaio flag #81). It declared three priced tiers —
+  // L1 Co-pilot $99, L2 Autopilot $199, L3 Full Autopilot $399 — and this page shows none of it:
+  // not the prices, not the tier names, not the word "Autopilot". The only surface that states a
+  // price is /pricing, where the same three tiers are `price: "0"` and the copy reads "Free while
+  // in beta, no card required". So the markup was not merely contradicting another page; it was
+  // an offer no reader was ever shown, on a page that is indexed and in the sitemap.
+  //
+  // Deleted rather than repriced: what a tier costs is the owner's to state, and this file has no
+  // business inventing one. Structured data may describe what the page says and nothing else.
 };
 
 export default function Page() {
