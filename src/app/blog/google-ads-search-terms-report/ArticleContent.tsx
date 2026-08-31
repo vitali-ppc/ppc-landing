@@ -415,6 +415,27 @@ export default function ArticleContent() {
                 <a href="https://searchengineland.com/google-ads-search-terms-report-tips-465174" style={linkStyle} target="_blank" rel="noopener noreferrer">Search Engine Land, Nov 26, 2025, Tip 4</a>). Not a fix, but it&apos;s the closest thing to visibility you&apos;ll get.
               </p>
 
+              <h3 style={{ fontSize: '22px', fontWeight: 700, color: '#1e293b', marginTop: '40px', marginBottom: '16px', lineHeight: 1.3 }}>The two total rows, and what people mean by &quot;uncategorised&quot;</h3>
+              <p style={paragraphStyle}>
+                Scroll to the bottom of the table and there are two summary rows, and they do not
+                add up to the same thing. <strong>Total: search terms</strong> is the sum of the
+                individual queries listed above it, the ones Google is willing to name.
+                <strong> Total: Other search terms</strong> is everything else that ran in that ad
+                group: queries held back below the disclosure threshold, plus low-spend queries
+                Google does not attribute to a category. The gap between the two is the part of your
+                spend you cannot inspect query by query.
+              </p>
+              <p style={paragraphStyle}>
+                People often call that second row &quot;uncategorised search terms&quot;, which is
+                the natural way to describe it and not the label Google uses. In the Search terms
+                report it reads <strong>Total: Other search terms</strong>; the word
+                &quot;uncategorised&quot; belongs to Search terms insights, a separate view that
+                groups low-volume queries into themes and puts the leftovers under other queries
+                without ever exposing the queries themselves (
+                <a href="https://support.google.com/google-ads/answer/11386930" style={linkStyle} target="_blank" rel="noopener noreferrer">Google Ads Help, 11386930</a>
+                ). Same money, two different screens, and only one of them lets you act on it.
+              </p>
+
               {/* VISUAL 4: mascot, CPC drift heuristic */}
               <MascotQuote mascot="buzz">
                 When Other search terms runs above 15% of an ad group&apos;s cost, CPC on its visible terms usually sits 15 to 20% higher too. Tighten the exact-match core before touching bids.
