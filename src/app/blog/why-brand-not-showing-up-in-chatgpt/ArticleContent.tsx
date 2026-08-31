@@ -139,6 +139,7 @@ export default function ArticleContent() {
   const tableOfContents = [
     { id: 'quick-answer', title: 'Quick Answer: Why Your Brand Is Invisible in ChatGPT', level: 1 },
     { id: 'ranking-vs-cited', title: 'Ranking on Google Is Not the Same as Being Cited by AI', level: 1 },
+    { id: 'cause-0', title: 'Root Cause 0: Your robots.txt Blocks the AI Crawlers', level: 2 },
     { id: 'cause-1', title: 'Root Cause 1: Weak Entity Signals', level: 2 },
     { id: 'cause-2', title: 'Root Cause 2: Inconsistent or Unstructured Data', level: 2 },
     { id: 'cause-3', title: 'Root Cause 3: Thin Content and Missing Earned Mentions', level: 2 },
@@ -276,6 +277,48 @@ export default function ArticleContent() {
               <p style={paraStyle}>
                 So the right question is not whether you are in the AI answer this week. The right question is whether you are in the stable core or the rotating carousel. We will come back to that, because it decides where you spend.
               </p>
+            </section>
+
+            {/* Root Cause 0 */}
+            <section id="cause-0">
+              <h2 style={h2Style}>Root Cause 0: Your robots.txt Blocks the AI Crawlers</h2>
+              <p style={paraStyle}>
+                Check this one first, because it takes thirty seconds and it makes every other cause
+                irrelevant. If ChatGPT&apos;s crawlers cannot fetch your pages, nothing you do about
+                entities, schema or citations will reach it. Open
+                {' '}<code style={{ background: '#f1f5f9', padding: '2px 6px', borderRadius: '4px', fontSize: '16px' }}>yourdomain.com/robots.txt</code>{' '}
+                and look for these names under a <code style={{ background: '#f1f5f9', padding: '2px 6px', borderRadius: '4px', fontSize: '16px' }}>Disallow</code> rule.
+              </p>
+              <ul style={{ fontSize: '18px', color: '#1e293b', lineHeight: '1.8', paddingLeft: '24px', marginBottom: '24px' }}>
+                <li style={{ marginBottom: '10px' }}><strong>OAI-SearchBot</strong> is the one that decides whether you can appear in ChatGPT Search at all. Blocking it while allowing GPTBot is the most common version of this mistake.</li>
+                <li style={{ marginBottom: '10px' }}><strong>ChatGPT-User</strong> fetches a page when a person asks about it in a conversation.</li>
+                <li style={{ marginBottom: '10px' }}><strong>GPTBot</strong> is the training crawler. Blocking it is a defensible choice; blocking it does not by itself remove you from ChatGPT Search.</li>
+                <li>For Claude the three are <strong>ClaudeBot</strong>, <strong>Claude-User</strong> and <strong>Claude-SearchBot</strong>. Those are the only three Anthropic documents, so a rule naming anything else is doing nothing (
+                  <a href="https://support.claude.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-block-the-crawler" style={linkStyle} target="_blank" rel="noopener noreferrer">Anthropic Help Center, article 8896518</a>
+                  ).
+                </li>
+              </ul>
+              <p style={paraStyle}>
+                There is a trap in the file format itself, and it is worth knowing because it hides in
+                plain sight. A crawler obeys <strong>only the most specific group that names it</strong>,
+                and that group <em>replaces</em> the wildcard group rather than adding to it. So a site
+                that disallows a few private paths under
+                {' '}<code style={{ background: '#f1f5f9', padding: '2px 6px', borderRadius: '4px', fontSize: '16px' }}>User-agent: *</code>{' '}
+                and then adds a friendly
+                {' '}<code style={{ background: '#f1f5f9', padding: '2px 6px', borderRadius: '4px', fontSize: '16px' }}>User-agent: GPTBot</code>{' '}
+                block containing nothing but
+                {' '}<code style={{ background: '#f1f5f9', padding: '2px 6px', borderRadius: '4px', fontSize: '16px' }}>Allow: /</code>{' '}
+                has quietly invited that crawler into every path it meant to keep private. The same
+                mechanic works in reverse: a named block that inherits nothing can also drop an allow
+                you thought applied everywhere.
+              </p>
+              <p style={paraStyle}>Quick symptom check for crawler access:</p>
+              <ul style={{ fontSize: '18px', color: '#1e293b', lineHeight: '1.8', paddingLeft: '24px', marginBottom: '24px' }}>
+                <li style={{ marginBottom: '10px' }}>Your robots.txt names GPTBot but not OAI-SearchBot.</li>
+                <li style={{ marginBottom: '10px' }}>A CDN or WAF bot filter sits in front of the site and no one has checked what it does to non-browser user agents.</li>
+                <li style={{ marginBottom: '10px' }}>Named crawler groups carry only an Allow line, with none of the Disallow rules the wildcard group declares.</li>
+                <li>Your robots.txt lists agent names that no vendor documents, which read as protection and do nothing.</li>
+              </ul>
             </section>
 
             {/* Root Cause 1 */}
