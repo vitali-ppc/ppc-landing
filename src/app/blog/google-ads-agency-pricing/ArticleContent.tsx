@@ -91,7 +91,7 @@ export default function ArticleContent() {
         name: 'Is percentage of spend or a flat fee better?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'It depends on which risk you want to control. Percentage of spend keeps the fee proportional to workload as you scale, but it can nudge an agency to grow spend rather than profit. A flat fee is predictable and removes that incentive, but you overpay in slow months when the account needs less work.',
+          text: 'It depends which risk you want to control. Percentage of spend keeps the fee proportional to workload as you scale, but can nudge an agency to grow spend over profit. A flat fee is predictable and removes that incentive, but you overpay in slow months.',
         },
       },
       {

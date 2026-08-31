@@ -107,7 +107,7 @@ export default function ArticleContent() {
         name: 'Do I own my Google Ads account if a consultant runs it?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: "Only if it sits under your own login or your own MCC, not the consultant's. If their manager account controls it, leaving means starting over with no history and no learned Smart Bidding signals.",
+          text: "Only if it sits under your own login or your own MCC, not the consultant's (Google Ads Help: about manager accounts). If their MCC controls it, leaving means starting over.",
         },
       },
     ],

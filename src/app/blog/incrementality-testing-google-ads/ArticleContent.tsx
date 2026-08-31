@@ -70,10 +70,10 @@ export default function ArticleContent() {
       },
       {
         "@type": "Question",
-        "name": "What's the minimum spend to run a Google Ads lift test?",
+        "name": "What's the minimum spend to run a lift test?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Google's geo-based experiments require $5,000 per experiment as of November 2025, down from approximately $100,000 previously. A self-run geo holdout outside the platform has no platform minimum, but realistically needs at least 1,000 conversions per arm to detect a 10 percent effect at 80 percent power."
+          "text": "Google's geo-based experiments require $5,000 per experiment as of late 2025. A self-run geo holdout outside the platform has no minimum, but realistically needs at least 1,000 conversions per arm to detect a 10 percent effect."
         }
       },
       {
