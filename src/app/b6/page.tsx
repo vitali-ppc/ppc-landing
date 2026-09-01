@@ -51,8 +51,9 @@ const b6JsonLd = {
     '@type': 'BusinessAudience',
     audienceType: 'SMB and DTC advertisers with $3K-50K/month Google Ads budgets',
   },
-  // `hasOfferCatalog` removed 2026-08-31 (kampaio flag #81). It declared three priced tiers —
-  // L1 Co-pilot $99, L2 Autopilot $199, L3 Full Autopilot $399 — and this page shows none of it:
+  // `hasOfferCatalog` removed 2026-08-31 (kampaio flag #81). It declared three priced
+  // tiers, L1 Co-pilot $99, L2 Autopilot $199 and L3 Full Autopilot $399, and this page shows
+  // none of it:
   // not the prices, not the tier names, not the word "Autopilot". The only surface that states a
   // price is /pricing, where the same three tiers are `price: "0"` and the copy reads "Free while
   // in beta, no card required". So the markup was not merely contradicting another page; it was
