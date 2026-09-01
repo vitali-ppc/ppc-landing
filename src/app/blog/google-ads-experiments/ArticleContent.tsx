@@ -116,7 +116,7 @@ export default function ArticleContent() {
       },
       {
         '@type': 'Question',
-        name: 'What does "statistically significant" mean in a Google Ads experiment?',
+        name: 'What does "statistically significant" mean here?',
         acceptedAnswer: {
           '@type': 'Answer',
           text: 'Statistically significant means the observed difference is unlikely to be chance (Google Ads Help, 2026). Google confirms this with a point estimate and margin of error: a positive result needs the point estimate minus the margin of error to stay above zero (Google Ads API Docs, 2026).',

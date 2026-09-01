@@ -85,7 +85,7 @@ export default function ArticleContent() {
       },
       {
         "@type": "Question",
-        "name": "How long does switching Google Ads agencies take?",
+        "name": "How long does switching take?",
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "Access transfer takes 1 to 3 business days. Billing transfer takes up to 7 days. The total clean-switch window is 10 to 14 days. Add 2 to 4 weeks for a hostile exit or billing dispute."

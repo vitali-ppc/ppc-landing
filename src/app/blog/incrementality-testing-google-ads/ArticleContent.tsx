@@ -78,7 +78,7 @@ export default function ArticleContent() {
       },
       {
         "@type": "Question",
-        "name": "How long should an incrementality test run?",
+        "name": "How long should a lift test run?",
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "Four weeks minimum for short-lookback e-commerce. Six to eight weeks for considered purchases or any account under 200 conversions per week. Always wait for the conversion window to close before reading the result."
