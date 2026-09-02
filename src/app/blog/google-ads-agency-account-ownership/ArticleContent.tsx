@@ -328,7 +328,8 @@ export default function ArticleContent() {
               </p>
               <p style={paragraphStyle}>
                 Owner status decides who can remove whom, which is why it matters more than whose name is on the invoice. Whether to work with an agency at
-                all is a separate question; <a href="/blog/google-ads-agency-guide" style={linkStyle}>our Google Ads agency guide</a> covers that decision.
+                all is a separate question; <a href="/blog/google-ads-agency-guide" style={linkStyle}>our Google Ads agency guide</a> covers that decision, and
+                <a href="/replace-google-ads-agency" style={linkStyle}> running the account on software instead</a> keeps owner status with you by default.
               </p>
 
               <h3 id="what-is-a-google-agency-account" style={h3Style}>What Is a Google Agency Account?</h3>

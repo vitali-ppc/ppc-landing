@@ -399,7 +399,7 @@ export default function ArticleContent() {
             <section id="another-agency">
               <h2 style={h2Style}>The Better Question: Do You Need Another Agency at All?</h2>
               <p style={paragraphStyle}>
-                Most SMBs switch agencies every 12 to 18 months. New faces, same cycle: onboarding lag, learning period, dissatisfaction, another search. The account relationship resets every time.
+                Most SMBs switch agencies every 12 to 18 months. New faces, same cycle: onboarding lag, learning period, dissatisfaction, another search. The account relationship resets every time. The other route is to <a href="/replace-google-ads-agency" style={linkStyle}>replace the agency with software you run yourself</a>, which breaks the cycle instead of restarting it.
               </p>
               <p style={paragraphStyle}>
                 The structural problem is not the specific agency. You never own the day-to-day. Someone else decides what gets checked and what gets changed. Want to know what happened to a campaign last Tuesday? You send an email and wait.

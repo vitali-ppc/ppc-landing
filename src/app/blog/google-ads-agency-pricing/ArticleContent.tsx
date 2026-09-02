@@ -450,7 +450,7 @@ export default function ArticleContent() {
                 There is an honest threshold most agency pages will not state plainly: below roughly $30,000/month in ad spend, you are a small account to a large agency, and their fixed cost of service eats a disproportionate share of your budget. The work to manage a $3,000 account is not ten times less than a $30,000 one, so the percentage you pay climbs and the attention you get falls.
               </p>
               <p style={paragraphStyle}>
-                That does not mean small budgets should skip help. It means the agency retainer is usually the wrong shape for them. Under about $5,000/month, DIY with disciplined structure or self-serve management software typically returns more per dollar. In the $5,000 to $25,000 band, a specialist <a href="/blog/google-ads-consultant-cost" style={linkStyle}>consultant on an hourly or light retainer</a> often beats a full agency. Full-agency pricing starts earning its keep once the account is complex enough that a dedicated team saves more than it costs.
+                That does not mean small budgets should skip help. It means the agency retainer is usually the wrong shape for them. Under about $5,000/month, DIY with disciplined structure or <a href="/replace-google-ads-agency" style={linkStyle}>self-serve management software</a> typically returns more per dollar. In the $5,000 to $25,000 band, a specialist <a href="/blog/google-ads-consultant-cost" style={linkStyle}>consultant on an hourly or light retainer</a> often beats a full agency. Full-agency pricing starts earning its keep once the account is complex enough that a dedicated team saves more than it costs.
               </p>
             </section>
 
