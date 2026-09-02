@@ -399,7 +399,7 @@ const Hero: React.FC = () => (
   <section className="kx-hero">
     <div className="kx-hero-in">
       <div>
-        <span className="kx-eyebrow"><span className="kx-dot" aria-hidden />Founding access · first 30 accounts</span>
+        <span className="kx-eyebrow"><span className="kx-dot" aria-hidden />Founding access</span>
         <p className="kx-pain">ROAS tanked overnight? pMax burning budget? Agency invoice, zero answers?</p>
         <h1 className="kx-h1">Your PPC agency.<br />In a cabinet.</h1>
         <p className="kx-sub">
@@ -572,7 +572,7 @@ const CTA: React.FC = () => (
     <div className="kx-sec-in" style={{ maxWidth: 640, textAlign: "center" }}>
       <h2 className="kx-h2">Ready to fire the agency?</h2>
       <p className="kx-sec-sub" style={{ margin: "0 auto 30px", color: "var(--muted-2)" }}>
-        Founding access is open to the first <strong style={{ color: "var(--text)" }}>30 SMB owners</strong> who
+        Founding access is open to <strong style={{ color: "var(--text)" }}>SMB owners</strong> who
         want their Google Ads run by AI agents, not consultants. Free while we finish the cabinet.
       </p>
       <div style={{ display: "flex", justifyContent: "center" }}>
