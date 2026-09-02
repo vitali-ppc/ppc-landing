@@ -383,8 +383,6 @@ const TopBar: React.FC = () => (
     <div className="kx-bar-in">
       <a href="/" className="kx-logo"><span className="kx-dot" aria-hidden />kampaio</a>
       <nav className="kx-navlinks" aria-label="Primary">
-        <a className="kx-navlink" href="#how">How it works</a>
-        <a className="kx-navlink" href="#team">The agents</a>
         <a className="kx-navlink" href="#pricing">Pricing</a>
         <a className="kx-navlink" href="/replace-google-ads-agency">Agency alternative</a>
         <a className="kx-navlink" href="/fix-google-ads-account">Fix my account</a>
