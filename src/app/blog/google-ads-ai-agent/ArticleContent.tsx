@@ -365,7 +365,7 @@ export default function ArticleContent() {
             <section id="what-can-do">
               <h2 style={h2Style}>What Can a Google Ads AI Agent Actually Do?</h2>
               <p style={paragraphStyle}>
-                A full-account AI agent covers six core workflow areas, well beyond what Smart Bidding handles.
+                A full-account AI agent covers six core workflow areas, well beyond what Smart Bidding handles. For a concrete account of what a running system takes on and what it leaves to you, see <a href="/ai-google-ads-management" style={linkStyle}>what AI Google Ads management actually runs</a>.
               </p>
 
               {/* VISUAL 3: Six workflow card grid (3-col, explicit, no auto-fit) */}

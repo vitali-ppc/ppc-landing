@@ -350,7 +350,7 @@ export default function ArticleContent() {
             <section id="control-panel">
               <h2 style={h2}>The Google AI ads control panel: keep, kill, or monitor</h2>
               <p style={para}>
-                Here&apos;s the decision grid: what each feature is, what it silently changes, its default status, where the control lives, and our call.
+                Here&apos;s the decision grid: what each feature is, what it silently changes, its default status, where the control lives, and our call. Deciding feature by feature is one route; handing the whole account to <a href="/ai-google-ads-management" style={linkStyle}>AI management with the controls kept visible</a> is the other.
               </p>
 
               {/* VISUAL 2: keep/kill decision table (extractable HTML) */}

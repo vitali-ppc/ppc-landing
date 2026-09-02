@@ -194,7 +194,7 @@ export default function ArticleContent() {
                 Practical Advice for Success
               </h2>
               <ul style={{ fontSize: '18px', color: '#1e293b', lineHeight: '1.8', paddingLeft: '24px', marginBottom: '40px' }}>
-                <li style={{ marginBottom: '16px' }}><strong>Start with one tool:</strong> Don't try to automate everything at once. Master one AI feature or platform before expanding.</li>
+                <li style={{ marginBottom: '16px' }}><strong>Start with one tool:</strong> Don't try to automate everything at once. Master one AI feature or platform before expanding, then see <a href="/ai-google-ads-management" style={{ color: '#764ba2', textDecoration: 'underline' }}>what full AI management runs</a> once you are ready to widen the scope.</li>
                 <li style={{ marginBottom: '16px' }}><strong>Document your results:</strong> Track what works (and what doesn't) so you can refine your approach over time.</li>
                 <li style={{ marginBottom: '16px' }}><strong>Keep communication open:</strong> Align your team on how AI is being used and share best practices regularly.</li>
               </ul>
