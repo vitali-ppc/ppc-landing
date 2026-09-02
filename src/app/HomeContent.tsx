@@ -403,9 +403,8 @@ const Hero: React.FC = () => (
         <p className="kx-pain">ROAS tanked overnight? pMax burning budget? Agency invoice, zero answers?</p>
         <h1 className="kx-h1">Your PPC agency.<br />In a cabinet.</h1>
         <p className="kx-sub">
-          Seven AI agents run your Google Ads: bidding, budget, creative, reporting.
-          You watch <strong>every move</strong> in real time. Approve the big calls;
-          the rest runs while you sleep.
+          Bids adjusted, risky calls blocked, <strong>every action logged</strong> and
+          reversible. Approve the big ones; the rest runs while you sleep.
         </p>
         <div className="kx-cta-row">
           <a className="kx-btn kx-btn-primary" href="/auth/register">Start free &rarr;</a>
