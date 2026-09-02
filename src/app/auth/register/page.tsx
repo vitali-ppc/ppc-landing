@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { FormEvent, useEffect, useState } from "react";
 
 import { useAuth } from "@/lib/useAuth";
+import GoogleAuthButton from "@/components/GoogleAuthButton";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -104,6 +105,8 @@ export default function RegisterPage() {
           Buzz and Aegis start on your account today. Five more agents ship as the cabinet grows.
           Free during founding access, no credit card.
         </p>
+
+        <GoogleAuthButton mode="signup" />
 
         <form onSubmit={onSubmit}>
           <Field

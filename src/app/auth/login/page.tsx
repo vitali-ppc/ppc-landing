@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { FormEvent, useEffect, useState } from "react";
 
 import { useAuth } from "@/lib/useAuth";
+import GoogleAuthButton from "@/components/GoogleAuthButton";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -92,6 +93,8 @@ export default function LoginPage() {
         <p style={{ color: "#5B6979", fontSize: 13, margin: 0, marginBottom: 20 }}>
           Your AI PPC team is waiting.
         </p>
+
+        <GoogleAuthButton mode="signin" />
 
         <form onSubmit={onSubmit}>
           <Field
