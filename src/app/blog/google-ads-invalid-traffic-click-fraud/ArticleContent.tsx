@@ -450,7 +450,7 @@ export default function ArticleContent() {
             <section id="not-click-fraud">
               <h2 style={h2Style}>When It Is NOT Click Fraud (Honest Check)</h2>
               <p style={pStyle}>
-                Before filing an investigation request, rule out three causes that look identical to fraud but are not.
+                Before filing an investigation request, rule out three causes that look identical to fraud but are not. If none of them fits either, the <a href="/fix-google-ads-account" style={linkStyle}>symptom triage for a Google Ads account</a> covers the other things that drain a budget without looking like fraud.
               </p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '32px' }}>
                 <div style={{ background: '#fef2f2', borderLeft: '4px solid #ef4444', borderRadius: '8px', padding: '18px 22px' }}>

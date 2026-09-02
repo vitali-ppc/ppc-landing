@@ -419,7 +419,7 @@ export default function ArticleContent() {
                 How to Diagnose Which Cause Is Yours
               </h2>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
-                Diagnosis takes about two minutes in the interface, before you change anything.
+                Diagnosis takes about two minutes in the interface, before you change anything. A limited bid strategy is one symptom among several that look alike; the <a href="/fix-google-ads-account" style={{ color: '#764ba2', textDecoration: 'underline' }}>account symptom triage</a> separates it from the others.
               </p>
 
               <ol style={{ fontSize: '18px', color: '#1e293b', lineHeight: '1.8', paddingLeft: '24px', marginBottom: '32px' }}>

@@ -310,7 +310,7 @@ export default function ArticleContent() {
                 That gap is the most common frustration in community threads, and it is genuinely maddening. As u/Stunning-Cat-5471 put it on <a href="https://www.reddit.com/r/PPC/comments/146kcrp/google_ads_account_suspended/" target="_blank" rel="noopener noreferrer" style={linkStyle}>Reddit r/PPC</a>: &quot;Nobody is going to tell you what you did. You have to guess.&quot; John Horn, a PPC professional with 15+ years of experience, confirms the same pattern: &quot;Google rarely provides detailed explanations for account suspensions. If you get flagged for a certain policy, Google does not give more information than that&quot; (<a href="https://ppchero.com/how-to-navigate-your-google-ads-suspension/" target="_blank" rel="noopener noreferrer" style={linkStyle}>PPC Hero, May 2024</a>).
               </p>
               <p style={paragraphStyle}>
-                Run this diagnostic sequence before you do anything else.
+                Run this diagnostic sequence before you do anything else. If the banner does not match any bucket below, work through the <a href="/fix-google-ads-account" style={linkStyle}>symptom triage for a broken account</a> instead, which starts from what you can see rather than from the suspension type.
               </p>
 
               {/* VISUAL 2: Mermaid flowchart TD, the diagnostic sequence */}
