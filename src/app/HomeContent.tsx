@@ -230,8 +230,12 @@ const STYLES = `
 
 /* autonomy ladder */
 .kx-ladder{ display:flex; gap:10px; flex-wrap:wrap; margin-top:4px; }
-.kx-rung{ font-family:var(--mono); font-size:12px; padding:7px 12px; border-radius:8px;
+/* Horizontal padding is 8px, not 12px, and the badge inside loses a pixel each side.
+   Measured on the live page at 1440px: the row has 315px and L1 plus L2 wanted 329px,
+   so the pair wrapped and each rung sat on its own line. The trim buys 20px. */
+.kx-rung{ font-family:var(--mono); font-size:12px; padding:7px 8px; border-radius:8px;
   border:1px solid var(--border); color:var(--muted-2); }
+.kx-rung .kx-stat{ padding:2px 5px; margin-left:4px; }
 .kx-rung b{ color:var(--accent); }
 
 /* team */
