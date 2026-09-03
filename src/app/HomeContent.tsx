@@ -428,7 +428,7 @@ const Hero: React.FC = () => (
           </div>
           <div className="kx-wcell">
             <div className="kx-wlabel">PPC tools</div>
-            <div className="kx-wprice">$299</div>
+            <div className="kx-wprice is-old">$299</div>
             <div className="kx-wnote">/mo, you still operate it</div>
           </div>
           <div className="kx-wcell is-b6">
