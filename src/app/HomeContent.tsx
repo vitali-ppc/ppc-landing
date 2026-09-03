@@ -323,11 +323,15 @@ const STYLES = `
 `;
 
 /* ── Data ──────────────────────────────────────────────────────────────── */
+// Four rows a working engine can actually produce, not four an ideal one would.
+// Budget and target ROAS at campaign level, re-enabling paused keywords, and the
+// audit thresholds that decide where to look: 10% of impressions lost to budget,
+// and spend past 500 with no conversions in the window.
 const FEED = [
-  { icon: "bid", who: "Buzz · Bidding", what: <>Cut bid −12% on <span className="kx-rnum">&ldquo;winter boots&rdquo;</span> · CPA <span className="kx-rnum">$42&rarr;$31</span></>, chip: "applied", cls: "ok" },
-  { icon: "shield", who: "Aegis · Risk", what: <>Held budget <span className="kx-rnum">+40%</span> on Campaign 3, auction volatile today</>, chip: "held", cls: "hold" },
-  { icon: "bid", who: "Buzz · Bidding", what: <>Paused 3 search terms · <span className="kx-rnum">$86/wk</span> wasted spend recovered</>, chip: "applied", cls: "ok" },
-  { icon: "chart", who: "Echo · Reporting", what: <>Weekly digest ready: ROAS <span className="kx-rnum">3.1&rarr;3.6</span> across 4 campaigns</>, chip: "sent", cls: "sent" },
+  { icon: "bid", who: "Buzz · Bidding", what: <>Raised budget <span className="kx-rnum">+15%</span> on Search &middot; FR, losing <span className="kx-rnum">18%</span> of impressions to budget</>, chip: "applied", cls: "ok" },
+  { icon: "shield", who: "Aegis · Risk", what: <>Held tROAS <span className="kx-rnum">+15%</span> on Campaign 3, no conversions this window</>, chip: "held", cls: "hold" },
+  { icon: "bid", who: "Buzz · Bidding", what: <>Enabled <span className="kx-rnum">12</span> paused keywords sitting in live ad groups</>, chip: "applied", cls: "ok" },
+  { icon: "shield", who: "Aegis · Risk", what: <>Flagged 2 campaigns: <span className="kx-rnum">$500</span> spend, zero conversions</>, chip: "flagged", cls: "sent" },
 ];
 
 const TEAM = [
