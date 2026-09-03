@@ -486,9 +486,9 @@ const HowItWorks: React.FC = () => (
           <h3>Pick an autonomy level</h3>
           <p>Start as co-pilot, graduate to autopilot when you trust the work. Change it anytime.</p>
           <div className="kx-ladder">
-            <span className="kx-rung"><b>L1</b> suggest</span>
-            <span className="kx-rung"><b>L2</b> act on small</span>
-            <span className="kx-rung"><b>L3</b> full autopilot</span>
+            <span className="kx-rung"><b>L1</b> suggest <span className="kx-stat l">LIVE</span></span>
+            <span className="kx-rung"><b>L2</b> act on small <span className="kx-stat s">NEXT</span></span>
+            <span className="kx-rung"><b>L3</b> full autopilot <span className="kx-stat s">NEXT</span></span>
           </div>
         </div>
         <div className="kx-card" style={{ gridColumn: "span 2" }}>
