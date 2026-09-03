@@ -235,7 +235,9 @@ const STYLES = `
    so the pair wrapped and each rung sat on its own line. The trim buys 20px. */
 .kx-rung{ font-family:var(--mono); font-size:12px; padding:7px 8px; border-radius:8px;
   border:1px solid var(--border); color:var(--muted-2); }
-.kx-rung .kx-stat{ padding:2px 5px; margin-left:4px; }
+/* No margin-left here: the space in the markup already separates badge from label,
+   and adding 4px put back a fifth of what the padding trim had just saved. */
+.kx-rung .kx-stat{ padding:2px 5px; }
 .kx-rung b{ color:var(--accent); }
 
 /* team */
