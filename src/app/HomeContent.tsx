@@ -6,7 +6,7 @@ import React from "react";
 const FAQ_ITEMS: { q: string; a: string }[] = [
   {
     q: "What if the agents make a bad change?",
-    a: "They start read-only, so at first they only suggest. Aegis, the Risk Agent, reviews every bidding call and blocks the risky ones before they apply. Every change is logged with its reasoning and reversible in one click.",
+    a: "They start read-only, so at first they only suggest. Aegis, the Risk Agent, reviews every bidding call and blocks the risky ones before they apply. Nothing reaches your account without you seeing the exact before and after first.",
   },
   {
     q: "Is my Google Ads data safe?",
@@ -414,8 +414,8 @@ const Hero: React.FC = () => (
         <p className="kx-pain">ROAS tanked overnight? pMax burning budget? Agency invoice, zero answers?</p>
         <h1 className="kx-h1">Your PPC agency.<br />In a cabinet.</h1>
         <p className="kx-sub">
-          Bids adjusted, risky calls blocked, <strong>every action logged</strong> and
-          reversible. Approve the big ones; the rest runs while you sleep.
+          Bids adjusted, risky calls blocked, <strong>every action shown</strong> before
+          it applies. Approve the big ones; the rest runs while you sleep.
         </p>
         <div className="kx-cta-row">
           <a className="kx-btn kx-btn-primary" href="/auth/register">Start free &rarr;</a>
@@ -500,8 +500,8 @@ const HowItWorks: React.FC = () => (
         <div className="kx-card" style={{ gridColumn: "span 2" }}>
           <div className="kx-step-n">3</div>
           <h3>Watch the agents work</h3>
-          <p>A real-time feed shows what each agent does and why. Every action is logged with its reasoning.</p>
-          <div className="kx-mono-tag">every change · logged · reversible</div>
+          <p>A real-time feed shows what each agent does and why. Nothing applies until you approve it.</p>
+          <div className="kx-mono-tag">every change · shown before it applies</div>
         </div>
       </div>
     </div>
