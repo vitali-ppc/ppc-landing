@@ -39,7 +39,7 @@ export default function ArticleContent() {
       },
     },
     datePublished: '2026-08-02T00:00:00.000Z',
-    dateModified: '2026-08-02T00:00:00.000Z',
+    dateModified: '2026-09-03T00:00:00.000Z',
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': 'https://www.kampaio.com/blog/google-ads-search-terms-report',
@@ -229,6 +229,8 @@ export default function ArticleContent() {
     { label: 'Google: AI Max for Search launch, blog.google, May 6, 2025', href: 'https://blog.google/products/ads-commerce/google-ai-max-for-search-campaigns/' },
     { label: 'Search Engine Land: hidden search terms cost data, Jul 9, 2025', href: 'https://searchengineland.com/google-ads-hidden-search-terms-cost-advertisers-458306' },
     { label: 'Search Engine Land: 5 tips for the search terms report, Nov 26, 2025', href: 'https://searchengineland.com/google-ads-search-terms-report-tips-465174' },
+    { label: 'Google Ads Help: About ad group and asset group prioritization (Advanced search experiences)', href: 'https://support.google.com/google-ads/answer/2756257' },
+    { label: 'Search Engine Journal: Google quietly changed how search terms are reported for some AI queries, May 2026', href: 'https://www.searchenginejournal.com/google-quietly-changed-how-search-terms-are-reported-for-some-ai-queries/574803/' },
   ];
 
   return (
@@ -263,7 +265,7 @@ export default function ArticleContent() {
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '2px' }}>
                   <span style={{ color: '#64748b', fontSize: '16px', fontWeight: 600 }}>By Kampaio Team</span>
                   <span style={{ color: '#64748b', fontSize: '15px' }}>AI-native Google Ads optimization</span>
-                  <span style={{ color: '#64748b', fontSize: '15px' }}>August 2, 2026 &middot; 11 min read</span>
+                  <span style={{ color: '#64748b', fontSize: '15px' }}>August 2, 2026 &middot; Updated September 3, 2026 &middot; 11 min read</span>
                 </div>
               </div>
             </div>
@@ -413,6 +415,20 @@ export default function ArticleContent() {
                 You can&apos;t unhide the individual terms, but there&apos;s a workaround: an &quot;Other search terms&quot; line rolls up the redacted queries, so you can see their combined cost and conversions against visible terms (
                 <a href="https://support.google.com/google-ads/answer/11386930" style={linkStyle} target="_blank" rel="noopener noreferrer">Google Ads Help, 11386930</a>;{' '}
                 <a href="https://searchengineland.com/google-ads-search-terms-report-tips-465174" style={linkStyle} target="_blank" rel="noopener noreferrer">Search Engine Land, Nov 26, 2025, Tip 4</a>). Not a fix, but it&apos;s the closest thing to visibility you&apos;ll get.
+              </p>
+
+              <p style={paragraphStyle}>
+                A second limitation runs the other way: a term can be shown and still not be the
+                words anyone typed. Google added an &quot;Advanced search experiences&quot; note to its ad
+                group prioritization help page saying that when a search comes from Lens, AI Mode,
+                AI Overviews, or auto-complete, &quot;the search term shown in your reporting represents
+                the best approximation of the user&apos;s intent&quot; (
+                <a href="https://support.google.com/google-ads/answer/2756257" style={linkStyle} target="_blank" rel="noopener noreferrer">Google Ads Help, 2756257</a>; surfaced by{' '}
+                <a href="https://www.searchenginejournal.com/google-quietly-changed-how-search-terms-are-reported-for-some-ai-queries/574803/" style={linkStyle} target="_blank" rel="noopener noreferrer">Search Engine Journal, May 2026</a>). Because those searches are &quot;not considered
+                technically identical to a keyword&quot;, Google says keywords may not be prioritized
+                automatically, and AI-based ad group prioritization picks which ad group serves
+                instead. Treat an odd-looking row from those surfaces as a read on intent rather
+                than a transcript before you turn it into an exact-match negative.
               </p>
 
               <h3 style={{ fontSize: '22px', fontWeight: 700, color: '#1e293b', marginTop: '40px', marginBottom: '16px', lineHeight: 1.3 }}>The two total rows, and what people mean by &quot;uncategorised&quot;</h3>
