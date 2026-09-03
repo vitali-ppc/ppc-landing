@@ -418,7 +418,6 @@ const Hero: React.FC = () => (
           <li>Your Google Ads account, connected by OAuth and still in your name</li>
           <li>Nothing executes until you approve it</li>
           <li>Billing is not open yet, so there is nothing to cancel</li>
-          <li>Founding access is free while it stays that way</li>
         </ul>
 
         <div className="kx-wedge" role="group" aria-label="Cost comparison">
@@ -429,7 +428,7 @@ const Hero: React.FC = () => (
           </div>
           <div className="kx-wcell">
             <div className="kx-wlabel">PPC tools</div>
-            <div className="kx-wprice">$499</div>
+            <div className="kx-wprice">$299</div>
             <div className="kx-wnote">/mo, you still operate it</div>
           </div>
           <div className="kx-wcell is-b6">
