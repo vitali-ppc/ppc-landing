@@ -167,7 +167,8 @@ const STYLES = `
   border:2px solid var(--teal, #14b8a6); }
 @media (max-width:720px){ .kx-trust{ flex-direction:column; gap:8px; } }
 /* economic wedge */
-.kx-wedge{ display:grid; grid-template-columns:repeat(3,1fr); gap:10px; max-width:560px; }
+.kx-wedge{ display:grid; grid-template-columns:repeat(3,1fr); gap:10px; max-width:560px;
+  margin-top:26px; }
 .kx-wcell{ border:1px solid var(--border); border-radius:12px; padding:13px 14px;
   background:var(--surface); }
 .kx-wcell.is-b6{ border-color:rgba(10,124,140,.5);
