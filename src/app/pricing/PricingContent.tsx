@@ -19,7 +19,7 @@ const plans = [
       'Weekly digest',
       'Email support',
     ],
-    popular: false,
+    popular: true,
   },
   {
     id: 'l2',
@@ -33,7 +33,7 @@ const plans = [
       'Real-time alerts',
       'Priority support',
     ],
-    popular: true,
+    popular: false,
   },
   {
     id: 'l3',
@@ -206,7 +206,7 @@ export default function PricingContent() {
                   fontWeight: '600',
                   whiteSpace: 'nowrap'
                 }}>
-                  Most Popular
+                  Available now
                 </div>
               )}
 
@@ -217,7 +217,20 @@ export default function PricingContent() {
                   color: '#1e293b',
                   marginBottom: '8px'
                 }}>
-                  {plan.name}
+                  {plan.name}{' '}
+                  {/* Same LIVE and NEXT marks the home page uses on the agents and the
+                      autonomy ladder. Without them all three levels read as available,
+                      and a new account can only start on L1. */}
+                  <span style={{
+                    fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace',
+                    fontSize: '11px',
+                    padding: '3px 7px',
+                    borderRadius: '6px',
+                    fontWeight: 600,
+                    verticalAlign: 'middle',
+                    background: plan.popular ? 'rgba(78,205,196,.18)' : 'rgba(255,167,38,.18)',
+                    color: plan.popular ? '#0A7C8C' : '#B45309',
+                  }}>{plan.popular ? 'LIVE' : 'NEXT'}</span>
                 </h3>
                 <p style={{
                   fontSize: '16px',

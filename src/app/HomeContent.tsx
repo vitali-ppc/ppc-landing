@@ -355,19 +355,19 @@ const TIERS = [
     name: "L1 Co-pilot", price: "Free", period: "early access",
     desc: "AI suggests; you approve every move.",
     features: ["Buzz + Aegis active", "1 Google Ads account", "Approve every change", "Weekly digest", "Email support"],
-    highlight: false,
+    highlight: true, status: "live",
   },
   {
     name: "L2 Approval", price: "Free", period: "early access",
     desc: "AI acts; you approve only the big moves.",
     features: ["Everything in L1", "Auto-applies small changes", "Risk Agent enforcement", "Real-time alerts", "Priority support"],
-    highlight: true,
+    highlight: false, status: "next",
   },
   {
     name: "L3 Autonomous", price: "Free", period: "early access",
     desc: "Full autopilot. The agents run it.",
     features: ["Everything in L2", "Full autonomy", "Creative Agent (ad generation)", "Multi-platform (Meta, TikTok)", "Dedicated onboarding"],
-    highlight: false,
+    highlight: false, status: "next",
   },
 ];
 
@@ -538,13 +538,16 @@ const Pricing: React.FC = () => (
       <div className="kx-tiers">
         {TIERS.map((t) => (
           <div key={t.name} className={`kx-tier ${t.highlight ? "hot" : ""}`}>
-            {t.highlight && <div className="kx-badge">Most popular</div>}
-            <h3>{t.name}</h3>
+            {/* The badge says which level exists, not which is popular: nothing is being
+                sold yet, so popularity has nothing behind it, and L2 wore that badge while
+                being the level a new account cannot pick. */}
+            {t.status === "live" && <div className="kx-badge">Available now</div>}
+            <h3>{t.name} <span className={`kx-stat ${t.status === "live" ? "l" : "s"}`}>{t.status === "live" ? "LIVE" : "NEXT"}</span></h3>
             <div><span className="kx-price">{t.price}</span><span className="kx-per">{t.period}</span></div>
             <p className="td">{t.desc}</p>
             <ul>{t.features.map((f) => <li key={f}>{f}</li>)}</ul>
             <a className={`kx-btn ${t.highlight ? "kx-btn-primary" : "kx-btn-ghost"}`} style={{ display: "flex", width: "100%" }} href="/auth/register">
-              Get started
+              {t.status === "live" ? "Get started" : "Start on L1"}
             </a>
           </div>
         ))}
