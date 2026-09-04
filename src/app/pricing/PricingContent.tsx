@@ -24,7 +24,7 @@ const plans = [
   {
     id: 'l2',
     name: 'L2 Approval',
-    description: 'AI acts; you approve only the big calls.',
+    description: 'AI acts; you approve only the big moves.',
     price: 199,
     features: [
       'Everything in L1',

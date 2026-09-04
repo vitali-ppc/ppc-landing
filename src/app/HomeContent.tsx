@@ -6,7 +6,7 @@ import React from "react";
 const FAQ_ITEMS: { q: string; a: string }[] = [
   {
     q: "What if the agents make a bad change?",
-    a: "They start read-only, so at first they only suggest. Aegis, the Risk Agent, reviews every bidding call and blocks the risky ones before they apply. Nothing reaches your account without you seeing the exact before and after first.",
+    a: "They start read-only, so at first they only suggest. Aegis, the Risk Agent, reviews every bid and budget change and blocks the risky ones before they apply. Nothing reaches your account without you seeing the exact before and after first.",
   },
   {
     q: "Is my Google Ads data safe?",
@@ -342,7 +342,7 @@ const FEED = [
 
 const TEAM = [
   { icon: "bid", name: "Buzz", role: "Bidding Agent", desc: "Moves campaign budget and target ROAS by performance. Explains every decision.", status: "live" },
-  { icon: "shield", name: "Aegis", role: "Risk Agent", desc: "Reviews Buzz's calls, blocks the risky ones, and flags what is burning money. Tells you why.", status: "live" },
+  { icon: "shield", name: "Aegis", role: "Risk Agent", desc: "Reviews what Buzz decides, blocks the risky moves, and flags what is burning money. Tells you why.", status: "live" },
   { icon: "stack", name: "Maximus", role: "Orchestrator", desc: "Coordinates the team. Escalates only what actually needs you.", status: "coming" },
   { icon: "target", name: "Vox", role: "Strategy", desc: "Decides which campaigns deserve the budget, and which platform.", status: "coming" },
   { icon: "spark", name: "Mira", role: "Creative", desc: "Generates ad copy and images. Runs A/B tests.", status: "coming" },
@@ -359,7 +359,7 @@ const TIERS = [
   },
   {
     name: "L2 Approval", price: "Free", period: "early access",
-    desc: "AI acts; you approve only the big calls.",
+    desc: "AI acts; you approve only the big moves.",
     features: ["Everything in L1", "Auto-applies small changes", "Risk Agent enforcement", "Real-time alerts", "Priority support"],
     highlight: true,
   },
