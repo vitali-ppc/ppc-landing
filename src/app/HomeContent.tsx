@@ -543,7 +543,13 @@ const Pricing: React.FC = () => (
                 being the level a new account cannot pick. */}
             {t.status === "live" && <div className="kx-badge">Available now</div>}
             <h3>{t.name} <span className={`kx-stat ${t.status === "live" ? "l" : "s"}`}>{t.status === "live" ? "LIVE" : "NEXT"}</span></h3>
-            <div><span className="kx-price">{t.price}</span><span className="kx-per">{t.period}</span></div>
+            {/* A price belongs to a level someone can use. On a NEXT tier the big "Free"
+                promised access the account cannot have, and argued with the NEXT mark
+                two lines above it. */}
+            <div>
+              <span className="kx-price">{t.status === "live" ? t.price : "Coming next"}</span>
+              {t.status === "live" && <span className="kx-per">{t.period}</span>}
+            </div>
             <p className="td">{t.desc}</p>
             <ul>{t.features.map((f) => <li key={f}>{f}</li>)}</ul>
             <a className={`kx-btn ${t.highlight ? "kx-btn-primary" : "kx-btn-ghost"}`} style={{ display: "flex", width: "100%" }} href="/auth/register">
