@@ -341,8 +341,8 @@ const FEED = [
 ];
 
 const TEAM = [
-  { icon: "bid", name: "Buzz", role: "Bidding Agent", desc: "Adjusts bids by performance. Explains every decision.", status: "live" },
-  { icon: "shield", name: "Aegis", role: "Risk Agent", desc: "Reviews Buzz's calls. Blocks the risky ones. Tells you why.", status: "live" },
+  { icon: "bid", name: "Buzz", role: "Bidding Agent", desc: "Moves campaign budget and target ROAS by performance. Explains every decision.", status: "live" },
+  { icon: "shield", name: "Aegis", role: "Risk Agent", desc: "Reviews Buzz's calls, blocks the risky ones, and flags what is burning money. Tells you why.", status: "live" },
   { icon: "stack", name: "Maximus", role: "Orchestrator", desc: "Coordinates the team. Escalates only what actually needs you.", status: "coming" },
   { icon: "target", name: "Vox", role: "Strategy", desc: "Allocates budget across campaigns and platforms.", status: "coming" },
   { icon: "spark", name: "Mira", role: "Creative", desc: "Generates ad copy and images. Runs A/B tests.", status: "coming" },
