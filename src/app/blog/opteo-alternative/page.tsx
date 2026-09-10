@@ -4,14 +4,14 @@ import ArticleContent from './ArticleContent';
 export const metadata: Metadata = {
   title: 'Opteo Alternatives 2026: Verified Pricing & Picks',
   description:
-    "Live-checked pricing for 6 real Opteo alternatives (Optmyzr, Adalysis, Madgicx, TrueClicks, WordStream, PPC.io), plus when switching away from Opteo isn't actually worth it.",
+    'Vendor-verified pricing for Optmyzr, Adalysis, Madgicx, TrueClicks and WordStream, why PPC.io no longer counts as an Opteo alternative, and when to stay put.',
   alternates: {
     canonical: 'https://www.kampaio.com/blog/opteo-alternative',
   },
   openGraph: {
     title: 'Opteo Alternatives: Verified Pricing, Honest Picks for 2026',
     description:
-      "Live-checked pricing for 6 real Opteo alternatives (Optmyzr, Adalysis, Madgicx, TrueClicks, WordStream, PPC.io), plus when switching away from Opteo isn't actually worth it.",
+      'Vendor-verified pricing for Optmyzr, Adalysis, Madgicx, TrueClicks and WordStream, why PPC.io no longer counts as an Opteo alternative, and when to stay put.',
     url: 'https://www.kampaio.com/blog/opteo-alternative',
     type: 'article',
     images: [

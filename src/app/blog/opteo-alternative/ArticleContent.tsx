@@ -19,7 +19,7 @@ export default function ArticleContent() {
     '@id': 'https://www.kampaio.com/blog/opteo-alternative#article',
     headline: 'Opteo Alternatives: Verified Pricing, Honest Picks for 2026',
     description:
-      "Live-checked pricing for 6 real Opteo alternatives (Optmyzr, Adalysis, Madgicx, TrueClicks, WordStream, PPC.io), plus when switching away from Opteo isn't actually worth it.",
+      'Vendor-verified pricing for Optmyzr, Adalysis, Madgicx, TrueClicks and WordStream, why PPC.io no longer counts as an Opteo alternative, and when to stay put.',
     image: 'https://www.kampaio.com/og/opteo-alternative.png',
     author: {
       '@type': 'Organization',
@@ -38,7 +38,7 @@ export default function ArticleContent() {
       },
     },
     datePublished: '2026-08-10T00:00:00.000Z',
-    dateModified: '2026-08-10T00:00:00.000Z',
+    dateModified: '2026-09-10T00:00:00.000Z',
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': 'https://www.kampaio.com/blog/opteo-alternative',
@@ -65,7 +65,7 @@ export default function ArticleContent() {
         name: 'What are the alternatives to Opteo?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'The closest real alternatives are Optmyzr, Adalysis, Madgicx, TrueClicks, WordStream, and PPC.io; see the comparison table above for verified pricing on each.',
+          text: 'The closest real alternatives are Optmyzr, Adalysis, Madgicx, TrueClicks, and WordStream; see the comparison table above for verified pricing on each. PPC.io belonged on that list until September 2026, when its Google Ads product became a separate, unreleased one with a beta planned for 1 October and no published price.',
         },
       },
       {
@@ -171,7 +171,7 @@ export default function ArticleContent() {
               Opteo Alternatives: Verified Pricing, Honest Picks for 2026
             </h1>
             <p style={{ fontSize: '20px', color: '#64748b', marginBottom: '32px', lineHeight: '1.6', fontWeight: 500 }}>
-              Optmyzr and Adalysis fit a Google-only account best; TrueClicks and Madgicx fit if you also run Meta or Microsoft Ads. Every price below traces to the vendor&apos;s own pricing page, checked 2026-08-10.
+              Optmyzr and Adalysis fit a Google-only account best; TrueClicks and Madgicx fit if you also run Meta or Microsoft Ads. Every price below traces to the vendor&apos;s own pricing page: Opteo and PPC.io re-checked 2026-09-10, the rest 2026-08-10.
             </p>
             <div style={{ display: 'flex', alignItems: 'center', gap: '24px', marginBottom: '40px', paddingBottom: '32px', borderBottom: '1px solid #e5e7eb' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -181,7 +181,7 @@ export default function ArticleContent() {
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '2px' }}>
                   <span style={{ color: '#64748b', fontSize: '16px', fontWeight: 600 }}>By Kampaio Team</span>
                   <span style={{ color: '#64748b', fontSize: '15px' }}>AI-native Google Ads optimization</span>
-                  <span style={{ color: '#64748b', fontSize: '15px' }}>August 10, 2026 · 8 min read</span>
+                  <span style={{ color: '#64748b', fontSize: '15px' }}>August 10, 2026 · Updated September 10, 2026 · 8 min read</span>
                 </div>
               </div>
             </div>
@@ -226,10 +226,10 @@ export default function ArticleContent() {
             {/* Intro */}
             <section id="intro">
               <p style={paragraphStyle}>
-                Opteo alternatives worth considering in 2026 include Optmyzr, Adalysis, Madgicx, TrueClicks, WordStream, and PPC.io, each pulling ahead of Opteo on price, platform coverage, or how much control you hand over. Switching makes sense if Opteo&apos;s Google-only scope, recommend-only model, or current pricing no longer fits your account.
+                Opteo alternatives worth considering in 2026 are Optmyzr, Adalysis, Madgicx, TrueClicks, and WordStream, each pulling ahead of Opteo on price, platform coverage, or how much control you hand over. PPC.io was the sixth name here in August; on a 2026-09-10 re-check its Google Ads product had become a separate, unreleased one, so it is covered below but cannot replace Opteo today. Switching makes sense if Opteo&apos;s Google-only scope, recommend-only model, or current pricing no longer fits your account.
               </p>
               <p style={paragraphStyle}>
-                <strong>Quick answer:</strong> Optmyzr and Adalysis fit a Google-only account best; TrueClicks and Madgicx fit if you also run Meta or Microsoft Ads. Every price below traces to the vendor&apos;s own pricing page, checked 2026-08-10.
+                <strong>Quick answer:</strong> Optmyzr and Adalysis fit a Google-only account best; TrueClicks and Madgicx fit if you also run Meta or Microsoft Ads. Every price below traces to the vendor&apos;s own pricing page: Opteo and PPC.io re-checked 2026-09-10, the rest 2026-08-10.
               </p>
             </section>
 
@@ -237,7 +237,7 @@ export default function ArticleContent() {
             <section id="short-answer">
               <h2 style={h2Style}>The short answer (compare 6 Opteo alternatives at a glance)</h2>
               <p style={paragraphStyle}>
-                Seven tools here handle Google Ads bid and budget management around Smart Bidding, each at a different price and automation level. Prices below trace to each vendor&apos;s own page, not to a roundup that copied them from somewhere else.
+                Six of the seven tools here handle Google Ads bid and budget management around Smart Bidding, each at a different price and automation level. The seventh, PPC.io, no longer does; the row below shows what it ships instead. Prices trace to each vendor&apos;s own page, not to a roundup that copied them from somewhere else.
               </p>
 
               {/* VISUAL 1: ResponsiveTable: the 7-tool verified-pricing comparison */}
@@ -262,12 +262,24 @@ export default function ArticleContent() {
                   [<strong key="t4">Madgicx</strong>, 'Not publicly disclosed; $49/mo add-on only', 'Meta + Google', 'AI automation', 'Heavy Meta + Google spend'],
                   [<strong key="t5">TrueClicks</strong>, '$0-$999/mo, free to $50K/mo', 'Google + Microsoft', 'Approve-and-execute', 'Free-tier starters'],
                   [<strong key="t6">WordStream</strong>, 'No public pricing', 'N/A', 'Managed service', 'Local-service businesses'],
-                  [<strong key="t7">PPC.io</strong>, 'Free in beta; $49-$399/mo after', 'Google-first', 'Recommend-only', 'Lowest entry price'],
+                  [
+                    <strong key="t7">PPC.io</strong>,
+                    <span key="p7">
+                      Postclick $0-$99/mo; Agents not priced (
+                      <a href="https://ppc.io/pricing" style={linkStyle} target="_blank" rel="noopener noreferrer">
+                        2026-09-10
+                      </a>
+                      )
+                    </span>,
+                    'Not an ads tool today',
+                    'Landing page audits and builds',
+                    'Landing pages, not Google Ads',
+                  ],
                 ]}
               />
 
               <p style={paragraphStyle}>
-                Three of four &quot;alternatives&quot; pages we checked cite Opteo&apos;s price wrong, as low as $97/mo. Opteo&apos;s own page says $129-$499/mo, and every figure above traces to a live vendor page, checked 2026-08-10. That&apos;s not a rounding error, it&apos;s the kind of gap that skews a whole comparison if you don&apos;t catch it. For the wider landscape, see{' '}
+                Three of four &quot;alternatives&quot; pages we checked cite Opteo&apos;s price wrong, as low as $97/mo. Opteo&apos;s own page says $129-$499/mo, and every figure above traces to a live vendor page: Opteo and PPC.io re-checked 2026-09-10, the rest 2026-08-10. That&apos;s not a rounding error, it&apos;s the kind of gap that skews a whole comparison if you don&apos;t catch it. For the wider landscape, see{' '}
                 <a href="/blog/google-ads-optimizer-software-compared" style={linkStyle}>
                   how AI Google Ads tools compare
                 </a>
@@ -307,8 +319,8 @@ export default function ArticleContent() {
               <BigStat
                 value="0"
                 label="changelog entries since Nov 2024"
-                claim="Opteo shipped 62 entries in 2023 and 13 in 2024 (last: Nov 25), then nothing through mid-2026."
-                source="Source: changelog.opteo.com, verified 2026-08-10"
+                claim="Opteo shipped 62 entries in 2023 and 13 in 2024 (last: Nov 25), then nothing since."
+                source="Source: changelog.opteo.com, re-verified 2026-09-10"
               />
 
               {/* VISUAL 3: SignalStack: the three switching triggers */}
@@ -323,7 +335,7 @@ export default function ArticleContent() {
 
               {/* VISUAL 4: Callout: the price-citation warning */}
               <Callout variant="warning">
-                One popular roundup lists Opteo at $97/month. Opteo&apos;s own page, checked 2026-08-10, starts at $129/month. Always check the vendor directly, including on this page.
+                One popular roundup lists Opteo at $97/month. Opteo&apos;s own page, re-checked 2026-09-10, still starts at $129/month. Always check the vendor directly, including on this page: the PPC.io row below is what happens when you do.
               </Callout>
             </section>
 
@@ -338,10 +350,10 @@ export default function ArticleContent() {
                   <strong>Monthly ad spend.</strong> Most tools price by spend tier or account count. Know your number first.
                 </li>
                 <li style={{ marginBottom: '14px' }}>
-                  <strong>Platforms managed.</strong> Google only, or Google plus Meta or Microsoft? Optmyzr, Adalysis, and PPC.io lean Google-first; Madgicx and TrueClicks are multi-platform.
+                  <strong>Platforms managed.</strong> Google only, or Google plus Meta or Microsoft? Optmyzr and Adalysis lean Google-first; Madgicx and TrueClicks are multi-platform.
                 </li>
                 <li style={{ marginBottom: 0 }}>
-                  <strong>How hands-on.</strong> Recommendations only (Opteo, Adalysis, PPC.io), approve-and-execute (TrueClicks, Madgicx), or more autonomous (Kampaio, below), the{' '}
+                  <strong>How hands-on.</strong> Recommendations only (Opteo, Adalysis), approve-and-execute (TrueClicks, Madgicx), or more autonomous (Kampaio, below), the{' '}
                   <a href="/blog/google-ads-agency-vs-in-house-vs-software" style={linkStyle}>
                     software vs. agency vs. in-house
                   </a>{' '}
@@ -354,7 +366,7 @@ export default function ArticleContent() {
             <section id="alternatives">
               <h2 style={h2Style}>6 Opteo alternatives, compared</h2>
               <p style={paragraphStyle}>
-                Each alternative solves a different piece of what Opteo does, not all of it. Verified prices, real pros and cons, and who each one actually fits.
+                Each one solves a different piece of what Opteo does, not all of it. Five are live Google Ads tools; the sixth, PPC.io, changed product between our August and September checks, and its entry says what it is now. Verified prices, real pros and cons, and who each one actually fits.
               </p>
 
               <h3 id="optmyzr" style={h3Style}>Optmyzr</h3>
@@ -434,17 +446,20 @@ export default function ArticleContent() {
 
               <h3 id="ppc-io" style={h3Style}>PPC.io</h3>
               <p style={paragraphStyle}>
-                PPC.io is free during its public beta, with post-beta list prices at $49/mo (Starter), $149/mo (Agency, 25 accounts), and $399/mo (Agency Pro, unlimited) (
+                PPC.io split into two products between our August and September checks, and the Google Ads half has not shipped. What is live is Postclick, described in PPC.io&apos;s own navigation as &quot;Landing page audits, designs and builds&quot;: $0 to start (2 audits, 2 design directions, 56 credits for 30 days, no card), then $9/mo for 5 audits, $29/mo for 3 complete pages, and $99/mo for 11 page rebuilds, with credit top-ups from $49 per 100 credits (
                 <a href="https://ppc.io/pricing" style={linkStyle} target="_blank" rel="noopener noreferrer">
-                  PPC.io pricing, 2026
+                  PPC.io pricing, re-checked 2026-09-10
                 </a>
                 ).
               </p>
               <p style={paragraphStyle}>
-                PPC.io is the cheapest entry point here by a wide margin. The catch: it&apos;s also the newest name in this list, and its own blog is the same one that cited Opteo&apos;s price wrong, worth confirming directly before committing budget.
+                The Google Ads work now sits in a separate product, &quot;PPC.io Agents,&quot; marked &quot;Coming soon&quot; and pitched as six specialist agents covering search terms, wasted spend, account audits, budget pacing, creative, and client reporting. Its status line reads &quot;Beta planned for 1 October&quot; and its pricing line reads &quot;Final pricing shared before you commit,&quot; so there is no number to put in the table. The $49, $149 and $399 tiers we listed in August are gone from the page.
+              </p>
+              <p style={paragraphStyle}>
+                This is the exact failure this article opens with, and a month was enough to produce it: a price that was accurate in August is wrong in September, and any roundup still quoting those three tiers is now quoting a product that does not exist. The practical consequence is simple. If you came here for an Opteo replacement, PPC.io cannot be one today, because the tool that ships works on landing pages rather than on Google Ads accounts. The rest of this list is running now.
               </p>
               <p style={bestForStyle}>
-                <strong>Best for:</strong> very small accounts wanting the lowest entry price, comfortable as an early adopter.
+                <strong>Best for:</strong> landing page audits and rebuilds on a small budget. Not a Google Ads alternative to Opteo unless and until the Agents beta opens.
               </p>
             </section>
 
@@ -476,7 +491,7 @@ export default function ArticleContent() {
                 Kampaio has the same three-level shape as Opteo&apos;s $129, $249 and $499 plans, and all three levels are free while B6 is in beta: same shape, no entry cost at every level.
               </p>
               <p style={paragraphStyle}>
-                Every price here, including Opteo&apos;s, is verified on a live vendor page, but Madgicx&apos;s core plan is gated and Optmyzr&apos;s top tiers need a sales call, both documented above. Kampaio&apos;s tiers are public and fixed, no &quot;talk to sales&quot; step.
+                Every price here, including Opteo&apos;s, is verified on a live vendor page, but Madgicx&apos;s core plan is gated, Optmyzr&apos;s top tiers need a sales call, and PPC.io has published no price at all for its unreleased Agents product, all documented above. Kampaio&apos;s tiers are public and fixed, no &quot;talk to sales&quot; step.
               </p>
               <p style={paragraphStyle}>
                 If you&apos;re still working out{' '}
@@ -578,11 +593,11 @@ export default function ArticleContent() {
               <p style={{ fontSize: '15px', fontWeight: 700, color: '#1e293b', marginBottom: '10px' }}>Sources</p>
               <ul style={{ fontSize: '15px', color: '#64748b', lineHeight: '1.8', paddingLeft: '20px', marginBottom: '24px' }}>
                 <li>
-                  Opteo. &quot;Pricing.&quot; 2026.{' '}
+                  Opteo. &quot;Pricing.&quot; 2026, re-checked 2026-09-10.{' '}
                   <a href="https://opteo.com/pricing" style={linkStyle} target="_blank" rel="noopener noreferrer">opteo.com/pricing</a>
                 </li>
                 <li>
-                  Opteo. &quot;Changelog.&quot; 2026.{' '}
+                  Opteo. &quot;Changelog.&quot; 2026, re-checked 2026-09-10.{' '}
                   <a href="https://changelog.opteo.com" style={linkStyle} target="_blank" rel="noopener noreferrer">changelog.opteo.com</a>
                 </li>
                 <li>
@@ -602,7 +617,7 @@ export default function ArticleContent() {
                   <a href="https://www.trueclicks.com/pricing" style={linkStyle} target="_blank" rel="noopener noreferrer">trueclicks.com/pricing</a>
                 </li>
                 <li>
-                  PPC.io. &quot;Pricing.&quot; 2026.{' '}
+                  PPC.io. &quot;Pricing (Postclick plans and PPC.io Agents status).&quot; 2026, re-checked 2026-09-10.{' '}
                   <a href="https://ppc.io/pricing" style={linkStyle} target="_blank" rel="noopener noreferrer">ppc.io/pricing</a>
                 </li>
                 <li>
@@ -612,7 +627,7 @@ export default function ArticleContent() {
               </ul>
 
               <p style={{ fontSize: '14px', color: '#64748b', fontStyle: 'italic', lineHeight: 1.7, marginTop: '8px' }}>
-                Third-party pricing and capabilities are summarized from each vendor&apos;s own public pages, checked 2026-08-10, and may change. Madgicx&apos;s core plan price and Optmyzr&apos;s top tiers are not publicly listed. Practitioner quotes are attributed to public r/PPC discussion. This article is informational and does not constitute professional advertising advice.
+                Third-party pricing and capabilities are summarized from each vendor&apos;s own public pages, checked 2026-08-10, with Opteo and PPC.io re-checked 2026-09-10; the other vendors&apos; figures still carry the August date and may have changed since. Madgicx&apos;s core plan price, Optmyzr&apos;s top tiers, and PPC.io Agents pricing are not publicly listed. Practitioner quotes are attributed to public r/PPC discussion. This article is informational and does not constitute professional advertising advice.
               </p>
             </section>
           </div>
