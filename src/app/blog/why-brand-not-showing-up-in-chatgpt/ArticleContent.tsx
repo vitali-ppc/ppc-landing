@@ -34,7 +34,7 @@ export default function ArticleContent() {
       },
     },
     "datePublished": "2026-06-02T00:00:00.000Z",
-    "dateModified": "2026-08-12T00:00:00.000Z",
+    "dateModified": "2026-09-17T00:00:00.000Z",
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https://kampaio.com/blog/why-brand-not-showing-up-in-chatgpt"
@@ -201,7 +201,7 @@ export default function ArticleContent() {
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '2px' }}>
                   <span style={{ color: '#64748b', fontSize: '16px', fontWeight: 600 }}>By B6 Team</span>
                   <span style={{ color: '#64748b', fontSize: '15px' }}>AI Search Strategist at Kampaio</span>
-                  <span style={{ color: '#64748b', fontSize: '15px' }}>June 2, 2026 · Updated August 12, 2026 · 9 min read</span>
+                  <span style={{ color: '#64748b', fontSize: '15px' }}>June 2, 2026 · Updated September 17, 2026 · 9 min read</span>
                 </div>
               </div>
             </div>
@@ -290,9 +290,10 @@ export default function ArticleContent() {
                 and look for these names under a <code style={{ background: '#f1f5f9', padding: '2px 6px', borderRadius: '4px', fontSize: '16px' }}>Disallow</code> rule.
               </p>
               <ul style={{ fontSize: '18px', color: '#1e293b', lineHeight: '1.8', paddingLeft: '24px', marginBottom: '24px' }}>
-                <li style={{ marginBottom: '10px' }}><strong>OAI-SearchBot</strong> is the one that decides whether you can appear in ChatGPT Search at all. Blocking it while allowing GPTBot is the most common version of this mistake.</li>
+                <li style={{ marginBottom: '10px' }}><strong>OAI-SearchBot</strong> is the one that governs ChatGPT Search. OpenAI&apos;s own wording is more precise than &quot;you disappear&quot;: &quot;Sites that are opted out of OAI-SearchBot will not be shown in ChatGPT search answers,&quot; and the docs add that such a site can still turn up as a plain navigational link. Blocking it while allowing GPTBot is the most common version of this mistake.</li>
                 <li style={{ marginBottom: '10px' }}><strong>ChatGPT-User</strong> fetches a page when a person asks about it in a conversation.</li>
                 <li style={{ marginBottom: '10px' }}><strong>GPTBot</strong> is the training crawler. Blocking it is a defensible choice; blocking it does not by itself remove you from ChatGPT Search.</li>
+                <li style={{ marginBottom: '10px' }}><strong>OAI-AdsBot</strong> is the fourth name, and the one PPC teams miss. OpenAI&apos;s crawler docs state it &quot;is used to validate the safety of web pages submitted as ads on ChatGPT,&quot; and that &quot;the data collected by OAI-AdsBot is not used to train generative AI foundation models.&quot; Treat it as an operational dependency rather than a training question: if an aggressive WAF bot filter or a named robots.txt group keeps OAI-AdsBot out, the landing pages behind your ChatGPT ads cannot be validated. OpenAI publishes its IP ranges at <a href="https://openai.com/adsbot.json" style={linkStyle} target="_blank" rel="noopener noreferrer">openai.com/adsbot.json</a> (two /25 blocks, file created May 12, 2026), so a network team can allow-list it without loosening anything else.</li>
                 <li>For Claude the three are <strong>ClaudeBot</strong>, <strong>Claude-User</strong> and <strong>Claude-SearchBot</strong>. Those are the only three Anthropic documents, so a rule naming anything else is doing nothing (
                   <a href="https://support.claude.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-block-the-crawler" style={linkStyle} target="_blank" rel="noopener noreferrer">Anthropic Help Center, article 8896518</a>
                   ).
@@ -312,9 +313,17 @@ export default function ArticleContent() {
                 mechanic works in reverse: a named block that inherits nothing can also drop an allow
                 you thought applied everywhere.
               </p>
+              <p style={paraStyle}>
+                One timing note before you re-test anything. OpenAI asks for patience after an edit:
+                &quot;For search results, please note it can take ~24 hours from a site&apos;s robots.txt
+                update for our systems to adjust&quot; (
+                <a href="https://developers.openai.com/api/docs/bots" style={linkStyle} target="_blank" rel="noopener noreferrer">OpenAI crawler docs</a>
+                ). A fix pushed this morning and re-checked at lunch proves nothing either way.
+              </p>
               <p style={paraStyle}>Quick symptom check for crawler access:</p>
               <ul style={{ fontSize: '18px', color: '#1e293b', lineHeight: '1.8', paddingLeft: '24px', marginBottom: '24px' }}>
                 <li style={{ marginBottom: '10px' }}>Your robots.txt names GPTBot but not OAI-SearchBot.</li>
+                <li style={{ marginBottom: '10px' }}>Your robots.txt or bot filter blocks OAI-AdsBot, so the landing pages behind your ChatGPT ads cannot be validated.</li>
                 <li style={{ marginBottom: '10px' }}>A CDN or WAF bot filter sits in front of the site and no one has checked what it does to non-browser user agents.</li>
                 <li style={{ marginBottom: '10px' }}>Named crawler groups carry only an Allow line, with none of the Disallow rules the wildcard group declares.</li>
                 <li>Your robots.txt lists agent names that no vendor documents, which read as protection and do nothing.</li>
@@ -522,7 +531,9 @@ export default function ArticleContent() {
                 <li style={{ marginBottom: '10px' }}>Search Engine Land (2026): &quot;New study reveals how ChatGPT chooses which domains to cite&quot; (<a href="https://searchengineland.com/chatgpt-citations-domains-study-472349" target="_blank" rel="noopener noreferrer" style={linkStyle}>searchengineland.com</a>)</li>
                 <li style={{ marginBottom: '10px' }}>SISTRIX (2026): &quot;AI Citation Drift: How Stable Are Sources in AI Search Results?&quot; (<a href="https://www.sistrix.com/blog/ai-citation-drift-how-stable-are-sources-in-ai-search-results/" target="_blank" rel="noopener noreferrer" style={linkStyle}>sistrix.com</a>)</li>
                 <li style={{ marginBottom: '10px' }}>2X AI Innovation Lab (2026): &quot;96% of B2B Companies Are Invisible in AI Discovery&quot; (70 B2B companies analyzed, published April 2026) (<a href="https://www.demandgenreport.com/industry-news/news-brief/2x-survey-finds-96-of-b2b-companies-are-invisible-in-ai-discovery/52536/" target="_blank" rel="noopener noreferrer" style={linkStyle}>Demand Gen Report</a>)</li>
-                <li>Semrush (2026): &quot;AI visibility is a topic-level game: A study of 50,000 brands in ChatGPT&quot; (1,094 US categories tracked monthly January to June 2026, published July 2026) (<a href="https://www.semrush.com/blog/chatgpt-topic-authority-study/" target="_blank" rel="noopener noreferrer" style={linkStyle}>semrush.com</a>)</li>
+                <li style={{ marginBottom: '10px' }}>Semrush (2026): &quot;AI visibility is a topic-level game: A study of 50,000 brands in ChatGPT&quot; (1,094 US categories tracked monthly January to June 2026, published July 2026) (<a href="https://www.semrush.com/blog/chatgpt-topic-authority-study/" target="_blank" rel="noopener noreferrer" style={linkStyle}>semrush.com</a>)</li>
+                <li style={{ marginBottom: '10px' }}>OpenAI: &quot;Overview of OpenAI Crawlers&quot; (OAI-SearchBot, ChatGPT-User, GPTBot and OAI-AdsBot; verified September 17, 2026) (<a href="https://developers.openai.com/api/docs/bots" target="_blank" rel="noopener noreferrer" style={linkStyle}>developers.openai.com</a>)</li>
+                <li>OpenAI: OAI-AdsBot published IP ranges, file creationTime May 12, 2026 (<a href="https://openai.com/adsbot.json" target="_blank" rel="noopener noreferrer" style={linkStyle}>openai.com/adsbot.json</a>)</li>
               </ol>
             </section>
 
