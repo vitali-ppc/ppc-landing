@@ -39,7 +39,7 @@ export default function ArticleContent() {
       },
     },
     datePublished: '2026-07-30T00:00:00.000Z',
-    dateModified: '2026-07-30T00:00:00.000Z',
+    dateModified: '2026-09-21T00:00:00.000Z',
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': 'https://www.kampaio.com/blog/google-ads-ai-content-labels',
@@ -68,7 +68,7 @@ export default function ArticleContent() {
         name: 'Which Google ad platforms show the new AI label?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Five surfaces: Google Ads, Ads Editor, DV360, Campaign Manager 360, and Merchant Center. Only three of them, Google Ads, Merchant Center, and Ads Editor, have a confirmed live sighting so far.',
+          text: 'Five surfaces: Google Ads, Ads Editor, DV360, Campaign Manager 360, and Merchant Center. Four of them, Google Ads, Merchant Center, Ads Editor, and Display & Video 360, have a confirmed live sighting (Search Engine Land, Display & Video 360 Help). Campaign Manager 360 is still listed without one.',
         },
       },
       {
@@ -168,7 +168,7 @@ export default function ArticleContent() {
     {
       q: 'Which Google ad platforms show the new AI label?',
       a: (
-        <>Five surfaces: Google Ads, Ads Editor, DV360, Campaign Manager 360, and Merchant Center. Only three of them, Google Ads, Merchant Center, and Ads Editor, have a confirmed live sighting so far (<a href="https://searchengineland.com/google-rolls-out-ai-content-labels-across-its-advertising-platforms-483816" style={linkStyle} target="_blank" rel="noopener noreferrer">Search Engine Land</a>).</>
+        <>Five surfaces: Google Ads, Ads Editor, DV360, Campaign Manager 360, and Merchant Center. Four of them, Google Ads, Merchant Center, Ads Editor, and Display &amp; Video 360, have a confirmed live sighting (<a href="https://searchengineland.com/google-rolls-out-ai-content-labels-across-its-advertising-platforms-483816" style={linkStyle} target="_blank" rel="noopener noreferrer">Search Engine Land</a>, <a href="https://support.google.com/displayvideo/answer/17233038" style={linkStyle} target="_blank" rel="noopener noreferrer">Display &amp; Video 360 Help</a>). Campaign Manager 360 is still listed without one.</>
       ),
     },
     {
@@ -225,7 +225,7 @@ export default function ArticleContent() {
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '2px' }}>
                   <span style={{ color: '#64748b', fontSize: '16px', fontWeight: 600 }}>By Kampaio Team</span>
                   <span style={{ color: '#64748b', fontSize: '15px' }}>AI-native Google Ads optimization</span>
-                  <span style={{ color: '#64748b', fontSize: '15px' }}>July 30, 2026 &middot; 10 min read</span>
+                  <span style={{ color: '#64748b', fontSize: '15px' }}>July 30, 2026 &middot; Updated September 21, 2026 &middot; 10 min read</span>
                 </div>
               </div>
             </div>
@@ -288,7 +288,7 @@ export default function ArticleContent() {
               <KeyTakeaways
                 items={[
                   'Not universally mandatory yet for most DTC accounts, but already live and expanding.',
-                  'Five surfaces named: Google Ads, Ads Editor, Merchant Center confirmed live; DV360 and Campaign Manager 360 listed, no confirmed sighting yet.',
+                  'Five surfaces named: Google Ads, Ads Editor, Merchant Center, and Display & Video 360 confirmed live; Campaign Manager 360 listed, no confirmed sighting yet.',
                   'The visible on-ad overlay only shows for EU, India, or New York campaigns. The My Ad Center panel is global.',
                   'Once Google auto-applies a label, you cannot overwrite it.',
                   'Rollout window is "throughout July." Today is July 30, most of that window has passed.',
@@ -435,8 +435,8 @@ export default function ArticleContent() {
                   ],
                   [
                     'Display & Video 360',
-                    <span key="s4" style={pendingStyle}>Listed by Google, no confirmed sighting</span>,
-                    'Creative workflows, when it appears',
+                    <span key="s4" style={liveStyle}>Setting live per creative</span>,
+                    'Creative upload, under "Additional details"',
                   ],
                   [
                     'Campaign Manager 360',
@@ -445,10 +445,13 @@ export default function ArticleContent() {
                   ],
                 ]}
               />
-              <p style={captionStyle}>Three surfaces confirmed live, two listed but not yet sighted.</p>
+              <p style={captionStyle}>Four surfaces confirmed live, one listed but not yet sighted.</p>
 
               <p style={paragraphStyle}>
                 Confirmed independently: &quot;The setting is rolling out gradually across: Google Ads. Display &amp; Video 360. Campaign Manager 360. Merchant Center. Google Ads Editor.&quot; (<a href="https://searchengineland.com/google-rolls-out-ai-content-labels-across-its-advertising-platforms-483816" style={linkStyle} target="_blank" rel="noopener noreferrer">Search Engine Land, July 28, 2026</a>). If your team runs Shopping alongside programmatic display, audit each surface separately. Enabling it in Google Ads doesn&apos;t cover Merchant Center or DV360, and assuming it does is how a gap gets found later instead of now.
+              </p>
+              <p style={paragraphStyle}>
+                DV360 is the surface that moved since this published. Google now documents the click path: on the creative, under &quot;Additional details&quot;, you &quot;select either &apos;Label this asset as created or edited with AI&apos; or &apos;Don&apos;t label this asset&apos;&quot; (<a href="https://support.google.com/displayvideo/answer/17233038" style={linkStyle} target="_blank" rel="noopener noreferrer">Display &amp; Video 360 Help</a>). For YouTube video assets there is a bulk path as well: labels can be added from within DV360 or through the API after an SDF upload completes, and Google says labeling inside the SDF upload itself arrives with SDF v10.1. If you traffic YouTube creative in batches, that is the difference between one pass and a click-by-click audit.
               </p>
             </section>
 
@@ -516,7 +519,7 @@ export default function ArticleContent() {
                 Right now the risk is compliance exposure in regulated markets, not an automatic Google Ads penalty, but the setting alone doesn&apos;t guarantee compliance: &quot;Use of the AI label setting in Google&apos;s advertising products doesn&apos;t guarantee compliance with specific regulations. Seek legal guidance&quot; (<a href="https://support.google.com/adspolicy/answer/17257106?hl=en" style={linkStyle} target="_blank" rel="noopener noreferrer">Google Ads Policy Help</a>).
               </p>
               <p style={paragraphStyle}>
-                Here&apos;s what most coverage skips: the EU and India route the duty mainly through platforms, not advertisers. The EU AI Act&apos;s Article 50 applies from August 2, 2026 (<a href="https://artificialintelligenceact.eu/article/50/" style={linkStyle} target="_blank" rel="noopener noreferrer">EU AI Act, Article 50</a>), three days after this publishes. India&apos;s IT Amendment Rules 2026 have been in force since February 20, 2026 (<a href="https://www.khaitanco.com/thought-leadership/MeitY-notifies-the-IT-Amendment-Rules-2026" style={linkStyle} target="_blank" rel="noopener noreferrer">Khaitan &amp; Co</a>). Both weigh on Google, not you.
+                Here&apos;s what most coverage skips: the EU and India route the duty mainly through platforms, not advertisers. The EU AI Act&apos;s Article 50 has applied since August 2, 2026 (<a href="https://artificialintelligenceact.eu/article/50/" style={linkStyle} target="_blank" rel="noopener noreferrer">EU AI Act, Article 50</a>). India&apos;s IT Amendment Rules 2026 have been in force since February 20, 2026 (<a href="https://www.khaitanco.com/thought-leadership/MeitY-notifies-the-IT-Amendment-Rules-2026" style={linkStyle} target="_blank" rel="noopener noreferrer">Khaitan &amp; Co</a>). Both weigh on Google, not you.
               </p>
               <p style={paragraphStyle}>
                 New York is the exception, and it&apos;s the one that should have your attention. Its synthetic performer disclosure law puts the duty on &quot;persons who produce or create an advertisement,&quot; the advertiser, not Google (<a href="https://www.governor.ny.gov/news/governor-hochul-announces-first-nation-law-requiring-disclosure-when-advertisements-include-ai" style={linkStyle} target="_blank" rel="noopener noreferrer">Governor Hochul&apos;s office</a>). Signed as bills S.8420-A and A.8887-B, it took effect June 9, 2026, carries civil penalties of $1,000 for a first violation and $5,000 per violation after that, and reaches any advertiser whose ads hit New York consumers regardless of where the company is headquartered (<a href="https://www.crowell.com/en/insights/client-alerts/synthetic-performers-real-consequences-implications-of-trailblazing-new-york-ai-ad-law" style={linkStyle} target="_blank" rel="noopener noreferrer">Crowell &amp; Moring</a>).
@@ -596,7 +599,8 @@ export default function ArticleContent() {
                 <a href="https://www.khaitanco.com/thought-leadership/MeitY-notifies-the-IT-Amendment-Rules-2026" style={linkStyle} target="_blank" rel="noopener noreferrer">Khaitan &amp; Co, 2026</a>;{' '}
                 <a href="https://www.governor.ny.gov/news/governor-hochul-announces-first-nation-law-requiring-disclosure-when-advertisements-include-ai" style={linkStyle} target="_blank" rel="noopener noreferrer">Governor Hochul&apos;s office, 2026</a>;{' '}
                 <a href="https://www.crowell.com/en/insights/client-alerts/synthetic-performers-real-consequences-implications-of-trailblazing-new-york-ai-ad-law" style={linkStyle} target="_blank" rel="noopener noreferrer">Crowell &amp; Moring, 2026</a>;{' '}
-                <a href="https://x.com/SERPalerts/status/2048558072747176189" style={linkStyle} target="_blank" rel="noopener noreferrer">SERP Alerts (X, April 27, 2026)</a>. The label-it decision grid is our practical read of Google&apos;s wording, not Google adjudication. This article is informational and does not constitute legal advice; confirm your obligations with counsel.
+                <a href="https://x.com/SERPalerts/status/2048558072747176189" style={linkStyle} target="_blank" rel="noopener noreferrer">SERP Alerts (X, April 27, 2026)</a>;{' '}
+                <a href="https://support.google.com/displayvideo/answer/17233038" style={linkStyle} target="_blank" rel="noopener noreferrer">Display &amp; Video 360 Help, 2026</a>. The label-it decision grid is our practical read of Google&apos;s wording, not Google adjudication. This article is informational and does not constitute legal advice; confirm your obligations with counsel.
               </p>
             </section>
           </div>
