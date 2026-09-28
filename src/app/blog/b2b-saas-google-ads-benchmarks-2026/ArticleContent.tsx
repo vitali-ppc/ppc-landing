@@ -36,7 +36,7 @@ export default function ArticleContent() {
       },
     },
     datePublished: '2026-06-01T00:00:00.000Z',
-    dateModified: '2026-08-17T00:00:00.000Z',
+    dateModified: '2026-09-28T00:00:00.000Z',
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': 'https://www.kampaio.com/blog/b2b-saas-google-ads-benchmarks-2026',
@@ -66,7 +66,7 @@ export default function ArticleContent() {
         name: 'What is the average CPC for B2B SaaS Google Ads in 2026?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'B2B SaaS Google Ads CPC averages $5.34 for non-branded Search keywords in 2026, up 29% year-over-year (Involve Digital, 500+ SaaS campaigns). Blended CPC including branded terms is lower: DigitalApplied reports $3.33 for the B2B/SaaS category across all campaign types. The two figures measure different things - use the $5.34 non-branded figure for competitive keyword planning.',
+          text: 'B2B SaaS Google Ads CPC averages $5.34 for non-branded Search keywords in 2026, up 29% year-over-year (Dreamdata, Aug 2024 to Jul 2025, via Involve Digital). Blended CPC including branded terms is lower: DigitalApplied reports $3.33 for the B2B/SaaS category across all campaign types. The two figures measure different things - use the $5.34 non-branded figure for competitive keyword planning.',
         },
       },
       {
@@ -363,7 +363,7 @@ export default function ArticleContent() {
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '2px' }}>
                   <span style={{ color: '#64748b', fontSize: '16px', fontWeight: 600 }}>By Kampaio Team</span>
                   <span style={{ color: '#64748b', fontSize: '15px' }}>B2B PPC Analysts</span>
-                  <span style={{ color: '#64748b', fontSize: '15px' }}>June 1, 2026 · Updated August 17, 2026 · 16 min read</span>
+                  <span style={{ color: '#64748b', fontSize: '15px' }}>June 1, 2026 · Updated September 28, 2026 · 16 min read</span>
                 </div>
               </div>
             </div>
@@ -412,7 +412,7 @@ export default function ArticleContent() {
             <div style={{ background: '#f0f4ff', border: '1px solid #c7d2fe', borderLeft: '4px solid #667eea', borderRadius: '10px', padding: '24px 28px', marginBottom: '48px' }}>
               <p style={{ fontSize: '15px', fontWeight: '700', color: '#764ba2', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '14px' }}>TL;DR</p>
               <ul style={{ margin: 0, padding: '0 0 0 20px', color: '#1e293b', fontSize: '16px', lineHeight: '1.7' }}>
-                <li style={{ marginBottom: '10px' }}>B2B SaaS average CPC on Search: $5.34 in 2026, up 29% year-over-year (Involve Digital, 500+ SaaS campaigns).</li>
+                <li style={{ marginBottom: '10px' }}>B2B SaaS average CPC on Search: $5.34 in 2026, up 29% year-over-year (Dreamdata, Aug 2024 to Jul 2025, via Involve Digital).</li>
                 <li style={{ marginBottom: '10px' }}>Average conversion rate (click to demo/trial): 3-5% for Search campaigns; 0.64% for Display.</li>
                 <li style={{ marginBottom: '10px' }}>Cost per lead by segment: SMB SaaS $87-$200, mid-market $200-$900, enterprise $1,500-$4,500 (42 Agency real campaign data).</li>
                 <li style={{ marginBottom: '10px' }}>Target ROAS baseline: Search campaigns at 553% vs. Performance Max at 436% in B2B accounts (42 Agency, 2022-2026 campaign exports).</li>
@@ -513,7 +513,7 @@ export default function ArticleContent() {
                 </table>
               </div>
               <p style={{ fontSize: '14px', color: '#64748b', fontStyle: 'italic', marginBottom: '24px' }}>
-                Sources: DigitalApplied 2026 (B2B/SaaS row); Involve Digital 2026 SaaS benchmark guide (500+ campaigns); 42 Agency 2026 benchmark dataset (real Google Ads exports, 2022-2026).
+                Sources: DigitalApplied 2026 (B2B/SaaS row); Involve Digital 2026 SaaS benchmark guide (non-branded CPC from Dreamdata, Aug 2024 to Jul 2025); 42 Agency 2026 benchmark dataset (real Google Ads exports, 2022-2026).
               </p>
 
               <div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderLeft: '4px solid #10b981', borderRadius: '10px', padding: '20px 24px', marginBottom: '28px' }}>
@@ -536,7 +536,7 @@ export default function ArticleContent() {
                 CPC Benchmarks for B2B SaaS in 2026 - and Why They Rose 29%
               </h2>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '24px' }}>
-                Average non-branded B2B SaaS CPC reached $5.34 in 2026, a 29% year-over-year increase, according to Involve Digital's benchmark guide covering 500+ SaaS campaigns. Branded search remains dramatically cheaper: brand campaign ROAS regularly hits 1,200%+ in SaaS accounts, which is why brand protection campaigns should be non-negotiable in any SaaS budget.
+                Average non-branded B2B SaaS CPC reached $5.34 in 2026, a 29% year-over-year increase, according to Involve Digital's benchmark guide, which draws that figure from Dreamdata's B2B data for August 2024 to July 2025. Branded search remains dramatically cheaper: brand campaign ROAS regularly hits 1,200%+ in SaaS accounts, which is why brand protection campaigns should be non-negotiable in any SaaS budget.
               </p>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '24px' }}>
                 Two structural factors drove the 29% CPC increase - and understanding them changes how you respond.
@@ -551,6 +551,10 @@ export default function ArticleContent() {
                 <strong>Updated August 2026:</strong> a dataset published after this article went live reframes the cost story. Pipe Rocket Digital&apos;s{' '}
                 <a href="https://piperocket.digital/research/google-ads-benchmarks/" style={{ color: '#764ba2', textDecoration: 'underline' }} target="_blank" rel="noopener noreferrer">100+ B2B SaaS Google Ads benchmarks</a>{' '}
                 report, built from 65+ B2B SaaS accounts the agency actively manages across 24 months of real performance data (July 2024 through June 2026), puts blended CPC at $6.81 and essentially flat year over year at -1%. Over that same window blended cost per lead fell 44% to $84, because conversion rate rose 48% to 2.57% at a 3.60% CTR. The efficiency B2B SaaS accounts gained in 2026 came from the landing page and the conversion side of the funnel, not from cheaper clicks.
+              </p>
+              <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '24px' }}>
+                <strong>Updated September 2026:</strong> the $5.34 figure is older than its 2026 label suggests. It comes from{' '}
+                <a href="https://dreamdata.io/blog/benchmark-google-search-non-branded-ads" style={{ color: '#764ba2', textDecoration: 'underline' }} target="_blank" rel="noopener noreferrer">Dreamdata&apos;s B2B non-branded Google Search benchmark</a>, which tracked customer accounts from August 2024 to July 2025: CPC rose from $4.13 to $5.34 (+29%) while CTR fell from 5.47% to 4.04% (-26%). Over the same 12 months, non-branded Search dropped from 38.10% to 32.83% of B2B marketing budgets. So the 29% jump describes the year to July 2025, and Pipe Rocket&apos;s newer window to June 2026 shows blended CPC holding flat since.
               </p>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '24px' }}>
                 The two figures are not in conflict, and neither one replaces the other. Involve Digital&apos;s $5.34, up 29%, measures non-branded Search keywords: the price of attention from a buyer who has never heard of you. Pipe Rocket&apos;s $6.81, down 1%, is a blended average across every campaign type in a managed portfolio, brand traffic included. Both numbers can describe the same account in the same quarter. If your non-branded CPC is climbing while your blended CPC sits still, that is exactly what the two datasets predict.
@@ -807,7 +811,7 @@ export default function ArticleContent() {
               {[
                 {
                   q: 'What is the average CPC for B2B SaaS Google Ads in 2026?',
-                  a: 'B2B SaaS Google Ads CPC averages $5.34 for non-branded Search keywords in 2026, up 29% year-over-year (Involve Digital, 500+ SaaS campaigns). Blended CPC including branded terms is lower: DigitalApplied reports $3.33 for the B2B/SaaS category across all campaign types. The two figures measure different things - use the $5.34 non-branded figure for competitive keyword planning.',
+                  a: 'B2B SaaS Google Ads CPC averages $5.34 for non-branded Search keywords in 2026, up 29% year-over-year (Dreamdata, Aug 2024 to Jul 2025, via Involve Digital). Blended CPC including branded terms is lower: DigitalApplied reports $3.33 for the B2B/SaaS category across all campaign types. The two figures measure different things - use the $5.34 non-branded figure for competitive keyword planning.',
                 },
                 {
                   q: 'What is a good conversion rate for B2B SaaS Google Ads?',
@@ -851,6 +855,7 @@ export default function ArticleContent() {
                 <li>42 Agency. "B2B Google Ads Benchmarks 2026." <a href="https://intel.42agency.com/b2b-benchmarks/google-ads-benchmarks/" style={{ color: '#764ba2', textDecoration: 'underline' }} target="_blank" rel="noopener noreferrer">intel.42agency.com</a></li>
                 <li>WordStream. "Google Ads Benchmarks 2026: Competitive Data &amp; Insights for Every Industry." <a href="https://www.wordstream.com/blog/2026-google-ads-benchmarks" style={{ color: '#764ba2', textDecoration: 'underline' }} target="_blank" rel="noopener noreferrer">wordstream.com</a></li>
                 <li>DigitalApplied. "Google Ads Benchmarks 2026: CPC, CTR, CVR by Industry." <a href="https://www.digitalapplied.com/blog/google-ads-benchmarks-2026-cpc-ctr-cvr-industry" style={{ color: '#764ba2', textDecoration: 'underline' }} target="_blank" rel="noopener noreferrer">digitalapplied.com</a></li>
+                <li>Dreamdata. &quot;B2B Google Search Ads Benchmark: Rising CPC, Falling CTRs, and Shrinking Budgets.&quot; Anonymized aggregated data from Dreamdata customers with a Google Ads integration, non-branded Google Search, August 2024 to July 2025. <a href="https://dreamdata.io/blog/benchmark-google-search-non-branded-ads" style={{ color: '#764ba2', textDecoration: 'underline' }} target="_blank" rel="noopener noreferrer">dreamdata.io</a></li>
                 <li>Pipe Rocket Digital. &quot;100+ B2B SaaS Google Ads Benchmarks.&quot; First-party dataset, 65+ actively managed B2B SaaS accounts, July 2024 to June 2026. Updated August 6, 2026. <a href="https://piperocket.digital/research/google-ads-benchmarks/" style={{ color: '#764ba2', textDecoration: 'underline' }} target="_blank" rel="noopener noreferrer">piperocket.digital</a></li>
                 <li>DigitalApplied. &quot;LinkedIn Ads Benchmarks 2026: CPC, CTR, CVR by Industry.&quot; Vendor-stated; aggregated from LinkedIn Marketing Solutions, AdStage, Hootsuite, Demand Gen Report and HubSpot survey data cross-referenced with agency-managed accounts, Q1 2026 vs Q1 2025. <a href="https://www.digitalapplied.com/blog/linkedin-ads-benchmarks-2026-cpc-ctr-cvr-industry" style={{ color: '#764ba2', textDecoration: 'underline' }} target="_blank" rel="noopener noreferrer">digitalapplied.com</a></li>
                 <li>GrowthSpree. &quot;B2B SaaS LinkedIn Ads Benchmarks 2026.&quot; Vendor-stated; from management of $60M+ in ad spend across 300+ B2B SaaS accounts. Period and central-tendency method not published. <a href="https://www.growthspreeofficial.com/blogs/b2b-saas-linkedin-ads-benchmarks-2026-cpc-cpl-ctr-conversion-rate-by-vertical" style={{ color: '#764ba2', textDecoration: 'underline' }} target="_blank" rel="noopener noreferrer">growthspreeofficial.com</a></li>
