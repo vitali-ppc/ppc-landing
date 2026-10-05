@@ -14,6 +14,8 @@ export const metadata: Metadata = {
       'The honest cost ranges for a Google Ads consultant, the break-even math at your spend, and a neutral consultant vs agency vs in-house vs software vs DIY grid.',
     url: 'https://www.kampaio.com/blog/google-ads-consultant-cost',
     type: 'article',
+    publishedTime: '2026-07-15T00:00:00.000Z',
+    modifiedTime: '2026-10-05T00:00:00.000Z',
     images: [
       {
         url: '/og/google-ads-consultant-cost.png',

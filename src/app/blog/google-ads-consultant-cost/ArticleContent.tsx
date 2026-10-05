@@ -38,7 +38,7 @@ export default function ArticleContent() {
       },
     },
     datePublished: '2026-07-15T00:00:00.000Z',
-    dateModified: '2026-07-15T00:00:00.000Z',
+    dateModified: '2026-10-05T00:00:00.000Z',
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': 'https://www.kampaio.com/blog/google-ads-consultant-cost',
@@ -198,7 +198,7 @@ export default function ArticleContent() {
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '2px' }}>
                   <span style={{ color: '#64748b', fontSize: '16px', fontWeight: 600 }}>By Kampaio Team</span>
                   <span style={{ color: '#64748b', fontSize: '15px' }}>AI-native Google Ads optimization</span>
-                  <span style={{ color: '#64748b', fontSize: '15px' }}>July 15, 2026 &middot; 10 min read</span>
+                  <span style={{ color: '#64748b', fontSize: '15px' }}>July 15, 2026 &middot; Updated October 5, 2026 &middot; 10 min read</span>
                 </div>
               </div>
             </div>
@@ -284,7 +284,7 @@ export default function ArticleContent() {
               </div>
 
               <p style={paragraphStyle}>
-                What drives the spread from $800 to $4,000 for the &quot;same&quot; service: seniority, whether a named specialist does the work or it&apos;s outsourced to a junior, and scope. None of that spread tells you what&apos;s fair for your account, though. That&apos;s a function of one number: how much you spend.
+                What drives the spread from $800 to $4,000 for the &quot;same&quot; service: seniority, whether a named specialist does the work or it&apos;s outsourced to a junior, and scope. Global freelance marketplaces sit far lower: <a href="https://www.upwork.com/hire/google-adwords-experts/cost/" style={linkStyle} target="_blank" rel="noopener noreferrer">Upwork</a> reports a $25/hour median for Google Ads experts on historical contracts worldwide (typically $15-40), well under the $75-250 an experienced US specialist charges, which is why a quote below $100/hr deserves a seniority check. None of that spread tells you what&apos;s fair for your account, though. That&apos;s a function of one number: how much you spend.
               </p>
             </section>
 
@@ -301,7 +301,7 @@ export default function ArticleContent() {
                 rows={[
                   ['Individual consultant', '$75-250/hr, or $500-5,000/mo retainer', 'One named specialist (sometimes a junior)', '$5,000-20,000/mo, or a one-off audit/rebuild at any spend'],
                   ['Agency', '$1,500-10,000/mo, or 10-20% of spend', 'A team; small accounts often get junior staff', '$20,000+/mo, multi-channel, or zero owner time'],
-                  ['In-house hire', 'Loaded, six-figure-adjacent annual cost (base salary avg $66,806-$70,915/yr)', 'A full-time employee, full oversight', 'High spend and complexity, control outweighs fixed cost'],
+                  ['In-house hire', 'Loaded, six-figure-adjacent annual cost (base salary avg $67,819-$70,915/yr)', 'A full-time employee, full oversight', 'High spend and complexity, control outweighs fixed cost'],
                   [<><a href="/pricing" style={linkStyle}>AI software (e.g. Kampaio)</a></>, 'Free while in beta', 'Software optimizes continuously; you approve changes', 'Continuous optimization at SMB / lean-B2B spend, no scaling retainer'],
                   ['DIY', 'Your time, plus ad spend', 'You', 'Under roughly $20,000/mo with decent reporting and a few hours a week'],
                 ]}
@@ -314,7 +314,7 @@ export default function ArticleContent() {
                 If an agency is where you land, see <a href="/blog/how-to-choose-a-ppc-agency" style={linkStyle}>how to vet and choose a PPC agency</a> before you sign anything, especially the account-ownership terms.
               </p>
               <p style={paragraphStyle}>
-                The in-house figure is honest, not padded: Glassdoor puts average total pay for a PPC specialist at $70,915/year (90th percentile $113,941), close to <a href="https://www.indeed.com/career/ppc-specialist/salaries" style={linkStyle} target="_blank" rel="noopener noreferrer">Indeed&apos;s</a> $66,806/year average base. Neither is raw six figures; add payroll tax, benefits, and overhead (+25-40% on base) and you land at a genuinely loaded, six-figure-adjacent cost.
+                The in-house figure is honest, not padded: Glassdoor puts average total pay for a PPC specialist at $70,915/year (90th percentile $113,941), close to <a href="https://www.indeed.com/career/ppc-specialist/salaries" style={linkStyle} target="_blank" rel="noopener noreferrer">Indeed&apos;s</a> $67,819/year average base (107 job postings, updated September 23, 2026). Neither is raw six figures; add payroll tax, benefits, and overhead (+25-40% on base) and you land at a genuinely loaded, six-figure-adjacent cost.
               </p>
               <p style={paragraphStyle}>
                 Here&apos;s the math sellers rarely publish: the fee-to-media-spend inversion. At $2,500/month spend, a $1,500/month consultant is 60% of your budget going to management, not media, which almost never works below roughly $5,000 spend. Above $15,000-20,000, the same fee is a reasonable 10-15% slice. Run that ratio on your own account first.
@@ -522,7 +522,7 @@ export default function ArticleContent() {
               </div>
 
               <p style={{ fontSize: '14px', color: '#64748b', fontStyle: 'italic', lineHeight: 1.7, marginTop: '8px' }}>
-                Sources: Google Ads Help, &quot;Manager Accounts (MCC): About ownership of client accounts&quot; (2026); Glassdoor, &quot;PPC Specialist Salaries&quot; (2026, average total pay $70,915/yr; bot-blocked, cited as plain-text attribution); Indeed, &quot;PPC Specialist Salaries&quot; (2026, $66,806/yr average base). Cost ranges are summarized from public materials and practitioner discussions as of July 2026 and vary by account size and scope. This article is informational and does not constitute professional advertising advice.
+                Sources: Google Ads Help, &quot;Manager Accounts (MCC): About ownership of client accounts&quot; (2026); Glassdoor, &quot;PPC Specialist Salaries&quot; (2026, average total pay $70,915/yr; bot-blocked, cited as plain-text attribution); Indeed, &quot;PPC Specialist Salaries&quot; ($67,819/yr average base, 107 job postings, updated September 23, 2026); Upwork, &quot;Google Ads Expert Cost&quot; (2026, $25/hr worldwide median, typical $15-40). Cost ranges are summarized from public materials and practitioner discussions as of July 2026 and vary by account size and scope. This article is informational and does not constitute professional advertising advice.
               </p>
             </section>
           </div>
