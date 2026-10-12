@@ -39,7 +39,7 @@ export default function ArticleContent() {
       },
     },
     datePublished: '2026-08-02T00:00:00.000Z',
-    dateModified: '2026-09-03T00:00:00.000Z',
+    dateModified: '2026-10-12T00:00:00.000Z',
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': 'https://www.kampaio.com/blog/google-ads-search-terms-report',
@@ -231,6 +231,7 @@ export default function ArticleContent() {
     { label: 'Search Engine Land: 5 tips for the search terms report, Nov 26, 2025', href: 'https://searchengineland.com/google-ads-search-terms-report-tips-465174' },
     { label: 'Google Ads Help: About ad group and asset group prioritization (Advanced search experiences)', href: 'https://support.google.com/google-ads/answer/2756257' },
     { label: 'Search Engine Journal: Google quietly changed how search terms are reported for some AI queries, May 2026', href: 'https://www.searchenginejournal.com/google-quietly-changed-how-search-terms-are-reported-for-some-ai-queries/574803/' },
+    { label: "Google: Dynamic Search Ads are upgrading to AI Max, blog.google, updated Jun 11, 2026", href: 'https://blog.google/products/ads-commerce/dsa-upgrade-to-ai-max-2026/' },
   ];
 
   return (
@@ -265,7 +266,7 @@ export default function ArticleContent() {
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '2px' }}>
                   <span style={{ color: '#64748b', fontSize: '16px', fontWeight: 600 }}>By Kampaio Team</span>
                   <span style={{ color: '#64748b', fontSize: '15px' }}>AI-native Google Ads optimization</span>
-                  <span style={{ color: '#64748b', fontSize: '15px' }}>August 2, 2026 &middot; Updated September 3, 2026 &middot; 11 min read</span>
+                  <span style={{ color: '#64748b', fontSize: '15px' }}>August 2, 2026 &middot; Updated October 12, 2026 &middot; 11 min read</span>
                 </div>
               </div>
             </div>
@@ -537,6 +538,10 @@ export default function ArticleContent() {
                 <a href="https://support.google.com/google-ads/answer/15910187" style={linkStyle} target="_blank" rel="noopener noreferrer">Google Ads Help, 15910187</a>;{' '}
                 <a href="https://searchengineland.com/google-ads-search-terms-report-tips-465174" style={linkStyle} target="_blank" rel="noopener noreferrer">Search Engine Land, Nov 26, 2025, Tip 3</a>). Accounts activating it on Search typically see 14% more conversions or conversion value at a similar CPA or ROAS, 27% for accounts mostly on exact and phrase before (Google internal data, 2025, via{' '}
                 <a href="https://blog.google/products/ads-commerce/google-ai-max-for-search-campaigns/" style={linkStyle} target="_blank" rel="noopener noreferrer">blog.google</a>). Worth setting that view up before you assume your existing search-terms habits still apply.
+              </p>
+              <p style={paragraphStyle}>
+                Opting in is no longer the only way AI Max reaches an account. Search campaigns that used automatically created assets or the campaign-level broad match setting are being auto-upgraded starting in September 2026, and the Dynamic Search Ads auto-upgrade follows in February 2027 (
+                <a href="https://blog.google/products/ads-commerce/dsa-upgrade-to-ai-max-2026/" style={linkStyle} target="_blank" rel="noopener noreferrer">blog.google, updated Jun 11, 2026</a>). The consequence: rows with the AI Max match type can show up in an account that never switched it on, so check the match type column before you read those terms as matches to your own keywords.
               </p>
               <p style={paragraphStyle}>
                 If PMax&apos;s category view isn&apos;t enough, run a parallel Search campaign on the same theme as a directional proxy. It&apos;s a workaround, not a fix, but it&apos;s the closest thing available today.
