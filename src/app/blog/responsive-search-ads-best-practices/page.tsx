@@ -3,13 +3,13 @@ import ArticleContent from './ArticleContent';
 
 export const metadata: Metadata = {
   title: 'Responsive Search Ads Best Practices (2026)',
-  description: 'Technical RSA best practices: ML signal quality, asset combinations, ad strength forensics, pinning trade-offs, variant testing with statistical significance.',
+  description: 'Responsive search ads best practices: how many headlines to write, when pinning helps or hurts, what ad strength misses, and how to test RSA variants.',
   alternates: {
     canonical: 'https://www.kampaio.com/blog/responsive-search-ads-best-practices',
   },
   openGraph: {
     title: 'Responsive Search Ads Best Practices for Senior PPC Managers (2026)',
-    description: 'Sara-level technical RSA guide: combinations math, ad strength forensics, pinning trade-offs, 4,200-impression significance windows.',
+    description: 'Responsive search ads best practices: how many headlines to write, when pinning helps or hurts, what ad strength misses, and how to test RSA variants.',
     url: 'https://www.kampaio.com/blog/responsive-search-ads-best-practices',
     type: 'article',
     images: [{ url: '/og/responsive-search-ads-best-practices.png', width: 1200, height: 630, alt: 'Responsive Search Ads Best Practices, kampaio.com/blog' }],
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Responsive Search Ads Best Practices (2026)',
-    description: 'Sara-level technical RSA guide: combinations math, ad strength forensics, pinning trade-offs, 4,200-impression significance windows.',
+    description: 'Responsive search ads best practices: how many headlines to write, when pinning helps or hurts, what ad strength misses, and how to test RSA variants.',
     images: ['/og/responsive-search-ads-best-practices.png'],
   },
 };
