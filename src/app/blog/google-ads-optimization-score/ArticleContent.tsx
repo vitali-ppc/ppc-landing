@@ -37,7 +37,7 @@ export default function ArticleContent() {
       },
     },
     datePublished: '2026-07-10T00:00:00.000Z',
-    dateModified: '2026-07-10T00:00:00.000Z',
+    dateModified: '2026-10-19T00:00:00.000Z',
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': 'https://www.kampaio.com/blog/google-ads-optimization-score',
@@ -123,7 +123,7 @@ export default function ArticleContent() {
         name: 'Should I turn on auto-apply recommendations?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Only for low-risk categories like repairs and ad copy variants. Auto-apply for bidding, budget, or keyword/targeting recommendations implements changes to a live account without human review, which is exactly the mechanism that pushes CPC and spend up without a corresponding ROAS check.',
+          text: 'Only for low-risk categories like repairs and improvements to existing responsive search ads. Since January 26, 2026, the "Add responsive search ads" recommendation no longer auto-creates new RSAs and is gone from the Auto Apply settings page (Google Ads Help, 2026). Auto-apply for bidding, budget, or keyword/targeting recommendations implements changes to a live account without human review, which is exactly the mechanism that pushes CPC and spend up without a corresponding ROAS check.',
         },
       },
     ],
@@ -223,7 +223,7 @@ export default function ArticleContent() {
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '2px' }}>
                   <span style={{ color: '#64748b', fontSize: '16px', fontWeight: 600 }}>By Kampaio Team</span>
                   <span style={{ color: '#64748b', fontSize: '15px' }}>Senior PPC strategy at Kampaio</span>
-                  <span style={{ color: '#64748b', fontSize: '15px' }}>July 10, 2026 · 10 min read</span>
+                  <span style={{ color: '#64748b', fontSize: '15px' }}>July 10, 2026 · Updated October 19, 2026 · 10 min read</span>
                 </div>
               </div>
             </div>
@@ -551,7 +551,10 @@ export default function ArticleContent() {
               </Steps>
 
               <p style={para}>
-                The most consequential habit in this process is turning off blanket auto-apply. Leave auto-apply enabled, if at all, only for repair-type and ad-variation recommendations. Never for bidding, budgets, or keyword/targeting categories, where an unreviewed change can move real spend before anyone notices.
+                The most consequential habit in this process is turning off blanket auto-apply. Leave auto-apply enabled, if at all, only for repair-type recommendations and improvements to existing responsive search ads. Never for bidding, budgets, or keyword/targeting categories, where an unreviewed change can move real spend before anyone notices.
+              </p>
+              <p style={para}>
+                Google has already narrowed the ad-copy side of that list. Its auto-apply documentation states: &quot;Starting January 26, 2026, the &quot;Add responsive search ads&quot; recommendation will no longer automatically suggest&quot; new RSAs, and &quot;This recommendation is removed from the Auto Apply settings page&quot; (<a href="https://support.google.com/google-ads/answer/10279006?hl=en" style={linkStyle} target="_blank" rel="noopener noreferrer">Google Ads Help, 2026</a>). What remains auto-appliable under ads and assets is improving your existing responsive search ads, adding dynamic search ads, and optimized ad rotation. Brand-new ad variants are no longer something auto-apply writes for you.
               </p>
               <p style={para}>
                 This lines up with where the practitioner debate already lands. Threads on r/PPC and in Google&apos;s own Ads Community keep asking versions of the same question: is the score &quot;a legit and relevant metric in driving higher ROI?&quot; The consensus that surfaces is consistent with the process above. Use the score as a checklist, review manually, and judge the account by ROAS and CPA instead. For a deeper walkthrough of manual review across a full account, see B6&apos;s <a href="/blog/ppc-audit-checklist" style={linkStyle}>Google Ads audit checklist</a>, the wider system in our <a href="/blog/google-ads-optimization" style={linkStyle}>complete guide to Google Ads optimization</a>, and the breakdown of <a href="/blog/google-ads-ai-vs-manual-bidding" style={linkStyle}>AI vs. manual bidding control</a>.
@@ -633,7 +636,7 @@ export default function ArticleContent() {
               <p style={para}>Not necessarily. A 100% score only confirms that every available recommendation has been applied or dismissed; it says nothing about whether those recommendations improved ROAS, CPA, or profit. An account can reach 100% by accepting suggestions that widen targeting and raise CPC faster than they raise revenue.</p>
 
               <h3 style={{ fontSize: '20px', fontWeight: 700, color: '#1e293b', marginTop: '28px', marginBottom: '12px' }}>Should I turn on auto-apply recommendations?</h3>
-              <p style={para}>Only for low-risk categories like repairs and ad copy variants. Auto-apply for bidding, budget, or keyword/targeting recommendations implements changes to a live account without human review, which is exactly the mechanism that pushes CPC and spend up without a corresponding ROAS check.</p>
+              <p style={para}>Only for low-risk categories like repairs and improvements to existing responsive search ads. Since January 26, 2026, the &quot;Add responsive search ads&quot; recommendation no longer auto-creates new RSAs and is gone from the Auto Apply settings page (<a href="https://support.google.com/google-ads/answer/10279006?hl=en" style={linkStyle} target="_blank" rel="noopener noreferrer">Google Ads Help, 2026</a>). Auto-apply for bidding, budget, or keyword/targeting recommendations implements changes to a live account without human review, which is exactly the mechanism that pushes CPC and spend up without a corresponding ROAS check.</p>
             </section>
 
             {/* Bottom line */}
@@ -684,6 +687,7 @@ export default function ArticleContent() {
                 <li style={{ marginBottom: '12px' }}><a href="https://support.google.com/google-ads/thread/264502466/are-optmisation-scores-really-that-important?hl=en" style={linkStyle} target="_blank" rel="noopener noreferrer">Google Ads Help Community, Product Expert answer (Mar 2024)</a>. &quot;No direct effect on performance&quot; and &quot;what Google wants advertisers to do, not what&apos;s best for your business goals.&quot;</li>
                 <li style={{ marginBottom: '12px' }}><a href="https://developers.google.com/google-ads/api/docs/recommendations" style={linkStyle} target="_blank" rel="noopener noreferrer">Google Ads API Documentation, &quot;Optimization score &amp; recommendations&quot; (2026)</a>. Programmatic view of recommendation types and score mechanics.</li>
                 <li style={{ marginBottom: '12px' }}><a href="https://www.storegrowers.com/google-ads-optimization-score/" style={linkStyle} target="_blank" rel="noopener noreferrer">Store Growers (Dennis Moons), &quot;Google Ads Optimization Score: Useful Metric or Manipulation?&quot; (Jan 2026)</a>. Google Partner 70% minimum threshold.</li>
+                <li style={{ marginBottom: '12px' }}><a href="https://support.google.com/google-ads/answer/10279006?hl=en" style={linkStyle} target="_blank" rel="noopener noreferrer">Google Ads Help, &quot;About applying recommendations automatically&quot; (2026)</a>. &quot;Add responsive search ads&quot; removed from Auto Apply as of January 26, 2026; current ads and assets auto-apply list.</li>
               </ol>
             </section>
           </div>
