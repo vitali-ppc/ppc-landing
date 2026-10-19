@@ -551,7 +551,7 @@ export default function ArticleContent() {
               </Steps>
 
               <p style={para}>
-                The most consequential habit in this process is turning off blanket auto-apply. Leave auto-apply enabled, if at all, only for repair-type recommendations and improvements to existing responsive search ads. Never for bidding, budgets, or keyword/targeting categories, where an unreviewed change can move real spend before anyone notices.
+                The most consequential habit in this process is turning off blanket auto-apply. Leave auto-apply enabled, if at all, only for repair-type recommendations and improvements to existing <a href="/blog/responsive-search-ads-best-practices" style={{ color: '#764ba2', textDecoration: 'underline' }}>responsive search ads</a>. Never for bidding, budgets, or keyword/targeting categories, where an unreviewed change can move real spend before anyone notices.
               </p>
               <p style={para}>
                 Google has already narrowed the ad-copy side of that list. Its auto-apply documentation states: &quot;Starting January 26, 2026, the &quot;Add responsive search ads&quot; recommendation will no longer automatically suggest&quot; new RSAs, and &quot;This recommendation is removed from the Auto Apply settings page&quot; (<a href="https://support.google.com/google-ads/answer/10279006?hl=en" style={linkStyle} target="_blank" rel="noopener noreferrer">Google Ads Help, 2026</a>). What remains auto-appliable under ads and assets is improving your existing responsive search ads, adding dynamic search ads, and optimized ad rotation. Brand-new ad variants are no longer something auto-apply writes for you.
