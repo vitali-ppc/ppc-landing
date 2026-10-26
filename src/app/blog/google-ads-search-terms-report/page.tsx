@@ -15,11 +15,16 @@ import ArticleContent from './ArticleContent';
 // terms" 32 impressions at position 20.1, plus ~44 more across the
 // "total: search terms" variants at 12-14. Body already answers it (see the
 // "two total rows" section, flag #67).
+// Description rewritten 2026-10-26 (Argus F1, dead snippet): on the window
+// 2026-09-20 -> 2026-10-18 the page sat at 6.7-9.3 for "uncategorised search
+// terms" (65), "uncategorized search terms" (59) and "total search terms" (56),
+// 180 impressions, 0 clicks, under the title above. The old 251-char
+// description never named either row and was cut off in the SERP.
 const SEO_TITLE = 'Uncategorised Search Terms in Google Ads: What\'s Hidden';
 const FULL_TITLE =
   'Google Ads Search Terms Report: What It Shows, What It Hides, and How to Act On It';
 const DESCRIPTION =
-  'The Google Ads search terms report shows the real queries behind your clicks, but Google withholds a chunk of them. How to read the report, what is hidden and why, and a framework for turning any term into a negative, a new keyword, or a wait-and-see.';
+  'Uncategorised search terms are the queries Google will not name: the Total: Other search terms row. What it counts, how it differs from Total: search terms.';
 
 export const metadata: Metadata = {
   title: SEO_TITLE,
