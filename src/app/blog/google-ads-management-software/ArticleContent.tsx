@@ -38,7 +38,7 @@ export default function ArticleContent() {
       },
     },
     datePublished: '2026-07-16T00:00:00.000Z',
-    dateModified: '2026-07-16T00:00:00.000Z',
+    dateModified: '2026-10-26T00:00:00.000Z',
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': 'https://www.kampaio.com/blog/google-ads-management-software',
@@ -177,7 +177,7 @@ export default function ArticleContent() {
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '2px' }}>
                   <span style={{ color: '#64748b', fontSize: '16px', fontWeight: 600 }}>By Kampaio Team</span>
                   <span style={{ color: '#64748b', fontSize: '15px' }}>AI-native Google Ads optimization</span>
-                  <span style={{ color: '#64748b', fontSize: '15px' }}>July 16, 2026 &middot; 11 min read</span>
+                  <span style={{ color: '#64748b', fontSize: '15px' }}>July 16, 2026 &middot; Updated October 26, 2026 &middot; 11 min read</span>
                 </div>
               </div>
             </div>
@@ -277,7 +277,7 @@ export default function ArticleContent() {
 
               <h3 style={h3Style}>Native Google Tools (Free)</h3>
               <p style={paragraphStyle}>
-                Native Google tools are the free, first-party utilities Google ships inside the Ads platform: <a href="https://support.google.com/google-ads/topic/3121763" style={linkStyle} target="_blank" rel="noopener noreferrer">Google Ads Editor</a> for bulk offline edits, Google Ads scripts for custom automation, the Recommendations tab, and the mobile app. Cost: $0. Fit: teams with dev capacity, or single-account advertisers. Tradeoff: no proactive alerting, no cross-account dashboard, and scripts need someone who can maintain JavaScript.
+                Native Google tools are the free, first-party utilities Google ships inside the Ads platform: <a href="https://support.google.com/google-ads/topic/3121763" style={linkStyle} target="_blank" rel="noopener noreferrer">Google Ads Editor</a> for bulk offline edits, Google Ads scripts for custom automation, the Recommendations tab, and the mobile app. Cost: $0. Fit: teams with dev capacity, or single-account advertisers. Tradeoff: no proactive alerting, no cross-account dashboard, and scripts need someone who can maintain JavaScript. The free layer also covers more ground than it did when this guide first ran: <a href="https://support.google.com/google-ads/editor/answer/17136249?hl=en" style={linkStyle} target="_blank" rel="noopener noreferrer">Google Ads Editor version 2.13</a> (July 2026) added channel performance reports, AI Max for Shopping, and a customer retention goal for Performance Max. For accounts under $5K/month, that strengthens the case for starting native before paying for a tool.
               </p>
 
               <h3 style={h3Style}>Rules-and-Automation Layers</h3>
@@ -543,7 +543,7 @@ export default function ArticleContent() {
               </div>
 
               <p style={{ fontSize: '14px', color: '#64748b', fontStyle: 'italic', lineHeight: 1.7, marginTop: '8px' }}>
-                Sources: Google Ads Editor documentation and Google Ad Manager Help (2026); vendor pricing verified first-party as of July 2026 and subject to change; practitioner signal from 107 public discussions (Reddit, Hacker News, Stack Exchange) gathered 2026-07-16. This article is informational and does not constitute professional advertising advice.
+                Sources: Google Ads Editor documentation, including the version 2.13 release notes (July 2026), and Google Ad Manager Help (2026); vendor pricing verified first-party as of July 2026 and subject to change; practitioner signal from 107 public discussions (Reddit, Hacker News, Stack Exchange) gathered 2026-07-16. This article is informational and does not constitute professional advertising advice.
               </p>
             </section>
           </div>
