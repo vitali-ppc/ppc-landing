@@ -37,7 +37,7 @@ export default function ArticleContent() {
       },
     },
     "datePublished": "2026-05-15T00:00:00.000Z",
-    "dateModified": "2026-05-15T00:00:00.000Z",
+    "dateModified": "2026-11-02T00:00:00.000Z",
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https://kampaio.com/blog/responsive-search-ads-best-practices"
@@ -285,7 +285,7 @@ export default function ArticleContent() {
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '2px' }}>
                   <span style={{ color: '#64748b', fontSize: '16px', fontWeight: 600 }}>By B6 Team</span>
                   <span style={{ color: '#64748b', fontSize: '15px' }}>Kampaio</span>
-                  <span style={{ color: '#64748b', fontSize: '15px' }}>May 15, 2026 &middot; 13 min read</span>
+                  <span style={{ color: '#64748b', fontSize: '15px' }}>May 15, 2026 &middot; Updated November 2, 2026 &middot; 13 min read</span>
                 </div>
               </div>
             </div>
@@ -514,6 +514,9 @@ export default function ArticleContent() {
                 <li style={{ marginBottom: '14px' }}>At day 14, pull the combinations report. Compare top-combination CTR, conversion rate, and per-asset &quot;Low / Good / Best&quot; labels.</li>
                 <li style={{ marginBottom: '14px' }}>Replace assets, not ads. Swap the bottom 20% of headlines (labeled &quot;Low&quot;) with new variants. Hold the top performers.</li>
               </ol>
+              <p style={pStyle}>
+                One launch-step change since this guide was first published. In July 2026 Google introduced <a href="https://business.google.com/en-all/accelerate/announcements/faster-ad-creation-with-real-time-policy-reviews/" style={linkStyle} target="_blank" rel="noopener noreferrer">Real-Time Policy Reviews</a> for text assets in responsive search ads, in both the Google Ads UI and Google Ads Editor. While you draft the challenger, each headline and description field gets instant editorial checks (typos, capitalisation, symbols, a destination that is not working), so editorial disapprovals get fixed before you click Save. On save, a compliant ad is approved and can serve immediately; only ads with complex issues, such as ones needing certification or an appeal, go to a separate post-save policy review page. Google frames it as &quot;reducing review times from hours to seconds for Responsive Search Ads&quot;. For testing, that means the 14-to-21-day clock starts at save, not after a review that used to run past an hour. Google said coverage would expand to Performance Max and Demand Gen in the second half of 2026.
+              </p>
               <p style={pStyle}>
                 Asset-level signal is where the real work happens. The combinations report shows performance by individual headline. Bottom 20% headlines tagged &quot;Low&quot; are not necessarily bad copy. They are bad in this ad group, against this audience, paired with these other headlines. Replace them with variants targeted at the specific gap.
               </p>
