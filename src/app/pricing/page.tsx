@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'B6: Three Levels of Google Ads Autonomy',
     description:
-      'Three tiers of autonomy. All include 7 AI agents + Aegis safety reviewer.',
+      'Three tiers of autonomy for AI agents on Google Ads. In development. Join early access.',
     url: 'https://www.kampaio.com/pricing',
     type: 'website',
     images: [
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'B6: Three Levels of Google Ads Autonomy',
     description:
-      'Three tiers of autonomy. All include 7 AI agents + Aegis safety reviewer.',
+      'Three tiers of autonomy for AI agents on Google Ads. In development. Join early access.',
     images: ['/og/pricing.png'],
   },
 };

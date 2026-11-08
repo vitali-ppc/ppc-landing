@@ -25,7 +25,7 @@ const LAYERS = [
       'Proposing account-level changes with the reasoning attached',
       'Reviewing each proposal for risk before anything executes',
     ],
-    note: 'This is the layer Kampaio runs. Today that means two agents on live accounts: Buzz for bidding work and Aegis for risk review. The rest ship as the cabinet grows.',
+    note: 'This is the layer Kampaio is building. It is in development and not yet running on live accounts.',
   },
 ];
 

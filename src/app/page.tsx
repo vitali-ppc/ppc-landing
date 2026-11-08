@@ -4,12 +4,12 @@ import HomeContent from './HomeContent';
 export const metadata: Metadata = {
   title: 'Kampaio: AI-Powered Google Ads Management Platform',
   description:
-    'Autonomous AI agents manage your Google Ads campaigns 24/7. Built for SMBs spending $3-50K/month. Stop paying agencies, start scaling efficiently.',
+    'AI agents for Google Ads, built for SMBs spending $3-50K/month. In development. Join early access.',
   alternates: { canonical: 'https://www.kampaio.com' },
   openGraph: {
     title: 'Kampaio: AI-Powered Google Ads Platform',
     description:
-      '7 AI agents work 24/7 on your Google Ads. Built for SMBs. Free during early access.',
+      'AI agents for Google Ads, built for SMBs. In development. Join early access.',
     url: 'https://www.kampaio.com',
     type: 'website',
     images: [
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Kampaio: AI-Powered Google Ads Platform',
     description:
-      '7 AI agents work 24/7 on your Google Ads. Built for SMBs. Free during early access.',
+      'AI agents for Google Ads, built for SMBs. In development. Join early access.',
     images: ['/og/home.png'],
   },
 };

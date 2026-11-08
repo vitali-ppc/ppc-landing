@@ -7,9 +7,9 @@ export const metadata: Metadata = {
     'B6 is an AI-agent team that manages Google Ads campaigns end-to-end. Buzz bids, Aegis reviews, Echo reports. Free during early access. Watch them work in real-time.',
   alternates: { canonical: 'https://www.kampaio.com/b6' },
   openGraph: {
-    title: 'B6: 7 AI Agents Running Your Google Ads',
+    title: 'B6: AI Agents for Google Ads',
     description:
-      'Autonomous PPC cabinet. Buzz, Aegis, Echo work 24/7. Free during early access.',
+      'An AI-agent cabinet for Google Ads. In development. Join early access.',
     url: 'https://www.kampaio.com/b6',
     type: 'website',
     images: [
@@ -23,9 +23,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'B6: 7 AI Agents Running Your Google Ads',
+    title: 'B6: AI Agents for Google Ads',
     description:
-      'Autonomous PPC cabinet. Buzz, Aegis, Echo work 24/7. Free during early access.',
+      'An AI-agent cabinet for Google Ads. In development. Join early access.',
     images: ['/og/b6.png'],
   },
 };
@@ -41,7 +41,7 @@ const b6JsonLd = {
   serviceType: 'PPC Campaign Management',
   category: 'Pay-Per-Click Advertising Automation',
   description:
-    'B6 is an autonomous AI-agent team that manages Google Ads campaigns end-to-end. 8 specialized agents (Buzz for bidding, Aegis for risk review, Echo for reporting, Vox for strategy, Maximus for orchestration, Mira for creative, Sage for research, Vigil for 24/7 anomaly monitoring) work together to deliver campaign performance without manual intervention.',
+    'B6 is an AI-agent cabinet for managing Google Ads campaigns. It is in development and not yet running on live accounts.',
   url: 'https://www.kampaio.com/b6',
   provider: {
     '@id': 'https://www.kampaio.com/#organization',

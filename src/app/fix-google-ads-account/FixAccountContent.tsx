@@ -155,10 +155,9 @@ export default function FixAccountContent() {
             these need a person watching a dashboard to be caught.
           </p>
           <p style={{ fontSize: '17px', lineHeight: 1.6, color: '#475569', maxWidth: '760px' }}>
-            Kampaio connects to your own Google Ads account through OAuth and watches it
-            continuously. Two agents run on live accounts today: Buzz proposes bidding changes and
-            Aegis reviews every proposal for risk before you approve it. The rest ship as the
-            cabinet grows. Founding access is free while billing is not open.{' '}
+            Kampaio is being built to connect to your own Google Ads account through OAuth: Buzz to
+            propose bidding changes, Aegis to review every proposal for risk before you approve it.
+            It is in development and not yet running on live accounts. Join early access.{' '}
             <Link href="/pricing" style={{ color: '#764ba2', textDecoration: 'underline' }}>
               See what each tier covers
             </Link>

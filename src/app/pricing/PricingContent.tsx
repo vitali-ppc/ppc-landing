@@ -323,8 +323,8 @@ export default function PricingContent() {
           fontSize: '14px',
           marginTop: '40px'
         }}>
-          No credit card. No contract. Two agents are live today (Buzz and Aegis);
-          the rest ship as the cabinet grows.
+          No credit card. No contract. The agents are in development and not yet
+          running on live accounts. Join early access.
         </p>
       </div>
 

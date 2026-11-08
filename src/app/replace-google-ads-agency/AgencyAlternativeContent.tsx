@@ -109,9 +109,8 @@ export default function AgencyAlternativeContent() {
                 maxWidth: '580px',
               }}
             >
-              <strong style={{ color: '#1e293b' }}>Where Kampaio is today.</strong> Two agents run
-              on live accounts: Buzz for bidding work and Aegis for risk review. The rest ship as
-              the cabinet grows. Founding access is free while billing is not open.
+              <strong style={{ color: '#1e293b' }}>Where Kampaio is today.</strong> In development:
+              the agents are not yet running on live accounts. Join early access.
             </div>
           </div>
         </div>

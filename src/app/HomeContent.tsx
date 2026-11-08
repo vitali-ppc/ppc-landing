@@ -512,7 +512,7 @@ const MeetTheTeam: React.FC = () => (
   <section className="kx-sec" id="team">
     <div className="kx-sec-in">
       <h2 className="kx-h2">Meet your agency</h2>
-      <p className="kx-sec-sub">Each agent is a specialist with one job. Buzz and Aegis run on live accounts today. The rest are built in the same order you would hire them.</p>
+      <p className="kx-sec-sub">Each agent is a specialist with one job. They are in development and not yet running on live accounts, built in the same order you would hire them.</p>
       <div className="kx-grid-auto">
         {TEAM.map((m) => (
           <div key={m.name} className={`kx-agent ${m.status === "live" ? "live" : "soon"}`}>
