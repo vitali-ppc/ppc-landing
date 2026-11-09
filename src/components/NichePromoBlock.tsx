@@ -37,10 +37,10 @@ const NichePromoBlock: React.FC<NichePromoBlockProps> = ({ niche }) => {
         fontWeight: '500',
         opacity: 0.9
       }}>
-        Automated audits, custom reports, and expert strategies designed for your practice.
+        In development and not yet running on live accounts. Join early access.
       </p>
       <a
-        href="/chat"
+        href="/auth/register"
         className="btn"
         style={{
           background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
@@ -65,7 +65,7 @@ const NichePromoBlock: React.FC<NichePromoBlockProps> = ({ niche }) => {
           (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
         }}
       >
-        Try for Free
+        Join early access
       </a>
     </section>
   );

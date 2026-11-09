@@ -4,7 +4,6 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
-import { formatNiche } from '../../../utils/seo';
 import React from 'react';
 
 // Only niches with a real page. The 16 'Coming Soon' stubs were removed on
@@ -39,14 +38,11 @@ const IconRealEstate = (
 
 export default function AdsMainHubPage() {
   const title = 'Your AI Assistant for Google Ads. Tailored to Your Industry.';
-  const subheading = 'Instantly generate tailored reports, strategic insights, and PPC audits — all customized for your industry.';
-  const seoParagraph = "Whether you’re running campaigns in eCommerce, SaaS, law, or local business, Kampaio analyzes your Google Ads data and delivers clear, industry-tailored insights. Join over 1,000 businesses who’ve uncovered hidden growth opportunities, simplified audits, and lowered costs — all without hiring an agency or drowning in complex reports. Stop guessing and start growing with AI-driven recommendations built for your niche.";
+  const subheading = 'Kampaio is building AI agents for Google Ads. They are in development and not yet running on live accounts.';
+  const seoParagraph = "Pick your industry.";
 
-  const [searchQuery, setSearchQuery] = useState('');
   const [showAllNiches, setShowAllNiches] = useState(false);
-  const filteredNiches = niches.filter(niche =>
-    formatNiche(niche.name).toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const filteredNiches = niches;
   const visibleNiches = showAllNiches ? filteredNiches : filteredNiches.slice(0, 4);
 
   // Стили карточек и кнопок как в SILO-хабах
@@ -93,55 +89,6 @@ export default function AdsMainHubPage() {
           <p style={{ fontSize: '1.15rem', color: '#64748b', fontWeight: 400, marginBottom: 24 }}>
             {subheading}
           </p>
-        </div>
-        {/* Поиск по нишам */}
-        <div style={{ maxWidth: 600, margin: '0 auto 48px auto' }}>
-          <div style={{
-            position: 'relative',
-            background: 'white',
-            borderRadius: '16px',
-            boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
-            border: '1px solid #e2e8f0',
-            overflow: 'hidden'
-          }}>
-            <input
-              type="text"
-              placeholder="Search niches..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              style={{
-                width: '100%',
-                padding: '16px 20px',
-                border: 'none',
-                outline: 'none',
-                fontSize: '16px',
-                background: 'transparent',
-                color: '#1e293b'
-              }}
-            />
-            <div style={{
-              position: 'absolute',
-              right: '16px',
-              top: '50%',
-              transform: 'translateY(-50%)',
-              color: '#64748b'
-            }}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <circle cx="11" cy="11" r="8"/>
-                <path d="m21 21-4.35-4.35"/>
-              </svg>
-            </div>
-          </div>
-          {searchQuery && (
-            <div style={{
-              textAlign: 'center',
-              marginTop: '12px',
-              fontSize: '14px',
-              color: '#64748b'
-            }}>
-              {filteredNiches.length} niche{filteredNiches.length !== 1 ? 's' : ''} found
-            </div>
-          )}
         </div>
         <section style={{ maxWidth: 1100, margin: '0 auto' }}>
           <div style={{
@@ -268,10 +215,10 @@ export default function AdsMainHubPage() {
             fontWeight: '500',
             opacity: 0.9
           }}>
-            Get tailored suggestions and audits for your business type or location.
+            In development and not yet running on live accounts. Join early access.
           </p>
           <a
-            href="/chat"
+            href="/auth/register"
             className="btn"
             style={{
               background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
@@ -296,7 +243,7 @@ export default function AdsMainHubPage() {
               (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
             }}
           >
-            Try for Free
+            Join early access
           </a>
         </section>
       </main>
