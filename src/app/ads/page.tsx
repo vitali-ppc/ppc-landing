@@ -1,253 +1,118 @@
-'use client';
-
-import { useState } from 'react';
+import type { Metadata } from 'next';
 import Link from 'next/link';
+import type { CSSProperties } from 'react';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
-import React from 'react';
+import Breadcrumbs from '../../components/Breadcrumbs';
 
-// Only niches with a real page. The 16 'Coming Soon' stubs were removed on
-// 2026-08-18: they advertised verticals the site has no content for, and the
-// decision recorded in ADTURBO-2.0 5f is that niche pages come later and with
-// real text, not from a template. An empty promise on a live page is worse than
-// no card.
-const niches = [
-  { slug: 'dentist', name: 'Dentist', hasPage: true },
-  { slug: 'lawyer', name: 'Lawyers', hasPage: true },
-  { slug: 'real-estate', name: 'Real Estate', hasPage: true },
-  { slug: 'saas', name: 'SaaS', hasPage: true },
-];
+// /ads hub, 2026-11-09: guide "google ads for local business" (KP US 720/mo), written by the
+// kampaio pipeline (brief -> research -> writer -> humanizer -> linker -> editor), source
+// seo-agent-team/drafts/google-ads-for-local-business.md. Replaces the niche-card page.
+// The hub is indexable; the four niche pages stay noindex (ads/layout.tsx) until written.
+export const metadata: Metadata = {
+  title: "Google Ads for Local Business: Which Campaign Type, What Budget, Which Industry Page",
+  description: "Google Ads for local business: when to use Local Services Ads, Search or Performance Max, how to target your area, track calls and size a budget.",
+  alternates: { canonical: 'https://www.kampaio.com/ads' },
+  robots: { index: true, follow: true },
+  openGraph: { title: "Google Ads for Local Business: Which Campaign Type, What Budget, Which Industry Page", description: "Google Ads for local business: when to use Local Services Ads, Search or Performance Max, how to target your area, track calls and size a budget.", url: 'https://www.kampaio.com/ads', type: 'article' },
+  twitter: { card: 'summary', title: "Google Ads for Local Business: Which Campaign Type, What Budget, Which Industry Page", description: "Google Ads for local business: when to use Local Services Ads, Search or Performance Max, how to target your area, track calls and size a budget." },
+};
 
-// 2. IconLawyer как отдельный компонент
-const IconLawyer = () => (
-  <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
-    <rect x="6" y="16" width="24" height="4" rx="2" fill="#667eea" />
-    <rect x="16" y="6" width="4" height="24" rx="2" fill="#667eea" />
-    <circle cx="18" cy="18" r="17" stroke="#764ba2" strokeWidth="2" fill="none" />
-  </svg>
-);
+const W: CSSProperties = { maxWidth: 760, margin: '0 auto', padding: '40px 16px 64px', color: '#1e293b' };
+const H1: CSSProperties = { fontSize: '2.2rem', fontWeight: 800, lineHeight: 1.2, margin: '8px 0 20px' };
+const H2: CSSProperties = { fontSize: '1.6rem', fontWeight: 700, lineHeight: 1.3, margin: '44px 0 14px' };
+const H3: CSSProperties = { fontSize: '1.2rem', fontWeight: 700, lineHeight: 1.35, margin: '28px 0 10px' };
+const P: CSSProperties = { fontSize: '17px', lineHeight: 1.7, color: '#334155', margin: '0 0 16px' };
+const A: CSSProperties = { color: '#764ba2', textDecoration: 'underline' };
+const UL: CSSProperties = { margin: '0 0 18px', paddingLeft: 22 };
+const LI: CSSProperties = { fontSize: '17px', lineHeight: 1.65, color: '#334155', marginBottom: 8 };
+const BQ: CSSProperties = { margin: '20px 0', padding: '18px 20px', background: '#f5f3ff', borderLeft: '4px solid #667eea', borderRadius: 8 };
+const BP: CSSProperties = { fontSize: '17px', lineHeight: 1.65, color: '#1e293b', margin: '0 0 6px' };
+const TW: CSSProperties = { overflowX: 'auto', margin: '18px 0 22px' };
+const TB: CSSProperties = { width: '100%', borderCollapse: 'collapse', fontSize: '15px', minWidth: 560 };
+const TH: CSSProperties = { textAlign: 'left', padding: '10px 12px', background: '#f1f5f9', borderBottom: '2px solid #cbd5e1', verticalAlign: 'top' };
+const TD: CSSProperties = { padding: '10px 12px', borderBottom: '1px solid #e2e8f0', verticalAlign: 'top', color: '#334155' };
 
-// 3. IconRealEstate как переменная (имитация импорта)
-const IconRealEstate = (
-  <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
-    <rect x="8" y="18" width="20" height="10" rx="2" fill="#764ba2" />
-    <polygon points="18,8 6,18 30,18" fill="#667eea" />
-    <rect x="15" y="23" width="6" height="5" rx="1" fill="#fff" />
-  </svg>
-);
+const jsonLd = [{"@context": "https://schema.org", "@type": "Article", "headline": "Google Ads for Local Business: Which Campaign Type, What Budget, Which Industry Page", "description": "Google Ads for local business: when to use Local Services Ads, Search or Performance Max, how to target your area, track calls and size a budget.", "url": "https://www.kampaio.com/ads", "datePublished": "2026-11-09", "dateModified": "2026-11-09", "inLanguage": "en-US", "publisher": {"@id": "https://www.kampaio.com/#organization"}}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How much does it cost to advertise locally on Google?", "acceptedAnswer": {"@type": "Answer", "text": "There is no single price, because you set the budget. Search and Performance Max use a daily budget; Local Services Ads use a weekly budget tied to the number of leads you want. Work out your break-even cost per lead first, then size the budget from it."}}, {"@type": "Question", "name": "Is Google Ads worth it for a small business?", "acceptedAnswer": {"@type": "Answer", "text": "It is worth it when your cost per lead stays below your break-even cost per lead. That depends on profit per customer and the share of leads that become customers. Calculate both before spending, then check them against your first two weeks of data."}}, {"@type": "Question", "name": "How do I advertise a local business on Google?", "acceptedAnswer": {"@type": "Answer", "text": "Three steps. Link your Google Business Profile so Google Ads gets location assets. Pick the campaign type from the grid: Local Services Ads, Search, or Performance Max with store goals. Set a call or lead conversion as Primary, so bidding follows customers, not clicks."}}, {"@type": "Question", "name": "What is the difference between Google Ads and Google Local Ads?", "acceptedAnswer": {"@type": "Answer", "text": "Local Ads are ad formats inside Google Ads that use location assets and serve on Search and Performance Max across Search, Maps and, in the US, Waze. Local Services Ads are a separate product with their own dashboard, where you pay per lead and earn a Google Verified badge."}}]}, {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.kampaio.com"}, {"@type": "ListItem", "position": 2, "name": "Industries", "item": "https://www.kampaio.com/ads"}]}];
 
-export default function AdsMainHubPage() {
-  const title = 'Your AI Assistant for Google Ads. Tailored to Your Industry.';
-  const subheading = 'Kampaio is building AI agents for Google Ads. They are in development and not yet running on live accounts.';
-  const seoParagraph = "Pick your industry.";
-
-  const [showAllNiches, setShowAllNiches] = useState(false);
-  const filteredNiches = niches;
-  const visibleNiches = showAllNiches ? filteredNiches : filteredNiches.slice(0, 4);
-
-  // Стили карточек и кнопок как в SILO-хабах
-  const cardStyle: React.CSSProperties = {
-    background: 'white',
-    border: '2px solid #667eea',
-    boxShadow: '0 8px 32px rgba(102,126,234,0.3)',
-    borderRadius: 16,
-    padding: '30px',
-    transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    minHeight: 220,
-    maxHeight: 220,
-    width: '100%',
-    position: 'relative',
-    textDecoration: 'none',
-    cursor: 'pointer',
-  };
-  const buttonStyle = {
-    display: 'inline-block',
-    marginTop: 'auto',
-    padding: '12px 28px',
-    borderRadius: 12,
-    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-    color: 'white',
-    border: 'none',
-    boxShadow: '0 4px 16px rgba(102,126,234,0.3)',
-    fontWeight: 700,
-    fontSize: '1rem',
-    textAlign: 'center' as const,
-    transition: 'all 0.2s',
-  };
-
+export default function AdsHubPage() {
   return (
     <>
       <Header />
-      <main style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)', padding: '48px 16px' }}>
-        <div style={{ maxWidth: 800, margin: '0 auto', textAlign: 'center', marginBottom: 48 }}>
-          <h1 style={{ fontSize: '2.5rem', fontWeight: 800, color: '#1e293b', marginBottom: 16 }}>
-            {title}
-          </h1>
-          <p style={{ fontSize: '1.15rem', color: '#64748b', fontWeight: 400, marginBottom: 24 }}>
-            {subheading}
-          </p>
-        </div>
-        <section style={{ maxWidth: 1100, margin: '0 auto' }}>
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(4, 1fr)',
-            gap: 32,
-            maxWidth: 1200,
-            margin: '0 auto',
-            marginBottom: 40,
-          }}>
-            {visibleNiches.map((niche, index) => {
-              // icon = null для всех карточек
-              return niche.hasPage ? (
-                <Link
-                  key={niche.slug}
-                  href={`/ads/${niche.slug}`}
-                  style={{ ...cardStyle }}
-                  onMouseEnter={e => {
-                    const target = e.currentTarget as HTMLElement;
-                    target.style.transform = 'translateY(-8px) scale(1.05) rotate(1deg)';
-                    target.style.boxShadow = '0 16px 40px rgba(102,126,234,0.4)';
-                  }}
-                  onMouseLeave={e => {
-                    const target = e.currentTarget as HTMLElement;
-                    target.style.transform = 'translateY(0) scale(1) rotate(0deg)';
-                    target.style.boxShadow = String(cardStyle.boxShadow || '');
-                    target.style.background = String(cardStyle.background || '');
-                  }}
-                >
-                  {/* Все иконки убраны */}
-                  <div>
-                    <h3 style={{ fontSize: '1.25rem', fontWeight: 600, color: '#1e293b', marginBottom: 8 }}>
-                      {niche.name}
-                    </h3>
-                  </div>
-                  <div style={buttonStyle}>Explore</div>
-                </Link>
-              ) : (
-                <div
-                  key={niche.slug}
-                  style={{ 
-                    ...cardStyle, 
-                    opacity: 0.6,
-                    cursor: 'default',
-                    background: '#f8fafc',
-                    border: '2px solid #e2e8f0'
-                  }}
-                >
-                  <div>
-                    <h3 style={{ fontSize: '1.25rem', fontWeight: 600, color: '#64748b', marginBottom: 8 }}>
-                      {niche.name}
-                    </h3>
-                  </div>
-                  <div style={{ 
-                    ...buttonStyle, 
-                    background: '#cbd5e1',
-                    cursor: 'default',
-                    boxShadow: 'none'
-                  }}>
-                    Coming Soon
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-          {filteredNiches.length > 4 && (
-            <div style={{ textAlign: 'center', marginTop: 32 }}>
-              <button
-                onClick={() => setShowAllNiches(v => !v)}
-                style={{
-                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                  color: 'white',
-                  border: 'none',
-                  padding: '12px 32px',
-                  borderRadius: 8,
-                  fontWeight: 700,
-                  fontSize: '1rem',
-                  cursor: 'pointer',
-                  boxShadow: '0 2px 8px rgba(127,156,245,0.10)',
-                  transition: 'background 0.2s',
-                }}
-              >
-                {showAllNiches ? 'Hide niches' : 'Show all niches'}
-              </button>
-            </div>
-          )}
-        </section>
-        <section style={{ maxWidth: 800, margin: '48px auto', padding: '0 16px' }}>
-          <p style={{
-            fontSize: '1rem',
-            lineHeight: '1.6',
-            color: '#64748b',
-            textAlign: 'center',
-            margin: 0
-          }}>
-            {seoParagraph}
-          </p>
-        </section>
-        <section style={{
-          background: 'linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%)',
-          borderRadius: '16px',
-          padding: '40px',
-          textAlign: 'center',
-          marginTop: '60px',
-          marginBottom: '40px',
-          maxWidth: 800,
-          marginLeft: 'auto',
-          marginRight: 'auto',
-        }}>
-          <h2 style={{
-            fontSize: '2rem',
-            fontWeight: 700,
-            color: '#1e293b',
-            marginBottom: '18px',
-            lineHeight: '1.3'
-          }}>
-            AI Assistant for Google Ads
-          </h2>
-          <p style={{
-            fontSize: '17px',
-            color: '#64748b',
-            marginBottom: '28px',
-            lineHeight: '1.6',
-            fontWeight: '500',
-            opacity: 0.9
-          }}>
-            In development and not yet running on live accounts. Join early access.
-          </p>
-          <a
-            href="/auth/register"
-            className="btn"
-            style={{
-              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-              color: 'white',
-              border: 'none',
-              padding: '16px 32px',
-              borderRadius: '10px',
-              fontSize: '16px',
-              fontWeight: '600',
-              cursor: 'pointer',
-              transition: 'all 0.3s ease',
-              display: 'inline-block',
-              boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)',
-              textDecoration: 'none',
-            }}
-            onMouseEnter={e => {
-              (e.currentTarget as HTMLAnchorElement).style.boxShadow = '0 8px 25px rgba(102, 126, 234, 0.4)';
-              (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(-2px)';
-            }}
-            onMouseLeave={e => {
-              (e.currentTarget as HTMLAnchorElement).style.boxShadow = '0 4px 12px rgba(102, 126, 234, 0.3)';
-              (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
-            }}
-          >
-            Join early access
-          </a>
-        </section>
+      <Breadcrumbs />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <main style={{ background: '#ffffff' }}>
+        <article style={W}>
+          <h1 style={H1}>Google Ads for Local Business: Which Campaign Type, What Budget, Which Industry Page</h1>
+          <p style={P}>Google ads for local business work best when you pick the campaign type from your own numbers. Start with Local Services Ads if your category is eligible and you want to pay per lead. Otherwise start with a tightly targeted Search campaign, and add Performance Max only after tracking works.</p>
+          <h2 id="google-ads-for-local-business-the-short-answer-tl-dr" style={H2}>Google Ads for local business: the short answer (TL;DR)</h2>
+          <blockquote style={BQ}><p style={BP}><strong>Short answer.</strong> Local Services Ads if Google lists your category. A tightly targeted Search campaign if not. Performance Max for store goals only once your Business Profile is linked and Google can see a real conversion. Three settings decide results: the Business Profile link, location targeting, and a call or lead conversion.</p></blockquote>
+          <p style={P}>Google Ads for local business means paying to appear when people search near you, on Google Search, Maps and, in the US, Waze. Performance Max is a Google campaign type that runs one campaign across Google's inventory, including Maps, and can aim at leads or local store visits.</p>
+          <p style={P}>This page gives you a grid to pick the campaign type, a break-even formula to size the budget, and four industry pages. Searching for google ads for small business? The same logic applies. Read the grid first, because the campaign type you start with shapes everything after it.</p>
+          <h2 id="local-services-ads-vs-search-vs-performance-max-which-one-fits-your-business" style={H2}>Local Services Ads vs Search vs Performance Max: which one fits your business</h2>
+          <p style={P}>Grid as of November 2026:</p>
+          <div style={TW}><table style={TB}><thead><tr><th style={TH}></th><th style={TH}>Local Services Ads</th><th style={TH}>Search campaigns</th><th style={TH}>Performance Max with store goals</th></tr></thead><tbody><tr><td style={TD}>How you pay</td><td style={TD}>Per lead, weekly lead-based budget</td><td style={TD}>Per click, daily budget</td><td style={TD}>Per click; Maps can charge per thousand views for branded pins</td></tr><tr><td style={TD}>What you need</td><td style={TD}>Screening, verification, eligible category</td><td style={TD}>Keywords, ads, landing page</td><td style={TD}>Location assets from a linked Business Profile, conversions</td></tr><tr><td style={TD}>Best for</td><td style={TD}>Appointment or quote businesses in listed categories</td><td style={TD}>Owners who want control of keywords and message</td><td style={TD}>Storefronts that want foot traffic</td></tr><tr><td style={TD}>Main risk</td><td style={TD}>No keyword control; not everyone qualifies</td><td style={TD}>Paying for clicks that never call</td><td style={TD}>Less control; easy to optimize for the wrong action</td></tr></tbody></table></div>
+          <p style={P}>Sources: Google's Local Services Ads page, About Local Ads and About Performance Max (Google Ads Help).</p>
+          <h3 id="local-services-ads-pay-per-lead" style={H3}>Local Services Ads (pay per lead)</h3>
+          <p style={P}>You pay for customers who contact you, not for clicks, and you set a budget by the number of new leads you want per week. Google's <a href="https://business.google.com/us/ad-solutions/local-service-ads/" target="_blank" rel="noopener noreferrer" style={A}>Local Services Ads page</a> has a budget calculator, so we quote no lead prices.</p>
+          <p style={P}>Advertisers go through screening and verification, then show a Google Verified badge. Google lists health (dentists, orthodontists), business (17 lawyer types, real estate agents), home, care, wellness, beauty and automotive. Check <a href="https://support.google.com/localservices/answer/7549347" target="_blank" rel="noopener noreferrer" style={A}>Google's Local Services overview</a> before you plan around it.</p>
+          <h3 id="search-campaigns-pay-per-click" style={H3}>Search campaigns (pay per click)</h3>
+          <p style={P}>Search gives you control. You choose the keywords, write the ads, and send people to a page that matches what they typed. The price of that control is work: nobody filters out junk clicks for you.</p>
+          <p style={P}>Practitioners in a May 2025 r/googleads thread repeat one tip: one ad group per service, so ad and landing page match the search.</p>
+          <h3 id="performance-max-and-local-ads-store-goals" style={H3}>Performance Max and Local Ads (store goals)</h3>
+          <p style={P}><a href="https://support.google.com/google-ads/answer/3246303" target="_blank" rel="noopener noreferrer" style={A}>Local Ads</a> are ad formats that serve on Performance Max and Search across Google Search, Maps and, in the US, Waze. Waze comes only through Performance Max for store goals. Eligibility requires location assets from a linked Business Profile.</p>
+          <p style={P}>Local actions such as get directions and click to call are created automatically once location assets are active, and become biddable only when set to Primary. The risk: a campaign can chase easy actions, like direction requests from people who never visit. If it stalls, read <Link href="/blog/performance-max-not-converting" style={A}>why Performance Max is not converting</Link>.</p>
+          <h3 id="which-one-to-start-with" style={H3}>Which one to start with</h3>
+          <ul style={UL}><li style={LI}><strong>Appointment-based service area business in a listed category:</strong> Local Services Ads first, Search second.</li><li style={LI}><strong>Storefront with foot traffic:</strong> Search plus Performance Max with store goals, once conversions are tracked.</li><li style={LI}><strong>Category not eligible for Local Services Ads:</strong> Search campaigns.</li></ul>
+          <h2 id="connect-your-google-business-profile-before-you-spend" style={H2}>Connect your Google Business Profile before you spend</h2>
+          <p style={P}>Linking your Business Profile creates location assets, which unlock Local Ads formats: address, hours, photos, call and directions buttons. In Google Ads the path is Assets, then Location.</p>
+          <p style={P}>Ads will not rescue a weak profile, and a customer who taps your listing and sees the wrong hours is gone. Google's local ranking guidance names relevance, distance and popularity, and says more reviews and positive ratings can help. The check takes an hour:</p>
+          <ul style={UL}><li style={LI}>Name, address, phone and hours are correct and match your website.</li><li style={LI}>Service areas are set if you travel to customers.</li><li style={LI}>Categories describe what you actually sell.</li><li style={LI}>The profile is linked to your Google Ads account.</li></ul>
+          <h2 id="location-targeting-that-keeps-spend-inside-your-service-area" style={H2}>Location targeting that keeps spend inside your service area</h2>
+          <h3 id="radius-zip-code-or-city-pick-the-unit" style={H3}>Radius, ZIP code or city: pick the unit</h3>
+          <p style={P}>Google Ads targets countries, areas within a country, a radius around a location, and location groups. The minimum radius is 1 km. Pick the unit that matches how you actually serve customers. If two areas have different margins or competition, build two campaigns, as practitioners in the same r/googleads thread advise.</p>
+          <h3 id="presence-or-interest-vs-presence-the-setting-that-quietly-leaks-budget" style={H3}>"Presence or Interest" vs "Presence": the setting that quietly leaks budget</h3>
+          <p style={P}>Google recommends the broad "Presence or Interest" setting on Search as best practice. It shows your ad to people in your area and to people who show interest in it. For a pure local business, that can mean paying for someone researching your city from another state. Google's help page suggests considering "Presence" when you only want users physically in the area.</p>
+          <p style={P}>The same page cites internal data: advertisers in Travel, Real Estate and Education who moved Search targeting from Presence to Presence or Interest saw 5% more conversions. That is Google's claim, global, measured May 21 to June 1, 2022, and not specific to local businesses. Treat it as a reason to test, not a rule.</p>
+          <p style={P}>Also exclude areas you do not serve, and match the ad schedule to opening hours. Paying for a click at 2 a.m. on a business that opens at 9 is a quiet way to lose money.</p>
+          <h2 id="call-tracking-and-conversion-setup-count-the-call-not-the-click" style={H2}>Call tracking and conversion setup: count the call, not the click</h2>
+          <p style={P}>For most local businesses the money action is a call, a form or a booking. If Google cannot see it, it optimizes for clicks, and you pay for traffic that never rings. That is the most common local setup mistake, and the cheapest to fix.</p>
+          <p style={P}>A r/PPC post dated September 11, 2026 is titled "3 years and $300k+ spent on Google Ads with no conversion tracking until now." We quote only the title and say nothing about the rest.</p>
+          <p style={P}>What Google gives you:</p>
+          <ul style={UL}><li style={LI}><strong>Website call tracking.</strong> A forwarding number on your site. A call counts when it lasts longer than a minimum you set, in eligible countries.</li><li style={LI}><strong>Local actions.</strong> Click to call and get directions are created automatically once location assets are active. Set the ones that matter to Primary.</li><li style={LI}><strong>Offline conversion import.</strong> Connects a lead to a paid customer. Google's help page says offline imports and enhanced conversions for leads are moving to the Data Manager API, starting June 15, 2026, and recommends enhanced conversions for leads if you have not adopted offline import.</li></ul>
+          <p style={P}>LocaliQ's Katia Hausman makes the same point on LocaliQ's benchmarks page: which leads became customers should feed into how you bid, not only how you report. If your setup is broken, start with <Link href="/blog/google-ads-conversion-tracking-not-working" style={A}>Google Ads conversion tracking not working</Link>. Then build one page per service that matches the search, with phone and form above the fold: see <Link href="/blog/landing-page-optimization-for-google-ads" style={A}>landing page optimization for Google Ads</Link>.</p>
+          <h2 id="budget-sizing-work-out-your-break-even-cost-per-lead-first" style={H2}>Budget sizing: work out your break-even cost per lead first</h2>
+          <p style={P}>Start from what one lead is worth to you. In this break-even grid, profit per customer sets your maximum cost per lead, and that number picks the campaign type and the starting budget.</p>
+          <blockquote style={BQ}><p style={BP}><strong>Break-even box</strong></p><p style={BP}>Max cost per lead = profit per customer x lead-to-customer rate.</p><p style={BP}>Starting weekly budget = max cost per lead x leads you need per week.</p><p style={BP}>Review weekly. Adjust the leads you need, not the formula.</p></blockquote>
+          <p style={P}>Use profit, not revenue. That one swap changes the answer more than any other input. If you do not know your lead-to-customer rate, count how many of your last 20 leads paid.</p>
+          <ol style={UL}><li style={LI}><strong>Find your market's cost per lead</strong> in Google Keyword Planner and your first two weeks of data, not in a blog post.</li><li style={LI}><strong>Compare it to your maximum.</strong> Above it, move toward Local Services Ads (you pay per lead) or narrow Search targeting. Below it, you have room to scale.</li><li style={LI}><strong>Set the budget mechanics.</strong> Google divides a monthly figure by 30.4 for a daily budget; its example is $304 a month for $10 a day. A day can spend up to twice the daily budget, but the month is capped at 30.4 times the daily figure. Local Services Ads use a weekly, lead-driven budget.</li></ol>
+          <p style={P}>On bidding, practitioners in the r/googleads thread say max-clicks-style strategies starve learning and conversion-based bidding works once you have conversions. That is opinion, not Google data. If CPC looks too high, see <Link href="/blog/google-ads-cost-per-click-too-high" style={A}>how to bring Google Ads cost per click down</Link>.</p>
+          <h2 id="negative-keywords-for-local-intent" style={H2}>Negative keywords for local intent</h2>
+          <p style={P}>Add negative keywords on day one. Then read the search terms report every week, because that is where you see what people actually typed before they clicked. Google's default is negative broad match: your ad will not show if the search contains all your negative terms, in any order. <Link href="/blog/google-ads-keyword-match-types-explained" style={A}>Match types</Link> change that, so check which you use.</p>
+          <p style={P}>Categories to cover, with example phrases:</p>
+          <ul style={UL}><li style={LI}><strong>Job seekers:</strong> "jobs", "careers", "hiring".</li><li style={LI}><strong>DIY:</strong> "how to", "tutorial".</li><li style={LI}><strong>Free:</strong> "free", "coupon".</li><li style={LI}><strong>Training:</strong> "course", "certification".</li><li style={LI}><strong>Wrong services and wrong cities:</strong> anything you do not offer or serve.</li></ul>
+          <p style={P}>Your search terms report tells you what else to add. For the full process, see <Link href="/blog/google-ads-negative-keywords" style={A}>negative keywords for Google Ads</Link>.</p>
+          <h2 id="google-ads-by-industry" style={H2}>Google Ads by industry</h2>
+          <p style={P}>LocaliQ figures are vendor customer data, not what you will pay.</p>
+          <h3 id="dentists" style={H3}>Dentists</h3>
+          <p style={P}>Dentist and orthodontist are listed Health categories for Local Services Ads, so pay per lead is a real option; verify eligibility for your area. LocaliQ's 2026 search advertising benchmarks show dentists at an $8.00 average CPC and $72.97 cost per lead, against an all-industry $5.42 CPC and $66.69 cost per lead. Count booked appointments, not clicks. Open the setup guide for <Link href="/ads/dentist" style={A}>Google Ads for dentists</Link>.</p>
+          <h3 id="lawyers-law-firms" style={H3}>Lawyers & law firms</h3>
+          <p style={P}>Google lists 17 lawyer types in Local Services Ads, each with screening and verification. LocaliQ's 2026 benchmarks put attorneys and legal services at the highest CPC ($9.87) and highest cost per lead ($131.63) of 23 industries. Its advice is to narrow "lawyer" to a practice area plus city, which means one ad group per practice area. Open the setup guide for <Link href="/ads/lawyer" style={A}>Google Ads for lawyers</Link>.</p>
+          <h3 id="real-estate-agents" style={H3}>Real estate agents</h3>
+          <p style={P}>Real estate agent is a listed Local Services category. LocaliQ's real estate benchmarks (894 US campaigns, April 2025 to March 2026, medians) show residential agents at a $3.19 CPC but a $157.59 cost per lead, because 1.29% of clicks convert: cheap clicks, expensive leads, so judge by cost per lead. Google also restricts ZIP-code and demographic targeting for Housing ads in the US and Canada, so check whether your ads fall in that category. Open the setup guide for <Link href="/ads/real-estate" style={A}>Google Ads for real estate agents</Link>.</p>
+          <h3 id="saas-companies" style={H3}>SaaS companies</h3>
+          <p style={P}>SaaS is not a Local Services category, and Google's advice outside the listed industries is to use Google Ads. Dreamdata's benchmark for B2B non-branded Google Search, August 2024 to July 2025, shows CPC rising from $4.13 to $5.34; it covers B2B broadly, not SaaS alone. Involve Digital, an agency, argues that optimizing for form fills finds cheap form fills that rarely become customers, so import the sale back as an offline conversion (through the Data Manager API from June 15, 2026). Open the setup guide for <Link href="/ads/saas" style={A}>Google Ads for SaaS companies</Link>.</p>
+          <h2 id="frequently-asked-questions" style={H2}>Frequently asked questions</h2>
+          <h3 style={H3}>How much does it cost to advertise locally on Google?</h3><p style={P}>There is no single price, because you set the budget. Search and Performance Max use a daily budget; Local Services Ads use a weekly budget tied to the number of leads you want. Work out your break-even cost per lead first, then size the budget from it.</p>
+          <h3 style={H3}>Is Google Ads worth it for a small business?</h3><p style={P}>It is worth it when your cost per lead stays below your break-even cost per lead. That depends on profit per customer and the share of leads that become customers. Calculate both before spending, then check them against your first two weeks of data.</p>
+          <h3 style={H3}>How do I advertise a local business on Google?</h3><p style={P}>Three steps. Link your Google Business Profile so Google Ads gets location assets. Pick the campaign type from the grid: Local Services Ads, Search, or Performance Max with store goals. Set a call or lead conversion as Primary, so bidding follows customers, not clicks.</p>
+          <h3 style={H3}>What is the difference between Google Ads and Google Local Ads?</h3><p style={P}>Local Ads are ad formats inside Google Ads that use location assets and serve on Search and Performance Max across Search, Maps and, in the US, Waze. Local Services Ads are a separate product with their own dashboard, where you pay per lead and earn a Google Verified badge.</p>
+          <h2 id="next-step" style={H2}>Next step</h2>
+          <p style={P}>Do three things this week: link your Business Profile, set a call or lead conversion as Primary, and compute your break-even cost per lead. Then pick a campaign type from the grid. For the wider picture beyond local campaigns, see <Link href="/blog/google-ads-optimization" style={A}>Google Ads optimization</Link>.</p>
+          <p style={P}>Kampaio is building AI agents for Google Ads; join early access.</p>
+        </article>
       </main>
       <Footer compact={true} />
     </>
   );
-} 
+}

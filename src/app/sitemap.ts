@@ -31,6 +31,9 @@ const STATIC_ROUTES: Array<{
   { path: '/replace-google-ads-agency', changeFrequency: 'monthly', priority: 0.8 },
   { path: '/fix-google-ads-account', changeFrequency: 'monthly', priority: 0.8 },
   { path: '/ai-google-ads-management', changeFrequency: 'monthly', priority: 0.8 },
+  // /ads hub: guide 'google ads for local business' (2026-11-09). The four /ads/<niche>
+  // pages are noindex until written, so they are not listed here.
+  { path: '/ads', changeFrequency: 'monthly', priority: 0.8 },
   // '/chat' is deliberately absent: `chat/layout.tsx` sets `robots: 'noindex, nofollow'`,
   // and a sitemap entry is a request to index. Listing it told Google to index a page the
   // page itself refuses — the two instructions cannot both be honoured, so one was noise.
