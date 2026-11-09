@@ -38,7 +38,7 @@ export default function ArticleContent() {
       },
     },
     datePublished: '2026-07-27T00:00:00.000Z',
-    dateModified: '2026-07-27T00:00:00.000Z',
+    dateModified: '2026-11-09T00:00:00.000Z',
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': 'https://www.kampaio.com/blog/google-ads-agency-account-ownership',
@@ -244,7 +244,7 @@ export default function ArticleContent() {
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '2px' }}>
                   <span style={{ color: '#64748b', fontSize: '16px', fontWeight: 600 }}>By Kampaio Team</span>
                   <span style={{ color: '#64748b', fontSize: '15px' }}>AI-native Google Ads optimization</span>
-                  <span style={{ color: '#64748b', fontSize: '15px' }}>July 27, 2026 &middot; 11 min read</span>
+                  <span style={{ color: '#64748b', fontSize: '15px' }}>July 27, 2026 &middot; Updated November 9, 2026 &middot; 11 min read</span>
                 </div>
               </div>
             </div>
@@ -291,7 +291,7 @@ export default function ArticleContent() {
             <section id="short-answer">
               <h2 style={h2Style}>The Short Answer: You Own the Account, the Agency Gets Linked</h2>
               <p style={paragraphStyle}>
-                Access levels and ownership rules below are verified against Google Ads Help on 27 July 2026.
+                Access levels and ownership rules below are verified against Google Ads Help on 27 July 2026; the multi-party approval note was checked on 9 November 2026.
               </p>
               <p style={paragraphStyle}>
                 Most owners find out which side of that line they are on during the week they try to leave, the worst possible week to learn it.
@@ -613,6 +613,14 @@ export default function ArticleContent() {
                 and recovery but does not arbitrate a commercial dispute.
               </p>
               <p style={paragraphStyle}>
+                Removing the agency now has an extra step. Under Google&apos;s multi-party approval, adding a user, removing one, or changing a role
+                &quot;will require approval from a second administrator to complete&quot;, on accounts with more than 3 administrators (
+                <a href="https://support.google.com/google-ads/answer/16891189" style={linkStyle} {...extAttr}>Google Ads Help, 2026</a>). Any Admin on
+                the account or any linked manager account can approve, so the agency&apos;s own admins can sit in that pool. A request expires as rejected
+                after 20 days, and Google Ads support cannot approve, deny, or bypass it for you. Before you end the relationship, count the agency&apos;s
+                Admin seats and make sure at least one in-house Admin is watching Admin &gt; Access and security &gt; Security requests.
+              </p>
+              <p style={paragraphStyle}>
                 One honest fallback: if the account was built entirely inside the agency&apos;s manager account and you never held Admin, starting a new
                 account is sometimes the fastest path, costing conversion history and bidding learning. There is no reliable number for that loss.
               </p>
@@ -698,7 +706,7 @@ export default function ArticleContent() {
               </div>
 
               <p style={{ fontSize: '15px', color: '#64748b', fontStyle: 'italic', lineHeight: 1.7, marginBottom: '32px' }}>
-                Access levels, ownership rules, and interface paths were verified against Google Ads Help in July 2026 and can change. This article is
+                Access levels, ownership rules, and interface paths were verified against Google Ads Help in July 2026 (multi-party approval checked November 2026) and can change. This article is
                 informational and does not constitute legal advice.
               </p>
             </section>
@@ -727,6 +735,9 @@ export default function ArticleContent() {
                 </li>
                 <li style={{ marginBottom: '12px' }}>
                   <a href="https://support.google.com/merchants/answer/188924" style={linkStyle} {...extAttr}>Merchant Center accounts, Google Ads Help</a>
+                </li>
+                <li style={{ marginBottom: '12px' }}>
+                  <a href="https://support.google.com/google-ads/answer/16891189" style={linkStyle} {...extAttr}>About multi-party approval, Google Ads Help</a>
                 </li>
                 <li style={{ marginBottom: '12px' }}>
                   <a href="https://www.reddit.com/r/PPC/comments/18ii5wm/agency_says_they_cant_give_access_to_our_google/" style={linkStyle} {...extAttr}>
