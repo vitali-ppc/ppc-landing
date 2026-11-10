@@ -57,29 +57,32 @@ function getBlogSlugs(): string[] {
   }
 }
 
-// Try to get article's last modified date from JSON-LD inside page.tsx
-function getArticleLastMod(slug: string): Date {
+// Article lastmod = the date the article itself declares (dateModified, else datePublished).
+// Fixed 2026-11-10: this read only page.tsx, but the JSON-LD lives in ArticleContent.tsx, and the
+// key is written both quoted and bare (`"dateModified": "…"` / `dateModified: '…'`). Every article
+// fell back to file mtime, which on Vercel is the checkout time, so all 81 blog URLs carried the
+// build date as lastmod. The sitemap must say what the reader sees (knowledge geo/04 section 4).
+const DATE_RE = (key: string) =>
+  new RegExp(`["']?${key}["']?\\s*:\\s*["'](\\d{4}-\\d{2}-\\d{2})`);
+
+function getArticleLastMod(slug: string): Date | undefined {
+  const dir = path.join(process.cwd(), 'src', 'app', 'blog', slug);
   try {
-    const filePath = path.join(process.cwd(), 'src', 'app', 'blog', slug, 'page.tsx');
-    const content = fs.readFileSync(filePath, 'utf-8');
-    // Match dateModified or datePublished from JSON-LD
-    const match =
-      content.match(/"dateModified":\s*"([^"]+)"/) ||
-      content.match(/"datePublished":\s*"([^"]+)"/);
-    if (match) {
-      const date = new Date(match[1]);
-      if (!isNaN(date.getTime())) return date;
+    const src = fs
+      .readdirSync(dir)
+      .filter((f) => f.endsWith('.tsx'))
+      .map((f) => fs.readFileSync(path.join(dir, f), 'utf-8'))
+      .join('\n');
+    const m = src.match(DATE_RE('dateModified')) || src.match(DATE_RE('datePublished'));
+    if (m) {
+      const d = new Date(m[1]);
+      if (!isNaN(d.getTime())) return d;
     }
   } catch {
     // fall through
   }
-  // Fallback: file mtime
-  try {
-    const filePath = path.join(process.cwd(), 'src', 'app', 'blog', slug, 'page.tsx');
-    return fs.statSync(filePath).mtime;
-  } catch {
-    return new Date();
-  }
+  // No declared date: omit lastmod rather than invent one.
+  return undefined;
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -94,7 +97,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const blogEntries = getBlogSlugs().map((slug) => ({
     url: `${BASE_URL}/blog/${slug}`,
-    lastModified: getArticleLastMod(slug),
+    ...(getArticleLastMod(slug) ? { lastModified: getArticleLastMod(slug) } : {}),
     changeFrequency: 'monthly' as const,
     priority: 0.7,
   }));
