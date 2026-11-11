@@ -34,6 +34,7 @@ const STATIC_ROUTES: Array<{
   // /ads hub: guide 'google ads for local business' (2026-11-09). Niche pages are listed
   // here only once written and indexable.
   { path: '/ads', changeFrequency: 'monthly', priority: 0.8 },
+  { path: '/author/vitalii-chornyi', changeFrequency: 'monthly', priority: 0.5 },
   { path: '/ads/dentist', changeFrequency: 'monthly', priority: 0.7 },
   { path: '/ads/real-estate', changeFrequency: 'monthly', priority: 0.7 },
   { path: '/ads/lawyer', changeFrequency: 'monthly', priority: 0.7 },

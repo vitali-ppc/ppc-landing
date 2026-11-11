@@ -23,7 +23,7 @@ export default function ArticleContent() {
       '@type': 'Person',
       '@id': 'https://www.kampaio.com/#person-vitalii-chornyi',
       name: 'Vitalii Chornyi',
-      url: 'https://www.kampaio.com',
+      url: 'https://www.kampaio.com/author/vitalii-chornyi',
       worksFor: { '@id': 'https://www.kampaio.com/#organization' },
     },
     publisher: {
@@ -362,7 +362,7 @@ export default function ArticleContent() {
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: '600', fontSize: '16px' }}>VC</div>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '2px' }}>
-                  <span style={{ color: '#64748b', fontSize: '16px', fontWeight: 600 }}>By Vitalii Chornyi</span>
+                  <span style={{ color: '#64748b', fontSize: '16px', fontWeight: 600 }}>By <a href="/author/vitalii-chornyi" style={{ color: 'inherit', textDecoration: 'underline' }}>Vitalii Chornyi</a></span>
                   <span style={{ color: '#64748b', fontSize: '15px' }}>Kampaio</span>
                   <span style={{ color: '#64748b', fontSize: '15px' }}>June 1, 2026 · Updated September 28, 2026 · 16 min read</span>
                 </div>
