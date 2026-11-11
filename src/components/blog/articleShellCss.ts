@@ -63,7 +63,11 @@ html.has-toc .blog-shell main h1 {
    use ResponsiveTable (cards on mobile); this just stops the legacy ones being unreadable. */
 @media (max-width: 760px) {
   .blog-shell table:not(.rt) { display: block; width: 100%; max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  .blog-shell table:not(.rt) thead,
-  .blog-shell table:not(.rt) tbody { display: table; width: 100%; min-width: 560px; }
+  /* 2026-11-11 (same fix as agentsexplained 91013f0): thead and tbody as two separate
+     display:table boxes sized their columns separately, so the header drifted off the rows, and
+     narrow cells broke words letter by letter. Cells get a readable minimum width and break only
+     between words; the table scrolls sideways inside itself. */
+  .blog-shell table:not(.rt) th,
+  .blog-shell table:not(.rt) td { min-width: 7.5rem; overflow-wrap: normal; word-break: normal; }
 }
 `;

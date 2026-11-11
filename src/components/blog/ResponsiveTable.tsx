@@ -53,17 +53,19 @@ const css = `
     overflow: hidden;
     background: #fff;
   }
+  /* 2026-11-11: was display:flex, which made every text node and link inside a cell its own
+     flex column ("...trust (" | "r/PPC, 2026" | ")" side by side). Label above, value below. */
   .rt td {
     border: none;
     border-bottom: 1px solid #f1f5f9;
     padding: 10px 16px;
-    display: flex;
-    gap: 12px;
+    display: block;
   }
   .rt tr td:last-child { border-bottom: none; }
   .rt td::before {
     content: attr(data-label);
-    flex: 0 0 42%;
+    display: block;
+    margin-bottom: 4px;
     font-weight: 600;
     color: #64748b;
   }
