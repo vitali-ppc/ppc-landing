@@ -30,10 +30,11 @@ export default function ArticleContent() {
     datePublished: '2026-06-19T00:00:00.000Z',
     dateModified: '2026-06-19T00:00:00.000Z',
     author: {
-      '@type': 'Organization',
-      '@id': 'https://www.kampaio.com/#organization',
-      name: 'Kampaio',
+      '@type': 'Person',
+      '@id': 'https://www.kampaio.com/#person-vitalii-chornyi',
+      name: 'Vitalii Chornyi',
       url: 'https://www.kampaio.com',
+      worksFor: { '@id': 'https://www.kampaio.com/#organization' },
     },
     publisher: {
       '@type': 'Organization',
@@ -259,7 +260,7 @@ export default function ArticleContent() {
                     fontSize: '16px',
                   }}
                 >
-                  B6
+                  VC
                 </div>
                 <div
                   style={{
@@ -270,7 +271,7 @@ export default function ArticleContent() {
                   }}
                 >
                   <span style={{ color: '#64748b', fontSize: '16px', fontWeight: 600 }}>
-                    By Kampaio Team
+                    By Vitalii Chornyi
                   </span>
                   <span style={{ color: '#64748b', fontSize: '15px' }}>Kampaio</span>
                   <span style={{ color: '#64748b', fontSize: '15px' }}>

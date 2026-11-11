@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import StickyTOC from '../../components/blog/StickyTOC';
 import ReadingProgress from '../../components/blog/ReadingProgress';
+import ArticleBreadcrumbs from '../../components/blog/ArticleBreadcrumbs';
 
 export const metadata: Metadata = {
   title: 'Kampaio Blog: AI-Powered Google Ads Insights',
@@ -67,6 +68,17 @@ html.has-toc .blog-shell main section[id] > h2::before {
   letter-spacing: 0.18em;
   color: #764ba2;
 }
+/* The old slug-based Breadcrumbs ("B2b ppc strategy") rendered under the fixed header on all 81
+   articles; ArticleBreadcrumbs replaces it with the real title above the H1. */
+.blog-shell .breadcrumbs-precisely { display: none !important; }
+/* Article title: 48px/800 read heavier than the sister sites (44px/600, measured 2026-11-11).
+   Article H1s carry inline sizes, hence !important. */
+html.has-toc .blog-shell main h1 {
+  font-size: clamp(30px, 4vw, 44px) !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.02em;
+  line-height: 1.15 !important;
+}
 /* Retrofit: old raw article tables (NOT the new ResponsiveTable, class .rt) scroll
    horizontally on mobile instead of crushing columns to 1-char stacks. New tables
    use ResponsiveTable (cards on mobile); this just stops the legacy ones being unreadable. */
@@ -88,6 +100,7 @@ export default function BlogLayout({ children }: { children: React.ReactNode }) 
       <ReadingProgress />
       <main>{children}</main>
       <StickyTOC />
+      <ArticleBreadcrumbs />
     </div>
   );
 }

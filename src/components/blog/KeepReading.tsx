@@ -73,6 +73,12 @@ export default function KeepReading({ slug, category }: { slug: string; category
           </a>
         ))}
       </div>
+        {/* Back to the index, as on the sister sites (2026-11-11). */}
+        <div style={{ marginTop: '32px', paddingBottom: '56px' }}>
+          <a href="/blog" style={{ color: '#764ba2', fontWeight: 600, textDecoration: 'none', fontSize: '16px' }}>
+            ← All articles
+          </a>
+        </div>
       </div>
       <style
         dangerouslySetInnerHTML={{

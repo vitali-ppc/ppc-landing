@@ -22,10 +22,11 @@ export default function ArticleContent() {
       'What PPC management really is and how an in-house team runs it: the core disciplines, a weekly and monthly operating cadence, when to audit or restructure, and how to decide if you still need an agency.',
     image: 'https://www.kampaio.com/og/ppc-management.png',
     author: {
-      '@type': 'Organization',
-      '@id': 'https://www.kampaio.com/#organization',
-      name: 'Kampaio',
+      '@type': 'Person',
+      '@id': 'https://www.kampaio.com/#person-vitalii-chornyi',
+      name: 'Vitalii Chornyi',
       url: 'https://www.kampaio.com',
+      worksFor: { '@id': 'https://www.kampaio.com/#organization' },
     },
     publisher: {
       '@type': 'Organization',
@@ -319,13 +320,13 @@ export default function ArticleContent() {
                     fontSize: '16px',
                   }}
                 >
-                  B6
+                  VC
                 </div>
                 <div
                   style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '2px' }}
                 >
-                  <span style={{ color: '#64748b', fontSize: '16px', fontWeight: 600 }}>By B6 Team</span>
-                  <span style={{ color: '#64748b', fontSize: '15px' }}>B6 SEO Agent</span>
+                  <span style={{ color: '#64748b', fontSize: '16px', fontWeight: 600 }}>By Vitalii Chornyi</span>
+                  <span style={{ color: '#64748b', fontSize: '15px' }}>Kampaio</span>
                   <span style={{ color: '#64748b', fontSize: '15px' }}>June 4, 2026 &middot; 13 min read</span>
                 </div>
               </div>

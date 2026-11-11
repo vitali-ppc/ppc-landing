@@ -17,10 +17,11 @@ export default function ArticleContent() {
     "description": "Master the fundamentals of Quality Score and learn advanced techniques to improve your ad performance in 2026.",
     "image": "https://kampaio.com/og/the-complete-guide-to-google-ads-quality-score-in-2025.png",
     author: {
-      '@type': 'Organization',
-      '@id': 'https://www.kampaio.com/#organization',
-      name: 'Kampaio',
+      '@type': 'Person',
+      '@id': 'https://www.kampaio.com/#person-vitalii-chornyi',
+      name: 'Vitalii Chornyi',
       url: 'https://www.kampaio.com',
+      worksFor: { '@id': 'https://www.kampaio.com/#organization' },
     },
     publisher: {
       '@type': 'Organization',
@@ -122,11 +123,11 @@ export default function ArticleContent() {
             <div style={{ display: 'flex', alignItems: 'center', gap: '24px', marginBottom: '40px', paddingBottom: '32px', borderBottom: '1px solid #e2e8f0' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: '600', fontSize: '16px' }}>
-                  K
+                  VC
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '2px' }}>
-                  <span style={{ color: '#64748b', fontSize: '16px', fontWeight: 600 }}>By B6 Team</span>
-                  <span style={{ color: '#64748b', fontSize: '15px' }}>Paid Media Strategist at Kampaio</span>
+                  <span style={{ color: '#64748b', fontSize: '16px', fontWeight: 600 }}>By Vitalii Chornyi</span>
+                  <span style={{ color: '#64748b', fontSize: '15px' }}>Kampaio</span>
                   <span style={{ color: '#64748b', fontSize: '15px' }}>July 21, 2025 · Updated May 15, 2026 · 12 min read</span>
                 </div>
               </div>

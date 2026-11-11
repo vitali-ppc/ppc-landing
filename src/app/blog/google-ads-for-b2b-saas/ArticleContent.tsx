@@ -21,10 +21,11 @@ export default function ArticleContent() {
       'A complete operator playbook for running Google Ads for B2B SaaS: how to handle low category search volume, long sales cycles, multi-stakeholder buying, and attribution. Setup, 4-tier campaign structure, bidding progression, measurement, and scaling.',
     image: 'https://www.kampaio.com/og/google-ads-for-b2b-saas.png',
     author: {
-      '@type': 'Organization',
-      '@id': 'https://www.kampaio.com/#organization',
-      name: 'Kampaio',
+      '@type': 'Person',
+      '@id': 'https://www.kampaio.com/#person-vitalii-chornyi',
+      name: 'Vitalii Chornyi',
       url: 'https://www.kampaio.com',
+      worksFor: { '@id': 'https://www.kampaio.com/#organization' },
     },
     publisher: {
       '@type': 'Organization',
@@ -205,11 +206,11 @@ export default function ArticleContent() {
             <div style={{ display: 'flex', alignItems: 'center', gap: '24px', marginBottom: '40px', paddingBottom: '32px', borderBottom: '1px solid #e5e7eb' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 600, fontSize: '16px' }}>
-                  K
+                  VC
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '2px' }}>
-                  <span style={{ color: '#64748b', fontSize: '16px', fontWeight: 600 }}>By Kampaio Team</span>
-                  <span style={{ color: '#64748b', fontSize: '15px' }}>Senior PPC strategy at Kampaio</span>
+                  <span style={{ color: '#64748b', fontSize: '16px', fontWeight: 600 }}>By Vitalii Chornyi</span>
+                  <span style={{ color: '#64748b', fontSize: '15px' }}>Kampaio</span>
                   <span style={{ color: '#64748b', fontSize: '15px' }}>June 7, 2026 · 13 min read</span>
                 </div>
               </div>

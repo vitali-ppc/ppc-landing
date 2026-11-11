@@ -8,7 +8,7 @@ export default function ArticleHero({ slug }: { slug: string }) {
     // Constrained to the 800px content column (not full 1200px width) so the
     // article sits in a left column and leaves a clear right rail for the sticky
     // "On this page" ToC — matching the two-column article layout on sister sites.
-    <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+    <div className="article-hero" style={{ maxWidth: '800px', margin: '0 auto' }}>
       <img
         src={`/blog/${slug}/opengraph-image`}
         width={1200}
