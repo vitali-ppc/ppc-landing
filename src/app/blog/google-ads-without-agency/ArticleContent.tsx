@@ -547,7 +547,7 @@ flowchart TD
           </div>
         </div>
         {/* cluster-downlinks:START */}
-      <div style={{ marginTop: '2.5rem', paddingTop: '1.5rem', borderTop: '1px solid #e5e7eb' }}>
+      <div style={{ maxWidth: '800px', margin: '2.5rem auto 0', paddingTop: '1.5rem', borderTop: '1px solid #e5e7eb' }}>
         <p style={{ fontWeight: 600, marginBottom: '0.75rem' }}>Related in this cluster</p>
         <ul style={{ listStyle: 'disc', paddingLeft: '1.25rem', margin: 0 }}>
           <li style={{ marginBottom: '0.4rem' }}><a href="/blog/what-ceos-want-google-ads-reports" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>What CEOs Want to See in Google Ads Reports</a></li>

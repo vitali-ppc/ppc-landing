@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import StickyTOC from '../../components/blog/StickyTOC';
+import ReadingProgress from '../../components/blog/ReadingProgress';
 
 export const metadata: Metadata = {
   title: 'Kampaio Blog: AI-Powered Google Ads Insights',
@@ -22,13 +23,42 @@ export const metadata: Metadata = {
 // (max-width:1200px) and the KeepReading block.
 const twoColCss = `
 @media (min-width: 1260px) {
-  html.has-toc .blog-shell > div > [style*="max-width:1200px"] {
+  /* 2026-11-11: the <main> landmark (flag #1) put a level between .blog-shell and the
+     article wrapper, so ".blog-shell > div > …" matched nothing and the rail sat on top of
+     the text on all 81 articles (measured: rail left 1014px, text right 1120px at 1440). */
+  html.has-toc .blog-shell main > div > [style*="max-width:1200px"],
+  html.has-toc .blog-shell > div > [style*="max-width:1200px"],
+  html.has-toc .blog-shell main > div > [style*="max-width:800px"] {
     transform: translateX(-134px);
   }
+  /* Wide article tables (up to ~1100px) overflowed the 800px column into the rail on 5 articles.
+     On desktop with the rail they scroll inside the column, as they already do on mobile. */
+  html.has-toc .blog-shell main section[id] table { display: block; max-width: 100%; overflow-x: auto; }
   /* The right rail replaces the in-article collapsible ToC box on desktop. */
   html.has-toc .toc-inline {
     display: none !important;
   }
+}
+/* Numbered section eyebrow (01, 02 ...) and a rule above every article H2, as on the
+   sister sites. Article H2s carry inline font styles, so only spacing, border and the
+   counter are set here. Scoped to section[id] > h2 (the article sections StickyTOC reads),
+   so "Keep reading" and other blocks are not numbered. */
+html.has-toc .blog-shell main { counter-reset: kp-section; }
+html.has-toc .blog-shell main section[id] > h2 {
+  counter-increment: kp-section;
+  border-top: 1px solid #e5e7eb;
+  padding-top: 32px;
+  scroll-margin-top: 120px;
+}
+html.has-toc .blog-shell main section[id] > h2::before {
+  content: counter(kp-section, decimal-leading-zero);
+  display: block;
+  margin-bottom: 8px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: #764ba2;
 }
 /* Retrofit: old raw article tables (NOT the new ResponsiveTable, class .rt) scroll
    horizontally on mobile instead of crushing columns to 1-char stacks. New tables
@@ -48,6 +78,7 @@ export default function BlogLayout({ children }: { children: React.ReactNode }) 
           `landmark-one-main` reported on every Lighthouse sample since June (flag #1):
           assistive tech and content extractors both use it to find where the article
           starts. One element here covers the whole blog. */}
+      <ReadingProgress />
       <main>{children}</main>
       <StickyTOC />
     </div>
