@@ -139,11 +139,21 @@ function splitTitle(title: string): { lead: string; rest: string } {
 
 export function articleOgImage(slug: string) {
   const post = postBySlug(slug);
-  const title = post?.title ?? 'Kampaio';
-  const subtitle = post?.excerpt ?? '';
-  const category = post?.category ?? '';
-  const chip = CATEGORY_LABEL[category] ?? 'Kampaio';
-  const readTime = (post?.readTime ?? '').replace(' read', '');
+  return articleOgImageFrom({
+    title: post?.title ?? 'Kampaio',
+    subtitle: post?.excerpt ?? '',
+    category: post?.category ?? '',
+    readTime: post?.readTime ?? '',
+  });
+}
+
+// Same cover for pages that are not in blogPosts (the /ads industries pages, 2026-11-11).
+export function articleOgImageFrom(o: { title: string; subtitle: string; category: string; readTime: string; chip?: string }) {
+  const title = o.title;
+  const subtitle = o.subtitle;
+  const category = o.category;
+  const chip = o.chip ?? CATEGORY_LABEL[category] ?? 'Kampaio';
+  const readTime = o.readTime.replace(' read', '');
   const { lead, rest } = splitTitle(title);
   const size = title.length < 40 ? 56 : title.length < 70 ? 48 : 42;
 

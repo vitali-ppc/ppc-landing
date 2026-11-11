@@ -14,7 +14,7 @@ export default function ArticleBreadcrumbs() {
   const [title, setTitle] = useState('');
 
   useEffect(() => {
-    if (!pathname || !/^\/blog\/[^/]+\/?$/.test(pathname)) return;
+    if (!pathname || !/^\/(blog\/[^/]+|ads(\/[^/]+)?)\/?$/.test(pathname)) return;
     const h1 = document.querySelector('main h1');
     if (!h1) return;
     const t = (h1.textContent || '').trim().split(':')[0].trim();
@@ -44,14 +44,22 @@ export default function ArticleBreadcrumbs() {
 
   if (!host) return null;
   const link = { color: '#64748b', textDecoration: 'none' } as const;
+  const isAds = !!pathname && pathname.startsWith('/ads');
+  const isAdsHub = !!pathname && /^\/ads\/?$/.test(pathname);
   const sep = <span aria-hidden style={{ margin: '0 10px', color: '#cbd5e1' }}>/</span>;
   return createPortal(
     <nav aria-label="Breadcrumb" style={{ fontSize: '15px', color: '#64748b', marginBottom: '20px', lineHeight: 1.5 }}>
       <a href="/" style={link}>Home</a>
       {sep}
-      <a href="/blog" style={link}>Blog</a>
-      {sep}
-      <span aria-current="page" style={{ color: '#1e293b' }}>{title}</span>
+      {isAdsHub ? (
+        <span aria-current="page" style={{ color: '#1e293b' }}>Industries</span>
+      ) : (
+        <>
+          <a href={isAds ? '/ads' : '/blog'} style={link}>{isAds ? 'Industries' : 'Blog'}</a>
+          {sep}
+          <span aria-current="page" style={{ color: '#1e293b' }}>{title}</span>
+        </>
+      )}
     </nav>,
     host
   );
