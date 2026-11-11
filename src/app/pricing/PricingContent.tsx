@@ -13,7 +13,7 @@ const plans = [
     description: 'AI suggests; you approve every move.',
     price: 99,
     features: [
-      'Buzz + Aegis active',
+      'Buzz + Aegis',
       '1 Google Ads account',
       'Approve every change',
       'Weekly digest',
@@ -206,7 +206,7 @@ export default function PricingContent() {
                   fontWeight: '600',
                   whiteSpace: 'nowrap'
                 }}>
-                  Available now
+                  In development
                 </div>
               )}
 
@@ -230,7 +230,7 @@ export default function PricingContent() {
                     verticalAlign: 'middle',
                     background: plan.popular ? 'rgba(78,205,196,.18)' : 'rgba(255,167,38,.18)',
                     color: plan.popular ? '#0A7C8C' : '#B45309',
-                  }}>{plan.popular ? 'LIVE' : 'NEXT'}</span>
+                  }}>NEXT</span>
                 </h3>
                 <p style={{
                   fontSize: '16px',

@@ -341,8 +341,8 @@ const FEED = [
 ];
 
 const TEAM = [
-  { icon: "bid", name: "Buzz", role: "Bidding Agent", desc: "Moves campaign budget and target ROAS by performance. Explains every decision.", status: "live" },
-  { icon: "shield", name: "Aegis", role: "Risk Agent", desc: "Reviews what Buzz decides, blocks the risky moves, and flags what is burning money. Tells you why.", status: "live" },
+  { icon: "bid", name: "Buzz", role: "Bidding Agent", desc: "Moves campaign budget and target ROAS by performance. Explains every decision.", status: "next" },
+  { icon: "shield", name: "Aegis", role: "Risk Agent", desc: "Reviews what Buzz decides, blocks the risky moves, and flags what is burning money. Tells you why.", status: "next" },
   { icon: "stack", name: "Maximus", role: "Orchestrator", desc: "Runs the other agents. Brings you only what actually needs a decision.", status: "coming" },
   { icon: "target", name: "Vox", role: "Strategy", desc: "Decides which campaigns deserve the budget, and which platform.", status: "coming" },
   { icon: "spark", name: "Mira", role: "Creative", desc: "Generates ad copy and images. Runs A/B tests.", status: "coming" },
@@ -354,8 +354,8 @@ const TIERS = [
   {
     name: "L1 Co-pilot", price: "Free", period: "early access",
     desc: "AI suggests; you approve every move.",
-    features: ["Buzz + Aegis active", "1 Google Ads account", "Approve every change", "Weekly digest", "Email support"],
-    highlight: true, status: "live",
+    features: ["Buzz + Aegis", "1 Google Ads account", "Approve every change", "Weekly digest", "Email support"],
+    highlight: true, status: "next",
   },
   {
     name: "L2 Approval", price: "Free", period: "early access",
@@ -492,7 +492,7 @@ const HowItWorks: React.FC = () => (
           <h3>Pick an autonomy level</h3>
           <p>Start as co-pilot, graduate to autopilot when you trust the work. Change it anytime.</p>
           <div className="kx-ladder">
-            <span className="kx-rung"><b>L1</b> suggest <span className="kx-stat l">LIVE</span></span>
+            <span className="kx-rung"><b>L1</b> suggest <span className="kx-stat s">NEXT</span></span>
             <span className="kx-rung"><b>L2</b> act on small <span className="kx-stat s">NEXT</span></span>
             <span className="kx-rung"><b>L3</b> full autopilot <span className="kx-stat s">NEXT</span></span>
           </div>
