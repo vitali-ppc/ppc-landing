@@ -7,7 +7,7 @@ import { blogPosts, CATEGORY_LABEL } from '../../../lib/posts';
 // Author page, as on the sister sites (owner 2026-11-11): the byline on every article links here.
 export const metadata: Metadata = {
   title: `${AUTHOR.name}, ${AUTHOR.jobTitle}`,
-  description: AUTHOR.bio.length > 160 ? AUTHOR.bio.slice(0, 157).trimEnd() + '...' : AUTHOR.bio,
+  description: AUTHOR.metaDescription,
   alternates: { canonical: AUTHOR.url },
   openGraph: { title: AUTHOR.name, description: AUTHOR.bio, url: AUTHOR.url, type: 'profile' },
 };
