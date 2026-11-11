@@ -50,6 +50,13 @@ html.has-toc .blog-shell main section[id] > h2 {
   padding-top: 32px;
   scroll-margin-top: 120px;
 }
+/* The first section sits right under the hero, which already ends in a rule: a second rule
+   there doubled the line and left ~156px of empty space between them (2026-11-11). */
+html.has-toc .blog-shell main section[id]:first-of-type > h2:first-child {
+  border-top: 0;
+  padding-top: 0;
+  margin-top: -48px !important;
+}
 html.has-toc .blog-shell main section[id] > h2::before {
   content: counter(kp-section, decimal-leading-zero);
   display: block;
