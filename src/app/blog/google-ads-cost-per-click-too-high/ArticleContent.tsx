@@ -715,7 +715,7 @@ export default function ArticleContent() {
                 The Smart Bidding learning period is real and it sucks. Two to six weeks of CPC volatility while Target CPA or Target ROAS calibrates. The first 7 to 10 days will look like the strategy is broken. Do not pause, do not change the target, do not switch back. The single most common self-inflicted wound in PPC is killing a Smart Bidding campaign in week two.
               </p>
               <p style={pStyle}>
-                Device and location adjustments are the unsexy quick win. Pull the Device segment for the past 90 days. If mobile converts at 50% of desktop, your mobile bid adjustment should be in the -30% to -50% range. Same logic for geographies. Most accounts have these set to zero across the board, then complain that mobile CPC is high.
+                Device and location adjustments are the unsexy quick win. Pull the Device segment for the past 90 days. If mobile converts at 50% of desktop, your mobile bid adjustment should be in the -30% to -50% range. Same logic for <a href="/ads" style={linkStyle}>geographies</a>. Most accounts have these set to zero across the board, then complain that mobile CPC is high.
               </p>
 
               <MascotQuote mascot="buzz">
@@ -736,7 +736,7 @@ export default function ArticleContent() {
                 Auction Insights for competitive pressure. Open the report monthly. If a new domain appears with rising impression share overlap, the auction floor is rising in your category. The wrong response is to raise bids. The right response is to tighten targeting (more negatives, more specific match types, better landing pages) and let the competition pay more for the impressions that were not worth that price anyway.
               </p>
               <p style={pStyle}>
-                The cost-cap mindset. You cap your losses by improving Quality Score and tightening match. You do not chase a competitor up the bid ladder. If a competitor wants to overpay for &quot;lawyer near me,&quot; let them. Find the queries they are not chasing, win those at half the CPC, compound for 90 days.
+                The cost-cap mindset. You cap your losses by improving Quality Score and tightening match. You do not chase a competitor up the bid ladder. If a competitor wants to overpay for &quot;<a href="/ads/lawyer" style={linkStyle}>lawyer near me</a>,&quot; let them. Find the queries they are not chasing, win those at half the CPC, compound for 90 days.
               </p>
 
               {/* VISUAL 7 placement note: progression bar of 30/60/90 day sequence (custom JSX, distinct from anything in prior articles) */}

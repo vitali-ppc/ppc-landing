@@ -289,7 +289,7 @@ export default function ArticleContent() {
               </div>
 
               <p style={para}>
-                The rest of this playbook is the ordered system: setup, campaign structure, bidding progression, measurement, and scaling, built around those four constraints. (<a href="https://hbr.org/2017/03/the-new-sales-imperative" style={linkStyle} target="_blank" rel="noopener noreferrer">HBR, 2017</a>.)
+                The rest of this playbook is the ordered system: setup, campaign structure, bidding progression, measurement, and scaling, built around those four constraints. (<a href="https://hbr.org/2017/03/the-new-sales-imperative" style={linkStyle} target="_blank" rel="noopener noreferrer">HBR, 2017</a>.) For the decisions this playbook leaves out, see <a href="/ads/saas" style={linkStyle}>SaaS PPC</a>.
               </p>
             </section>
 

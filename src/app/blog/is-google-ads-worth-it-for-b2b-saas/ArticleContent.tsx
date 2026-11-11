@@ -322,7 +322,7 @@ export default function ArticleContent() {
             <section id="cpl-to-cac">
               <h2 style={h2Style}>Will It Actually Pay Back? The CPL-to-CAC Math</h2>
               <p style={pStyle}>
-                The real question is whether the channel pays back. For B2B SaaS, the math starts with <a href="/blog/google-ads-cost-per-click-too-high" style={linkStyle}>expensive clicks</a> and low conversion rates and ends at a CAC your ACV either supports or doesn&apos;t. Here is what that chain looks like.
+                The real question is whether the channel <a href="/ads/saas" style={linkStyle}>pays back</a>. For B2B SaaS, the math starts with <a href="/blog/google-ads-cost-per-click-too-high" style={linkStyle}>expensive clicks</a> and low conversion rates and ends at a CAC your ACV either supports or doesn&apos;t. Here is what that chain looks like.
               </p>
 
               {/* VISUAL 3: BigStat (bold-viz) - sourced benchmark figure */}

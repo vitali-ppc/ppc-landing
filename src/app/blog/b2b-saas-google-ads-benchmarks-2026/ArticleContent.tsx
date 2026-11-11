@@ -434,7 +434,7 @@ export default function ArticleContent() {
                 Why B2B SaaS Benchmarks Are Different From the Industry Average
               </h2>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '24px' }}>
-                B2B SaaS Google Ads benchmarks differ from cross-industry averages because the conversion event is a demo request or free trial signup from a buying committee with an 84-day average sales cycle, not a "buy now" click from a single consumer. The table below shows what this structural difference produces in practice.
+                B2B SaaS Google Ads benchmarks differ from cross-industry averages because the conversion event is a <a href="/ads/saas" style={{ color: '#764ba2', textDecoration: 'underline' }}>demo request or free trial signup</a> from a buying committee with an 84-day average sales cycle, not a "buy now" click from a single consumer. The table below shows what this structural difference produces in practice.
               </p>
 
               <div style={{ overflowX: 'auto', marginBottom: '28px' }}>
