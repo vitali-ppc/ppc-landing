@@ -40,7 +40,7 @@ export default function ArticleContent() {
       },
     },
     datePublished: '2026-08-02T00:00:00.000Z',
-    dateModified: '2026-10-12T00:00:00.000Z',
+    dateModified: '2026-11-13T00:00:00.000Z',
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': 'https://www.kampaio.com/blog/google-ads-search-terms-report',
@@ -233,6 +233,7 @@ export default function ArticleContent() {
     { label: 'Google Ads Help: About ad group and asset group prioritization (Advanced search experiences)', href: 'https://support.google.com/google-ads/answer/2756257' },
     { label: 'Search Engine Journal: Google quietly changed how search terms are reported for some AI queries, May 2026', href: 'https://www.searchenginejournal.com/google-quietly-changed-how-search-terms-are-reported-for-some-ai-queries/574803/' },
     { label: "Google: Dynamic Search Ads are upgrading to AI Max, blog.google, updated Jun 11, 2026", href: 'https://blog.google/products/ads-commerce/dsa-upgrade-to-ai-max-2026/' },
+    { label: 'Search Engine Land: AI search activity is nearly invisible in Google Ads search terms reports (Rémi Kerhoas, Eskimoz), Nov 9, 2026', href: 'https://searchengineland.com/ai-search-activity-invisible-google-ads-search-terms-reports-study-500872' },
   ];
 
   return (
@@ -267,7 +268,7 @@ export default function ArticleContent() {
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '2px' }}>
                   <span style={{ color: '#64748b', fontSize: '16px', fontWeight: 600 }}>By <a href="/author/vitalii-chornyi" style={{ color: 'inherit', textDecoration: 'underline' }}>Vitalii Chornyi</a></span>
                   <span style={{ color: '#64748b', fontSize: '15px' }}>Kampaio</span>
-                  <span style={{ color: '#64748b', fontSize: '15px' }}>August 2, 2026 &middot; Updated October 12, 2026 &middot; 11 min read</span>
+                  <span style={{ color: '#64748b', fontSize: '15px' }}>August 2, 2026 &middot; Updated November 13, 2026 &middot; 11 min read</span>
                 </div>
               </div>
             </div>
@@ -431,6 +432,21 @@ export default function ArticleContent() {
                 automatically, and AI-based ad group prioritization picks which ad group serves
                 instead. Treat an odd-looking row from those surfaces as a read on intent rather
                 than a transcript before you turn it into an exact-match negative.
+              </p>
+
+              <p style={paragraphStyle}>
+                That approximation shows up in the data. Rémi Kerhoas, Performance Director at the
+                agency Eskimoz, looked at 400+ of the agency&apos;s own Google Ads accounts (Search and
+                Performance Max, Q1 2024 to Q3 2026, U.S., U.K. and France) and found no clear shift
+                toward longer reported search terms, even though Google says AI Mode queries are
+                about three times longer than traditional searches. The share of unreported broad
+                match terms stayed fairly flat for close to three years, and most AI Max search terms
+                were one to three words (
+                <a href="https://searchengineland.com/ai-search-activity-invisible-google-ads-search-terms-reports-study-500872" style={linkStyle} target="_blank" rel="noopener noreferrer">Search Engine Land, Nov 9, 2026</a>;
+                Kerhoas discloses that he works for the agency whose data he analyzed). His
+                highest-confidence explanation is the one above: the report shows an approximation
+                of intent, not the prompt as typed. So don&apos;t expect to pick out AI Overviews or
+                AI Mode traffic from the search terms report.
               </p>
 
               <h3 style={{ fontSize: '22px', fontWeight: 700, color: '#1e293b', marginTop: '40px', marginBottom: '16px', lineHeight: 1.3 }}>The two total rows, and what people mean by &quot;uncategorised&quot;</h3>
