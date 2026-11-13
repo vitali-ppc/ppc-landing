@@ -6,6 +6,10 @@ export const metadata: Metadata = {
   description:
     'B6 is an AI-agent team that manages Google Ads campaigns end-to-end. Buzz bids, Aegis reviews, Echo reports. Free during early access. Watch them work in real-time.',
   alternates: { canonical: 'https://www.kampaio.com/b6' },
+  // noindex 2026-11-13 (owner, flag O-3): behind AuthGuard a crawler sees ~70 chars ("Loading…");
+  // 4 impressions in 90 days, all for 'kampaio'. 'follow' keeps the 42 blog links to /b6 crawlable.
+  // Re-index when the page has signed-out copy.
+  robots: 'noindex, follow',
   openGraph: {
     title: 'B6: AI Agents for Google Ads',
     description:

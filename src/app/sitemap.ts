@@ -26,7 +26,7 @@ const STATIC_ROUTES: Array<{
   { path: '/', changeFrequency: 'weekly', priority: 1.0 },
   { path: '/blog', changeFrequency: 'daily', priority: 0.8 },
   { path: '/tools/roas-calculator', changeFrequency: 'monthly', priority: 0.7 },
-  { path: '/b6', changeFrequency: 'weekly', priority: 0.9 },
+  // /b6 removed 2026-11-13: noindex until it has signed-out copy (flag O-3).
   { path: '/pricing', changeFrequency: 'monthly', priority: 0.7 },
   { path: '/replace-google-ads-agency', changeFrequency: 'monthly', priority: 0.8 },
   { path: '/fix-google-ads-account', changeFrequency: 'monthly', priority: 0.8 },
