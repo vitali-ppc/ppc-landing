@@ -16,7 +16,7 @@ export default function ArticleContent() {
     '@context': 'https://schema.org',
     '@type': 'Article',
     '@id': 'https://www.kampaio.com/blog/google-ads-optimizer-software-compared#article',
-    headline: 'Google Ads Optimizer Software, Compared: Do You Actually Need One?',
+    headline: 'Google Ads Optimization Software Compared: Do You Need It?',
     description:
       'A neutral comparison of Google Ads optimizer software (Optmyzr, TheOptimizer, Google Recommendations, AI-native tools) plus a framework for deciding when an optimizer beats doing it manually.',
     image: 'https://www.kampaio.com/og/google-ads-optimizer-software-compared.png',
@@ -122,7 +122,7 @@ export default function ArticleContent() {
       {
         '@type': 'ListItem',
         position: 3,
-        name: 'Google Ads Optimizer Software, Compared: Do You Actually Need One?',
+        name: 'Google Ads Optimization Software Compared: Do You Need It?',
         item: 'https://www.kampaio.com/blog/google-ads-optimizer-software-compared',
       },
     ],
@@ -261,7 +261,7 @@ export default function ArticleContent() {
               Google Ads · Tool Comparison
             </div>
             <h1 style={{ fontSize: 'clamp(32px, 4vw, 48px)', fontWeight: 800, color: '#1e293b', marginBottom: '24px', lineHeight: '1.2' }}>
-              Google Ads Optimizer Software, Compared: Do You Actually Need One?
+              Google Ads Optimization Software Compared: Do You Need It?
             </h1>
             <p style={{ fontSize: '20px', color: '#64748b', marginBottom: '32px', lineHeight: '1.6', fontWeight: 500 }}>
               Optimizers split into three capability levels. The right pick comes down to one question: how much of the work do you actually want the tool to do?
