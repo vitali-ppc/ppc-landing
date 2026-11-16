@@ -356,7 +356,7 @@ export default function ArticleContent() {
                 Value is the one thing this strategy adds over Maximize conversions, so if every conversion is worth the same, there is nothing to optimize (Google Ads Help, 2026).
               </p>
               <p style={paragraphStyle}>
-                Ryan Bowman at Web Eminence reported CPC of $8-10 before the switch and $43 on one day after it. Cost per lead rose from about $45 to $150, overall cost rose 130%, and ROAS fell 24% after a July test. His rule: if all conversions are worth the same, use Maximize conversions with a target CPA. Those are one account&apos;s numbers, so read them as a mechanism, not a rate.
+                Ryan Bowman at Web Eminence reported CPC of $8-10 before the switch and $43 on one day after it. Cost per lead rose from about $45 to $150, overall cost rose 130%, and <a href="/blog/google-ads-roas-dropped-suddenly" style={{ color: '#764ba2', textDecoration: 'underline' }}>ROAS fell</a> 24% after a July test. His rule: if all conversions are worth the same, use Maximize conversions with a target CPA. Those are one account&apos;s numbers, so read them as a mechanism, not a rate.
               </p>
 
               <h3 id="gate-2" style={h3Style}>Gate 2: Can You Trust the Value Column</h3>
@@ -509,7 +509,7 @@ export default function ArticleContent() {
                 Run the three gates on your three largest-spend client accounts this week, then change one account at a time.
               </p>
               <p style={paragraphStyle}>
-                Kampaio watches bid strategy status and budget pacing across accounts, the part of this check that drifts between reviews. See <Int href="/">how Kampaio works</Int>.
+                Kampaio watches bid strategy status and <a href="/blog/google-ads-not-spending-full-budget" style={{ color: '#764ba2', textDecoration: 'underline' }}>budget pacing</a> across accounts, the part of this check that drifts between reviews. See <Int href="/">how Kampaio works</Int>.
               </p>
             </section>
 
