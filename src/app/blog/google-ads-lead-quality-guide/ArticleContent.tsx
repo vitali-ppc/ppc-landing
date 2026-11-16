@@ -544,7 +544,7 @@ export default function ArticleContent() {
               <p style={pStyle}>
                 The fix is a feedback loop: tell Google which leads are real, make it bid for revenue instead of volume, then
                 tighten the funnel so less junk gets in. Google Ads Help endorses this sequence, recommending value-based
-                bidding - Maximize Conversion Value or tROAS - as the best practice for high-quality lead generation once
+                bidding - <a href="/blog/maximize-conversion-value" style={linkStyle}>Maximize Conversion Value</a> or tROAS - as the best practice for high-quality lead generation once
                 quality data is flowing (
                 <a href="https://support.google.com/google-ads/answer/13489421?hl=en" style={linkStyle} target="_blank" rel="noopener noreferrer">
                   Google Ads Help, 2024

@@ -123,6 +123,8 @@ export default function ArticleContent() {
     keywords:
       'maximize conversion value, google ads maximize conversion value, maximize conversions, target ROAS, smart bidding, conversion value, bid strategy, conversion value rules, agency, Kampaio',
     inLanguage: 'en',
+    "wordCount": 1293,
+    "articleSection": "Google Ads"
   };
 
   const faqSchema = {

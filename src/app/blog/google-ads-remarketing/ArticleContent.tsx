@@ -114,6 +114,8 @@ export default function ArticleContent() {
     keywords:
       'google ads remarketing, remarketing, retargeting, your data segments, remarketing list, customer match, membership duration, RLSA, Performance Max, Demand Gen, audience exclusions, frequency cap, incrementality, Kampaio',
     inLanguage: 'en',
+    "wordCount": 2031,
+    "articleSection": "Google Ads"
   };
 
   const faqSchema = {

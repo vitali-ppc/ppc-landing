@@ -560,7 +560,7 @@ export default function ArticleContent() {
               </p>
 
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '16px' }}>
-                <strong>1. TOFU campaign:</strong> Broad match keywords around the problem space ("reduce B2B CAC", "B2B demand generation tools"). Bid strategy: Maximize Clicks or Target Impression Share. Goal: build remarketing audiences and fill the top of the funnel. Do not expect direct conversions from TOFU, audience building is the objective.
+                <strong>1. TOFU campaign:</strong> Broad match keywords around the problem space ("reduce B2B CAC", "B2B demand generation tools"). Bid strategy: Maximize Clicks or Target Impression Share. Goal: build <a href="/blog/google-ads-remarketing" style={{ color: '#764ba2', textDecoration: 'underline' }}>remarketing</a> audiences and fill the top of the funnel. Do not expect direct conversions from TOFU, audience building is the objective.
               </p>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '16px' }}>
                 <strong>2. MOFU campaign:</strong> Phrase and exact match keywords around solution categories ("B2B lead generation software", "Google Ads management platform"). Bid strategy: Maximize Conversions once you have 30+ conversions in the last 30 days; otherwise Maximize Clicks. Landing page: solution-specific with a concrete offer (free audit, ROI calculator, case study).

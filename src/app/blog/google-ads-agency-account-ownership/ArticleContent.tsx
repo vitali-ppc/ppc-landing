@@ -427,7 +427,7 @@ export default function ArticleContent() {
               <h2 style={h2Style}>The Ownership Exposure Check: Six Google Assets Your Agency Might Hold</h2>
               <p style={paragraphStyle}>
                 Your Google Ads account is one of six separate objects an agency can hold, and they strand independently. Losing the ads account is the
-                obvious risk. Losing the payments profile, the conversion tags, the GA4 link, the remarketing audiences, or Merchant Center is the one that
+                obvious risk. Losing the payments profile, the conversion tags, the GA4 link, the <a href="/blog/google-ads-remarketing" style={{ color: '#764ba2', textDecoration: 'underline' }}>remarketing</a> audiences, or Merchant Center is the one that
                 actually stops you rebuilding.
               </p>
 

@@ -3,7 +3,7 @@ import ArticleContent from './ArticleContent';
 
 export const metadata: Metadata = {
   title: 'PPC Management Pricing: What Agencies Actually Charge (2026)',
-  description: 'PPC management costs $500 to $10,000 a month, or 10 to 20% of ad spend. Here is the honest line-item breakdown, the three pricing models decoded, and the math on whether the fee is worth it at your spend level.',
+  description: 'PPC management pricing in 2026: agencies charge $500 to $10,000 a month or 10 to 20% of ad spend; software starts near $499 flat. The math on what is worth it.',
   alternates: {
     canonical: 'https://www.kampaio.com/blog/ppc-management-cost',
   },

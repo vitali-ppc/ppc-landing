@@ -604,7 +604,7 @@ export default function ArticleContent() {
             <section id="when-display-works">
               <h2 style={h2Style}>When Display Network IS Worth Running (Honest Take)</h2>
               <p style={pStyle}>
-                Display Network is worth running in three specific scenarios: brand awareness for established brands with $20K+ monthly spend, remarketing to recent site visitors, and visual or lifestyle products where the image moves the buyer. Outside those three, Display does not pay back as a Search-campaign opt-in.
+                Display Network is worth running in three specific scenarios: brand awareness for established brands with $20K+ monthly spend, <a href="/blog/google-ads-remarketing" style={linkStyle}>remarketing</a> to recent site visitors, and visual or lifestyle products where the image moves the buyer. Outside those three, Display does not pay back as a Search-campaign opt-in.
               </p>
               <p style={pStyle}>
                 <strong>Brand awareness for established brands.</strong> Budgets over $20,000 a month, CMO who tracks branded search lift and view-through, not direct ROAS. The mental model is &quot;we are spending to teach the market the name&quot;, measured weeks or quarters out. Display is a fine tool for that job. It is not the right tool for a $1,500 a month SMB Search campaign.

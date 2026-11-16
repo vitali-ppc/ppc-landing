@@ -269,7 +269,7 @@ export default function ArticleContent() {
             <section id="tldr">
               <h2 style={{ ...h2Style, marginTop: 0 }}>TL;DR: The Right Structure in 30 Seconds</h2>
               <p style={paragraphStyle}>
-                A Google Ads account structure has three layers: account, campaign, ad group. For DTC and ecommerce, split campaigns by intent (brand, non-brand category, product feed, remarketing), not by product feature, and group keywords into single-theme ad groups (STAG) instead of single-keyword ad groups (SKAG).
+                A Google Ads account structure has three layers: account, campaign, ad group. For DTC and ecommerce, split campaigns by intent (brand, non-brand category, product feed, <a href="/blog/google-ads-remarketing" style={{ color: '#764ba2', textDecoration: 'underline' }}>remarketing</a>), not by product feature, and group keywords into single-theme ad groups (STAG) instead of single-keyword ad groups (SKAG).
               </p>
 
               {/* VISUAL 1: KeyTakeaways (structural) : front-loaded answer */}
