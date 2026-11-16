@@ -24,22 +24,14 @@ export default function ArticleBreadcrumbs() {
     const anchor = (hero || h1) as HTMLElement;
     const el = document.createElement('div');
     el.setAttribute('data-article-breadcrumbs', '');
-    if (hero) el.style.maxWidth = '800px', (el.style.margin = '0 auto');
-    anchor.parentElement!.insertBefore(el, anchor);
-    // The header is fixed and the hero container starts at the top of the page, so the hero
-    // image sat ~80px under the header on every article (measured 2026-11-11: header bottom
-    // 102px, image top 20px). Push the trail (and the image below it) clear of the header.
-    const fit = () => {
-      if (!hero) return;
-      el.style.paddingTop = '0px';
-      const hb = document.querySelector('.next-header')?.getBoundingClientRect().bottom ?? 0;
-      const top = el.getBoundingClientRect().top + window.scrollY;
-      el.style.paddingTop = Math.max(0, Math.round(hb - top + 24)) + 'px';
-    };
-    fit();
-    window.addEventListener('resize', fit);
+    // With a hero, the slot is reserved in CSS (articleShellCss: .article-hero padding-top) and the
+    // trail is laid absolutely into it, so inserting it moves nothing (flag CLS-SHELL, 2026-11-16).
+    if (hero) hero.insertBefore(el, hero.firstChild);
+    else anchor.parentElement!.insertBefore(el, anchor);
+    // The fixed header used to be cleared here by measuring it and padding the trail after
+    // hydration; that moved the article header (flag CLS-SHELL). The offsets now live in CSS.
     setHost(el);
-    return () => { window.removeEventListener('resize', fit); el.remove(); setHost(null); };
+    return () => { el.remove(); setHost(null); };
   }, [pathname]);
 
   if (!host) return null;
