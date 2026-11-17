@@ -320,7 +320,7 @@ export default function ArticleContent() {
                   marginBottom: '18px',
                   lineHeight: '1.3'
                 }}>
-                  Want to see how your Quality Score stacks up?
+                  Want every campaign&apos;s numbers on one screen?
                 </h3>
                 <p style={{
                   fontSize: '17px',
@@ -330,10 +330,10 @@ export default function ArticleContent() {
                   fontWeight: '500',
                   opacity: 0.9
                 }}>
-                  Get a free AI-powered audit of your Google Ads account and discover actionable ways to improve your Quality Score and lower costs.
+                  Connect your Google Ads accounts to the Kampaio dashboard and see spend, CPA, ROAS, and 14 automatic campaign checks for every campaign on one screen. Free during early access.
                 </p>
                 <a
-                  href="/chat"
+                  href="https://dashboard.kampaio.com/"
                   className="btn"
                   style={{
                     background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
@@ -358,7 +358,7 @@ export default function ArticleContent() {
                     (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
                   }}
                 >
-                  Get My Free Audit
+                  Open the dashboard
                 </a>
               </div>
             </section>

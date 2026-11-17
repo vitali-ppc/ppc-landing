@@ -391,8 +391,8 @@ export default function ArticleContent() {
               </p>
 
               <MascotQuote mascot="sage">
-                On a $32K/mo B2B account I scanned last cycle: 41 form fills, sales accepted 12. That is a 71% rejection rate.
-                But Google saw 41 conversions of equal value, so Smart Bidding was bidding hardest on the ad groups producing
+                Picture an illustrative month: 41 form fills, sales accepts 12. That is a 71% rejection rate.
+                But Google sees 41 conversions of equal value, so Smart Bidding bids hardest on the ad groups producing
                 the most junk. Defining the qualified lead is step zero - until Google knows what &quot;good&quot; looks like, every
                 other lever fights the algorithm.
               </MascotQuote>
@@ -595,10 +595,10 @@ export default function ArticleContent() {
               </ol>
 
               <MascotQuote mascot="buzz">
-                After OCI fed real stage data on a $48K account, I switched the top spender from Maximize Conversions to
-                Maximize Conversion Value. I assigned form_complete = $1, SQL = $100, Won = $2,500. Over 30 days form fills
-                fell 28%, but SQLs rose 19% and revenue-CAC dropped from $2,840 to $1,610. Fewer leads, more pipeline. That is
-                the trade you want.
+                Once OCI feeds real stage data, the move I am being built to propose is switching the top spender from
+                Maximize Conversions to Maximize Conversion Value, with stage values that reflect pipeline (for example
+                form_complete = $1, SQL = $100, Won = $2,500). Expect form fills to fall and SQLs to rise. Fewer leads, more
+                pipeline. That is the trade you want.
               </MascotQuote>
 
               <ol start={3} style={{ fontSize: '18px', color: '#1e293b', lineHeight: '1.8', paddingLeft: '24px', marginBottom: '32px' }}>
@@ -810,14 +810,15 @@ export default function ArticleContent() {
             <section id="kampaio">
               <h2 style={h2Style}>Where Kampaio Fits (Running the Quality Loop)</h2>
               <p style={pStyle}>
-                Lead quality drifts the moment you stop watching. Sage, Kampaio&apos;s research <a href="/blog/google-ads-ai-agent" style={linkStyle}>agent</a>, defines and tracks the
-                qualified-lead signal: which ad groups are feeding pipeline, where match-quality is sliding, and whether OCI
-                uploads are healthy. The weekly quality loop runs automatically, surfacing drift before it compounds.
+                Lead quality drifts the moment you stop watching. Today the <a href="https://dashboard.kampaio.com/" style={linkStyle}>Kampaio dashboard</a> covers the watching
+                part it can see from Google Ads: all your accounts on one screen, with automatic checks that flag spend with no
+                conversions, CPA above target, and conversions that have stopped, plus a search terms report where you add
+                negatives after a preview.
               </p>
               <p style={pStyle}>
-                When the data says act, Buzz adjusts bids toward value and Maximus orchestrates changes across campaigns, with
-                your approval before anything applies. You define what a good lead looks like once; the agents hold the account
-                to that definition.
+                Kampaio&apos;s <a href="/blog/google-ads-ai-agent" style={linkStyle}>agents</a> for the rest of the loop are in development and do not run on live
+                accounts. Sage, the research agent, will track the qualified-lead signal; Buzz, the bidding agent, will propose
+                value-based bid changes; Maximus will orchestrate changes across campaigns, with your approval before anything applies.
               </p>
               <div
                 style={{
@@ -830,16 +831,13 @@ export default function ArticleContent() {
                 }}
               >
                 <h3 style={{ fontSize: '22px', fontWeight: 700, color: '#1e293b', marginBottom: '18px', lineHeight: '1.3' }}>
-                  Run the quality loop on autopilot
+                  Watch lead-gen accounts on one screen
                 </h3>
                 <p style={{ fontSize: '17px', color: '#64748b', marginBottom: '28px', lineHeight: '1.6', fontWeight: 500, opacity: 0.9 }}>
-                  <a href="/pricing" style={linkStyle}>
-                    Kampaio&apos;s pricing page
-                  </a>{' '}
-                  covers what the monitoring loop looks like at each plan tier.
+                  The Kampaio dashboard is free during early access. Connect your Google Ads accounts and see which campaigns trip its 14 automatic checks.
                 </p>
                 <a
-                  href="/chat"
+                  href="https://dashboard.kampaio.com/"
                   className="btn"
                   style={{
                     background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
@@ -864,12 +862,12 @@ export default function ArticleContent() {
                     (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
                   }}
                 >
-                  Start Free
+                  Open the dashboard
                 </a>
               </div>
               <p style={{ fontSize: '14px', color: '#64748b', lineHeight: '1.7', marginBottom: '40px', fontStyle: 'italic' }}>
                 Results vary by account size, vertical, and tracking setup. All example numbers in this article (71% rejection
-                rate, $142 CPL, $470 CPQL, $1,900 pipeline-CAC, Buzz&apos;s $48K account data) are illustrative of scale and
+                rate, $142 CPL, $470 CPQL, $1,900 pipeline-CAC, the stage values) are illustrative of scale and
                 direction, not universal benchmarks. Nothing here constitutes professional advertising advice.
               </p>
             </section>

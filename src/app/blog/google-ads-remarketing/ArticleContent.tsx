@@ -369,7 +369,7 @@ export default function ArticleContent() {
               </p>
 
               <MascotQuote mascot="sage">
-                Customer Match lists expire after 540 days. To keep one eligible, I add or refresh at least 100 members inside that window, otherwise it shrinks and can pause the campaign.
+                Customer Match lists expire after 540 days. To keep one eligible, add or refresh at least 100 members inside that window, otherwise it shrinks and can pause the campaign. Watching that clock is something I am being built to do; I am in development, so put the refresh date in your calendar for now.
               </MascotQuote>
             </section>
 
@@ -595,7 +595,7 @@ export default function ArticleContent() {
                 ]}
               />
               <p style={paragraphStyle}>
-                Sage, kampaio&apos;s research agent for keywords and audiences, can review audience setup. kampaio is free in beta.
+                Sage, Kampaio&apos;s research agent for keywords and audiences, is being built to review audience setup; it is in development and does not run on live accounts yet.
               </p>
             </section>
 
@@ -627,18 +627,18 @@ export default function ArticleContent() {
                 Run a 15-minute audit this week: compare each list&apos;s size to the floor, check Customer Match refresh dates against the 540-day clock, confirm purchaser exclusions, and check segment overlap. Lists became signals, so exclusions and holdouts are the controls you still own. We would start with exclusions: they take an afternoon and need no new budget.
               </p>
               <p style={paragraphStyle}>
-                The <a href="/blog/google-ads-optimization" style={linkStyle}>Google Ads optimization pillar</a> covers surrounding checks. For an extra pass on audiences, connect an account to kampaio, free in beta.
+                The <a href="/blog/google-ads-optimization" style={linkStyle}>Google Ads optimization pillar</a> covers surrounding checks. To see every campaign&apos;s spend, ROAS and CPA on one screen while you work through it, connect your accounts to the <a href="https://dashboard.kampaio.com/" style={linkStyle}>Kampaio dashboard</a>, free during early access.
               </p>
 
               <div style={{ background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)', borderRadius: '16px', padding: '40px', textAlign: 'center', marginTop: '40px', marginBottom: '40px' }}>
                 <h3 style={{ fontSize: '24px', fontWeight: 800, color: '#1e293b', marginBottom: '16px', marginTop: 0, lineHeight: 1.3 }}>
-                  Get an extra pass on your audiences
+                  See every account on one screen
                 </h3>
                 <p style={{ fontSize: '17px', color: '#475569', marginBottom: '28px', lineHeight: 1.6, fontWeight: 500, maxWidth: '620px', marginLeft: 'auto', marginRight: 'auto' }}>
-                  Connect a Google Ads account and Sage reviews your audience setup. kampaio is free in beta.
+                  Connect your Google Ads accounts to the Kampaio dashboard: campaign metrics with a breakdown by device, geo and network, plus automatic checks such as spend with no conversions and ROAS below target. Free during early access.
                 </p>
                 <a
-                  href="/chat"
+                  href="https://dashboard.kampaio.com/"
                   style={{
                     background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                     color: 'white',
@@ -661,7 +661,7 @@ export default function ArticleContent() {
                     (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
                   }}
                 >
-                  Start free
+                  Open the dashboard
                 </a>
               </div>
 

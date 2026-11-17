@@ -234,7 +234,7 @@ export default function ArticleContent() {
                   marginBottom: '18px',
                   lineHeight: '1.3'
                 }}>
-                  Want to see AI in action on your own account?
+                  See where your campaigns need work
                 </h3>
                 <p style={{
                   fontSize: '17px',
@@ -244,10 +244,10 @@ export default function ArticleContent() {
                   fontWeight: '500',
                   opacity: 0.9
                 }}>
-                  Let our platform analyze your campaigns<br />and show exactly where to optimize for better ROI.
+                  The Kampaio dashboard puts every Google Ads account you manage on one screen and flags problems with 14 automatic campaign checks, such as spend with no conversions or impressions lost to budget. Every change you make from it shows a preview first and can be rolled back. Free during early access.
                 </p>
                 <a
-                  href="/chat"
+                  href="https://dashboard.kampaio.com/"
                   className="btn"
                   style={{
                     background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
@@ -272,7 +272,7 @@ export default function ArticleContent() {
                     (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
                   }}
                 >
-                  Run My Free AI Audit
+                  Open the dashboard
                 </a>
               </div>
             </section>

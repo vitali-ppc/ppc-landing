@@ -275,7 +275,7 @@ export default function ArticleContent() {
               </p>
 
               <ComparisonTable
-                headers={['Dimension', 'White-label provider', 'In-house hire', 'Software (e.g. Kampaio)']}
+                headers={['Dimension', 'White-label provider', 'In-house hire', 'Software']}
                 rows={[
                   { cells: ['Upfront cost', 'None to low (some setup fees)', 'Recruiting cost + 3-6 month ramp', 'None (SaaS subscription)'] },
                   { cells: ['Monthly cost', '$300-1,500/account fixed OR 10-20% of ad spend', '$5,400-7,900/mo fully-loaded salary', 'Flat monthly subscription, regardless of account count'] },
@@ -285,7 +285,7 @@ export default function ArticleContent() {
                   { cells: ['Breakeven vs in-house', 'Immediate; cheaper than hiring for 1-5 accounts', '~4-6 accounts at $1,500 retainer to justify one hire', 'Immediate; fixed cost regardless of account count'] },
                   { cells: ['Best-fit agency stage', 'Fast start, PPC secondary, no internal PPC skill', 'PPC is core, steady volume, 6-12 month horizon', 'PPC skill in-house, want margin and control without headcount'], highlight: true },
                 ]}
-                caption="Vendor-advertised white-label and in-house salary figures come from ALM Corp and Clicks Geek (both sell white-label fulfillment). Kampaio pricing is first-party confirmed. All figures are illustrative ranges as of mid-2026."
+                caption="Vendor-advertised white-label and in-house salary figures come from ALM Corp and Clicks Geek (both sell white-label fulfillment). Software figures assume a generic flat-fee tool. All figures are illustrative ranges as of mid-2026."
               />
 
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
@@ -293,7 +293,7 @@ export default function ArticleContent() {
               </p>
 
               <MascotQuote mascot="vox">
-                Across an 8-account book running $3,000 average monthly ad spend per client, white-label provider fees at 15 percent of spend came to $3,600 a month total. Moving four of those accounts to a flat software fee, $199 a month for the sake of this worked example, cut fulfillment cost to $1,399 a month combined, same four accounts, margin jumped from 34 percent to 81 percent.
+                The math I am being built to run for agencies: on an 8-account book at $3,000 average monthly ad spend per client, a provider charging 15 percent of spend costs $3,600 a month in total. Compare that line against any flat software fee, and check whether the fee stays flat as accounts are added.
               </MascotQuote>
             </section>
 
@@ -438,7 +438,7 @@ export default function ArticleContent() {
                 <strong>Hire in-house when</strong> PPC is core to your positioning, you have steady volume (4+ accounts at $1,500+ retainer), and a 6 to 12 month horizon to amortize the ramp cost.
               </p>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
-                <strong>Use software when</strong> PPC skill exists in-house, you want full strategic control and margin, and you need to scale delivery without headcount. The software path means your agency runs the campaigns directly, with automation handling bid management, <a href="/blog/google-ads-not-spending-full-budget" style={{ color: '#764ba2', textDecoration: 'underline' }}>budget pacing</a>, and reporting. Kampaio is built for this model, on a flat subscription regardless of account count. If you are evaluating this path for the first time, <a href="/blog/google-ads-without-agency" style={{ color: '#764ba2', textDecoration: 'underline' }}>running Google Ads without an agency</a> covers the real tradeoffs of going direct.
+                <strong>Use software when</strong> PPC skill exists in-house, you want full strategic control and margin, and you need to scale delivery without headcount. The software path means your agency runs the campaigns directly, with automation handling bid management, <a href="/blog/google-ads-not-spending-full-budget" style={{ color: '#764ba2', textDecoration: 'underline' }}>budget pacing</a>, and reporting. Kampaio is built for this model. Today that is the <a href="https://dashboard.kampaio.com/" style={{ color: '#764ba2', textDecoration: 'underline' }}>Kampaio dashboard</a>: every client account on one screen, 14 automatic campaign checks, and changes you make with a preview and a rollback, free during early access. Its agents for bid management and reporting are in development. If you are evaluating this path for the first time, <a href="/blog/google-ads-without-agency" style={{ color: '#764ba2', textDecoration: 'underline' }}>running Google Ads without an agency</a> covers the real tradeoffs of going direct.
               </p>
             </section>
 
@@ -541,10 +541,10 @@ export default function ArticleContent() {
                   fontWeight: '500',
                   opacity: 0.9
                 }}>
-                  If you have PPC skill in-house and want to stop handing 30 to 60 percent of your fee to an invisible provider, software runs the campaigns directly while you keep the account and the client. For agencies weighing the software path before signing a white-label contract, see the <a href="/blog/google-ads-agency-vs-in-house-vs-software" style={{ color: '#764ba2', textDecoration: 'underline' }}>full agency vs in-house vs software comparison</a>, or explore <a href="/pricing" style={{ color: '#764ba2', textDecoration: 'underline' }}>Kampaio pricing</a>, free while B6 is in beta.
+                  If you have PPC skill in-house and want to stop handing 30 to 60 percent of your fee to an invisible provider, the software path lets you run the campaigns directly while you keep the account and the client. For agencies weighing the software path before signing a white-label contract, see the <a href="/blog/google-ads-agency-vs-in-house-vs-software" style={{ color: '#764ba2', textDecoration: 'underline' }}>full agency vs in-house vs software comparison</a>, or open the <a href="https://dashboard.kampaio.com/" style={{ color: '#764ba2', textDecoration: 'underline' }}>Kampaio dashboard</a>, free during early access.
                 </p>
                 <a
-                  href="/chat"
+                  href="https://dashboard.kampaio.com/"
                   className="btn"
                   style={{
                     background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
@@ -569,7 +569,7 @@ export default function ArticleContent() {
                     (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
                   }}
                 >
-                  Run it on your own account
+                  Open the dashboard
                 </a>
               </div>
             </section>

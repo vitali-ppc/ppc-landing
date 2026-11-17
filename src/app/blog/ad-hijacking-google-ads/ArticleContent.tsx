@@ -440,7 +440,7 @@ export default function ArticleContent() {
                 That&apos;s the honest limit most <a href="/blog/google-ads-management-software" style={linkStyle}>Google Ads management software</a> vendor pages gloss over. A hijacker skimming clicks at 2 a.m. in a city you don&apos;t check keeps running against a once-a-week manual pass.
               </p>
               <p style={paragraphStyle}>
-                <a href="/b6#aegis" style={linkStyle}>Aegis, Kampaio&apos;s brand-safety agent</a>, runs that side continuously: it watches your branded impression share and &quot;Search lost IS (rank)&quot; trend for the row-one pattern above, flags cloned ad copy the way row two describes, and surfaces the alert before a week&apos;s budget leaks to an affiliate. Kampaio is free while it is in beta, for the same $3K-$50K/month accounts this guide is written for.
+                The Kampaio dashboard covers part of that side today. Its automatic campaign checks include impressions lost to rank, so a branded campaign that starts losing rank-based impression share while its budget has not moved (the row-one pattern above) shows up on one screen, across every account you manage. It does not read ad copy or Auction Insights. Aegis, Kampaio&apos;s risk agent, is in development and will add brand-safety checks such as cloned ad copy. The dashboard is free during early access, for the same $3K-$50K/month accounts this guide is written for.
               </p>
             </section>
 
@@ -459,18 +459,18 @@ export default function ArticleContent() {
             <section id="cta">
               <h2 style={h2Style}>Protect Your Branded Traffic</h2>
               <p style={paragraphStyle}>
-                Run the 3-symptom triage on your own branded campaign this week: pull up Auction Insights, check your &quot;Search lost IS (rank)&quot; trend, and search <a href="https://www.facebook.com/ads/library/" style={linkStyle} target="_blank" rel="noopener noreferrer">Meta Ad Library</a> for your brand name. Find something? Work through the detection matrix row by row. Don&apos;t have the hours to watch every geo and off-peak window by hand? That&apos;s what Aegis is built to automate.
+                Run the 3-symptom triage on your own branded campaign this week: pull up Auction Insights, check your &quot;Search lost IS (rank)&quot; trend, and search <a href="https://www.facebook.com/ads/library/" style={linkStyle} target="_blank" rel="noopener noreferrer">Meta Ad Library</a> for your brand name. Find something? Work through the detection matrix row by row. Don&apos;t have the hours to watch every geo and off-peak window by hand? That&apos;s what Aegis, our risk agent (in development), is being built to automate; the Kampaio dashboard already flags campaigns losing impressions to rank.
               </p>
 
               <div style={{ background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)', borderRadius: '16px', padding: '40px', textAlign: 'center', marginTop: '40px', marginBottom: '40px' }}>
                 <h3 style={{ fontSize: '24px', fontWeight: 800, color: '#1e293b', marginBottom: '16px', marginTop: 0, lineHeight: 1.3 }}>
-                  Let Aegis watch your branded traffic around the clock
+                  See impressions lost to rank on every campaign
                 </h3>
                 <p style={{ fontSize: '17px', color: '#475569', marginBottom: '28px', lineHeight: 1.6, fontWeight: 500, maxWidth: '620px', marginLeft: 'auto', marginRight: 'auto' }}>
-                  Connect your Google Ads account to Kampaio and get flagged the moment your impression share or ad copy starts leaking to someone else. Free to start, no lock-in. See <a href="/pricing" style={linkStyle}>Kampaio&apos;s plans</a>.
+                  Connect your Google Ads account to the Kampaio dashboard and its automatic checks flag campaigns losing impressions to rank, across every account on one screen. Free during early access, no card required. See <a href="/pricing" style={linkStyle}>Kampaio&apos;s plans</a>.
                 </p>
                 <a
-                  href="/chat"
+                  href="https://dashboard.kampaio.com/"
                   style={{
                     background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                     color: 'white',
@@ -493,7 +493,7 @@ export default function ArticleContent() {
                     (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
                   }}
                 >
-                  Connect your account free
+                  Open the dashboard
                 </a>
               </div>
 

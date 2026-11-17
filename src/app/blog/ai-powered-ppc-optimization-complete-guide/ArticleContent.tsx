@@ -43,7 +43,7 @@ export default function ArticleContent() {
       "@type": "WebPage",
       "@id": "https://kampaio.com/blog/ai-powered-ppc-optimization-complete-guide"
     },
-    "keywords": "ai-powered ppc optimization, ai ppc, google ads ai, smart bidding, performance max, recommendation vs autonomous, ai agents ppc, senior ppc manager, auction signals, anomaly detection, b6, sage, vox, buzz",
+    "keywords": "ai-powered ppc optimization, ai ppc, google ads ai, smart bidding, performance max, recommendation vs autonomous, ai agents ppc, senior ppc manager, auction signals, anomaly detection, kampaio",
     "wordCount": 2364,
     "articleSection": "Google Ads",
     "inLanguage": "en"
@@ -82,7 +82,7 @@ export default function ArticleContent() {
         "name": "Which AI tool is best for Google Ads?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "It depends on your tier. Native Google AI (Smart Bidding, Performance Max) is the free baseline and should run on every account. Above that, the choice is recommendation tools (Optmyzr, Adalysis) if you have bandwidth to action suggestions daily, or autonomous agents (B6) if you want execution with guardrails."
+          "text": "It depends on your tier. Native Google AI (Smart Bidding, Performance Max) is the free baseline and should run on every account. Above that, the choice is recommendation tools (Optmyzr, Adalysis) if you have bandwidth to action suggestions daily, or autonomous agents if you want execution with guardrails. Kampaio agents are still in development; today Kampaio is a dashboard that puts every Google Ads account on one screen and runs 14 automatic campaign checks, free during early access."
         }
       },
       {
@@ -139,7 +139,7 @@ export default function ArticleContent() {
     { id: 'human-edge', title: 'Where AI Still Loses to Humans', level: 1 },
     { id: 'subtopics', title: 'Subtopics Covered in Depth', level: 1 },
     { id: 'faq', title: 'Frequently Asked Questions', level: 1 },
-    { id: 'cta', title: 'Try B6 Autonomous PPC', level: 1 }
+    { id: 'cta', title: 'Try the Kampaio Dashboard', level: 1 }
   ];
 
   const scrollToSection = (id: string) => {
@@ -280,7 +280,7 @@ export default function ArticleContent() {
               </div>
 
               <MascotQuote mascot="sage">
-                Across the 60-day windows I review, search-term mining and budget pacing account for roughly two-thirds of recoverable waste on accounts above $20K per month in spend. Bidding gets the headlines, but reallocation is where the durable ROAS lives. If you have to pick one lever to instrument first, pace your budgets.
+                What I am being built to do: research where the recoverable waste in an account sits. Bidding gets the headlines, but search-term mining and budget pacing are levers you can instrument today. If you have to pick one first, pace your budgets.
               </MascotQuote>
 
               <p style={paragraphStyle}>
@@ -302,7 +302,7 @@ export default function ArticleContent() {
                 rows={[
                   { cells: ['Native Google AI', 'Bids only, no account-wide strategy', 'Smart Bidding, PMax, asset-AI', 'Free, inside Ads'] },
                   { cells: ['Recommendation tools', 'Analyze + suggest, you click apply', 'Optmyzr, Adalysis, Adzooma', '$69-499/mo'] },
-                  { cells: ['Autonomous agents', 'Apply with approval or by rule, audit trail', 'B6 (Buzz, Aegis, Sage, Vox)', 'Flat subscription'], highlight: true },
+                  { cells: ['Autonomous agents', 'Apply with approval or by rule, audit trail', 'Kampaio agents (Buzz, Aegis, Sage, Vox), in development', 'Not yet released'], highlight: true },
                 ]}
                 caption="Three tiers of AI-PPC optimization in 2026. Native + autonomous is the senior-team default; recommendation tools only pay off when you have bandwidth to action suggestions daily."
               />
@@ -311,10 +311,10 @@ export default function ArticleContent() {
                 Recommendation tools work for teams with bandwidth to action suggestions daily. The math fails on under-staffed accounts. A $499/mo Optmyzr subscription on a $5K/mo spend is 10% of media budget paying for analysis, with the actual optimization work still on a human calendar.
               </p>
               <p style={paragraphStyle}>
-                Autonomous <a href="/blog/google-ads-ai-agent" style={{ color: '#764ba2', textDecoration: 'underline' }}>agents</a> close that loop. B6 runs on a flat subscription and executes within guardrails you set. Approval mode applies safe changes automatically with an audit log and holds risky changes for your sign-off. Autonomous mode lets the Maximus orchestrator run defined rules and send a weekly report. The senior manager keeps <a href="/blog/google-ads-strategy" style={{ color: '#764ba2', textDecoration: 'underline' }}>strategy</a> and oversight. The agent absorbs the high-frequency mechanical work.
+                Autonomous <a href="/blog/google-ads-ai-agent" style={{ color: '#764ba2', textDecoration: 'underline' }}>agents</a> close that loop by executing within guardrails you set. Kampaio&apos;s agents are in development and do not run on live accounts: Buzz, our bidding agent, will propose changes, Aegis will risk-check each one, and Maximus will orchestrate them. What runs today is the Kampaio dashboard: every Google Ads account on one screen, 14 automatic campaign checks, and changes you make yourself with a preview first and a rollback after. In the agent model, the senior manager keeps <a href="/blog/google-ads-strategy" style={{ color: '#764ba2', textDecoration: 'underline' }}>strategy</a> and oversight. The agent absorbs the high-frequency mechanical work.
               </p>
               <p style={paragraphStyle}>
-                We compare every tier in detail on our <a href="/pricing" style={linkStyle}>pricing page</a>, including which guardrails ship at each level.
+                The Kampaio dashboard is <a href="/pricing" style={linkStyle}>free during early access</a>.
               </p>
             </section>
 
@@ -334,7 +334,7 @@ export default function ArticleContent() {
               </div>
 
               <MascotQuote mascot="vox">
-                When Buzz pushes a bid change, I write the why in plain English next to it. Last week one read: "bid +14% on running shoes, iPhone, evening, because predicted conversion rate was 2.3x the segment average and we have 47 conversions of training data on this cohort." Senior managers stop reading dashboards. They start auditing decisions.
+                What I am being built to do: write the why in plain English next to every change Buzz, our bidding agent, will propose, so a senior manager audits decisions instead of reading dashboards.
               </MascotQuote>
 
               <p style={paragraphStyle}>
@@ -450,26 +450,26 @@ export default function ArticleContent() {
               <FAQ q="Is AI taking over PPC?" a="AI is taking over the high-frequency mechanical work in PPC, not the strategic work. Bidding, pacing, creative combination testing, and anomaly detection are increasingly automated. Strategic positioning, offer design, brand voice, and exception handling remain human work. Senior PPC managers are shifting from button-clicker to oversight role, not exiting the field." />
               <FAQ q="Can AI replace my PPC manager?" a="Not for senior accounts. AI handles tactical execution well and judgment work poorly. A senior PPC manager who switches to overseeing AI agents typically expands account capacity (more accounts per manager) rather than losing the role. The exception is purely tactical junior work, which automation does compress." />
               <FAQ q="Which AI tool is best for Google Ads?" a={
-                <>It depends on your tier. Native Google AI (Smart Bidding, PMax) is the free baseline and should run on every account. Above that, the choice is recommendation tools (Optmyzr, Adalysis) if you have bandwidth to action suggestions daily, or autonomous agents (B6) if you want execution with guardrails. We compare every option on <a href="/pricing" style={linkStyle}>B6 pricing</a>.</>
+                <>It depends on your tier. Native Google AI (Smart Bidding, PMax) is the free baseline and should run on every account. Above that, the choice is recommendation tools (Optmyzr, Adalysis) if you have bandwidth to action suggestions daily, or autonomous agents if you want execution with guardrails. Kampaio agents are still in development; today Kampaio is a dashboard that puts every Google Ads account on one screen and runs 14 automatic campaign checks, free during early access. See <a href="/pricing" style={linkStyle}>Kampaio pricing</a>.</>
               } />
               <FAQ q="How quickly will I see results from AI PPC optimization?" a="Waste reduction shows up in weeks 1-2 (5-12% efficiency gain). Reallocation gains compound through weeks 3-4. The 90-day cumulative ROAS lift on a maturing account typically lands at 12-25%, not the 300% that vendor marketing promises." />
               <FAQ q="Does AI optimization work for small ad accounts?" a="AI optimization works less well below the 30-conversions-per-30-days threshold that Smart Bidding requires for calibration. Accounts under $3K/mo spend with low conversion volume often perform better on manual bidding until they reach that data floor." />
             </section>
 
             <section id="cta">
-              <h2 style={h2Style}>Try Autonomous PPC Optimization With B6</h2>
+              <h2 style={h2Style}>Try the Kampaio Dashboard</h2>
               <p style={paragraphStyle}>
-                Connect your Google Ads account. Buzz runs the first optimization cycle in about 90 seconds. You see three specific changes with projected savings, with the reasoning written next to each one by Vox. You approve or skip. No agency retainer, no $499 recommendation tool sitting between you and the auction.
+                Connect your Google Ads account and see every account you manage on one screen: spend, ROAS, CPA, and 14 automatic campaign checks, such as spend with no conversions or impressions lost to budget. Changes you make from the dashboard show a preview first and can be rolled back. No agency retainer, no $499 recommendation tool sitting between you and the auction. Buzz, Sage, and Vox are in development and do not run on live accounts yet.
               </p>
               <div style={{ background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)', borderRadius: '16px', padding: '40px', textAlign: 'center', marginTop: '40px', marginBottom: '40px' }}>
                 <h3 style={{ fontSize: '22px', fontWeight: 700, color: '#1e293b', marginBottom: '14px', lineHeight: 1.3 }}>
-                  Ready to see AI run your auctions?
+                  Ready to see your accounts on one screen?
                 </h3>
                 <p style={{ fontSize: '17px', color: '#64748b', marginBottom: '28px', lineHeight: 1.6, fontWeight: 500 }}>
-                  Spin up a B6 trial. Watch Buzz, Sage, and Vox run a 90-second cycle on your real account.
+                  Free during early access, no card required.
                 </p>
                 <a
-                  href="/chat"
+                  href="https://dashboard.kampaio.com/"
                   style={{
                     background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                     color: 'white',
@@ -480,26 +480,9 @@ export default function ArticleContent() {
                     display: 'inline-block',
                     boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)',
                     textDecoration: 'none',
-                    marginRight: '12px',
                   }}
                 >
-                  Start your B6 free trial
-                </a>
-                <a
-                  href="/b6"
-                  style={{
-                    background: 'white',
-                    color: '#764ba2',
-                    padding: '16px 32px',
-                    borderRadius: '10px',
-                    fontSize: '16px',
-                    fontWeight: 600,
-                    display: 'inline-block',
-                    border: '2px solid #764ba2',
-                    textDecoration: 'none',
-                  }}
-                >
-                  See the B6 agent map
+                  Open the dashboard
                 </a>
               </div>
             </section>

@@ -45,7 +45,7 @@ export default function ArticleContent() {
       '@id': 'https://kampaio.com/blog/google-ads-display-network-wasted-spend',
     },
     keywords:
-      'display network, google ads, wasted spend, search campaign, placement, display expansion, search partners, performance max, smart bidding, target roas, placement exclusions, MFA, remarketing, B6, Buzz, Aegis',
+      'display network, google ads, wasted spend, search campaign, placement, display expansion, search partners, performance max, smart bidding, target roas, placement exclusions, MFA, remarketing, Kampaio',
     wordCount: 1770,
     articleSection: 'Google Ads',
     inLanguage: 'en',
@@ -100,7 +100,7 @@ export default function ArticleContent() {
         name: 'How much money does the average advertiser waste on Display Network?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'In the B6 cohort of 200+ audited accounts, the average waste from Display opt-in on Search campaigns is 23 percent of campaign budget. The range runs 8 percent on clean accounts to 61 percent on the worst-leak cases.',
+          text: 'There is no reliable public average, and the number varies widely by account. To find your own, segment the Search campaign report by Network and compare the Display share of cost against the Display share of conversions over the last 30 days.',
         },
       },
     ],
@@ -129,7 +129,7 @@ export default function ArticleContent() {
     { id: 'when-display-works', title: 'When Display Network IS Worth Running (Honest Take)', level: 1 },
     { id: 'placements', title: 'Placement Exclusions: The Day-2 Cleanup', level: 1 },
     { id: 'display-expansion', title: 'Display Expansion: The Hidden Cousin You Also Need to Turn Off', level: 1 },
-    { id: 'b6', title: 'How B6 Prevents Display Waste Automatically', level: 1 },
+    { id: 'b6', title: 'How Kampaio Helps You Spot Display Waste', level: 1 },
     { id: 'faq', title: 'Frequently Asked Questions', level: 1 },
     { id: 'sources', title: 'Sources', level: 1 },
   ];
@@ -410,13 +410,13 @@ export default function ArticleContent() {
                 ). Practically, most accounts older than 12 months still have the box checked on every legacy campaign. Nobody went back to fix it.
               </p>
               <p style={pStyle}>
-                <strong>Mechanic 2: cheap clicks are not valuable clicks.</strong> Display CPCs in our 2026 cohort sit at roughly $0.05 to $0.50, against $2 to $15 on Search. In the campaign report, that looks like a deal. The conversion-rate gap kills the math: typical Display CVR is 0.05 to 0.5 percent against 2 to 8 percent on Search. The cost-per-conversion on Display can run 5 to 20 times the cost-per-conversion on Search inside the same campaign.
+                <strong>Mechanic 2: cheap clicks are not valuable clicks.</strong> Display CPCs typically run at a fraction of Search CPCs. In the campaign report, that looks like a deal. The conversion-rate gap kills the math: typical Display CVR is 0.05 to 0.5 percent against 2 to 8 percent on Search. The cost-per-conversion on Display can run 5 to 20 times the cost-per-conversion on Search inside the same campaign.
               </p>
               <p style={pStyle}>
                 <strong>Mechanic 3: Smart Bidding chases nominal CPA.</strong> Target CPA and Target ROAS optimize for the cheapest reported conversion. If Display delivers one $1 conversion (often a competitor researching you, a bot, or a misclick), the algorithm reads the signal and shifts spend. Lead quality is not an input. Sales-qualified rate is not an input. The model maximizes for the conversion column, period.
               </p>
               <p style={pStyle}>
-                On a typical $5,000 a month Search campaign with the Display box checked, B6 sees $1,200 to $2,400 a month bleed into Display impressions with conversion rates under 0.3 percent. That is the addressable waste. When the leak shows up as a sudden ROAS collapse rather than a slow bleed, the{' '}
+                On a Search campaign with the Display box checked, the Display spend that brings near-zero conversions is the addressable waste. When the leak shows up as a sudden ROAS collapse rather than a slow bleed, the{' '}
                 <a href="/blog/google-ads-roas-dropped-suddenly" style={linkStyle}>
                   ROAS dropped suddenly diagnostic
                 </a>{' '}
@@ -424,7 +424,7 @@ export default function ArticleContent() {
               </p>
 
               <MascotQuote mascot="buzz">
-                Audited a $7K/month dental clinic account last week. Display Network share: $2,100. Conversions from Display: 1, and that was a competitor researching them. I unchecked the box. Next month the lead volume held flat and the account saved $2,000.
+                What I am being built to do: check the Networks setting on every Search campaign and propose unchecking Display when it spends without converting. Until then, the Network segment in the campaign report shows you the same thing in two minutes.
               </MascotQuote>
             </section>
 
@@ -637,11 +637,7 @@ export default function ArticleContent() {
                 Common lists worth loading: the AdWords Robot MFA exclusion list (publicly maintained), app categories you do not serve, and a Subreddit exclusion list if you market a B2B product. Set frequency caps at 3 impressions per user per day during the first month to suppress ad fatigue.
               </p>
               <p style={pStyle}>
-                Review the placement report weekly for the first month, then monthly. Buzz on B6 syncs the placement report nightly and auto-excludes MFA domains by pattern; see the{' '}
-                <a href="/b6#buzz" style={linkStyle}>
-                  Buzz - B6 autonomous bidding agent
-                </a>{' '}
-                page for the exclusion rule logic.
+                Review the placement report weekly for the first month, then monthly. Buzz, our bidding agent (in development), will propose MFA placement exclusions from that report; today the review is manual.
               </p>
             </section>
 
@@ -677,26 +673,26 @@ export default function ArticleContent() {
               </ol>
             </section>
 
-            {/* 8. B6 CTA */}
+            {/* 8. Kampaio CTA */}
             <section id="b6">
-              <h2 style={h2Style}>How B6 Prevents Display Waste Automatically</h2>
+              <h2 style={h2Style}>How Kampaio Helps You Spot Display Waste</h2>
               <p style={pStyle}>
-                B6 is an autonomous PPC cabinet, not a recommendation tool. Buzz, our bidding agent, ships with Display Network defaults set to off on every new Search campaign and reviews the placement report nightly to exclude MFA, mobile-game, and low-CTR placements based on rules. Aegis layers risk warnings before any apply: Smart Bidding learning windows, audience overlap, budget exposure.
+                The Kampaio dashboard puts every Google Ads account you manage on one screen and breaks each campaign&apos;s spend down by device, geo, and network, so the Display share is visible without building a report. Its automatic checks flag campaigns that spend with no conversions. Nothing changes by itself: any edit you make from the dashboard shows a preview first and can be rolled back. Buzz, our bidding agent, and Aegis, our risk agent, are in development; Buzz will propose placement exclusions and Aegis will check each proposal for risk before it is applied.
               </p>
               <p style={pStyle}>
-                The three levels are Co-pilot (you approve every change), Approval (batched daily summary), and Autonomous ( Buzz applies and reports). See{' '}
+                The dashboard is{' '}
                 <a href="/pricing" style={linkStyle}>
-                  B6 pricing: free while in beta
-                </a>{' '}
-                for the full comparison. Connect your Google Ads account,{' '}
-                <a href="/chat" style={linkStyle}>
-                  try B6 free
+                  free during early access
                 </a>
-                , and Buzz runs the first audit in 90 seconds. You see exactly how much Display is costing you and what to exclude, then apply with one click. The{' '}
-                <a href="/how-it-works" style={linkStyle}>
-                  how B6 agents work
+                , no card required.{' '}
+                <a href="https://dashboard.kampaio.com/" style={linkStyle}>
+                  Open the dashboard
                 </a>{' '}
-                page covers the agent architecture if you want the technical picture first. If you want to handle ad-side audits without an agency in the loop, the{' '}
+                and connect your Google Ads account to see what Display is costing you per campaign. The{' '}
+                <a href="/how-it-works" style={linkStyle}>
+                  how Kampaio works
+                </a>{' '}
+                page covers the product if you want the technical picture first. If you want to handle ad-side audits without an agency in the loop, the{' '}
                 <a href="/blog/google-ads-without-agency" style={linkStyle}>
                   running Google Ads without an agency
                 </a>{' '}
@@ -704,7 +700,7 @@ export default function ArticleContent() {
               </p>
 
               <MascotQuote mascot="buzz">
-                Across 200+ accounts I audited at B6, the average waste from Display opt-in on Search campaigns sits at 23 percent of campaign budget. Range goes from 8 percent on the cleanest accounts to 61 percent on the worst. The common factor: nobody knew the box was even checked.
+                What I am being built to do: flag every Search campaign where the Display box is still checked. The most common cause of this leak is simple: nobody knew the box was checked.
               </MascotQuote>
 
               <div
@@ -726,7 +722,7 @@ export default function ArticleContent() {
                     lineHeight: '1.3',
                   }}
                 >
-                  Stop Display Network bleed on every Search campaign.
+                  See Display Network spend on every Search campaign.
                 </h3>
                 <p
                   style={{
@@ -738,14 +734,10 @@ export default function ArticleContent() {
                     opacity: 0.9,
                   }}
                 >
-                  Connect Google Ads, let Buzz find your Display leak and propose the exclusion list in 90 seconds. Co-pilot, Approval, or Autonomous: you pick the autonomy level. See{' '}
-                  <a href="/pricing" style={linkStyle}>
-                    pricing tiers
-                  </a>{' '}
-                  to start.
+                  Connect Google Ads and see every campaign&apos;s spend by network on one screen, with automatic checks for spend with no conversions. Free during early access.
                 </p>
                 <a
-                  href="/chat"
+                  href="https://dashboard.kampaio.com/"
                   style={{
                     background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                     color: 'white',
@@ -761,7 +753,7 @@ export default function ArticleContent() {
                     textDecoration: 'none',
                   }}
                 >
-                  Start B6 Free Trial
+                  Open the dashboard
                 </a>
               </div>
             </section>
@@ -797,7 +789,7 @@ export default function ArticleContent() {
                 <strong>Is $20 a day enough for Google Ads if I turn off Display?</strong> $20 a day ($600 a month) is enough for a tight Search-only campaign on a narrow product or service category in a single geography. Turning off Display Network typically recovers 20 to 40 percent of that budget for the surface that actually converts.
               </p>
               <p style={pStyle}>
-                <strong>How much money does the average advertiser waste on Display Network?</strong> In the B6 cohort of 200+ audited accounts, the average waste from Display opt-in on Search campaigns is 23 percent of campaign budget. The range runs 8 percent on clean accounts to 61 percent on the worst-leak cases.
+                <strong>How much money does the average advertiser waste on Display Network?</strong> There is no reliable public average, and the number varies widely by account. To find your own, segment the Search campaign report by Network and compare the Display share of cost against the Display share of conversions over the last 30 days.
               </p>
             </section>
 

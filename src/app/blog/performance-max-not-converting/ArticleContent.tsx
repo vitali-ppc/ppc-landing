@@ -141,7 +141,7 @@ export default function ArticleContent() {
     { id: 'diagnostic-insights', title: '9. Run Diagnostic Insights', level: 2 },
     { id: 'when-not-right', title: "When Performance Max Isn't the Right Type", level: 1 },
     { id: 'faq', title: 'Frequently Asked Questions', level: 1 },
-    { id: 'b6-agents', title: 'Hand pMax Diagnostics to B6 Agents', level: 1 }
+    { id: 'b6-agents', title: 'Check pMax in the Kampaio Dashboard', level: 1 }
   ];
 
   const scrollToSection = (id: string) => {
@@ -327,7 +327,7 @@ export default function ArticleContent() {
                 Setting Target ROAS at 600% when your historical baseline is 320% sounds aspirational. To the auction, it reads as &quot;this advertiser doesn&apos;t want to bid.&quot; So the system stops bidding. Spend collapses. Conversions never come.
               </p>
               <p style={pStyle}>
-                The fix: start with Maximize Conversion Value with no target for the first 30 days. Let the campaign find a real baseline. Once you have 30+ conversions, switch to Target ROAS set at roughly 80% of the baseline you observed. So if Max Conversion Value delivered 350% ROAS over 30 days, set your Target ROAS at 280%. Raise it gradually from there. (This is exactly the rule <a href="/b6#buzz" style={linkStyle}>Buzz applies</a> when he tunes pMax bids inside B6.)
+                The fix: start with Maximize Conversion Value with no target for the first 30 days. Let the campaign find a real baseline. Once you have 30+ conversions, switch to Target ROAS set at roughly 80% of the baseline you observed. So if Max Conversion Value delivered 350% ROAS over 30 days, set your Target ROAS at 280%. Raise it gradually from there. (This is the rule Buzz, our bidding agent in development, is being built to follow for pMax bids.)
               </p>
               <MascotQuote mascot="buzz">
                 If your historical ROAS is 320% and you set Target ROAS at 600%, the auction skips your bid. I&apos;d run Maximize Conversion Value for 14 days, get a real baseline, then set Target ROAS at 80% of that baseline. That&apos;s how the campaign actually starts spending.
@@ -384,7 +384,7 @@ export default function ArticleContent() {
                 Relevance matters as much as speed. If your ad copy promises &quot;handmade leather wallets&quot; and the landing page is a generic homepage, mobile users bounce in under 10 seconds. Build dedicated landing pages per asset group. Shopify sections, Webflow pages, Unbounce templates all work.
               </p>
               <p style={pStyle}>
-                If all of this sounds like work you don&apos;t have time for, that&apos;s exactly the gap we built B6 to fill.
+                If all of this sounds like work you don&apos;t have time for, that&apos;s exactly the gap we are building Kampaio to fill.
               </p>
 
               {/* Step 8 */}
@@ -408,7 +408,7 @@ export default function ArticleContent() {
                 Rule of thumb: open Diagnostic Insights once a week. If all checks are green and conversions are still zero, the problem is outside campaign settings. It&apos;s the landing page, the product, market demand, or the wrong campaign type for your account.
               </p>
               <MascotQuote mascot="aegis">
-                I scan Diagnostic Insights and the spend curve every Monday. If pMax burned more than 60% of weekly budget by Wednesday with zero conversions, I flag it. Two scenarios: tracking broke, or audience drifted. Both need a human decision before more spend goes out.
+                I am being built to read Diagnostic Insights and the spend curve every Monday, and to flag pMax when it burns most of the weekly budget by midweek with zero conversions. Two usual scenarios: tracking broke, or audience drifted. Both need a human decision before more spend goes out.
               </MascotQuote>
             </section>
 
@@ -455,17 +455,17 @@ export default function ArticleContent() {
               </p>
             </section>
 
-            {/* B6 CTA Section */}
+            {/* Kampaio CTA Section */}
             <section id="b6-agents">
-              <h2 style={h2Style}>Hand pMax Diagnostics to B6 Agents</h2>
+              <h2 style={h2Style}>Check pMax in the Kampaio Dashboard</h2>
               <p style={pStyle}>
-                Connect your Google Ads account and <a href="/b6#aegis" style={linkStyle}>Aegis runs a Monday risk review</a>: Diagnostic Insights, spend curve, conversion tracking status, asset coverage. Buzz adjusts bid strategy based on your actual historical ROAS, not an aspirational target. Echo sends you a weekly summary so you always know what changed and why.
+                Connect your Google Ads account to the Kampaio dashboard and it runs 14 automatic campaign checks, including spend with no conversions, ROAS below target, conversions that stopped, and all asset groups paused. It also audits your Shopping and Performance Max products. When you change a budget or target ROAS from the dashboard, you see a preview first and can roll it back. Our agents are in development: Aegis will run a weekly risk review, Buzz will propose bid strategy changes based on your actual historical ROAS, and Echo will send a weekly summary.
               </p>
               <MascotQuote mascot="echo">
-                Each Monday at 9am I send you the weekend pMax report - what Aegis flagged, what Buzz adjusted, what&apos;s queued for your approval. Two minutes of reading, decisions in your inbox.
+                I am being built to send a Monday pMax report: what Aegis flags, what Buzz proposes, what is waiting for your approval. I am in development, so nothing lands in your inbox yet.
               </MascotQuote>
               <p style={pStyle}>
-                <a href="/chat" style={linkStyle}>Start a B6 free trial</a>. No commitment, no card on file. (See <a href="/pricing" style={linkStyle}>pricing tiers</a> - Co-pilot, Approval, and Autonomous modes.)
+                <a href="https://dashboard.kampaio.com/" style={linkStyle}>Open the dashboard</a>. Free during early access, no card. (See <a href="/pricing" style={linkStyle}>what the Free plan includes</a>.)
               </p>
 
               <div style={{
@@ -493,10 +493,10 @@ export default function ArticleContent() {
                   fontWeight: '500',
                   opacity: 0.9
                 }}>
-                  Let Aegis, Buzz, and Echo handle the weekly risk review, bid adjustments, and reporting. You stay in the loop, not in the weeds.
+                  Let the Kampaio dashboard run 14 automatic checks on every campaign, including pMax. You make the changes, with a preview first and a rollback after.
                 </p>
                 <a
-                  href="/chat"
+                  href="https://dashboard.kampaio.com/"
                   className="btn"
                   style={{
                     background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
@@ -521,7 +521,7 @@ export default function ArticleContent() {
                     (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
                   }}
                 >
-                  Start Free Trial
+                  Open the dashboard
                 </a>
               </div>
             </section>

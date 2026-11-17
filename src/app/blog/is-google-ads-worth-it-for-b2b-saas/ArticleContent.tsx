@@ -363,7 +363,7 @@ export default function ArticleContent() {
 
               {/* VISUAL 5: MascotQuote (Buzz) - converted blockquote */}
               <MascotQuote mascot="buzz">
-                On a $4K test for a B2B SaaS in workflow automation: brand + 18 high-intent category terms, $13.40 average CPC, 6.2% conversion to demo. That is a $216 cost-per-demo. Sales qualified 44%, so ~$491 per SQL, and at their 23% close rate, ~$2,135 CAC. Their ACV was $9,600 with 1.8-year average retention, so LTV:CAC landed near 8:1. The test paid for itself in week 5. For them, &quot;worth it&quot; was not a guess after that. It was a number. (Illustrative; your numbers will differ.)
+                What I am being built to do: turn a test into a number. Hypothetical math, not a client result: at a $13.40 average CPC and 6.2% conversion to demo, a demo costs about $216. If sales qualifies 44%, that is ~$491 per SQL, and at a 23% close rate, ~$2,135 CAC. Against a $9,600 ACV with 1.8-year average retention, LTV:CAC lands near 8:1. Run the same chain with your own numbers and &quot;worth it&quot; stops being a guess.
               </MascotQuote>
             </section>
 
@@ -485,20 +485,20 @@ export default function ArticleContent() {
                 The answer to &quot;is Google Ads worth it for B2B SaaS&quot; is never a category verdict. It&apos;s your scorecard. Strong demand plus ACV that supports the math plus an attribution loop means go. A borderline scorecard means run the $2-5K test before committing. A brand-new category or sub-economics ACV means capture demand elsewhere first and revisit when the conditions change.
               </p>
               <p style={pStyle}>
-                The reason many founders avoid even testing Google Ads is the overhead cost of doing it right: an agency retainer on top of ad spend just to validate a channel that might not work. Kampaio&apos;s <a href="/blog/google-ads-ai-agent" style={linkStyle}>agents</a> (<a href="/b6#buzz" style={linkStyle}>Buzz</a> on bids, <a href="/b6#vox" style={linkStyle}>Vox</a> on budget allocation) run the test and ongoing management without the retainer, with you in the approval seat. That makes &quot;test first&quot; cheaper than the default assumption.
+                The reason many founders avoid even testing Google Ads is the overhead cost of doing it right: an agency retainer on top of ad spend just to validate a channel that might not work. The Kampaio dashboard lowers part of that cost today: it is free during early access and puts the test campaigns&apos; spend, CPA, and conversions on one screen, with automatic checks for spend with no conversions and conversions that stopped. You still run the test yourself; any budget, target, or keyword change you make from the dashboard is previewed first and can be rolled back. Kampaio&apos;s <a href="/blog/google-ads-ai-agent" style={linkStyle}>agents</a> (Buzz on bids, Vox on budget allocation) are in development and will propose changes for your approval. That makes &quot;test first&quot; cheaper than the default assumption.
               </p>
               <div style={{ background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)', borderRadius: '16px', padding: '40px', textAlign: 'center', marginTop: '40px', marginBottom: '40px' }}>
                 <h3 style={{ fontSize: '22px', fontWeight: 700, color: '#1e293b', marginBottom: '18px', lineHeight: '1.3' }}>
                   Run the test without an agency retainer
                 </h3>
                 <p style={{ fontSize: '17px', color: '#64748b', marginBottom: '28px', lineHeight: '1.6', fontWeight: 500, opacity: 0.9 }}>
-                  Kampaio&apos;s agents run your $2-5K validation test and ongoing management, with every proposed action shown before anything executes. <a href="/pricing" style={linkStyle}>See kampaio pricing</a> for how the economics compare to a typical agency setup.
+                  Watch your $2-5K validation test on one screen: spend, CPA, conversions, and automatic checks for spend with no conversions. <a href="/pricing" style={linkStyle}>Free during early access</a>, no card required.
                 </p>
                 <a
-                  href="/chat"
+                  href="https://dashboard.kampaio.com/"
                   style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', color: 'white', border: 'none', padding: '16px 32px', borderRadius: '10px', fontSize: '16px', fontWeight: 600, cursor: 'pointer', display: 'inline-block', boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)', textDecoration: 'none' }}
                 >
-                  Start Your Free Trial
+                  Open the dashboard
                 </a>
               </div>
               <p style={{ fontSize: '14px', color: '#64748b', fontStyle: 'italic', marginBottom: '32px' }}>

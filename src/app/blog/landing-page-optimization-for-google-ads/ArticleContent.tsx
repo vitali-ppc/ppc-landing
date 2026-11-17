@@ -127,7 +127,7 @@ export default function ArticleContent() {
     { id: 'step-2-speed-mobile', title: 'Step 2: Speed and Mobile (Core Web Vitals That LPE Actually Reads)', level: 1 },
     { id: 'step-3-friction-trust', title: 'Step 3: Remove Friction and Earn Trust (Conversion + LPE Together)', level: 1 },
     { id: 'confirm-the-fix', title: 'How to Confirm the Fix Worked (What Moves and When)', level: 1 },
-    { id: 'b6-agents', title: 'How B6 Agents Audit Landing Page Relevance at Scale', level: 1 },
+    { id: 'b6-agents', title: 'How Kampaio Will Audit Landing Page Relevance at Scale', level: 1 },
     { id: 'faq', title: 'FAQ', level: 1 },
     { id: 'recover-the-cpc', title: 'Fix the Page, Recover the CPC', level: 1 },
   ];
@@ -319,7 +319,7 @@ export default function ArticleContent() {
               </div>
 
               <MascotQuote mascot="buzz">
-                In one account, a Below-average LPE flag was suppressing Ad Rank on 6 keywords. Once the page fix cleared the flag, the account held position 2 at $2.10 instead of bidding to $2.80. Same position, 25% lower CPC.
+                A Below-average LPE flag suppresses Ad Rank, and lower Ad Rank means paying more for the same position. I am being built to put a CPC estimate on that gap once a page fix clears the flag. I am in development, so for now treat any LPE fix as a bid saving you have not counted yet.
               </MascotQuote>
             </section>
 
@@ -386,7 +386,7 @@ export default function ArticleContent() {
               </Callout>
 
               <MascotQuote mascot="mira">
-                In one account&rsquo;s ad group &ldquo;enterprise-crm&rdquo;, the headline promised &ldquo;14-day free trial&rdquo; but the landing H1 read &ldquo;Request a demo.&rdquo; I flagged the mismatch and rewrote the page H1 to mirror the ad&rsquo;s offer. Landing Page Experience moved from Below average to Average in 9 days, and the ad group&rsquo;s CPC dropped 14%.
+                I am being built to catch exactly this kind of mismatch: a headline that promises &ldquo;14-day free trial&rdquo; while the landing H1 reads &ldquo;Request a demo.&rdquo; I am in development, so for now the fix is manual: rewrite the page H1 to mirror the ad&rsquo;s offer, then watch the Landing Page Experience column.
               </MascotQuote>
             </section>
 
@@ -525,31 +525,28 @@ export default function ArticleContent() {
               </p>
             </section>
 
-            {/* B6 agents */}
+            {/* Kampaio */}
             <section id="b6-agents">
-              <h2 style={h2Style}>How B6 Agents Audit Landing Page Relevance at Scale</h2>
+              <h2 style={h2Style}>How Kampaio Will Audit Landing Page Relevance at Scale</h2>
               <p style={pStyle}>
                 Manual message-match audits do not scale past approximately 20 ad groups. The matrix of ad group by ad creative by landing page becomes unmanageable by hand, and that is where the real mismatches hide.
               </p>
               <p style={pStyle}>
-                <strong>Mira</strong> audits ad-to-page message match across every ad group automatically. She surfaces the exact ad group, ad text, and page H1 in conflict: mismatches a manual reviewer misses at scale. Nightly, not weekly.
+                Our agents for this are in development and do not run on any live account yet. <strong>Mira</strong>, our creative agent, will audit ad-to-page message match across ad groups and surface the ad group, ad text, and page H1 in conflict. <strong>Buzz</strong>, our bidding agent, will estimate the CPC effect once an LPE flag clears. <strong>Aegis</strong>, our risk agent, will flag proposed changes that would touch a page already converting above baseline.
               </p>
               <p style={pStyle}>
-                <strong>Buzz</strong> runs the bid math after an LPE flag clears. Once a Below-average status moves to Average or Above average, Buzz quantifies how much Ad Rank headroom opened and what CPC reduction that unlocks. The page fix gets a dollar value, not just a status label.
-              </p>
-              <p style={pStyle}>
-                <strong>Aegis</strong> flags when a proposed change would touch a page that is already converting above baseline. No blind optimization of a winner.
+                What the Kampaio dashboard does today: every connected account on one screen, with spend, ROAS and CPA per campaign and automatic checks such as spend with no conversions and CPA above target, so you can see which campaigns to audit first.
               </p>
 
               <div style={{ background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)', borderRadius: '16px', padding: '40px', textAlign: 'center', marginTop: '48px', marginBottom: '40px' }}>
                 <h3 style={{ fontSize: '22px', fontWeight: '700', color: '#1e293b', marginBottom: '18px', lineHeight: '1.3' }}>
-                  Run Mira&rsquo;s message-match audit across your ad groups
+                  See which campaigns to audit first
                 </h3>
                 <p style={{ fontSize: '17px', color: '#64748b', marginBottom: '28px', lineHeight: '1.6', fontWeight: '500', opacity: 0.9 }}>
-                  Let our AI surface every ad-to-page mismatch suppressing your Ad Rank, and put a CPC number on each fix.
+                  Connect your Google Ads accounts and see which campaigns are spending with no conversions or running CPA above target. Free during early access.
                 </p>
                 <a
-                  href="/chat"
+                  href="https://dashboard.kampaio.com/"
                   className="btn"
                   style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', color: 'white', border: 'none', padding: '16px 32px', borderRadius: '10px', fontSize: '16px', fontWeight: '600', cursor: 'pointer', transition: 'all 0.3s ease', display: 'inline-block', boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)', textDecoration: 'none' }}
                   onMouseEnter={(e) => {
@@ -561,7 +558,7 @@ export default function ArticleContent() {
                     (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
                   }}
                 >
-                  Start the audit
+                  Open the dashboard
                 </a>
               </div>
             </section>

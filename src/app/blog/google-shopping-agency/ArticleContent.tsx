@@ -386,7 +386,7 @@ export default function ArticleContent() {
               </p>
 
               <MascotQuote mascot="vox">
-                On a $9,400-a-month Shopping account, a 12 percent fee is $1,128 gone before anyone touches a bid. Take the same money: I move $1,100 out of three SKUs sitting at 1.4x ROAS and into eleven running above 5x. Same dollars, different job.
+                A percentage fee is money gone before anyone touches a bid. The same money could move out of SKUs sitting at low ROAS and into the ones running well above target. That reallocation is what I am being built to propose; I am in development, so for now it is yours to make. Same dollars, different job.
               </MascotQuote>
 
               <p style={para}>
@@ -438,7 +438,7 @@ export default function ArticleContent() {
                   [
                     <strong key="m4">Self-serve software on campaigns, you keep Merchant Center hygiene</strong>,
                     'You / Software',
-                    'Kampaio, flat monthly subscription, free while in beta (checked 2026-08-27)',
+                    'Kampaio dashboard, free during early access',
                     '$3,000-25,000/mo with a manageable catalog',
                     'Software does not fix a suspended Merchant Center account or argue a misrepresentation appeal',
                   ],
@@ -455,7 +455,7 @@ export default function ArticleContent() {
                 Model 3, in-house with a feed tool, works for owner-operators with genuine time, which is rarer than owners think. DataFeedWatch (which Hunter Digital states it uses), Feedonomics, Channable, GoDataFeed, ShoppingFeeder and Shopify&apos;s native Google channel sit in this lane.
               </p>
               <p style={para}>
-                Model 4 is self-serve software on campaigns, with Merchant Center hygiene still yours. Kampaio is a flat monthly subscription rather than a percentage of ad spend, and all three levels are free while the product is in beta. The limitation in that table cell is real, and we will not bury it: no software argues a policy appeal for you.
+                Model 4 is self-serve software on campaigns, with Merchant Center hygiene still yours. Kampaio does not charge a percentage of ad spend; the dashboard is free during early access. It shows every connected account on one screen, runs a Shopping and Performance Max product audit and 14 automatic campaign checks, and lets you change budgets and targets yourself with a preview and a rollback. The limitation in that table cell is real, and we will not bury it: no software argues a policy appeal for you.
               </p>
             </section>
 
@@ -598,18 +598,18 @@ export default function ArticleContent() {
                 Monday action: open Merchant Center, open the diagnostics tab, count the disapprovals and out-of-stock products, and ask who is accountable for that number. If the answer is nobody, you have found the actual problem. Then pick the model that gives that number an owner, whether or not that model has our name on it.
               </p>
               <p style={para}>
-                Kampaio runs the campaign side continuously and shows every change, and both accounts stay in your name. <a href="/pricing" style={linkStyle}>See what each Kampaio level does</a>.
+                The Kampaio dashboard covers the campaign-side checks: a product audit for Shopping and Performance Max, automatic flags such as ROAS below target and spend with no conversions, and a change log of every edit you make, while both accounts stay in your name. <a href="https://dashboard.kampaio.com/" style={linkStyle}>Open the dashboard</a>; it is free during early access.
               </p>
 
               <div style={{ background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)', borderRadius: '16px', padding: '40px', textAlign: 'center', marginTop: '48px', marginBottom: '40px' }}>
                 <h3 style={{ fontSize: '22px', fontWeight: 700, color: '#1e293b', marginBottom: '18px', lineHeight: '1.3' }}>
-                  Give the campaign side an owner this week
+                  See the campaign side on one screen this week
                 </h3>
                 <p style={{ fontSize: '17px', color: '#64748b', marginBottom: '28px', lineHeight: '1.6', fontWeight: 500, opacity: 0.9 }}>
-                  Vox watches product-level ROAS and moves budget off the SKUs that are not paying, while Merchant Center stays in your name.
+                  The Kampaio dashboard audits your Shopping and Performance Max products and flags campaigns below target ROAS, while Merchant Center stays in your name. Vox, our strategy agent that will propose budget moves, is in development.
                 </p>
                 <a
-                  href="/chat"
+                  href="https://dashboard.kampaio.com/"
                   className="btn"
                   style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', color: 'white', border: 'none', padding: '16px 32px', borderRadius: '10px', fontSize: '16px', fontWeight: 600, cursor: 'pointer', transition: 'all 0.3s ease', display: 'inline-block', boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)', textDecoration: 'none' }}
                   onMouseEnter={(e) => {
@@ -621,7 +621,7 @@ export default function ArticleContent() {
                     (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
                   }}
                 >
-                  See what Kampaio runs
+                  Open the dashboard
                 </a>
               </div>
             </section>
@@ -644,7 +644,7 @@ export default function ArticleContent() {
                 <li style={{ marginBottom: '10px' }}>Google: <a href="https://support.google.com/merchants/answer/2906014" style={linkStyle} target="_blank" rel="noopener noreferrer">Promotions data specification</a> (verified 2026-08-20)</li>
                 <li style={{ marginBottom: '10px' }}>John Horn (StubGroup), Search Engine Land: <a href="https://searchengineland.com/fix-suspended-google-merchant-center-account-474404" style={linkStyle} target="_blank" rel="noopener noreferrer">How to fix a suspended Google Merchant Center account</a> (2026-04-16)</li>
                 <li style={{ marginBottom: '10px' }}>Feed tool pricing: <a href="https://www.shoppingfeeder.com/pricing" style={linkStyle} target="_blank" rel="noopener noreferrer">ShoppingFeeder</a>, <a href="https://www.godatafeed.com/pricing" style={linkStyle} target="_blank" rel="noopener noreferrer">GoDataFeed</a> (read 2026-08-20)</li>
-                <li style={{ marginBottom: 0 }}>Kampaio pricing: <a href="/pricing" style={linkStyle}>kampaio.com/pricing</a> (verified 2026-08-20)</li>
+                <li style={{ marginBottom: 0 }}>Kampaio dashboard: <a href="https://dashboard.kampaio.com/" style={linkStyle}>dashboard.kampaio.com</a> (free during early access)</li>
               </ul>
 
               <p style={{ fontSize: '14px', color: '#64748b', fontStyle: 'italic', lineHeight: '1.7', marginBottom: '40px' }}>

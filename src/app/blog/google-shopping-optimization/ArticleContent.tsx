@@ -595,10 +595,10 @@ export default function ArticleContent() {
 
               {/* VISUAL 3: MascotQuote - Mira */}
               <MascotQuote mascot="mira">
-                One apparel client was leading every title with their internal collection name:
-                &quot;Studio Collection Leggings High Waist S/M/L.&quot; We rewrote to &quot;Women&apos;s High Waist
-                Yoga Leggings 7/8 Length - Black, Sizes XS-XL.&quot; That rewrite lifted CTR by 18%
-                within two weeks of reindex, without touching bids.
+                I am being built to flag titles like this one, which leads with an internal collection name:
+                &quot;Studio Collection Leggings High Waist S/M/L.&quot; The rewrite I would propose: &quot;Women&apos;s High Waist
+                Yoga Leggings 7/8 Length - Black, Sizes XS-XL.&quot; Lead with what shoppers search for,
+                and fix the title before you touch bids.
               </MascotQuote>
 
               <h3 id="attributes" style={h3Style}>
@@ -673,11 +673,11 @@ export default function ArticleContent() {
 
               {/* VISUAL 5: MascotQuote - Buzz */}
               <MascotQuote mascot="buzz">
-                On hero SKUs priced above $100, I set tROAS at 400%. Mid-tier SKUs between $30-$100
-                get 280%. Clearance and long-tail SKUs under $30 run on Maximize Conversion Value
-                with no target - the goal there is inventory clearance, not margin protection. One
-                account had a $280 leather bag and a $12 keychain in the same campaign at the same
-                tROAS. The keychain was eating 60% of budget and dragging the ROAS average down.
+                I am being built to propose tROAS by product tier: hero SKUs get a higher target,
+                mid-tier SKUs a lower one, and clearance and long-tail SKUs run on Maximize Conversion Value
+                with no target - the goal there is inventory clearance, not margin protection. A
+                high-priced bag and a cheap keychain in the same campaign at the same tROAS will
+                compete for one budget and blur the ROAS average.
                 Separate them.
               </MascotQuote>
 
@@ -826,17 +826,17 @@ export default function ArticleContent() {
                 explain a 35% ROAS drop in 72 hours.
               </p>
               <p style={pStyle}>
-                Kampaio&apos;s Buzz <a href="/blog/google-ads-ai-agent" style={linkStyle}>agent</a> monitors bid strategy status changes in real time. Mira flags
-                feed attribute regressions when disapprovals spike. When both fire in the same
-                window, the account gets one correlated alert instead of three separate dashboard
-                checks to connect manually.
+                Kampaio&apos;s <a href="/blog/google-ads-ai-agent" style={linkStyle}>agents</a> for this are in development and not live yet: Buzz, our bidding agent, will watch
+                bid strategy status changes, and Mira, our creative agent, will flag feed attribute
+                regressions when disapprovals spike, so the signals arrive as one correlated alert
+                instead of three separate checks to connect manually.
               </p>
               <p style={pStyle}>
-                If you want to see what an automated Shopping audit looks like on your account,{' '}
-                <a href="/chat" style={linkStyle}>
-                  Kampaio&apos;s free diagnostic
+                If you want to see a Shopping product audit on your account today,{' '}
+                <a href="https://dashboard.kampaio.com/" style={linkStyle}>
+                  the Kampaio dashboard
                 </a>{' '}
-                takes about 2 minutes to connect.
+                runs one for Shopping and Performance Max campaigns, free during early access.
               </p>
             </section>
 
@@ -949,11 +949,11 @@ export default function ArticleContent() {
                 symptom before you make any change.
               </p>
               <p style={pStyle}>
-                Kampaio runs this diagnostic automatically across all four layers.{' '}
-                <a href="/chat" style={linkStyle}>
-                  Connect your account
+                The Kampaio dashboard covers part of this today: a Shopping and Performance Max product audit, plus automatic checks such as ROAS below target and impressions lost to budget or rank.{' '}
+                <a href="https://dashboard.kampaio.com/" style={linkStyle}>
+                  Open the dashboard
                 </a>{' '}
-                - free, takes 2 minutes.
+                - free during early access.
               </p>
               <p
                 style={{

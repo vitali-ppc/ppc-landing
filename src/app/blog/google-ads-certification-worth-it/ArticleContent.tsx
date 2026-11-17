@@ -512,7 +512,7 @@ export default function ArticleContent() {
               </Steps>
 
               <MascotQuote mascot="sage">
-                When we vet a search terms report answer, we&apos;re not grading vocabulary. We&apos;re checking if they&apos;d cut a
+                When you vet a search terms report answer, you&apos;re not grading vocabulary. You&apos;re checking if they&apos;d cut a
                 $340/month query with 0 conversions in 60 clicks, or if they&apos;re still waiting for &quot;more data&quot; at 200 clicks
                 with nothing to show.
               </MascotQuote>
@@ -546,8 +546,9 @@ export default function ArticleContent() {
                 mechanism. It does not ask whether they would trust it unsupervised.
               </p>
               <p style={paragraphStyle}>
-                Recommendation tools like Optmyzr and Madgicx (from $499/month) tell a user what to change. Autonomous tools like Kampaio,
-                on a flat monthly fee, run the change and show the step. Neither one tests a candidate before letting them touch a client&apos;s
+                Recommendation tools like Optmyzr and Madgicx (from $499/month) tell a user what to change. Autonomous tools run the change
+                and show the step; Kampaio is building agents for that, and today its dashboard flags problems and lets the user make each
+                change with a preview and a rollback. Neither one tests a candidate before letting them touch a client&apos;s
                 account.
               </p>
 
@@ -583,12 +584,12 @@ export default function ArticleContent() {
               </h2>
               <p style={paragraphStyle}>
                 A badge tells you someone passed an 80% multiple-choice exam. It does not tell you they would catch a Performance Max
-                campaign drifting over target CPA on a Tuesday afternoon. Kampaio runs that check continuously and shows every step live, so
-                you are not relying on a resume line to know your account is being watched.
+                campaign drifting over target CPA on a Tuesday afternoon. The Kampaio dashboard flags campaigns with CPA above target on every
+                account you connect, so you are not relying on a resume line to know your account is being watched.
               </p>
               <p style={paragraphStyle}>
-                <a href="/chat" style={linkStyle}>Start with your account</a> or see{' '}
-                <a href="/pricing" style={linkStyle}>See what each Kampaio level does</a>.
+                <a href="https://dashboard.kampaio.com/" style={linkStyle}>Open the dashboard</a> or see{' '}
+                <a href="/pricing" style={linkStyle}>what the Free plan includes</a>. Free during early access, no card.
               </p>
 
               <div style={{ background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)', borderRadius: '16px', padding: '40px', textAlign: 'center', marginTop: '40px', marginBottom: '40px' }}>
@@ -596,10 +597,10 @@ export default function ArticleContent() {
                   Hiring for judgment, not for badges?
                 </h3>
                 <p style={{ fontSize: '17px', color: '#475569', marginBottom: '28px', lineHeight: 1.6, fontWeight: 500, maxWidth: '620px', marginLeft: 'auto', marginRight: 'auto' }}>
-                  Kampaio watches the account between reviews, flags the drift, and shows the reasoning behind every change it proposes.
+                  The Kampaio dashboard flags drift between reviews, such as CPA above target or conversions that stopped, and every change you make from it shows a preview first.
                 </p>
                 <a
-                  href="/pricing"
+                  href="https://dashboard.kampaio.com/"
                   style={{
                     background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                     color: 'white',
@@ -622,7 +623,7 @@ export default function ArticleContent() {
                     (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
                   }}
                 >
-                  See pricing
+                  Open the dashboard
                 </a>
               </div>
             </section>
@@ -639,8 +640,8 @@ export default function ArticleContent() {
               </ul>
               <p style={{ fontSize: '14px', color: '#64748b', fontStyle: 'italic', lineHeight: 1.7, marginTop: '8px' }}>
                 Exam mechanics and Partner Program thresholds are quoted from Google&apos;s own documentation. Reddit quotes are practitioner
-                opinion from the ranking r/googleads threads, cited as sentiment rather than as verified fact. The Sage quote illustrates how
-                Kampaio&apos;s agents apply the same judgment test, not an audited result from a named advertiser.
+                opinion from the ranking r/googleads threads, cited as sentiment rather than as verified fact. The Sage quote is a general
+                vetting tip, not a result from any account.
               </p>
             </section>
           </div>

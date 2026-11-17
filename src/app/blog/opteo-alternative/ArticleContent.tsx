@@ -90,7 +90,7 @@ export default function ArticleContent() {
         name: 'What are some alternatives to Optmyzr?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Adalysis and Opteo are the closest direct alternatives for Google Ads audit-and-recommendation coverage; Kampaio offers a more autonomous execution model at a lower entry price.',
+          text: 'Adalysis and Opteo are the closest direct alternatives for Google Ads audit-and-recommendation coverage; Kampaio is a dashboard with 14 automatic campaign checks and changes you make yourself with a preview and a rollback, free during early access.',
         },
       },
       {
@@ -354,7 +354,7 @@ export default function ArticleContent() {
                   <strong>Platforms managed.</strong> Google only, or Google plus Meta or Microsoft? Optmyzr and Adalysis lean Google-first; Madgicx and TrueClicks are multi-platform.
                 </li>
                 <li style={{ marginBottom: 0 }}>
-                  <strong>How hands-on.</strong> Recommendations only (Opteo, Adalysis), approve-and-execute (TrueClicks, Madgicx), or more autonomous (Kampaio, below), the{' '}
+                  <strong>How hands-on.</strong> Recommendations only (Opteo, Adalysis), approve-and-execute (TrueClicks, Madgicx), or more autonomous, the{' '}
                   <a href="/blog/google-ads-agency-vs-in-house-vs-software" style={linkStyle}>
                     software vs. agency vs. in-house
                   </a>{' '}
@@ -478,10 +478,10 @@ export default function ArticleContent() {
                 ); a team built around that cadence loses real value switching. One practitioner summed up who it&apos;s actually for: Opteo is &quot;a very good tool, but only for big accounts that are actually scaling, or an agency with enough international volume&quot; (r/PPC, September 2024).
               </p>
               <p style={paragraphStyle}>
-                Re-onboarding a team takes real hours; if the price delta is small, that cost can outweigh the saving. Some managers also genuinely want a tool that only recommends, never acts. If that&apos;s you, none of the more automated tools above, or Kampaio below, will feel like an upgrade.
+                Re-onboarding a team takes real hours; if the price delta is small, that cost can outweigh the saving. Some managers also genuinely want a tool that only recommends, never acts. If that&apos;s you, none of the more automated tools above will feel like an upgrade.
               </p>
               <p style={paragraphStyle}>
-                If none of these apply, the alternatives above or Kampaio below are worth a real trial.
+                If none of these apply, the alternatives above or Kampaio below are worth a real try.
               </p>
             </section>
 
@@ -489,21 +489,21 @@ export default function ArticleContent() {
             <section id="where-kampaio-fits">
               <h2 style={h2Style}>Where Kampaio fits (if you want more than recommendations)</h2>
               <p style={paragraphStyle}>
-                Kampaio has the same three-level shape as Opteo&apos;s $129, $249 and $499 plans, and all three levels are free while B6 is in beta: same shape, no entry cost at every level.
+                Kampaio is free during early access, no card. The Free plan covers one Google Ads account with all 14 automatic campaign checks, the search terms report with negatives, changes with a preview and a rollback, and a change log. Pro, for up to 5 accounts on one screen, comes when billing opens. Compare that with Opteo&apos;s $129, $249 and $499 plans.
               </p>
               <p style={paragraphStyle}>
-                Every price here, including Opteo&apos;s, is verified on a live vendor page, but Madgicx&apos;s core plan is gated, Optmyzr&apos;s top tiers need a sales call, and PPC.io has published no price at all for its unreleased Agents product, all documented above. Kampaio&apos;s tiers are public and fixed, no &quot;talk to sales&quot; step.
+                Every price here, including Opteo&apos;s, is verified on a live vendor page, but Madgicx&apos;s core plan is gated, Optmyzr&apos;s top tiers need a sales call, and PPC.io has published no price at all for its unreleased Agents product, all documented above. Kampaio has no price yet and no &quot;talk to sales&quot; step: it is free during early access.
               </p>
               <p style={paragraphStyle}>
                 If you&apos;re still working out{' '}
                 <a href="/blog/ai-powered-ppc-platform" style={linkStyle}>
                   what an AI-powered PPC platform actually does
                 </a>{' '}
-                versus a pure recommendation tool, that&apos;s the difference: seven mascots (Buzz on bid strategy, plus Aegis, Echo, Vox, Maximus, Mira, and Sage) work the account with every action shown live, not queued up for you to review later. Access is free for founding accounts while the full agent team ships.
+                versus a pure recommendation tool, that&apos;s the difference: the Kampaio dashboard flags problems on every campaign and lets you make the change on the spot (budget, target ROAS or CPA, campaign on/off, geo, keywords), with a preview first, a rollback after, and every edit recorded in the change log. Seven AI agents (Buzz on bid strategy, plus Aegis, Echo, Vox, Maximus, Mira, and Sage) are in development and do not run on live accounts yet.
               </p>
 
               <MascotQuote mascot="buzz">
-                Example: a $12,000/mo account has an ad group burning budget at a 0.4% conversion rate for six days straight. I&apos;d flag it same-day, cut the bid 15%, and show you the exact campaign before anything changes.
+                What I am being built for: an ad group burning budget at a 0.4% conversion rate for six days straight. I will flag it, propose a bid cut, and show you the exact campaign before anything changes. I am in development; today the dashboard&apos;s CPA-above-target check is what catches a campaign like that.
               </MascotQuote>
             </section>
 
@@ -533,7 +533,7 @@ export default function ArticleContent() {
                   'Opteo prices Basic-to-Agency at $129-$499/mo; three competitor roundups cite it wrong.',
                   'Opteo’s changelog has logged zero entries since November 2024.',
                   'Match spend, platforms, and hands-on preference before comparing price alone.',
-                  'Kampaio’s levels are public and free while in beta, no gated “talk to sales” step.',
+                  'Kampaio is free during early access, no card and no gated “talk to sales” step.',
                 ]}
               />
             </section>
@@ -553,18 +553,18 @@ export default function ArticleContent() {
             <section id="cta">
               <h2 style={h2Style}>Try Kampaio free</h2>
               <p style={paragraphStyle}>
-                Kampaio is free while B6 is in beta, connects to your Google Ads account, and shows every bid or budget change live, not buried in a queue you check yourself. Access is free for founding accounts while the full team ships.
+                Kampaio is free during early access, connects to the Google Ads accounts you manage, and runs 14 automatic checks on every campaign. Every change you make from the dashboard shows a preview first and can be rolled back.
               </p>
 
               <div style={{ background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)', borderRadius: '16px', padding: '40px', textAlign: 'center', marginTop: '40px', marginBottom: '40px' }}>
                 <h3 style={{ fontSize: '24px', fontWeight: 800, color: '#1e293b', marginBottom: '16px', marginTop: 0, lineHeight: 1.3 }}>
-                  See what Buzz would change this week
+                  See what the 14 checks flag in your account
                 </h3>
                 <p style={{ fontSize: '17px', color: '#475569', marginBottom: '28px', lineHeight: 1.6, fontWeight: 500, maxWidth: '620px', marginLeft: 'auto', marginRight: 'auto' }}>
-                  Connect your Google Ads account and watch the agents read it, choose each change, and show the rationale live, before anything applies. Public, flat pricing, <a href="/pricing" style={linkStyle}>free while B6 is in beta</a>, no gated sales call.
+                  Connect your Google Ads account and see every campaign&apos;s spend, ROAS and CPA on one screen, with problems flagged and changes you preview before they apply. <a href="/pricing" style={linkStyle}>Free during early access</a>, no card, no sales call.
                 </p>
                 <a
-                  href="/chat"
+                  href="https://dashboard.kampaio.com/"
                   style={{
                     background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                     color: 'white',
@@ -587,7 +587,7 @@ export default function ArticleContent() {
                     (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
                   }}
                 >
-                  Start free
+                  Open the dashboard
                 </a>
               </div>
 

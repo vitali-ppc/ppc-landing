@@ -44,7 +44,7 @@ export default function ArticleContent() {
       '@id': 'https://www.kampaio.com/blog/google-ads-optimization',
     },
     keywords:
-      'google ads optimization, optimization checklist, constraint diagnosis, smart bidding, conversion tracking, negative keywords, quality score, performance max, learning phase, kampaio, buzz, aegis, echo',
+      'google ads optimization, optimization checklist, constraint diagnosis, smart bidding, conversion tracking, negative keywords, quality score, performance max, learning phase, kampaio',
     wordCount: 3844,
     articleSection: 'Google Ads',
     inLanguage: 'en',
@@ -156,7 +156,7 @@ export default function ArticleContent() {
     { id: 'protect-spend', title: 'Protect Your Spend', level: 1 },
     { id: 'when-not-to', title: 'When NOT to Optimize (and What to Ignore)', level: 1 },
     { id: 'weekly-loop', title: 'A Repeatable Optimization Loop You Can Run Weekly', level: 1 },
-    { id: 'without-babysitting', title: 'Keep Every Campaign at Its Constraint Without Babysitting', level: 1 },
+    { id: 'without-babysitting', title: 'Keep Every Campaign at Its Constraint', level: 1 },
     { id: 'faq', title: 'Frequently Asked Questions', level: 1 },
     { id: 'cta', title: 'Start With Your Biggest Constraint', level: 1 },
   ];
@@ -277,7 +277,7 @@ export default function ArticleContent() {
               </p>
 
               <MascotQuote mascot="buzz">
-                I reviewed an account last quarter where the manager had spent three weeks A/B testing RSA headlines, 6 variants, clean data. CTR improved 0.3%. Meanwhile, the Search Terms report showed 38% of budget going to broad-match queries with zero purchase intent. I would have spent day one on the negatives. Order matters more than effort.
+                What I am being built to do: start with the Search Terms report before anything cosmetic. Weeks of RSA headline testing rarely beat one day of negatives when broad-match queries with no purchase intent are eating the budget. Order matters more than effort.
               </MascotQuote>
 
               <p style={paragraphStyle}>
@@ -349,7 +349,7 @@ export default function ArticleContent() {
               </div>
 
               <MascotQuote mascot="aegis">
-                Before I approve any bid strategy change, I check that conversion tracking has been clean for the past 14 days, no gaps, no duplicate tags, consistent counts. I&apos;ve seen two cases where a &quot;ROAS drop&quot; was actually a duplicate conversion tag firing on mobile that had been silently doubling reported conversions. We would have lowered targets on a campaign that was actually performing fine.
+                What I am being built to do: before any bid strategy change, check that conversion tracking has been clean for the past 14 days: no gaps, no duplicate tags, consistent counts. A &quot;ROAS drop&quot; can turn out to be a tracking artifact, such as a duplicate conversion tag on mobile silently inflating reported conversions, and lowering targets because of it would hurt a campaign that is performing fine.
               </MascotQuote>
 
               <Callout variant="warning" title="Rule">
@@ -402,7 +402,7 @@ export default function ArticleContent() {
               </p>
 
               <MascotQuote mascot="buzz">
-                A Shopping campaign on Maximize Conversions without a target cap was burning through its daily budget by 11 AM on cheap branded queries with $2 AOV products. I set Target ROAS at 15% above the 30-day account median ROAS. Budget distribution evened out by day two. CPA on the blended campaign dropped 22% over the next ten days.
+                What I am being built to do: catch a Shopping campaign on Maximize Conversions without a target cap that runs out of daily budget early on cheap queries, and propose a Target ROAS anchored to the account&apos;s recent median ROAS. Today the Kampaio dashboard flags impressions lost to budget, and you set the target yourself, with a preview first.
               </MascotQuote>
 
               <p style={paragraphStyle}>
@@ -467,7 +467,7 @@ export default function ArticleContent() {
               </ul>
 
               <MascotQuote mascot="aegis">
-                A change request comes in to switch bid strategy after four days of campaign data. I don&apos;t approve it automatically. Four days is learning phase. Switching resets the learning clock and purchases another 7-14 days of instability. My threshold: 7 days minimum, plus sufficient conversion volume. Then we look at the data and decide together.
+                What I am being built to do: hold a request to switch bid strategy after four days of campaign data. Four days is learning phase. Switching resets the learning clock and purchases another 7-14 days of instability. The threshold I am designed around: 7 days minimum, plus sufficient conversion volume. Then you look at the data and decide.
               </MascotQuote>
 
               <p style={{ ...paragraphStyle, fontWeight: 600, marginBottom: '12px' }}>Pre-flight checklist before any optimization action:</p>
@@ -519,7 +519,7 @@ export default function ArticleContent() {
             </section>
 
             <section id="without-babysitting">
-              <h2 style={h2Style}>Keep Every Campaign at Its Constraint Without Babysitting</h2>
+              <h2 style={h2Style}>Keep Every Campaign at Its Constraint</h2>
               <p style={paragraphStyle}>
                 An account&apos;s constraint drifts. The bottleneck throttling bidding last month may now be a feed quality issue after top SKUs went out of stock. Continuous constraint monitoring across live campaigns is a routine, not a one-time project.
               </p>
@@ -531,15 +531,15 @@ export default function ArticleContent() {
               />
 
               <p style={paragraphStyle}>
-                Kampaio (B6) runs this as an AI ad management layer: Buzz monitors bid-strategy signals and flags when a campaign operates outside its optimal range. Aegis reviews proposed changes against the pre-flight checklist before they go live. Maximus cross-checks targets against margin. Echo reports each week on what changed, why, and what the current constraint is.
+                The Kampaio dashboard covers the monitoring part of this loop today: every account on one screen, with 14 automatic campaign checks such as spend with no conversions, CPA above target, ROAS below target, impressions lost to budget or rank, and conversions that stopped. The agents are in development: Buzz will monitor bid-strategy signals, Aegis will review proposed changes against the pre-flight checklist, Maximus will cross-check targets against margin, and Echo will report each week on what changed and why.
               </p>
 
               <MascotQuote mascot="echo">
-                This week the constraint in Shopping-Generic shifted from bidding to feed quality. Three top-SKUs went out of stock mid-week, and budget redistributed toward lower-margin products. I reallocated budget to the in-stock category groups and flagged the feed issue for restocking review. ROAS moved from 280% back to 340% by Friday. Full log is in the weekly report.
+                What I am being built to do: a weekly note on where each campaign&apos;s constraint sits and what changed. A constraint can move without warning: when top SKUs go out of stock, budget drifts toward lower-margin products, and the fix moves from bidding to the feed.
               </MascotQuote>
 
               <p style={paragraphStyle}>
-                Kampaio runs as Co-pilot, Approval-required, or fully Autonomous, all free while B6 is in beta, versus the $499+ entry point for Optmyzr or Madgicx. The difference is that kampaio doesn&apos;t give you a list of recommendations to act on. It holds each campaign at its constraint and shows you every step it took.
+                The Kampaio dashboard is free during early access, versus the $499+ entry point for Optmyzr or Madgicx. It does not change anything by itself: you make each change from the dashboard with a preview first, and every edit is logged with the numbers before it so you can roll it back.
               </p>
             </section>
 
@@ -582,16 +582,16 @@ export default function ArticleContent() {
             <section id="cta">
               <h2 style={h2Style}>Start With Your Biggest Constraint</h2>
               <p style={paragraphStyle}>
-                Connect Google Ads and kampaio finds the current binding constraint in each of your campaigns, not a list of 14 possible improvements, but the one lever that matters most right now, with an estimated impact on CPA or ROAS. You decide whether to apply it.
+                Connect Google Ads and the Kampaio dashboard runs 14 automatic checks on every campaign, from spend with no conversions to impressions lost to budget, so you can see where each campaign is stuck. You decide what to change.
               </p>
 
               <div style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', borderRadius: '16px', padding: '32px', color: 'white', textAlign: 'center', marginTop: '40px' }}>
-                <h3 style={{ fontSize: '24px', fontWeight: 700, marginBottom: '12px' }}>Let kampaio find your biggest constraint</h3>
+                <h3 style={{ fontSize: '24px', fontWeight: 700, marginBottom: '12px' }}>See every campaign&apos;s checks on one screen</h3>
                 <p style={{ fontSize: '16px', opacity: 0.95, marginBottom: '24px', lineHeight: 1.6 }}>
-                  Connect your account and kampaio surfaces the one binding constraint in each campaign, with an estimated impact on CPA or ROAS. You decide whether to apply it. Free while B6 is in beta.
+                  Connect your account and the dashboard flags campaigns with spend and no conversions, CPA above target, or impressions lost to budget. You decide what to change. Free during early access.
                 </p>
-                <a href="/chat" style={{ display: 'inline-block', background: 'white', color: '#764ba2', padding: '14px 28px', borderRadius: '8px', fontWeight: 700, textDecoration: 'none', fontSize: '16px' }}>
-                  Start a free conversation
+                <a href="https://dashboard.kampaio.com/" style={{ display: 'inline-block', background: 'white', color: '#764ba2', padding: '14px 28px', borderRadius: '8px', fontWeight: 700, textDecoration: 'none', fontSize: '16px' }}>
+                  Open the dashboard
                 </a>
               </div>
             </section>

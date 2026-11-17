@@ -131,7 +131,7 @@ export default function ArticleContent() {
     { id: 'workflow', title: 'What This Changes About Your Creative and QA Workflow', level: 1 },
     { id: 'risks', title: 'What Happens If You Skip It or Get It Wrong', level: 1 },
     { id: 'faq', title: 'FAQ', level: 1 },
-    { id: 'kampaio', title: 'Keep Your Creative Compliant Without Adding a Manual Step', level: 1 },
+    { id: 'kampaio', title: 'Keep Your Creative Compliant: Where Kampaio Fits', level: 1 },
   ];
 
   const scrollToSection = (id: string) => {
@@ -546,23 +546,23 @@ export default function ArticleContent() {
 
             {/* Where Kampaio fits */}
             <section id="kampaio">
-              <h2 style={h2Style}>Keep Your Creative Compliant Without Adding a Manual Step</h2>
+              <h2 style={h2Style}>Keep Your Creative Compliant: Where Kampaio Fits</h2>
               <p style={paragraphStyle}>
-                This setting is one more small policy detail that&apos;s easy to forget mid-campaign. Mira, <a href="/blog/ai-powered-ppc-platform" style={linkStyle}>Kampaio&apos;s creative agent</a>, generates and edits ad creative directly, exactly the point where a disclosure like this should get handled automatically instead of sitting on nobody&apos;s checklist.
+                This setting is one more small policy detail that&apos;s easy to forget mid-campaign. Mira, <a href="/blog/ai-powered-ppc-platform" style={linkStyle}>Kampaio&apos;s creative agent</a>, is in development and will generate and edit ad creative, exactly the point where a disclosure like this should get handled automatically instead of sitting on nobody&apos;s checklist.
               </p>
               <p style={paragraphStyle}>
-                Maximus tracks policy and platform changes across every account, so the next staggered rollout doesn&apos;t turn into something you discover late. You set the direction; the agents handle the details. <a href="/pricing" style={linkStyle}>See pricing</a>.
+                Maximus, our orchestrator (also in development), will track policy and platform changes across every account, so the next staggered rollout doesn&apos;t turn into something you discover late. Neither agent runs on a live account yet. What works today is the Kampaio dashboard: every account you manage on one screen and 14 automatic campaign checks, including all ads paused and no ads at all, free during early access. <a href="/pricing" style={linkStyle}>See what the Free plan includes</a>.
               </p>
 
               <div style={{ background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)', borderRadius: '16px', padding: '40px', textAlign: 'center', marginTop: '40px', marginBottom: '40px' }}>
                 <h3 style={{ fontSize: '24px', fontWeight: 800, color: '#1e293b', marginBottom: '16px', marginTop: 0, lineHeight: 1.3 }}>
-                  Want the policy watch handled for you?
+                  See every account on one screen
                 </h3>
                 <p style={{ fontSize: '17px', color: '#475569', marginBottom: '28px', lineHeight: 1.6, fontWeight: 500, maxWidth: '620px', marginLeft: 'auto', marginRight: 'auto' }}>
-                  Kampaio&apos;s agents generate the creative and track the platform changes that come with it, so a new disclosure setting does not sit on nobody&apos;s checklist.
+                  Creative generation and policy watch are what Kampaio&apos;s agents are being built for. Today the dashboard flags campaigns with all ads paused or no ads at all, and lets you make changes with a preview and a rollback.
                 </p>
                 <a
-                  href="/pricing"
+                  href="https://dashboard.kampaio.com/"
                   style={{
                     background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                     color: 'white',
@@ -585,7 +585,7 @@ export default function ArticleContent() {
                     (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
                   }}
                 >
-                  See pricing
+                  Open the dashboard
                 </a>
               </div>
 

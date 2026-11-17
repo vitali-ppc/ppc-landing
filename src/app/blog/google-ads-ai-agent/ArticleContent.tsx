@@ -91,7 +91,7 @@ export default function ArticleContent() {
         name: 'How much does an AI agent for Google Ads cost?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: "Costs range from included (Google's native agents) to $499+/mo for recommendation tools (Optmyzr, Madgicx) to flat-subscription autonomous agents like Kampaio. Evaluate cost as a percentage of your managed spend: $499/mo on a $5K budget is a 10% fee, which makes advisory tools a poor value for smaller accounts. Many vendors (AdSpyder, Adsroid, Ryze, Markifact) do not publish pricing.",
+          text: "Costs range from included (Google's native agents) to $499+/mo for recommendation tools (Optmyzr, Madgicx). Kampaio's dashboard is free during early access; its agents are still in development. Evaluate cost as a percentage of your managed spend: $499/mo on a $5K budget is a 10% fee, which makes advisory tools a poor value for smaller accounts. Many vendors (AdSpyder, Adsroid, Ryze, Markifact) do not publish pricing.",
         },
       },
       {
@@ -176,7 +176,7 @@ export default function ArticleContent() {
     { type: 'Optmyzr', does: 'Budget pacing, rule-based automation, recommendations', mode: 'Advisory', price: '~$499/mo' },
     { type: 'Madgicx', does: 'Audience insights, automated rules, ad suggestions', mode: 'Advisory / semi-auto', price: '$499+/mo' },
     { type: 'AdSpyder / Adsroid / Ryze', does: 'Campaign build + copy generation', mode: 'Semi-auto (build-focused)', price: 'Pricing not published' },
-    { type: 'Kampaio', does: 'Bids, budgets, negatives, copy, anomaly detection, reporting', mode: 'Autonomous with approval gates', price: 'Flat subscription', highlight: true },
+    { type: 'Kampaio', does: 'Today: multi-account dashboard with 14 automatic campaign checks; changes you make with preview and rollback. Agents in development', mode: 'Dashboard flags, you decide', price: 'Free during early access', highlight: true },
   ];
 
   // Six core workflow areas a full-account agent covers.
@@ -201,7 +201,7 @@ export default function ArticleContent() {
     { tool: 'Smart Bidding (Google)', scope: 'Bid adjustments only, using Google\'s data', auto: 'Autonomous within bidding only', price: 'Included in Google Ads' },
     { tool: 'Optmyzr', scope: 'Rules, budget pacing, recommendations across account', auto: 'Advisory (you implement)', price: '~$499/mo' },
     { tool: 'Madgicx', scope: 'Audience insights, automated rules, ad suggestions', auto: 'Semi-autonomous (rules-based)', price: '$499+/mo' },
-    { tool: 'Kampaio', scope: 'Bids, budgets, negatives, copy, anomaly detection', auto: 'Autonomous with approval gates', price: 'Flat subscription', highlight: true },
+    { tool: 'Kampaio', scope: 'Today: campaign checks, search terms and negatives, product audit; agents in development', auto: 'No: flags issues, you make the change', price: 'Free during early access', highlight: true },
   ];
 
   return (
@@ -307,7 +307,7 @@ export default function ArticleContent() {
                     {tldrRows.map((row) => (
                       <tr key={row.type} style={row.highlight ? { background: 'rgba(102, 126, 234, 0.06)' } : undefined}>
                         <td style={{ ...tdStyle, fontWeight: 600 }}>
-                          {row.type === 'Kampaio' ? <a href="/pricing" style={linkStyle}>Kampaio</a> : row.type}
+                          {row.type === 'Kampaio' ? <a href="https://dashboard.kampaio.com/" style={linkStyle}>Kampaio</a> : row.type}
                         </td>
                         <td style={tdStyle}>{row.does}</td>
                         <td style={tdStyle}>{row.mode}</td>
@@ -323,7 +323,7 @@ export default function ArticleContent() {
               </p>
 
               <MascotQuote mascot="buzz">
-                In one week on a $12K/mo account, I moved $840 from three underperforming ad groups into the top search campaign. ROAS went from 3.1x to 4.6x. Every reallocation was logged, timestamped, and reversible in one click.
+                I am being built to move budget between campaigns, and I am not running on live accounts yet. Whatever agent you pick, ask for the same thing: every reallocation logged, timestamped, and reversible in one click.
               </MascotQuote>
             </section>
 
@@ -348,7 +348,7 @@ export default function ArticleContent() {
                 <li style={{ marginBottom: '16px' }}><strong>LLM chatbot (e.g., ChatGPT for PPC):</strong> Talks. Answers questions. Does nothing inside your account. Zero account access.</li>
                 <li style={{ marginBottom: '16px' }}><strong>Smart Bidding (Google):</strong> Adjusts bids for each auction using Google&apos;s conversion data. One task, bidding only. No access to keywords, budgets, negatives, or ad copy.</li>
                 <li style={{ marginBottom: '16px' }}><strong>Script (rule-based automation):</strong> Executes a fixed rule when a threshold triggers. No reasoning. No adaptation. &quot;If CPA &gt; $40, lower bid 10%.&quot;</li>
-                <li style={{ marginBottom: 0 }}><strong>AI agent (e.g., Kampaio):</strong> Reads account data holistically, decides across multiple tasks (bids, budgets, keywords, ad copy, landing pages) and acts. Connects cause to effect across the whole account.</li>
+                <li style={{ marginBottom: 0 }}><strong>AI agent (what Kampaio is building, in development):</strong> Reads account data holistically, decides across multiple tasks (bids, budgets, keywords, ad copy, landing pages) and acts. Connects cause to effect across the whole account.</li>
               </ol>
 
               <p style={paragraphStyle}>
@@ -384,7 +384,7 @@ export default function ArticleContent() {
                 Those workflows connect across the account, which is the part Smart Bidding cannot do. Search-term mining feeds <a href="/blog/google-ads-negative-keywords" style={linkStyle}>negative keyword</a> management; <a href="/blog/google-ads-anomaly-detection" style={{ color: '#764ba2', textDecoration: 'underline' }}>anomaly detection</a> catches <a href="/blog/google-ads-conversion-tracking-not-working" style={linkStyle}>conversion tracking breaks</a> before the day&apos;s budget is gone; landing page correlation is where landing page <a href="/blog/google-ads-optimization" style={{ color: '#764ba2', textDecoration: 'underline' }}>optimization</a> starts.
               </p>
               <p style={paragraphStyle}>
-                In Kampaio, these workflows map to specific agents: <a href="/b6#buzz" style={linkStyle}>Buzz handles bid and budget reallocation</a>, Aegis runs anomaly detection and guardrails, Echo manages ad copy testing and reporting. The other four agents (Vox, Maximus, Mira, Sage) handle competitive intelligence, audience signals, feed optimization, and <a href="/blog/google-ads-strategy" style={{ color: '#764ba2', textDecoration: 'underline' }}>strategy</a>.
+                In Kampaio, these workflows are planned for specific agents, all in development and not running on live accounts: Buzz for bids and budget, Aegis for risk review and guardrails, Echo for reporting, Mira for creative, Sage for research, Vox for <a href="/blog/google-ads-strategy" style={{ color: '#764ba2', textDecoration: 'underline' }}>strategy</a>, and Maximus to orchestrate them. What works today is the Kampaio dashboard: 14 automatic campaign checks across all your accounts, a search terms report with negatives added after a preview, and a Shopping / Performance Max product audit.
               </p>
               <p style={paragraphStyle}>
                 Generic vendors like AdSpyder and Adsroid position around workflow 3 (build campaigns 5x faster, generate copy). That is a useful capability. But building a campaign once is the easy part. Managing it week after week, reallocating budget as search intent shifts, killing waste before it compounds: that is the harder, higher-value job. The full breakdown of <a href="/blog/10-ai-powered-ppc-optimization-strategies" style={{ color: '#764ba2', textDecoration: 'underline' }}>AI-powered PPC</a> optimization workflows is in our <a href="/blog/ai-powered-ppc-optimization-complete-guide" style={linkStyle}>complete guide to AI PPC optimization</a>.
@@ -448,7 +448,7 @@ export default function ArticleContent() {
               </p>
 
               <MascotQuote mascot="aegis">
-                Last Tuesday I flagged a $220 anomaly: CPC in the brand campaign jumped 40% in 4 hours. Root cause: a competitor was bidding on the exact brand term. I paused auto-budget expansion, notified the account owner, and held the daily cap. The owner approved a counter-bid adjustment within 2 hours. Budget that would have been spent by morning under auto-expansion: estimated $640.
+                I am being built to sit in front of every proposed change. In our one prototype run, on a live e-commerce account in May 2026, I blocked both changes Buzz proposed at a risk score of 82/100; one would have paused a brand campaign before anyone checked conversion tracking. The lesson for any agent: check the premise before you act on the numbers.
               </MascotQuote>
 
               <p style={paragraphStyle}>
@@ -511,7 +511,7 @@ export default function ArticleContent() {
                 <li style={{ marginBottom: 0 }}><strong>What percentage of your monthly ad spend is the monthly fee?</strong> Above 8% for advisory tools is hard to justify for SMBs with budgets under $10K/mo.</li>
               </ol>
               <p style={paragraphStyle}>
-                Kampaio is built for the $3 to 50K/mo segment. At the Co-pilot level it runs bids and surfaces recommendations. At the Approval level it executes with your sign-off on each action. At the Autonomous level it runs the account end-to-end with spend caps and a live action log. Every tier shows every step. See current plan details at <a href="/pricing" style={linkStyle}>kampaio.com/pricing</a>.
+                Kampaio is built for the $3 to 50K/mo segment. Today that means the <a href="https://dashboard.kampaio.com/" style={linkStyle}>Kampaio dashboard</a>: all your Google Ads accounts on one screen, 14 automatic campaign checks, and changes you make yourself (budget, target ROAS or CPA, keywords, geo, campaign on or off) with a preview first, a rollback after, and a change log. It is free during early access. The agents that will execute on their own are in development.
               </p>
             </section>
 
@@ -536,22 +536,22 @@ export default function ArticleContent() {
                 The advisory-vs-autonomous line is where most of the market still sits. Google&apos;s own agents advise. Recommendation tools advise at $499/mo. The value gap for SMB owners with no in-house PPC support is not better advice: it is execution without the full-time headcount.
               </p>
               <p style={paragraphStyle}>
-                Kampaio runs bids, moves budget, mines negatives, tests copy, and catches anomalies before they burn through daily cap. Every action is visible, every step is logged, and every tier comes with approval gates that keep you in control of the big decisions. A flat subscription, on accounts starting at $3K/month ad spend.
+                Kampaio&apos;s agents for bids, budget and reporting are in development and do not run on live accounts yet. What runs today is the dashboard: it flags spend with no conversions, impressions lost to budget or rank, ROAS below target and the rest of its 14 checks, and every change you make from it is previewed, reversible and logged with the numbers before it. Free during early access.
               </p>
 
               <MascotQuote mascot="buzz">
-                The math is simple. A flat monthly fee on a $5K ad budget is a low single-digit share of spend, and it stays flat as the budget grows. If I save one wasted search term cluster per month, the average recapture is $300 to $500 in redirected budget. The fee pays back inside the first week.
+                The math to run on any tool: its monthly fee as a share of your ad spend, and whether that share stays flat as the budget grows. Then ask what one wasted search term cluster costs you per month. That is the bar a tool has to clear.
               </MascotQuote>
 
               <div style={{ background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)', borderRadius: '16px', padding: '40px', textAlign: 'center', marginTop: '40px', marginBottom: '40px' }}>
                 <h3 style={{ fontSize: '24px', fontWeight: 800, color: '#1e293b', marginBottom: '16px', marginTop: 0, lineHeight: 1.3 }}>
-                  See an AI agent run on your real account
+                  See all your Google Ads accounts on one screen
                 </h3>
                 <p style={{ fontSize: '17px', color: '#475569', marginBottom: '28px', lineHeight: 1.6, fontWeight: 500, maxWidth: '620px', marginLeft: 'auto', marginRight: 'auto' }}>
-                  Connect Google Ads to Kampaio and watch the agents read your account, choose each change, and show the rationale live, before anything applies. Flat pricing, <a href="/pricing" style={linkStyle}>free while B6 is in beta</a>, with approval gates on by default.
+                  Connect Google Ads to the Kampaio dashboard and see spend, ROAS and CPA per campaign, with 14 automatic checks flagging what needs attention. Free during early access. Nothing changes in your account unless you make the change.
                 </p>
                 <a
-                  href="/chat"
+                  href="https://dashboard.kampaio.com/"
                   style={{
                     background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                     color: 'white',
@@ -574,7 +574,7 @@ export default function ArticleContent() {
                     (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
                   }}
                 >
-                  Try Kampaio Free
+                  Open the dashboard
                 </a>
               </div>
               <p style={{ fontSize: '14px', color: '#64748b', fontStyle: 'italic', lineHeight: 1.7, marginTop: '8px' }}>

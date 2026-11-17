@@ -18,7 +18,7 @@ export default function ArticleContent() {
     "@context": "https://schema.org",
     "@type": "Article",
     "headline": "Google Ads Anomaly Detection: How to Catch Spend Spikes, Conversion Drops, and Tracking Outages Before They Cost You a Week",
-    "description": "Built-in Google Ads alerts are too noisy or too late. The Account Anomaly Detector script is brittle. The detection stack that actually works in 2026: rolling baselines, severity tiers, and Aegis classification.",
+    "description": "Built-in Google Ads alerts are too noisy or too late. The Account Anomaly Detector script is brittle. The detection stack that actually works in 2026: rolling baselines, severity tiers, and routing that knows what to page on.",
     "image": "https://kampaio.com/og/google-ads-anomaly-detection.png",
     author: {
       '@type': 'Person',
@@ -43,7 +43,7 @@ export default function ArticleContent() {
       "@type": "WebPage",
       "@id": "https://kampaio.com/blog/google-ads-anomaly-detection"
     },
-    "keywords": "google ads anomaly detection, account anomaly detector, campaign anomaly detector, CAD v2, rolling baseline, z-score, severity tier, tracking outage, click bombing, brand campaign, Smart Bidding learning, Aegis, Buzz, Echo, Sage, B6, multi-agent, false-positive rate",
+    "keywords": "google ads anomaly detection, account anomaly detector, campaign anomaly detector, CAD v2, rolling baseline, z-score, severity tier, tracking outage, click bombing, brand campaign, Smart Bidding learning, Kampaio dashboard, campaign checks, false-positive rate",
     "wordCount": 3137,
     "articleSection": "Google Ads",
     "inLanguage": "en"
@@ -66,7 +66,7 @@ export default function ArticleContent() {
         "name": "How do I set up alerts for unusual activity in Google Ads?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Three layers. (1) Turn on the built-in in-account notifications and email notifications for the operational basics (payment, disapproval, suspension). (2) Deploy the Account Anomaly Detector script or CAD v2 for performance-metric anomalies. (3) Layer a routing tool (Slack via Go-Insights or a commercial monitor, or an agent like Aegis) for severity classification and on-call paging."
+          "text": "Three layers. (1) Turn on the built-in in-account notifications and email notifications for the operational basics (payment, disapproval, suspension). (2) Deploy the Account Anomaly Detector script or CAD v2 for performance-metric anomalies. (3) Layer a routing tool (Slack via Go-Insights or a commercial monitor) for severity classification and on-call paging."
         }
       },
       {
@@ -127,7 +127,7 @@ export default function ArticleContent() {
     { id: 'stack', title: 'The Detection Stack Compared: Built-in vs Script vs Commercial vs Agent', level: 1 },
     { id: 'thresholds', title: 'Threshold Math: What Should Actually Trigger an Alert', level: 1 },
     { id: 'severity', title: 'Anomaly Severity Tiers and Who Should Get the Page', level: 1 },
-    { id: 'aegis', title: 'How Aegis Detects, Classifies, and Routes Anomalies in B6', level: 1 },
+    { id: 'aegis', title: 'What the Kampaio Dashboard Checks Today, and What Aegis Is Being Built to Do', level: 1 },
     { id: 'build-your-own', title: 'Building Your Own Anomaly Detection Layer (When You Can\'t Buy)', level: 1 },
     { id: 'faq', title: 'FAQ', level: 1 },
     { id: 'cta', title: 'Stop Reacting to Spend Spikes. Detect Them.', level: 1 },
@@ -271,7 +271,7 @@ export default function ArticleContent() {
               Google Ads Anomaly Detection: How to Catch Spend Spikes, Conversion Drops, and Tracking Outages Before They Cost You a Week
             </h1>
             <p style={{ fontSize: '20px', color: '#64748b', marginBottom: '32px', lineHeight: '1.6', fontWeight: '500' }}>
-              Built-in alerts are too noisy or too late. The Account Anomaly Detector script is brittle. The stack that actually works in 2026: rolling baselines, severity tiers, and an <a href="/blog/google-ads-ai-agent" style={linkStyle}>agent</a> that classifies before it pages.
+              Built-in alerts are too noisy or too late. The Account Anomaly Detector script is brittle. The stack that actually works in 2026: rolling baselines, severity tiers, and routing that classifies before it pages.
             </p>
             <div style={{ display: 'flex', alignItems: 'center', gap: '24px', marginBottom: '40px', paddingBottom: '32px', borderBottom: '1px solid #e5e7eb' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -322,7 +322,7 @@ export default function ArticleContent() {
                 This is the central problem with Google Ads anomaly detection in 2026. The built-in alerts are too noisy or too late. They fire on the things Google chose to monitor (disapprovals, budget caps, policy issues), not on the things that matter to a portfolio manager (CPA drift, conversion-rate breakage, click bombing, bid-algo overreach during Smart Bidding learning). The Account Anomaly Detector script that Google publishes is closer to right, but it is brittle: same-day-of-week mean, hard percentage thresholds, one email a day. It catches the obvious and misses everything subtle.
               </p>
               <p style={pStyle}>
-                What you actually need is a stack. Rolling baseline math, severity classification, routing that knows the difference between &quot;wake Sara up&quot; and &quot;log for the weekly digest.&quot; This article is the comparison guide for that stack. Built-in alerts vs the script vs commercial monitors (<a href="https://www.go-insights.com/google-ads-slack" style={linkStyle} target="_blank" rel="noopener noreferrer">Go-Insights</a>, <a href="https://blog.promonavigator.com/anomaly-detector-scripts/" style={linkStyle} target="_blank" rel="noopener noreferrer">Promonavigator&apos;s collection</a>, Optmyzr) vs an agent-based approach where a dedicated reviewer (Aegis on B6) classifies severity before anything escalates.
+                What you actually need is a stack. Rolling baseline math, severity classification, routing that knows the difference between &quot;wake Sara up&quot; and &quot;log for the weekly digest.&quot; This article is the comparison guide for that stack. Built-in alerts vs the script vs commercial monitors (<a href="https://www.go-insights.com/google-ads-slack" style={linkStyle} target="_blank" rel="noopener noreferrer">Go-Insights</a>, <a href="https://blog.promonavigator.com/anomaly-detector-scripts/" style={linkStyle} target="_blank" rel="noopener noreferrer">Promonavigator&apos;s collection</a>, Optmyzr) vs an agent-based approach where a dedicated reviewer classifies severity before anything escalates (Kampaio&apos;s risk agent, Aegis, is being built for that role and is still in development).
               </p>
               <p style={pStyle}>
                 The 30 second triage when something feels wrong: pull the last 28 days, check if spend is off baseline, check if conversions are off baseline, check if the ratio between them is off baseline. Two of three drifting in the same direction is real. One of three drifting alone is almost always either tracking or seasonality.
@@ -376,7 +376,7 @@ pie showData
               </ul>
 
               <MascotQuote mascot="aegis">
-                Most deviations on a normal account are noise: weekend seasonality, single-keyword variance, a Performance Max campaign doing what Performance Max campaigns do. The few that need a person are a tracking outage, a click-bombing pattern, a bid strategy that flipped overnight. Classification is the work. The math is the easy part.
+                What I am being built to do is tell noise from signal. Most deviations on a normal account are noise: weekend seasonality, single-keyword variance, a Performance Max campaign doing what Performance Max campaigns do. The few that need a person are a tracking outage, a click-bombing pattern, a bid strategy that flipped overnight. Classification is the work. The math is the easy part.
               </MascotQuote>
             </section>
 
@@ -399,7 +399,7 @@ pie showData
                 <strong>Commercial monitors.</strong> <a href="https://www.go-insights.com/google-ads-slack" style={linkStyle} target="_blank" rel="noopener noreferrer">Go-Insights</a> routes anomaly detection into Slack, Teams, and email with 24/7 monitoring on CPC, spend, impressions, and similar metrics. <a href="https://blog.promonavigator.com/anomaly-detector-scripts/" style={linkStyle} target="_blank" rel="noopener noreferrer">Promonavigator&apos;s anomaly script collection</a> bundles 14 different anomaly tracking scripts ranging from low <a href="/blog/the-complete-guide-to-google-ads-quality-score-in-2025" style={linkStyle}>Quality Score</a> detection to suspicious-click filtering (one of which flags campaigns exceeding &quot;30% invalid clicks during the day&quot;). Optmyzr has a similar alerts layer inside its rule engine. Useful when you want pre-built routing and do not want to maintain the script yourself.
               </p>
               <p style={pStyle}>
-                <strong>Agent-based detection.</strong> The newest layer. An agent runs continuously across the account, computes the rolling baseline, classifies the deviation against learned patterns, and decides whether to escalate, block a related action, or absorb the signal as noise. On B6, this is what Aegis does. The classification step is what separates an agent from a script: a percentage threshold can fire, but it cannot tell you why, and it cannot block a Smart Bidding change that is about to compound the anomaly.
+                <strong>Agent-based detection.</strong> The newest layer. An agent runs continuously across the account, computes the rolling baseline, classifies the deviation against learned patterns, and decides whether to escalate, block a related action, or absorb the signal as noise. At Kampaio this is the job Aegis, our risk agent, is being built for; it is in development and does not run on live accounts yet. The classification step is what separates an agent from a script: a percentage threshold can fire, but it cannot tell you why, and it cannot block a Smart Bidding change that is about to compound the anomaly.
               </p>
 
               {/* VISUAL 3: ComparisonTable - the four-tier stack */}
@@ -410,9 +410,9 @@ pie showData
                   { cells: ['Account Anomaly Detector script', 'Same-day-of-week mean, % thresholds, 26 wk window', 'Single email per alert per day', 'Single account, low setup cost'] },
                   { cells: ['CAD v2 (GitHub)', 'Configurable past vs current window thresholds', 'Sheet log + email', 'Multi-campaign account, technical owner'] },
                   { cells: ['Commercial monitor', 'Mostly rule-based, pre-built integrations', 'Slack, Teams, email, webhook', 'Multi-account agency, no internal eng'] },
-                  { cells: ['Agent-based (Aegis on B6)', 'Statistical + rule overrides + classifier', 'Severity-tiered routing with action blocking', 'Multi-account portfolio, autonomy required'], highlight: true },
+                  { cells: ['Agent-based (e.g. Aegis, in development)', 'Statistical + rule overrides + classifier', 'Severity-tiered routing with action blocking', 'Multi-account portfolio'], highlight: true },
                 ]}
-                caption="The detection stack from least to most sophisticated. Most real-world setups combine layer 1 (built-in floor) with one of layers 2-5. Aegis sits on top by classifying severity and blocking downstream actions, not just by detecting."
+                caption="The detection stack from least to most sophisticated. Most real-world setups combine layer 1 (built-in floor) with one of layers 2-5. An agent layer is meant to sit on top by classifying severity and blocking downstream actions, not just by detecting."
               />
             </section>
 
@@ -508,7 +508,7 @@ pie showData
               <ul style={{ fontSize: '18px', color: '#1e293b', lineHeight: '1.8', paddingLeft: '24px', marginBottom: '32px' }}>
                 <li style={{ marginBottom: '14px' }}><strong>Severity 1 (critical, pages immediately).</strong> Tracking outage suspected (conversions to zero or drop greater than 50% across the account), brand campaign paused, account suspended, payment failure. These wake Sara up. They should be 1 to 3 per month across a 12 account portfolio. More than that and the threshold is wrong.</li>
                 <li style={{ marginBottom: '14px' }}><strong>Severity 2 (high, Slack channel within 1 hour).</strong> Spend pacing greater than 30% off baseline, CPA spike greater than 50%, click bombing pattern, Smart Bidding strategy switched without notice. These get investigated same day.</li>
-                <li style={{ marginBottom: '14px' }}><strong>Severity 3 (medium, daily digest).</strong> Drift signals, single-keyword anomalies, single-campaign Auction Insights shifts, CTR slipping over a multi-day window. These go into Echo&apos;s weekly digest, not into Slack.</li>
+                <li style={{ marginBottom: '14px' }}><strong>Severity 3 (medium, daily digest).</strong> Drift signals, single-keyword anomalies, single-campaign Auction Insights shifts, CTR slipping over a multi-day window. These go into the daily or weekly digest, not into Slack.</li>
                 <li style={{ marginBottom: '14px' }}><strong>Severity 4 (noise, archived).</strong> Seasonal patterns, expected weekend behavior, single-day blip on a campaign with high natural variance. These get logged so the false-positive rate stays measurable, but they never page anyone.</li>
               </ul>
               <p style={pStyle}>
@@ -516,18 +516,18 @@ pie showData
               </p>
 
               <MascotQuote mascot="echo">
-                Last week&apos;s digest covered 6 accounts. 2 severity 1 events (both tracking-related, both auto-classified by Aegis in under 200 ms), 11 severity 2 events that were investigated and closed inside the day, 38 severity 3 drift signals in the digest table, and 174 severity 4 noise events logged for the false-positive review. Sara saw the 2 severity 1 events in real time. The other 223 went into the weekly write-up without paging anyone.
+                I am being built to write the digest, and the job of a digest is to keep severity 3 and 4 events out of Slack. If everything pages, nothing gets read. Write down which tier each alert type belongs to before you wire up any routing.
               </MascotQuote>
             </section>
 
             {/* Aegis flow */}
             <section id="aegis">
-              <h2 style={h2Style}>How Aegis Detects, Classifies, and Routes Anomalies in B6</h2>
+              <h2 style={h2Style}>What the Kampaio Dashboard Checks Today, and What Aegis Is Being Built to Do</h2>
               <p style={pStyle}>
-                Aegis is the risk-review and anomaly-detection agent in the <a href="/b6#aegis" style={linkStyle}>B6 multi-agent stack</a>. Its job is to sit between the other agents and the production Google Ads account, classify every proposed change and every observed metric deviation, and either pass, escalate, or block. Aegis is the lead defense layer.
+                What runs today is the <a href="https://dashboard.kampaio.com/" style={linkStyle}>Kampaio dashboard</a>. It runs 14 automatic checks on every connected campaign, and several of them are the anomalies this article is about: spend spiked, conversions stopped, spend with no conversions, CPA above target, ROAS below target, campaign stopped, all ads paused. It flags them across all your accounts on one screen. It does not change anything by itself: any fix is a change you make from the dashboard, with a preview first and a rollback after.
               </p>
               <p style={pStyle}>
-                The Aegis loop is rule-augmented statistical. The rolling baseline is computed across the trailing 28 day window per campaign per hour-of-day. Deviations beyond 2σ enter the classifier. The classifier has explicit overrides for known patterns: brand campaign actions are always severity 1, anything touching the conversion tag is always severity 1, anything inside a Smart Bidding learning window gets de-prioritized one tier because volatility there is expected. The output is a severity-tagged alert with a recommended next action.
+                Aegis is the risk-review agent we are building on top of that, and it is in development. It is designed to sit between the other agents and the production Google Ads account, classify every proposed change and every observed metric deviation, and either pass, escalate, or block. The planned loop is rule-augmented statistical: a rolling baseline across the trailing 28 days, deviations beyond 2σ entering a classifier, and explicit overrides for known patterns (brand campaign actions always severity 1, anything touching the conversion tag always severity 1, anything inside a Smart Bidding learning window de-prioritized one tier).
               </p>
 
               {/* VISUAL 5: Mermaid sequenceDiagram - Sage -> Aegis -> Buzz -> user */}
@@ -555,14 +555,14 @@ sequenceDiagram
     E->>U: Incident note in weekly digest
   end
                 `}
-                caption="The Sage -> Aegis -> Buzz -> Echo -> User flow on a real bid-change proposal. Aegis is the gate. Risk score >= 80 blocks the action and pages immediately; 50-79 escalates to manual; under 50 auto-applies with a log entry."
+                caption="The planned Sage -> Aegis -> Buzz -> Echo -> User flow for a bid-change proposal (agents in development, not running on live accounts). Aegis is designed as the gate: a high risk score blocks the action, a middle score escalates to a person."
               />
 
               <p style={pStyle}>
-                In May 2026 we ran the prototype once on a live e-commerce account. <a href="/b6#buzz" style={linkStyle}>Buzz</a> proposed two changes; Aegis reviewed both and blocked both at a risk score of 82/100. One would have paused a brand campaign that showed no conversions, and Aegis flagged the more likely cause: broken conversion tracking, not a campaign that stopped working. Its note was the next step to take: verify tracking before touching the campaign. That is one test run, not a track record, and the agents are still in development.
+                In May 2026 we ran the prototype once on a live e-commerce account. Buzz proposed two changes; Aegis reviewed both and blocked both at a risk score of 82/100. One would have paused a brand campaign that showed no conversions, and Aegis flagged the more likely cause: broken conversion tracking, not a campaign that stopped working. Its note was the next step to take: verify tracking before touching the campaign. That is one test run, not a track record, and the agents are still in development.
               </p>
               <p style={pStyle}>
-                The other mascots are part of the chain. <a href="/b6#sage" style={linkStyle}>Sage</a> feeds Aegis the keyword-level and audience-level signals that statistical baselines need. Buzz is the agent whose proposals Aegis reviews most often, since bid changes are the most frequent action class. <a href="/b6#echo" style={linkStyle}>Echo</a> writes the incident note in the weekly digest, so the team has a written audit trail of every severity 2 and 3 event without having to scroll Slack.
+                The other agents in the planned chain are also in development. Sage, the research agent, will feed Aegis the keyword-level and audience-level signals that statistical baselines need. Buzz, the bidding agent, will propose changes for Aegis to review. Echo, the reporting agent, will write incident notes into a digest. Today, the audit trail you get is the dashboard&apos;s change log: every edit you make is recorded with the numbers before it.
               </p>
 
               <MascotQuote mascot="buzz">
@@ -570,7 +570,7 @@ sequenceDiagram
               </MascotQuote>
 
               <p style={pStyle}>
-                The pitch is not &quot;AI does anomaly detection instead of you.&quot; The pitch is: Aegis classifies severity in under 100 milliseconds per event, you spend your attention on the 3 to 5 severity-1 events per month that actually need an operator decision. Everything else is logged and digested. See <a href="/pricing" style={linkStyle}>pricing tiers</a> for how the agent layer is packaged, or open a <a href="/chat" style={linkStyle}>free Buzz audit</a> on one of your accounts to see Aegis classification in action on real data.
+                The point is not &quot;AI does anomaly detection instead of you.&quot; The point is that your attention should go to the few events that need an operator decision. The dashboard is free during early access: <a href="https://dashboard.kampaio.com/" style={linkStyle}>connect your accounts</a> and see which campaigns trip the 14 checks.
               </p>
             </section>
 
@@ -620,7 +620,7 @@ flowchart TD
                 <strong>What is the Account Anomaly Detector script in Google Ads?</strong> Google&apos;s first-party Apps Script for anomaly detection, <a href="https://developers.google.com/google-ads/scripts/docs/solutions/account-anomaly-detector" style={linkStyle} target="_blank" rel="noopener noreferrer">documented here</a>. It compares the current day&apos;s running stats (impressions, clicks, conversions, cost) against the average of the same day of week over the prior 26 weeks. Thresholds are configurable per metric in a Google Sheet. Sends a single email per alert per day. It is a fine baseline, brittle as a primary detection layer for a 10+ account portfolio.
               </p>
               <p style={pStyle}>
-                <strong>How do I set up alerts for unusual activity in Google Ads?</strong> Three layers. (1) Turn on the built-in in-account notifications and email notifications for the operational basics (payment, disapproval, suspension). (2) Deploy the <a href="https://developers.google.com/google-ads/scripts/docs/solutions/account-anomaly-detector" style={linkStyle} target="_blank" rel="noopener noreferrer">Account Anomaly Detector script</a> or <a href="https://github.com/google/cad_campaign_anomaly_detector" style={linkStyle} target="_blank" rel="noopener noreferrer">CAD v2</a> for performance-metric anomalies. (3) Layer a routing tool (Slack via <a href="https://www.go-insights.com/google-ads-slack" style={linkStyle} target="_blank" rel="noopener noreferrer">Go-Insights</a> or a commercial monitor, or an agent like Aegis) for severity classification and on-call paging.
+                <strong>How do I set up alerts for unusual activity in Google Ads?</strong> Three layers. (1) Turn on the built-in in-account notifications and email notifications for the operational basics (payment, disapproval, suspension). (2) Deploy the <a href="https://developers.google.com/google-ads/scripts/docs/solutions/account-anomaly-detector" style={linkStyle} target="_blank" rel="noopener noreferrer">Account Anomaly Detector script</a> or <a href="https://github.com/google/cad_campaign_anomaly_detector" style={linkStyle} target="_blank" rel="noopener noreferrer">CAD v2</a> for performance-metric anomalies. (3) Layer a routing tool (Slack via <a href="https://www.go-insights.com/google-ads-slack" style={linkStyle} target="_blank" rel="noopener noreferrer">Go-Insights</a> or a commercial monitor) for severity classification and on-call paging.
               </p>
               <p style={pStyle}>
                 <strong>What is a normal false-positive rate for ad-account alerts?</strong> Aim for under 15% on severity 1 alerts and under 30% on severity 2. Higher on severity 3 is acceptable because that tier is supposed to be wide. If severity 1 false positives exceed 30%, you have either threshold drift, structural change in an account (campaign restructure, product launch) that nobody told the rule engine about, or both.
@@ -640,7 +640,7 @@ flowchart TD
                 Three things to take away. The built-in Google Ads notification system is a floor, not a ceiling. The Account Anomaly Detector script is the cheapest meaningful upgrade and worth deploying even if you plan to layer something on top of it. Severity classification matters more than statistical sophistication: a dumb threshold with the right routing is more useful than a clever model that pages on everything.
               </p>
               <p style={pStyle}>
-                If you manage 5 or more accounts and you have ever missed a real anomaly because the team was triaging false positives, the next step is to install a classifier that knows the difference. <a href="/chat" style={linkStyle}>Run a free Buzz + Aegis audit on one of your accounts</a> and see severity classification on real data. Read-only access, no changes made without your approval, takes 10 minutes.
+                If you manage 5 or more accounts and you have ever missed a real anomaly because the team was triaging false positives, the next step is a layer that separates the real problems from the noise. <a href="https://dashboard.kampaio.com/" style={linkStyle}>Open the Kampaio dashboard</a> to see all your accounts on one screen, with spend spikes, stopped conversions and spend without conversions flagged by its automatic checks. Free during early access; nothing changes in your account unless you make the change.
               </p>
               <p style={pStyle}>
                 Anomaly detection is not about the alert. It is about the gap between the moment a problem starts and the moment a human knows. Close the gap.

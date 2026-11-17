@@ -68,7 +68,7 @@ export default function ArticleContent() {
         name: 'How much does PPC management cost?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'There are three cost models. Agency retainers commonly run $1,500 to $5,000 per month flat or 10 to 20 percent of ad spend. An in-house PPC manager costs salary (US average roughly $75K per year). AI tools like B6 run on a flat monthly subscription and extend in-house capacity without a headcount hire. At $5K in ad spend, a $1,500 agency fee equals 30 percent of total budget going to management.',
+          text: 'There are three cost models. Agency retainers commonly run $1,500 to $5,000 per month flat or 10 to 20 percent of ad spend. An in-house PPC manager costs salary (US average roughly $75K per year). AI tools extend in-house capacity without a headcount hire; the Kampaio dashboard is free during early access. At $5K in ad spend, a $1,500 agency fee equals 30 percent of total budget going to management.',
         },
       },
       {
@@ -131,7 +131,7 @@ export default function ArticleContent() {
     { id: 'keep-or-fire', title: 'Keep It In-House or Fire the Agency? A Decision Framework', level: 1 },
     { id: 'scaling', title: 'Scaling In-House PPC Management Without Hiring', level: 1 },
     { id: 'faq', title: 'Frequently Asked Questions', level: 1 },
-    { id: 'b6-agents', title: 'Run Your In-House PPC Loop With B6 Agents', level: 1 },
+    { id: 'b6-agents', title: 'Run Your In-House PPC Loop With Kampaio', level: 1 },
   ];
 
   const scrollToSection = (id: string) => {
@@ -530,14 +530,14 @@ export default function ArticleContent() {
 
               {/* VISUAL 2: ComparisonTable */}
               <ComparisonTable
-                headers={['', 'In-House Manager', 'Agency', 'AI Tool (e.g. B6)']}
+                headers={['', 'In-House Manager', 'Agency', 'AI Tool (e.g. Kampaio)']}
                 rows={[
                   {
                     cells: [
                       'Monthly cost',
                       'Salary (US avg ~$75K/yr per Indeed)',
                       '$1,500 to $5,000/mo flat, or 10 to 20% of spend',
-                      'Flat subscription, free in beta',
+                      'Subscription; Kampaio is free during early access',
                     ],
                   },
                   {
@@ -545,7 +545,7 @@ export default function ArticleContent() {
                       'Speed to act',
                       'Same day',
                       'Days to a week (approval cycles)',
-                      'Minutes to hours (agent-driven)',
+                      'Minutes to hours (tool-assisted)',
                     ],
                   },
                   {
@@ -602,7 +602,7 @@ export default function ArticleContent() {
               </p>
 
               <MascotQuote mascot="vox">
-                Across a 6-campaign account I reallocate roughly 15 to 20 percent of spend each month, pulling from broad-match groups with zero conversions toward exact-match clusters that are beating target ROAS. That reallocation compounds: a campaign that was misspending $800 per month clears $2,400 in three months if you catch it on the first monthly review.
+                I am being built to propose the monthly reallocation: pulling spend from broad-match groups with zero conversions toward exact-match clusters that are beating target ROAS. I am in development, so for now that call is yours. The principle holds either way: misspend you catch on the first monthly review stops compounding.
               </MascotQuote>
             </section>
 
@@ -668,7 +668,7 @@ export default function ArticleContent() {
               </p>
 
               <MascotQuote mascot="buzz">
-                On a $20K per month account I track CPC weekly at the ad group level. When a top ad group&apos;s CPC climbs above target for 3 straight days, I cut the bid 10 to 12 percent and recheck after 5 days before touching anything else. That 5-day hold is non-negotiable: Smart Bidding needs a short learning window after each adjustment. Touching bids again before that window closes restarts the signal and erases the correction.
+                I am being built to track CPC weekly at the ad group level and propose a bid cut when a top ad group&apos;s CPC stays above target for several days. Whoever makes the cut, recheck before touching anything else: Smart Bidding needs a short learning window after each adjustment. Touching bids again before that window closes restarts the signal and erases the correction.
               </MascotQuote>
 
               <p style={pStyle}>
@@ -896,7 +896,7 @@ flowchart LR
                   <strong>Native rules and scripts:</strong> budget caps, anomaly alerts, impression share thresholds. Free within Google Ads and Microsoft Ads.
                 </li>
                 <li style={liStyle}>
-                  <strong>Third-party tools</strong> (Optmyzr, Adalysis, B6): bid recommendations, search term clustering, pacing dashboards. These reduce the 60 to 90 minute weekly session to a review-and-approve workflow. For a calibrated look at what AI actually changes at the auction level,{' '}
+                  <strong>Third-party tools</strong> (Optmyzr, Adalysis, Kampaio): bid recommendations, search term clustering, pacing dashboards. These reduce the 60 to 90 minute weekly session to a review-and-approve workflow. For a calibrated look at what AI actually changes at the auction level,{' '}
                   <a href="/blog/ai-powered-ppc-optimization-complete-guide" style={linkStyle}>
                     our AI PPC optimization guide
                   </a>{' '}
@@ -907,7 +907,7 @@ flowchart LR
                 </li>
               </ul>
               <p style={pStyle}>
-                B6 maps three <a href="/blog/google-ads-ai-agent" style={linkStyle}>agents</a> directly to the operating loop: Buzz for weekly bidding, Vox for monthly reallocation, Echo for the Monday digest.
+                Kampaio is building three <a href="/blog/google-ads-ai-agent" style={linkStyle}>agents</a> (in development) to map to the operating loop: Buzz for weekly bidding, Vox for monthly reallocation, Echo for the Monday digest.
               </p>
 
               <MascotQuote mascot="echo">
@@ -915,7 +915,7 @@ flowchart LR
               </MascotQuote>
 
               <p style={pStyle}>
-                The goal is the weekly 60 to 90 minute loop, run by agents and surfaced to you as deltas. The in-house operator stays in control; the mechanical hours move to automation.
+                The goal is a weekly 60 to 90 minute loop where the mechanical checks are surfaced to you as deltas. The in-house operator stays in control.
               </p>
             </section>
 
@@ -930,7 +930,7 @@ flowchart LR
                 .
               </p>
               <p style={pStyle}>
-                <strong>How much does <a href="/blog/ppc-management-cost" style={linkStyle}>PPC management cost</a>?</strong> Three cost models: agency retainers commonly run $1,500 to $5,000 per month flat or 10 to 20 percent of ad spend, whichever is higher. An in-house PPC manager costs salary (US average roughly $75K per year; see below). <a href="/blog/5-tips-for-working-with-ai-ppc-tools" style={linkStyle}>AI tools</a> like B6 run on a flat monthly subscription and extend in-house capacity without a headcount hire. At $5K in ad spend, a $1,500 agency fee equals 30 percent of total budget going to management.
+                <strong>How much does <a href="/blog/ppc-management-cost" style={linkStyle}>PPC management cost</a>?</strong> Three cost models: agency retainers commonly run $1,500 to $5,000 per month flat or 10 to 20 percent of ad spend, whichever is higher. An in-house PPC manager costs salary (US average roughly $75K per year; see below). <a href="/blog/5-tips-for-working-with-ai-ppc-tools" style={linkStyle}>AI tools</a> extend in-house capacity without a headcount hire; the Kampaio dashboard is free during early access. At $5K in ad spend, a $1,500 agency fee equals 30 percent of total budget going to management.
               </p>
               <p style={pStyle}>
                 <strong>How much do PPC managers make in the US?</strong> The US average is approximately $75,395 per year per{' '}
@@ -954,32 +954,17 @@ flowchart LR
               </p>
             </section>
 
-            {/* 10. B6 CTA */}
+            {/* 10. Kampaio CTA */}
             <section id="b6-agents">
-              <h2 style={h2Style}>Run Your In-House PPC Loop With B6 Agents</h2>
+              <h2 style={h2Style}>Run Your In-House PPC Loop With Kampaio</h2>
               <p style={pStyle}>
-                The in-house alternative to an agency retainer is keeping control of the account while moving the mechanical hours to agents.
+                The in-house alternative to an agency retainer is keeping control of the account while making the mechanical checks faster.
               </p>
               <p style={pStyle}>
-                Three B6 agents map directly to the operating loop:
+                What the Kampaio dashboard does today: all your Google Ads accounts on one screen, spend, ROAS, CPA and budget per campaign, and 14 automatic checks, including spend with no conversions, impressions lost to budget, CPA above target and spend spikes. Budget, bid targets, keywords and geo are changes you make yourself, each with a preview first and a rollback after, and every edit is recorded in a change log.
               </p>
               <p style={pStyle}>
-                <a href="/b6#buzz" style={linkStyle}>
-                  Buzz
-                </a>{' '}
-                runs the weekly bidding review. Buzz monitors CPC drift, flags top ad groups that climb above target for 3 consecutive days, and proposes a bid cut with supporting data for one-click approval.
-              </p>
-              <p style={pStyle}>
-                <a href="/b6#vox" style={linkStyle}>
-                  Vox
-                </a>{' '}
-                runs the monthly budget reallocation. Vox surfaces campaigns with zero conversions, calculates the misspent percentage, and proposes the shift toward exact-match clusters beating target ROAS.
-              </p>
-              <p style={pStyle}>
-                <a href="/b6#echo" style={linkStyle}>
-                  Echo
-                </a>{' '}
-                sends the Monday digest. Three bullets: spend vs pace, CPA delta vs last week, top wins and leaks. 90 seconds to read.
+                Three agents are in development and do not run on any live account yet. <strong>Buzz</strong> will propose bid changes in the weekly review, <strong>Vox</strong> will propose the monthly budget reallocation, and <strong>Echo</strong> will send a short Monday digest.
               </p>
               <p style={pStyle}>
                 You keep the account access, the historical data, and the strategic decisions.
@@ -1004,7 +989,7 @@ flowchart LR
                     lineHeight: '1.3',
                   }}
                 >
-                  Run your first weekly loop by Monday.
+                  See all your accounts on one screen.
                 </h3>
                 <p
                   style={{
@@ -1016,14 +1001,10 @@ flowchart LR
                     opacity: 0.9,
                   }}
                 >
-                  Start a B6 free trial, connect Google Ads, and let Buzz, Vox, and Echo run the mechanical hours while you keep the <a href="/blog/google-ads-strategy" style={linkStyle}>strategy</a>. See{' '}
-                  <a href="/pricing" style={linkStyle}>
-                    pricing tiers
-                  </a>{' '}
-                  for Co-pilot, Approval, and Autonomous modes.
+                  Connect Google Ads, see every account&apos;s checks in one place, and keep the <a href="/blog/google-ads-strategy" style={linkStyle}>strategy</a> yourself. Free during early access, no card.
                 </p>
                 <a
-                  href="/chat"
+                  href="https://dashboard.kampaio.com/"
                   className="btn"
                   style={{
                     background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
@@ -1048,7 +1029,7 @@ flowchart LR
                     (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
                   }}
                 >
-                  Start B6 Free Trial
+                  Open the dashboard
                 </a>
               </div>
             </section>

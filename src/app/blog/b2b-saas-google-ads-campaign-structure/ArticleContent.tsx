@@ -7,7 +7,7 @@ import Breadcrumbs from '../../../components/Breadcrumbs';
 import ArticleHero from '../../../components/blog/ArticleHero';
 import KeepReading from '../../../components/blog/KeepReading';
 import MascotQuote from '../../../components/blog/MascotQuote';
-import { KeyTakeaways, HubSpokes, DonutStat } from '../../../components/blog/primitives';
+import { KeyTakeaways, HubSpokes } from '../../../components/blog/primitives';
 
 export default function ArticleContent() {
   const [isTableOfContentsOpen, setIsTableOfContentsOpen] = useState(false);
@@ -123,7 +123,7 @@ export default function ArticleContent() {
     { id: 'when-not-segment', title: 'When NOT to Segment (Avoiding Over-Engineering)', level: 1 },
     { id: 'after-structure', title: 'After the Structure: Conversion Tracking and Lead Quality', level: 1 },
     { id: 'faq', title: 'FAQ', level: 1 },
-    { id: 'cta', title: 'How Kampaio Maintains the Structure', level: 1 },
+    { id: 'cta', title: 'How Kampaio Helps You Maintain the Structure', level: 1 },
   ];
 
   const scrollToSection = (id: string) => {
@@ -331,19 +331,11 @@ export default function ArticleContent() {
                 <strong>Performance Max</strong> earns its slot after Search is converting with offline conversion values flowing back. Practitioner consensus is consistent: high-intent Search first, PMax only once the account has clean pipeline data (<a href="https://www.farsiight.com/resources/google-ads-for-saas/" style={linkStyle} target="_blank" rel="noopener noreferrer">farsiight, Google Ads for SaaS</a>).
               </p>
 
-              {/* VISUAL 4: MascotQuote (Sage) - illustrative clustering result */}
+              {/* VISUAL 4: MascotQuote (Sage) - clustering tip */}
               <MascotQuote mascot="sage">
-                On a mid-market SaaS account running $32K/month (illustrative), I clustered 240 search terms into four intent tiers before launch. Category terms like &quot;pipeline management software&quot; drove a 4.1% demo request rate. Problem-aware queries like &quot;how to forecast sales pipeline&quot; drove 0.9%. Running them in one campaign hid that gap for two months. After the split, the high-intent tier had enough signal volume for its own Target CPA target within six weeks.
+                What I am being built to do: cluster search terms into intent tiers before launch. Category terms like &quot;pipeline management software&quot; and problem-aware queries like &quot;how to forecast sales pipeline&quot; usually convert to demos at very different rates, and running them in one campaign hides that gap. Split them so the high-intent tier collects enough signal for its own Target CPA.
               </MascotQuote>
 
-              {/* VISUAL 5 (bold-viz): DonutStat - the demo-rate gap Sage describes */}
-              <DonutStat
-                items={[
-                  { percent: 4.1, label: 'demo request rate on high-intent category terms ("pipeline management software")' },
-                  { percent: 0.9, label: 'demo request rate on problem-aware queries ("how to forecast sales pipeline")' },
-                ]}
-                source="Source: Kampaio mid-market SaaS account, illustrative figures"
-              />
             </section>
 
             {/* How to split */}
@@ -404,9 +396,9 @@ PMax_AllGeo_PipelineValue`}</code></pre>
                 PMax does not expose keyword-level or placement-level performance the way Search does. In low-volume B2B accounts, that opacity is a genuine cost. For accounts where PMax is already live without a feedback loop, the diagnostic is in <a href="/blog/performance-max-problems-b2b-marketing" style={linkStyle}>Performance Max Problems in B2B Marketing</a> and <a href="/blog/performance-max-not-converting" style={linkStyle}>Why Performance Max Is Not Converting</a>.
               </p>
 
-              {/* VISUAL 6: MascotQuote (Vox) - illustrative PMax sequencing result */}
+              {/* VISUAL 6: MascotQuote (Vox) - PMax sequencing tip */}
               <MascotQuote mascot="vox">
-                On a $45K/month B2B SaaS account (illustrative figures), the operator wanted PMax on day one. Search had zero offline conversion imports and the only conversion action was a raw form fill with no value assigned. I held PMax until Search hit 38 qualified conversions in a 30-day window with OCI feeding SQL values back. Then I gave PMax 18% of budget, fed it pipeline value, and enforced brand exclusions from day one. CPL settled at $190 vs $610 when we had tested it cold three months earlier without the feedback loop.
+                What I am being built to do: hold PMax until Search has offline conversion imports feeding SQL values back and enough qualified conversions in a 30-day window, then start PMax on a small share of budget with pipeline value and brand exclusions from day one. PMax launched cold on raw form fills with no value has no feedback loop to learn from.
               </MascotQuote>
             </section>
 
@@ -484,25 +476,25 @@ PMax_AllGeo_PipelineValue`}</code></pre>
 
             {/* CTA */}
             <section id="cta">
-              <h2 style={h2Style}>How Kampaio Maintains the Structure</h2>
+              <h2 style={h2Style}>How Kampaio Helps You Maintain the Structure</h2>
               <p style={pStyle}>
                 A well-built campaign structure decays. Conversion volume shifts between tiers. A competitor enters your highest-intent keyword cluster and CPCs jump past the tier&apos;s cap. A problem-aware query starts converting at demo rates that justify its own campaign. Most accounts catch this in quarterly reviews - three months of misallocated spend before anyone notices.
               </p>
               <p style={pStyle}>
-                <a href="/b6#vox" style={linkStyle}>Vox</a>, Kampaio&apos;s cross-campaign strategy <a href="/blog/google-ads-ai-agent" style={linkStyle}>agent</a>, monitors budget distribution across tiers continuously and flags when a segment has earned its own campaign or should be consolidated back. <a href="/b6#sage" style={linkStyle}>Sage</a> handles keyword and audience clustering under each tier. The human approves the direction; the agents execute the rebalancing.
+                The Kampaio dashboard shortens that gap today: every account on one screen with each campaign&apos;s spend, CPA, and ROAS, and automatic checks that flag CPA above target, impressions lost to budget, and spend with no conversions. You decide the rebalancing, and every budget change you make from the dashboard is previewed first and can be rolled back. Vox, Kampaio&apos;s cross-campaign strategy <a href="/blog/google-ads-ai-agent" style={linkStyle}>agent</a>, and Sage, our research agent, are in development: Vox will flag when a segment has earned its own campaign or should be consolidated back, and Sage will handle keyword and audience clustering under each tier.
               </p>
               <div style={{ background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)', borderRadius: '16px', padding: '40px', textAlign: 'center', marginTop: '40px', marginBottom: '40px' }}>
                 <h3 style={{ fontSize: '22px', fontWeight: 700, color: '#1e293b', marginBottom: '18px', lineHeight: '1.3' }}>
                   Keep the structure tuned without the quarterly surprise
                 </h3>
                 <p style={{ fontSize: '17px', color: '#64748b', marginBottom: '28px', lineHeight: '1.6', fontWeight: 500, opacity: 0.9 }}>
-                  Kampaio&apos;s agents watch budget distribution across your intent tiers and flag rebalancing before misallocated spend stacks up. <a href="/pricing" style={linkStyle}>See Kampaio pricing</a> for autonomy tiers.
+                  The Kampaio dashboard shows spend, CPA, and ROAS for every campaign on one screen and flags the ones that miss their targets, so misallocated spend is visible before the quarterly review. <a href="/pricing" style={linkStyle}>Free during early access</a>.
                 </p>
                 <a
-                  href="/chat"
+                  href="https://dashboard.kampaio.com/"
                   style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', color: 'white', border: 'none', padding: '16px 32px', borderRadius: '10px', fontSize: '16px', fontWeight: 600, cursor: 'pointer', display: 'inline-block', boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)', textDecoration: 'none' }}
                 >
-                  Start Your Free Trial
+                  Open the dashboard
                 </a>
               </div>
             </section>

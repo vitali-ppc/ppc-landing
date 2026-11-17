@@ -139,7 +139,7 @@ export default function ArticleContent() {
     { id: 'measurement', title: 'Measurement: Connect Spend to Pipeline, Not Form-Fills', level: 1 },
     { id: 'scaling', title: 'Scaling Without Wrecking Efficiency', level: 1 },
     { id: 'faq', title: 'Frequently Asked Questions', level: 1 },
-    { id: 'autopilot', title: 'Run It on Autopilot Once the Loop Is Wired', level: 1 },
+    { id: 'autopilot', title: 'Keep Watching Once the Loop Is Wired', level: 1 },
     { id: 'sources', title: 'Sources', level: 1 },
   ];
 
@@ -425,7 +425,7 @@ export default function ArticleContent() {
 
               {/* VISUAL 5: MascotQuote - Buzz */}
               <MascotQuote mascot="buzz">
-                On a $35K/mo B2B SaaS account in an emerging category (11 conversions a month, 120-day cycle) Target ROAS was strangling it. I rolled it back to Maximize Conversions, wired OCI so SQLs (not form-fills) became the signal, and waited. At week 6: 22 SQL-weighted conversions in 30 days, so I moved to Maximize Conversion Value. By week 10: pipeline-CAC down 31%, junk-lead rate from 68% to 29%, spend held within 8%. The fix was the signal, not the bid. (Illustrative scenario based on observed account patterns.)
+                On a low-volume B2B SaaS account with a long sales cycle, Target ROAS can strangle delivery. The sequence I am being built to propose: roll back to Maximize Conversions, wire OCI so SQLs (not form-fills) become the signal, wait until SQL-weighted conversions clear the learning minimum, then move to Maximize Conversion Value. The fix is the signal, not the bid.
               </MascotQuote>
             </section>
 
@@ -556,23 +556,23 @@ export default function ArticleContent() {
 
             {/* Autopilot + CTA */}
             <section id="autopilot">
-              <h2 style={h2}>Run It on Autopilot Once the Loop Is Wired</h2>
+              <h2 style={h2}>Keep Watching Once the Loop Is Wired</h2>
               <p style={para}>
-                The hard part of B2B SaaS Google Ads is not the launch. It is the ongoing discipline: catching when Smart Bidding learning stalls on thin volume, when a tier&apos;s pipeline-CAC drifts over six weeks, when a budget change resets learning in a campaign you assumed was stable. Buzz, kampaio&apos;s bid-strategy <a href="/blog/google-ads-ai-agent" style={{ color: '#764ba2', textDecoration: 'underline' }}>agent</a>, runs that monitoring continuously once your offline-conversion loop is wired, flagging learning stalls, pipeline-CAC drift, and budget-triggered resets before they compound into quarterly surprises.
+                The hard part of B2B SaaS Google Ads is not the launch. It is the ongoing discipline: catching when Smart Bidding learning stalls on thin volume, when a tier&apos;s pipeline-CAC drifts over six weeks, when a budget change resets learning in a campaign you assumed was stable. The Kampaio dashboard helps with part of that today: spend, CPA and budget per campaign across your accounts, and automatic checks such as CPA above target, conversions stopped, spend spiked, and impressions lost to budget. Buzz, Kampaio&apos;s bid-strategy <a href="/blog/google-ads-ai-agent" style={{ color: '#764ba2', textDecoration: 'underline' }}>agent</a>, is in development and not live yet; it will flag learning stalls and budget-triggered resets before they compound into quarterly surprises.
               </p>
               <p style={para}>
-                This does not replace the structural decisions in this playbook. It keeps them on track. The human stays in approval; the agent handles monitoring and alerting. See <a href="/pricing" style={linkStyle}>Kampaio&apos;s autonomy tiers</a> for the monitoring plans.
+                This does not replace the structural decisions in this playbook. It keeps them on track. Every change in the dashboard is one you make yourself, with a preview first and a rollback after. The dashboard is free during early access.
               </p>
 
               <div style={{ background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)', borderRadius: '16px', padding: '40px', textAlign: 'center', marginTop: '48px', marginBottom: '40px' }}>
                 <h3 style={{ fontSize: '22px', fontWeight: 700, color: '#1e293b', marginBottom: '18px', lineHeight: '1.3' }}>
-                  Wire the loop, then let an agent watch it
+                  Wire the loop, then watch it on one screen
                 </h3>
                 <p style={{ fontSize: '17px', color: '#64748b', marginBottom: '28px', lineHeight: '1.6', fontWeight: 500, opacity: 0.9 }}>
-                  Let Kampaio monitor your B2B SaaS account for learning stalls, pipeline-CAC drift, and budget-triggered resets, with a human in approval.
+                  See CPA, spend and budget for every campaign, with automatic checks for CPA above target, stopped conversions and spend spikes. Free during early access.
                 </p>
                 <a
-                  href="/chat"
+                  href="https://dashboard.kampaio.com/"
                   className="btn"
                   style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', color: 'white', border: 'none', padding: '16px 32px', borderRadius: '10px', fontSize: '16px', fontWeight: 600, cursor: 'pointer', transition: 'all 0.3s ease', display: 'inline-block', boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)', textDecoration: 'none' }}
                   onMouseEnter={(e) => {
@@ -584,7 +584,7 @@ export default function ArticleContent() {
                     (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
                   }}
                 >
-                  Audit My B2B SaaS Account
+                  Open the dashboard
                 </a>
               </div>
 

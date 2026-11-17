@@ -510,7 +510,7 @@ export default function ArticleContent() {
                 AI Max doesn&apos;t remove the PPC manager&apos;s job; it turns it into a weekly rhythm of auditing search terms, keeping negatives current, and watching for brand term bleed.
               </p>
               <p style={paragraphStyle}>
-                <a href="/blog/google-ads-ai-agent" style={linkStyle}>Kampaio&apos;s agents</a> split that rhythm by function: Aegis handles risk review and guardrails, Buzz manages bid <a href="/blog/google-ads-strategy" style={{ color: '#764ba2', textDecoration: 'underline' }}>strategy</a>, Sage works the search terms report, flagging queries worth excluding before they compound into wasted spend.
+                The Kampaio dashboard supports that rhythm today: the search terms report for every connected account, negatives you add after a preview, keyword changes with a rollback, and automatic checks such as spend with no conversions and CPA above target. <a href="/blog/google-ads-ai-agent" style={linkStyle}>Kampaio&apos;s agents</a> are in development and not live yet: Aegis will handle risk review and guardrails, Buzz will propose bid <a href="/blog/google-ads-strategy" style={{ color: '#764ba2', textDecoration: 'underline' }}>strategy</a> changes, and Sage will flag search terms worth excluding before they compound into wasted spend.
               </p>
             </section>
 
@@ -523,13 +523,13 @@ export default function ArticleContent() {
 
               <div style={{ background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)', borderRadius: '16px', padding: '40px', textAlign: 'center', marginTop: '40px', marginBottom: '40px' }}>
                 <h3 style={{ fontSize: '24px', fontWeight: 800, color: '#1e293b', marginBottom: '16px', marginTop: 0, lineHeight: 1.3 }}>
-                  Want that guardrail check run for you?
+                  Want your search terms in one place?
                 </h3>
                 <p style={{ fontSize: '17px', color: '#475569', marginBottom: '28px', lineHeight: 1.6, fontWeight: 500, maxWidth: '620px', marginLeft: 'auto', marginRight: 'auto' }}>
-                  Kampaio&apos;s agents run the pre-flight check and the weekly search terms audit that AI Max needs. See <a href="/pricing" style={linkStyle}>Kampaio&apos;s plans</a>.
+                  The Kampaio dashboard gives you the search terms report for every account, so the weekly audit AI Max needs happens on one screen. Free during early access.
                 </p>
                 <a
-                  href="/chat"
+                  href="https://dashboard.kampaio.com/"
                   style={{
                     background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                     color: 'white',
@@ -552,7 +552,7 @@ export default function ArticleContent() {
                     (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
                   }}
                 >
-                  Connect your account free
+                  Open the dashboard
                 </a>
               </div>
 

@@ -223,7 +223,7 @@ export default function ArticleContent() {
                   marginBottom: '18px',
                   lineHeight: '1.3'
                 }}>
-                  Want to see how AI can optimize your PPC campaigns?
+                  See your campaigns and their problems on one screen
                 </h3>
                 <p style={{
                   fontSize: '17px',
@@ -233,10 +233,10 @@ export default function ArticleContent() {
                   fontWeight: '500',
                   opacity: 0.9
                 }}>
-                  Let our platform analyze your account<br />and show you actionable ways to improve results, instantly.
+                  The Kampaio dashboard puts every Google Ads account you manage on one screen and flags problems with 14 automatic campaign checks, such as spend with no conversions or impressions lost to budget. Every change you make from it shows a preview first and can be rolled back. Free during early access.
                 </p>
                 <a
-                  href="/chat"
+                  href="https://dashboard.kampaio.com/"
                   className="btn"
                   style={{
                     background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
@@ -261,7 +261,7 @@ export default function ArticleContent() {
                     (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
                   }}
                 >
-                  Try AI for Free
+                  Open the dashboard
                 </a>
               </div>
             </section>

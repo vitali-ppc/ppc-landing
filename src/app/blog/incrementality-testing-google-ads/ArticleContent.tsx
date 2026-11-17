@@ -43,7 +43,7 @@ export default function ArticleContent() {
       "@type": "WebPage",
       "@id": "https://kampaio.com/blog/incrementality-testing-google-ads"
     },
-    "keywords": "incrementality testing, conversion lift, geo lift, geo experiments, holdout test, treatment group, control group, ghost ads, Smart Bidding, Target ROAS, tCPA, Performance Max experiments, true lift, causal inference, Sage, Vox, Buzz, B6, autonomous PPC",
+    "keywords": "incrementality testing, conversion lift, geo lift, geo experiments, holdout test, treatment group, control group, ghost ads, Smart Bidding, Target ROAS, tCPA, Performance Max experiments, true lift, causal inference, Kampaio dashboard",
     "wordCount": 2655,
     "articleSection": "Google Ads",
     "inLanguage": "en"
@@ -429,7 +429,7 @@ flowchart TD
               </ol>
 
               <MascotQuote mascot="sage">
-                On a $40K/mo retail account last quarter, the team wanted to kill a YouTube campaign that looked dead on last-click attribution. We ran a 6-week geo lift across 12 DMAs. YouTube delivered 14 percent incremental conversions. Brand search, which looked like a winner on attribution, delivered 6 percent. The budget reallocation paid for the test in 11 days.
+                I am being built to design lift tests like this one. The test worth running first is on the campaign you are about to kill because it looks dead on last-click. Last-click tends to undercount upper-funnel campaigns such as YouTube and to overcount brand search, so those are where a lift test most often changes the decision.
               </MascotQuote>
             </section>
 
@@ -437,7 +437,7 @@ flowchart TD
             <section id="real-numbers">
               <h2 style={h2Style}>What Real Lift Numbers Look Like in Google Ads</h2>
               <p style={pStyle}>
-                The honest range, synthesized from <a href="https://haus.io/article/google-ads-incrementality-testing" style={linkStyle} target="_blank" rel="noopener noreferrer">Haus</a>, Fusepoint, and what we have observed on B6 accounts:
+                The honest range, synthesized from <a href="https://haus.io/article/google-ads-incrementality-testing" style={linkStyle} target="_blank" rel="noopener noreferrer">Haus</a> and Fusepoint:
               </p>
 
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(1, 1fr)', gap: '16px', marginBottom: '32px' }}>
@@ -492,11 +492,11 @@ flowchart TD
               </p>
 
               <MascotQuote mascot="vox">
-                We ran lift on a $180K/mo home goods account in February. Brand search returned 42 percent incremental, Performance Max returned 11 percent, Display retargeting returned negative 3 percent. We re-weighted the conversion feed, dropped Display retargeting, moved $14K/mo into upper-funnel YouTube, and held tROAS targets steady on brand and PMax. Revenue grew 8 percent in 60 days on the same total spend.
+                I am being built to turn a lift result into a budget proposal. The order matters: re-weight the conversion feed first, then move budget away from campaigns with zero or negative lift, and hold tROAS targets steady while the bidding algorithm adjusts. Change one thing at a time so the next test can read it.
               </MascotQuote>
 
               <p style={pStyle}>
-                The operational rules we use on B6 accounts:
+                The operational rules:
               </p>
               <ul style={{ fontSize: '18px', color: '#1e293b', lineHeight: '1.8', paddingLeft: '24px', marginBottom: '32px' }}>
                 <li style={{ marginBottom: '10px' }}>Re-run the lift test quarterly. Lift drifts as the market, the creative, and the audience shift.</li>
@@ -510,7 +510,7 @@ flowchart TD
               </p>
 
               <MascotQuote mascot="buzz">
-                After Vox finished the re-weighting, I retuned tROAS from 4.2 to 3.6 on brand search to absorb the lower causal value and from 2.8 to 3.1 on PMax to push more spend at the campaign with real incremental contribution. CPA held inside 8 percent of the prior 30 days. The bidding algorithm did the work once the signal was honest.
+                What I am being built to do after a re-weighting: propose new tROAS targets per campaign, lower where causal value turned out smaller, higher where incremental contribution turned out real. The bidding algorithm does the work once the signal is honest.
               </MascotQuote>
             </section>
 
@@ -541,10 +541,10 @@ flowchart TD
                 Smart Bidding will gladly scale a campaign that adds zero incremental revenue, because Smart Bidding cannot tell the difference between a conversion it caused and a conversion that would have happened in its absence. Lift testing is the only empirical bridge. Without it, you are tuning a multi-million-dollar bidding algorithm on a signal you have never validated.
               </p>
               <p style={pStyle}>
-                The B6 stack treats this as the core measurement loop. <a href="/b6#sage" style={linkStyle}>Sage</a> designs the lift test (treatment unit, control match, sample size, conversion window), runs the analysis when the window closes, and reports the causal numbers with confidence intervals. <a href="/b6#vox" style={linkStyle}>Vox</a> translates the result into a budget reallocation proposal, telling you which campaigns deserve more spend, which deserve less, and where to redirect the cuts. <a href="/b6#buzz" style={linkStyle}>Buzz</a> retunes tROAS, tCPA, and the conversion value feed so Smart Bidding is targeting causal value. The whole loop runs quarterly, with no QBR deck required.
+                Kampaio is building agents for this loop, and they are in development, not running on live accounts. Sage, the research agent, will design the lift test and read the result. Vox, the strategy agent, will turn it into a budget reallocation proposal. Buzz, the bidding agent, will propose tROAS and tCPA targets that match causal value.
               </p>
               <p style={pStyle}>
-                The cost structure: B6 is free while in beta on the Approval level, versus Optmyzr at roughly $499 a month for recommendation-only insights, versus the typical agency that will quote $4-8K for one custom incrementality study. Connect your account at <a href="/chat" style={linkStyle}>/chat</a> and Sage will design a default geo-lift across your top three campaigns inside 5 minutes. Pricing tiers and what each <a href="/blog/google-ads-ai-agent" style={linkStyle}>agent</a> does in each tier are at <a href="/pricing" style={linkStyle}>/pricing</a>.
+                For comparison: Optmyzr runs at roughly $499 a month for recommendation-only insights, and the typical agency will quote $4-8K for one custom incrementality study. What Kampaio offers today is the <a href="https://dashboard.kampaio.com/" style={linkStyle}>dashboard</a>, free during early access: all your accounts on one screen, with spend, ROAS and CPA per campaign and a breakdown by device, geo and network, which is the data you need before you pick a campaign to test. Any budget or target change you make there shows a preview first and can be rolled back.
               </p>
             </section>
 

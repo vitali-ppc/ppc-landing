@@ -303,7 +303,7 @@ export default function ArticleContent() {
                   ['Individual consultant', '$75-250/hr, or $500-5,000/mo retainer', 'One named specialist (sometimes a junior)', '$5,000-20,000/mo, or a one-off audit/rebuild at any spend'],
                   ['Agency', '$1,500-10,000/mo, or 10-20% of spend', 'A team; small accounts often get junior staff', '$20,000+/mo, multi-channel, or zero owner time'],
                   ['In-house hire', 'Loaded, six-figure-adjacent annual cost (base salary avg $67,819-$70,915/yr)', 'A full-time employee, full oversight', 'High spend and complexity, control outweighs fixed cost'],
-                  [<><a href="/pricing" style={linkStyle}>AI software (e.g. Kampaio)</a></>, 'Free while in beta', 'Software optimizes continuously; you approve changes', 'Continuous optimization at SMB / lean-B2B spend, no scaling retainer'],
+                  [<><a href="https://dashboard.kampaio.com/" style={linkStyle}>Monitoring software (e.g. the Kampaio dashboard)</a></>, 'Free during early access', 'Software flags problems continuously; you make the changes', 'Continuous optimization at SMB / lean-B2B spend, no scaling retainer'],
                   ['DIY', 'Your time, plus ad spend', 'You', 'Under roughly $20,000/mo with decent reporting and a few hours a week'],
                 ]}
               />
@@ -361,7 +361,7 @@ export default function ArticleContent() {
               </div>
 
               <MascotQuote mascot="buzz">
-                A consultant checks in on a call every week or two. I check bids and budgets every few hours. Here&apos;s what that looks like in practice: a Performance Max campaign drifts 34% over target CPA on a Tuesday, and I catch it and pause the bleed that same afternoon, no waiting for the next call. On a $7,000/month account, that&apos;s roughly $150-200 of spend saved in a single day.
+                A consultant checks in on a call every week or two. What I am being built to do: check bids and budgets every few hours, so a campaign drifting over target CPA gets caught the same afternoon instead of on the next call. I am in development and do not run on live accounts yet.
               </MascotQuote>
 
               <p style={paragraphStyle}>
@@ -435,10 +435,10 @@ export default function ArticleContent() {
                 Same test applies to software as everything else on this page: it has to recover more than it costs, or it&apos;s just another line item.
               </p>
               <p style={paragraphStyle}>
-                The tools out there split into two camps. Recommendation tools like Optmyzr ($499+), Madgicx ($499+), and Adalysis tell you what to change, but you still have to go execute it yourself. Autonomous software like Kampaio runs the work continuously and shows every step live; Synter is a newer entrant worth knowing about too.
+                The tools out there split into two camps. Recommendation tools like Optmyzr ($499+), Madgicx ($499+), and Adalysis tell you what to change, but you still have to go execute it yourself. Autonomous software runs the work continuously and shows every step; Synter is a newer entrant worth knowing about too.
               </p>
               <p style={paragraphStyle}>
-                Kampaio is an AI PPC cabinet built around specialist agents: Maximus orchestrates, Buzz handles bids and budgets, Aegis flags risk, Echo reports results. It is free while in beta, versus a consultant at $500-5,000/month or an agency at $1,500-10,000/month. Every change waits for your approval, so the fee doesn&apos;t scale with your spend. <a href="/b6" style={linkStyle}>See how the agents run your account</a>. Or check <a href="/pricing" style={linkStyle}>Kampaio pricing</a> directly.
+                Where Kampaio stands today: the <a href="https://dashboard.kampaio.com/" style={linkStyle}>Kampaio dashboard</a> puts all your Google Ads accounts on one screen and runs 14 automatic campaign checks, such as spend with no conversions, impressions lost to budget, ROAS below target and CPA above target. You make the changes yourself (budget, targets, keywords, geo), each with a preview first and a rollback after. It is free during early access, versus a consultant at $500-5,000/month or an agency at $1,500-10,000/month. Our specialist agents (Maximus, Buzz, Aegis, Echo) are in development and do not run on live accounts.
               </p>
               <p style={paragraphStyle}>
                 Software wins on continuous optimization and cost at SMB / lean-B2B spend. A consultant still wins on a strategic rebuild or unusual account structure. Both are true at once.
@@ -489,13 +489,13 @@ export default function ArticleContent() {
 
               <div style={{ background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)', borderRadius: '16px', padding: '40px', textAlign: 'center', marginTop: '40px', marginBottom: '40px' }}>
                 <h3 style={{ fontSize: '24px', fontWeight: 800, color: '#1e293b', marginBottom: '16px', marginTop: 0, lineHeight: 1.3 }}>
-                  Watch the first optimization cycle on your real account
+                  See every account and what needs attention on one screen
                 </h3>
                 <p style={{ fontSize: '17px', color: '#475569', marginBottom: '28px', lineHeight: 1.6, fontWeight: 500, maxWidth: '620px', marginLeft: 'auto', marginRight: 'auto' }}>
-                  Connect your Google Ads account to Kampaio and approve or reject every change the agents propose. No contract, no lock-in, free to start.
+                  Connect your Google Ads accounts to the Kampaio dashboard, see what the automatic checks flag, and make each change yourself with a preview first. No contract, no lock-in, free during early access.
                 </p>
                 <a
-                  href="/chat"
+                  href="https://dashboard.kampaio.com/"
                   style={{
                     background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                     color: 'white',
@@ -518,7 +518,7 @@ export default function ArticleContent() {
                     (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
                   }}
                 >
-                  Connect your account free
+                  Open the dashboard
                 </a>
               </div>
 

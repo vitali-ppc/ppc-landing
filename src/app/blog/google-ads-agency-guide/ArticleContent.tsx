@@ -380,7 +380,7 @@ export default function ArticleContent() {
               </p>
 
               <p style={paragraphStyle}>
-                The fee-share math is worth doing plainly: a $1,500/month retainer on a $5,000/month account is 30% of budget going to management, not media. The same account on kampaio, free while it is in beta, puts nothing of that budget toward the software. That does not make software automatically the right call, but it is the arithmetic behind the decision.
+                The fee-share math is worth doing plainly: a $1,500/month retainer on a $5,000/month account is 30% of budget going to management, not media. The same account in the Kampaio dashboard, free during early access, puts nothing of that budget toward the software. That does not make software automatically the right call, but it is the arithmetic behind the decision.
               </p>
               <p style={paragraphStyle}>
                 One structural reality: a single account manager often oversees 10-20 client accounts, so a small account rarely gets the senior strategist. Fit matters more than the headline rate.
@@ -476,7 +476,7 @@ export default function ArticleContent() {
                 <strong>DIY</strong> is good under roughly $3,000/month with time to learn Smart Bidding and Target ROAS; bad with zero spare hours or real compliance risk.
               </p>
               <p style={paragraphStyle}>
-                <strong>Software</strong> splits into recommendation tools (Optmyzr, WordStream, Adzooma) that surface suggestions you still execute by hand, and self-serve <a href="/blog/5-tips-for-working-with-ai-ppc-tools" style={{ color: '#764ba2', textDecoration: 'underline' }}>AI tools</a> like kampaio that execute the change directly and show each step live for approval. Good for the $3-20K/mo band if you want agency-level optimization without the retainer; bad if you want zero involvement whatsoever.
+                <strong>Software</strong> splits into recommendation tools (Optmyzr, WordStream, Adzooma) that surface suggestions you still execute by hand, and self-serve <a href="/blog/5-tips-for-working-with-ai-ppc-tools" style={{ color: '#764ba2', textDecoration: 'underline' }}>AI tools</a> that execute changes directly. The Kampaio dashboard sits between the two: it flags problems with 14 automatic campaign checks, and you make each change from it with a preview first and a rollback after. Good for the $3-20K/mo band if you want agency-level optimization without the retainer; bad if you want zero involvement whatsoever.
               </p>
               <p style={paragraphStyle}>
                 <strong>Consultant</strong> is good for senior, part-time or project-based expertise, typically $75-200/hour; bad if you need bench depth across channels or after-hours coverage.
@@ -567,7 +567,7 @@ export default function ArticleContent() {
                 Self-serve PPC software now does much of what an agency does, bid and budget optimization, <a href="/blog/google-ads-negative-keywords" style={{ color: '#764ba2', textDecoration: 'underline' }}>negative keywords</a>, creative, alerts, at a fraction of the cost, while you keep full control and account ownership. It is the fastest-growing path for the $3-20K/mo band.
               </p>
               <p style={paragraphStyle}>
-                kampaio is free while it is in beta, against an agency retainer of $1,000-5,000/month, and runs changes in approval mode: you sign off before anything ships. Real limit worth naming: it still assumes you spend a little time each week reviewing changes, and it does not replace strategy for very large or multi-channel accounts. For the strategy layer, read <a href="/blog/google-ads-optimization" style={linkStyle}>how Google Ads optimization actually works</a>.
+                The Kampaio dashboard is free during early access, against an agency retainer of $1,000-5,000/month. It puts every account you manage on one screen, runs 14 automatic campaign checks (spend with no conversions, impressions lost to budget, ROAS below target and more), and lets you make each change yourself with a preview first and a rollback after. Real limit worth naming: it does not run the account for you, so it still assumes you spend a little time each week acting on what it flags, and it does not replace strategy for very large or multi-channel accounts. For the strategy layer, read <a href="/blog/google-ads-optimization" style={linkStyle}>how Google Ads optimization actually works</a>.
               </p>
             </section>
 
@@ -607,10 +607,10 @@ export default function ArticleContent() {
                   Skip the retainer, keep the control
                 </h3>
                 <p style={{ fontSize: '17px', color: '#475569', marginBottom: '28px', lineHeight: 1.6, fontWeight: 500, maxWidth: '620px', marginLeft: 'auto', marginRight: 'auto' }}>
-                  kampaio runs your Google Ads and shows every step live before it ships. It is free while it is in beta. See <a href="/pricing" style={linkStyle}>kampaio&apos;s plans</a>, or connect your own account and watch what it would change first.
+                  Connect your Google Ads account to the Kampaio dashboard and see every account you manage on one screen, with 14 automatic campaign checks. Every change you make shows a preview first and can be rolled back. Free during early access, no card.
                 </p>
                 <a
-                  href="/chat"
+                  href="https://dashboard.kampaio.com/"
                   style={{
                     background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                     color: 'white',
@@ -633,7 +633,7 @@ export default function ArticleContent() {
                     (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
                   }}
                 >
-                  Start with your own account
+                  Open the dashboard
                 </a>
               </div>
 

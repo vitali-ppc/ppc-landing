@@ -129,7 +129,7 @@ export default function ArticleContent() {
     { id: 'fix-6', title: 'Fix #6: Audit Lead Form Match-Quality Score', level: 2 },
     { id: 'rebuild', title: 'When the Patch Is Not Enough', level: 1 },
     { id: 'faq', title: 'FAQ', level: 1 },
-    { id: 'cta', title: 'How Kampaio Handles the Monitoring Loop', level: 1 },
+    { id: 'cta', title: 'How Kampaio Fits the Monitoring Loop', level: 1 },
     { id: 'sources', title: 'Sources', level: 1 }
   ];
 
@@ -315,7 +315,7 @@ export default function ArticleContent() {
                 Counter-example we see often: B2B accounts flip directly to Target ROAS with an aspirational target. The system cannot find conversions at that ROAS, spend collapses, the team blames the algorithm. Run it loose first.
               </p>
               <MascotQuote mascot="aegis">
-                Last week I flagged Campaign G2-SaaS-Demo. MQL-to-SQL rate dropped from 18 percent to 7 percent over 14 days. Form fills were up 22 percent. That pattern is value-based bidding working in reverse: Smart Bidding chasing volume because OCI uploads stalled. I paused the bid strategy change and pinged the CRM admin. Stage updates were stuck since the API token rotated. Two-day fix, no budget burn.
+                The pattern I am being built to catch: form fills rising while the MQL-to-SQL rate falls. That is value-based bidding working in reverse, Smart Bidding chasing volume because OCI uploads stalled. Check the CRM side first; an expired API token is enough to stop stage updates.
               </MascotQuote>
             </section>
 
@@ -454,10 +454,10 @@ export default function ArticleContent() {
                 Pair this signal with CRM-side MQL conversion rate per ad group. The two metrics correlate. Low match-quality typically precedes low MQL rate by 14-21 days, which means you get a leading indicator instead of a lagging one.
               </p>
               <MascotQuote mascot="maximus">
-                Once OCI is solid and exclusions are stacked, I run the apply loop. Last cycle on a $48K-per-month account: paused 7 ad groups under 0.4 match-quality, pushed updated negatives across 3 campaigns, swapped Maximize Conversions for Maximize Conversion Value on the top spender. 14-day result: form fills down 31 percent, SQLs up 19 percent, CAC on revenue-basis dropped from $2,840 to $1,610.
+                The apply loop I am being built to orchestrate comes after OCI is solid and exclusions are stacked: pause ad groups with low match-quality, push updated negatives, and move the top spender from Maximize Conversions to Maximize Conversion Value. Expect form fills to fall before SQLs rise.
               </MascotQuote>
               <p style={paraStyle}>
-                That CAC delta sits inside Cometly&apos;s reported 20-40 percent range for closed-loop B2B teams (<a href="https://www.cometly.com/post/poor-quality-leads-from-ads" target="_blank" rel="noopener noreferrer" style={linkStyle}>Cometly, 2026</a>). It is unusual only in how cleanly it shows up when the order of operations is right.
+                Cometly reports a 20-40 percent CAC reduction range for closed-loop B2B teams (<a href="https://www.cometly.com/post/poor-quality-leads-from-ads" target="_blank" rel="noopener noreferrer" style={linkStyle}>Cometly, 2026</a>). The order of operations is what makes it show up.
               </p>
             </section>
 
@@ -503,12 +503,12 @@ export default function ArticleContent() {
 
             {/* CTA */}
             <section id="cta">
-              <h2 style={h2Style}>How Kampaio Handles the Monitoring Loop</h2>
+              <h2 style={h2Style}>How Kampaio Fits the Monitoring Loop</h2>
               <p style={paraStyle}>
-                Even with all six fixes in place, lead quality drifts. CRM API tokens expire. Sales reps stop updating stages. A new audience signal goes live and skews mid-funnel. <strong>Aegis</strong> (the B6 risk-review <a href="/blog/google-ads-ai-agent" style={linkStyle}>agent</a>) runs weekly drift detection on MQL conversion rate by ad group, lead form match-quality trend, and OCI upload health. The detection fires before budget burns rather than after.
+                Even with all six fixes in place, lead quality drifts. CRM API tokens expire. Sales reps stop updating stages. A new audience signal goes live and skews mid-funnel. <strong>Aegis</strong>, Kampaio&apos;s risk-review <a href="/blog/google-ads-ai-agent" style={linkStyle}>agent</a>, is in development: it will watch for drift in MQL conversion rate by ad group, lead form match-quality, and OCI upload health. What the <a href="https://dashboard.kampaio.com/" style={linkStyle}>Kampaio dashboard</a> does today is narrower: its automatic checks flag spend with no conversions, CPA above target, and conversions that have stopped, which is often the first visible sign that an OCI upload or a CRM sync broke.
               </p>
               <p style={paraStyle}>
-                Once direction is confirmed by a human, <strong>Maximus</strong> orchestrates the apply: pause underperforming ad groups, push negative keyword updates, refresh OCI configurations. The human stays in approval, the agents do the click work. The same teams who land in Cometly&apos;s 20-40 percent CAC reduction band (<a href="https://www.cometly.com/post/poor-quality-leads-from-ads" target="_blank" rel="noopener noreferrer" style={linkStyle}>Cometly, 2026</a>) are the ones who automate the maintenance loop, not just the initial fix.
+                <strong>Maximus</strong>, the orchestrator, is also in development and will propose the apply step: pausing underperforming ad groups and pushing negative keyword updates. Today you do that from the dashboard yourself: the search terms report lets you add negatives after a preview, and keyword and campaign changes show a preview first and a rollback after. The same teams who land in Cometly&apos;s 20-40 percent CAC reduction band (<a href="https://www.cometly.com/post/poor-quality-leads-from-ads" target="_blank" rel="noopener noreferrer" style={linkStyle}>Cometly, 2026</a>) are the ones who keep running the maintenance loop, not just the initial fix.
               </p>
               <div style={{
                 background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
@@ -519,13 +519,13 @@ export default function ArticleContent() {
                 marginBottom: '40px'
               }}>
                 <h3 style={{ fontSize: '22px', fontWeight: 700, color: '#1e293b', marginBottom: '18px', lineHeight: '1.3' }}>
-                  Want your B2B lead-quality loop on autopilot?
+                  Watch every B2B account on one screen
                 </h3>
                 <p style={{ fontSize: '17px', color: '#64748b', marginBottom: '28px', lineHeight: '1.6', fontWeight: 500, opacity: 0.9 }}>
-                  See how Aegis and Maximus run weekly drift detection and apply across your Google Ads accounts.
+                  See spend with no conversions, CPA above target and stopped conversions flagged across all your Google Ads accounts. Free during early access.
                 </p>
                 <a
-                  href="/pricing"
+                  href="https://dashboard.kampaio.com/"
                   style={{
                     background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                     color: 'white',
@@ -540,7 +540,7 @@ export default function ArticleContent() {
                     textDecoration: 'none',
                   }}
                 >
-                  See Kampaio Pricing
+                  Open the dashboard
                 </a>
               </div>
             </section>

@@ -541,11 +541,7 @@ export default function ArticleContent() {
               </Steps>
 
               <p style={paragraphStyle}>
-                If a candidate clears all five,{' '}
-                <a href="/chat" style={linkStyle}>
-                  start a trial and watch it work before you commit
-                </a>
-                .
+                If a candidate clears all five, test it on a real account you own before you commit.
               </p>
             </section>
 
@@ -553,21 +549,17 @@ export default function ArticleContent() {
             <section id="where-kampaio-fits">
               <h2 style={h2Style}>Where Kampaio Fits</h2>
               <p style={paragraphStyle}>
-                Kampaio sits inside that same AI-native category, worth mapping against the checklist above rather than taking on faith. It&apos;s seven
-                specialist agents that read and write to a Google Ads account, each showing its work live.
+                Kampaio is building toward that AI-native category, but it is not there yet, and it is worth mapping against the checklist above rather than taking on faith.
+                Its specialist agents are in development and do not run on any live account. What exists today is the 
+                <a href="https://dashboard.kampaio.com/" style={linkStyle}>
+                  Kampaio dashboard
+                </a>
+                : every Google Ads account you manage on one screen, with spend, ROAS, CPA, and 14 automatic campaign checks such as spend with no conversions or impressions lost to budget.
               </p>
               <p style={paragraphStyle}>
-                Pricing is a flat monthly subscription rather than a share of spend, unlike the spend-scaled pricing common among recommendation-tier tools. The product is free while it is in beta. The guardrail
-                question from the criteria table above maps onto how it runs: agents start at co-pilot (suggest only), move to approval (you confirm each
-                change), and graduate to autonomous only for actions you&apos;ve chosen to hand over. See{' '}
-                <a href="/b6" style={linkStyle}>
-                  how the agents run an account
-                </a>{' '}
-                or{' '}
-                <a href="/pricing" style={linkStyle}>
-                  current pricing
-                </a>
-                .
+                The dashboard is free during early access, with no card. The guardrail question from the criteria table above has a simple answer today: the
+                dashboard does not change anything by itself. You make each change from it (budget, target ROAS or CPA, campaign on/off, geo, keywords), each one
+                shows a preview first and can be rolled back, and every edit is recorded in a change log with the numbers before it.
               </p>
             </section>
 
@@ -590,19 +582,19 @@ export default function ArticleContent() {
                 official API, or just talks about it convincingly.
               </p>
               <p style={paragraphStyle}>
-                Run any candidate through the criteria and checklist above before granting write access, whether you land on kampaio, a recommendation-tier tool,
+                Run any candidate through the criteria and checklist above before granting write access, whether you land on an AI-native platform, a recommendation-tier tool,
                 or decide DIY still fits your budget this year.
               </p>
 
               <div style={{ background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)', borderRadius: '16px', padding: '40px', textAlign: 'center', marginTop: '40px', marginBottom: '40px' }}>
                 <h3 style={{ fontSize: '24px', fontWeight: 800, color: '#1e293b', marginBottom: '16px', marginTop: 0, lineHeight: 1.3 }}>
-                  See the agents run an account, then decide
+                  See your accounts on one screen
                 </h3>
                 <p style={{ fontSize: '17px', color: '#475569', marginBottom: '28px', lineHeight: 1.6, fontWeight: 500, maxWidth: '620px', marginLeft: 'auto', marginRight: 'auto' }}>
-                  Connect a Google Ads account you already own, watch what kampaio would change first, and keep every action behind the approval tier you choose.
+                  Connect a Google Ads account you already own to the Kampaio dashboard: 14 automatic campaign checks, and a preview and rollback for every change you make. Free during early access.
                 </p>
                 <a
-                  href="/chat"
+                  href="https://dashboard.kampaio.com/"
                   style={{
                     background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                     color: 'white',
@@ -625,7 +617,7 @@ export default function ArticleContent() {
                     (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
                   }}
                 >
-                  Start with your own account
+                  Open the dashboard
                 </a>
               </div>
 

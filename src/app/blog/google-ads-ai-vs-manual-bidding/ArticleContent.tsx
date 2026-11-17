@@ -129,7 +129,7 @@ export default function ArticleContent() {
     { id: 'decision-matrix', title: 'The Bidding Decision Matrix', level: 1 },
     { id: 'how-to-test', title: 'How to Test One Against the Other Without Guessing', level: 1 },
     { id: 'faq', title: 'Frequently Asked Questions', level: 1 },
-    { id: 'cta', title: 'Stop Choosing Blind: Let the Data (and the Agents) Decide', level: 1 },
+    { id: 'cta', title: 'Stop Choosing Blind: Let the Data Decide', level: 1 },
   ];
 
   const scrollToSection = (id: string) => {
@@ -389,7 +389,7 @@ export default function ArticleContent() {
               </p>
 
               <MascotQuote mascot="buzz">
-                Below roughly 30 conversions in the past 30 days, I keep bids manual and review search terms daily. Above that threshold, I let Smart Bidding run a 2-week learning window before touching anything. Judging it on day 3 is the single most common mistake I see.
+                The rule I am being built to follow: below roughly 30 conversions in the past 30 days, keep bids manual and review search terms daily. Above that threshold, let Smart Bidding run a 2-week learning window before touching anything. Judging it on day 3 is a classic mistake. I am in development, so for now that rule is yours to apply.
               </MascotQuote>
             </section>
 
@@ -444,7 +444,7 @@ export default function ArticleContent() {
               </p>
 
               <MascotQuote mascot="aegis">
-                Smart Bidding with thin conversion data does not optimize toward your goal. It optimizes toward noise. I flag any account for manual override until conversion tracking is verified and volume clears the threshold. Do not skip this check.
+                Smart Bidding with thin conversion data does not optimize toward your goal. It optimizes toward noise. What I am being built to do: hold an account on manual bidding until conversion tracking is verified and volume clears the threshold. I am in development, so run this check yourself. Do not skip it.
               </MascotQuote>
             </section>
 
@@ -528,7 +528,7 @@ export default function ArticleContent() {
               </p>
 
               <MascotQuote mascot="buzz">
-                On branded campaigns I keep manual CPC and cap at a fixed ceiling. I can see from auction insights that branded queries convert at 4x the rate of generic ones. Paying Smart Bidding-level CPCs for traffic I already dominate organically is just waste.
+                A tip, not a result: on branded campaigns, consider manual CPC with a fixed ceiling. Branded queries usually convert far better than generic ones, and paying Smart Bidding-level CPCs for traffic you already dominate organically can be waste. Check your own brand vs. generic conversion rates before you decide.
               </MascotQuote>
             </section>
 
@@ -573,7 +573,7 @@ export default function ArticleContent() {
               </p>
 
               <MascotQuote mascot="vox">
-                On accounts with mixed-maturity campaigns, I flag each campaign individually. Search Campaign A (90 conv/mo, clean tracking) runs Target CPA. Search Campaign B (12 conv/mo, new) stays manual. Pooling them into one Smart Bidding strategy would let the low-data campaign corrupt the signal the high-data one depends on.
+                What I am being built to do on accounts with mixed-maturity campaigns: judge each campaign on its own. Picture Search Campaign A (90 conv/mo, clean tracking) on Target CPA and Search Campaign B (12 conv/mo, new) on manual. I am in development, so that call is yours today. Pooling them into one Smart Bidding strategy would let the low-data campaign corrupt the signal the high-data one depends on.
               </MascotQuote>
             </section>
 
@@ -616,30 +616,30 @@ export default function ArticleContent() {
 
             {/* CTA */}
             <section id="cta">
-              <h2 style={h2Style}>Stop Choosing Blind: Let the Data (and the Agents) Decide</h2>
+              <h2 style={h2Style}>Stop Choosing Blind: Let the Data Decide</h2>
               <p style={paragraphStyle}>
                 You do not have to choose between handing full control to a black-box algorithm and manually reviewing bids in a spreadsheet every Tuesday. Those are not the only options.
               </p>
               <p style={paragraphStyle}>
-                B6 is an autonomous management layer on top of your Google Ads account. It does not replace Smart Bidding at the auction level. Google&apos;s AI still sets individual bids in real time. B6 adds the management layer: monitoring performance, flagging anomalies, and acting on account-level decisions with full transparency. Buzz monitors bid strategy performance and auto-applies changes based on your autonomy tier. Vigil catches CPC spikes before they compound. Aegis reviews proposed changes for risk. Vox handles cross-campaign reallocation when campaigns are at different maturity stages.
+                The Kampaio dashboard sits on top of your Google Ads accounts. It does not replace Smart Bidding at the auction level. Google&apos;s AI still sets individual bids in real time. The dashboard adds the monitoring layer: all your accounts on one screen, and automatic checks that flag ROAS below target, CPA above target, spend that spiked, conversions that stopped and impressions lost to budget or rank. When you decide to change a budget or a target ROAS / CPA, you do it from the dashboard with a preview first and a rollback after. Our agents, Buzz for bidding, Aegis for risk and Vox for strategy, are in development and do not run on live accounts.
               </p>
               <p style={paragraphStyle}>
-                The autonomy tier is the &quot;third option&quot;: at L1 Co-pilot, B6 suggests and you approve. At L2 Autopilot, B6 acts on smaller decisions and flags larger ones. At L3 Full Autopilot, B6 manages autonomously with daily safety caps. Optmyzr and Madgicx start at $499+ and advise without acting. B6, <a href="/pricing" style={linkStyle}>free while in beta</a>, acts, shows every step live, and keeps your manual override in place.
+                Optmyzr and Madgicx start at $499+. The Kampaio dashboard is free during early access, never changes anything by itself, and records every edit you make in a change log with the numbers before it, so your manual control stays where it is.
               </p>
 
               <MascotQuote mascot="buzz">
-                You do not have to give up the manual override to get AI-level optimization. The autonomy tier controls how much I act vs. flag for your approval. On a new account under 30 conversions/month, I stay in co-pilot mode and let you keep full bid control. On a mature account with clean tROAS data, I run at L2 and handle the weekly bid reviews automatically.
+                You should not have to give up the manual override to get AI-level optimization. What I am being built to do: propose bid changes with the reasoning, and leave the decision with you. I am in development and do not run on live accounts yet.
               </MascotQuote>
 
               <div style={{ background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)', borderRadius: '16px', padding: '40px', textAlign: 'center', marginTop: '40px', marginBottom: '40px' }}>
                 <h3 style={{ fontSize: '24px', fontWeight: 800, color: '#1e293b', marginBottom: '16px', marginTop: 0, lineHeight: 1.3 }}>
-                  See how Buzz sets bids live
+                  See every campaign&apos;s bidding on one screen
                 </h3>
                 <p style={{ fontSize: '17px', color: '#475569', marginBottom: '28px', lineHeight: 1.6, fontWeight: 500, maxWidth: '620px', marginLeft: 'auto', marginRight: 'auto' }}>
-                  Connect your Google Ads account to B6 and watch Buzz evaluate every campaign&apos;s bidding against its conversion volume and tracking quality, then recommend AI or manual per campaign, with the rationale, before anything applies.
+                  Connect your Google Ads accounts to the Kampaio dashboard and see spend, ROAS, CPA and budget per campaign, with automatic checks that flag ROAS below target and conversions that stopped. Free during early access.
                 </p>
                 <a
-                  href="/b6#buzz"
+                  href="https://dashboard.kampaio.com/"
                   style={{
                     background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                     color: 'white',
@@ -662,7 +662,7 @@ export default function ArticleContent() {
                     (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
                   }}
                 >
-                  See Buzz in Action
+                  Open the dashboard
                 </a>
               </div>
               <p style={{ fontSize: '14px', color: '#64748b', fontStyle: 'italic', lineHeight: 1.7, marginTop: '8px' }}>

@@ -8,7 +8,7 @@ import ArticleHero from '../../../components/blog/ArticleHero';
 import KeepReading from '../../../components/blog/KeepReading';
 import MascotQuote from '../../../components/blog/MascotQuote';
 import ComparisonTable from '../../../components/blog/ComparisonTable';
-import { KeyTakeaways, BigStat, Callout, Steps, Step } from '../../../components/blog/primitives';
+import { KeyTakeaways, Callout, Steps, Step } from '../../../components/blog/primitives';
 
 const linkStyle = { color: '#764ba2', textDecoration: 'underline' } as const;
 const h2Style = { fontSize: '30px', fontWeight: 700, color: '#1e293b', marginBottom: '20px', marginTop: '52px', lineHeight: '1.25' } as const;
@@ -251,15 +251,8 @@ export default function ArticleContent() {
                 Smart Bidding makes it worse before it makes it better. Smart Bidding &quot;uses Google AI to optimize for conversions or conversion value in every auction&quot; (<a href="https://support.google.com/google-ads/answer/7065882" style={linkStyle} target="_blank" rel="noopener noreferrer">Google Ads Help, 2024</a>). The catch: it optimizes for whatever conversion you feed it. Feed it raw form-fills and it learns to manufacture more raw form-fills. It cannot tell a qualified buyer from a tire-kicker unless you tell it which one closed.
               </p>
 
-              <BigStat
-                value="$4,200"
-                label="burned in 6 days"
-                claim="is what one B2B account on broad match plus maximize conversions spent before booking 31 form-fills, only 2 of which were real."
-                source="Source: Kampaio account observation, 2026 (illustrative)"
-              />
-
               <MascotQuote mascot="buzz">
-                I watched a B2B account on broad match plus maximize conversions spend $4,200 in 6 days and book 31 form-fills, 2 of which were real. I&apos;d kill broad match, drop to phrase and exact, and stay on Manual CPC until the account logs 20 conversions. Then switch to Smart Bidding. The 6-day burn becomes a 6-week ramp, but every lead is one a salesperson actually wants.
+                What I am being built to do: catch a new B2B account running broad match plus maximize conversions before it burns through budget on form-fills nobody wants. Until then, the fix is yours: kill broad match, drop to phrase and exact, and stay on Manual CPC until the account logs 20 conversions. Then switch to Smart Bidding. Month one becomes a slower ramp, but every lead is one a salesperson actually wants.
               </MascotQuote>
             </section>
 
@@ -315,7 +308,7 @@ export default function ArticleContent() {
               </p>
 
               <MascotQuote mascot="sage">
-                In a $9K/month B2B account, I pulled the search terms report and found 38% of spend going to &quot;free,&quot; &quot;jobs,&quot; and &quot;how to&quot; queries. I added 47 negatives in the first week and cut wasted spend from 38% to under 9%. The CPL didn&apos;t drop because clicks got cheaper. It dropped because we stopped paying for people who were never going to buy.
+                Pull the search terms report in week one and look for &quot;free,&quot; &quot;jobs,&quot; and &quot;how to&quot; queries; in B2B they are rarely buyers. Negative them out. When CPL falls after that, it is not because clicks got cheaper. It is because you stopped paying for people who were never going to buy.
               </MascotQuote>
             </section>
 
@@ -352,7 +345,7 @@ export default function ArticleContent() {
               </p>
 
               <MascotQuote mascot="buzz">
-                The number that matters in month one isn&apos;t CPL, it&apos;s conversions logged. Manual CPC until you hit 20 to 30 clean conversions, then Maximize Conversions for two weeks, then Target CPA at your real number. I see founders flip strategies on day 3 because CPL looked high. That&apos;s the most expensive impatience in PPC. Give it 14 days per change, minimum.
+                The number that matters in month one isn&apos;t CPL, it&apos;s conversions logged. Manual CPC until you hit 20 to 30 clean conversions, then Maximize Conversions for two weeks, then Target CPA at your real number. Flipping strategies on day 3 because CPL looked high is the most expensive impatience in PPC. Give it 14 days per change, minimum.
               </MascotQuote>
             </section>
 
@@ -382,7 +375,7 @@ export default function ArticleContent() {
               </Steps>
 
               <p style={pStyle}>
-                By the end of month one you should have clean tracking, a profitable non-brand Search campaign, and the data to bid on outcomes. That is when ongoing optimization begins, and where the broader <a href="/blog/google-ads-optimization" style={linkStyle}>Google Ads optimization playbook</a> takes over. It is also the point where running it by hand stops scaling, which is the case for handing the operational layer to automation like Kampaio.
+                By the end of month one you should have clean tracking, a profitable non-brand Search campaign, and the data to bid on outcomes. That is when ongoing optimization begins, and where the broader <a href="/blog/google-ads-optimization" style={linkStyle}>Google Ads optimization playbook</a> takes over. It is also the point where running it by hand stops scaling, which is the case for tooling that shows every account and its problems on one screen, such as the Kampaio dashboard.
               </p>
             </section>
 
@@ -416,16 +409,16 @@ export default function ArticleContent() {
               {/* CTA */}
               <div style={{ background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)', borderRadius: '16px', padding: '40px', textAlign: 'center', marginTop: '48px', marginBottom: '24px' }}>
                 <h3 style={{ fontSize: '22px', fontWeight: '700', color: '#1e293b', marginBottom: '14px', lineHeight: '1.3' }}>
-                  Want the operational layer handled for you?
+                  See every account and its problems on one screen
                 </h3>
                 <p style={{ fontSize: '17px', color: '#64748b', marginBottom: '28px', lineHeight: '1.6', fontWeight: '500' }}>
-                  Kampaio runs the bids, budgets, and optimization with a team of AI agents on a flat monthly subscription, well under the $499-plus that tools like Optmyzr and Madgicx charge. See <a href="/b6" style={linkStyle}>how it works</a> or compare <a href="/pricing" style={linkStyle}>pricing</a>.
+                  The Kampaio dashboard flags spend with no conversions, CPA above target, and impressions lost to budget across your accounts with 14 automatic campaign checks, and every change you make shows a preview first and can be rolled back. Free during early access, against the $499-plus that tools like Optmyzr and Madgicx charge.
                 </p>
                 <a
-                  href="/chat"
+                  href="https://dashboard.kampaio.com/"
                   style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', color: 'white', border: 'none', padding: '16px 32px', borderRadius: '10px', fontSize: '16px', fontWeight: '600', cursor: 'pointer', display: 'inline-block', boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)', textDecoration: 'none' }}
                 >
-                  Start a free trial
+                  Open the dashboard
                 </a>
               </div>
             </section>

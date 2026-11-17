@@ -279,7 +279,7 @@ export default function ArticleContent() {
           </div>
         ))}
         <p style={{ fontSize: '13px', color: '#475569', marginTop: '20px', borderTop: '1px solid #e5e7eb', paddingTop: '16px', fontStyle: 'italic' }}>
-          We see accounts pause profitable campaigns because first-touch ROAS looks bad. The number is not wrong; the attribution window is wrong.
+          Accounts often pause profitable campaigns because first-touch ROAS looks bad. The number is not wrong; the attribution window is wrong.
         </p>
       </div>
     );
@@ -768,12 +768,12 @@ export default function ArticleContent() {
                 <li><strong>Identify the single biggest gap.</strong> CPC above benchmark: the problem is keyword mix or Quality Score - not market conditions. CVR below benchmark: the problem is landing page relevance or offer mismatch. CPL above benchmark with CVR at benchmark: the problem is lead quality (your demo-bookers are not converting to SQL).</li>
               </ol>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '24px' }}>
-                Benchmarks-as-excuses is a real pattern we see in quarterly reviews. Some SaaS advertisers use high-CPC benchmarks as justification for underperformance rather than as a diagnosis prompt. If your CPC matches the market but your CVR is half the benchmark, the market is not your problem.
+                Benchmarks-as-excuses is a common pattern in quarterly reviews. Some SaaS advertisers use high-CPC benchmarks as justification for underperformance rather than as a diagnosis prompt. If your CPC matches the market but your CVR is half the benchmark, the market is not your problem.
               </p>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
-                Kampaio tracks your account performance against these segment benchmarks automatically, flags deviations from your CPL and ROAS targets, and adjusts bids to maintain CPA or ROAS within your defined range. See{' '}
-                <a href="/features" style={{ color: '#764ba2', textDecoration: 'underline' }}>how Kampaio tracks SaaS Google Ads benchmarks automatically</a>{' '}
-                for the setup.
+                The Kampaio dashboard flags deviations from your own targets automatically: its checks cover ROAS below target and CPA above target, across every account on one screen. It does not compare you to these segment benchmarks or adjust bids; you make any target or budget change yourself, with a preview first and a rollback after. Buzz, our bidding agent, is in development. See{' '}
+                <a href="/features" style={{ color: '#764ba2', textDecoration: 'underline' }}>what the Kampaio dashboard does</a>{' '}
+                for the full list.
               </p>
 
               {/* CTA block */}
@@ -782,10 +782,10 @@ export default function ArticleContent() {
                   Know where you stand against the 2026 benchmarks?
                 </h3>
                 <p style={{ fontSize: '17px', color: '#64748b', marginBottom: '28px', lineHeight: '1.6', fontWeight: '500' }}>
-                  Kampaio compares your SaaS account to segment benchmarks automatically, flags CPL and ROAS deviations, and adjusts bids before performance drifts.
+                  The Kampaio dashboard flags campaigns with ROAS below target or CPA above target, so you can hold them against the segment ranges above. Free during early access.
                 </p>
                 <a
-                  href="/chat"
+                  href="https://dashboard.kampaio.com/"
                   style={{
                     display: 'inline-block',
                     background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
@@ -798,7 +798,7 @@ export default function ArticleContent() {
                     transition: 'opacity 0.2s ease',
                   }}
                 >
-                  Start Free Benchmark Audit
+                  Open the dashboard
                 </a>
               </div>
             </section>

@@ -675,22 +675,22 @@ export default function ArticleContent() {
             <section id="run-without-agency">
               <h2 style={h2}>Run B2B PPC without hiring an agency</h2>
               <p style={para}>
-                Half the search results for &quot;b2b ppc&quot; today are agency service pages charging $2,000 or more a month for the work this guide just walked through. An AI cabinet that shows its work, rather than a black-box retainer, lets an in-house operator run channel selection, structure, keyword hygiene, and offline-conversion wiring themselves.
+                Half the search results for &quot;b2b ppc&quot; today are agency service pages charging $2,000 or more a month for the work this guide just walked through. A tool that shows you the numbers, rather than a black-box retainer, lets an in-house operator run channel selection, structure, keyword hygiene, and offline-conversion wiring themselves.
               </p>
               <p style={para}>
-                That is what kampaio does: an AI agent cabinet that runs day-to-day PPC work live in your account and shows every action it takes.
+                That is what the Kampaio dashboard is for today: every Google Ads account you manage on one screen, 14 automatic campaign checks, the search terms report with negatives added after a preview, and every change you make logged with the numbers before it and a rollback. The AI agents that will take on day-to-day PPC work are in development and do not run on live accounts yet.
               </p>
 
               <div style={{ background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)', borderRadius: '16px', padding: '40px', textAlign: 'center', marginTop: '48px', marginBottom: '40px' }}>
                 <h3 style={{ fontSize: '22px', fontWeight: 700, color: '#1e293b', marginBottom: '18px', lineHeight: '1.3' }}>
-                  Run the whole stack yourself, with an AI cabinet
+                  Run the whole stack yourself, with every account on one screen
                 </h3>
                 <p style={{ fontSize: '17px', color: '#64748b', marginBottom: '28px', lineHeight: '1.6', fontWeight: 500, opacity: 0.9 }}>
-                  Channel selection, structure, keyword hygiene, and offline-conversion wiring, run live in your account and shown move by move.
+                  Spend, ROAS, CPA, and automatic campaign checks across every account, with each change you make previewed first and logged. Free during early access.
                 </p>
                 <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
                   <a
-                    href="/chat"
+                    href="https://dashboard.kampaio.com/"
                     className="btn"
                     style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', color: 'white', border: 'none', padding: '16px 32px', borderRadius: '10px', fontSize: '16px', fontWeight: 600, cursor: 'pointer', transition: 'all 0.3s ease', display: 'inline-block', boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)', textDecoration: 'none' }}
                     onMouseEnter={(e) => {
@@ -702,7 +702,7 @@ export default function ArticleContent() {
                       (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
                     }}
                   >
-                    Start a Trial
+                    Open the dashboard
                   </a>
                   <a
                     href="/pricing"

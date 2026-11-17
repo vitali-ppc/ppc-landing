@@ -338,7 +338,7 @@ export default function ArticleContent() {
                 <strong>In-house or DIY.</strong> Your time is the cost here. Under $20,000 a month, with Smart Bidding doing the heavy bid work and decent tooling on top, running it yourself is genuinely viable. <a href="/blog/google-ads-without-agency" style={linkStyle}>Going solo on Google Ads</a> lays out the real tradeoffs, and understanding <a href="/blog/google-ads-smart-bidding-strategies" style={linkStyle}>what Smart Bidding now automates</a> tells you how much manual work is actually left.
               </p>
               <p style={pStyle}>
-                <strong>Automation tools.</strong> This is where the management line item collapses. Recommendation tools like Optmyzr and Madgicx start around $499 a month and tell you what to do. Autonomous tools go further and execute. Kampaio runs seven AI <a href="/blog/google-ads-ai-agent" style={linkStyle}>agents</a> that handle bidding, reporting, creative, and research on a flat monthly subscription, and that fee does not climb when your budget does. The percentage-of-spend trap simply disappears: the fee at $20,000 in spend is the same as it was at $5,000.
+                <strong>Automation tools.</strong> This is where the management line item collapses. Recommendation tools like Optmyzr and Madgicx start around $499 a month and tell you what to do. Autonomous tools go further and execute. Kampaio is building AI <a href="/blog/google-ads-ai-agent" style={linkStyle}>agents</a> for bidding, reporting, creative, and research; they are in development and do not run on live accounts yet. What exists today is the Kampaio dashboard: every account on one screen, 14 automatic campaign checks, and changes you make yourself with a preview first. It is free during early access. The percentage-of-spend trap simply disappears: the fee at $20,000 in spend is the same as it was at $5,000.
               </p>
             </section>
 
@@ -405,13 +405,13 @@ export default function ArticleContent() {
                   See the fee math on your own account
                 </h3>
                 <p style={{ fontSize: '17px', color: '#64748b', marginBottom: '28px', lineHeight: '1.6', fontWeight: 500, opacity: 0.9 }}>
-                  Connect Google Ads to Kampaio and watch the agents audit your change history, your fee-to-spend ratio, and your wasted spend in about ninety seconds. <a href="/pricing" style={linkStyle}>Pricing is a flat monthly subscription</a>, and it does not climb when your budget does.
+                  Connect Google Ads to the <a href="https://dashboard.kampaio.com/" style={linkStyle}>Kampaio dashboard</a> and see spend, ROAS and CPA for every account on one screen, with automatic checks that flag spend with no conversions. Then divide your current fee by that spend. The dashboard is free during early access.
                 </p>
                 <a
-                  href="/chat"
+                  href="https://dashboard.kampaio.com/"
                   style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', color: 'white', border: 'none', padding: '16px 32px', borderRadius: '10px', fontSize: '16px', fontWeight: 600, cursor: 'pointer', display: 'inline-block', boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)', textDecoration: 'none' }}
                 >
-                  Audit My Account in 90 Seconds
+                  Open the dashboard
                 </a>
               </div>
             </section>

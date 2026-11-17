@@ -43,7 +43,7 @@ export default function ArticleContent() {
       "@type": "WebPage",
       "@id": "https://kampaio.com/blog/signs-you-need-to-fire-your-ppc-agency"
     },
-    "keywords": "PPC agency, fire PPC agency, signs, Google Ads, agency reports, ROAS, account manager, bid management, change history, MCC access, Smart Bidding, Performance Max, diagnostic, transition, B6, Buzz, Aegis, Echo, freelancer, conversion tracking, AI agents",
+    "keywords": "PPC agency, fire PPC agency, signs, Google Ads, agency reports, ROAS, account manager, bid management, change history, MCC access, Smart Bidding, Performance Max, diagnostic, transition, Kampaio dashboard, freelancer, conversion tracking",
     "wordCount": 2178,
     "articleSection": "PPC Optimization",
     "inLanguage": "en"
@@ -79,10 +79,10 @@ export default function ArticleContent() {
       },
       {
         "@type": "Question",
-        "name": "What is the difference between a PPC freelancer and an AI tool like B6?",
+        "name": "What is the difference between a PPC freelancer and a tool like Kampaio?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "A freelancer is one person with bandwidth limits and vacation gaps. B6 is 7 AI agents working 24/7 with full transparency on every action."
+          "text": "A freelancer is one person with bandwidth limits and vacation gaps. The Kampaio dashboard puts every Google Ads account you manage on one screen and runs 14 automatic campaign checks; you make the changes yourself, each with a preview first and a rollback after."
         }
       },
       {
@@ -138,7 +138,7 @@ export default function ArticleContent() {
     { id: 'post-agency-path', title: 'The Post-Agency Path: What Comes Next', level: 1 },
     { id: 'transition', title: 'How to Transition From Agency to Independent Management', level: 1 },
     { id: 'faq', title: 'Frequently Asked Questions', level: 1 },
-    { id: 'cta', title: 'Audit Your Agency in 90 Seconds With B6', level: 1 },
+    { id: 'cta', title: 'Audit Your Agency With the Kampaio Dashboard', level: 1 },
   ];
 
   const scrollToSection = (id: string) => {
@@ -433,11 +433,11 @@ export default function ArticleContent() {
               </p>
 
               <MascotQuote mascot="aegis">
-                I check account access on day one. Owner-level access, independent conversion tracking, full change history. If any of those are locked, that&apos;s the first risk I flag. Tracking that lives in someone else&apos;s MCC is leverage they hold against you at renewal time.
+                What I am being built to check on day one: owner-level access, independent conversion tracking, full change history. I am in development, so check those three yourself today. Tracking that lives in someone else&apos;s MCC is leverage they hold against you at renewal time.
               </MascotQuote>
 
               <p style={pStyle}>
-                If you do not have Admin-level access, fix that before doing anything else, including starting any conversation about leaving. See <a href="/b6#aegis" style={linkStyle}>how Aegis catches risk and access issues</a> on day one of a B6 connection.
+                If you do not have Admin-level access, fix that before doing anything else, including starting any conversation about leaving.
               </p>
 
               {/* Sign 5 */}
@@ -543,7 +543,7 @@ export default function ArticleContent() {
                 <strong>Case 1: Spend over $50K/month with complex multi-region structure.</strong> Multiple markets, languages, currencies, and product feeds justify agency-level project management. The juniors-on-small-accounts problem inverts: at $50K+ you get the senior team.
               </p>
               <p style={pStyle}>
-                <strong>Case 2: You need creative production bundled with media buying.</strong> Custom landing pages, video, display banners, copywriting. Most <a href="/blog/5-tips-for-working-with-ai-ppc-tools" style={linkStyle}>PPC tools</a> (including B6) optimize what you give them; they do not produce creative. Agencies do.
+                <strong>Case 2: You need creative production bundled with media buying.</strong> Custom landing pages, video, display banners, copywriting. Most <a href="/blog/5-tips-for-working-with-ai-ppc-tools" style={linkStyle}>PPC tools</a> (including Kampaio) work with what you give them; they do not produce creative. Agencies do.
               </p>
               <p style={pStyle}>
                 <strong>Case 3: Zero hours per week available.</strong> Not 3-5, not even 1. An imperfect agency beats complete neglect. Smart Bidding without human oversight optimizes for whatever signal it has, usually cheap conversions, not high-value ones.
@@ -564,32 +564,32 @@ export default function ArticleContent() {
                 <strong>Hire a freelancer.</strong> $500-2,000/month, sometimes excellent expertise, often a single point of failure. Vacation gaps. Skill gaps in one or two domains.
               </p>
               <p style={pStyle}>
-                <strong>Go independent with an AI tool.</strong> A flat monthly fee for autonomous tools (B6, free while in beta, and a small number of competitors). $499-899/month for recommendation tools (Optmyzr, Madgicx). No retainer minimums. You stay in control of strategy; the tool handles bid adjustments, <a href="/blog/google-ads-anomaly-detection" style={linkStyle}>anomaly detection</a>, and reporting.
+                <strong>Go independent with a tool.</strong> $499-899/month for recommendation tools (Optmyzr, Madgicx); the Kampaio dashboard is free during early access. No retainer minimums. You stay in control of strategy; the tool does the monitoring: budget and bid checks, <a href="/blog/google-ads-anomaly-detection" style={linkStyle}>anomaly detection</a>, and reporting.
               </p>
               <p style={pStyle}>
-                B6 sits in the third category as <a href="/b6" style={linkStyle}>7 AI agents</a> doing the work an agency was supposed to do. Buzz handles bids, Aegis flags risk and access issues, Echo sends weekly reports, Vox handles cross-campaign strategy, Maximus orchestrates the rules, Mira generates ad copy and image variants, Sage handles keyword and audience research. Three levels of autonomy: Co-pilot (read-only audit), Approval (every change needs your OK), Autonomous (agents execute within your guardrails). All three are free while B6 is in beta.
+                Kampaio sits in the third category. Today that is the <a href="https://dashboard.kampaio.com/" style={linkStyle}>Kampaio dashboard</a>: every Google Ads account you manage on one screen, 14 automatic campaign checks (spend with no conversions, impressions lost to budget or rank, ROAS below target, conversions stopped and more), a search terms report, and changes you make yourself (budget, targets, keywords, geo), each with a preview first and a rollback after. Our AI agents, such as Buzz for bidding and Aegis for risk, are in development and do not run on live accounts yet. The dashboard is free during early access.
               </p>
               <p style={pStyle}>
-                The differentiator vs. Optmyzr ($499) and Madgicx ($499+), which give recommendations: B6 actually executes. Approval tier means every action requires your sign-off, but you don&apos;t have to figure out what to do. The agents propose specific changes with reasoning. You approve or reject in a click.
+                The difference vs. Optmyzr ($499) and Madgicx ($499+): the dashboard never changes anything by itself. It flags, you decide, and every edit lands in a change log with the numbers before it.
               </p>
 
               <MascotQuote mascot="buzz">
-                Last Tuesday in a $12K/month account I adjusted bids on 31 ad groups. 22 decreases (average minus 9%), 9 increases (average plus 6%). Took me 4 minutes. The agency would have batched this for the monthly report. By then, 4 weeks of overspend is already gone.
+                What I am being built to do: propose bid changes on the ad groups that drifted this week, with the reasoning, instead of batching them for a monthly report. I am in development and do not touch live accounts yet. Until then, a weekly bid review is the habit that stops a month of overspend.
               </MascotQuote>
 
               <p style={pStyle}>Here is how the three options compare at $10K/month ad spend:</p>
 
               {/* VISUAL 4: ComparisonTable */}
               <ComparisonTable
-                headers={['', 'Agency', 'Freelancer', 'B6']}
+                headers={['', 'Agency', 'Freelancer', 'Kampaio dashboard']}
                 rows={[
-                  { cells: ['Monthly cost', '$1,500-3,000', '$500-2,000', 'Flat fee, free in beta'] },
+                  { cells: ['Monthly cost', '$1,500-3,000', '$500-2,000', 'Free during early access'] },
                   { cells: ['Your time', '0-2 h/week', '1-3 h/week', '3-5 h/week'] },
-                  { cells: ['Who does the work', 'Junior AM', 'One person', '7 AI agents'], highlight: true },
-                  { cells: ['Response time', '24-72 hours', 'Hours to days', 'Real-time'] },
+                  { cells: ['Who does the work', 'Junior AM', 'One person', 'You, with 14 automatic checks'], highlight: true },
+                  { cells: ['Response time', '24-72 hours', 'Hours to days', 'When a check flags it'] },
                   { cells: ['Vacation gaps', 'None', '2-4 weeks/year', 'None'] },
                 ]}
-                caption="Agency vs. freelancer vs. B6 at $10K/month ad spend - cost, time, coverage"
+                caption="Agency vs. freelancer vs. the Kampaio dashboard at $10K/month ad spend - cost, time, coverage"
               />
             </section>
 
@@ -610,12 +610,12 @@ export default function ArticleContent() {
     Export search terms and conversions: 4: You
     Set up parallel conversion tracking: 3: You
   section Days 11-30 (parallel run)
-    Connect B6 in Co-pilot read-only: 5: You,B6
-    Compare B6 proposals vs agency work: 5: B6
+    Connect the Kampaio dashboard: 5: You
+    Compare dashboard checks vs agency work: 5: You
     Verify tracking numbers match 14d: 4: You
   section Day 30 (cut over)
     Send cancellation notice in writing: 5: You
-    Switch B6 to Approval mode: 5: You,B6
+    Make changes yourself in the dashboard: 5: You
 `}
                 caption="30-day transition timeline. Order matters: secure access before announcing the search."
               />
@@ -627,16 +627,16 @@ export default function ArticleContent() {
                 <strong>Step 2: Download change history, search terms, and conversion data for the last 6 months.</strong> Your baseline. Even if the agency revokes access later, you have the export.
               </p>
               <p style={pStyle}>
-                <strong>Step 3: Set up independent conversion tracking.</strong> Many agencies use their own GA4 property or GTM container. Create yours in parallel. Verify numbers match for 7-14 days before firing. If the numbers don&apos;t match, work the <a href="/blog/google-ads-conversion-tracking-not-working" style={linkStyle}>conversion tracking diagnostic</a> before you sign the cancellation letter - agency-installed tracking is one of the most common places we find tag misfires and Consent Mode v2 traps that distort every report you&apos;ve seen for months.
+                <strong>Step 3: Set up independent conversion tracking.</strong> Many agencies use their own GA4 property or GTM container. Create yours in parallel. Verify numbers match for 7-14 days before firing. If the numbers don&apos;t match, work the <a href="/blog/google-ads-conversion-tracking-not-working" style={linkStyle}>conversion tracking diagnostic</a> before you sign the cancellation letter - agency-installed tracking is a common home for tag misfires and Consent Mode v2 traps that distort every report you&apos;ve seen for months.
               </p>
               <p style={pStyle}>
-                <strong>Step 4: Run the agency and a tool in parallel for 30 days.</strong> Connect B6 in read-only Co-pilot mode, free while in beta. Compare what B6 proposes vs. what the agency actually does. The gap is visible immediately.
+                <strong>Step 4: Run the agency and a tool in parallel for 30 days.</strong> Connect the Kampaio dashboard, free during early access. Compare what its 14 automatic checks flag vs. what the agency actually does. The gap is visible immediately.
               </p>
               <p style={pStyle}>
                 <strong>Step 5: Send the cancellation notice.</strong> Most contracts require 30-60 days notice. Written, clear effective date, request access transfer in the same email. Polite but unambiguous.
               </p>
               <p style={pStyle}>
-                <strong>Step 6: Switch B6 from Co-pilot to Approval mode.</strong> Agents propose, you approve. 10-15 minutes per day.
+                <strong>Step 6: Take over the changes yourself.</strong> Make budget, target and keyword edits from the dashboard, each with a preview first and a rollback after.
               </p>
             </section>
 
@@ -653,7 +653,7 @@ export default function ArticleContent() {
                 <strong>Can I run Google Ads without an agency?</strong> Yes, especially under $20K/month spend, with the right tool. We covered this in our <a href="/blog/google-ads-without-agency" style={linkStyle}>guide to Google Ads without an agency</a>.
               </p>
               <p style={pStyle}>
-                <strong>What is the difference between a PPC freelancer and an AI tool like B6?</strong> A freelancer is one person with bandwidth limits and vacation gaps. B6 is 7 AI agents working 24/7 with full transparency on every action.
+                <strong>What is the difference between a PPC freelancer and a tool like Kampaio?</strong> A freelancer is one person with bandwidth limits and vacation gaps. The Kampaio dashboard puts every Google Ads account you manage on one screen and runs 14 automatic campaign checks; you make the changes yourself, each with a preview first and a rollback after.
               </p>
               <p style={pStyle}>
                 <strong>How do I tell the agency I am firing them?</strong> In writing, with a clear effective date, a request for access transfer, and a polite but unambiguous tone. No need to itemize complaints unless they ask.
@@ -662,9 +662,9 @@ export default function ArticleContent() {
 
             {/* CTA */}
             <section id="cta">
-              <h2 style={h2Style}>Audit Your Agency in 90 Seconds With B6</h2>
+              <h2 style={h2Style}>Audit Your Agency With the Kampaio Dashboard</h2>
               <p style={pStyle}>
-                Connect your Google Ads account to B6 in read-only mode. In 90 seconds, our agents audit what your agency has and has not been doing: bid hygiene, negative keyword coverage, wasted spend, change history depth. You see the same scorecard your agency should be sending you, but doesn&apos;t.
+                Connect your Google Ads account to the Kampaio dashboard. Its 14 automatic checks show where money is leaking (spend with no conversions, impressions lost to budget or rank, ROAS below target), and the search terms report shows how much negative keyword work has been done. You see the same scorecard your agency should be sending you, but doesn&apos;t.
               </p>
 
               <div style={{
@@ -691,10 +691,10 @@ export default function ArticleContent() {
                   lineHeight: '1.6',
                   fontWeight: 500,
                 }}>
-                  Audit your account in 90 seconds. <a href="/pricing" style={linkStyle}>See what each B6 level does</a>.
+                  Free during early access, no card.
                 </p>
                 <a
-                  href="/chat"
+                  href="https://dashboard.kampaio.com/"
                   style={{
                     display: 'inline-block',
                     padding: '14px 28px',
@@ -706,7 +706,7 @@ export default function ArticleContent() {
                     textDecoration: 'none',
                   }}
                 >
-                  Audit your account in 90 seconds with B6 -&gt;
+                  Open the dashboard -&gt;
                 </a>
               </div>
             </section>

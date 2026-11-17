@@ -497,7 +497,7 @@ export default function ArticleContent() {
               </p>
 
               <MascotQuote mascot="buzz">
-                On a hypothetical $14,000/month account with two verticals (Plumbing, HVAC), splitting into separate campaigns and reweighting conversion values 8 days before the cutover is the kind of move that stops Smart Bidding from anchoring on a blended average. In a representative case like this, cost-per-qualified-lead on the higher-value vertical can drop in the 15-20% range over the following 3-week window once the signal is clean. Actual results depend on account size, vertical mix, and how contaminated the blended history already was.
+                On a hypothetical $14,000/month account with two verticals (Plumbing, HVAC), splitting into separate campaigns and reweighting conversion values 8 days before the cutover is the kind of move that stops Smart Bidding from anchoring on a blended average. How much it helps depends on account size, vertical mix, and how contaminated the blended history already was.
               </MascotQuote>
 
               <p style={para}>
@@ -587,7 +587,7 @@ export default function ArticleContent() {
             <section id="where-kampaio-fits">
               <h2 style={h2}>Where kampaio Fits</h2>
               <p style={para}>
-                Signal-quality monitoring and per-vertical campaign structuring are unglamorous account hygiene that decays without a dedicated watch. Inside kampaio, Buzz (bid strategy) and Echo (reporting) surface blended-signal risk and value-rule drift automatically, before a migration date or a slow ROAS bleed forces the issue. Neither agent auto-splits a campaign or auto-migrates an LSA account without approval; they flag exposure and hand you the decision. This hygiene sits inside <a href="/blog/google-ads-optimization" style={linkStyle}>the complete Google Ads optimization framework</a>. See <a href="/b6#buzz" style={linkStyle}>Buzz</a> and <a href="/b6#echo" style={linkStyle}>Echo</a> in the <a href="/pricing" style={linkStyle}>pricing</a> plans.
+                Signal-quality monitoring and per-vertical campaign structuring are unglamorous account hygiene that decays without a dedicated watch. The Kampaio dashboard helps with that watch today: it puts every account on one screen with each campaign&apos;s ROAS, CPA, and daily chart, and its automatic checks flag ROAS below target, CPA above target, and conversions that stopped. It does not split campaigns or migrate LSA accounts; those decisions stay with you. Buzz (bid strategy) and Echo (reporting), our agents in development, will add warnings for blended-signal risk and value-rule drift. This hygiene sits inside <a href="/blog/google-ads-optimization" style={linkStyle}>the complete Google Ads optimization framework</a>. The dashboard is <a href="/pricing" style={linkStyle}>free during early access</a>.
               </p>
 
               <div style={{ background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)', borderRadius: '16px', padding: '40px', textAlign: 'center', marginTop: '48px', marginBottom: '40px' }}>
@@ -595,10 +595,10 @@ export default function ArticleContent() {
                   Check your conversion signal before August 1
                 </h3>
                 <p style={{ fontSize: '17px', color: '#64748b', marginBottom: '28px', lineHeight: '1.6', fontWeight: 500, opacity: 0.9 }}>
-                  Buzz watches the bid side and Echo watches the reporting side, so a blended conversion signal gets flagged before it quietly resets your Target CPA.
+                  The Kampaio dashboard flags campaigns whose ROAS drops below target or whose CPA climbs above it, so a drifting conversion signal shows up on one screen instead of in next month&apos;s report.
                 </p>
                 <a
-                  href="/chat"
+                  href="https://dashboard.kampaio.com/"
                   className="btn"
                   style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', color: 'white', border: 'none', padding: '16px 32px', borderRadius: '10px', fontSize: '16px', fontWeight: 600, cursor: 'pointer', transition: 'all 0.3s ease', display: 'inline-block', boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)', textDecoration: 'none' }}
                   onMouseEnter={(e) => {
@@ -610,7 +610,7 @@ export default function ArticleContent() {
                     (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
                   }}
                 >
-                  See what Kampaio runs
+                  Open the dashboard
                 </a>
               </div>
 

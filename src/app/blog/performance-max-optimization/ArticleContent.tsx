@@ -280,7 +280,7 @@ export default function ArticleContent() {
                 If your campaign is spending but generating zero conversions, you don't have an optimization problem, you have a diagnosis problem. See <a href="/blog/performance-max-not-converting" style={LINK}>Performance Max Not Converting? 9 Fixes That Actually Work</a>.
               </p>
               <MascotQuote mascot="maximus">
-                Campaign hit 12 conversions in 18 days. I'd hold all changes 10 more days, not touch the target. The algorithm needs that last signal batch to confidently allocate budget. (Illustrative scenario.)
+                I am being built to enforce the learning guardrail. The rule I follow: if a campaign is still short of roughly 30 conversions in 30 days, hold all changes and do not touch the target. The algorithm needs that signal batch to confidently allocate budget.
               </MascotQuote>
             </section>
 
@@ -318,7 +318,7 @@ export default function ArticleContent() {
                 Jyll Saskin Gales via Optmyzr puts it plainly: "The actual creative you use is the real audience signal in PMax." Multiple asset groups with identical assets and different audience signals just give the algorithm the same signal repeated.
               </p>
               <MascotQuote mascot="mira">
-                Replaced 4 'Low'-rated headlines and swapped a stock image for a product-in-use photo. CTR moved from 2.1% to 2.8% over 9 days. (Illustrative scenario - your result depends on asset quality gap.)
+                I am being built to flag underperforming assets. The fix I will propose first: replace 'Low'-rated headlines and swap stock images for product-in-use photos, then give the change time before judging it.
               </MascotQuote>
             </section>
 
@@ -369,7 +369,7 @@ export default function ArticleContent() {
                 Below 30 monthly conversions, use Maximize Conversion Value and let PMax build signal. Once above that threshold, introduce a tROAS at roughly 80% of observed ROAS from the past 30 days. Ratchet up by 10-15% increments and wait 14 days between each move. See <a href="/blog/google-ads-smart-bidding-strategies" style={LINK}>Google Ads Smart Bidding Strategies: How to Choose the Right One</a> for the full decision framework.
               </p>
               <MascotQuote mascot="buzz">
-                tROAS set at 450% was starving the campaign on $18/day despite a $120/day budget. Dropped to 380%, spend recovered 22% in 6 days, ROAS held at 410%. (Illustrative scenario - tROAS above observed performance restricts spend.)
+                A tROAS set above the ROAS a campaign actually delivers restricts spend: the campaign underspends its budget. I am being built to spot that gap and propose a lower target. Until then, compare your target with observed ROAS yourself before raising the budget.
               </MascotQuote>
               <p style={P}>
                 <strong>For ecom only:</strong> the product feed is Lever 7. <a href="https://smarter-ecommerce.com/blog/en/ecommerce/the-ultimate-ecommerce-campaign-optimization-playbook-for-pmax/" style={LINK} target="_blank" rel="noopener noreferrer">Smarter Ecommerce</a>, which analyzed over 4,000 PMax campaigns, found that too many granular campaigns prevents the algorithm from learning. Consolidate: fewer campaigns, more conversion data each. Use custom labels to segment by margin, stock level, or seasonality.
@@ -472,20 +472,20 @@ export default function ArticleContent() {
             <section id="optimize-without-guesswork">
               <h2 style={H2}>Optimize Without the Guesswork</h2>
               <p style={P}>
-                Running this 7-lever cadence manually takes 2-3 hours per campaign per week. Kampaio's <a href="/blog/google-ads-ai-agent" style={{ color: '#764ba2', textDecoration: 'underline' }}>agents</a> run the same playbook continuously: Buzz monitors bid strategy and tROAS targets, Sage manages audience signals and search themes, Mira flags underperforming assets, and Aegis enforces the learning guardrail.
+                Running this 7-lever cadence manually takes 2-3 hours per campaign per week. Kampaio&apos;s <a href="/blog/google-ads-ai-agent" style={{ color: '#764ba2', textDecoration: 'underline' }}>agents</a> for this playbook are in development and not live yet: Buzz will monitor bid strategy and tROAS targets, Sage will propose audience signals and search themes, Mira will flag underperforming assets, and Aegis will enforce the learning guardrail. What works today is the Kampaio dashboard: a Shopping and Performance Max product audit, checks such as ROAS below target, impressions lost to budget and paused asset groups, and target ROAS changes you make yourself with a preview and a rollback.
               </p>
               <p style={P}>
-                Optmyzr and Madgicx start at $499+/month for automated oversight at this level. Kampaio is free while B6 is in beta, with full agent autonomy at the Approval level and multi-account coverage at the Autonomous level.
+                Optmyzr and Madgicx start at $499+/month for automated oversight at this level. The Kampaio dashboard is free during early access, no card required.
               </p>
               <div style={{ background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)', borderRadius: '16px', padding: '40px', textAlign: 'center', marginTop: '40px', marginBottom: '40px' }}>
                 <h3 style={{ fontSize: '22px', fontWeight: '700', color: '#1e293b', marginBottom: '18px', lineHeight: '1.3' }}>
-                  See what each agent would flag in your PMax campaign
+                  See what the dashboard flags in your PMax campaigns
                 </h3>
                 <p style={{ fontSize: '17px', color: '#64748b', marginBottom: '28px', lineHeight: '1.6', fontWeight: '500', opacity: 0.9 }}>
-                  Connect your account and Kampaio's agents run the same 7-lever playbook, continuously, in the right order.
+                  Connect your Google Ads accounts and see the product audit and automatic campaign checks for every PMax campaign on one screen.
                 </p>
                 <a
-                  href="/chat"
+                  href="https://dashboard.kampaio.com/"
                   className="btn"
                   style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', color: 'white', border: 'none', padding: '16px 32px', borderRadius: '10px', fontSize: '16px', fontWeight: '600', cursor: 'pointer', transition: 'all 0.3s ease', display: 'inline-block', boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)', textDecoration: 'none' }}
                   onMouseEnter={(e) => {
@@ -497,10 +497,10 @@ export default function ArticleContent() {
                     (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
                   }}
                 >
-                  Audit My PMax Campaign
+                  Open the dashboard
                 </a>
                 <p style={{ fontSize: '15px', color: '#64748b', marginTop: '20px' }}>
-                  Pricing details: <a href="/pricing" style={LINK}>kampaio.com/pricing</a>
+                  Free during early access, no card required.
                 </p>
               </div>
             </section>

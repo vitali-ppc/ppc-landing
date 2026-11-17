@@ -523,7 +523,7 @@ export default function ArticleContent() {
 
               {/* VISUAL 6: MascotQuote - Buzz (bidding, concrete number) */}
               <MascotQuote mascot="buzz">
-                Fourteen days is the floor, not a suggestion. I&apos;ve watched accounts panic-kill AI Max on day 3 because non-brand spend ticked up, then miss conversions were still climbing by day 10. Pull the search terms report first. If new terms are genuinely irrelevant, cap match expansion and negative them out. If they&apos;re just unfamiliar, give it the full two weeks.
+                Fourteen days is the floor, not a suggestion. Killing AI Max on day 3 because non-brand spend ticked up means judging it before conversions have had time to come in. Pull the search terms report first. If new terms are genuinely irrelevant, cap match expansion and negative them out. If they&apos;re just unfamiliar, give it the full two weeks.
               </MascotQuote>
             </section>
 
@@ -588,18 +588,18 @@ export default function ArticleContent() {
                 Checking search terms, reviewing Text customization assets, watching AI Max&apos;s query expansion, catching brand cannibalization, doing all of it by hand every 14 days, is work most DTC owners simply don&apos;t have the hours for. You&apos;re running the store, not auditing search term reports on a Sunday.
               </p>
               <p style={para}>
-                That&apos;s what Kampaio is built for. Not a replacement for Google&apos;s AI, a layer that watches it: flags when AI Max or Performance Max spend on search terms that don&apos;t fit, catches off-brand Text customization assets before they run, alerts you when non-brand CPA jumps after an upgrade you never asked for. Google&apos;s AI runs the account. Kampaio watches it so you don&apos;t have to. Compare plans at <a href="/pricing" style={linkStyle}>Kampaio pricing</a>. See how this differs from a fully <a href="/blog/google-ads-ai-agent" style={internalLink}>autonomous third-party AI agent</a> managing the account end to end.
+                That&apos;s where the <a href="https://dashboard.kampaio.com/" style={linkStyle}>Kampaio dashboard</a> helps. Not a replacement for Google&apos;s AI, a place to watch it: a search terms report where you add negatives after a preview, a Shopping / Performance Max product audit, and automatic checks that flag CPA above target, ROAS below target, spend with no conversions and spend spikes, across all your accounts on one screen. It does not review Text customization assets. It flags; you decide, and any change you make from it has a preview first and a rollback after. See how this differs from a fully <a href="/blog/google-ads-ai-agent" style={internalLink}>autonomous third-party AI agent</a> managing the account end to end.
               </p>
 
               <div style={{ background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)', borderRadius: '16px', padding: '40px', textAlign: 'center', marginTop: '48px', marginBottom: '40px' }}>
                 <h3 style={{ fontSize: '22px', fontWeight: 700, color: '#1e293b', marginBottom: '18px', lineHeight: '1.3' }}>
-                  Let Google&apos;s AI run. Kampaio watches every move.
+                  Let Google&apos;s AI run. Keep your eyes on the numbers.
                 </h3>
                 <p style={{ fontSize: '17px', color: '#64748b', marginBottom: '28px', lineHeight: '1.6', fontWeight: 500, opacity: 0.9 }}>
-                  Free while B6 is in beta. Kampaio flags AI Max query drift, off-brand assets, and post-upgrade CPA jumps, with oversight on every action.
+                  Free during early access. See search terms, CPA and ROAS for every campaign on one screen, with automatic checks flagging what needs a look.
                 </p>
                 <a
-                  href="/chat"
+                  href="https://dashboard.kampaio.com/"
                   className="btn"
                   style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', color: 'white', border: 'none', padding: '16px 32px', borderRadius: '10px', fontSize: '16px', fontWeight: 600, cursor: 'pointer', transition: 'all 0.3s ease', display: 'inline-block', boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)', textDecoration: 'none' }}
                   onMouseEnter={(e) => {
@@ -611,7 +611,7 @@ export default function ArticleContent() {
                     (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
                   }}
                 >
-                  See how Kampaio works
+                  Open the dashboard
                 </a>
               </div>
 

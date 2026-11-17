@@ -147,7 +147,7 @@ export default function ArticleContent() {
     { id: 'mistakes', title: 'Mistakes that make a suspension worse', level: 1 },
     { id: 'prevent', title: 'How to prevent the next suspension', level: 1 },
     { id: 'faq', title: 'Frequently asked questions', level: 1 },
-    { id: 'cta', title: 'Get ahead of suspensions with B6', level: 1 }
+    { id: 'cta', title: 'Get ahead of suspensions', level: 1 }
   ];
 
   const scrollToSection = (id: string) => {
@@ -339,7 +339,7 @@ export default function ArticleContent() {
 
               {/* VISUAL 3: MascotQuote, Aegis compliance read */}
               <MascotQuote mascot="aegis">
-                When I flag a compliance issue in a B6 account, I surface the exact policy category and the specific asset (ad, landing page, or billing field) that triggered it. That is the diagnostic step Google skips. Do this manually if you are outside B6: Policy Manager first, payment profile second, Merchant Center third. Do not appeal until you know which of the three it is.
+                I am being built to name the exact policy category and the specific asset (ad, landing page, or billing field) behind a compliance issue. That is the diagnostic step Google skips. Until then, do it by hand: Policy Manager first, payment profile second, Merchant Center third. Do not appeal until you know which of the three it is.
               </MascotQuote>
             </section>
 
@@ -543,7 +543,7 @@ export default function ArticleContent() {
                 The difficulty with prevention is that most issues only surface after Google has already started enforcement. By the time the banner appears, the strike count may already be at two or three.
               </p>
               <p style={paragraphStyle}>
-                This is where continuous monitoring changes the math. B6&apos;s Aegis <a href="/blog/google-ads-ai-agent" style={{ color: '#764ba2', textDecoration: 'underline' }}>agent</a> watches billing health, policy compliance signals, and account anomalies daily. It works similarly to <a href="/blog/google-ads-anomaly-detection" style={linkStyle}>Google Ads anomaly detection</a> for spend spikes and conversion drops, but applied specifically to compliance and billing risk. When a payment method approaches expiry or a landing page change introduces a flagged claim, Aegis surfaces the flag before the strike system starts, not after the suspension banner appears. <a href="/b6#aegis" style={linkStyle}>See how Aegis works in B6</a> and <a href="/b6" style={linkStyle}>how B6 monitors accounts live</a>.
+                This is where continuous monitoring changes the math. Aegis, the risk <a href="/blog/google-ads-ai-agent" style={{ color: '#764ba2', textDecoration: 'underline' }}>agent</a> Kampaio is building (in development, not running on live accounts), is designed to watch billing health and policy compliance signals the way <a href="/blog/google-ads-anomaly-detection" style={linkStyle}>Google Ads anomaly detection</a> watches spend spikes and conversion drops, and to raise a flag before the strike system starts. What exists today is the <a href="https://dashboard.kampaio.com/" style={linkStyle}>Kampaio dashboard</a>: it does not read billing or policy status, but its automatic checks flag a campaign that has stopped, ads that are all paused, and conversions that have stopped, across all your accounts on one screen.
               </p>
             </section>
 
@@ -588,28 +588,25 @@ export default function ArticleContent() {
             </section>
 
             <section id="cta">
-              <h2 style={h2Style}>Get ahead of suspensions with B6</h2>
+              <h2 style={h2Style}>Get ahead of suspensions</h2>
               <p style={paragraphStyle}>
                 A suspension hits hardest when there is no early warning. The billing flag that triggers suspicious payment activity, the landing page claim that crosses a policy line, the Merchant Center issue that cascades overnight, these are all detectable before Google acts.
               </p>
               <p style={paragraphStyle}>
-                B6 is an autonomous PPC cabinet. Aegis, B6&apos;s compliance and protection agent, monitors billing health, policy signals, and account anomalies every day. When something drifts toward risk, Aegis flags it in the dashboard before the strike system starts. Not a monthly audit. Not a weekly report. Daily, automated, and specific.
+                Aegis, Kampaio&apos;s compliance and protection agent, is in development: it will watch billing health and policy signals and flag risk before the strike system starts. Today, the Kampaio dashboard puts all your Google Ads accounts on one screen and runs 14 automatic campaign checks, including campaign stopped, all ads paused, and conversions stopped.
               </p>
               <p style={paragraphStyle}>
-                B6 is free while in beta, versus competitors from $499+. That difference buys you the monitoring layer that catches suspension risk before it costs you revenue.
+                The dashboard is free during early access, versus competitors from $499+.
               </p>
 
               <div style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', borderRadius: '16px', padding: '32px', color: 'white', textAlign: 'center', marginTop: '40px' }}>
-                <h3 style={{ fontSize: '24px', fontWeight: 700, marginBottom: '12px' }}>Catch suspension risk before the banner appears</h3>
+                <h3 style={{ fontSize: '24px', fontWeight: 700, marginBottom: '12px' }}>See every account on one screen</h3>
                 <p style={{ fontSize: '16px', opacity: 0.95, marginBottom: '24px', lineHeight: 1.6 }}>
-                  Aegis monitors billing health, policy signals, and account anomalies daily, flagging risk before the strike system starts. Free while B6 is in beta.
+                  See all your Google Ads accounts on one screen, with stopped campaigns, paused ads and stopped conversions flagged by automatic checks. Free during early access.
                 </p>
                 <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
-                  <a href="/pricing" style={{ display: 'inline-block', background: 'white', color: '#764ba2', padding: '14px 28px', borderRadius: '8px', fontWeight: 700, textDecoration: 'none', fontSize: '16px' }}>
-                    See B6 pricing
-                  </a>
-                  <a href="/b6#aegis" style={{ display: 'inline-block', background: 'rgba(255,255,255,0.15)', color: 'white', padding: '14px 28px', borderRadius: '8px', fontWeight: 700, textDecoration: 'none', fontSize: '16px', border: '1px solid rgba(255,255,255,0.5)' }}>
-                    See how Aegis monitors your account
+                  <a href="https://dashboard.kampaio.com/" style={{ display: 'inline-block', background: 'white', color: '#764ba2', padding: '14px 28px', borderRadius: '8px', fontWeight: 700, textDecoration: 'none', fontSize: '16px' }}>
+                    Open the dashboard
                   </a>
                 </div>
               </div>
@@ -621,7 +618,7 @@ export default function ArticleContent() {
                 Results may vary. This article is for informational purposes and does not constitute professional legal or advertising policy advice. Consult a certified Google Ads professional or legal counsel for account-specific situations.
               </p>
               <p style={{ fontSize: '14px', lineHeight: 1.7, color: '#64748b', marginBottom: 0 }}>
-                <strong>Author: Marcus, B6 PPC Analyst.</strong> Specializes in Google Ads account management, Smart Bidding strategy, and policy compliance for SMB e-commerce advertisers.
+                <strong>Author: Marcus, Kampaio PPC Analyst.</strong> Specializes in Google Ads account management, Smart Bidding strategy, and policy compliance for SMB e-commerce advertisers.
               </p>
             </div>
 
@@ -635,8 +632,8 @@ export default function ArticleContent() {
                 <li style={{ marginBottom: '8px' }}><a href="https://ppchero.com/how-to-navigate-your-google-ads-suspension/" target="_blank" rel="noopener noreferrer" style={linkStyle}>How to Navigate Your Google Ads Suspension</a>. John Horn (StubGroup CEO), PPC Hero, May 2024</li>
                 <li style={{ marginBottom: '8px' }}><a href="https://www.reddit.com/r/PPC/comments/146kcrp/google_ads_account_suspended/" target="_blank" rel="noopener noreferrer" style={linkStyle}>Google Ads account Suspended</a>. u/Stunning-Cat-5471, u/Omblae, Reddit r/PPC, June 2023</li>
                 <li style={{ marginBottom: '8px' }}><a href="https://www.reddit.com/r/PPC/comments/196rpha/gmc_hacked_google_ads_suspended_as_a_result_for/" target="_blank" rel="noopener noreferrer" style={linkStyle}>GMC Hacked, Google Ads suspended</a>. Reddit r/PPC, January 2024</li>
-                <li style={{ marginBottom: '8px' }}><a href="https://x.com/Robin_ecomm/status/2068229109801508924" target="_blank" rel="noopener noreferrer" style={linkStyle}>@Robin_ecomm on X</a>. June 2026 (B6 own-data corpus)</li>
-                <li style={{ marginBottom: 0 }}>B6 own-data block: analysis of 104 public discussions for &quot;why is my google ads account suspended&quot; (Reddit 71, Hacker News 25, Stack Exchange 4, X live 4). June 22, 2026</li>
+                <li style={{ marginBottom: '8px' }}><a href="https://x.com/Robin_ecomm/status/2068229109801508924" target="_blank" rel="noopener noreferrer" style={linkStyle}>@Robin_ecomm on X</a>. June 2026 (Kampaio own-data corpus)</li>
+                <li style={{ marginBottom: 0 }}>Kampaio own-data block: analysis of 104 public discussions for &quot;why is my google ads account suspended&quot; (Reddit 71, Hacker News 25, Stack Exchange 4, X live 4). June 22, 2026</li>
               </ul>
             </div>
 

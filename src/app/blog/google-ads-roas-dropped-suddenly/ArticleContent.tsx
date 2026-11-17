@@ -140,7 +140,7 @@ export default function ArticleContent() {
     { id: 'external-traffic', title: '8. External Traffic and CVR Trends', level: 2 },
     { id: 'drop-is-real', title: 'When the ROAS Drop Is Real', level: 1 },
     { id: 'faq', title: 'Frequently Asked Questions', level: 1 },
-    { id: 'b6-agents', title: 'Stop the ROAS Bleed With B6 Agents', level: 1 }
+    { id: 'b6-agents', title: 'Stop the ROAS Bleed With Kampaio', level: 1 }
   ];
 
   const scrollToSection = (id: string) => {
@@ -307,7 +307,7 @@ export default function ArticleContent() {
                 Usual culprits: a competitor launching a Black Friday push, a category leader returning from a paused budget, or a venture-funded entrant arriving with a war chest. Two responses. Lower Target ROAS by 10 to 15 percent for 14 days to defend Impression Share - or accept lower volume at the original ROAS. Don&apos;t do both.
               </p>
               <MascotQuote mascot="buzz">
-                I rerun Auction Insights every Monday at 6am. If a new competitor&apos;s Overlap Rate crossed 25 percent in the last 7 days, I&apos;ll suggest a 10 percent Target ROAS cut for 14 days to defend Impression Share. If it works, we hold. If not, we accept the new equilibrium.
+                I am being built to rerun Auction Insights every week and, when a new competitor&apos;s Overlap Rate jumps, propose a temporary Target ROAS cut to defend Impression Share. I am in development, so for now that check is yours. If the cut works, hold it. If not, accept the new equilibrium.
               </MascotQuote>
 
               {/* Step 3 */}
@@ -370,7 +370,7 @@ export default function ArticleContent() {
                 If your YoY ROAS is dramatically worse than the same week last year, something genuinely changed. Work backward through this checklist with that lens.
               </p>
               <MascotQuote mascot="echo">
-                My Monday digest pulls last year&apos;s same-week ROAS into the chart automatically. If today&apos;s number is within 10 percent of last year&apos;s same week, I flag the drop as seasonal - and the dashboard doesn&apos;t go red. Less panic, more context, fewer 11pm budget changes.
+                I am being built to put last year&apos;s same-week ROAS next to this week&apos;s in a Monday digest. Until then, pull that comparison yourself before you react: if today&apos;s number sits close to last year&apos;s same week, the drop is probably seasonal. Less panic, more context, fewer 11pm budget changes.
               </MascotQuote>
 
               {/* Step 8 */}
@@ -385,7 +385,7 @@ export default function ArticleContent() {
                 2026 specific: payment providers fail intermittently and silently. Open your gateway dashboard and check failure rates over the last seven days. A 2 percent failure rate that crept to 8 percent on a Wednesday will tank ROAS, and no Google Ads change fixes it.
               </p>
               <MascotQuote mascot="aegis">
-                Every Monday I cross-check Google Ads spend against Shopify revenue and Stripe charges for the same window. If the variance crossed 18 percent over 7 days, I escalate immediately. Two scenarios show up most often: tracking broke, or the payment gateway is failing on iOS Safari. Both need a human decision in the next 24 hours, not next week.
+                I am being built to cross-check Google Ads conversions against your store and payment revenue for the same window, and escalate when they drift apart. I am in development, so run that cross-check yourself every week. A gap usually means tracking broke or the payment gateway is failing. Both need a human decision in the next 24 hours, not next week.
               </MascotQuote>
             </section>
 
@@ -429,14 +429,14 @@ export default function ArticleContent() {
               </p>
             </section>
 
-            {/* B6 CTA Section */}
+            {/* Kampaio CTA Section */}
             <section id="b6-agents">
-              <h2 style={h2Style}>Stop the ROAS Bleed With B6 Agents</h2>
+              <h2 style={h2Style}>Stop the ROAS Bleed With Kampaio</h2>
               <p style={pStyle}>
-                Connect your <a href="/blog/google-ads-optimization" style={linkStyle}>Google Ads account</a> and the three <a href="/blog/google-ads-ai-agent" style={linkStyle}>agents</a> most relevant to ROAS recovery go to work. <a href="/b6#aegis" style={linkStyle}>Aegis runs a Monday risk review</a>: revenue cross-check against Shopify and Stripe, Auction Insights delta, spend curve versus conversion rate, and a 2-line escalation if the variance crosses 18 percent. <a href="/b6#buzz" style={linkStyle}>Buzz recalibrates Target ROAS</a> using a trailing 14-day baseline - not an aspirational target - so the algorithm gets fed enough signal to win the high-intent auctions. Echo sends a weekly digest with last year&apos;s same-week ROAS for context, so a seasonal dip stops looking like a crisis.
+                Connect your <a href="/blog/google-ads-optimization" style={linkStyle}>Google Ads accounts</a> to the Kampaio dashboard and you see spend, ROAS, CPA and budget per campaign, with a daily chart and a device, geo and network breakdown. Its automatic checks flag the campaigns where ROAS fell below target, conversions stopped, spend spiked or impressions were lost to budget or rank. You change the target ROAS yourself, with a preview first and a rollback after, and the change log keeps the numbers from before each edit.
               </p>
               <p style={pStyle}>
-                <a href="/chat" style={linkStyle}>Start a B6 free trial</a>. No commitment, no card on file. (See <a href="/pricing" style={linkStyle}>pricing tiers</a> - Co-pilot, Approval, and Autonomous modes.)
+                Our <a href="/blog/google-ads-ai-agent" style={linkStyle}>agents</a> are in development and not live yet: Aegis, our risk agent, will cross-check revenue; Buzz, our bidding agent, will propose Target ROAS changes; Echo, our reporting agent, will send a weekly digest. <a href="https://dashboard.kampaio.com/" style={linkStyle}>Open the dashboard</a>: free during early access, no card on file.
               </p>
 
               <div style={{
@@ -464,10 +464,10 @@ export default function ArticleContent() {
                   fontWeight: '500',
                   opacity: 0.9
                 }}>
-                  Let Aegis, Buzz, and Echo cross-check tracking, recalibrate bids, and report week-over-week deltas. You stay in the loop, not in the weeds.
+                  See which campaigns lost ROAS, stopped converting or spiked in spend, across every account on one screen. Free during early access.
                 </p>
                 <a
-                  href="/chat"
+                  href="https://dashboard.kampaio.com/"
                   className="btn"
                   style={{
                     background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
@@ -492,7 +492,7 @@ export default function ArticleContent() {
                     (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
                   }}
                 >
-                  Start Free Trial
+                  Open the dashboard
                 </a>
               </div>
             </section>

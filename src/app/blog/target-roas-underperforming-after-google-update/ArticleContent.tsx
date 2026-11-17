@@ -293,7 +293,7 @@ export default function ArticleContent() {
                 Three checks, run in order, tell you whether this is the Aug 17 change or something else entirely.
               </p>
               <p style={pStyle}>
-                Buzz, kampaio&apos;s bid-strategy agent, runs this sequence on every account it watches; a human running it by hand gets the same answer, no agent required, just paper and patience.
+                Buzz, Kampaio&apos;s bid-strategy agent (in development), is being built to run this sequence; a human running it by hand gets the same answer, no agent required, just paper and patience.
               </p>
               <p style={pStyle}>
                 <strong>Tell 1: budget-limited and beating target before August 17.</strong> The pre-change gap size roughly predicts the size of the hit now, per Google&apos;s $10/$5 example above.
@@ -309,7 +309,7 @@ export default function ArticleContent() {
                 { name: 'Target ROAS', bestFor: 'more volatile this week', traits: [{ label: 'Delivered more clicks at lower CPC', has: true }, { label: 'Value per click fell, ROAS down 32% overall, Aug 17-23 vs. Jul 27-Aug 16', has: true }], highlight: true },
               ]} />
               <MascotQuote mascot="buzz">
-                Budget-limited campaigns took close to 80% of the post-change spend in the first week, and they paid more per click for fewer clicks. If that&apos;s your account, reset the target to what you were actually running before Aug 17, not the number you wished you were hitting.
+                In Amsive&apos;s first-week data, budget-limited campaigns took close to 80% of the post-change spend, and they paid more per click for fewer clicks. If that&apos;s your account, reset the target to what you were actually running before Aug 17, not the number you wished you were hitting.
               </MascotQuote>
               <p style={pStyle}>
                 All three true: the Aug 17 change is likely your answer. Any one false: check the next section.
@@ -466,7 +466,7 @@ export default function ArticleContent() {
             <section id="cta">
               <h2 style={h2Style}>Stop Guessing Which Cause It Is</h2>
               <p style={pStyle}>
-                Buzz checks budget-limited status, the target-vs-actual gap, and CPC-versus-value-per-click movement automatically, then flags whether your account is the Aug 17 bucket or something else, before you spend a week guessing. That&apos;s the whole diagnostic: run once, in order, before you touch a target field. See more <a href="/blog/google-ads-optimization" style={linkStyle}>google ads optimization guides</a>, or <a href="/chat" style={linkStyle}>start with B6</a>.
+                The <a href="https://dashboard.kampaio.com/" style={linkStyle}>Kampaio dashboard</a> covers the first two tells today: its automatic checks flag impressions lost to budget, ROAS below target and CPA above target on every campaign, across all your accounts on one screen. The CPC-versus-value-per-click check is still yours to run by hand; Buzz, our bidding agent, is being built for it and is in development. That&apos;s the whole diagnostic: run once, in order, before you touch a target field. See more <a href="/blog/google-ads-optimization" style={linkStyle}>google ads optimization guides</a>, or <a href="https://dashboard.kampaio.com/" style={linkStyle}>open the dashboard</a>.
               </p>
 
               <div style={{
@@ -481,10 +481,10 @@ export default function ArticleContent() {
                   Not sure whether it was the update or your account?
                 </h3>
                 <p style={{ fontSize: '17px', color: '#64748b', marginBottom: '28px', lineHeight: '1.6', fontWeight: '500', opacity: 0.9 }}>
-                  Connect Google Ads, and Buzz runs the three tells on every Target CPA and Target ROAS campaign you have, then tells you which bucket each one is in.
+                  Connect Google Ads to the Kampaio dashboard and see which Target CPA and Target ROAS campaigns are losing impressions to budget or missing their target, on one screen. Free during early access.
                 </p>
                 <a
-                  href="/chat"
+                  href="https://dashboard.kampaio.com/"
                   className="btn"
                   style={{
                     background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
@@ -501,7 +501,7 @@ export default function ArticleContent() {
                     textDecoration: 'none',
                   }}
                 >
-                  Run the Three Tells
+                  Open the dashboard
                 </a>
               </div>
             </section>

@@ -129,7 +129,7 @@ export default function ArticleContent() {
     { id: 'affordability', title: 'Match the Tool to Your Ad Spend', level: 1 },
     { id: 'contenders', title: 'The Contenders, Mapped by Job to Be Done', level: 1 },
     { id: 'practitioners', title: 'What Practitioners Actually Say', level: 1 },
-    { id: 'kampaio-fits', title: 'Where kampaio Fits (the Agentic Option)', level: 1 },
+    { id: 'kampaio-fits', title: 'Where Kampaio Fits Today', level: 1 },
     { id: 'faq', title: 'Frequently Asked Questions', level: 1 },
     { id: 'score-shortlist', title: 'Ready to Score Your Shortlist?', level: 1 },
   ];
@@ -229,7 +229,7 @@ export default function ArticleContent() {
               {/* VISUAL 1 (structural): TL;DR summary */}
               <KeyTakeaways
                 items={[
-                  'Four categories: native Google tools (free), rules-and-automation layers (Optmyzr, Adalysis, Opteo), all-in-one suites (Skai, Madgicx, WordStream), and AI-autonomous managers (Ryze, Claude + MCP, kampaio).',
+                  'Four categories: native Google tools (free), rules-and-automation layers (Optmyzr, Adalysis, Opteo), all-in-one suites (Skai, Madgicx, WordStream), and AI-autonomous managers (Ryze, Claude + MCP; Kampaio agents are in development).',
                   'Rule of thumb: a tool costing more than roughly 5-10% of managed ad spend rarely pays back under $30K/month.',
                   'No paid head-to-head benchmark here. Instead: a scoring method, an affordability lens, and what 107 public practitioner discussions actually surface.',
                 ]}
@@ -271,7 +271,7 @@ export default function ArticleContent() {
                   { title: 'Native Google tools (free)', items: ['Google Ads Editor', 'Scripts', 'Recommendations tab', 'Mobile app'] },
                   { title: 'Rules & automation layers', items: ['Optmyzr', 'Adalysis', 'Opteo'] },
                   { title: 'All-in-one suites', items: ['Skai', 'Madgicx', 'Adpulse', 'WordStream'] },
-                  { title: 'AI-autonomous managers', items: ['Ryze', 'Claude + MCP', 'kampaio'] },
+                  { title: 'AI-autonomous managers', items: ['Ryze', 'Claude + MCP', 'Kampaio (agents in development)'] },
                 ]}
                 caption="The four categories of Google Ads management software"
               />
@@ -293,7 +293,7 @@ export default function ArticleContent() {
 
               <h3 style={h3Style}>AI-Autonomous / Agentic Managers (the 2026 shift)</h3>
               <p style={paragraphStyle}>
-                An AI-autonomous, or <a href="/blog/google-ads-ai-agent" style={linkStyle}>&quot;agentic,&quot; manager</a> acts on your account directly, adjusting bids, budgets, or creatives, rather than only surfacing suggestions. This is the newest category as of 2026, one older 2025 listicles skip entirely. Named examples: Ryze, which markets itself as fully autonomous without an approval wait (a vendor&apos;s own claim, not independently verified); Claude plus MCP, a DIY option for technical teams; and kampaio, which acts and logs every action for review. Control model: &quot;act, with visibility and rollback&quot;. Tradeoff: newer category, so trust in what changed becomes the deciding factor, not feature count. For the mechanics behind this shift, see our <a href="/blog/ai-powered-ppc-optimization-complete-guide" style={linkStyle}>complete guide to AI-powered PPC optimization</a>.
+                An AI-autonomous, or <a href="/blog/google-ads-ai-agent" style={linkStyle}>&quot;agentic,&quot; manager</a> acts on your account directly, adjusting bids, budgets, or creatives, rather than only surfacing suggestions. This is the newest category as of 2026, one older 2025 listicles skip entirely. Named examples: Ryze, which markets itself as fully autonomous without an approval wait (a vendor&apos;s own claim, not independently verified); Claude plus MCP, a DIY option for technical teams; and Kampaio, whose agents are in development and do not run on live accounts yet. Control model of the category: &quot;act, with visibility and rollback&quot;. Tradeoff: newer category, so trust in what changed becomes the deciding factor, not feature count. For the mechanics behind this shift, see our <a href="/blog/ai-powered-ppc-optimization-complete-guide" style={linkStyle}>complete guide to AI-powered PPC optimization</a>.
               </p>
             </section>
 
@@ -377,11 +377,11 @@ export default function ArticleContent() {
                   ['WordStream (LocaliQ)', 'All-in-one / managed', 'Done-for-you SMB service', 'Managed, hands-off', 'Quote-only'],
                   ['Ryze', 'Agentic', 'Full autonomy, demo-gated', "Act (vendor's own claim)", 'Quote-only, no public pricing'],
                   [
-                    <><a href="/b6" style={linkStyle}>kampaio</a></>,
-                    'Agentic',
-                    'AI acts, visible reviewable log',
-                    'Act, with visibility and rollback',
-                    'Free while in beta',
+                    <><a href="https://dashboard.kampaio.com/" style={linkStyle}>Kampaio dashboard</a></>,
+                    'Dashboard (agents in development)',
+                    'All accounts on one screen, 14 automatic campaign checks',
+                    'You make each change, with preview and rollback',
+                    'Free during early access',
                   ],
                 ]}
               />
@@ -422,9 +422,9 @@ export default function ArticleContent() {
 
             {/* Where kampaio fits */}
             <section id="kampaio-fits">
-              <h2 style={h2Style}>Where kampaio Fits (the Agentic Option)</h2>
+              <h2 style={h2Style}>Where Kampaio Fits Today</h2>
               <p style={paragraphStyle}>
-                <a href="/b6" style={linkStyle}>kampaio</a> is an AI-autonomous manager: agents run bids, budgets, creatives, and <a href="/blog/google-ads-strategy" style={{ color: '#764ba2', textDecoration: 'underline' }}>strategy</a>, and show every action live rather than surfacing a suggestion queue. It sits in the agentic category above, alongside Ryze and DIY Claude-plus-MCP, not above them.
+                Today Kampaio is the <a href="https://dashboard.kampaio.com/" style={linkStyle}>Kampaio dashboard</a>: every Google Ads account you manage on one screen, spend, ROAS and CPA per campaign, and 14 automatic campaign checks such as spend with no conversions, impressions lost to budget or rank, and ROAS below target. It does not act on the account by itself. Its agents for bids, budgets, creative, and <a href="/blog/google-ads-strategy" style={{ color: '#764ba2', textDecoration: 'underline' }}>strategy</a> are in development and do not run on live accounts, so it does not belong in the agentic category yet.
               </p>
 
               {/* VISUAL 8 (bold-viz): suggest vs act control model */}
@@ -453,10 +453,10 @@ export default function ArticleContent() {
               />
 
               <p style={paragraphStyle}>
-                Mapped to the scorecard: control model is &quot;act, with visibility and rollback,&quot; the direct answer to the transparency criterion. It is free while in beta, which sits below Optmyzr&apos;s own $209/mo starting price and nowhere near Skai&apos;s six-figure annual tier.
+                Mapped to the scorecard today: control model is &quot;you make each change, with a preview first and a rollback after,&quot; and every edit lands in a change log with the numbers before it, the direct answer to the transparency criterion. It is free during early access, which sits below Optmyzr&apos;s own $209/mo starting price and nowhere near Skai&apos;s six-figure annual tier.
               </p>
               <p style={paragraphStyle}>
-                Said plainly: kampaio suits lean teams wanting automation to act while keeping a visible log. Want a suggest-only tool where you approve every change? Optmyzr fits better.
+                Said plainly: the Kampaio dashboard suits lean teams who want every account and its problems on one screen and prefer to make each change themselves, with a rollback. Want rule-based automation that runs changes on a schedule today? Optmyzr fits better.
               </p>
             </section>
 
@@ -505,18 +505,18 @@ export default function ArticleContent() {
             <section id="score-shortlist">
               <h2 style={h2Style}>Ready to Score Your Shortlist?</h2>
               <p style={paragraphStyle}>
-                The right Google Ads management software fits your ad-spend tier and tolerance for automation, scored on the six criteria above, not the one ranked #1 in a vendor&apos;s own listicle. If the agentic category fits, kampaio runs the work and shows every step.
+                The right Google Ads management software fits your ad-spend tier and tolerance for automation, scored on the six criteria above, not the one ranked #1 in a vendor&apos;s own listicle. If you want every account and what is going wrong in it on one screen first, the Kampaio dashboard does that today; its agents are in development.
               </p>
 
               <div style={{ background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)', borderRadius: '16px', padding: '40px', textAlign: 'center', marginTop: '40px', marginBottom: '40px' }}>
                 <h3 style={{ fontSize: '24px', fontWeight: 800, color: '#1e293b', marginBottom: '16px', marginTop: 0, lineHeight: 1.3 }}>
-                  Score the agentic option on your real account
+                  See your accounts on one screen
                 </h3>
                 <p style={{ fontSize: '17px', color: '#475569', marginBottom: '28px', lineHeight: 1.6, fontWeight: 500, maxWidth: '620px', marginLeft: 'auto', marginRight: 'auto' }}>
-                  Connect your Google Ads account to kampaio and watch the agents act while you review every step. <a href="/pricing" style={linkStyle}>Free while in beta</a>, no long-term contract.
+                  Connect your Google Ads account to the Kampaio dashboard: every account on one screen, 14 automatic campaign checks, and a preview and rollback for every change you make. Free during early access, no card.
                 </p>
                 <a
-                  href="/chat"
+                  href="https://dashboard.kampaio.com/"
                   style={{
                     background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                     color: 'white',
@@ -539,7 +539,7 @@ export default function ArticleContent() {
                     (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
                   }}
                 >
-                  Connect your account free
+                  Open the dashboard
                 </a>
               </div>
 

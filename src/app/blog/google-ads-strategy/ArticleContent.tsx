@@ -41,7 +41,7 @@ export default function ArticleContent() {
       "@type": "WebPage",
       "@id": "https://kampaio.com/blog/google-ads-strategy"
     },
-    "keywords": "google ads strategy, strategy vs tactics, account structure, budget allocation, smart bidding, target roas, performance max, data-driven attribution, kpi alignment, autonomous ppc, b6, vox, maximus",
+    "keywords": "google ads strategy, strategy vs tactics, account structure, budget allocation, smart bidding, target roas, performance max, data-driven attribution, kpi alignment, kampaio dashboard",
     "wordCount": 2700,
     "articleSection": "Strategy",
     "inLanguage": "en"
@@ -266,7 +266,7 @@ export default function ArticleContent() {
               </p>
 
               <MascotQuote mascot="vox">
-                On a $50K per month account I&apos;ll usually hold a 60 / 25 / 15 split: 60% to proven high-intent campaigns, 25% to deliberate demand expansion, 15% ring-fenced as test budget. The moment the proven campaigns hit diminishing returns (the last 10% of spend earning under half the ROAS of the first 10%), I move money to expansion instead of forcing it through a saturated auction.
+                The starting split I am being built to work from on a large account: 60 / 25 / 15. 60% to proven high-intent campaigns, 25% to deliberate demand expansion, 15% ring-fenced as test budget. The moment the proven campaigns hit diminishing returns (the last 10% of spend earning under half the ROAS of the first 10%), money moves to expansion instead of being forced through a saturated auction. I am in development, so treat this as a heuristic, not a result.
               </MascotQuote>
             </section>
 
@@ -325,7 +325,7 @@ export default function ArticleContent() {
                 Strategy includes the operating model, because a flawless plan with no one to run it is a document, not a strategy. The first decision here is in-house versus agency versus hybrid. Running Google Ads without an agency is entirely viable once the operational layer is genuinely covered, and it stops being viable the moment that coverage is wishful thinking. The honest version of that trade-off lives in <a href="/blog/google-ads-without-agency" style={linkStyle}>when managing Google Ads without an agency works and when it does not</a>, and the day-to-day operating cadence that keeps an in-house program healthy is laid out in <a href="/blog/ppc-management" style={linkStyle}>how in-house teams actually run paid search</a>.
               </p>
               <p style={paragraphStyle}>
-                The second decision is the tool stack, and tooling is a strategic cost most operators under-count. Stack a bid optimizer, a reporting tool, a script library, and a creative tool together and you are paying five contracts and managing five logins. When point tools run roughly $499 a month each (Optmyzr and Madgicx both sit around there), tool spend quietly climbs toward a tenth of a small account&apos;s budget, which does not pencil out. Consolidation is a strategy decision: prefer a stack that does the operational work end to end over a drawer of point tools that each recommend and leave you to execute. Kampaio sits deliberately at the lower end of that math, on a flat subscription with three autonomy levels, because the goal is to run the operational layer, not to add another login to it.
+                The second decision is the tool stack, and tooling is a strategic cost most operators under-count. Stack a bid optimizer, a reporting tool, a script library, and a creative tool together and you are paying five contracts and managing five logins. When point tools run roughly $499 a month each (Optmyzr and Madgicx both sit around there), tool spend quietly climbs toward a tenth of a small account&apos;s budget, which does not pencil out. Consolidation is a strategy decision: prefer a stack that does the operational work end to end over a drawer of point tools that each recommend and leave you to execute. The Kampaio dashboard sits at the lower end of that math: free during early access, with every Google Ads account you manage on one screen, so it replaces logins rather than adding one.
               </p>
             </section>
 
@@ -357,7 +357,7 @@ export default function ArticleContent() {
                 There is a modern strategic decision that the tip lists never reach: where the strategist&apos;s time should go. The six layers above are where judgment compounds. The operational layer beneath them (bid checks, anomaly response, pacing adjustments, creative rotation) is necessary, relentless, and largely mechanical. When that operational work starts consuming more hours than the strategy work, the strategist has quietly become a button-presser, and the account loses the one thing only a human can supply: judgment about which layer to change next.
               </p>
               <p style={paragraphStyle}>
-                That is the point to automate. A bounded autonomous <a href="/blog/google-ads-ai-agent" style={{ color: '#764ba2', textDecoration: 'underline' }}>agent</a> can own the operational layer (watching for anomalies, reallocating budget across campaigns, rotating creative) while the operator keeps the strategy stack. This is the role Kampaio is built for: Vox handles cross-campaign budget reallocation, Maximus governs how much the system is allowed to do on its own through explicit autonomy levels, and the operator stays on the decisions that actually need a person. You can see how the autonomy tiers map to real actions on the <a href="/b6" style={linkStyle}>product page</a>, with the trade-offs and pricing laid out on the <a href="/pricing" style={linkStyle}>pricing page</a>.
+                That is the point to automate. A bounded autonomous <a href="/blog/google-ads-ai-agent" style={{ color: '#764ba2', textDecoration: 'underline' }}>agent</a> can own the operational layer (watching for anomalies, reallocating budget across campaigns, rotating creative) while the operator keeps the strategy stack. That is the role Kampaio is building toward: Vox, our strategy agent, will propose cross-campaign budget moves, and Maximus, our orchestrator, will keep the system inside the limits you set. Both are in development and do not run on live accounts. What works today is the <a href="https://dashboard.kampaio.com/" style={linkStyle}>Kampaio dashboard</a>: automatic checks flag spend spikes, conversions that stopped and impressions lost to budget, and you make each budget or target change yourself, with a preview first and a rollback after.
               </p>
             </section>
 
@@ -395,16 +395,16 @@ export default function ArticleContent() {
                 Treat the six-layer stack as a map. Objective, structure, budget, bidding, measurement, organization, in that order, top down, because each layer constrains the ones below it. When an account underperforms, walk the stack and find the highest layer that is wrong before you touch a single tactic.
               </p>
               <p style={paragraphStyle}>
-                From here the cluster goes deeper on each piece: <a href="/blog/how-to-scale-google-ads-without-losing-roas" style={linkStyle}>scaling without losing ROAS</a>, <a href="/blog/why-google-ads-strategy-fails-at-scale" style={linkStyle}>the failure patterns that show up at scale</a>, <a href="/blog/what-ceos-want-google-ads-reports" style={linkStyle}>reporting that survives the CEO conversation</a>, and <a href="/blog/google-ads-without-agency" style={linkStyle}>running it all without an agency</a>. Own the strategy layer yourself. If the operational layer is eating the hours that should go to strategy, that is exactly the part to hand off.
+                From here the cluster goes deeper on each piece: <a href="/blog/how-to-scale-google-ads-without-losing-roas" style={linkStyle}>scaling without losing ROAS</a>, <a href="/blog/why-google-ads-strategy-fails-at-scale" style={linkStyle}>the failure patterns that show up at scale</a>, <a href="/blog/what-ceos-want-google-ads-reports" style={linkStyle}>reporting that survives the CEO conversation</a>, and <a href="/blog/google-ads-without-agency" style={linkStyle}>running it all without an agency</a>. Own the strategy layer yourself. If the operational layer is eating the hours that should go to strategy, that is exactly the part to shrink.
               </p>
 
               <div style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', borderRadius: '16px', padding: '32px', color: 'white', textAlign: 'center', marginTop: '40px' }}>
-                <h3 style={{ fontSize: '24px', fontWeight: 700, marginBottom: '12px' }}>Own the strategy. Automate the operational layer.</h3>
+                <h3 style={{ fontSize: '24px', fontWeight: 700, marginBottom: '12px' }}>Own the strategy. Watch the operational layer on one screen.</h3>
                 <p style={{ fontSize: '16px', opacity: 0.95, marginBottom: '24px', lineHeight: 1.6 }}>
-                  Kampaio runs the operational layer of your accounts (anomaly monitoring, cross-campaign budget reallocation, creative rotation) so your time goes to the six decisions that move the account. Free while B6 is in beta.
+                  The Kampaio dashboard puts all your Google Ads accounts on one screen and flags what needs attention (spend spikes, conversions that stopped, ROAS below target), so your time goes to the six decisions that move the account. Free during early access.
                 </p>
-                <a href="/chat" style={{ display: 'inline-block', background: 'white', color: '#764ba2', padding: '14px 28px', borderRadius: '8px', fontWeight: 700, textDecoration: 'none', fontSize: '16px' }}>
-                  Start a free conversation
+                <a href="https://dashboard.kampaio.com/" style={{ display: 'inline-block', background: 'white', color: '#764ba2', padding: '14px 28px', borderRadius: '8px', fontWeight: 700, textDecoration: 'none', fontSize: '16px' }}>
+                  Open the dashboard
                 </a>
               </div>
             </section>

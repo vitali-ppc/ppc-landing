@@ -59,7 +59,7 @@ export default function ArticleContent() {
         name: 'What is the best Google Ads optimization software?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'There is no single best; it depends on how much work you want the tool to do. Google Recommendations is the best free advisor, Optmyzr and TheOptimizer lead for rule-based control, and AI-native operators like Kampaio lead when you want changes made for you.',
+          text: 'There is no single best; it depends on how much work you want the tool to do. Google Recommendations is the best free advisor, Optmyzr and TheOptimizer lead for rule-based control, and AI-native operators lead when you want changes made for you. Kampaio is building agents for that tier; today it is a free dashboard with 14 automatic campaign checks.',
         },
       },
       {
@@ -91,7 +91,7 @@ export default function ArticleContent() {
         name: 'How much does Google Ads optimization software cost?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'It varies widely. Google Recommendations is free, most third-party tools (Optmyzr, TheOptimizer) use spend-based pricing they do not publish, and some AI-native tools are free during beta (Kampaio is free while in beta, no card required, with paid plans coming later). Model any spend-based plan at your real ad spend before buying.',
+          text: 'It varies widely. Google Recommendations is free, most third-party tools (Optmyzr, TheOptimizer) use spend-based pricing they do not publish, and some newer tools are free during early access (Kampaio is free during early access, no card required, with paid plans coming when billing opens). Model any spend-based plan at your real ad spend before buying.',
         },
       },
       {
@@ -170,7 +170,7 @@ export default function ArticleContent() {
     {
       n: '3',
       title: 'AI-native operators',
-      examples: 'Kampaio',
+      examples: 'Kampaio (agents in development)',
       removes: 'Deciding and doing the work. You set the autonomy level.',
       accent: '#10b981',
     },
@@ -208,10 +208,10 @@ export default function ArticleContent() {
     },
     {
       name: 'Kampaio',
-      level: 'AI-native operator',
-      pricing: 'Free while in beta',
-      bestFor: 'Owners who want the work done',
-      shows: 'High (every action live)',
+      level: 'Dashboard with automatic checks (agents in development)',
+      pricing: 'Free during early access',
+      bestFor: 'Owners who want problems flagged and every change previewed',
+      shows: 'High (preview, rollback, change log)',
     },
   ];
 
@@ -382,14 +382,14 @@ export default function ArticleContent() {
                 <strong>Rule engines</strong> execute the logic you configure. You write rules (if CPA exceeds target for 7 days, lower bids 10 percent), and the tool runs them on schedule. TheOptimizer is built around this model, automating Google Ads strategies without scripts. Google Ads scripts and Optmyzr&apos;s automation layer belong here as well.
               </p>
               <p style={paragraphStyle}>
-                <strong>AI-native operators</strong> decide and execute on their own. Instead of waiting for your rules, they read the account, choose the action, and make the change, ideally showing every step so you can audit it. This is the category Kampaio occupies, with separate agents handling bids, budgets, creative, and reporting.
+                <strong>AI-native operators</strong> decide and execute on their own. Instead of waiting for your rules, they read the account, choose the action, and make the change, ideally showing every step so you can audit it. This is the category Kampaio is building toward: separate agents for bids, budgets, creative, and reporting are in development and do not run on live accounts yet.
               </p>
               <p style={paragraphStyle}>
                 Here is the trap in most &quot;best tools&quot; roundups: they compare brands without ever naming the level. An advisor and an autonomous operator solve genuinely different problems, even when both stamp &quot;<a href="/blog/10-ai-powered-ppc-optimization-strategies" style={{ color: '#764ba2', textDecoration: 'underline' }}>AI optimization</a>&quot; across the homepage. Knowing which one you are buying saves you from paying for a category you did not want.
               </p>
 
               <MascotQuote mascot="maximus">
-                Autonomy is a dial, not a switch. Start agents at suggest-only, review their first 20 actions, then move the ones you trust to auto-apply. Most accounts reach full autonomy on bids and budgets within 2 to 3 weeks.
+                Autonomy is a dial, not a switch. The way I am being built: start at suggest-only, review the first actions yourself, and only then let the ones you trust auto-apply. I am in development and do not run on live accounts yet.
               </MascotQuote>
             </section>
 
@@ -442,7 +442,7 @@ export default function ArticleContent() {
                 <strong>Adalysis</strong> focuses on automated ad testing and account audits. It is strong for teams who want disciplined A/B testing and alerting rather than hands-off execution.
               </p>
               <p style={paragraphStyle}>
-                <strong>Kampaio</strong> is the AI-native operator: agents decide and execute, with each action shown live. It is free while in beta with no card required, and paid plans come later, so there is no spend-based pricing to model against your budget. It suits owners who want the work done, not just advised. Most of what any of these tools touch first is bidding, so it helps to know <a href="/blog/google-ads-smart-bidding-strategies" style={linkStyle}>which Smart Bidding strategy fits your account</a> before you hand it over.
+                <strong>Kampaio</strong> is building toward the AI-native operator tier, and its agents are in development. What works today is the Kampaio dashboard: 14 automatic campaign checks, the search terms report with negatives, and changes you make yourself with a preview and a rollback. It is free during early access with no card required, and paid plans come when billing opens, so there is no spend-based pricing to model against your budget. Most of what any of these tools touch first is bidding, so it helps to know <a href="/blog/google-ads-smart-bidding-strategies" style={linkStyle}>which Smart Bidding strategy fits your account</a> before you hand it over.
               </p>
             </section>
 
@@ -477,7 +477,7 @@ export default function ArticleContent() {
               </p>
 
               <MascotQuote mascot="vox">
-                I reallocate budget across campaigns every morning, not once a month like a human reviewer. On a $20K account that timing alone recovered about 8 percent of spend from underperformers in the first month.
+                I am being built to rebalance budget across campaigns every morning instead of once a month, proposing to move spend away from underperformers for your approval. I am in development and do not run on live accounts yet.
               </MascotQuote>
             </section>
 
@@ -485,7 +485,7 @@ export default function ArticleContent() {
             <section id="how-to-evaluate">
               <h2 style={h2Style}>How to Evaluate Any Google Ads Optimizer Before You Buy</h2>
               <p style={paragraphStyle}>
-                Judge optimizers on what they control and how safely they act, not on homepage adjectives. Run any candidate through these checks during the free trial.
+                Judge optimizers on what they control and how safely they act, not on homepage adjectives. Run any candidate through these checks during its trial period.
               </p>
 
               {/* VISUAL 5: Six evaluation criteria card grid (3-col, explicit, no auto-fit) */}
@@ -508,10 +508,10 @@ export default function ArticleContent() {
             <section id="where-kampaio-fits">
               <h2 style={h2Style}>Where Kampaio Fits</h2>
               <p style={paragraphStyle}>
-                Kampaio sits in the AI-native operator category: agents that decide and execute, with every action shown live so you can audit and approve. Buzz manages bids, Vox reallocates budgets across campaigns, Mira handles creative, and Echo reports weekly, each working autonomously at the autonomy level you set.
+                Kampaio is building toward the AI-native operator category. Buzz for bids, Vox for budget reallocation across campaigns, Mira for creative, and Echo for weekly reporting are in development and do not run on live accounts yet. Today Kampaio is a dashboard: it flags problems with 14 automatic checks and lets you make each change yourself, with a preview first and a rollback after.
               </p>
 
-              {/* VISUAL 6: CompareGrid (bold-viz), advisor incumbent vs AI-native operator */}
+              {/* VISUAL 6: CompareGrid (bold-viz), advisor incumbent vs Kampaio dashboard today */}
               <CompareGrid
                 columns={[
                   {
@@ -526,12 +526,12 @@ export default function ArticleContent() {
                     ],
                   },
                   {
-                    name: 'AI-native operator (Kampaio)',
-                    bestFor: 'owners who want the work done, not just advised',
+                    name: 'Kampaio dashboard (today)',
+                    bestFor: 'owners who want problems flagged and every change previewed',
                     traits: [
                       { label: 'Surfaces recommendations', has: true },
-                      { label: 'Runs rules you configure', has: true },
-                      { label: 'Decides and acts on its own', has: true },
+                      { label: 'Runs rules you configure', has: false },
+                      { label: 'Decides and acts on its own', has: false },
                       { label: 'Pricing not tied to your ad spend', has: true },
                       { label: 'Shows every action live', has: true },
                     ],
@@ -541,7 +541,7 @@ export default function ArticleContent() {
               />
 
               <p style={paragraphStyle}>
-                The practical differences from the incumbents are two. First, there is no spend-based pricing to model: it is free while in beta, no card required, with paid plans coming later. Second, the default is doing the work, not just advising it, while keeping you in control through the suggest-then-auto-apply dial. If your bottleneck is hours rather than knowledge, that is the gap it closes. <a href="/chat" style={linkStyle}>Start a free account</a> and watch the agents work before you commit.
+                The practical differences from the incumbents are two. First, there is no spend-based pricing to model: it is free during early access, no card required, with paid plans coming when billing opens. Second, every change you make from the dashboard shows a preview first, can be rolled back, and is recorded in the change log with the numbers before it. The agents that will do the work for you are in development. <a href="https://dashboard.kampaio.com/" style={linkStyle}>Open the dashboard</a> and see what the 14 checks flag on your account.
               </p>
             </section>
 
@@ -571,13 +571,13 @@ export default function ArticleContent() {
 
               <div style={{ background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)', borderRadius: '16px', padding: '40px', textAlign: 'center', marginTop: '40px', marginBottom: '40px' }}>
                 <h3 style={{ fontSize: '24px', fontWeight: 800, color: '#1e293b', marginBottom: '16px', marginTop: 0, lineHeight: 1.3 }}>
-                  See autonomous optimization in action
+                  See the checks on your own account
                 </h3>
                 <p style={{ fontSize: '17px', color: '#475569', marginBottom: '28px', lineHeight: 1.6, fontWeight: 500, maxWidth: '620px', marginLeft: 'auto', marginRight: 'auto' }}>
-                  Connect your Google Ads account to Kampaio and watch the agents read your account, choose each change, and show the rationale live, before anything applies. <a href="/pricing" style={linkStyle}>Free while in beta</a>, no card required, and no spend-based surprises.
+                  Connect your Google Ads account to the Kampaio dashboard and see every campaign&apos;s spend, ROAS and CPA on one screen, with 14 automatic checks and changes you preview before they apply. <a href="/pricing" style={linkStyle}>Free during early access</a>, no card required, and no spend-based surprises.
                 </p>
                 <a
-                  href="/chat"
+                  href="https://dashboard.kampaio.com/"
                   style={{
                     background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                     color: 'white',
@@ -600,7 +600,7 @@ export default function ArticleContent() {
                     (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
                   }}
                 >
-                  Try Kampaio Free
+                  Open the dashboard
                 </a>
               </div>
               <p style={{ fontSize: '14px', color: '#64748b', fontStyle: 'italic', lineHeight: 1.7, marginTop: '8px' }}>

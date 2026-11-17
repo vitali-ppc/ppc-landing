@@ -392,7 +392,7 @@ export default function ArticleContent() {
               </p>
 
               <MascotQuote mascot="buzz">
-                On a new Search campaign with no conversion history, I do not run Maximize Conversions uncapped. I start with Maximize Clicks for 2-3 weeks until the campaign accumulates around 30 conversions. Then I switch to Target CPA set at $26, roughly 15% above the median CPA I observed during the data-gathering phase. That cushion keeps the algorithm from choking on day one of the new strategy. Tighten the target after the first 30-day learning cycle.
+                The sequence I am being built to follow on a new Search campaign with no conversion history: do not run Maximize Conversions uncapped. Start with Maximize Clicks for 2-3 weeks until the campaign accumulates around 30 conversions. Then switch to Target CPA set roughly 15% above the median CPA from the data-gathering phase. That cushion keeps the algorithm from choking on day one of the new strategy. Tighten the target after the first 30-day learning cycle. I am in development, so this sequence is yours to run for now.
               </MascotQuote>
 
               <p style={paragraphStyle}>
@@ -447,7 +447,7 @@ export default function ArticleContent() {
               </p>
 
               <MascotQuote mascot="aegis">
-                Before raising a Target ROAS from 350% to 500% to improve margin, I check how much auction volume survives at 500%. On one Shopping campaign I reviewed, raising tROAS to 500% cut reach by 60%. Conversions dropped from 47 to 14 per month. Margin per conversion rose, but absolute revenue fell by 38%. ROAS target is a lever between margin and volume, not a &quot;more profit&quot; button. If the math says 500% kills enough volume that total contribution margin drops, the right move is not to raise the target. To set a target grounded in your economics, our <a href="/tools/roas-calculator" style={linkStyle}>break-even and target ROAS calculator</a> turns your margin and profit goal into the ROAS you actually need.
+                Before raising a Target ROAS from 350% to 500% to improve margin, check how much auction volume survives at 500%. A higher target can cut reach hard: margin per conversion rises while absolute revenue falls. That is the check I am being built to run, and I am in development, so run it yourself today. ROAS target is a lever between margin and volume, not a &quot;more profit&quot; button. If the math says 500% kills enough volume that total contribution margin drops, the right move is not to raise the target. To set a target grounded in your economics, our <a href="/tools/roas-calculator" style={linkStyle}>break-even and target ROAS calculator</a> turns your margin and profit goal into the ROAS you actually need.
               </MascotQuote>
             </section>
 
@@ -548,15 +548,15 @@ export default function ArticleContent() {
                 The right strategy at campaign launch drifts out of calibration. Seasonality shifts conversion rates. Competitors change bids. A Target ROAS that balanced volume and efficiency in Q1 may be throttling volume by Q3 with no one catching it.
               </p>
               <p style={paragraphStyle}>
-                B6 is an AI agency inside your Google Ads account, not AI that advises, AI that does the work and shows you every step. Buzz monitors bid strategies and targets against current auction performance. Maximus checks whether tCPA and tROAS targets still align with account margins. Aegis flags risky strategy changes before they apply. Echo reports what changed and why.
+                The Kampaio dashboard helps you catch that drift. Its automatic checks flag ROAS below target, CPA above target, impressions lost to budget or rank, and conversions that stopped, across every account you manage on one screen. When a target needs to move, you change target ROAS / CPA from the dashboard with a preview first and a rollback after. Our agents (Buzz for bidding, Maximus for orchestration, Aegis for risk, Echo for reporting) are in development and do not run on live accounts.
               </p>
 
               <MascotQuote mascot="echo">
-                This week, Maximus moved Shopping-Generic from Maximize Conversions to Target ROAS 380%. The campaign had accumulated 64 value-conversions over 30 days, above the 50-conversion threshold. ROAS moved from 290% to 360% over the following 14 days with the same budget. The shift qualified; the timing was right. Details in this week&apos;s report.
+                The report I am being built to send: what changed in your bid strategies this week, why, and whether the campaign had cleared its data floor first, for example 50 value-conversions in 30 days before a move to Target ROAS. I am in development, so for now the dashboard change log is where you see what changed.
               </MascotQuote>
 
               <p style={paragraphStyle}>
-                B6 has three levels, Co-pilot, Approval and Autonomous, all free while in beta. The difference is how much you approve before changes apply. See <a href="/pricing" style={linkStyle}>full pricing</a>.
+                The dashboard never applies a change by itself, and it is free during early access.
               </p>
             </section>
 
@@ -581,10 +581,10 @@ export default function ArticleContent() {
                   Choose Once, or Let It Stay Tuned
                 </h2>
                 <p style={{ fontSize: '17px', color: '#475569', marginBottom: '28px', lineHeight: 1.6, fontWeight: 500, maxWidth: '620px', marginLeft: 'auto', marginRight: 'auto' }}>
-                  Connect your Google Ads account to B6 and in the first audit cycle, Buzz and Maximus evaluate every campaign&apos;s current strategy against its conversion volume and margin data. You get a specific recommendation per campaign, strategy, target level, and estimated impact on CPA or ROAS, not a generic report. You decide whether to apply each one.
+                  Connect your Google Ads accounts to the Kampaio dashboard and see spend, ROAS, CPA and budget for every campaign, with automatic checks that flag ROAS below target and CPA above target. You decide what to change, with a preview first and a rollback after. Free during early access.
                 </p>
                 <a
-                  href="/chat"
+                  href="https://dashboard.kampaio.com/"
                   style={{
                     background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                     color: 'white',
@@ -607,7 +607,7 @@ export default function ArticleContent() {
                     (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
                   }}
                 >
-                  Audit My Bid Strategies
+                  Open the dashboard
                 </a>
               </div>
               <p style={{ fontSize: '14px', color: '#64748b', fontStyle: 'italic', lineHeight: 1.7, marginTop: '8px' }}>

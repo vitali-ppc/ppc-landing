@@ -411,7 +411,7 @@ export default function ArticleContent() {
                 At $50K a month the constraint shifts to the feedback loop. The account already has enough volume that Smart Bidding will run, so the question becomes what you are training it on. This is the tier where offline conversion import stops being optional and becomes the single highest-return project on the roadmap, because every dollar after this point is allocated by a bidder optimizing toward whatever signal you gave it.
               </p>
               <p style={pStyle}>
-                At $100K and above the constraint is organizational. The levers are known; the issue is whether anyone has the time and the operating cadence to run them weekly. This is where the build-versus-buy decision gets real, and where automating the operational layer earns its keep. Tools like Optmyzr and Madgicx start at $499 a month, which is itself a meaningful line item; Kampaio runs on a flat subscription, with the level set by how much autonomy you hand the agents. The broader strategic framing of how a paid program should evolve as it scales is the subject of the sibling pillar, <a href="/blog/google-ads-strategy" style={linkStyle}>Google Ads strategy: a strategic operator&apos;s framework</a>.
+                At $100K and above the constraint is organizational. The levers are known; the issue is whether anyone has the time and the operating cadence to run them weekly. This is where the build-versus-buy decision gets real, and where automating the operational layer earns its keep. Tools like Optmyzr and Madgicx start at $499 a month, which is itself a meaningful line item; the Kampaio dashboard is free during early access. The broader strategic framing of how a paid program should evolve as it scales is the subject of the sibling pillar, <a href="/blog/google-ads-strategy" style={linkStyle}>Google Ads strategy: a strategic operator&apos;s framework</a>.
               </p>
               <p style={{ fontSize: '15px', color: '#64748b', fontStyle: 'italic', marginBottom: '32px' }}>
                 This article is informational and does not constitute professional advertising advice. CPL, close-rate, and budget figures are illustrative and should be calibrated to your own account data.
@@ -456,20 +456,20 @@ export default function ArticleContent() {
                 B2B PPC lead generation is won by treating lead quality as a system, not a setting. Match intent to buying stage so you stop renting research-stage clicks. Pick channels by where intent lives, not by the volume they promise. Feed CRM outcomes back into Google Ads so the bidder optimizes for revenue. And measure cost per closed-won, because every other number lies to you a little.
               </p>
               <p style={pStyle}>
-                Do those four things and the same budget that used to buy a pile of form fills starts buying pipeline a sales team can close. If running that operational layer every week is the part you do not have time for, that is exactly the work Kampaio&apos;s agents do for you.
+                Do those four things and the same budget that used to buy a pile of form fills starts buying pipeline a sales team can close. If running that operational layer every week is the part you do not have time for, the Kampaio dashboard puts every account on one screen and flags spend with no conversions, CPA above target, and impressions lost to budget, so you know where to look first. Its agents, which will take on more of that work, are in development.
               </p>
               <div style={{ background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)', borderRadius: '16px', padding: '40px', textAlign: 'center', marginTop: '40px', marginBottom: '40px' }}>
                 <h3 style={{ fontSize: '22px', fontWeight: 700, color: '#1e293b', marginBottom: '18px', lineHeight: '1.3' }}>
                   Optimize for pipeline, not form fills
                 </h3>
                 <p style={{ fontSize: '17px', color: '#64748b', marginBottom: '28px', lineHeight: '1.6', fontWeight: 500, opacity: 0.9 }}>
-                  Kampaio&apos;s agents run lead-quality optimization across your B2B account, feeding CRM outcomes back into bidding so you buy closed-won, not clicks. <a href="/b6" style={linkStyle}>See how it works</a> or <a href="/pricing" style={linkStyle}>compare pricing tiers</a>.
+                  Connect your Google Ads accounts to the Kampaio dashboard: every account on one screen, 14 automatic campaign checks such as spend with no conversions or CPA above target, and a preview and rollback for every change you make. Free during early access, no card.
                 </p>
                 <a
-                  href="/chat"
+                  href="https://dashboard.kampaio.com/"
                   style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', color: 'white', border: 'none', padding: '16px 32px', borderRadius: '10px', fontSize: '16px', fontWeight: 600, cursor: 'pointer', display: 'inline-block', boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)', textDecoration: 'none' }}
                 >
-                  Start Your Free Trial
+                  Open the dashboard
                 </a>
               </div>
             </section>

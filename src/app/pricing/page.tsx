@@ -2,14 +2,14 @@ import type { Metadata } from 'next';
 import PricingContent from './PricingContent';
 
 export const metadata: Metadata = {
-  title: 'B6 Pricing: 3 Tiers of Google Ads AI Autonomy',
+  title: 'Kampaio Pricing: Free During Early Access',
   description:
-    'B6 pricing: three autonomy tiers, L1 assistant, L2 autopilot, L3 full autonomy. Free while in beta, no card required; paid plans come later.',
+    'Kampaio is free during early access, no card. Free: 1 Google Ads account, all 14 checks, search terms and negatives, changes with preview and rollback. Pro (up to 5 accounts) comes when billing opens.',
   alternates: { canonical: 'https://www.kampaio.com/pricing' },
   openGraph: {
-    title: 'B6: Three Levels of Google Ads Autonomy',
+    title: 'Kampaio Pricing: Free During Early Access',
     description:
-      'Three tiers of autonomy for AI agents on Google Ads. In development. Join early access.',
+      'Free plan available now: 1 Google Ads account, all 14 checks, changes with preview and rollback. Pro for up to 5 accounts comes when billing opens.',
     url: 'https://www.kampaio.com/pricing',
     type: 'website',
     images: [
@@ -17,15 +17,15 @@ export const metadata: Metadata = {
         url: '/og/pricing.png',
         width: 1200,
         height: 630,
-        alt: 'B6 Pricing by Kampaio',
+        alt: 'Kampaio Pricing',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'B6: Three Levels of Google Ads Autonomy',
+    title: 'Kampaio Pricing: Free During Early Access',
     description:
-      'Three tiers of autonomy for AI agents on Google Ads. In development. Join early access.',
+      'Free plan available now: 1 Google Ads account, all 14 checks, changes with preview and rollback. Pro for up to 5 accounts comes when billing opens.',
     images: ['/og/pricing.png'],
   },
 };

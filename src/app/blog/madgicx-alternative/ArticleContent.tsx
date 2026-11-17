@@ -82,7 +82,7 @@ export default function ArticleContent() {
         name: 'Is there a Madgicx alternative for Google Ads?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Madgicx doesn\'t manage Google Ads, so there\'s no direct alternative there, only a different category of tool. Kampaio automates Google Ads specifically, with Buzz (bids) and Aegis (risk review) live today and more agents shipping as the cabinet grows; free while in beta, no card required, paid plans come later.',
+          text: 'Madgicx doesn\'t manage Google Ads, so there\'s no direct alternative there, only a different category of tool. Kampaio is a dashboard for Google Ads specifically: all your accounts on one screen, 14 automatic campaign checks, and changes you make yourself with a preview and a rollback. Its AI agents (Buzz for bids, Aegis for risk review and others) are in development and not live yet. Free during early access, no card required.',
         },
       },
       {
@@ -90,7 +90,7 @@ export default function ArticleContent() {
         name: 'Is there a free Madgicx alternative?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Triple Whale\'s Free tier (10 users, 12mo retention) is the closest genuinely free Meta-side option; it\'s reporting, not full execution. AdsGo AI\'s $0 tier stacks a 10% spend fee, not free at scale. On Google, Kampaio\'s "free while in beta, no card required" answers the same question.',
+          text: 'Triple Whale\'s Free tier (10 users, 12mo retention) is the closest genuinely free Meta-side option; it\'s reporting, not full execution. AdsGo AI\'s $0 tier stacks a 10% spend fee, not free at scale. On Google, the Kampaio dashboard, free during early access with no card required, answers the same question.',
         },
       },
     ],
@@ -490,12 +490,12 @@ export default function ArticleContent() {
                 If your problem lives on Google Search, Shopping, or Performance Max, Madgicx was never the right category of tool: it doesn&apos;t manage Google Ads at all. This is where Kampaio enters, honestly and narrowly: not a Meta replacement, but the answer for the subset whose real problem is Google.
               </p>
               <p style={paragraphStyle}>
-                Kampaio automates Google Ads specifically. Buzz (bid strategy) and Aegis (risk review) are live today; Echo (reporting), Vox (budget strategy), Maximus (orchestration), Mira (creative), and Sage (research) ship as the cabinet grows. Pricing is free while in beta, no card required; paid plans come later.
+                Kampaio works on Google Ads specifically. What exists today is the Kampaio dashboard: all your Google Ads accounts on one screen, 14 automatic campaign checks (spend with no conversions, impressions lost to budget or rank, ROAS below target, spend spikes and more), a search terms report, a Shopping and Performance Max product audit, and changes you make yourself with a preview first and a rollback after. The AI agents, Buzz (bid strategy), Aegis (risk review), Echo (reporting), Vox (budget strategy), Maximus (orchestration), Mira (creative) and Sage (research), are in development and do not run on any live account yet. Free during early access, no card required.
               </p>
 
-              {/* VISUAL 6: MascotQuote (Buzz): illustrative Google-side example, flagged as not a customer result */}
+              {/* VISUAL 6: MascotQuote (Buzz): what Buzz is being built to do, not a result */}
               <MascotQuote mascot="buzz">
-                <strong>Illustrative example, not a verified customer result.</strong> Say a $9,000/mo Google Shopping feed sends 40% of spend to a stale product group for 11 days straight. I&apos;d flag it same-day, pause the group, and show you the exact change before anything applies.
+                <strong>What I am being built to do, not a result.</strong> Say a Google Shopping campaign keeps sending a large share of spend to a stale product group. I am being built to flag it and propose a change, with the exact change shown before anything applies. I am in development, so today that call is yours.
               </MascotQuote>
 
               <p style={paragraphStyle}>
@@ -570,7 +570,7 @@ export default function ArticleContent() {
                   'Madgicx manages Meta spend only; no Google Search, Shopping, or Performance Max execution.',
                   'Its core plan price is gated; the only public number is the $49/mo Tracking Pro add-on (2026-09-14).',
                   'Bïrch, AdEspresso, Smartly.io, and Triple Whale are the real Meta-side alternatives, verified above.',
-                  'Kampaio is free while in beta, no card required, the honest answer only for the Google-side subset of this search.',
+                  'The Kampaio dashboard is free during early access, no card required, the honest answer only for the Google-side subset of this search.',
                 ]}
               />
             </section>
@@ -590,22 +590,22 @@ export default function ArticleContent() {
             <section id="cta">
               <h2 style={h2Style}>Try Kampaio free (only if your spend is on Google)</h2>
               <p style={paragraphStyle}>
-                Kampaio is free while in beta, no card required, paid plans come later. It automates Google Ads, not Meta, so if your spend is genuinely on Facebook or Instagram, one of the alternatives above fits better.
+                The Kampaio dashboard is free during early access, no card required. It works on Google Ads, not Meta, so if your spend is genuinely on Facebook or Instagram, one of the alternatives above fits better.
               </p>
 
               <div style={{ background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)', borderRadius: '16px', padding: '40px', textAlign: 'center', marginTop: '40px', marginBottom: '40px' }}>
                 <h3 style={{ fontSize: '24px', fontWeight: 800, color: '#1e293b', marginBottom: '16px', marginTop: 0, lineHeight: 1.3 }}>
-                  See what the agents would change on your Google account
+                  See your Google Ads accounts on one screen
                 </h3>
                 <p style={{ fontSize: '17px', color: '#475569', marginBottom: '28px', lineHeight: 1.6, fontWeight: 500, maxWidth: '620px', marginLeft: 'auto', marginRight: 'auto' }}>
-                  If pMax, Shopping, or Search is where your budget is burning, connect your Google Ads account and see what Buzz and Aegis would change, with the rationale shown before anything applies.{' '}
-                  <a href="/pricing" style={linkStyle}>
-                    Free while in beta
+                  If pMax, Shopping, or Search is where your budget is burning, connect your Google Ads accounts and see which campaigns the 14 automatic checks flag. Any change is yours to make, with a preview first.{' '}
+                  <a href="https://dashboard.kampaio.com/" style={linkStyle}>
+                    Free during early access
                   </a>
                   , no card required.
                 </p>
                 <a
-                  href="/chat"
+                  href="https://dashboard.kampaio.com/"
                   style={{
                     background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                     color: 'white',
@@ -628,7 +628,7 @@ export default function ArticleContent() {
                     (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
                   }}
                 >
-                  Start free
+                  Open the dashboard
                 </a>
               </div>
 
@@ -669,7 +669,7 @@ export default function ArticleContent() {
               </ul>
 
               <p style={{ fontSize: '14px', color: '#64748b', fontStyle: 'italic', lineHeight: 1.7, marginTop: '8px' }}>
-                Third-party pricing and capabilities are summarized from each vendor&apos;s own public pages, checked 2026-09-14, and may have changed since. Madgicx&apos;s core plan price, Smartly.io&apos;s pricing, and Triple Whale&apos;s paid tiers are not publicly listed as flat numbers. Practitioner quotes are attributed to public r/PPC discussion. Kampaio manages Google Ads, not Meta, and is free while in beta with no card required. This article is informational and does not constitute professional advertising advice.
+                Third-party pricing and capabilities are summarized from each vendor&apos;s own public pages, checked 2026-09-14, and may have changed since. Madgicx&apos;s core plan price, Smartly.io&apos;s pricing, and Triple Whale&apos;s paid tiers are not publicly listed as flat numbers. Practitioner quotes are attributed to public r/PPC discussion. Kampaio works on Google Ads, not Meta, and the dashboard is free during early access with no card required. This article is informational and does not constitute professional advertising advice.
               </p>
             </section>
           </div>

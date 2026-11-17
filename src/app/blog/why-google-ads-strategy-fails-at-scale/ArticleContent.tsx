@@ -43,7 +43,7 @@ export default function ArticleContent() {
       "@type": "WebPage",
       "@id": "https://kampaio.com/blog/why-google-ads-strategy-fails-at-scale"
     },
-    "keywords": "google ads scaling, why google ads fails at scale, agency scaling, smart bidding, auction signals, attribution decay, incrementality, kpi misalignment, vendor stack, b6, maximus, mira",
+    "keywords": "google ads scaling, why google ads fails at scale, agency scaling, smart bidding, auction signals, attribution decay, incrementality, kpi misalignment, vendor stack, kampaio",
     "wordCount": 2407,
     "articleSection": "Strategy",
     "inLanguage": "en"
@@ -238,7 +238,7 @@ export default function ArticleContent() {
               </p>
 
               <MascotQuote mascot="maximus">
-                Across 23 accounts I have watched scale, performance stalls at $42K per month in 71% of cases. The auction signal pool runs out before the bidder has finished learning, and adding budget makes the slope steeper, not flatter.
+                I am being built to watch for the moment scaling stalls. The usual shape: the auction signal pool runs out before the bidder has finished learning, and adding budget makes the slope steeper, not flatter.
               </MascotQuote>
 
               <MermaidDiagram
@@ -293,7 +293,7 @@ export default function ArticleContent() {
               </p>
 
               <MascotQuote mascot="mira">
-                When attribution drift shifts incrementality by more than 18%, your Smart Bidding is training on phantom conversions. The bidder thinks it is buying customers and is actually buying credit reallocation between channels.
+                When attribution drift shifts incrementality, your Smart Bidding is training on phantom conversions. Watching for that drift is part of what I am being built to do. The bidder thinks it is buying customers and is actually buying credit reallocation between channels.
               </MascotQuote>
 
               <InlineSVG
@@ -399,7 +399,7 @@ export default function ArticleContent() {
                 rows={[
                   { cells: ['Point recommender', 'Surfaces suggestions, analyst applies', 'Optmyzr, Adalysis', '$99-499/mo'] },
                   { cells: ['Multi-tool stack', '4-6 best-of-breed tools chained manually', 'Optmyzr + Madgicx + scripts + reporting', '$1,200-2,500/mo combined'] },
-                  { cells: ['Autonomous orchestrator', 'Reads, decides, executes within guardrails', 'B6 (Buzz, Aegis, Maximus, Mira, Sage)', 'Flat subscription'], highlight: true },
+                  { cells: ['Autonomous orchestrator', 'Reads, decides, executes within guardrails', 'Kampaio agents (in development, not live yet)', 'Kampaio dashboard: free during early access'], highlight: true },
                 ]}
                 caption="The three vendor-stack configurations agencies run at scale, and the cost they push into the management-fee P&L."
               />
@@ -408,7 +408,7 @@ export default function ArticleContent() {
                 Point tools that just recommend (Optmyzr at ~$499/mo, Madgicx at $499+/mo) each solve one part of the workflow. None of them orchestrate. The analyst still actions recommendations manually, reconciles outputs, and explains conflicting suggestions to the client.
               </p>
               <p style={paragraphStyle}>
-                Remedy: annual stack review with consolidation as default. Prefer <a href="/blog/google-ads-ai-agent" style={{ color: '#764ba2', textDecoration: 'underline' }}>agents</a> that orchestrate (read the account, decide, execute or queue for approval) over point tools that recommend. That is the model behind B6's flat subscription, which replaces multiple point tools with one agent-based system. If you are stuck in vendor sprawl, <a href="/blog/signs-you-need-to-fire-your-ppc-agency" style={linkStyle}>our piece on the eight signs it is time to fire your PPC agency</a> covers the decision frame.
+                Remedy: annual stack review with consolidation as default. Prefer <a href="/blog/google-ads-ai-agent" style={{ color: '#764ba2', textDecoration: 'underline' }}>agents</a> that orchestrate (read the account, decide, execute or queue for approval) over point tools that recommend. That is the model Kampaio is building toward with its agents, which are in development and not live yet. If you are stuck in vendor sprawl, <a href="/blog/signs-you-need-to-fire-your-ppc-agency" style={linkStyle}>our piece on the eight signs it is time to fire your PPC agency</a> covers the decision frame.
               </p>
             </section>
 
@@ -565,7 +565,7 @@ export default function ArticleContent() {
                 Most agencies notice three or four of these patterns 3 to 6 months too late. By then the client retainer is at risk and the CFO conversation is uncomfortable. The patterns are not avoidable at scale, but the time-to-diagnosis is. Building the diagnostic framework into your monthly account review is roughly four hours of setup per account, and it pays back the first quarter it surfaces a real failure mode before the client sees it.
               </p>
               <p style={paragraphStyle}>
-                If your operational layer is eating analyst hours that should be going to diagnosis, that is the entry point for an autonomous orchestrator. B6 runs auction-signal monitoring, <a href="/blog/google-ads-anomaly-detection" style={{ color: '#764ba2', textDecoration: 'underline' }}>anomaly detection</a>, and creative rotation automatically, with risk reviews from Aegis before any change ships to a client's account. The strategist gets their time back for the patterns that need a human to read them. You can <a href="/chat" style={linkStyle}>start a free conversation with B6</a> to see what it surfaces, or review <a href="/pricing" style={linkStyle}>pricing tiers</a> (Co-pilot, Approval, Autonomous).
+                If your operational layer is eating analyst hours that should be going to diagnosis, start by putting the routine checks in one place. The Kampaio dashboard shows every connected Google Ads account on one screen and runs 14 automatic campaign checks, such as spend with no conversions, impressions lost to budget or rank, spend spikes and conversions that stopped. Any change is one you make yourself, with a preview first and a rollback after. Agents for <a href="/blog/google-ads-anomaly-detection" style={{ color: '#764ba2', textDecoration: 'underline' }}>anomaly detection</a>, creative and risk review are in development. You can <a href="https://dashboard.kampaio.com/" style={linkStyle}>open the dashboard</a>; it is free during early access.
               </p>
               <p style={paragraphStyle}>
                 The viral 5-step scaling frameworks will keep generating LinkedIn engagement. They are not wrong, they are scoped to a different problem. When your portfolio crosses $30K accounts compounding into $50K and $100K, the patterns above are what you are actually managing. Name them, measure them, fix them in order.
@@ -574,10 +574,10 @@ export default function ArticleContent() {
               <div style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', borderRadius: '16px', padding: '32px', color: 'white', textAlign: 'center', marginTop: '40px' }}>
                 <h3 style={{ fontSize: '24px', fontWeight: 700, marginBottom: '12px' }}>Stop diagnosing patterns after the client sees them</h3>
                 <p style={{ fontSize: '16px', opacity: 0.95, marginBottom: '24px', lineHeight: 1.6 }}>
-                  B6 monitors all 8 patterns automatically across every account in your portfolio. Maximus orchestrates, Aegis reviews risk, Mira watches incrementality drift. Free while B6 is in beta.
+                  The Kampaio dashboard puts every account in your portfolio on one screen, with 14 automatic campaign checks and multi-currency totals. Free during early access, no card.
                 </p>
-                <a href="/chat" style={{ display: 'inline-block', background: 'white', color: '#764ba2', padding: '14px 28px', borderRadius: '8px', fontWeight: 700, textDecoration: 'none', fontSize: '16px' }}>
-                  Start a free conversation
+                <a href="https://dashboard.kampaio.com/" style={{ display: 'inline-block', background: 'white', color: '#764ba2', padding: '14px 28px', borderRadius: '8px', fontWeight: 700, textDecoration: 'none', fontSize: '16px' }}>
+                  See your accounts on one screen
                 </a>
               </div>
             </section>

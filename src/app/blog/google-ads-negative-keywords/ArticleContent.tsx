@@ -287,9 +287,9 @@ export default function ArticleContent() {
                 <li style={{ marginBottom: 0 }}><strong>Log what you added.</strong> A running spreadsheet column is enough.</li>
               </ol>
 
-              {/* VISUAL 3: MascotQuote (Sage) with concrete numbers */}
+              {/* VISUAL 3: MascotQuote (Sage) - scan threshold tip */}
               <MascotQuote mascot="sage">
-                In a $20K/month account I scan 90 days of search terms and flag every query with more than $25 spend and 0 conversions. On a typical SMB account that surfaces 30 to 60 wasted queries on the first pass, roughly 8 to 15% of spend leaking to terms that never convert.
+                What I am being built to do: scan 90 days of search terms and flag every query with more than $25 spend and 0 conversions. You can run the same filter by hand today in the search terms report.
               </MascotQuote>
             </section>
 
@@ -386,16 +386,13 @@ export default function ArticleContent() {
             <section id="automating">
               <h2 style={h2Style}>Automating Wasted-Spend Detection (When Manual Scanning Does Not Scale)</h2>
               <p style={pStyle}>
-                The weekly scan is rule-based: pull the report, flag spend-with-no-conversion queries, add negatives at the right level. Identical logic, every week, every account. Kampaio observed $900/month in junk traffic across 13 client accounts, the leaks surface predictably.
+                The weekly scan is rule-based: pull the report, flag spend-with-no-conversion queries, add negatives at the right level. Identical logic, every week, every account.
               </p>
               <p style={pStyle}>
-                Kampaio watches the search terms report continuously, detects wasted spend, and proposes negative keywords for your approval. Vigil surfaces the spend-with-no-conversion anomaly; Sage identifies the specific negative to add with an estimated savings impact; you approve before anything executes. Safety cap: 5 real applies per account per 24 hours.
+                The Kampaio dashboard shows the search terms report for every connected account and lets you add negatives after a preview; its automatic checks also flag campaigns spending with no conversions. Sage, our research agent, is in development and will propose the specific negative to add. Nothing is added until you approve it.
               </p>
               <p style={pStyle}>
-                The automated detection threshold ($5 spend, 0 conversions, 30 days) is lower than the manual one because context-based filtering runs on top, keeping false positives low.
-              </p>
-              <p style={pStyle}>
-                Judgment calls, like whether &quot;cheap&quot; belongs as a negative on a value-positioned campaign, still need you. Pricing: Kampaio is free while B6 is in beta, against $499+/month entry points for Optmyzr and Madgicx.
+                Judgment calls, like whether &quot;cheap&quot; belongs as a negative on a value-positioned campaign, still need you. Pricing: the Kampaio dashboard is free during early access, against $499+/month entry points for Optmyzr and Madgicx.
               </p>
             </section>
 
@@ -464,16 +461,16 @@ export default function ArticleContent() {
               </p>
               <div style={{ background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)', borderRadius: '16px', padding: '40px', textAlign: 'center', marginTop: '40px', marginBottom: '40px' }}>
                 <h3 style={{ fontSize: '22px', fontWeight: 700, color: '#1e293b', marginBottom: '18px', lineHeight: '1.3' }}>
-                  Let the search-terms scan run on its own
+                  See every account&apos;s search terms on one screen
                 </h3>
                 <p style={{ fontSize: '17px', color: '#64748b', marginBottom: '28px', lineHeight: '1.6', fontWeight: 500, opacity: 0.9 }}>
-                  <a href="/b6#vigil" style={linkStyle}>Kampaio&apos;s Vigil and Sage agents</a> watch the search terms report continuously, detect wasted spend, and propose negatives for approval, showing every proposed action before anything executes. You keep control of the judgment calls; the weekly grind goes away. <a href="/pricing" style={linkStyle}>See what each Kampaio level does.</a>
+                  The Kampaio dashboard shows the search terms report for every connected account, flags campaigns spending with no conversions, and lets you add negatives after a preview. You keep the judgment calls. <a href="/pricing" style={linkStyle}>Free during early access.</a>
                 </p>
                 <a
-                  href="/chat"
+                  href="https://dashboard.kampaio.com/"
                   style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', color: 'white', border: 'none', padding: '16px 32px', borderRadius: '10px', fontSize: '16px', fontWeight: 600, cursor: 'pointer', display: 'inline-block', boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)', textDecoration: 'none' }}
                 >
-                  Find My Wasted Spend
+                  Open the dashboard
                 </a>
               </div>
             </section>

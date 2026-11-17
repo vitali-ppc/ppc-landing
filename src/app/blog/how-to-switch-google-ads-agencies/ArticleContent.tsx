@@ -42,7 +42,7 @@ export default function ArticleContent() {
       "@type": "WebPage",
       "@id": "https://kampaio.com/blog/how-to-switch-google-ads-agencies"
     },
-    "keywords": "switch google ads agencies, transfer google ads account, google ads account ownership, mcc transfer, external billing transfer, change ppc agency, who owns google ads account, b6, maximus, aegis, vox",
+    "keywords": "switch google ads agencies, transfer google ads account, google ads account ownership, mcc transfer, external billing transfer, change ppc agency, who owns google ads account, kampaio",
     "wordCount": 2200,
     "articleSection": "PPC",
     "inLanguage": "en"
@@ -243,7 +243,7 @@ export default function ArticleContent() {
               </p>
 
               <MascotQuote mascot="maximus">
-                A switch has two moving parts: access transfer and billing transfer. Both run on separate clocks. I typically see the access side close in 1 to 2 business days (link request, acceptance, old link removed). Billing adds up to 7 days. Plan for a 10-day total window and you will not be surprised.
+                A switch has two moving parts: access transfer and billing transfer. Both run on separate clocks. The access side usually closes in 1 to 2 business days (link request, acceptance, old link removed). Billing adds up to 7 days. Plan for a 10-day total window and you will not be surprised.
               </MascotQuote>
             </section>
 
@@ -406,14 +406,14 @@ export default function ArticleContent() {
                 The structural problem is not the specific agency. You never own the day-to-day. Someone else decides what gets checked and what gets changed. Want to know what happened to a campaign last Tuesday? You send an email and wait.
               </p>
               <p style={paragraphStyle}>
-                <a href="/b6" style={linkStyle}>B6</a> connects to your own Google Ads account via OAuth. The account stays in your name, with no agency MCC and no &quot;they built it in their system&quot; problem. Maximus orchestrates <a href="/blog/google-ads-strategy" style={{ color: '#764ba2', textDecoration: 'underline' }}>strategy</a>, Aegis monitors risk, Vox runs bid logic, and Vigil watches 24/7.
+                The Kampaio dashboard connects to your own Google Ads account: you sign in with Google and connect the accounts you manage. The account stays in your name, with no agency MCC and no &quot;they built it in their system&quot; problem. It shows every account on one screen, runs 14 automatic campaign checks, and lets you make changes with a preview first and a rollback after, with every edit recorded in the change log. Our AI agents, Maximus for orchestration, Aegis for risk and Vox for <a href="/blog/google-ads-strategy" style={{ color: '#764ba2', textDecoration: 'underline' }}>strategy</a>, are in development; none of them runs on a live account yet.
               </p>
               <p style={paragraphStyle}>
-                It is free while in beta, against a typical SMB agency retainer of $1,500 to $3,000 per month (the full <a href="/blog/ppc-management-cost" style={linkStyle}>breakdown of what PPC management costs</a> shows where that money goes), or Optmyzr and Madgicx at $499 and up for tools that still need a human to act. If you are looking for a new agency instead, <a href="/blog/how-to-choose-a-ppc-agency" style={linkStyle}>choosing a Google Ads agency</a> covers the selection framework.
+                It is free during early access, against a typical SMB agency retainer of $1,500 to $3,000 per month (the full <a href="/blog/ppc-management-cost" style={linkStyle}>breakdown of what PPC management costs</a> shows where that money goes), or Optmyzr and Madgicx at $499 and up for tools that still need a human to act. If you are looking for a new agency instead, <a href="/blog/how-to-choose-a-ppc-agency" style={linkStyle}>choosing a Google Ads agency</a> covers the selection framework.
               </p>
 
               <MascotQuote mascot="maximus">
-                With B6, you set the autonomy level and the account stays in your name. There is no next agency to switch to. The &quot;who controls what&quot; question has a permanent answer: you own the account, the agents run the work, you approve or override any significant change.
+                What I am being built for: you own the account, I coordinate the work, and you approve or override any significant change. I am in development. Until I ship, the &quot;who controls what&quot; question already has a plain answer in the dashboard: the account stays in your name, and every change is yours to make, preview and roll back.
               </MascotQuote>
             </section>
 
@@ -455,12 +455,12 @@ export default function ArticleContent() {
               </p>
 
               <div style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', borderRadius: '16px', padding: '32px', color: 'white', textAlign: 'center', marginTop: '40px' }}>
-                <h3 style={{ fontSize: '24px', fontWeight: 700, marginBottom: '12px' }}>Your account, your data, AI agents doing the work.</h3>
+                <h3 style={{ fontSize: '24px', fontWeight: 700, marginBottom: '12px' }}>Your account, your data, every change on your terms.</h3>
                 <p style={{ fontSize: '16px', opacity: 0.95, marginBottom: '24px', lineHeight: 1.6 }}>
-                  End the switching cycle entirely. B6 connects to your own Google Ads account via OAuth and runs the operational layer for you. Free while B6 is in beta.
+                  End the switching cycle. The Kampaio dashboard connects to your own Google Ads account, runs 14 automatic checks on every campaign, and lets you make each change with a preview and a rollback. Free during early access.
                 </p>
-                <a href="/chat" style={{ display: 'inline-block', background: 'white', color: '#764ba2', padding: '14px 28px', borderRadius: '8px', fontWeight: 700, textDecoration: 'none', fontSize: '16px' }}>
-                  Chat with B6 on your account
+                <a href="https://dashboard.kampaio.com/" style={{ display: 'inline-block', background: 'white', color: '#764ba2', padding: '14px 28px', borderRadius: '8px', fontWeight: 700, textDecoration: 'none', fontSize: '16px' }}>
+                  Open the dashboard
                 </a>
               </div>
             </section>

@@ -479,9 +479,9 @@ export default function ArticleContent() {
                 A read-only connector fixes &quot;ChatGPT can&apos;t see my account.&quot; It does nothing for &quot;ChatGPT can safely change my account.&quot; Reading live data is analysis; applying changes safely needs an undo path, a spend cap, and an approval gate that a chat window does not have.
               </Callout>
 
-              {/* VISUAL 6: MascotQuote - Aegis (risk, concrete number) */}
+              {/* VISUAL 6: MascotQuote - Aegis (risk tip) */}
               <MascotQuote mascot="aegis">
-                ChatGPT suggested 12 &quot;high-intent&quot; keywords. Four were broad match on a competitor&apos;s brand term, the kind of thing that burns budget fast with no cap in place. No brakes, just a faster way to crash.
+                Check every &quot;high-intent&quot; keyword list ChatGPT gives you before it goes live. Broad match on a competitor&apos;s brand term is the kind of suggestion that burns budget fast with no cap in place. No brakes, just a faster way to crash.
               </MascotQuote>
             </section>
 
@@ -541,7 +541,7 @@ export default function ArticleContent() {
               />
 
               <p style={para}>
-                ChatGPT is free or ChatGPT Plus; purpose-built tools typically run $99 to $499+/month depending on the tool. For a DTC owner running $3-50K/month with no <a href="/blog/google-ads-without-agency" style={{ color: '#764ba2', textDecoration: 'underline' }}>in-house PPC</a> hire, this is where Kampaio fits. It&apos;s built to monitor the live account and apply account-safe changes (pausing an underperforming campaign, applying a recommendation, adding negative keywords) with human oversight on every action, every step visible. Not a ChatGPT replacement. The next layer, for what ChatGPT can&apos;t reach from a chat window. If you want the fuller picture of what an <a href="/blog/google-ads-ai-agent" style={linkStyle}>autonomous AI agent</a> does versus a copilot you&apos;re still driving by hand, that&apos;s a separate, deeper read.
+                ChatGPT is free or ChatGPT Plus; purpose-built tools typically run $99 to $499+/month depending on the tool. For a DTC owner running $3-50K/month with no <a href="/blog/google-ads-without-agency" style={{ color: '#764ba2', textDecoration: 'underline' }}>in-house PPC</a> hire, this is where Kampaio fits. The Kampaio dashboard reads the live account, runs 14 automatic campaign checks, and lets you make account-safe changes yourself (turning a campaign off, changing a budget or target, adding negative keywords from the search terms report), each with a preview first and a rollback after. Not a ChatGPT replacement. The next layer, for what ChatGPT can&apos;t reach from a chat window. If you want the fuller picture of what an <a href="/blog/google-ads-ai-agent" style={linkStyle}>autonomous AI agent</a> does versus a copilot you&apos;re still driving by hand, that&apos;s a separate, deeper read.
               </p>
               <p style={para}>
                 Optmyzr and Madgicx are recommendation engines starting around $499/month; they surface suggestions for a human to apply. In the Kampaio dashboard you make the change yourself, with a preview before it applies and a log entry after it, across every account you manage. ChatGPT does neither with your live data. See the full <a href="/pricing" style={linkStyle}>pricing breakdown</a> if you want the plan detail.
@@ -614,7 +614,7 @@ export default function ArticleContent() {
               </MascotQuote>
 
               <p style={para}>
-                Ready for something that reads your live account and acts safely, every step visible? That&apos;s Kampaio, free while B6 is in beta.
+                Ready for something that reads your live account, flags what needs attention, and previews every change? That&apos;s the <a href="https://dashboard.kampaio.com/" style={linkStyle}>Kampaio dashboard</a>, free during early access.
               </p>
 
               <p style={{ fontSize: '14px', color: '#64748b', fontStyle: 'italic', lineHeight: '1.7', marginBottom: '40px' }}>

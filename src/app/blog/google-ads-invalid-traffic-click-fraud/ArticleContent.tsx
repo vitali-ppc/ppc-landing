@@ -133,7 +133,7 @@ export default function ArticleContent() {
     { id: 'how-to-stop', title: 'How to Stop Invalid Traffic (IP, Audience, and Placement Exclusions)', level: 1 },
     { id: 'not-click-fraud', title: 'When It Is NOT Click Fraud (Honest Check)', level: 1 },
     { id: 'faq', title: 'Frequently Asked Questions', level: 1 },
-    { id: 'cta', title: 'Hand Invalid-Traffic Monitoring to Kampaio', level: 1 },
+    { id: 'cta', title: 'Watch Invalid-Traffic Symptoms With Kampaio', level: 1 },
   ];
 
   const scrollToSection = (id: string) => {
@@ -314,7 +314,7 @@ export default function ArticleContent() {
 
               {/* VISUAL 3: MascotQuote (Buzz) */}
               <MascotQuote mascot="buzz">
-                Last week Campaign A took 280 clicks for $190 and returned 0 conversions, all between 2am and 4am from one metro you do not target. I would exclude that IP range today and reallocate the $190 to your top converting ad group. That is a 14% daily budget recovery.
+                The pattern I am being built to act on: a burst of clicks with zero conversions, packed into a few night hours, from a metro you do not target. The fix is to exclude the source and move that budget to an ad group that converts. I am in development, so for now that call is yours.
               </MascotQuote>
 
               <h3 style={h3Style}>High CTR With Abnormally Low Conversions</h3>
@@ -341,7 +341,7 @@ export default function ArticleContent() {
 
               {/* VISUAL 4: MascotQuote (Aegis) */}
               <MascotQuote mascot="aegis">
-                I flag any single IP that crosses 5+ clicks in 24 hours with no downstream conversion. Last month I caught a /24 range firing 40 clicks a day across two campaigns, which looked like a competitor on a schedule. I queued an IP exclusion and an invalid-traffic report for you to approve before it cost another $400.
+                What I am being built to flag: a single IP crossing 5+ clicks in 24 hours with no downstream conversion, or one range clicking on a schedule across several campaigns. I would queue an IP exclusion for you to approve. I am in development and do not run on live accounts yet.
               </MascotQuote>
             </section>
 
@@ -443,7 +443,7 @@ export default function ArticleContent() {
 
               {/* VISUAL 7: MascotQuote (Echo) */}
               <MascotQuote mascot="echo">
-                My Monday digest lists every IP I excluded that week, the invalid-traffic adjustments Google credited, and the net wasted spend trend. Last month: 6 IPs excluded, $310 credited back, invalid click rate down from 9% to 4%. You see the whole picture in one scroll, no log-diving.
+                The Monday digest I am being built to send: every IP excluded that week, the invalid-traffic adjustments Google credited, and the wasted spend trend, in one scroll. I am in development, so for now check the invalid clicks column and your billing adjustments yourself.
               </MascotQuote>
             </section>
 
@@ -509,7 +509,7 @@ export default function ArticleContent() {
 
             {/* CTA */}
             <section id="cta">
-              <h2 style={h2Style}>Hand Invalid-Traffic Monitoring to Kampaio</h2>
+              <h2 style={h2Style}>Watch Invalid-Traffic Symptoms With Kampaio</h2>
               <p style={pStyle}>
                 Manual monitoring catches problems after they compound. The Kampaio dashboard shortens the manual part: every account on one screen, with automatic checks that flag sudden spend spikes, conversions that stop, and spend with no conversions, which are often the first visible sign of invalid traffic. IP-level detection is not in the dashboard; that is planned for Aegis, our risk <a href="/blog/google-ads-ai-agent" style={linkStyle}>agent</a>, which is in development.
               </p>

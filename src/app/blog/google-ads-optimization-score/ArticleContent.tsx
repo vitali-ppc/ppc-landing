@@ -408,7 +408,7 @@ export default function ArticleContent() {
 
               {/* VISUAL 6: MascotQuote - Aegis (risk flag) */}
               <MascotQuote mascot="aegis">
-                On a typical $15K/month account, I block two recommendation types from auto-apply by default: &quot;Add broad match keywords&quot; and &quot;Use optimized targeting.&quot; Broad match without tight negatives and a mature conversion history routinely burns 15-20% of spend on irrelevant queries before Smart Bidding has enough data to correct itself. That&apos;s an illustrative range based on how these two recommendation types typically behave, not an audited number from one account, but it&apos;s consistent enough that I flag both every time.
+                What I am being built to do: hold two recommendation types out of auto-apply by default, &quot;Add broad match keywords&quot; and &quot;Use optimized targeting.&quot; Broad match without tight negatives and a mature conversion history can burn spend on irrelevant queries before Smart Bidding has enough data to correct itself, so both deserve a manual look before you accept them.
               </MascotQuote>
 
               <p style={para}>
@@ -558,10 +558,10 @@ export default function ArticleContent() {
                 Google has already narrowed the ad-copy side of that list. Its auto-apply documentation states: &quot;Starting January 26, 2026, the &quot;Add responsive search ads&quot; recommendation will no longer automatically suggest&quot; new RSAs, and &quot;This recommendation is removed from the Auto Apply settings page&quot; (<a href="https://support.google.com/google-ads/answer/10279006?hl=en" style={linkStyle} target="_blank" rel="noopener noreferrer">Google Ads Help, 2026</a>). What remains auto-appliable under ads and assets is improving your existing responsive search ads, adding dynamic search ads, and optimized ad rotation. Brand-new ad variants are no longer something auto-apply writes for you.
               </p>
               <p style={para}>
-                This lines up with where the practitioner debate already lands. Threads on r/PPC and in Google&apos;s own Ads Community keep asking versions of the same question: is the score &quot;a legit and relevant metric in driving higher ROI?&quot; The consensus that surfaces is consistent with the process above. Use the score as a checklist, review manually, and judge the account by ROAS and CPA instead. For a deeper walkthrough of manual review across a full account, see B6&apos;s <a href="/blog/ppc-audit-checklist" style={linkStyle}>Google Ads audit checklist</a>, the wider system in our <a href="/blog/google-ads-optimization" style={linkStyle}>complete guide to Google Ads optimization</a>, and the breakdown of <a href="/blog/google-ads-ai-vs-manual-bidding" style={linkStyle}>AI vs. manual bidding control</a>.
+                This lines up with where the practitioner debate already lands. Threads on r/PPC and in Google&apos;s own Ads Community keep asking versions of the same question: is the score &quot;a legit and relevant metric in driving higher ROI?&quot; The consensus that surfaces is consistent with the process above. Use the score as a checklist, review manually, and judge the account by ROAS and CPA instead. For a deeper walkthrough of manual review across a full account, see Kampaio&apos;s <a href="/blog/ppc-audit-checklist" style={linkStyle}>Google Ads audit checklist</a>, the wider system in our <a href="/blog/google-ads-optimization" style={linkStyle}>complete guide to Google Ads optimization</a>, and the breakdown of <a href="/blog/google-ads-ai-vs-manual-bidding" style={linkStyle}>AI vs. manual bidding control</a>.
               </p>
               <p style={para}>
-                If your account already leans on Smart Bidding, it&apos;s worth reading how bid <a href="/blog/google-ads-strategy" style={{ color: '#764ba2', textDecoration: 'underline' }}>strategy</a> choice interacts with this same recommendation stream in B6&apos;s guide to <a href="/blog/google-ads-smart-bidding-strategies" style={linkStyle}>Smart Bidding strategies</a>, since several of the highest-risk recommendations in the table above are bid-strategy opt-ins.
+                If your account already leans on Smart Bidding, it&apos;s worth reading how bid <a href="/blog/google-ads-strategy" style={{ color: '#764ba2', textDecoration: 'underline' }}>strategy</a> choice interacts with this same recommendation stream in Kampaio&apos;s guide to <a href="/blog/google-ads-smart-bidding-strategies" style={linkStyle}>Smart Bidding strategies</a>, since several of the highest-risk recommendations in the table above are bid-strategy opt-ins.
               </p>
             </section>
 
@@ -569,10 +569,10 @@ export default function ArticleContent() {
             <section id="how-kampaio-handles">
               <h2 style={h2}>How Kampaio handles optimization score and recommendations</h2>
               <p style={para}>
-                Kampaio does not treat 100% as a goal. Aegis reviews every incoming recommendation against a risk profile before anything touches a live account, and Buzz evaluates the bid or budget impact of a suggestion against the account&apos;s actual ROAS target, not against how many points it would add to the score.
+                Kampaio does not treat 100% as a goal. The Kampaio dashboard judges campaigns by outcomes instead: its 14 automatic checks flag ROAS below target, CPA above target, spend with no conversions, and impressions lost to budget or rank, across every account on one screen. It does not read or apply Google&apos;s recommendations. Aegis, our risk agent, and Buzz, our bidding agent, are in development: Aegis will review incoming recommendations against a risk profile, and Buzz will evaluate their bid or budget impact against the account&apos;s actual ROAS target, not against how many points they would add to the score.
               </p>
               <p style={para}>
-                That&apos;s a different model from the two most common alternatives on the market. Google&apos;s native auto-apply accepts qualifying recommendations without review. Recommendation engines like Optmyzr ($499/month) and Madgicx ($499+/month), which we line up in our <a href="/blog/google-ads-optimizer-software-compared" style={linkStyle}>comparison of Google Ads optimizer software</a>, surface suggestions for a human to evaluate, but the review work still falls on the account owner. Kampaio applies only the recommendations that move the account&apos;s stated goal, and shows the reasoning behind each decision as it happens, on a flat monthly subscription set by the level you choose.
+                That&apos;s a different model from the two most common alternatives on the market. Google&apos;s native auto-apply accepts qualifying recommendations without review. Recommendation engines like Optmyzr ($499/month) and Madgicx ($499+/month), which we line up in our <a href="/blog/google-ads-optimizer-software-compared" style={linkStyle}>comparison of Google Ads optimizer software</a>, surface suggestions for a human to evaluate, but the review work still falls on the account owner. With the Kampaio dashboard that review also stays with you today: any change you make from it (budget, target ROAS or CPA, campaign on/off, geo, keywords) shows a preview first and can be rolled back. The dashboard is free during early access.
               </p>
 
               {/* VISUAL 9: CompareGrid - three approaches to recommendations (bold-viz) */}
@@ -599,21 +599,21 @@ export default function ArticleContent() {
                     ],
                   },
                   {
-                    name: 'Kampaio',
-                    bestFor: 'a documented, goal-aware review layer before the live budget',
+                    name: 'Kampaio dashboard',
+                    bestFor: 'checking campaigns against your own ROAS and CPA targets before you change anything',
                     highlight: true,
                     traits: [
-                      { label: 'Applies recommendations automatically', has: true },
-                      { label: 'Reviews each rec against your goal', has: true },
-                      { label: 'Shows reasoning per decision', has: true },
-                      { label: 'No monthly software fee', has: false },
+                      { label: 'Applies recommendations automatically', has: false },
+                      { label: 'Reviews each rec against your goal', has: false },
+                      { label: 'Shows reasoning per decision', has: false },
+                      { label: 'No monthly software fee', has: true },
                     ],
                   },
                 ]}
               />
 
               <p style={para}>
-                None of the three approaches is inherently wrong; they solve different problems. An account that genuinely wants Google&apos;s growth-oriented suggestions applied at scale may prefer straightforward auto-apply. An account that wants a documented, goal-aware review layer between the recommendation and the live budget is the one Kampaio is built for.
+                None of the three approaches is inherently wrong; they solve different problems. An account that genuinely wants Google&apos;s growth-oriented suggestions applied at scale may prefer straightforward auto-apply. An account that wants a documented, goal-aware review layer between the recommendation and the live budget is the one Kampaio&apos;s agents are being built for; today the Kampaio dashboard covers the outcome side, flagging campaigns that miss their ROAS or CPA target.
               </p>
             </section>
 
@@ -655,10 +655,10 @@ export default function ArticleContent() {
                   Review every recommendation against a real ROAS target
                 </h3>
                 <p style={{ fontSize: '17px', color: '#64748b', marginBottom: '28px', lineHeight: '1.6', fontWeight: 500, opacity: 0.9 }}>
-                  That&apos;s the exact review Kampaio runs automatically, with Aegis flagging risk and Buzz checking bid impact before anything ships.
+                  The Kampaio dashboard flags campaigns with ROAS below target or CPA above target across every account on one screen. Free during early access.
                 </p>
                 <a
-                  href="/chat"
+                  href="https://dashboard.kampaio.com/"
                   className="btn"
                   style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', color: 'white', border: 'none', padding: '16px 32px', borderRadius: '10px', fontSize: '16px', fontWeight: 600, cursor: 'pointer', transition: 'all 0.3s ease', display: 'inline-block', boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)', textDecoration: 'none' }}
                   onMouseEnter={(e) => {
@@ -670,7 +670,7 @@ export default function ArticleContent() {
                     (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
                   }}
                 >
-                  See how Kampaio handles recommendations
+                  Open the dashboard
                 </a>
               </div>
 

@@ -477,7 +477,7 @@ export default function ArticleContent() {
               </p>
 
               <p style={paragraphStyle}>
-                The structural difference worth noticing: agency and <a href="/blog/google-ads-consultant" style={{ color: '#764ba2', textDecoration: 'underline' }}>consultant</a> fees both tend to rise with your ad spend, either directly through a percentage or indirectly as the account grows more complex. Software prices on a flat subscription instead, so the cost does not climb just because your budget does. That is the model <a href="/b6" style={linkStyle}>Kampaio</a> runs on, a flat monthly fee rather than a cut of spend, which is why it tends to make sense for the same $3,000 to $50,000/month accounts where an agency percentage would take an outsized bite. It is a different cost curve, not a better one for everyone: an agency&apos;s hands-on team is worth the premium when the account genuinely needs one.
+                The structural difference worth noticing: agency and <a href="/blog/google-ads-consultant" style={{ color: '#764ba2', textDecoration: 'underline' }}>consultant</a> fees both tend to rise with your ad spend, either directly through a percentage or indirectly as the account grows more complex. Software prices on a flat subscription instead, so the cost does not climb just because your budget does. The <a href="https://dashboard.kampaio.com/" style={linkStyle}>Kampaio dashboard</a> is free during early access, so on the same $3,000 to $50,000/month accounts where an agency percentage would take an outsized bite, it takes no cut of spend at all. It puts every account on one screen and flags problems with 14 automatic campaign checks; you still make the changes yourself. It is a different cost curve, not a better one for everyone: an agency&apos;s hands-on team is worth the premium when the account genuinely needs one.
               </p>
             </section>
 
@@ -501,13 +501,13 @@ export default function ArticleContent() {
 
               <div style={{ background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)', borderRadius: '16px', padding: '40px', textAlign: 'center', marginTop: '40px', marginBottom: '40px' }}>
                 <h3 style={{ fontSize: '24px', fontWeight: 800, color: '#1e293b', marginBottom: '16px', marginTop: 0, lineHeight: 1.3 }}>
-                  Pay a flat fee, not a cut of your spend
+                  See your accounts without a cut of your spend
                 </h3>
                 <p style={{ fontSize: '17px', color: '#475569', marginBottom: '28px', lineHeight: 1.6, fontWeight: 500, maxWidth: '620px', marginLeft: 'auto', marginRight: 'auto' }}>
-                  Kampaio manages your Google Ads on a flat monthly subscription that does not climb with your budget. Free to start, no lock-in. See <a href="/pricing" style={linkStyle}>Kampaio&apos;s plans</a>.
+                  The Kampaio dashboard puts every Google Ads account you manage on one screen, with 14 automatic campaign checks and a preview and rollback for every change you make. Free during early access, no card.
                 </p>
                 <a
-                  href="/chat"
+                  href="https://dashboard.kampaio.com/"
                   style={{
                     background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                     color: 'white',
@@ -530,7 +530,7 @@ export default function ArticleContent() {
                     (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
                   }}
                 >
-                  Connect your account free
+                  Open the dashboard
                 </a>
               </div>
 

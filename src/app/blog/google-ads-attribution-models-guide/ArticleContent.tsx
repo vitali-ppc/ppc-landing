@@ -43,7 +43,7 @@ export default function ArticleContent() {
       "@type": "WebPage",
       "@id": "https://kampaio.com/blog/google-ads-attribution-models-guide"
     },
-    "keywords": "Google Ads attribution model, last-click attribution, data-driven attribution, DDA, attribution window, lookback window, Model Comparison tool, Smart Bidding, tCPA, tROAS, conversion action, GA4 attribution, Performance Max attribution, Maximus, Echo, Buzz, B6, autonomous PPC",
+    "keywords": "Google Ads attribution model, last-click attribution, data-driven attribution, DDA, attribution window, lookback window, Model Comparison tool, Smart Bidding, tCPA, tROAS, conversion action, GA4 attribution, Performance Max attribution, Kampaio dashboard",
     "wordCount": 2925,
     "articleSection": "Google Ads",
     "inLanguage": "en"
@@ -439,7 +439,7 @@ export default function ArticleContent() {
               </p>
 
               <MascotQuote mascot="maximus">
-                On a $40K/month retail account last quarter, switching from last-click to data-driven shifted 23 percent of the conversion credit to upper-funnel generic keywords and away from brand search. Smart Bidding reset its tCPA training inside 14 days. CPA spiked 18 percent on day 3, settled at minus 6 percent versus the pre-switch baseline by day 21. The account ended the quarter with 11 percent more conversions on the same budget.
+                I am being built to make this call with you: read path length, conversion volume and channel mix, then recommend a model with a written reason. Until then, the rule of thumb above does the job. Count the multi-touch paths before you switch, and expect credit to move away from brand search toward upper-funnel generics if DDA is the right pick.
               </MascotQuote>
             </section>
 
@@ -540,7 +540,7 @@ sequenceDiagram
   M->>B: Hold targets steady<br/>through day 14
   B->>B: Re-learn completes,<br/>tROAS settles
                 `}
-                caption="The B6 loop on a model switch. Maximus decides, Buzz executes and holds the bid algorithm steady, Echo reports the credit shift to the client weekly. The loop closes on day 14 when Smart Bidding finishes relearning."
+                caption="The planned Kampaio loop on a model switch (agents in development, not running on live accounts). Maximus is designed to recommend, Buzz to hold the bid algorithm steady, Echo to report the credit shift. The loop closes when Smart Bidding finishes relearning, around day 14."
               />
 
               <p style={pStyle}>
@@ -551,7 +551,7 @@ sequenceDiagram
               </p>
 
               <MascotQuote mascot="echo">
-                Weekly attribution-shift report on a $40K/month account: brand-search credit dropped 41 percent week-over-week after the DDA switch. Assisted-conversions data showed the same paths were now distributing across three keywords instead of one. The CMO calmed down inside a single client call once she saw the same number of conversions, redistributed.
+                I am being built to write the attribution-shift report after a switch. The point of that report: show the client the same conversions, redistributed across more keywords, so a drop in brand-search credit does not read as a drop in results. Pull the assisted-conversions view next to the totals when you explain it.
               </MascotQuote>
             </section>
 
@@ -605,13 +605,10 @@ sequenceDiagram
                 The attribution decision is downstream of conversion volume, upstream of Smart Bidding, and adjacent to incrementality. Most accounts ship the wrong choice because they treat it as a reporting preference instead of a bid algorithm input. It is the bid algorithm input.
               </p>
               <p style={pStyle}>
-                This is where B6 changes the math. <a href="/b6#maximus" style={linkStyle}>Maximus</a> is the orchestrator: he reviews path-length, conversion volume, and channel mix on the connected account, then recommends the right model with a one-paragraph rationale. <a href="/b6#echo" style={linkStyle}>Echo</a> handles the post-switch reporting story for your clients: weekly attribution-shift summaries, brand versus upper-funnel credit drift, assisted-conversions context. <a href="/b6#buzz" style={linkStyle}>Buzz</a> holds the bid algorithm steady through the 14-day re-learn so a normal mid-week CPA spike does not get hand-edited into a worse state.
+                Kampaio&apos;s agents for this loop are in development and do not run on live accounts. Maximus, the orchestrator, will review path length, conversion volume and channel mix and recommend a model with a written reason. Echo, the reporting agent, will summarize the credit shift after a switch. Buzz, the bidding agent, will propose holding targets steady through the re-learn. Optmyzr sits at roughly $499 and stops at recommendations.
               </p>
               <p style={pStyle}>
-                B6's Approval level gives full recommendations that you approve every change. Optmyzr sits at roughly $499 and stops at recommendations: still useful, more expensive, no orchestration across the decision and the execution. The B6 difference is that the model recommendation, the reporting follow-through, and the bidding patience are one connected loop instead of three separate slide decks.
-              </p>
-              <p style={pStyle}>
-                <a href="/chat" style={linkStyle}>Try B6 free for 14 days</a> or <a href="/pricing" style={linkStyle}>see pricing</a>. The first thing it does on a new account is check whether your conversion actions are actually getting DDA or silently running last-click. That answer alone is usually worth the trial.
+                What you can use today is the <a href="https://dashboard.kampaio.com/" style={linkStyle}>Kampaio dashboard</a>, free during early access. It shows spend, ROAS and CPA per campaign with a daily chart, and its automatic checks flag ROAS below target and CPA above target, which is how you watch the transition window after a model switch across all your accounts on one screen.
               </p>
             </section>
 

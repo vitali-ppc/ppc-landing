@@ -536,7 +536,7 @@ export default function ArticleContent() {
                 <strong>Step 1: Define your conversion hierarchy.</strong> Set your primary conversion as the marketing qualified lead (MQL) or sales qualified lead (SQL), depending on where your CRM handoff happens. Form fills and demo bookings are secondary conversions, track them in Google Ads as Observation only. Optimizing toward secondary conversions is the single most common B2B tracking mistake. It produces volume with no pipeline correlation.
               </p>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '20px' }}>
-                <strong>Step 2: Set up offline conversion import.</strong> Export CRM data (HubSpot, Salesforce, or Pipedrive) with GCLID and conversion timestamp. Import via Google Ads Manager or the Google Ads API. <a href="https://support.google.com/google-ads/answer/2998031" style={{ color: '#764ba2', textDecoration: 'underline' }} target="_blank" rel="noopener noreferrer">Google's offline conversion import documentation</a> covers the full technical setup. <a href="/features" style={{ color: '#764ba2', textDecoration: 'underline' }}>Kampaio's offline conversion import</a> handles this process automatically, syncing CRM-qualified leads on a scheduled basis without manual file exports. Without this import, Smart Bidding is optimizing against a signal with no connection to closed revenue.
+                <strong>Step 2: Set up offline conversion import.</strong> Export CRM data (HubSpot, Salesforce, or Pipedrive) with GCLID and conversion timestamp. Import via Google Ads Manager or the Google Ads API. <a href="https://support.google.com/google-ads/answer/2998031" style={{ color: '#764ba2', textDecoration: 'underline' }} target="_blank" rel="noopener noreferrer">Google's offline conversion import documentation</a> covers the full technical setup. Without this import, Smart Bidding is optimizing against a signal with no connection to closed revenue.
               </p>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '20px' }}>
                 <strong>Step 3: Extend your attribution window.</strong> Navigate to Tools &gt; Conversions &gt; Attribution model and set the lookback window to 90 days for both search and display. The 30-day default undercounts conversions from long sales cycles and causes Smart Bidding to systematically undervalue your best-performing campaigns. Our <a href="/blog/google-ads-attribution-models-guide" style={{ color: '#764ba2', textDecoration: 'underline' }}>Google Ads attribution models guide</a> explains how each model affects B2B conversion credit across long buying cycles.
@@ -546,7 +546,7 @@ export default function ArticleContent() {
               </p>
 
               <MascotQuote mascot="sage">
-                Audited a $8K/month B2B Search account and found 67% of form fills had no GCLID attached. Offline conversions had never been imported, which meant Smart Bidding had operated for four months with zero signal on lead quality. Recommendation: export the last 90 days of CRM-qualified leads, match each record to its GCLID, import the full batch, then wait 30 days before evaluating bid strategy changes. Check Smart Bidding status after that full learning cycle, the algorithm needs time to absorb new quality signals before the numbers tell you anything reliable. Numbers are from an illustrative account scenario.
+                A scenario, not a result: a B2B Search account where most form fills carry no GCLID and offline conversions have never been imported. Smart Bidding in that account has zero signal on lead quality. The fix I am being built to recommend: export the last 90 days of CRM-qualified leads, match each record to its GCLID, import the full batch, then wait 30 days before evaluating bid strategy changes. Check Smart Bidding status after that full learning cycle, the algorithm needs time to absorb new quality signals before the numbers tell you anything reliable. I am in development and have not audited a live account yet.
               </MascotQuote>
             </section>
 
@@ -624,7 +624,7 @@ export default function ArticleContent() {
               </p>
 
               <MascotQuote mascot="buzz">
-                Reviewed a BOFU B2B campaign with a $200/day budget and Target CPA set to $80, with only 12 conversions in the last 30 days. Smart Bidding was stuck in Permanent Learning Mode: the algorithm had insufficient conversion volume to model a reliable CPA and was throttling delivery as a result. Recommendation: switch to Maximize Conversions for 60 days with no CPA constraint, collect the data, then set Target CPA at 20% above the average CPA that emerges. Specific timeline: 60 days to stable data collection, then 30 days to confirm CPA stability before tightening the target. These numbers are illustrative, not guaranteed outcomes.
+                A scenario, not a result: a BOFU B2B campaign on Target CPA with only a handful of conversions in the last 30 days. Smart Bidding stays stuck in learning: it has too little conversion volume to model a reliable CPA and throttles delivery. The sequence I am being built to recommend: switch to Maximize Conversions for 60 days with no CPA constraint, collect the data, then set Target CPA at 20% above the average CPA that emerges. Specific timeline: 60 days to stable data collection, then 30 days to confirm CPA stability before tightening the target. I am in development, so this sequence is yours to run for now.
               </MascotQuote>
             </section>
 
@@ -667,7 +667,7 @@ export default function ArticleContent() {
               </p>
 
               <MascotQuote mascot="echo">
-                Here is the report I send every Monday morning:
+                Here is the Monday report I am being built to send. I am in development, so build it yourself for now:
                 {/* Echo weekly report block */}
                 <br /><br />
                 <code style={{ display: 'block', background: '#1e293b', color: '#a5f3fc', padding: '16px', borderRadius: '8px', fontSize: '13px', lineHeight: '1.8', overflowX: 'auto', whiteSpace: 'pre' }}>
@@ -765,11 +765,11 @@ Pipeline attributed (90-day rolling) | Smart Bidding status`}
               </div>
 
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '28px' }}>
-                Kampaio's AI <a href="/blog/google-ads-ai-agent" style={{ color: '#764ba2', textDecoration: 'underline' }}>agents</a> manage this system automatically, importing offline conversions from your CRM, adjusting bids by funnel stage, and flagging underperforming keywords before budget burns. On a flat subscription versus Optmyzr's $499+, <a href="/pricing" style={{ color: '#764ba2', textDecoration: 'underline' }}>Kampaio pricing vs. Optmyzr</a> makes the automation layer accessible for B2B teams that cannot justify enterprise tool pricing on a sub-$50K/month budget. See the full feature set at <a href="/features" style={{ color: '#764ba2', textDecoration: 'underline' }}>Kampaio's B2B campaign automation features</a>.
+                Kampaio&apos;s AI <a href="/blog/google-ads-ai-agent" style={{ color: '#764ba2', textDecoration: 'underline' }}>agents</a> for bidding and reporting are in development and do not run on live accounts yet. What works today is the <a href="https://dashboard.kampaio.com/" style={{ color: '#764ba2', textDecoration: 'underline' }}>Kampaio dashboard</a>: every account on one screen, automatic checks such as spend with no conversions, CPA above target and disabled keywords, a search terms report for negatives, and budget or target CPA changes you make yourself with a preview first. Against Optmyzr&apos;s $499+, it is free during early access.
               </p>
 
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '40px' }}>
-                The accounts we see generating consistent B2B pipeline from Google Ads are not running more campaigns. They are running fewer, better-instrumented campaigns.
+                The B2B accounts that generate consistent pipeline from Google Ads are usually not running more campaigns. They are running fewer, better-instrumented campaigns.
               </p>
 
               {/* CTA block */}
@@ -778,10 +778,10 @@ Pipeline attributed (90-day rolling) | Smart Bidding status`}
                   Ready to build a B2B pipeline, not just drive clicks?
                 </h3>
                 <p style={{ fontSize: '17px', color: '#64748b', marginBottom: '28px', lineHeight: '1.6', fontWeight: '500' }}>
-                  Let Kampaio's AI agents set up offline conversion imports, tune bid strategies, and surface lead quality problems before they drain your budget.
+                  Open the Kampaio dashboard and see CPA, spend with no conversions and search terms for every B2B campaign on one screen. Free during early access.
                 </p>
                 <a
-                  href="/chat"
+                  href="https://dashboard.kampaio.com/"
                   style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', color: 'white', border: 'none', padding: '16px 32px', borderRadius: '10px', fontSize: '16px', fontWeight: '600', cursor: 'pointer', transition: 'all 0.3s ease', display: 'inline-block', boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)', textDecoration: 'none' }}
                   onMouseEnter={e => {
                     (e.currentTarget as HTMLAnchorElement).style.boxShadow = '0 8px 25px rgba(102, 126, 234, 0.4)';
@@ -792,7 +792,7 @@ Pipeline attributed (90-day rolling) | Smart Bidding status`}
                     (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
                   }}
                 >
-                  Analyze My B2B Account
+                  Open the dashboard
                 </a>
               </div>
             </section>

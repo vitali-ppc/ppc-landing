@@ -130,7 +130,7 @@ export default function ArticleContent() {
     { id: 'budget-split', title: 'How to Split Budget Across Both Platforms', level: 1 },
     { id: 'honest-section', title: "What This Comparison Doesn't Capture", level: 1 },
     { id: 'faq', title: 'FAQ', level: 1 },
-    { id: 'kampaio-monitoring', title: 'How Kampaio Monitors Cross-Channel Allocation', level: 1 },
+    { id: 'kampaio-monitoring', title: 'Where Kampaio Fits in Cross-Channel Monitoring', level: 1 },
     { id: 'sources', title: 'Sources', level: 1 },
   ];
 
@@ -567,7 +567,7 @@ export default function ArticleContent() {
               </ul>
 
               <MascotQuote mascot="buzz">
-                Last quarter on a $52K B2B SaaS account: started at 80 Google / 20 LinkedIn. Google CAC on pipeline basis was $2,100, LinkedIn was $1,180. I rebalanced to 55 Google / 45 LinkedIn over 8 weeks -- not faster, Smart Bidding hates 20+ percent budget swings. Result at week 8: blended pipeline-CAC dropped 24 percent, LinkedIn-attributed pipeline up 3.1x, Google volume held within 12 percent. The honest signal: LinkedIn had been underfunded for the ICP.
+                If pipeline-CAC on LinkedIn is clearly lower than on Google, the split is telling you LinkedIn is underfunded for the ICP. Rebalance over several weeks, not in one move -- Smart Bidding reacts badly to 20+ percent budget swings. That pacing is what I am being built to propose.
               </MascotQuote>
 
               <p style={paraStyle}>
@@ -624,15 +624,15 @@ export default function ArticleContent() {
 
             {/* Kampaio Monitoring */}
             <section id="kampaio-monitoring">
-              <h2 style={h2Style}>How Kampaio Monitors Cross-Channel Allocation</h2>
+              <h2 style={h2Style}>Where Kampaio Fits in Cross-Channel Monitoring</h2>
               <p style={paraStyle}>
                 Cross-channel budget allocation drifts. LinkedIn ROAS holds for six weeks, then audience saturation hits and pipeline-fit starts declining. A Google Performance Max campaign quietly reallocates spend toward low-intent Display placements. Neither platform surfaces this in the native dashboard with the lag time that matters for B2B decision-making.
               </p>
               <p style={paraStyle}>
-                Buzz, Kampaio&apos;s bid <a href="/blog/google-ads-strategy" style={linkStyle}>strategy</a> <a href="/blog/google-ads-ai-agent" style={linkStyle}>agent</a>, runs continuous monitoring on channel-level pipeline-CAC, ROAS drift, and budget allocation against the target split. It flags when channel performance deviates more than 15% from the rolling baseline -- before the drift becomes a quarterly miss.
+                The <a href="https://dashboard.kampaio.com/" style={linkStyle}>Kampaio dashboard</a> covers the Google Ads side today. It shows spend, ROAS, CPA and budget for every campaign across all your accounts on one screen, with a breakdown by device, geo and network (which is where Performance Max drift toward Display shows up), and its automatic checks flag CPA above target, ROAS below target and spend spikes. It does not connect to LinkedIn. Buzz, Kampaio&apos;s bid <a href="/blog/google-ads-strategy" style={linkStyle}>strategy</a> <a href="/blog/google-ads-ai-agent" style={linkStyle}>agent</a>, is in development and does not run on live accounts.
               </p>
               <p style={paraStyle}>
-                This is not about replacing the judgment call on the initial split. The framework in this article still applies: ACV, sales cycle, ICP width determine the starting allocation. Kampaio handles the monitoring and alerting layer that catches when the live allocation drifts from the intended one. See <a href="/pricing" style={linkStyle}>Kampaio pricing</a> for autonomy tiers -- the human stays in approval, the agents handle the continuous monitoring.
+                This is not about replacing the judgment call on the initial split. The framework in this article still applies: ACV, sales cycle, ICP width determine the starting allocation. The dashboard is for watching the Google half of the live allocation; the comparison against LinkedIn and the target split is still yours to make. It is free during early access.
               </p>
 
               <div style={{
@@ -647,10 +647,10 @@ export default function ArticleContent() {
                   Running a hybrid B2B paid stack?
                 </h3>
                 <p style={{ fontSize: '17px', color: '#64748b', marginBottom: '28px', lineHeight: '1.6', fontWeight: 500 }}>
-                  Let Buzz monitor your channel allocation and alert you when Google or LinkedIn drifts from target pipeline-CAC before the quarterly miss surfaces.
+                  See every Google Ads campaign&apos;s spend, CPA and ROAS on one screen, with automatic checks flagging drift, so you can compare it against your LinkedIn numbers.
                 </p>
                 <a
-                  href="/chat"
+                  href="https://dashboard.kampaio.com/"
                   style={{
                     background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                     color: 'white',
@@ -674,7 +674,7 @@ export default function ArticleContent() {
                     (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
                   }}
                 >
-                  Analyze My Account
+                  Open the dashboard
                 </a>
               </div>
             </section>

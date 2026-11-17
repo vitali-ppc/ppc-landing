@@ -128,7 +128,7 @@ export default function ArticleContent() {
     { id: 'decision-matrix', title: 'The Decision Matrix (Severity x Effort)', level: 1 },
     { id: 'automation', title: 'Automating the Recurring Checks', level: 1 },
     { id: 'faq', title: 'Frequently Asked Questions', level: 1 },
-    { id: 'b6-agents', title: 'Hand Recurring Audits to B6 Agents', level: 1 },
+    { id: 'b6-agents', title: 'Hand Recurring Checks to the Kampaio Dashboard', level: 1 },
   ];
 
   const scrollToSection = (id: string) => {
@@ -721,7 +721,7 @@ export default function ArticleContent() {
               </ol>
 
               <MascotQuote mascot="vox">
-                I reallocate 22 percent of misspent budget on average across the audit findings. The biggest single lever is moving spend out of broad-match keywords with $50 or more in waste and into high-intent exact-match clusters with Quality Score at least 7. The reallocation runs trailing 28 days, so it only moves money where the new home has proven conversion volume.
+                I am being built to propose budget reallocations from audit findings. The lever to look at first is moving spend out of broad-match keywords with $50 or more in waste and into high-intent exact-match clusters with Quality Score at least 7. Use a trailing 28-day window, so money only moves where the new home has proven conversion volume.
               </MascotQuote>
             </section>
 
@@ -830,7 +830,7 @@ flowchart TD
               </p>
 
               <MascotQuote mascot="maximus">
-                I auto-run 18 of the 25 audit checks every Monday at 06:00. The senior strategist sees only the deltas: what crossed a threshold this week that was clean last week. Typical surface area is 3 to 7 flags per account per week. The 7 strategic checks stay manual, batched into the quarterly review. Math: roughly 7 hours saved per account per quarter, or about 28 hours back per quarter on a 4-account portfolio.
+                I am being built to run the recurring checks on a schedule and show the senior strategist only the deltas: what crossed a threshold this week that was clean last week. Whatever tool runs them, keep the 7 strategic checks manual and batch them into the quarterly review.
               </MascotQuote>
 
               <p style={pStyle}>
@@ -861,26 +861,17 @@ flowchart TD
               </p>
             </section>
 
-            {/* 8. B6 CTA */}
+            {/* 8. Kampaio CTA */}
             <section id="b6-agents">
-              <h2 style={h2Style}>Hand the Recurring Audits to B6 Agents</h2>
+              <h2 style={h2Style}>Hand Recurring Checks to the Kampaio Dashboard</h2>
               <p style={pStyle}>
-                <a href="/b6#vox" style={linkStyle}>
-                  Vox runs a cross-campaign budget audit
-                </a>{' '}
-                weekly. It finds the misspent percentage, proposes a trailing-28-day reallocation, and waits for your approval. One click and the spend follows the QS plus volume signal, not the original budget assumption.
+                The <a href="https://dashboard.kampaio.com/" style={linkStyle}>Kampaio dashboard</a> runs 14 automatic checks on every connected campaign, and several of them overlap with this checklist: impressions lost to budget, impressions lost to rank, spend with no conversions, ROAS below target, CPA above target, disabled keywords, no geo targeting, conversions stopped. It shows all your Google Ads accounts on one screen, so the threshold-driven part of the audit does not have to be rebuilt account by account.
               </p>
               <p style={pStyle}>
-                <a href="/b6#maximus" style={linkStyle}>
-                  Maximus orchestrates 18 of the 25 recurring checks
-                </a>{' '}
-                on a Monday-morning cadence. It surfaces only the deltas: what crossed a threshold this week that was clean last week. The 7 strategic checks stay on your quarterly calendar. The math works out to roughly 7 hours back per account per quarter.
+                It also covers two of the hands-on checks: a search terms report where you add negatives after a preview, and a Shopping / Performance Max product audit. The dashboard flags; you decide. Every change you make from it (budget, target ROAS or CPA, keywords, geo, campaign on or off) shows a preview first, can be rolled back, and goes into a change log with the numbers before it.
               </p>
               <p style={pStyle}>
-                <a href="/b6#aegis" style={linkStyle}>
-                  Aegis (Risk review)
-                </a>{' '}
-                catches the audit findings that turn into crises if ignored: conversion-tracking variance crossing 18 percent, IS lost to budget crossing 30 percent, search-terms waste compounding past $500 per week. Escalations are pushed within 24 hours, not at quarter-end.
+                Kampaio&apos;s agents are in development and do not run on live accounts. Vox, the strategy agent, will propose budget reallocations from audit findings; Maximus, the orchestrator, will run recurring checks on a schedule; Aegis, the risk agent, will review proposed changes before they are applied.
               </p>
 
               <div
@@ -902,7 +893,7 @@ flowchart TD
                     lineHeight: '1.3',
                   }}
                 >
-                  Run your first weekly audit by Monday.
+                  Run the recurring checks on all your accounts.
                 </h3>
                 <p
                   style={{
@@ -914,14 +905,10 @@ flowchart TD
                     opacity: 0.9,
                   }}
                 >
-                  Connect Google Ads, let Vox, Maximus, and Aegis run the 18 recurring checks for you. The 7 strategic checks stay on your quarterly calendar where they belong. See{' '}
-                  <a href="/pricing" style={linkStyle}>
-                    pricing tiers
-                  </a>{' '}
-                  for Co-pilot, Approval, and Autonomous modes.
+                  Connect Google Ads and see the 14 automatic campaign checks across every account on one screen. The 7 strategic checks stay on your quarterly calendar where they belong. Free during early access.
                 </p>
                 <a
-                  href="/chat"
+                  href="https://dashboard.kampaio.com/"
                   className="btn"
                   style={{
                     background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
@@ -946,7 +933,7 @@ flowchart TD
                     (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
                   }}
                 >
-                  Start B6 Free Trial
+                  Open the dashboard
                 </a>
               </div>
             </section>

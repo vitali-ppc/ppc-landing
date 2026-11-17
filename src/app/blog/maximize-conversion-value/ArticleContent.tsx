@@ -509,7 +509,7 @@ export default function ArticleContent() {
                 Run the three gates on your three largest-spend client accounts this week, then change one account at a time.
               </p>
               <p style={paragraphStyle}>
-                Kampaio watches bid strategy status and <a href="/blog/google-ads-not-spending-full-budget" style={{ color: '#764ba2', textDecoration: 'underline' }}>budget pacing</a> across accounts, the part of this check that drifts between reviews. See <Int href="/">how Kampaio works</Int>.
+                The Kampaio dashboard covers the part of this check that drifts between reviews: across every account you connect, its automatic checks flag impressions lost to budget, ROAS below target, spend spikes, and <a href="/blog/google-ads-not-spending-full-budget" style={{ color: '#764ba2', textDecoration: 'underline' }}>budget</a> problems on one screen. It does not change bid strategies by itself; you make each change, with a preview first. See <Int href="/">how Kampaio works</Int>.
               </p>
             </section>
 

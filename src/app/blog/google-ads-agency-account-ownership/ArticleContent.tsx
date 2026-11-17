@@ -635,8 +635,8 @@ export default function ArticleContent() {
             <section id="where-kampaio-fits">
               <h2 style={h2Style}>Where Kampaio Fits</h2>
               <p style={paragraphStyle}>
-                Kampaio runs inside your own Google Ads account. You create the account, hold Admin, and the software is granted access like any other user.
-                There is no Kampaio manager account that owns your account, nothing to transfer back if you cancel.
+                The Kampaio dashboard connects to the Google Ads accounts you already own: you create the account, hold Admin, and sign in to the dashboard with
+                Google to connect it. There is no Kampaio manager account that owns your account, nothing to transfer back if you stop using it.
               </p>
               <p style={paragraphStyle}>
                 The ownership risk here is a property of the arrangement, not of agencies. Any setup where someone else creates the account carries it; any
@@ -667,7 +667,7 @@ export default function ArticleContent() {
                 thing on this page that is genuinely urgent today.
               </p>
               <p style={paragraphStyle}>
-                Kampaio is software that runs inside the account you own, not another account you have to worry about owning.
+                The Kampaio dashboard connects to the account you own; it is not another account you have to worry about owning.
               </p>
 
               <div style={{ background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)', borderRadius: '16px', padding: '40px', textAlign: 'center', marginTop: '40px', marginBottom: '40px' }}>
@@ -675,11 +675,11 @@ export default function ArticleContent() {
                   Keep the account, keep the control
                 </h3>
                 <p style={{ fontSize: '17px', color: '#475569', marginBottom: '28px', lineHeight: 1.6, fontWeight: 500, maxWidth: '620px', marginLeft: 'auto', marginRight: 'auto' }}>
-                  kampaio is granted access to the account you already own, and shows every change before it ships. See{' '}
-                  <a href="/pricing" style={linkStyle}>kampaio&apos;s plans</a>, or connect your own account and watch what it would change first.
+                  Connect the Google Ads accounts you already own to the Kampaio dashboard and see them all on one screen. It changes nothing by itself: every change
+                  you make shows a preview first and can be rolled back. Free during early access.
                 </p>
                 <a
-                  href="/chat"
+                  href="https://dashboard.kampaio.com/"
                   style={{
                     background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                     color: 'white',
@@ -702,7 +702,7 @@ export default function ArticleContent() {
                     (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
                   }}
                 >
-                  Start with your own account
+                  Open the dashboard
                 </a>
               </div>
 

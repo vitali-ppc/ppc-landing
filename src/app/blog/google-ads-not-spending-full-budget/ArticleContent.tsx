@@ -279,7 +279,7 @@ flowchart TD
               />
 
               <MascotQuote mascot="buzz">
-                Campaign B had a $100/day budget but spent only $23 on day one. Target ROAS was set to 800% when the account&apos;s 90-day ceiling was around 400%. I relaxed it to 500% and spend reached $89 within 3 days - without touching bids or targeting.
+                One pattern worth checking first: a Target ROAS set far above what the account has delivered over the last 90 days. I am being built to spot that and propose a relaxed target; until then, compare the target to the 90-day actual by hand before you touch bids or targeting.
               </MascotQuote>
             </section>
 
@@ -318,7 +318,7 @@ flowchart TD
               </p>
 
               <MascotQuote mascot="aegis">
-                When a campaign&apos;s Target ROAS is 2x above the account&apos;s 90-day average, I flag it immediately. Most advertisers only notice something is wrong when the monthly report shows 40% underspend - by then, weeks of potential revenue are already gone.
+                What I am being built to do here is flag a Target ROAS that sits far above the account&apos;s 90-day average before the monthly report does. If you only find underspend in the monthly report, weeks of potential revenue are already gone.
               </MascotQuote>
             </section>
 
@@ -428,11 +428,11 @@ flowchart TD
                 Three practical steps work without additional tools. First, set up an automated rule in Google Ads to send an email alert when daily spend falls below 70% of budget for three or more consecutive days. Second, review Auction Insights weekly - a drop in impression share is an early signal that bid competitiveness has eroded, visible before it shows up in spend data. Third, check campaign status and billing once per week as a routine housekeeping step. It takes five minutes and catches billing failures before they idle the account for a full day.
               </p>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
-                B6 covers this systematically. <a href="/b6#buzz" style={{ color: '#764ba2', textDecoration: 'underline' }}>See how Buzz monitors bidding efficiency</a> across all campaigns every 6 hours. Aegis flags budget anomalies before the monthly report. Echo sends a weekly digest showing exactly where spend went and where it stalled. <a href="/b6" style={{ color: '#764ba2', textDecoration: 'underline' }}>How B6 agents catch budget problems</a>.
+                The <a href="https://dashboard.kampaio.com/" style={{ color: '#764ba2', textDecoration: 'underline' }}>Kampaio dashboard</a> covers part of this today. Its automatic checks flag impressions lost to budget, impressions lost to rank, campaigns that have stopped, campaigns with all ads, ad groups or asset groups paused, and campaigns with no geo targeting, across all your accounts on one screen. Kampaio&apos;s agents are in development: Buzz, the bidding agent, will propose bid and target adjustments, and Echo, the reporting agent, will summarize where spend went.
               </p>
 
               <MascotQuote mascot="buzz">
-                I check bid efficiency every 6 hours. If spend drops below 60% of daily budget for 2 consecutive cycles, I flag it and recommend a specific adjustment - for example, relaxing Target ROAS from 600% to 450% based on the account&apos;s recent conversion data.
+                I am being built to watch bid efficiency and, when spend stays well below the daily budget, recommend a specific adjustment based on the account&apos;s recent conversion data, such as a relaxed Target ROAS. You approve it or you do not.
               </MascotQuote>
             </section>
 
@@ -469,7 +469,7 @@ flowchart TD
                 Stop Guessing, Start Monitoring
               </h2>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
-                Connect your Google Ads account to B6. Buzz runs the first diagnostic in 90 seconds. You will see exactly which campaigns are underspending, why, and what to change - without digging through five different report tabs manually. <a href="/pricing" style={{ color: '#764ba2', textDecoration: 'underline' }}>B6 is free while in beta</a>. No commitment, no credit card required. <a href="/chat" style={{ color: '#764ba2', textDecoration: 'underline' }}>Connect your Google Ads account</a>.
+                Connect your Google Ads accounts to the Kampaio dashboard and see spend against budget for every campaign on one screen, with impressions lost to budget and to rank flagged by its automatic checks. If the fix is a budget or target change, you can make it from the dashboard with a preview first and a rollback after. Free during early access, no credit card required. <a href="https://dashboard.kampaio.com/" style={{ color: '#764ba2', textDecoration: 'underline' }}>Open the dashboard</a>.
               </p>
 
               <div style={{
@@ -497,10 +497,10 @@ flowchart TD
                   fontWeight: '500',
                   opacity: 0.9
                 }}>
-                  Let Buzz scan your account and surface every underspending campaign in 90 seconds - with a specific fix for each one.
+                  See every campaign&apos;s spend, budget and lost impression share across all your accounts on one screen.
                 </p>
                 <a
-                  href="/chat"
+                  href="https://dashboard.kampaio.com/"
                   className="btn"
                   style={{
                     background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
@@ -525,7 +525,7 @@ flowchart TD
                     (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
                   }}
                 >
-                  Run the Diagnostic
+                  Open the dashboard
                 </a>
               </div>
             </section>

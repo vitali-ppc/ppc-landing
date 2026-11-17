@@ -121,7 +121,7 @@ export default function ArticleContent() {
     { id: 'what-not-to-touch', title: 'What NOT to Touch (Preserving Conversion Learning)', level: 1 },
     { id: 'automation', title: 'Automating the Restructure (Phases 2-3 Without Manual Bid-Sitting)', level: 1 },
     { id: 'faq', title: 'Frequently Asked Questions', level: 1 },
-    { id: 'cta', title: 'Ready to Restructure Without the Manual Babysitting?', level: 1 },
+    { id: 'cta', title: 'Ready to Restructure With a Safety Net?', level: 1 },
   ];
 
   const scrollToSection = (id: string) => {
@@ -431,7 +431,7 @@ export default function ArticleContent() {
               </p>
 
               <MascotQuote mascot="buzz">
-                Cut to 3 campaigns max for accounts under $30K per month. Smart Bidding needs at least 30 conversions per month per bid strategy to exit Learning Limited. Expect a 30-40% CPA drop within 6 weeks if consolidation respects the conversion floor.
+                Cut to 3 campaigns max for accounts under $30K per month. Smart Bidding needs at least 30 conversions per month per bid strategy to exit Learning Limited.
               </MascotQuote>
 
               <p style={pStyle}>
@@ -522,7 +522,7 @@ export default function ArticleContent() {
                 >
                   Search Engine Land puts it
                 </a>
-                : &quot;Google Ads accounts do not collapse overnight, they erode.&quot; Six of these signs at once is what late-stage erosion looks like. We see this pattern most often in accounts where the{' '}
+                : &quot;Google Ads accounts do not collapse overnight, they erode.&quot; Six of these signs at once is what late-stage erosion looks like. The pattern is typical of accounts where the{' '}
                 <a href="/blog/why-google-ads-strategy-fails-at-scale" style={linkStyle}>
                   PPC strategy stopped scaling
                 </a>{' '}
@@ -600,7 +600,7 @@ export default function ArticleContent() {
               </p>
 
               <MascotQuote mascot="vox">
-                I reallocate 22% of misspent budget on average from broad-match keywords with zero conversions toward exact-match clusters with QS at or above 7. For most DTC accounts under $50K per month, that is $1,100 to $11,000 per month redirected to channels that actually convert.
+                What I am being built to do: propose moving budget from broad-match keywords with zero conversions toward exact-match clusters with Quality Score at or above 7. You can run the same check by hand today: filter broad match by zero conversions over the last 90 days.
               </MascotQuote>
 
               <p style={pStyle}>
@@ -698,7 +698,7 @@ export default function ArticleContent() {
                 </li>
               </ul>
               <p style={pStyle}>
-                The fastest restructures we have seen took 6 weeks. The most common mistake adds 4 weeks of unnecessary relearning by being aggressive about &quot;clean account hygiene&quot; when the account just needed Phases 1, 2, and 4. Phase 3 is where most of the learning risk lives. Earn the right to touch it.
+                Even a fast restructure needs about 6 weeks. The most common mistake adds 4 weeks of unnecessary relearning by being aggressive about &quot;clean account hygiene&quot; when the account just needed Phases 1, 2, and 4. Phase 3 is where most of the learning risk lives. Earn the right to touch it.
               </p>
             </section>
 
@@ -709,26 +709,20 @@ export default function ArticleContent() {
                 Phases 2 and 3 are where most restructures stall. They require daily bid-strategy monitoring, budget reallocation decisions, and the discipline to NOT panic-rollback on day 3 of a learning dip. This is exactly the work that should be automated.
               </p>
               <p style={pStyle}>
-                Here is how the B6 mascot <a href="/blog/google-ads-ai-agent" style={linkStyle}>agents</a> map to the playbook:
+                Here is how Kampaio&apos;s <a href="/blog/google-ads-ai-agent" style={linkStyle}>agents</a> are being built to map to the playbook. All three are in development and none runs on a live account yet:
               </p>
               <ul style={ulStyle}>
                 <li style={liStyle}>
-                  <a href="/b6#buzz" style={linkStyle}>
-                    Buzz (bid strategy)
-                  </a>{' '}
-                  runs the Phase 3 bidding migration with learning-period awareness. He will not pause campaigns mid-learning, and he surfaces only the campaigns that need human attention rather than dumping a 47-line report on your desk.
+                  <strong>Buzz (bid strategy)</strong>{' '}
+                  will run the Phase 3 bidding migration with learning-period awareness. He is designed not to pause campaigns mid-learning and to surface only the campaigns that need human attention rather than dumping a 47-line report on your desk.
                 </li>
                 <li style={liStyle}>
-                  <a href="/b6#vox" style={linkStyle}>
-                    Vox (cross-campaign strategy)
-                  </a>{' '}
-                  handles Phase 3 budget reallocation on trailing 28-day data. He flags any reallocation that exceeds 15% of a campaign baseline budget as high-risk and asks for approval rather than just executing.
+                  <strong>Vox (cross-campaign strategy)</strong>{' '}
+                  will propose Phase 3 budget reallocation on trailing 28-day data, flagging any reallocation that exceeds 15% of a campaign baseline budget as high-risk and asking for approval rather than executing.
                 </li>
                 <li style={liStyle}>
-                  <a href="/b6#maximus" style={linkStyle}>
-                    Maximus (orchestrator)
-                  </a>{' '}
-                  runs the full pause-restructure-resume cycle with a rollback safety net. If CPA drifts more than 15% from your Phase 1 baseline, he rolls back the most aggressive recent change automatically.
+                  <strong>Maximus (orchestrator)</strong>{' '}
+                  will coordinate the pause-restructure-resume cycle with a rollback safety net: if CPA drifts more than 15% from your Phase 1 baseline, he is designed to roll back the most aggressive recent change.
                 </li>
               </ul>
 
@@ -750,7 +744,7 @@ export default function ArticleContent() {
               />
 
               <p style={pStyle}>
-                B6 does not restructure the account for you. It runs the Phase 2-3 mechanics so your time goes to Phase 1 (the judgment work) and Phase 4 (the conversation with your team or your CFO about what changed and why).
+                What the Kampaio dashboard does today is narrower. It puts every account on one screen, runs 14 automatic campaign checks (spend with no conversions, CPA above target, impressions lost to budget, among others), and records every edit you make in a change log with the numbers before it and a rollback. It does not restructure the account for you: Phases 2-3 stay in your hands, and so do Phase 1 (the judgment work) and Phase 4 (the conversation with your team or your CFO about what changed and why).
               </p>
             </section>
 
@@ -803,9 +797,9 @@ export default function ArticleContent() {
 
             {/* 8. CTA */}
             <section id="cta">
-              <h2 style={h2Style}>Ready to Restructure Without the Manual Babysitting?</h2>
+              <h2 style={h2Style}>Ready to Restructure With a Safety Net?</h2>
               <p style={pStyle}>
-                If your audit surfaced 47 campaigns, broken bidding, and broad-match leakage, the restructure itself is mechanical. The hard part is sequencing it without losing the learning. B6 runs the mechanical phases (consolidation, bid migration, budget reallocation) with rollback safety, so you keep your time for the strategic decisions only you can make.
+                If your audit surfaced 47 campaigns, broken bidding, and broad-match leakage, the restructure itself is mechanical. The hard part is sequencing it without losing the learning. The Kampaio dashboard covers the monitoring side: every campaign on one screen with automatic checks, and every budget, target, keyword, or on/off change you make previewed first and logged with a rollback. The agents that will run the mechanical phases are in development.
               </p>
 
               <div
@@ -839,18 +833,14 @@ export default function ArticleContent() {
                     opacity: 0.9,
                   }}
                 >
-                  Buzz handles bidding migration. Vox handles budget reallocation. Maximus rolls back if CPA drifts more than 15%. See the agents in action on the{' '}
-                  <a href="/b6#buzz" style={linkStyle}>
-                    B6 product page
-                  </a>{' '}
-                  or compare{' '}
+                  Every change you make from the dashboard (budget, target ROAS or CPA, campaign on/off, geo, keywords) is previewed first, logged with the numbers before it, and can be rolled back.{' '}
                   <a href="/pricing" style={linkStyle}>
-                    pricing tiers
-                  </a>{' '}
-                  for Co-pilot, Approval, and Autonomous modes.
+                    Free during early access
+                  </a>
+                  .
                 </p>
                 <a
-                  href="/chat"
+                  href="https://dashboard.kampaio.com/"
                   style={{
                     background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                     color: 'white',
@@ -876,7 +866,7 @@ export default function ArticleContent() {
                     (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
                   }}
                 >
-                  Start B6 Free Trial
+                  Open the dashboard
                 </a>
               </div>
             </section>

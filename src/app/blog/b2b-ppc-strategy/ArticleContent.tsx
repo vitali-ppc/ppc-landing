@@ -449,7 +449,7 @@ export default function ArticleContent() {
 
               {/* VISUAL 5: MascotQuote - Buzz */}
               <MascotQuote mascot="buzz">
-                We watch conversion count per campaign before we touch the bid strategy. Under 30 conversions in the trailing 30 days, we hold Target CPA and let the campaign build history. Once a campaign clears that 30-conversion threshold with real CRM-assigned values behind it, we test Max Conversion Value on 10-15% of budget for two weeks before shifting the rest. Move earlier than that and the algorithm has nothing real to learn from.
+                The gate I am being built to apply: watch conversion count per campaign before touching the bid strategy. Under 30 conversions in the trailing 30 days, hold Target CPA and let the campaign build history. Once a campaign clears that 30-conversion threshold with real CRM-assigned values behind it, test Max Conversion Value on 10-15% of budget for two weeks before shifting the rest. Move earlier than that and the algorithm has nothing real to learn from.
               </MascotQuote>
 
               <p style={para}>
@@ -530,10 +530,10 @@ export default function ArticleContent() {
                   Scale the ladder without losing visibility
                 </h3>
                 <p style={{ fontSize: '17px', color: '#64748b', marginBottom: '28px', lineHeight: '1.6', fontWeight: 500, opacity: 0.9 }}>
-                  Let Kampaio apply the same automate-versus-manual decision gate continuously, and show every bid and budget move it makes.
+                  The Kampaio dashboard shows every campaign across your accounts on one screen, flags spend with no conversions, CPA above target and lost impression share, and logs every budget and target change you make with the numbers before it. Free during early access; the agents that will apply this gate are in development.
                 </p>
                 <a
-                  href="/chat"
+                  href="https://dashboard.kampaio.com/"
                   className="btn"
                   style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', color: 'white', border: 'none', padding: '16px 32px', borderRadius: '10px', fontSize: '16px', fontWeight: 600, cursor: 'pointer', transition: 'all 0.3s ease', display: 'inline-block', boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)', textDecoration: 'none' }}
                   onMouseEnter={(e) => {
@@ -545,7 +545,7 @@ export default function ArticleContent() {
                     (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
                   }}
                 >
-                  See How It Works
+                  Open the dashboard
                 </a>
               </div>
 

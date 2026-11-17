@@ -472,7 +472,7 @@ export default function ArticleContent() {
 
               {/* VISUAL 4: mascot, CPC drift heuristic */}
               <MascotQuote mascot="buzz">
-                When Other search terms runs above 15% of an ad group&apos;s cost, CPC on its visible terms usually sits 15 to 20% higher too. Tighten the exact-match core before touching bids.
+                When Other search terms takes a large share of an ad group&apos;s cost, tighten the exact-match core before touching bids. That is the order I am being built to follow.
               </MascotQuote>
             </section>
 
@@ -586,9 +586,9 @@ export default function ArticleContent() {
                 <a href="/blog/ppc-audit-checklist" style={linkStyle}>PPC audit checklist</a>.
               </p>
 
-              {/* VISUAL 7: mascot, what the agent does with the same routine */}
+              {/* VISUAL 7: mascot, what the agent is being built to do with the same routine */}
               <MascotQuote mascot="sage">
-                Scanned 1,140 search terms across 12 ad groups this week. 34 crossed the zero-conversion-at-$40 threshold, 6 qualify as new exact-match keywords, both lists queued in under 4 minutes.
+                The routine I am being built to run: check every new search term against the zero-conversion threshold, pick out the ones that qualify as new exact-match keywords, and queue both lists for your approval. I am in development; today you run this yourself in the dashboard&apos;s search terms report.
               </MascotQuote>
             </section>
 
@@ -610,18 +610,18 @@ export default function ArticleContent() {
                 Every account leaks spend to queries nobody chose to bid on. Fixing that doesn&apos;t take a bigger spreadsheet. It takes a repeatable 15-minute review and a framework that turns each term into a decision.
               </p>
               <p style={paragraphStyle}>
-                Sage classifies every new search term into Keep, Kill, or Watch automatically, surfaces the list, you approve in two clicks. See plans at <a href="/pricing" style={linkStyle}>pricing</a>, or meet the agent at <a href="/b6#sage" style={linkStyle}>Sage</a>.
+                The Kampaio dashboard shows the search terms report for every account you connect and lets you add negatives after a preview, free during early access (see <a href="/pricing" style={linkStyle}>what the Free plan includes</a>). Sage, our research agent, is in development and will sort every new search term into Keep, Kill, or Watch for your approval.
               </p>
 
               <div style={{ background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)', borderRadius: '16px', padding: '40px', textAlign: 'center', marginTop: '40px', marginBottom: '40px' }}>
                 <h3 style={{ fontSize: '24px', fontWeight: 800, color: '#1e293b', marginBottom: '16px', marginTop: 0, lineHeight: 1.3 }}>
-                  Want Keep / Kill / Watch run for you every week?
+                  Run Keep / Kill / Watch from one screen
                 </h3>
                 <p style={{ fontSize: '17px', color: '#475569', marginBottom: '28px', lineHeight: 1.6, fontWeight: 500, maxWidth: '620px', marginLeft: 'auto', marginRight: 'auto' }}>
-                  Sage reads the search terms report on a schedule, sorts every new query into one of three buckets, and queues the negatives and the promotions for your approval.
+                  Open the search terms report for every account you connect, sort by cost, and add the Kill terms as negatives after a preview. Free during early access, no card.
                 </p>
                 <a
-                  href="/pricing"
+                  href="https://dashboard.kampaio.com/"
                   style={{
                     background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                     color: 'white',
@@ -644,7 +644,7 @@ export default function ArticleContent() {
                     (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
                   }}
                 >
-                  See pricing
+                  Open the dashboard
                 </a>
               </div>
             </section>
@@ -660,7 +660,7 @@ export default function ArticleContent() {
                 ))}
               </ul>
               <p style={{ fontSize: '14px', color: '#64748b', fontStyle: 'italic', lineHeight: 1.7, marginTop: '8px' }}>
-                The $0.85 figure is scoped to spend on hidden, non-disclosed queries specifically, not to total account spend. The Keep / Kill / Watch thresholds are our practical operating defaults for a mid-size account, not Google guidance; scale them to your own spend and conversion lag. Buzz and Sage quotes are illustrative of how Kampaio&apos;s agents apply the framework, not audited results from a named advertiser.
+                The $0.85 figure is scoped to spend on hidden, non-disclosed queries specifically, not to total account spend. The Keep / Kill / Watch thresholds are our practical operating defaults for a mid-size account, not Google guidance; scale them to your own spend and conversion lag. Buzz and Sage quotes describe what Kampaio&apos;s agents, in development, are being built to do; they are not results from any account.
               </p>
             </section>
           </div>

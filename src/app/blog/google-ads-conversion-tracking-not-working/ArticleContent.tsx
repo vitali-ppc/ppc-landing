@@ -42,7 +42,7 @@ export default function ArticleContent() {
       "@type": "WebPage",
       "@id": "https://kampaio.com/blog/google-ads-conversion-tracking-not-working"
     },
-    "keywords": "Google Ads conversion tracking, conversion tag not firing, Google Tag Manager, GA4 conversion import, enhanced conversions, gclid attribution, Tag Assistant, Smart Bidding, tCPA, tROAS, Shopify checkout tracking, server-side tagging, dataLayer, conversion action primary secondary, Aegis, Buzz, B6",
+    "keywords": "Google Ads conversion tracking, conversion tag not firing, Google Tag Manager, GA4 conversion import, enhanced conversions, gclid attribution, Tag Assistant, Smart Bidding, tCPA, tROAS, Shopify checkout tracking, server-side tagging, dataLayer, conversion action primary secondary, Kampaio",
     "wordCount": 2431,
     "articleSection": "Google Ads",
     "inLanguage": "en"
@@ -136,7 +136,7 @@ export default function ArticleContent() {
     { id: 'tracking-fine-low', title: 'When the Tracking Is Fine But Conversions Still Look Low', level: 1 },
     { id: 'always-on-audit', title: 'Stop the Bleeding: Set Up an Always-On Tracking Audit', level: 1 },
     { id: 'faq', title: 'FAQ - Conversion Tracking Edge Cases', level: 1 },
-    { id: 'cta', title: 'Run an Account Audit in 60 Seconds', level: 1 },
+    { id: 'cta', title: 'Check Your Accounts in the Kampaio Dashboard', level: 1 },
   ];
 
   const scrollToSection = (id: string) => {
@@ -379,16 +379,6 @@ export default function ArticleContent() {
                 Identify your layer, jump to the fix. If you are not sure, start with Fix 1 and walk down. Tag layer breaks more often than data layer, and data layer more often than attribution.
               </p>
 
-              {/* VISUAL 3: Mermaid pie chart of failure mode distribution (real numbers from research, type NOT used in any prior article) */}
-              <MermaidDiagram
-                chart={`pie showData
-    title Where conversion tracking actually breaks (sample of 100 audits)
-    "Tag layer (missing, wrong event, no value)" : 58
-    "Data layer (duplicates, missing enhanced fields)" : 27
-    "Attribution layer (primary/secondary, gclid)" : 15
-`}
-                caption="Distribution of 100 conversion tracking issues from B6 audit runs. Tag layer is the easiest layer to diagnose, which is good news: most issues are also the most common."
-              />
             </section>
 
             {/* Tag Layer */}
@@ -439,9 +429,9 @@ export default function ArticleContent() {
                 <strong>Fix:</strong> in GTM, re-check the trigger. It should be &quot;Custom Event - purchase&quot; or &quot;Page View - Page Path contains /thank-you&quot;, NEVER &quot;All Pages.&quot; gtag.js users: ensure the conversion call lives inside the purchase confirmation handler, not in a global script loaded on every page.
               </p>
 
-              {/* VISUAL 4: MascotQuote - Aegis with concrete numbers */}
+              {/* VISUAL 4: MascotQuote - Aegis, what it is being built to do */}
               <MascotQuote mascot="aegis">
-                I scanned 47 conversion actions across one client portfolio last month. 12 were firing on page loads instead of purchase events. The account had inflated reported conversions by 38x for three months before anyone noticed. Smart Bidding had been chasing junk signal the entire time.
+                What I am being built to catch: a conversion action that fires on page load instead of on the purchase event. That one mistake inflates reported conversions and leaves Smart Bidding chasing junk signal until someone notices. I am in development, so for now that check is a manual one in Tag Assistant.
               </MascotQuote>
             </section>
 
@@ -463,7 +453,7 @@ export default function ArticleContent() {
                 <strong>Fix:</strong> pick one source. The cleaner setup for ecommerce is GA4-imported because it brings richer ecommerce context (item IDs, categories, coupon codes). Disable the legacy direct Google Ads tag, or change one of the actions to &quot;Secondary&quot; so it does not feed Smart Bidding.
               </p>
 
-              {/* VISUAL 5: ComparisonTable for gtag vs GA4 import (B6 highlighted via Aegis row) */}
+              {/* VISUAL 5: ComparisonTable for gtag vs GA4 import */}
               <ComparisonTable
                 headers={['Property', 'Direct Google Ads gtag', 'GA4 import to Google Ads']}
                 rows={[
@@ -569,9 +559,9 @@ export default function ArticleContent() {
                 <strong>Cross-channel cannibalization.</strong> A conversion attributed to &quot;Direct&quot; in GA4 may have been driven by a Google Ads click. This is an attribution model question, not a tracking bug. Switching to data-driven attribution in Google Ads (already the default for most accounts since 2023) usually surfaces 10 to 20% more credit than last-click.
               </p>
 
-              {/* VISUAL 7 (second mascot quote): Buzz with concrete bidding-degradation numbers */}
+              {/* VISUAL 7 (second mascot quote): Buzz, what it is being built to do */}
               <MascotQuote mascot="buzz">
-                When tracking breaks for 7 days, my bid model goes blind. I drop bids by an average of 40% to avoid wasting spend, which slashes impression share. Even after tracking is fixed, it takes me 2 to 3 weeks to rebuild confidence on a $10K/month account. Catch tracking issues in 24 hours and you save 3 weeks of recovery.
+                I am the bidding agent Kampaio is building, and I am in development. Any bid model, mine or Google&apos;s, goes blind when tracking breaks: it bids on missing or false signal, and it needs time to recover after the fix. The sooner a tracking break is caught, the shorter that recovery.
               </MascotQuote>
             </section>
 
@@ -579,19 +569,19 @@ export default function ArticleContent() {
             <section id="always-on-audit">
               <h2 style={h2Style}>Stop the Bleeding: Set Up an Always-On Tracking Audit</h2>
               <p style={pStyle}>
-                The pattern is consistent across every account we have audited. Tracking breaks silently. Smart Bidding degrades within 3 to 7 days. Two weeks of spend underperforms. Then someone notices the reported conversions look wrong and goes looking for the cause. By then, 2 to 3 weeks of bidding recovery is also on the bill.
+                The pattern is a common one. Tracking breaks silently. Smart Bidding degrades within 3 to 7 days. Two weeks of spend underperforms. Then someone notices the reported conversions look wrong and goes looking for the cause. By then, 2 to 3 weeks of bidding recovery is also on the bill.
               </p>
               <p style={pStyle}>
                 The fix is daily auditing, not annual setup. Most accounts get a clean tracking implementation once, then nobody checks it again until something breaks visibly.
               </p>
               <p style={pStyle}>
-                This is what <a href="/b6#aegis" style={linkStyle}>Aegis</a> (the audit <a href="/blog/google-ads-ai-agent" style={linkStyle}>agent</a> in B6) does. Daily scan across all conversion actions in your account. Flags: zero-fire-but-was-firing within 48 hours, duplicate-fire rate above baseline, primary/secondary misclassification, GA4 conversions imported but not active, enhanced conversions recording with missing user data. On a typical 12-conversion-action account we see 3 to 4 issues surfaced on the first audit run.
+                What works today: the <a href="https://dashboard.kampaio.com/" style={linkStyle}>Kampaio dashboard</a> runs automatic checks on every campaign, including &quot;conversions stopped&quot; and &quot;spend with no conversions&quot;, the two symptoms a silent tracking break shows first. A deeper daily scan of every conversion action (zero fires after a firing history, duplicate fires, primary/secondary misclassification, GA4 imports not active, enhanced conversions with missing user data) is what Aegis, our risk <a href="/blog/google-ads-ai-agent" style={linkStyle}>agent</a>, is being built to do. Aegis is in development.
               </p>
               <p style={pStyle}>
-                <a href="/chat" style={linkStyle}>Scan your account in 60 seconds</a>. We are not selling a tracking setup service (that is a one-time agency job). We are the always-on auditor that catches what humans miss on day 8.
+                <a href="https://dashboard.kampaio.com/" style={linkStyle}>Open the dashboard</a>. We are not selling a tracking setup service (that is a one-time agency job). The dashboard is a monitor that shows the symptoms early, so a break does not wait for the monthly review.
               </p>
               <p style={pStyle}>
-                Aegis also re-runs an audit after every detected change in your account, so when someone edits a conversion action or adds a new one, the re-check happens within minutes instead of next month. See <a href="/b6#aegis" style={linkStyle}>how Aegis works</a> and the rest of the <a href="/b6" style={linkStyle}>seven B6 agents</a>.
+                Every change you make from the dashboard is recorded in a change log with the numbers before it, so when conversions drop after an edit, you can see what changed and roll it back.
               </p>
             </section>
 
@@ -617,15 +607,15 @@ export default function ArticleContent() {
 
             {/* CTA */}
             <section id="cta">
-              <h2 style={h2Style}>Run an Account Audit in 60 Seconds</h2>
+              <h2 style={h2Style}>Check Your Accounts in the Kampaio Dashboard</h2>
               <p style={pStyle}>
-                Connect your Google Ads account to B6 in read-only Co-pilot mode, free while B6 is in beta. Within 60 seconds, Aegis audits every conversion action: tag fires, duplicate flags, primary/secondary classification, enhanced conversion match rate, GA4 import status. You see a scorecard that lists each issue with the specific fix path, in the same structure as this article.
+                Connect your Google Ads accounts to the Kampaio dashboard, free during early access. Every account sits on one screen, and the automatic campaign checks flag conversions that stopped and spend with no conversions. When a check fires, walk the three layers in this article to find the cause.
               </p>
               <p style={pStyle}>
-                If you fix tracking once and check it once a quarter, you accept three weeks of degraded Smart Bidding every time something breaks. Daily auditing turns three weeks of damage into 24 hours.
+                If you fix tracking once and check it once a quarter, you accept weeks of degraded Smart Bidding every time something breaks. Checking daily shortens that window.
               </p>
               <p style={pStyle}>
-                <a href="/chat" style={linkStyle}>Scan your account in 60 seconds</a> or see <a href="/b6" style={linkStyle}>how the seven B6 agents work</a>.
+                <a href="https://dashboard.kampaio.com/" style={linkStyle}>Open the dashboard</a>.
               </p>
             </section>
 

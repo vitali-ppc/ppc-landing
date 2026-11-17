@@ -354,7 +354,7 @@ export default function ArticleContent() {
 
               {/* VISUAL 4: MascotQuote (Aegis, risk flag before a renewal) */}
               <MascotQuote mascot="aegis">
-                MQLs flat or ticking up while pipeline value sits flat or drops isn&apos;t a good month. It&apos;s a lagging indicator hiding a real problem underneath. Win rates run 165% higher inside the golden period and drop 60% for every extra month a deal sits open past it. If your agency&apos;s report leads with MQL count instead of SQL rate or pipeline value, that&apos;s what I&apos;d flag before a renewal gets signed on the wrong number.
+                MQLs flat or ticking up while pipeline value sits flat or drops isn&apos;t a good month. It&apos;s a lagging indicator hiding a real problem underneath. Win rates run 165% higher inside the golden period and drop 60% for every extra month a deal sits open past it. If your agency&apos;s report leads with MQL count instead of SQL rate or pipeline value, that&apos;s what I am being built to flag before a renewal gets signed on the wrong number.
               </MascotQuote>
             </section>
 
@@ -362,7 +362,7 @@ export default function ArticleContent() {
             <section id="signal-vs-vanity">
               <h2 style={h2}>Signal vs. vanity metrics for a B2B paid search agency</h2>
               <p style={para}>
-                Aegis&apos;s flag points at the deeper issue running through every B2B report: some numbers look good almost by default and tell you almost nothing about revenue impact, while others are harder to move but are the ones that actually matter.
+                That flag points at the deeper issue running through every B2B report: some numbers look good almost by default and tell you almost nothing about revenue impact, while others are harder to move but are the ones that actually matter.
               </p>
 
               {/* VISUAL 5: ColumnBuckets : vanity metric to its signal counterpart, row by row */}
@@ -416,7 +416,7 @@ export default function ArticleContent() {
                 In-house makes sense when you already have headcount that can dedicate real, sustained time to the account and enough volume to see meaningful data and iterate. It doesn&apos;t make sense for a low-volume account where a part-time owner never sees enough signal to improve anything, a setup that looks like control but functions like neglect.
               </p>
               <p style={para}>
-                Software is the third branch, an honest option for teams running lean rather than a universal fix: kampaio, for example, is Google Ads automation built for accounts without a dedicated in-house hire, on a flat subscription rather than the percentage-of-spend model of a typical agency retainer. It&apos;s one legitimate path for a spend level that doesn&apos;t justify a full agency engagement, not a claim that software replaces a good B2B agency. The full <a href="/blog/google-ads-agency-vs-in-house-vs-software" style={linkStyle}>agency-vs-in-house-vs-software comparison</a> lives in a dedicated guide; this section stays narrowly B2B.
+                Software is the third branch, an honest option for teams running lean rather than a universal fix: Kampaio, for example, is a Google Ads dashboard built for accounts without a dedicated in-house hire: 14 automatic campaign checks and changes you make yourself with a preview and a rollback, free during early access rather than the percentage-of-spend model of a typical agency retainer. It&apos;s one legitimate path for a spend level that doesn&apos;t justify a full agency engagement, not a claim that software replaces a good B2B agency. The full <a href="/blog/google-ads-agency-vs-in-house-vs-software" style={linkStyle}>agency-vs-in-house-vs-software comparison</a> lives in a dedicated guide; this section stays narrowly B2B.
               </p>
             </section>
 
@@ -478,18 +478,18 @@ export default function ArticleContent() {
             {/* CTA */}
             <section id="cta">
               <p style={para}>
-                If your monthly report leads with MQLs and CTR and you can&apos;t answer your SQL rate off the top of your head, fix that before your next renewal conversation, not after. Kampaio is one option for B2B teams whose spend or headcount doesn&apos;t justify a full agency retainer, not the only right answer, but a fast way to see pipeline-relevant numbers instead of vanity ones without hiring an agency to get there.
+                If your monthly report leads with MQLs and CTR and you can&apos;t answer your SQL rate off the top of your head, fix that before your next renewal conversation, not after. Kampaio is one option for B2B teams whose spend or headcount doesn&apos;t justify a full agency retainer, not the only right answer, but a fast way to see spend, CPA and ROAS for every campaign on one screen without hiring an agency to get there.
               </p>
 
               <div style={{ background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)', borderRadius: '16px', padding: '40px', textAlign: 'center', marginTop: '48px', marginBottom: '40px' }}>
                 <h3 style={{ fontSize: '22px', fontWeight: 700, color: '#1e293b', marginBottom: '18px', lineHeight: '1.3' }}>
-                  See pipeline-relevant numbers before the renewal conversation
+                  See your own numbers before the renewal conversation
                 </h3>
                 <p style={{ fontSize: '17px', color: '#64748b', marginBottom: '28px', lineHeight: '1.6', fontWeight: 500, opacity: 0.9 }}>
-                  Aegis flags the reports that lead with MQL count while pipeline value sits flat, so you walk into the renewal with the right number.
+                  The Kampaio dashboard shows spend, CPA and ROAS for every campaign you connect and flags spend with no conversions, free during early access. Aegis, which will flag reports that lead with MQL count while pipeline value sits flat, is in development.
                 </p>
                 <a
-                  href="/chat"
+                  href="https://dashboard.kampaio.com/"
                   className="btn"
                   style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', color: 'white', border: 'none', padding: '16px 32px', borderRadius: '10px', fontSize: '16px', fontWeight: 600, cursor: 'pointer', transition: 'all 0.3s ease', display: 'inline-block', boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)', textDecoration: 'none' }}
                   onMouseEnter={(e) => {
@@ -501,7 +501,7 @@ export default function ArticleContent() {
                     (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
                   }}
                 >
-                  See what Kampaio reports on
+                  Open the dashboard
                 </a>
               </div>
 

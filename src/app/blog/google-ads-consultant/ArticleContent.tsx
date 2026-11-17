@@ -293,7 +293,7 @@ export default function ArticleContent() {
                   { cells: ['Agency', '$1,500-10,000/month or 10-20% of ad spend', 'A team (strategist, account manager, sometimes creative)', 'Higher spend, multi-channel, or zero owner bandwidth'] },
                   { cells: ['In-house hire', 'Loaded salary, the highest fixed cost', 'A full-time employee', 'High spend and complexity that justify a dedicated headcount'] },
                   { cells: ['Google Ads Expert (free)', '$0', "Google's own onboarding staff", 'First 30 days only, setup help, not ongoing management'] },
-                  { cells: ['AI software (Kampaio)', 'Free while in beta', 'Autonomous agents, you approve changes', 'Continuous optimization at SMB spend, no retainer'], highlight: true },
+                  { cells: ['Software (Kampaio dashboard)', 'Free during early access', 'Automatic checks flag issues, you make the changes', 'Continuous monitoring at SMB spend, no retainer'], highlight: true },
                 ]}
                 caption="Google Ads consultant vs agency vs in-house vs software: cost and best fit"
               />
@@ -353,7 +353,7 @@ export default function ArticleContent() {
               </p>
 
               <MascotQuote mascot="maximus">
-                A consultant reviews your account on a call every week or two. On a $7,000/month account, I run bid and budget checks every few hours. Last Tuesday I caught a Performance Max campaign drifting 34 percent over target CPA and paused the overspend before the next scheduled check-in would even have happened.
+                A consultant reviews your account on a call every week or two. I am being built to run bid and budget checks every few hours, so a Performance Max campaign drifting over target CPA gets flagged before the next scheduled check-in. I am in development and do not run on live accounts yet.
               </MascotQuote>
 
               <p style={pStyle}>
@@ -428,7 +428,7 @@ export default function ArticleContent() {
                 The software landscape splits into two categories. <strong>Recommendation tools</strong> like Optmyzr ($499+), Madgicx ($499+), and Adalysis tell you what to do, but you still execute every change yourself. <strong>Autonomous software</strong> runs the optimization work continuously and shows every step live. Synter is one more name worth knowing here, priced around $199/month as a universal management layer.
               </p>
               <p style={pStyle}>
-                Kampaio sits in the autonomous category: an AI PPC cabinet with specialist agents. Maximus orchestrates the account; Buzz handles bids and budgets; Aegis flags risk; Echo handles reporting; Vox works cross-campaign strategy; Sage runs research. You can <a href="/b6" style={linkStyle}>see how the agents run your account</a> before connecting anything. It is free while in beta, versus a consultant's $500-5,000/month retainer (<a href="/pricing" style={linkStyle}>Kampaio pricing</a>). Every change waits for your approval, so you keep control while the agents do the continuous work a periodic check-in simply cannot match.
+                Kampaio today is a dashboard, closer to the first category than the second: it connects the Google Ads accounts you manage, shows them on one screen, and runs 14 automatic campaign checks (spend with no conversions, CPA above target, impressions lost to budget, conversions that stopped, and more). You make every change yourself, with a preview first and a rollback after. It is free during early access, versus a consultant's $500-5,000/month retainer (<a href="/pricing" style={linkStyle}>Kampaio pricing</a>). Specialist AI agents (Maximus to orchestrate, Buzz for bids and budgets, Aegis for risk, Echo for reporting, Vox for cross-campaign strategy, Sage for research) are in development and do not run on live accounts yet.
               </p>
               <p style={pStyle}>
                 The honest boundary is worth repeating, because it's what a page selling consulting would never say out loud: software wins on continuous optimization and cost at SMB spend. A consultant wins on a one-time rebuild, an unusual account structure, or a human strategist's judgment on a decision big enough to justify the fee. Both things are true at once, and pretending otherwise is how you end up buying the wrong thing.
@@ -474,13 +474,13 @@ export default function ArticleContent() {
               </p>
               <div style={{ background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)', borderRadius: '16px', padding: '40px', textAlign: 'center', marginTop: '40px', marginBottom: '40px' }}>
                 <h3 style={{ fontSize: '22px', fontWeight: 700, color: '#1e293b', marginBottom: '18px', lineHeight: '1.3' }}>
-                  See the optimization on your own account
+                  See the checks on your own account
                 </h3>
                 <p style={{ fontSize: '17px', color: '#64748b', marginBottom: '28px', lineHeight: '1.6', fontWeight: 500, opacity: 0.9 }}>
-                  Connect your Google Ads account to Kampaio, watch Maximus run the first optimization cycle, and approve or reject every change yourself. No contract, no lock-in, <a href="/pricing" style={linkStyle}>pricing starts free</a>.
+                  Connect your Google Ads account to the Kampaio dashboard, see which campaigns the 14 automatic checks flag, and make every change yourself with a preview and a rollback. No contract, no lock-in, <a href="/pricing" style={linkStyle}>free during early access</a>.
                 </p>
                 <a
-                  href="/chat"
+                  href="https://dashboard.kampaio.com/"
                   style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', color: 'white', border: 'none', padding: '16px 32px', borderRadius: '10px', fontSize: '16px', fontWeight: 600, cursor: 'pointer', display: 'inline-block', boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)', textDecoration: 'none' }}
                 >
                   Connect Google Ads to Kampaio

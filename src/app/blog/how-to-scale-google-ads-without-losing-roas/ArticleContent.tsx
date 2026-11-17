@@ -137,7 +137,7 @@ export default function ArticleContent() {
     { id: 'step-5', title: 'Step 5 - Keep Target ROAS Loose While You Scale', level: 1 },
     { id: 'do-not-scale', title: 'When You Should NOT Scale Yet', level: 1 },
     { id: 'faq', title: 'Frequently Asked Questions', level: 1 },
-    { id: 'kampaio-cta', title: 'How Kampaio Automates the Scaling Loop', level: 1 }
+    { id: 'kampaio-cta', title: 'How Kampaio Helps With the Scaling Loop', level: 1 }
   ];
 
   const scrollToSection = (id: string) => {
@@ -366,7 +366,7 @@ export default function ArticleContent() {
               </div>
 
               <MascotQuote mascot="buzz">
-                On a 5K-per-month account last cycle, ROAS was holding at 4.1x. I raised the daily budget from 170 to 204 dollars, exactly 20%, then held. Day 4, ROAS dipped to 3.6x. Normal re-stabilization, not a problem. By day 11 it was back at 4.0x. I pushed the next 20%. Eight steps, ten weeks, 170 to 610 dollars per day, ROAS never dropped below 3.5x. The trick is patience between steps, not the size of the step.
+                What I am being built to do is run this ramp: raise budget 20%, hold, and wait for ROAS to re-stabilize before the next step. A dip in the first days after a raise is normal re-stabilization, not a reason to roll back. The trick is patience between steps, not the size of the step.
               </MascotQuote>
 
               <p style={pStyle}>
@@ -479,7 +479,7 @@ export default function ArticleContent() {
               </ol>
 
               <MascotQuote mascot="vox">
-                Campaign A was saturated, CPCs up 18% over two weeks for flat conversions. Pushing more budget there would have bought worse clicks. I moved 40 dollars per day of the planned increase into a non-brand Shopping campaign that had 31% impression share and room to grow. Account ROAS held at 3.8x while total conversions rose 22%. Scaling is reallocation, not just addition.
+                I am being built to spot saturation: CPCs climbing for flat conversions means more budget there buys worse clicks. Route the planned increase to a campaign with low impression share and room to grow instead. Scaling is reallocation, not just addition.
               </MascotQuote>
             </section>
 
@@ -534,7 +534,7 @@ export default function ArticleContent() {
               </p>
 
               <MascotQuote mascot="aegis">
-                A client wanted to triple budget on a campaign showing 5.2x ROAS. I flagged it: only 11 conversions in 30 days. That ROAS was three lucky orders, not a stable signal. We held budget, widened the keyword set to build volume to 40+ conversions per month first, then scaled. The early ROAS was a mirage; the scaled ROAS settled at 4.0x, real and repeatable.
+                I am being built to stop exactly this: tripling budget on a high ROAS that rests on a handful of conversions. A ROAS from a few lucky orders is not a stable signal. Build conversion volume first, then scale.
               </MascotQuote>
 
               <p style={pStyle}>
@@ -567,12 +567,15 @@ export default function ArticleContent() {
 
             {/* Kampaio CTA */}
             <section id="kampaio-cta">
-              <h2 style={h2Style}>How Kampaio Automates the Scaling Loop</h2>
+              <h2 style={h2Style}>How Kampaio Helps With the Scaling Loop</h2>
               <p style={pStyle}>
                 The 20% rule works. Running it by hand is tedious: bump budget, wait 7-14 days, check ROAS, decide, repeat across multiple campaigns for months. Most PPC managers land in one of two failure modes, scaling too conservatively (leaving headroom untouched) or losing patience and scaling too fast (triggering the reset they were avoiding).
               </p>
               <p style={pStyle}>
-                <a href="/b6#buzz" style={linkStyle}>Buzz</a>, Kampaio&apos;s bid-strategy <a href="/blog/google-ads-ai-agent" style={linkStyle}>agent</a>, runs the ramp: raises each campaign&apos;s budget by 20% when ROAS is stable, holds when volatile, and never stacks two learning-phase changes in one week. <a href="/b6#vox" style={linkStyle}>Vox</a> handles cross-campaign reallocation, pulling budget from saturated campaigns and routing it to ones with impression-share headroom. <a href="/b6#aegis" style={linkStyle}>Aegis</a> flags unsafe conditions (thin conversion volume, tracking drift) before budget burns on a weak signal. You set the direction and budget tier; the agents run the cadence. See <a href="/pricing" style={linkStyle}>Kampaio pricing</a> for the autonomy tiers.
+                The <a href="https://dashboard.kampaio.com/" style={linkStyle}>Kampaio dashboard</a> makes the manual version less tedious. It shows spend, ROAS, CPA and budget per campaign with a daily chart, across all your accounts on one screen, and its automatic checks flag impressions lost to budget (headroom) and ROAS below target (a step that went too far). You make each 20% budget step from the dashboard with a preview first and a rollback after, and the change log records the numbers before every edit, so you can see when the last step happened.
+              </p>
+              <p style={pStyle}>
+                Kampaio&apos;s <a href="/blog/google-ads-ai-agent" style={linkStyle}>agents</a> for the rest of the loop are in development and do not run on live accounts. Buzz, the bidding agent, will propose the ramp; Vox, the strategy agent, will propose cross-campaign reallocation; Aegis, the risk agent, will flag unsafe conditions such as thin conversion volume before a change goes through.
               </p>
 
               <div style={{
@@ -587,10 +590,10 @@ export default function ArticleContent() {
                   Scale on cadence, not on nerve.
                 </h3>
                 <p style={{ fontSize: '17px', color: '#64748b', marginBottom: '28px', lineHeight: '1.6', fontWeight: '500', opacity: 0.9 }}>
-                  Let Buzz, Vox, and Aegis run the 20% ramp, reallocate across campaigns, and flag unsafe conditions. You set the budget tier and stay in the loop.
+                  See budget, ROAS and lost impression share for every campaign on one screen, and make each budget step with a preview and a rollback. Free during early access.
                 </p>
                 <a
-                  href="/chat"
+                  href="https://dashboard.kampaio.com/"
                   className="btn"
                   style={{
                     background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
@@ -615,7 +618,7 @@ export default function ArticleContent() {
                     (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
                   }}
                 >
-                  Start Free Trial
+                  Open the dashboard
                 </a>
               </div>
 

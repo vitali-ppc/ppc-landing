@@ -122,7 +122,7 @@ export default function ArticleContent() {
     { id: 'starter-list', title: 'A Starter Negative Keyword List (and How to Find Your Own)', level: 1 },
     { id: 'what-negatives-dont-fix', title: "What Performance Max Doesn't Let You Fix With Negatives", level: 1 },
     { id: 'faq', title: 'Frequently Asked Questions', level: 1 },
-    { id: 'cta', title: 'Where B6 Fits (Automating Negative-List Maintenance, Not Replacing the Judgment)', level: 1 },
+    { id: 'cta', title: 'Where Kampaio Fits (Negative-List Maintenance, Not Replacing the Judgment)', level: 1 },
     { id: 'sources', title: 'Sources', level: 1 },
   ];
 
@@ -548,15 +548,16 @@ export default function ArticleContent() {
 
             {/* CTA */}
             <section id="cta">
-              <h2 style={h2Style}>Where B6 Fits (Automating Negative-List Maintenance, Not Replacing the Judgment)</h2>
+              <h2 style={h2Style}>Where Kampaio Fits (Negative-List Maintenance, Not Replacing the Judgment)</h2>
               <p style={paragraphStyle}>
                 Negative keyword lists decay. Someone has to review the search-term and Insights signal weekly and decide whether a new
                 exclusion belongs at account, campaign, or list level. That review is exactly the kind of recurring work that gets skipped once
-                an account looks stable. Kampaio&apos;s Sage agent surfaces negative-keyword candidates from the search-term and Insights
-                signal automatically; Buzz flags the point where a campaign has crossed into strong, stable conversion volume, the threshold
-                where a negative list stops paying for itself relative to what Smart Bidding already does. See{' '}
-                <a href="/b6#sage" style={linkStyle}>Sage</a>, <a href="/b6#buzz" style={linkStyle}>Buzz</a>, or{' '}
-                <a href="/pricing" style={linkStyle}>pricing</a>.
+                an account looks stable. The <a href="https://dashboard.kampaio.com/" style={linkStyle}>Kampaio dashboard</a> keeps that review in
+                one place: a search terms report per campaign, negatives added after a preview, and a change log of every edit with the numbers
+                before it. Two of our agents are in development for the rest: Sage, our research agent, will propose negative-keyword
+                candidates, and Buzz, our bidding agent, will flag the point where a campaign has crossed into strong, stable conversion
+                volume, where a negative list stops paying for itself relative to what Smart Bidding already does. Neither runs on a live
+                account yet.
               </p>
 
               <div style={{ background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)', borderRadius: '16px', padding: '40px', textAlign: 'center', marginTop: '40px', marginBottom: '40px' }}>
@@ -564,11 +565,11 @@ export default function ArticleContent() {
                   Stop rebuilding the same negative list in every campaign
                 </h3>
                 <p style={{ fontSize: '17px', color: '#475569', marginBottom: '28px', lineHeight: 1.6, fontWeight: 500, maxWidth: '620px', marginLeft: 'auto', marginRight: 'auto' }}>
-                  Kampaio reviews the search-term and Insights signal between your check-ins, proposes the exclusion at the right level, and
-                  shows the reasoning behind every call.
+                  Open the search terms report for every account on one screen, preview each negative before it goes in, and roll it back
+                  if you need to. Free during early access.
                 </p>
                 <a
-                  href="/pricing"
+                  href="https://dashboard.kampaio.com/"
                   style={{
                     background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                     color: 'white',
@@ -591,7 +592,7 @@ export default function ArticleContent() {
                     (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
                   }}
                 >
-                  See pricing
+                  Open the dashboard
                 </a>
               </div>
             </section>
@@ -609,8 +610,8 @@ export default function ArticleContent() {
               <p style={captionStyle}>
                 Caps and rollout dates are quoted from the sources above, not from an audited account. The 5,000-per-list and
                 1,000-campaigns-per-list figures are reported by Google Ads Liaison on X rather than documented in Google Ads Help, so treat
-                them as reported rather than confirmed. The Opteo figures are cited via lunio.ai. Sage and Buzz illustrate how
-                Kampaio&apos;s agents apply this logic, not an audited result from a named advertiser.
+                them as reported rather than confirmed. The Opteo figures are cited via lunio.ai. The Sage and Buzz quotes are
+                general tips, not results: both agents are in development and have not run on a live account.
               </p>
             </section>
           </div>

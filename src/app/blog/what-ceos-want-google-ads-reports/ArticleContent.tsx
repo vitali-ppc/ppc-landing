@@ -955,7 +955,7 @@ export default function ArticleContent() {
               color: '#1e293b',
               marginBottom: '32px'
             }}>
-              If you're ready to prevent reporting bloat, achieve your business goals, and secure bigger budgets, Kampaio's <a href="/blog/10-ai-powered-ppc-optimization-strategies" style={{ color: '#764ba2', textDecoration: 'underline' }}>AI-powered PPC</a> platform is exactly what you need. Our platform will aid your organization in boosting its reporting velocity and enhancing its data maturity.
+              If you want the numbers a CEO asks about in one place, the Kampaio dashboard puts every Google Ads account you manage on one screen: spend, ROAS, CPA, budget, and a daily chart per campaign, with totals across currencies. Pair it with these <a href="/blog/10-ai-powered-ppc-optimization-strategies" style={{ color: '#764ba2', textDecoration: 'underline' }}>AI-powered PPC</a> strategies to act on what it shows. It is free during early access.
             </p>
             
             <div style={{
@@ -984,10 +984,10 @@ export default function ArticleContent() {
                 fontWeight: '500',
                 opacity: 0.9
               }}>
-                Let our AI uncover where your Google Ads spend is leaking, and help you fix it in minutes.
+                The Kampaio dashboard runs 14 automatic campaign checks, such as spend with no conversions and impressions lost to budget, so you see where spend is leaking. You make each fix yourself, with a preview first and a rollback after.
               </p>
               <a
-                href="/chat"
+                href="https://dashboard.kampaio.com/"
                 className="btn"
                 style={{
                   background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
@@ -1012,7 +1012,7 @@ export default function ArticleContent() {
                   (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
                 }}
               >
-                Find My Leaks
+                Open the dashboard
               </a>
             </div>
           </section>

@@ -17,7 +17,7 @@ export default function ArticleContent() {
     "@context": "https://schema.org",
     "@type": "Article",
     "headline": "Google Ads Cost Per Click Too High: 9 Reasons + the Fix Sheet for Each",
-    "description": "Your Google Ads CPC is too high because of one of 9 specific causes. Diagnostic table, per-cause fix, and the numbers we cut CPC by on real accounts.",
+    "description": "Your Google Ads CPC is too high because of one of 9 specific causes. Diagnostic table, per-cause fix, and the auction math behind each fix.",
     "image": "https://kampaio.com/og/google-ads-cost-per-click-too-high.png",
     author: {
       '@type': 'Person',
@@ -42,7 +42,7 @@ export default function ArticleContent() {
       "@type": "WebPage",
       "@id": "https://kampaio.com/blog/google-ads-cost-per-click-too-high"
     },
-    "keywords": "google ads cpc, quality score, cost per click, bidding strategy, negative keywords, match types, ad rank, target cpa, smart bidding, target roas, maximize clicks, learning period, ad relevance, landing page experience, auction insights, search terms report, Buzz, Aegis, Echo, B6",
+    "keywords": "google ads cpc, quality score, cost per click, bidding strategy, negative keywords, match types, ad rank, target cpa, smart bidding, target roas, maximize clicks, learning period, ad relevance, landing page experience, auction insights, search terms report, Kampaio",
     "wordCount": 3010,
     "articleSection": "Google Ads",
     "inLanguage": "en"
@@ -128,7 +128,7 @@ export default function ArticleContent() {
     { id: 'fix-sheet-2', title: 'Fix Sheet 2 - Match Type and Negative Keywords (Cause 2)', level: 1 },
     { id: 'fix-sheet-3', title: 'Fix Sheet 3 - Bidding Strategy and Adjustments (Causes 3, 4, 6)', level: 1 },
     { id: 'fix-sheet-4', title: 'Fix Sheet 4 - Structure, Competition, and the Slow Compounders', level: 1 },
-    { id: 'b6-agents', title: 'How B6 Agents Cut CPC Faster Than Manual Audits', level: 1 },
+    { id: 'b6-agents', title: 'How Kampaio Will Help You Cut CPC Faster Than Manual Audits', level: 1 },
     { id: 'faq', title: 'FAQ', level: 1 },
     { id: 'cta', title: 'Stop Watching CPC. Start Owning It.', level: 1 },
   ];
@@ -303,7 +303,7 @@ export default function ArticleContent() {
               Google Ads Cost Per Click Too High: 9 Reasons + the Fix Sheet for Each
             </h1>
             <p style={{ fontSize: '20px', color: '#64748b', marginBottom: '32px', lineHeight: '1.6', fontWeight: '500' }}>
-              Your CPC is high for one of 9 specific causes. Diagnostic triage, per-cause fix, and the real numbers we cut CPC by on live accounts.
+              Your CPC is high for one of 9 specific causes. Diagnostic triage, per-cause fix, and the auction math behind each fix.
             </p>
             <div style={{ display: 'flex', alignItems: 'center', gap: '24px', marginBottom: '40px', paddingBottom: '32px', borderBottom: '1px solid #e5e7eb' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -400,9 +400,9 @@ export default function ArticleContent() {
                 One framing point before the fixes. CPC is not a number you bid. It is a number you earn. Your max bid sets the ceiling. The price you actually pay is determined by what it takes to beat the next advertiser, and that gap closes (in your favor) the moment your Quality Score goes up. This is why &quot;just lower the bid&quot; tends to make the problem worse, not better.
               </p>
 
-              {/* VISUAL 2: MascotQuote (Buzz) with concrete numbers */}
+              {/* VISUAL 2: MascotQuote (Buzz) */}
               <MascotQuote mascot="buzz">
-                Last month I scanned 1,847 keywords across 12 SMB accounts. Median CPC was $3.20. But 22% of total spend was going to keywords with Quality Score 4 or lower. We did not touch a single bid. We rewrote ads and tightened ad groups. Average CPC dropped 19% in three weeks. The bids were never the problem.
+                The pattern I am being built to look for: a large share of spend sitting on keywords with Quality Score 4 or lower. When that is the cause, the fix is rewritten ads and tighter ad groups, not a bid cut. I am in development and do not run on live accounts yet.
               </MascotQuote>
             </section>
 
@@ -478,7 +478,7 @@ export default function ArticleContent() {
               />
 
               <MascotQuote mascot="aegis">
-                Before any operator runs a &quot;pause low Quality Score&quot; script, I check conversion data. In one client account last week, 6 of the 11 keywords flagged as QS 4 had above-account-average conversion rates. Pausing them would have cut 18% of converting clicks while saving less than 4% of spend. Low Quality Score is a signal, not a verdict.
+                Before any operator runs a &quot;pause low Quality Score&quot; script, I am being built to check conversion data first. A keyword at QS 4 can still convert above the account average, and pausing it can cut converting clicks while saving very little spend. Low Quality Score is a signal, not a verdict.
               </MascotQuote>
             </section>
 
@@ -499,66 +499,6 @@ export default function ArticleContent() {
                 <li style={{ marginBottom: '12px' }}><strong>Phrase match</strong> for testing. New keywords or themes where you want some flexibility but tight control.</li>
                 <li style={{ marginBottom: '12px' }}><strong>Broad match</strong> only when paired with Smart Bidding (Target ROAS or Target CPA) and a robust negative list. Broad without conversion-based bidding will hemorrhage budget.</li>
               </ul>
-
-              {/* VISUAL 5: Custom HTML scorecard - real audit numbers (explicit 4-col → 2x2 → 1-col grid) */}
-              <div style={{
-                background: 'linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%)',
-                border: '1px solid #10b981',
-                borderRadius: '14px',
-                padding: '28px',
-                marginBottom: '32px',
-              }}>
-                <div style={{ fontSize: '13px', fontWeight: 700, color: '#047857', marginBottom: '20px', textTransform: 'uppercase' as const, letterSpacing: '0.08em' }}>
-                  Sample audit &middot; real SMB account &middot; 14 days
-                </div>
-                <div className="b6-scorecard-grid">
-                  <div className="b6-scorecard-cell">
-                    <div style={{ fontSize: '40px', fontWeight: 800, color: '#1e293b', lineHeight: 1 }}>1,847</div>
-                    <div style={{ fontSize: '13px', color: '#475569', marginTop: '8px', lineHeight: '1.4' }}>Search queries reviewed</div>
-                  </div>
-                  <div className="b6-scorecard-cell">
-                    <div style={{ fontSize: '40px', fontWeight: 800, color: '#ef4444', lineHeight: 1 }}>312</div>
-                    <div style={{ fontSize: '13px', color: '#475569', marginTop: '8px', lineHeight: '1.4' }}>Queries with CPC over $4 and 0 conversions</div>
-                  </div>
-                  <div className="b6-scorecard-cell">
-                    <div style={{ fontSize: '40px', fontWeight: 800, color: '#f59e0b', lineHeight: 1 }}>80</div>
-                    <div style={{ fontSize: '13px', color: '#475569', marginTop: '8px', lineHeight: '1.4' }}>Negatives added (top 80 by cost)</div>
-                  </div>
-                  <div className="b6-scorecard-cell b6-scorecard-cell-highlight">
-                    <div style={{ fontSize: '40px', fontWeight: 800, color: '#10b981', lineHeight: 1 }}>-23%</div>
-                    <div style={{ fontSize: '13px', color: '#475569', marginTop: '8px', lineHeight: '1.4' }}>Avg CPC after 14 days (no bid changes)</div>
-                  </div>
-                </div>
-                <div style={{ marginTop: '20px', fontSize: '14px', color: '#475569', lineHeight: '1.6', fontStyle: 'italic' }}>
-                  No bids touched. No budgets touched. One afternoon of negative keyword work, and 23% of the CPC line walked off the dashboard.
-                </div>
-                <style jsx>{`
-                  .b6-scorecard-grid {
-                    display: grid;
-                    grid-template-columns: repeat(4, 1fr);
-                    gap: 16px;
-                  }
-                  .b6-scorecard-cell {
-                    padding: 16px;
-                    background: #ffffff;
-                    border-radius: 10px;
-                    border: 1px solid #d1fae5;
-                  }
-                  .b6-scorecard-cell-highlight {
-                    border: 2px solid #10b981;
-                  }
-                  @media (max-width: 1100px) {
-                    .b6-scorecard-grid {
-                      grid-template-columns: repeat(2, 1fr);
-                    }
-                  }
-                  @media (max-width: 520px) {
-                    .b6-scorecard-grid {
-                      grid-template-columns: 1fr;
-                    }
-                  }
-                `}</style>
-              </div>
 
               <p style={pStyle}>
                 This is the lowest-effort, highest-return cause on the list. If you do nothing else from this article, do the search terms audit this afternoon.
@@ -780,26 +720,26 @@ export default function ArticleContent() {
               </p>
             </section>
 
-            {/* B6 Agents */}
+            {/* Kampaio agents (in development) */}
             <section id="b6-agents">
-              <h2 style={h2Style}>How B6 Agents Cut CPC Faster Than Manual Audits</h2>
+              <h2 style={h2Style}>How Kampaio Will Help You Cut CPC Faster Than Manual Audits</h2>
               <p style={pStyle}>
-                The structural work above is what a careful operator does in 12 to 20 hours per account. The B6 <a href="/blog/google-ads-ai-agent" style={linkStyle}>agents</a> do it nightly, on every keyword, with risk review baked in.
+                The structural work above is what a careful operator does in 12 to 20 hours per account. The Kampaio <a href="/blog/google-ads-ai-agent" style={linkStyle}>agents</a>, in development, are being built to do it nightly, on every keyword, with risk review baked in.
               </p>
               <p style={pStyle}>
-                <strong><a href="/b6#buzz" style={linkStyle}>Buzz</a></strong> is the bidding agent. Every night Buzz scans the full keyword inventory: bid headroom, predicted CPC impact for each candidate change, 80%+ confidence interval before proposing. It does not raise bids on losing keywords. It does not cut bids on winning keywords. The proposed changes appear in the operator&apos;s queue with the math attached.
+                <strong>Buzz</strong> is the bidding agent (in development). Every night it will scan the full keyword inventory: bid headroom, predicted CPC impact for each candidate change, 80%+ confidence interval before proposing. It is designed not to raise bids on losing keywords or cut bids on winning keywords. Proposed changes will appear in the operator&apos;s queue with the math attached.
               </p>
               <p style={pStyle}>
-                <strong><a href="/b6#aegis" style={linkStyle}>Aegis</a></strong> is the risk reviewer. Before any Buzz proposal lands, Aegis runs a blocking check. Top 10% of keywords by conversion volume? No cut allowed without operator override. Brand campaign pause? Blocked. Bid change that would crater Smart Bidding learning? Blocked. In our one prototype test (May 2026, one live e-commerce account), Aegis blocked both of Buzz&apos;s proposals at risk score 82/100, including a brand-campaign pause proposed before anyone had checked conversion tracking.
+                <strong>Aegis</strong> is the risk reviewer (in development). Before any Buzz proposal lands, Aegis will run a blocking check. Top 10% of keywords by conversion volume? No cut allowed without operator override. Brand campaign pause? Blocked. Bid change that would crater Smart Bidding learning? Blocked. In our one prototype test (May 2026, one live e-commerce account), Aegis blocked both of Buzz&apos;s proposals at risk score 82/100, including a brand-campaign pause proposed before anyone had checked conversion tracking.
               </p>
               <p style={pStyle}>
-                <strong><a href="/b6#echo" style={linkStyle}>Echo</a></strong> is the reporting layer. Weekly digest with the 5 specific keywords that drove CPC inflation in the past 7 days, including the underlying cause (QS slipped, new competitor in auction, broad match query drift). Echo turns &quot;your CPC is up 12% this week&quot; into &quot;your CPC is up 12% because keyword X lost 2 QS points and broad match keyword Y triggered on 23 new junk queries.&quot;
+                <strong>Echo</strong> is the reporting layer (in development). It will send a weekly digest with the specific keywords that drove CPC inflation in the past 7 days, including the underlying cause (QS slipped, new competitor in auction, broad match query drift). The aim is to turn &quot;your CPC is up 12% this week&quot; into &quot;your CPC is up 12% because keyword X lost 2 QS points and broad match keyword Y triggered on 23 new junk queries.&quot;
               </p>
               <p style={pStyle}>
-                Where this stands today: the agents are in development, and that single test run is all the field data we have, so we are not quoting a CPC result for them. What works now is the Kampaio dashboard: it shows every campaign&apos;s CPC, spend and conversions side by side, flags campaigns spending with no conversions, and lets you change a budget or target with a preview and roll it back.
+                Where this stands today: the agents are in development, and that single test run is all the field data we have, so we are not quoting a CPC result for them. What works now is the Kampaio dashboard: it shows every campaign&apos;s spend, CPA and ROAS side by side, flags campaigns spending with no conversions, and lets you change a budget or target with a preview and roll it back.
               </p>
               <p style={pStyle}>
-                The pitch is not &quot;AI replaces your judgment.&quot; The pitch is: AI does the per-keyword math every night, you spend your attention on the 5 keywords that actually need an operator decision. See <a href="/pricing" style={linkStyle}>pricing tiers</a> or open the <a href="/chat" style={linkStyle}>free Buzz audit</a> directly.
+                The goal is not &quot;AI replaces your judgment.&quot; It is: the agents do the per-keyword math every night, and you spend your attention on the few keywords that actually need an operator decision. Until they ship, <a href="https://dashboard.kampaio.com/" style={linkStyle}>open the dashboard</a> and see which campaigns the 14 automatic checks flag. It is free during early access; see <a href="/pricing" style={linkStyle}>what the Free plan includes</a>.
               </p>
             </section>
 
@@ -827,10 +767,10 @@ export default function ArticleContent() {
             <section id="cta">
               <h2 style={h2Style}>Stop Watching CPC. Start Owning It.</h2>
               <p style={pStyle}>
-                Three things to take away. The auction math punishes low Quality Score harder than most operators realize: 1 point of QS is 16% of CPC, compounded. The fix sheets are sequenced for ROI: search terms today, Quality Score this month, structure this quarter. Manual audits work, but they do not scale. An agent that scans nightly catches issues in 24 hours instead of 24 days.
+                Three things to take away. The auction math punishes low Quality Score harder than most operators realize: 1 point of QS is 16% of CPC, compounded. The fix sheets are sequenced for ROI: search terms today, Quality Score this month, structure this quarter. Manual audits work, but they do not scale, which is why automatic checks between audits are worth having.
               </p>
               <p style={pStyle}>
-                If your account is over $5K/month in spend, you have probably never had a bid-by-bid, query-by-query audit run on it. <a href="/chat" style={linkStyle}>Run a free Buzz audit on your account in 10 minutes</a> and see the specific keywords driving your CPC. No credit card, read-only access, no changes made without your approval.
+                If your account is over $5K/month in spend, you have probably never had a bid-by-bid, query-by-query audit run on it. <a href="https://dashboard.kampaio.com/" style={linkStyle}>Open the Kampaio dashboard</a>, connect your account, and see which campaigns the 14 automatic checks flag, plus the search terms report for adding negatives. Free during early access, no card, and nothing changes in your account unless you make the change yourself, with a preview first and a rollback after.
               </p>
               <p style={pStyle}>
                 CPC is not a fee. It is a tax on the gap between your account and a well-run one. Close the gap.

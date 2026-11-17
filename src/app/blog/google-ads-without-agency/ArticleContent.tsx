@@ -129,7 +129,7 @@ export default function ArticleContent() {
     { id: 'third-option', title: 'The Third Option: AI Tools That Do Agency Work at Tool Prices', level: 1 },
     { id: 'transition', title: 'How to Transition from Agency to Self-Management', level: 1 },
     { id: 'faq', title: 'Frequently Asked Questions', level: 1 },
-    { id: 'cta', title: 'Stop Paying Agency Fees for Work AI Can Do Better', level: 1 },
+    { id: 'cta', title: 'Stop Paying Agency Fees for Checks a Dashboard Can Run', level: 1 },
   ];
 
   const scrollToSection = (id: string) => {
@@ -297,7 +297,7 @@ export default function ArticleContent() {
               </p>
 
               <MascotQuote mascot="buzz">
-                Campaign X had 47 ad groups. I adjusted bids on 23 of them last Tuesday: 14 decreases (average drop 8%), 9 increases (average lift 5%). Took me 4 minutes. A human with a spreadsheet needs 2 hours for the same output.
+                Reviewing bids across dozens of ad groups is the repetitive work I am being built to take over: I will propose each change with the reason, and you approve or reject it. I am in development and do not touch live accounts yet.
               </MascotQuote>
             </section>
 
@@ -318,7 +318,7 @@ flowchart TD
   Q1 -->|No| Q2{$5K - $20K?}
   Q2 -->|Yes| Q3{PPC experience?}
   Q3 -->|Yes| Sc2[Scenario 2: DIY + automation tool<br/>You strategy, tool executes]
-  Q3 -->|No| Sc3[Scenario 3: AI-managed<br/>B6 + 3-5h/week review]
+  Q3 -->|No| Sc3[Scenario 3: Tool-assisted<br/>Smart Bidding + tool + 3-5h/week review]
   Q2 -->|No - over 20K| Agency[Keep or hire agency<br/>Complexity justifies cost]
 
   style Sc1 fill:#eef2ff,stroke:#667eea,stroke-width:2px
@@ -336,7 +336,7 @@ flowchart TD
                 <strong>Scenario 2: You have PPC experience.</strong> You ran campaigns at a previous company, understand <a href="/blog/the-complete-guide-to-google-ads-quality-score-in-2025" style={{ color: '#764ba2', textDecoration: 'underline' }}>Quality Score</a>, know the difference between Target CPA and Target ROAS, and can read the auction insights report. You don&apos;t need training. You need efficiency. A tool handles bid updates and negative keyword mining while you make strategic decisions: budget allocation, new campaign launches, landing page tests.
               </p>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
-                <strong>Scenario 3: You use automation tools.</strong> Smart Bidding handles bids (if you have 30+ conversions/month), and a management tool like B6 handles <a href="/blog/google-ads-not-spending-full-budget" style={{ color: '#764ba2', textDecoration: 'underline' }}>budget pacing</a>, negative keyword suggestions, and <a href="/blog/google-ads-anomaly-detection" style={{ color: '#764ba2', textDecoration: 'underline' }}>anomaly detection</a>. You spend 3-5 hours/week reviewing recommendations and approving changes. You&apos;re not doing the work manually. You&apos;re managing an AI team instead of a human team.
+                <strong>Scenario 3: You use automation tools.</strong> Smart Bidding handles bids (if you have 30+ conversions/month), and a management tool handles <a href="/blog/google-ads-not-spending-full-budget" style={{ color: '#764ba2', textDecoration: 'underline' }}>budget pacing</a>, negative keyword suggestions, and <a href="/blog/google-ads-anomaly-detection" style={{ color: '#764ba2', textDecoration: 'underline' }}>anomaly detection</a>. You spend 3-5 hours/week reviewing what the tools flag and deciding on changes. You&apos;re not doing every check manually. You&apos;re reviewing tool output instead of managing a human team.
               </p>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
                 Be clear on this: DIY does not mean set and forget. Even with automation, you need minimum 3-5 hours/week for review, <a href="/blog/google-ads-strategy" style={{ color: '#764ba2', textDecoration: 'underline' }}>strategy</a> adjustments, and creative testing. If you can&apos;t commit that time consistently, you&apos;ll underperform and waste budget through neglect. Google Ads punishes inattention.
@@ -358,7 +358,7 @@ flowchart TD
                 <strong>Case 1: High spend with complex structure.</strong> You&apos;re spending $50K+/month across multiple markets, languages, or product lines. You&apos;re running Search, Shopping, Display, YouTube, and Performance Max simultaneously. You have 15-25 campaigns, 200+ ad groups, custom landing pages for each segment. The coordination overhead justifies agency fees. One person cannot manage this structure part-time without breaking things. At this scale you need a team, and agencies provide that.
               </p>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
-                <strong>Case 2: You need creative production.</strong> Custom landing pages, video ads for YouTube, display creative in six sizes, A/B testing frameworks. Agencies bundle creative production with media buying. <a href="/blog/5-tips-for-working-with-ai-ppc-tools" style={{ color: '#764ba2', textDecoration: 'underline' }}>PPC tools</a> (including B6) optimize what you give them, but they don&apos;t make ads for you yet. If you lack design resources, an agency provides the full stack.
+                <strong>Case 2: You need creative production.</strong> Custom landing pages, video ads for YouTube, display creative in six sizes, A/B testing frameworks. Agencies bundle creative production with media buying. <a href="/blog/5-tips-for-working-with-ai-ppc-tools" style={{ color: '#764ba2', textDecoration: 'underline' }}>PPC tools</a> (including Kampaio) work with what you give them, but they don&apos;t make ads for you yet. If you lack design resources, an agency provides the full stack.
               </p>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
                 <strong>Case 3: You have zero time.</strong> Not 5 hours/week, not even 1 hour. You genuinely cannot look at the account for weeks at a time. An agency is better than complete neglect. Unmonitored campaigns with Smart Bidding and no human oversight will burn budget on low-quality traffic and never course-correct. The algorithm optimizes for whatever signal you give it. If you&apos;re not watching, it finds the cheapest conversions, not the best ones.
@@ -380,7 +380,7 @@ flowchart TD
                 <strong>Recommendation tools</strong> (Optmyzr, Adalysis, Madgicx) analyze your account and tell you what to do. &quot;Lower bid on Keyword X by 12%.&quot; &quot;Add these 8 negative keywords.&quot; You still execute every change manually in Google Ads. Pricing: $499-899/month for SMB plans. Value: saves analysis time, but you still do the work. The cognitive load is lighter but the time commitment isn&apos;t.
               </p>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
-                <strong>Autonomous tools</strong> (B6 and a small handful of competitors) execute changes with your approval or fully autonomously. You connect your account, set guardrails (max CPC, daily budget limits, approval requirements), and the AI handles bid updates, budget pacing, negative keyword additions, and anomaly detection. Free while in beta, at every autonomy level.
+                <strong>Autonomous tools</strong> (a small handful of products) execute changes with your approval or fully autonomously. You connect your account, set guardrails (max CPC, daily budget limits, approval requirements), and the AI handles bid updates, budget pacing, negative keyword additions, and anomaly detection. Kampaio&apos;s AI agents are being built for this category; they are in development and do not run on live accounts yet.
               </p>
 
               <ComparisonTable
@@ -389,21 +389,16 @@ flowchart TD
                   { cells: ['Full agency', '$1,500–3,000', '0–2 h/week', 'Approve monthly report, sometimes ignored'] },
                   { cells: ['Pure DIY', '$0 (tool cost)', '10–15 h/week', 'Manual bid management in Google Ads UI'] },
                   { cells: ['Recommendation tool (Optmyzr, Madgicx)', '$499–899', '5–8 h/week', 'Review AI suggestions, execute manually'] },
-                  { cells: ['B6 (autonomous tool)', 'Flat subscription', '3–5 h/week', 'Set guardrails, review weekly digest from Echo'], highlight: true },
+                  { cells: ['Kampaio dashboard', 'Free during early access', '3–5 h/week', 'Review 14 automatic checks, make changes with preview and rollback'], highlight: true },
                 ]}
-                caption="Cost vs time for a $10K/month Google Ads spend. B6 sits between DIY and agency at a fraction of agency cost."
+                caption="Cost vs time for a $10K/month Google Ads spend. The Kampaio dashboard flags problems; you make the changes."
               />
 
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
-                B6 runs seven specialized AI <a href="/blog/google-ads-ai-agent" style={{ color: '#764ba2', textDecoration: 'underline' }}>agents</a>: Buzz for bid management, Aegis for risk detection, Echo for reporting, Vox for strategy, Maximus for orchestration, Mira for creative analysis, and Sage for competitive research. Three pricing tiers:
+                Today Kampaio is a dashboard. You connect the Google Ads accounts you manage and see them on one screen, and it runs 14 automatic campaign checks: spend with no conversions, CPA above target, ROAS below target, impressions lost to budget or rank, conversions that stopped, and more. Every change you make from it (budget, target ROAS or CPA, campaign on/off, geo, keywords) shows a preview first and can be rolled back, and the change log records the numbers before each edit. Free during early access.
               </p>
-              <ul style={{ fontSize: '18px', color: '#1e293b', lineHeight: '1.8', paddingLeft: '24px', marginBottom: '32px' }}>
-                <li style={{ marginBottom: '16px' }}><strong>Co-pilot</strong>: AI makes recommendations, you execute manually</li>
-                <li style={{ marginBottom: '16px' }}><strong>Approval</strong>: AI executes changes after you approve each action (you see the proposal, click approve or reject)</li>
-                <li style={{ marginBottom: '16px' }}><strong>Autonomous</strong>: AI executes changes within guardrails you set, reports what it did</li>
-              </ul>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
-                The key difference: B6 is not &quot;AI gives advice you act on later.&quot; It&apos;s &quot;AI does the work and shows you every step live.&quot; The Approval level is the sweet spot for most SMB owners. You learn by seeing what the AI proposes. After 2-3 months, you understand bid management deeply because you&apos;ve reviewed 200+ proposed changes with explanations. It&apos;s hands-on education while the work gets done.
+                Seven specialized AI <a href="/blog/google-ads-ai-agent" style={{ color: '#764ba2', textDecoration: 'underline' }}>agents</a> are in development on top of it: Buzz for bid management, Aegis for risk detection, Echo for reporting, Vox for strategy, Maximus for orchestration, Mira for creative analysis, and Sage for competitive research. None of them runs on a live account yet. The dashboard flags problems and lets you make the change; it never changes anything by itself.
               </p>
 
               <MascotQuote mascot="aegis">
@@ -416,7 +411,7 @@ flowchart TD
               <ul style={{ fontSize: '18px', color: '#1e293b', lineHeight: '1.8', paddingLeft: '24px', marginBottom: '32px' }}>
                 <li style={{ marginBottom: '16px' }}><strong>Agency</strong> ($1-3K/month): They do all the work. You spend 1 hour/month reviewing reports. Response time: 1-5 business days for changes. Best for $20K+ budgets or if you need creative production.</li>
                 <li style={{ marginBottom: '16px' }}><strong>Freelancer</strong> ($500-2K/month): Mix of done-for-you and collaborative. You spend 2-4 hours/month in calls and reviews. Response time: 1-3 business days. Best if you want more control than agency but less work than DIY.</li>
-                <li style={{ marginBottom: '16px' }}><strong>DIY with B6</strong> (flat monthly fee): AI does optimization work, you handle strategy and approvals. You spend 3-5 hours/week reviewing and making decisions. Response time: real-time for AI actions, instant for your approvals. Best for $3-20K budgets where agency fees don&apos;t make economic sense.</li>
+                <li style={{ marginBottom: '16px' }}><strong>DIY with the Kampaio dashboard</strong> (free during early access): automatic checks flag problems, you handle strategy and make the changes. You spend 3-5 hours/week reviewing and making decisions. Response time: as fast as you act on what the checks flag. Best for $3-20K budgets where agency fees don&apos;t make economic sense.</li>
               </ul>
             </section>
 
@@ -444,7 +439,7 @@ flowchart TD
                 <strong>Step 5: Start with one campaign.</strong> Apply changes to your smallest campaign first (your Brand campaign is usually safest). Adjust one thing (add 5 negative keywords, or lower max CPC by 10%), wait 5-7 days, measure impact. Once you&apos;re comfortable, scale the approach to larger campaigns. Don&apos;t touch Performance Max until you&apos;ve mastered Search.
               </p>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
-                <strong>Step 6: Connect a management tool for ongoing <a href="/blog/google-ads-optimization" style={{ color: '#764ba2', textDecoration: 'underline' }}>optimization</a>.</strong> Whether it&apos;s B6, Optmyzr, or another platform, automate the repetitive tasks (bid updates, budget pacing, negative keyword mining, anomaly alerts). This keeps your time commitment to 3-5 hours/week instead of 10-15 hours. Tools catch mistakes you&apos;d miss when reviewing manually.
+                <strong>Step 6: Connect a management tool for ongoing <a href="/blog/google-ads-optimization" style={{ color: '#764ba2', textDecoration: 'underline' }}>optimization</a>.</strong> Whether it&apos;s Kampaio, Optmyzr, or another platform, hand the repetitive checks to a tool (budget pacing, negative keyword mining, anomaly alerts). This keeps your time commitment to 3-5 hours/week instead of 10-15 hours. Tools catch mistakes you&apos;d miss when reviewing manually.
               </p>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
                 Most transitions take 4-6 weeks. Expect a 10-20% performance dip in weeks 2-3 as campaigns adjust to new management patterns. If you&apos;re using Smart Bidding, the algorithm needs time to recalibrate. Don&apos;t panic and revert to the agency in week three. Give it six weeks minimum before deciding if it&apos;s working.
@@ -481,10 +476,10 @@ flowchart TD
             {/* CTA */}
             <section id="cta">
               <h2 style={{ fontSize: '32px', fontWeight: '700', color: '#1e293b', marginBottom: '32px', marginTop: '48px' }}>
-                Stop Paying Agency Fees for Work AI Can Do Better
+                Stop Paying Agency Fees for Checks a Dashboard Can Run
               </h2>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
-                Connect your Google Ads account to B6. Buzz runs the first optimization cycle in 90 seconds. You see exactly what he would change and why. Approve or reject each action. No contracts, no minimums, no $2K/month retainer. <a href="/pricing" style={{ color: '#764ba2', textDecoration: 'underline' }}>See what each B6 level does</a>. <a href="/chat" style={{ color: '#764ba2', textDecoration: 'underline' }}>Start your free trial</a> and see the first round of recommendations live. <a href="/b6#buzz" style={{ color: '#764ba2', textDecoration: 'underline' }}>See how Buzz optimizes bids</a> or <a href="/b6" style={{ color: '#764ba2', textDecoration: 'underline' }}>learn how all seven B6 agents work together</a>.
+                Connect your Google Ads account to the Kampaio dashboard. It runs 14 automatic checks on every campaign, shows the search terms report with negatives you can add after a preview, and every change you make can be rolled back. No contracts, no minimums, no $2K/month retainer: free during early access, no card. <a href="/pricing" style={{ color: '#764ba2', textDecoration: 'underline' }}>See what the Free plan includes</a> or <a href="https://dashboard.kampaio.com/" style={{ color: '#764ba2', textDecoration: 'underline' }}>open the dashboard</a>. Buzz, our bidding agent, is in development and will propose bid changes for your approval once it ships.
               </p>
 
               <div style={{
@@ -512,10 +507,10 @@ flowchart TD
                   fontWeight: '500',
                   opacity: 0.9
                 }}>
-                  Let B6 handle the heavy lifting while you make the strategic calls. See your first optimization cycle in 90 seconds.
+                  Let the Kampaio dashboard run the checks while you make the strategic calls. Free during early access, no card.
                 </p>
                 <a
-                  href="/chat"
+                  href="https://dashboard.kampaio.com/"
                   className="btn"
                   style={{
                     background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
@@ -540,7 +535,7 @@ flowchart TD
                     (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
                   }}
                 >
-                  Start Free Trial
+                  Open the dashboard
                 </a>
               </div>
             </section>

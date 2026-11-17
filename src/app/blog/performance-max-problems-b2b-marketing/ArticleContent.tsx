@@ -226,7 +226,7 @@ export default function ArticleContent() {
                   marginBottom: '18px',
                   lineHeight: '1.3'
                 }}>
-                  Want a real B2B strategy?
+                  See where your B2B spend goes
                 </h3>
                 <p style={{
                   fontSize: '17px',
@@ -236,10 +236,10 @@ export default function ArticleContent() {
                   fontWeight: '500',
                   opacity: 0.9
                 }}>
-                  Let our AI analyze your account and show how to build a pipeline, not just drive clicks.
+                  The Kampaio dashboard puts every Google Ads account on one screen, with a breakdown by device, geo, and network, a Performance Max product audit, and 14 automatic campaign checks such as spend with no conversions. Free during early access.
                 </p>
                 <a
-                  href="/chat"
+                  href="https://dashboard.kampaio.com/"
                   className="btn"
                   style={{
                     background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
@@ -264,7 +264,7 @@ export default function ArticleContent() {
                     (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
                   }}
                 >
-                  Get My B2B Audit
+                  Open the dashboard
                 </a>
               </div>
             </section>

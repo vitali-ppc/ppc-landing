@@ -43,7 +43,7 @@ export default function ArticleContent() {
       "@type": "WebPage",
       "@id": "https://kampaio.com/blog/responsive-search-ads-best-practices"
     },
-    "keywords": "responsive search ads, RSA, ad strength, Google Ads, headlines, descriptions, pinning, Smart Bidding, machine learning, asset combinations, character limit, CTR, conversion rate, combinations report, ad group, Target ROAS, Target CPA, broad match, variants, statistical significance, Mira, Maximus, B6",
+    "keywords": "responsive search ads, RSA, ad strength, Google Ads, headlines, descriptions, pinning, Smart Bidding, machine learning, asset combinations, character limit, CTR, conversion rate, combinations report, ad group, Target ROAS, Target CPA, broad match, variants, statistical significance, Kampaio",
     "wordCount": 2593,
     "articleSection": "Google Ads",
     "inLanguage": "en"
@@ -128,7 +128,7 @@ export default function ArticleContent() {
     { id: 'pinning', title: 'Pinning: when it helps, when it hurts', level: 1 },
     { id: 'ad-strength', title: 'Ad strength score: what it does and does not measure', level: 1 },
     { id: 'variant-testing', title: 'Creative variant testing methodology', level: 1 },
-    { id: 'b6-agents', title: 'How B6 mira + maximus accelerate RSA optimization', level: 1 },
+    { id: 'b6-agents', title: 'How Kampaio will help with RSA optimization', level: 1 },
     { id: 'faq', title: 'FAQ', level: 1 },
     { id: 'next-steps', title: 'Next steps', level: 1 },
   ];
@@ -323,9 +323,9 @@ export default function ArticleContent() {
                 RSAs are not a creative format. They are a signal-collection mechanism that Google renders as creative. The mental model matters because it tells you which knobs to turn (asset variety, combination space, significance windows) and which to leave alone (forcing a specific headline order because marketing wants it).
               </p>
 
-              {/* VISUAL: MascotQuote (Mira) - concrete numbers on variant generation */}
+              {/* VISUAL: MascotQuote (Mira) - what the creative agent is being built to do */}
               <MascotQuote mascot="mira">
-                On a 4-ad-group test last sprint, I generated 47 headlines across 5 buckets (keyword-led, benefit-led, CTA-led, social proof, urgency) in 18 minutes. Average ad strength lifted from &quot;Average&quot; to &quot;Good&quot; on 3 of 4 ad groups inside 7 days. The 4th was a brand campaign with pinned legal text. ML had nothing to optimize against.
+                What I am being built to do: draft headline candidates across five buckets (keyword-led, benefit-led, CTA-led, social proof, urgency) so the ML has real variety to rotate. I am in development and have not written for a live account yet. One rule already holds: a brand campaign with pinned legal text gives the ML nothing to optimize against, whoever writes the copy.
               </MascotQuote>
             </section>
 
@@ -515,22 +515,22 @@ export default function ArticleContent() {
                 Asset-level signal is where the real work happens. The combinations report shows performance by individual headline. Bottom 20% headlines tagged &quot;Low&quot; are not necessarily bad copy. They are bad in this ad group, against this audience, paired with these other headlines. Replace them with variants targeted at the specific gap.
               </p>
               <p style={pStyle}>
-                Variant testing was hours of weekly work per account before we automated it. Tooling that watches the combinations report and proposes targeted replacements is the leverage point. That is where Mira and Maximus come in. You can <a href="/b6" style={linkStyle}>see the agent workflow live</a> before activating anything on your account.
+                Variant testing is hours of weekly work per account. Tooling that watches the combinations report and proposes targeted replacements is the leverage point. That is what Mira and Maximus, two of our agents in development, are being built for.
               </p>
 
               <MascotQuote mascot="maximus">
-                On the same 4-ad-group test, I gated all 47 Mira-generated headlines through three approval rules: character limit conformance (8 blocked at this gate), banned-term check against the brand&apos;s compliance list (0 blocked), and risk threshold for ad groups in the top decile of current CTR (5 blocked because the existing creative was already top quartile and the rule says do not break what is working). Net: 39 went live, 8 went back to Mira for revision. Zero rolled back inside 14 days.
+                What I am being built to do: check every headline candidate against three rules before a human sees it: character limits, the brand&apos;s banned-term list, and a hands-off rule for ad groups whose current CTR is already in the top decile, because you do not break what is working. I am in development and have not gated a live account yet.
               </MascotQuote>
             </section>
 
-            {/* B6 Agents */}
+            {/* Kampaio */}
             <section id="b6-agents">
-              <h2 style={h2Style}>How B6 mira + maximus accelerate RSA optimization</h2>
+              <h2 style={h2Style}>How Kampaio will help with RSA optimization</h2>
               <p style={pStyle}>
-                Mira reads the ad group keyword theme, audience signal, and top-converting search queries from the past 30 days, then generates 15 headline variants across 5 buckets in 12 to 30 seconds per ad group. Generation cadence runs every 14 days for ad groups where ad strength sits below &quot;Good&quot; or CTR sits below median. She does not regenerate ads already performing in the top quartile.
+                Mira, our creative agent (in development), will read the ad group keyword theme and top-converting search queries and propose headline variants for ad groups where ad strength sits below &quot;Good&quot; or CTR sits below median. She is not meant to touch ads already performing in the top quartile.
               </p>
               <p style={pStyle}>
-                Maximus gates every Mira proposal through the approval workflow. On the <a href="/blog/10-ai-powered-ppc-optimization-strategies" style={linkStyle}>Co-pilot tier</a>, Maximus queues all variants for human review. On the Approval tier, he auto-pushes variants that pass safety rules (character limits, no banned terms, predicted ad strength &quot;Good&quot; or better) and queues edge cases. On the Autonomous tier, he pushes most variants but blocks: brand campaign creative changes, ads where current CTR sits in the top decile, and any variant that would change pinning policy. See the <a href="/pricing" style={linkStyle}>full B6 pricing tiers</a> for autonomy-level details.
+                Maximus, our orchestrator (in development), will check every Mira proposal against safety rules (character limits, no banned terms, no changes to brand campaign creative or pinning policy, nothing on ad groups whose CTR is already in the top decile) and queue it for your review.
               </p>
 
               <p style={pStyle}>
@@ -538,10 +538,10 @@ export default function ArticleContent() {
               </p>
 
               <p style={pStyle}>
-                The frame is not &quot;AI writes your creative&quot;. The frame is: AI generates candidates, the orchestrator enforces your safety policy at machine speed, you spend senior-manager attention on 3 edge cases per week. The bottleneck moves from &quot;writing 15 unique headlines&quot; to &quot;reviewing 3 flagged variants&quot;.
+                The frame is not &quot;AI writes your creative&quot;. The frame we are building toward: AI generates candidates, the orchestrator enforces your safety policy, you spend senior-manager attention on the edge cases. The bottleneck moves from &quot;writing 15 unique headlines&quot; to &quot;reviewing the flagged variants&quot;.
               </p>
               <p style={pStyle}>
-                Tracking quality is a precondition. Mira&apos;s cadence relies on accurate conversion signal, which is why we run <a href="/blog/google-ads-conversion-tracking-not-working" style={linkStyle}>conversion tracking diagnostics</a> before activating variant generation. ML quality is downstream of measurement quality.
+                Tracking quality is a precondition. Any variant testing relies on accurate conversion signal, which is why <a href="/blog/google-ads-conversion-tracking-not-working" style={linkStyle}>conversion tracking diagnostics</a> come before variant generation. ML quality is downstream of measurement quality.
               </p>
             </section>
 
@@ -569,7 +569,7 @@ export default function ArticleContent() {
             <section id="next-steps">
               <h2 style={h2Style}>Next steps</h2>
               <p style={pStyle}>
-                If you manage 10+ accounts and want to see what Mira would propose on your top 10 ad groups, <a href="/chat" style={linkStyle}>connect Google Ads to B6</a> and let her run an audit. Output in roughly 90 seconds: per-ad-group ad strength gap, top 3 underperforming headlines per group, and a 15-headline variant set ready for Maximus to gate against your approval rules. Read-only access, no bid changes, no creative pushed without your sign-off.
+                If you manage 10+ accounts, <a href="https://dashboard.kampaio.com/" style={linkStyle}>open the Kampaio dashboard</a> and connect Google Ads. You see every account on one screen, and the automatic checks flag ad groups with every ad paused or no ads at all, so you know where creative work is overdue. Nothing changes in your account unless you make the change. Free during early access.
               </p>
             </section>
 

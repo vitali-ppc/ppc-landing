@@ -43,7 +43,7 @@ export default function ArticleContent() {
       "@type": "WebPage",
       "@id": "https://kampaio.com/blog/google-ads-keyword-match-types-explained"
     },
-    "keywords": "google ads match types, keyword match types, broad match, phrase match, exact match, close variants, smart bidding, target cpa, target roas, maximize conversions, search terms report, negative keywords, broad match modifier, BMM, quality score, Sage, Buzz, Aegis, Mira, B6",
+    "keywords": "google ads match types, keyword match types, broad match, phrase match, exact match, close variants, smart bidding, target cpa, target roas, maximize conversions, search terms report, negative keywords, broad match modifier, BMM, quality score, Kampaio",
     "wordCount": 2790,
     "articleSection": "Google Ads",
     "inLanguage": "en"
@@ -140,7 +140,7 @@ export default function ArticleContent() {
     { id: 'negatives', title: 'The Negative-Keyword Discipline', level: 1 },
     { id: 'decision', title: 'Which Match Type Should You Actually Use?', level: 1 },
     { id: 'mistakes', title: 'Common Mistakes That Tank Match Type Strategy', level: 1 },
-    { id: 'b6-agents', title: 'How B6 Agents Manage Match Types Automatically', level: 1 },
+    { id: 'b6-agents', title: 'How Kampaio Handles Match Types', level: 1 },
     { id: 'faq', title: 'FAQ', level: 1 },
     { id: 'cta', title: 'Stop Guessing on Match Types', level: 1 },
   ];
@@ -257,13 +257,13 @@ export default function ArticleContent() {
     },
   ];
 
-  // VISUAL 5: Mermaid LR (Sage to Aegis to operator flow)
+  // VISUAL 5: Mermaid LR (planned Sage to Aegis to operator flow, in development)
   const sageAegisFlow = `flowchart LR
-    A["Search terms report"] --> B["Sage: nightly scan"]
+    A["Search terms report"] --> B["Sage (in development): scan"]
     B --> C{"Cost > target CPA<br/>and 0 conv 14d?"}
     C -- "yes" --> D["Propose negative<br/>+ predicted savings"]
     C -- "no" --> E["Keep monitoring"]
-    D --> F["Aegis: risk check"]
+    D --> F["Aegis (in development): risk check"]
     F --> G["Operator: approve / reject"]
     G --> H["Add as negative<br/>in Google Ads"]`;
 
@@ -351,7 +351,7 @@ export default function ArticleContent() {
               </p>
 
               <MascotQuote mascot="sage">
-                On a 12-account audit last month, 64% of wasted spend traced back to broad-match keywords with no paired negative list. Median saving from one afternoon of negative-keyword work: $740 in the following 30 days. The match type was not the problem. The missing negatives were.
+                I am being built to read the search terms report and propose negatives. The pattern I am designed to look for is simple: broad-match keywords running with no paired negative list. Often the match type is not the problem. The missing negatives are.
               </MascotQuote>
             </section>
 
@@ -509,7 +509,7 @@ export default function ArticleContent() {
               </div>
 
               <MascotQuote mascot="buzz">
-                Move a keyword from phrase to broad without changing the bid strategy, and predicted CPC variance widens 40% to 60%. The algorithm is bidding into a wider intent space. If the bid strategy is Manual CPC, you bid the same number against a much messier auction. Move match type and bid strategy together, or do not move match type at all.
+                Move a keyword from phrase to broad without changing the bid strategy, and the auction gets wider and less predictable. The algorithm is bidding into a wider intent space. If the bid strategy is Manual CPC, you bid the same number against a much messier auction. Move match type and bid strategy together, or do not move match type at all.
               </MascotQuote>
 
               <p style={pStyle}>
@@ -612,7 +612,7 @@ export default function ArticleContent() {
               </p>
 
               <MascotQuote mascot="mira">
-                Ad copy needs to widen as match type widens. On exact-match ad groups I can write hyper-specific copy keyed to one query. On broad-match ad groups I write three <a href="/blog/responsive-search-ads-best-practices" style={{ color: 'inherit', textDecoration: 'underline' }}>responsive search ad</a> variants tuned for different intent strands, because the system will show them across a wider query set. Same keyword, three different match types, three different copy strategies.
+                Ad copy needs to widen as match type widens. I am being built to draft copy for this, and the rule I follow is: exact-match ad groups get hyper-specific copy keyed to one query; broad-match ad groups get several <a href="/blog/responsive-search-ads-best-practices" style={{ color: 'inherit', textDecoration: 'underline' }}>responsive search ad</a> variants tuned for different intent strands, because the system will show them across a wider query set. Same keyword, three different match types, three different copy strategies.
               </MascotQuote>
             </section>
 
@@ -631,30 +631,24 @@ export default function ArticleContent() {
               </p>
 
               <MascotQuote mascot="aegis">
-                Mid-week match-type changes are the highest-frequency unsafe action I see. Operator pulls the search-terms report on a Tuesday, panics about three off-brand queries, switches a broad-match keyword to exact, kills 30% of converting volume by Friday. I block that switch by default and require operator override with a 24-hour cooling window. The panic always passes.
+                Panicked mid-week match-type changes are the kind of unsafe action I am being built to catch. Someone pulls the search-terms report on a Tuesday, sees three off-brand queries, switches a converting broad-match keyword to exact, and cuts converting volume. Give any match-type change on a converting keyword a cooling-off day before you make it. The panic usually passes.
               </MascotQuote>
             </section>
 
-            {/* B6 agents */}
+            {/* Kampaio */}
             <section id="b6-agents">
-              <h2 style={h2Style}>How B6 Agents Manage Match Types Automatically</h2>
+              <h2 style={h2Style}>How Kampaio Handles Match Types</h2>
               <p style={pStyle}>
-                <strong><a href="/b6#sage" style={linkStyle}>Sage</a></strong> scans the search terms report nightly. Any query with cost above your target CPA and zero conversions for 14 plus days surfaces as a negative-keyword candidate, with predicted savings from the last 30 days of waste.
+                Today the Kampaio dashboard gives you the search terms report for every connected account, lets you add negatives after a preview, and lets you change keywords yourself, with a rollback after each edit. It also flags campaigns spending with no conversions.
               </p>
               <p style={pStyle}>
-                <strong><a href="/b6#mira" style={linkStyle}>Mira</a></strong> regenerates ad copy when match type changes. Move from exact to broad and Mira drafts three responsive search ad variants tuned for the wider intent set. Move from broad to exact and Mira tightens copy to the specific keyword theme.
-              </p>
-              <p style={pStyle}>
-                <strong><a href="/b6#buzz" style={linkStyle}>Buzz</a></strong> models the expected CPC distribution after a match-type change weekly, so you can decide whether the predicted variance is acceptable before flipping the switch.
-              </p>
-              <p style={pStyle}>
-                <strong><a href="/b6#aegis" style={linkStyle}>Aegis</a></strong> blocks rash match-type switches. Any change on a keyword with 5 or more conversions in the last 30 days requires operator confirmation with a 24-hour cooling delay. The window catches more bad changes than the rule book.
+                Our agents are in development and do not run on any live account yet. <strong>Sage</strong>, our research agent, will scan the search terms report and propose negative-keyword candidates. <strong>Mira</strong>, our creative agent, will draft ad copy when match type changes. <strong>Buzz</strong>, our bidding agent, will model the effect of a match-type change before you make it. <strong>Aegis</strong>, our risk agent, will hold back risky match-type switches on converting keywords for your confirmation.
               </p>
 
               {/* VISUAL 5: Mermaid LR flow (Sage to Aegis to operator) */}
               <MermaidDiagram
                 chart={sageAegisFlow}
-                caption="The Sage to Aegis to operator flow for negative-keyword candidates. Sage scans nightly, Aegis vets the proposal, the operator confirms before any change touches Google Ads. The full chain is reviewable in the agent transparency view."
+                caption="The planned Sage to Aegis to operator flow for negative-keyword candidates (in development): Sage will scan, Aegis will vet the proposal, the operator will confirm before any change touches Google Ads."
               />
 
               <p style={pStyle}>
@@ -692,7 +686,7 @@ export default function ArticleContent() {
                 Three things to take away. Match type is signal width, not a literal instruction. Bid strategy is what actually does the deciding. Negatives are the seatbelt that lets you ride either one safely.
               </p>
               <p style={pStyle}>
-                If you want Sage to read your search terms report and propose the negatives this week, the free <a href="/chat" style={linkStyle}>B6 audit</a> runs in 10 minutes and surfaces the top 20 candidates with predicted savings. No card, no rewrite of your account, just the list of negatives most likely to cut waste in the next 30 days. See <a href="/pricing" style={linkStyle}>pricing tiers</a> if you want the nightly cadence after that.
+                If you want your search terms reports for every account in one place, <a href="https://dashboard.kampaio.com/" style={linkStyle}>open the Kampaio dashboard</a>: connect your Google Ads accounts, review search terms, and add negatives after a preview. Free during early access, no card.
               </p>
             </section>
 

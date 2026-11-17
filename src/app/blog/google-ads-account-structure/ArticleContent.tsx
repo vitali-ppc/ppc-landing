@@ -371,7 +371,7 @@ export default function ArticleContent() {
               </p>
 
               <MascotQuote mascot="buzz">
-                On a $12K/month DTC account (illustrative), I start non-brand category campaigns on Maximize Conversions and only switch to Target ROAS once a campaign clears 30 conversions in a 30-day window. Accounts that jump to tROAS at 8-10 conversions sit in Learning Limited for 3+ weeks, and CPA runs 15-25% hot the whole time they&apos;re stuck there.
+                The rule I am being built to follow: start non-brand category campaigns on Maximize Conversions and only switch to Target ROAS once a campaign clears roughly 30 conversions in a 30-day window. Jump to tROAS on thin volume and the campaign can sit in Learning Limited, with CPA running hot the whole time it&apos;s stuck there.
               </MascotQuote>
             </section>
 
@@ -547,7 +547,7 @@ DemandGen_US_Remarketing`}
               </p>
 
               <MascotQuote mascot="vox">
-                Across the accounts I&apos;ve audited (illustrative figures), campaigns spending under $300 a month with zero conversions in the last 60 days average about 9% of total account budget. I flag it in week one, and most owners are stunned it&apos;s been sitting there for months doing nothing.
+                Small campaigns that keep spending with zero conversions are easy to miss because no single one looks big. I am being built to find them across campaigns. Today the Kampaio dashboard already flags campaigns spending with no conversions, so that dead spend doesn&apos;t sit for months doing nothing.
               </MascotQuote>
 
               <p style={paragraphStyle}>
@@ -571,23 +571,23 @@ DemandGen_US_Remarketing`}
             <section id="cta">
               <h2 style={h2Style}>Keep the Structure From Drifting Again</h2>
               <p style={paragraphStyle}>
-                A correct structure at launch decays the same way a messy one does. Budget shifts between tiers, a category campaign quietly starves, defaults get left untouched again six months later. Vox watches cross-campaign budget allocation and flags dead spend before it sits for months. Buzz manages the bid-strategy transitions, from Maximize Conversions to Target ROAS, as each tier earns enough volume to make that switch worth it.
+                A correct structure at launch decays the same way a messy one does. Budget shifts between tiers, a category campaign quietly starves, defaults get left untouched again six months later. The Kampaio dashboard flags campaigns spending with no conversions, impressions lost to budget, and campaigns with all ad groups paused or no geo targeting, and lets you change budgets and bid targets yourself with a preview and a rollback. Two agents are in development and not live yet: Vox, our strategy agent, will propose cross-campaign budget shifts, and Buzz, our bidding agent, will propose the switch from Maximize Conversions to Target ROAS as each tier earns enough volume.
               </p>
               <p style={paragraphStyle}>
-                The human decides the strategy. The agents keep the structure honest week to week, so the audit above doesn&apos;t need to become a quarterly ritual. If your structure is already solid and you&apos;re thinking about scale instead, our{' '}
+                The human decides the strategy. Regular checks keep the structure honest week to week, so the audit above doesn&apos;t need to become a quarterly ritual. If your structure is already solid and you&apos;re thinking about scale instead, our{' '}
                 <a href="/blog/how-to-scale-google-ads-without-losing-roas" style={linkStyle}>budget-scaling playbook</a>{' '}
                 picks up from here.
               </p>
 
               <div style={{ background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)', borderRadius: '16px', padding: '40px', textAlign: 'center', marginTop: '40px', marginBottom: '40px' }}>
                 <h3 style={{ fontSize: '24px', fontWeight: 800, color: '#1e293b', marginBottom: '16px', marginTop: 0, lineHeight: 1.3 }}>
-                  Want the structure watched for you?
+                  Want the structure checks on one screen?
                 </h3>
                 <p style={{ fontSize: '17px', color: '#475569', marginBottom: '28px', lineHeight: 1.6, fontWeight: 500, maxWidth: '620px', marginLeft: 'auto', marginRight: 'auto' }}>
-                  See <a href="/pricing" style={linkStyle}>pricing</a> for how Buzz and Vox fit into your account.
+                  <a href="https://dashboard.kampaio.com/" style={linkStyle}>Open the Kampaio dashboard</a> to see every account&apos;s campaign checks on one screen. Free during early access.
                 </p>
                 <a
-                  href="/pricing"
+                  href="https://dashboard.kampaio.com/"
                   style={{
                     background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                     color: 'white',
@@ -610,7 +610,7 @@ DemandGen_US_Remarketing`}
                     (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
                   }}
                 >
-                  See pricing
+                  Open the dashboard
                 </a>
               </div>
 

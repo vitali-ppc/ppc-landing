@@ -300,7 +300,7 @@ export default function ArticleContent() {
               </ul>
 
               <MascotQuote mascot="maximus">
-                On a $7K/month account I run bid and budget checks every few hours, not once a month. Last week I caught a Performance Max campaign drifting 38 percent over target CPA on a Tuesday afternoon. An agency running a monthly review cadence would have flagged that in the next report, four weeks later.
+                I am being built to run bid and budget checks every few hours, not once a month, so a Performance Max campaign drifting over target CPA gets caught the same week instead of in next month&apos;s agency report. I am in development and do not run on live accounts yet.
               </MascotQuote>
             </section>
 
@@ -318,7 +318,7 @@ export default function ArticleContent() {
                   { cells: ['PPC agency', '$1,000-$5,000/mo or 10-20% of spend', 'Agency team (senior + junior)', '$15K+ spend, multi-channel, zero owner time'] },
                   { cells: ['Freelancer', '$500-$2,000/mo', 'Single specialist', '$5K-$25K spend, simpler structure, owner oversight'] },
                   { cells: ['AI tooling (recommendation: Optmyzr, Madgicx)', '$499+/mo', 'You execute the recommendations', '$5K-$50K, owner with 3-5 hrs/week'] },
-                  { cells: ['AI tooling (autonomous: Kampaio/B6)', 'Flat monthly subscription', 'AI agents execute, owner approves', '$3K-$50K, limited owner time, full audit trail'], highlight: true },
+                  { cells: ['Kampaio dashboard', 'Free during early access', 'Dashboard flags issues, owner makes the changes', '$3K-$50K, limited owner time, full change log'], highlight: true },
                 ]}
                 caption="Management options for $3-50K monthly Google Ads spend. Pricing reflects industry benchmarks as of mid-2026 and may vary; verify current rates directly with any provider."
               />
@@ -445,7 +445,7 @@ export default function ArticleContent() {
                 <strong>Recommendation tools</strong> &mdash; Optmyzr (starting at $499/month) and Madgicx (starting at $499/month) analyze your account and tell you what to change. You execute every change manually. At $499+ on a $5K spend, that is 10% of your budget for advice without execution.
               </p>
               <p style={pStyle}>
-                <strong>Autonomous tools</strong> &mdash; Kampaio/B6 runs the work directly. Buzz handles bids, Aegis flags risk, Echo reports, Vox manages cross-campaign <a href="/blog/google-ads-strategy" style={linkStyle}>strategy</a>, Maximus orchestrates the <a href="/blog/google-ads-optimization" style={linkStyle}>optimization</a> cycle, and Sage handles research. The Approval level means every change waits for your sign-off, so you learn the account rather than delegating blindly. The three levels are Co-pilot, Approval and Autonomous, on a flat subscription. Synter is another tool in this category at $199/month. <a href="/b6" style={linkStyle}>See how the agents work</a>.
+                <strong>Autonomous tools</strong> &mdash; these execute changes for you; Synter is one, at $199/month. Kampaio is building in this direction: Buzz for bids, Aegis for risk, Echo for reporting, Vox for cross-campaign <a href="/blog/google-ads-strategy" style={linkStyle}>strategy</a>, Maximus to orchestrate the <a href="/blog/google-ads-optimization" style={linkStyle}>optimization</a> cycle, and Sage for research are all in development and do not run on live accounts yet. What works today is the Kampaio dashboard: 14 automatic campaign checks on every account you connect, and changes you make yourself with a preview first and a rollback after, so you learn the account rather than delegating blindly. Free during early access.
               </p>
               <p style={pStyle}>
                 <strong>Honest limitation:</strong> this path fits the $3-15K/month spend band. It is not a replacement for an agency handling bundled creative production, landing page builds, or multi-market coordination.
@@ -531,7 +531,7 @@ export default function ArticleContent() {
             <section id="conclusion">
               <h2 style={h2Style}>Choose the Setup That Matches Your Spend, Not the Sales Pitch</h2>
               <p style={pStyle}>
-                If your spend is under $15K/month and your structure is focused, you probably don&apos;t need a $2K retainer. Connect your Google Ads account to Kampaio, watch Maximus run the first optimization cycle, and approve or reject every change. No contract, no lock-in, no rotating junior manager.
+                If your spend is under $15K/month and your structure is focused, you probably don&apos;t need a $2K retainer. Connect your Google Ads account to the Kampaio dashboard, see which campaigns the 14 automatic checks flag, and make each change yourself with a preview first and a rollback after. No contract, no lock-in, no rotating junior manager.
               </p>
 
               <div style={{ background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)', borderRadius: '16px', padding: '40px', textAlign: 'center', marginTop: '40px', marginBottom: '40px' }}>
@@ -539,16 +539,16 @@ export default function ArticleContent() {
                   Spend under $15K/month? Try the tooling path first.
                 </h3>
                 <p style={{ fontSize: '17px', color: '#64748b', marginBottom: '28px', lineHeight: '1.6', fontWeight: '500', opacity: 0.9 }}>
-                  <a href="/pricing" style={linkStyle}>See what each Kampaio level does</a>. Or start with your account and see what the first audit surfaces.
+                  <a href="/pricing" style={linkStyle}>See what the Free plan includes</a>. Or connect your account and see what the 14 checks flag. Free during early access, no card.
                 </p>
                 <a
-                  href="/chat"
+                  href="https://dashboard.kampaio.com/"
                   className="btn"
                   style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', color: 'white', border: 'none', padding: '16px 32px', borderRadius: '10px', fontSize: '16px', fontWeight: '600', cursor: 'pointer', transition: 'all 0.3s ease', display: 'inline-block', boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)', textDecoration: 'none' }}
                   onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.boxShadow = '0 8px 25px rgba(102, 126, 234, 0.4)'; (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(-2px)'; }}
                   onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.boxShadow = '0 4px 12px rgba(102, 126, 234, 0.3)'; (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)'; }}
                 >
-                  Start With Your Account
+                  Open the dashboard
                 </a>
               </div>
             </section>

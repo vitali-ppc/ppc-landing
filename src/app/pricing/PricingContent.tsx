@@ -4,50 +4,39 @@ import { useState } from 'react';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 
-/* Tiers mirror the homepage (HomeContent.tsx TIERS). Keep both in sync:
-   the prices also ship in structured data below and in /b6 OfferCatalog. */
+/* Two plans, both real in the dashboard code. Free is open now and free during
+   early access; Pro has no price yet and opens when billing does. The AI agents
+   are in development and are NOT a plan: they appear only under "What comes next".
+   No tiers, no prices, no trial. */
+const DASHBOARD_URL = 'https://dashboard.kampaio.com/';
+
 const plans = [
   {
-    id: 'l1',
-    name: 'L1 Co-pilot',
-    description: 'AI suggests; you approve every move.',
-    price: 99,
+    id: 'free',
+    name: 'Free',
+    status: 'Available now',
+    description: 'Free during early access. No card.',
     features: [
-      'Buzz + Aegis',
       '1 Google Ads account',
-      'Approve every change',
-      'Weekly digest',
-      'Email support',
+      'All 14 automatic campaign checks',
+      'Search terms report and negatives',
+      'Changes with preview and rollback',
+      'Change log with the numbers before each edit',
     ],
-    popular: true,
+    available: true,
   },
   {
-    id: 'l2',
-    name: 'L2 Approval',
-    description: 'AI acts; you approve only the big moves.',
-    price: 199,
+    id: 'pro',
+    name: 'Pro',
+    status: 'Coming when billing opens',
+    description: 'For managers who run several accounts. No price yet.',
     features: [
-      'Everything in L1',
-      'Auto-applies small changes',
-      'Risk Agent enforcement',
-      'Real-time alerts',
-      'Priority support',
+      'Everything in Free',
+      'Up to 5 Google Ads accounts',
+      'All accounts on one screen',
+      'Multi-currency totals',
     ],
-    popular: false,
-  },
-  {
-    id: 'l3',
-    name: 'L3 Autonomous',
-    description: 'Full autopilot. The agents run it.',
-    price: 399,
-    features: [
-      'Everything in L2',
-      'Full autonomy',
-      'Creative Agent (ad generation)',
-      'Multi-platform (Meta, TikTok)',
-      'Dedicated onboarding',
-    ],
-    popular: false,
+    available: false,
   },
 ];
 
@@ -60,7 +49,7 @@ const pricingJsonLd = {
   applicationSubCategory: 'Advertising Management',
   operatingSystem: 'Web',
   description:
-    'AI-powered Google Ads management platform. Three autonomy tiers: L1 Co-pilot, L2 Approval, L3 Autonomous. Free while in beta, no card required; paid plans come later.',
+    'Google Ads dashboard: connect the accounts you manage, run 14 automatic campaign checks, review search terms and add negatives, and make changes with a preview and a rollback. Free during early access, no card required.',
   url: 'https://www.kampaio.com/pricing',
   // Both publisher and provider reference the main Kampaio Organization
   // entity via @id, inheriting its 15-topic knowsAbout E-E-A-T signal.
@@ -70,24 +59,19 @@ const pricingJsonLd = {
   provider: {
     '@id': 'https://www.kampaio.com/#organization',
   },
-  offers: plans.map((plan) => ({
-    '@type': 'Offer',
-    name: plan.name,
-    // Early access is free, so the offer price is 0. Shipping the old 99/199/399 here
-    // while the page says "Free" would put a price in the SERP that we do not charge.
-    price: '0',
-    priceCurrency: 'USD',
-    priceSpecification: {
-      '@type': 'UnitPriceSpecification',
-      // Also 0: this is the SECOND place the price reaches the SERP. Fixing only the
-      // offer price above left 199 and 399 in the built HTML — verified in .next output.
+  // Only the Free plan is an offer: Pro has no price yet, and an Offer
+  // without a real price would put a made-up number in the SERP.
+  offers: [
+    {
+      '@type': 'Offer',
+      name: 'Free',
       price: '0',
       priceCurrency: 'USD',
-      unitText: 'MONTH',
+      description: '1 Google Ads account, all 14 checks, search terms and negatives, changes with preview and rollback, change log. Free during early access.',
+      url: DASHBOARD_URL,
+      availability: 'https://schema.org/InStock',
     },
-    description: plan.description,
-    availability: 'https://schema.org/PreOrder',
-  })),
+  ],
 };
 
 export default function PricingContent() {
@@ -128,7 +112,7 @@ export default function PricingContent() {
               marginBottom: '24px',
               lineHeight: '1.2'
             }}>
-              Three levels of autonomy
+              Free during early access
             </h1>
             <p style={{
               fontSize: '18px',
@@ -136,8 +120,8 @@ export default function PricingContent() {
               color: '#666',
               marginBottom: '24px'
             }}>
-              Start as co-pilot where you approve every move, then graduate to autopilot
-              when you trust the work. A fraction of a $2-5K/mo agency retainer.
+              Connect your Google Ads account and get all 14 automatic campaign checks,
+              the search terms report, and changes with a preview and a rollback. No card.
             </p>
 
 
@@ -151,8 +135,7 @@ export default function PricingContent() {
         margin: '0 auto',
         padding: '0 24px 96px'
       }}>
-        {/* One banner for all three tiers, not a "Free" repeated in every card:
-            three identical zeroes read as an unfinished price list. */}
+        {/* One banner for the early-access status, stated once. */}
         <div style={{
           marginTop: '48px',
           padding: '18px 28px',
@@ -163,10 +146,10 @@ export default function PricingContent() {
           boxShadow: '0 8px 24px rgba(15, 118, 110, 0.25)'
         }}>
           <div style={{ fontSize: '22px', fontWeight: 800, letterSpacing: '-0.01em' }}>
-            All three levels are free while B6 is in beta
+            Free during early access
           </div>
           <div style={{ fontSize: '15px', opacity: 0.92, marginTop: '6px' }}>
-            No card required. Paid plans come later.
+            No card required. Billing is not open yet; Pro arrives when it is.
           </div>
         </div>
 
@@ -184,15 +167,15 @@ export default function PricingContent() {
                 background: 'white',
                 borderRadius: '24px',
                 padding: '32px',
-                boxShadow: plan.popular ? '0 20px 40px rgba(0,0,0,0.1)' : '0 10px 30px rgba(0,0,0,0.1)',
+                boxShadow: plan.available ? '0 20px 40px rgba(0,0,0,0.1)' : '0 10px 30px rgba(0,0,0,0.1)',
                 transition: 'all 0.3s ease',
-                transform: plan.popular ? 'scale(1.05)' : hoveredPlan === plan.id ? 'scale(1.02)' : 'scale(1)',
-                border: plan.popular ? '2px solid #667eea' : '1px solid #e2e8f0'
+                transform: plan.available ? 'scale(1.05)' : hoveredPlan === plan.id ? 'scale(1.02)' : 'scale(1)',
+                border: plan.available ? '2px solid #667eea' : '1px solid #e2e8f0'
               }}
               onMouseEnter={() => setHoveredPlan(plan.id)}
               onMouseLeave={() => setHoveredPlan(null)}
             >
-              {plan.popular && (
+              {plan.available && (
                 <div style={{
                   position: 'absolute',
                   top: '-16px',
@@ -206,7 +189,7 @@ export default function PricingContent() {
                   fontWeight: '600',
                   whiteSpace: 'nowrap'
                 }}>
-                  In development
+                  Available now
                 </div>
               )}
 
@@ -218,9 +201,7 @@ export default function PricingContent() {
                   marginBottom: '8px'
                 }}>
                   {plan.name}{' '}
-                  {/* Same LIVE and NEXT marks the home page uses on the agents and the
-                      autonomy ladder. Without them all three levels read as available,
-                      and a new account can only start on L1. */}
+                  {/* LIVE for the plan you can use today, NEXT for the one waiting on billing. */}
                   <span style={{
                     fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace',
                     fontSize: '11px',
@@ -228,9 +209,9 @@ export default function PricingContent() {
                     borderRadius: '6px',
                     fontWeight: 600,
                     verticalAlign: 'middle',
-                    background: plan.popular ? 'rgba(78,205,196,.18)' : 'rgba(255,167,38,.18)',
-                    color: plan.popular ? '#0A7C8C' : '#B45309',
-                  }}>NEXT</span>
+                    background: plan.available ? 'rgba(78,205,196,.18)' : 'rgba(255,167,38,.18)',
+                    color: plan.available ? '#0A7C8C' : '#B45309',
+                  }}>{plan.available ? 'LIVE' : 'NEXT'}</span>
                 </h3>
                 <p style={{
                   fontSize: '16px',
@@ -241,9 +222,16 @@ export default function PricingContent() {
                   {plan.description}
                 </p>
 
-                {/* No price block: nothing is charged yet, and three identical
-                    zeroes read as an unfinished price list. The free-while-in-beta line
-                    lives once at the top of the page instead. */}
+                {/* No price block: Free costs nothing during early access and Pro has
+                    no price yet. The status line says which is which. */}
+                <p style={{
+                  fontSize: '14px',
+                  fontWeight: 600,
+                  color: plan.available ? '#0f766e' : '#B45309',
+                  margin: '-16px 0 24px 0'
+                }}>
+                  {plan.status}
+                </p>
 
 
                 <ul style={{
@@ -282,36 +270,54 @@ export default function PricingContent() {
                   ))}
                 </ul>
 
-                <a
-                  href="/auth/register"
-                  style={{
+                {plan.available ? (
+                  <a
+                    href={DASHBOARD_URL}
+                    style={{
+                      display: 'block',
+                      width: '100%',
+                      padding: '16px 24px',
+                      borderRadius: '12px',
+                      border: 'none',
+                      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                      color: 'white',
+                      fontSize: '16px',
+                      fontWeight: '600',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s ease',
+                      boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+                      textDecoration: 'none',
+                      textAlign: 'center',
+                      boxSizing: 'border-box'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = 'translateY(-2px)';
+                      e.currentTarget.style.boxShadow = '0 8px 20px rgba(0,0,0,0.2)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = 'translateY(0)';
+                      e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+                    }}
+                  >
+                    Open the dashboard
+                  </a>
+                ) : (
+                  <div style={{
                     display: 'block',
                     width: '100%',
                     padding: '16px 24px',
                     borderRadius: '12px',
-                    border: 'none',
-                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                    color: 'white',
+                    border: '1px dashed #cbd5e1',
+                    background: '#f8fafc',
+                    color: '#64748b',
                     fontSize: '16px',
                     fontWeight: '600',
-                    cursor: 'pointer',
-                    transition: 'all 0.3s ease',
-                    boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
-                    textDecoration: 'none',
                     textAlign: 'center',
                     boxSizing: 'border-box'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = 'translateY(-2px)';
-                    e.currentTarget.style.boxShadow = '0 8px 20px rgba(0,0,0,0.2)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = 'translateY(0)';
-                    e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
-                  }}
-                >
-                  Join founding access
-                </a>
+                  }}>
+                    Coming when billing opens
+                  </div>
+                )}
               </div>
             </div>
           ))}
@@ -323,9 +329,28 @@ export default function PricingContent() {
           fontSize: '14px',
           marginTop: '40px'
         }}>
-          No credit card. No contract. The agents are in development and not yet
-          running on live accounts. Join early access.
+          No credit card. No contract.
         </p>
+
+        <div style={{
+          maxWidth: '720px',
+          margin: '48px auto 0',
+          padding: '24px 28px',
+          borderRadius: '16px',
+          background: 'white',
+          border: '1px solid #e2e8f0',
+          textAlign: 'left'
+        }}>
+          <h2 style={{ fontSize: '20px', fontWeight: 700, color: '#1e293b', margin: '0 0 8px 0' }}>
+            What comes next
+          </h2>
+          <p style={{ fontSize: '16px', lineHeight: '1.6', color: '#475569', margin: 0 }}>
+            AI agents for bidding, risk review and reporting are in development. They do not
+            run on any live account yet and are not part of either plan. Today the dashboard
+            flags problems and you make every change yourself, with a preview first and a
+            rollback after.
+          </p>
+        </div>
       </div>
 
       <Footer compact={true} />

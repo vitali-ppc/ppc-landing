@@ -130,7 +130,7 @@ export default function ArticleContent() {
     { id: 'safely-ignore', title: 'When You Can Safely Ignore "Limited"', level: 1 },
     { id: 'stop-watching', title: 'Stop Watching the Status Column Manually', level: 1 },
     { id: 'faq', title: 'Frequently Asked Questions', level: 1 },
-    { id: 'cta', title: 'Fix It Once, or Let It Run Itself', level: 1 },
+    { id: 'cta', title: 'Fix It Once, Then Keep an Eye on It', level: 1 },
   ];
 
   const scrollToSection = (id: string) => {
@@ -410,7 +410,7 @@ export default function ArticleContent() {
               </p>
 
               <MascotQuote mascot="buzz">
-                In Campaign Search-Brand the Max CPC bid limit is $1.20, and 91% of lost impression share is &quot;lost to rank&quot; with winning auctions clearing above $1.80. I would raise the limit to $2.10 and watch CPA for 7 days. If CPA stays inside the target band, the lid can come off entirely.
+                What I am being built to do: read lost impression share next to the Max CPC bid limit. If most of the lost share is &quot;lost to rank&quot; and winning auctions clear above your limit, raise the limit in steps and watch CPA for 7 days. If CPA stays inside the target band, the lid can come off entirely.
               </MascotQuote>
             </section>
 
@@ -476,7 +476,7 @@ flowchart TD
               </ol>
 
               <MascotQuote mascot="maximus">
-                Before I let Buzz raise Target CPA from $22 to $30 to clear a &quot;Limited&quot; warning, I check whether the campaign is still profitable at a $30 CPA given the client&apos;s gross margin. Clearing the warning by buying unprofitable traffic is not a fix. Sometimes the right call is to leave the limit in and write &quot;intentional&quot; in the notes.
+                What I am being built to do: before any proposal to raise Target CPA to clear a &quot;Limited&quot; warning goes ahead, check whether the campaign is still profitable at the higher CPA given the client&apos;s gross margin. Clearing the warning by buying unprofitable traffic is not a fix. Sometimes the right call is to leave the limit in and write &quot;intentional&quot; in the notes.
               </MascotQuote>
             </section>
 
@@ -515,18 +515,18 @@ flowchart TD
                 Bid limits drift. Targets that were correct in March become tight by July as auction prices rise and seasonality shifts. Catching this manually means logging in, reading hover tooltips, comparing 30-day averages, and deciding. Every week. Across every campaign.
               </p>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
-                B6 is an AI agency that lives inside the cabinet. The <a href="/blog/google-ads-ai-agent" style={{ color: '#764ba2', textDecoration: 'underline' }}>agents</a> do the watching and the comparing, then show their reasoning before they apply anything. Buzz tracks bid limits and impression share. Maximus keeps Target CPA and Target ROAS aligned with the account&apos;s profitability bands. Aegis reviews any risky change before it goes live. Echo packages the week into a digest you can read in three minutes. It is not &quot;AI advises&quot;. It is &quot;AI does, and shows every step&quot;.
+                The Kampaio dashboard does the watching part today. It puts every Google Ads account you manage on one screen and runs 14 automatic campaign checks, including impressions lost to budget, impressions lost to rank, CPA above target, and ROAS below target. When you change a target CPA, target ROAS, or budget from the dashboard, you see a preview first, the edit goes into a change log with the numbers before it, and you can roll it back. The dashboard never changes anything by itself. Our <a href="/blog/google-ads-ai-agent" style={{ color: '#764ba2', textDecoration: 'underline' }}>agents</a> are in development: Buzz will propose bid-limit changes, Maximus will keep targets aligned with profitability, Aegis will review risky changes, and Echo will write a weekly digest. None of them runs on a live account yet.
               </p>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
-                Pricing is straightforward: three levels, Co-pilot, Approval and Autonomous, all free while B6 is in beta. No setup fees. <a href="/pricing" style={{ color: '#764ba2', textDecoration: 'underline' }}>See B6 pricing</a>.
+                The dashboard is free during early access, no card required. <a href="/pricing" style={{ color: '#764ba2', textDecoration: 'underline' }}>See Kampaio pricing</a>.
               </p>
 
               <MascotQuote mascot="echo">
-                This week Buzz raised the Max CPC bid limit on Shopping-Generic (the campaign had been pinned to the ceiling for 6 days straight). CPA went up 4%, conversions went up 19%, the &quot;Limited&quot; status cleared on its own. Full reasoning and revert button in the report.
+                What I am being built to do: a weekly digest that lists every change, the reasoning behind it, and a revert button. Until then, the dashboard change log records every edit you make with the numbers before it.
               </MascotQuote>
 
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
-                <a href="/chat" style={{ color: '#764ba2', textDecoration: 'underline' }}>Connect Google Ads to B6</a> to take this off your weekly checklist.
+                <a href="https://dashboard.kampaio.com/" style={{ color: '#764ba2', textDecoration: 'underline' }}>Open the Kampaio dashboard</a> to see impressions lost to rank and budget across every campaign without hovering tooltips.
               </p>
             </section>
 
@@ -568,10 +568,10 @@ flowchart TD
             {/* CTA */}
             <section id="cta">
               <h2 style={{ fontSize: '32px', fontWeight: '700', color: '#1e293b', marginBottom: '32px', marginTop: '48px' }}>
-                Fix It Once, or Let It Run Itself
+                Fix It Once, Then Keep an Eye on It
               </h2>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
-                Connect your <a href="/blog/google-ads-optimization" style={{ color: '#764ba2', textDecoration: 'underline' }}>Google Ads account</a>. On the first run, B6 surfaces every campaign with a bid-limit or target-induced &quot;Limited&quot; status, ranks them by potential impact on CPA, and proposes the change. You approve, B6 applies. <a href="/b6#buzz" style={{ color: '#764ba2', textDecoration: 'underline' }}>See how Buzz handles bidding</a>, or jump straight to <a href="/pricing" style={{ color: '#764ba2', textDecoration: 'underline' }}>B6 pricing</a>.
+                Connect your <a href="/blog/google-ads-optimization" style={{ color: '#764ba2', textDecoration: 'underline' }}>Google Ads account</a>. The Kampaio dashboard flags campaigns losing impressions to rank or budget, CPA above target, and ROAS below target, across every account on one screen. You decide the change; the dashboard shows a preview first and keeps a rollback. Buzz, our bidding agent, is in development. The dashboard is <a href="/pricing" style={{ color: '#764ba2', textDecoration: 'underline' }}>free during early access</a>.
               </p>
 
               <div style={{
@@ -586,10 +586,10 @@ flowchart TD
                   Tired of hovering the Status column every Monday?
                 </h3>
                 <p style={{ fontSize: '17px', color: '#64748b', marginBottom: '28px', lineHeight: '1.6', fontWeight: '500', opacity: 0.9 }}>
-                  Connect Google Ads, and B6 surfaces every campaign where a bid limit or target is the actual constraint, with a one-click revertable fix attached to each.
+                  Connect Google Ads, and the Kampaio dashboard flags campaigns losing impressions to rank or budget. Every change you make is previewed first and can be rolled back.
                 </p>
                 <a
-                  href="/chat"
+                  href="https://dashboard.kampaio.com/"
                   className="btn"
                   style={{
                     background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
@@ -606,7 +606,7 @@ flowchart TD
                     textDecoration: 'none',
                   }}
                 >
-                  Run the Diagnostic
+                  Open the dashboard
                 </a>
               </div>
             </section>

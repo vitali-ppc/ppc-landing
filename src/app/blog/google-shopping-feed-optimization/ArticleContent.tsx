@@ -414,7 +414,7 @@ export default function ArticleContent() {
               <MascotQuote mascot="sage">
                 Across 51 public discussions on feed optimization we mined this month, Performance
                 Max was the single most-raised theme at 27 percent. Feed work and PMax control are
-                now the same conversation, so I build the feed as if it is the only lever I get.
+                now the same conversation, so build the feed as if it is the only lever you get.
               </MascotQuote>
             </section>
 
@@ -641,9 +641,9 @@ export default function ArticleContent() {
               </p>
 
               <MascotQuote mascot="buzz">
-                When I restructure a flat title set to Brand + Type + Attribute and push 2-5 level
-                product_type, I expect impression share to move within 7-14 days. If it does not, the
-                problem is bids or budget, not the feed, and I escalate it out of feed work.
+                After you restructure a flat title set to Brand + Type + Attribute and push 2-5 level
+                product_type, expect impression share to move within 7-14 days. If it does not, the
+                problem is bids or budget, not the feed, and it belongs outside feed work.
               </MascotQuote>
             </section>
 
@@ -862,10 +862,11 @@ export default function ArticleContent() {
                 A clean feed is the rare PPC asset that keeps paying after you stop working on it. Get
                 the tiers in order, push the optimization layer into a supplemental feed you can edit
                 fast, and the same catalog matches more queries at a higher CTR every week. That is
-                the Kampaio approach to Shopping and PMax: treat the feed as the controllable surface
-                and let the <a href="/blog/google-ads-ai-agent" style={linkStyle}>agents</a> bid against a catalog that is already pulling its weight.{' '}
-                <a href="/b6" style={linkStyle}>
-                  See how Kampaio manages feed-aware Shopping and PMax
+                the case for treating the feed as the controllable surface in Shopping and PMax: whatever
+                does the bidding, Smart Bidding or a future <a href="/blog/google-ads-ai-agent" style={linkStyle}>AI agent</a>, then bids against a catalog that is already pulling its weight.
+                The Kampaio dashboard includes a Shopping and Performance Max product audit across the accounts you connect. 
+                <a href="https://dashboard.kampaio.com/" style={linkStyle}>
+                  Open the dashboard
                 </a>
                 .
               </p>

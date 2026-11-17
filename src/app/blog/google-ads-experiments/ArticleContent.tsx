@@ -502,9 +502,9 @@ export default function ArticleContent() {
                 Experiment Power bands, per <a href="https://support.google.com/google-ads/answer/15911255" style={linkStyle} target="_blank" rel="noopener noreferrer">Google Ads Help, &quot;About Campaign Guidance&quot; (2026)</a>.
               </p>
 
-              {/* VISUAL 7: MascotQuote (Aegis, risk flag with concrete numbers) */}
+              {/* VISUAL 7: MascotQuote (Aegis, what it is being built to flag) */}
               <MascotQuote mascot="aegis">
-                Say your Experiment Power score comes back at 30%. That&apos;s a Low-band read, under the 50% floor, and I flag it before the clock starts: don&apos;t spend four to six weeks on a test that was never built to reach significance. Fix the traffic split or wait for more conversion volume first.
+                Say your Experiment Power score comes back at 30%. That&apos;s a Low-band read, under the 50% floor. I am being built to flag that before the clock starts; until I am live, check it yourself: don&apos;t spend four to six weeks on a test that was never built to reach significance. Fix the traffic split or wait for more conversion volume first.
               </MascotQuote>
             </section>
 
@@ -539,7 +539,7 @@ export default function ArticleContent() {
                 A Low Experiment Power reading shows up most on SMB and e-commerce accounts spending $3,000 to $50,000 a month, where conversion volume is thin, and the instinct is usually to launch the test anyway. The honest alternative: wait for more volume, consolidate a bigger change into one test, or use <a href="/blog/incrementality-testing-google-ads" style={linkStyle}>geo holdout / lift testing</a> instead.
               </p>
               <p style={para}>
-                kampaio&apos;s agents watch a running experiment&apos;s scorecard: Aegis flags a stalled Experiment Power reading early instead of at week 6, and Buzz surfaces the likely bid-side impact. Neither runs or bypasses Google&apos;s native tool; the Experiments tab is still the only place an experiment runs.
+                Kampaio&apos;s agents (in development, not live yet) are being built to watch a running experiment&apos;s scorecard: Aegis, our risk agent, will flag a stalled Experiment Power reading early instead of at week 6, and Buzz, our bidding agent, will surface the likely bid-side impact. Neither will run or bypass Google&apos;s native tool; the Experiments tab is the only place an experiment runs.
               </p>
             </section>
 
@@ -586,18 +586,18 @@ export default function ArticleContent() {
             {/* CTA */}
             <section id="cta">
               <p style={para}>
-                Reading a significance readout correctly is the harder half of running a Google Ads experiment; watching it stay on track for four to six weeks is the tedious half. kampaio&apos;s agents watch a running experiment&apos;s scorecard: Aegis flags a stalled Experiment Power reading or a drifted traffic split, and Buzz surfaces the bid-side implications once a result lands. Neither runs, edits, or bypasses Google&apos;s native Experiments tool; the Experiments tab is still the only place a test executes.
+                Reading a significance readout correctly is the harder half of running a Google Ads experiment; watching it stay on track for four to six weeks is the tedious half. Kampaio&apos;s agents for that are in development and not live yet: Aegis will flag a stalled Experiment Power reading or a drifted traffic split, and Buzz will surface the bid-side implications once a result lands. What works today is the Kampaio dashboard: spend, ROAS, CPA and a daily chart per campaign across all your accounts, with automatic checks such as conversions stopped or spend spiked, so you can see the base and trial campaigns side by side. The Experiments tab is still the only place a test executes.
               </p>
 
               <div style={{ background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)', borderRadius: '16px', padding: '40px', textAlign: 'center', marginTop: '48px', marginBottom: '40px' }}>
                 <h3 style={{ fontSize: '22px', fontWeight: 700, color: '#1e293b', marginBottom: '18px', lineHeight: '1.3' }}>
-                  Catch a stalled experiment in week one, not week six
+                  Watch your campaigns on one screen while the test runs
                 </h3>
                 <p style={{ fontSize: '17px', color: '#64748b', marginBottom: '28px', lineHeight: '1.6', fontWeight: 500, opacity: 0.9 }}>
-                  Aegis watches the Experiment Power reading and the traffic split while the test runs, and Buzz reads the bid-side impact once a result lands.
+                  The Kampaio dashboard shows spend, ROAS, CPA and a daily chart for every campaign, and flags conversions that stopped or spend that spiked. Free during early access.
                 </p>
                 <a
-                  href="/chat"
+                  href="https://dashboard.kampaio.com/"
                   className="btn"
                   style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', color: 'white', border: 'none', padding: '16px 32px', borderRadius: '10px', fontSize: '16px', fontWeight: 600, cursor: 'pointer', transition: 'all 0.3s ease', display: 'inline-block', boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)', textDecoration: 'none' }}
                   onMouseEnter={(e) => {
@@ -609,7 +609,7 @@ export default function ArticleContent() {
                     (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
                   }}
                 >
-                  See how Kampaio watches a live experiment
+                  Open the dashboard
                 </a>
               </div>
 

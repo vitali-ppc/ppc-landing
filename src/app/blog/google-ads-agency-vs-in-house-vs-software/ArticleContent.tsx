@@ -272,7 +272,7 @@ export default function ArticleContent() {
                 A <strong>Google Ads agency</strong> is a firm you pay to plan, run, and optimize your campaigns. You hand over the account and get reports back. An <strong>in-house team</strong> means you hire and own a PPC manager, or a small team, who works only on your account. <strong>Software</strong> is a self-serve tool that does the optimization work while you keep control of the account and the final say on changes.
               </p>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
-                Software splits into two kinds, and the difference matters for this comparison. Recommendation tools like Optmyzr, WordStream, and Adzooma tell you what to do, but you still log in and execute every change by hand. This is the automation ceiling: the tool surfaces the work, you still do it. Self-serve <a href="/blog/5-tips-for-working-with-ai-ppc-tools" style={{ color: '#764ba2', textDecoration: 'underline' }}>AI tools</a> like Kampaio actually run the work and show each step live, so you review and approve rather than execute. Agency-side comparisons usually skip this distinction or lump all software into the recommendation bucket, which is where they get the third option wrong.
+                Software splits into two kinds, and the difference matters for this comparison. Recommendation tools like Optmyzr, WordStream, and Adzooma tell you what to do, but you still log in and execute every change by hand. This is the automation ceiling: the tool surfaces the work, you still do it. Self-serve <a href="/blog/5-tips-for-working-with-ai-ppc-tools" style={{ color: '#764ba2', textDecoration: 'underline' }}>AI tools</a> are built to run the work and show each step, so you review and approve rather than execute. Agency-side comparisons usually skip this distinction or lump all software into the recommendation bucket, which is where they get the third option wrong.
               </p>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
                 Every option trades the same three things differently: <strong>cost</strong> (what you pay), <strong>control</strong> (who has final say, and whether you own the account), and <strong>effort</strong> (the hours a week the budget owner has to put in). There is no universally best choice. The right answer depends on your spend, your <a href="/blog/google-ads-account-structure" style={{ color: '#764ba2', textDecoration: 'underline' }}>account structure</a>, and how much control and time you want to keep.
@@ -294,14 +294,14 @@ export default function ArticleContent() {
                 <strong>In-house.</strong> Fully loaded (salary, benefits, and tools), one capable PPC manager runs about $85,000 to $130,000 a year, before recruitment costs and turnover risk. That works out to roughly $7,000 to $11,000 a month, which is why in-house only makes sense at higher spend.
               </p>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
-                <strong>Software.</strong> Recommendation tools run $249 to $499 or more a month, and you still execute the changes yourself. Self-serve AI software like Kampaio is a flat monthly subscription, and the tool does the work while you approve it.
+                <strong>Software.</strong> Recommendation tools run $249 to $499 or more a month, and you still execute the changes yourself. Self-serve AI software is usually a flat monthly subscription, and the tool does the work while you approve it. The Kampaio dashboard is free during early access.
               </p>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
                 The clearest way to read these numbers is as a share of spend. A $1,500 retainer on a $5,000 a month account is 30 percent of your budget going to management, not media. The same account on flat-fee software is closer to 4 percent. Whether that management premium is worth it depends entirely on what it buys you in results and time saved.
               </p>
 
               <MascotQuote mascot="maximus">
-                On a $7,000-a-month account I run bid and budget checks every few hours, not once a month. Last week I caught a Performance Max campaign drifting 34 percent over target CPA on a Tuesday afternoon. A monthly retainer would have flagged that in the next report, four weeks later.
+                What I am being built to do: run bid and budget checks every few hours, not once a month, so a campaign drifting over target CPA gets caught the same day instead of in next month&apos;s report. I am in development and do not run on live accounts yet.
               </MascotQuote>
             </section>
 
@@ -324,7 +324,7 @@ export default function ArticleContent() {
               </p>
 
               <MascotQuote mascot="vox">
-                I reallocate budget across campaigns every week, moving spend toward whatever is converting and starving what is not. An agency on a monthly review touches that cadence once every four weeks. On a $10,000 account, three extra weeks of misallocated budget is real money.
+                What I am being built to do: propose budget moves across campaigns every week, toward whatever is converting and away from what is not. I am in development. The point holds today: an agency on a monthly review touches that cadence once every four weeks, and three extra weeks of misallocated budget is real money.
               </MascotQuote>
             </section>
 
@@ -339,7 +339,7 @@ export default function ArticleContent() {
                 rows={[
                   { cells: ['Agency', '$2,000–5,000/mo or 10–20% of spend', 'Agency team, often shared across 10–20 accounts', 'Low (verify account ownership)', 'Low', '$20K+/mo'] },
                   { cells: ['In-house', '~$7,000–11,000/mo ($85K–130K/yr loaded)', 'Your employee', 'High', 'Medium (you manage the hire)', '$20K+/mo'] },
-                  { cells: ['Software (self-serve AI, e.g. Kampaio)', 'Flat monthly subscription', 'The tool, with your approval', 'High (you own the account)', 'Medium (a few hours/week)', '$3K–20K/mo'], highlight: true },
+                  { cells: ['Software (self-serve AI)', 'Flat monthly subscription', 'The tool, with your approval', 'High (you own the account)', 'Medium (a few hours/week)', '$3K–20K/mo'], highlight: true },
                 ]}
                 caption="Agency vs in-house vs software for Google Ads. A starting grid, not a law: spend, structure, and time shift the answer."
               />
@@ -417,7 +417,7 @@ export default function ArticleContent() {
                 Self-serve AI software is for the budget owner who wants the optimization done but keeps the account and the final say. It is strongest in the $3K to $20K a month band, where an agency&apos;s economics do not favor senior attention and a full salary is overkill. That is the gap it fills, and it is worth being precise about both the fit and the limits.
               </p>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
-                Kampaio is an example of the category: an AI PPC cabinet of specialist agents. Maximus orchestrates the optimization cycle, Buzz handles bids, Vox manages cross-campaign <a href="/blog/google-ads-strategy" style={{ color: '#764ba2', textDecoration: 'underline' }}>strategy</a>, Aegis flags risk, Echo reports, Sage handles research, and Mira handles creative. Three levels run Co-pilot, Approval and Autonomous, on a flat subscription rather than a percentage of spend, against agencies at $2,000 to $5,000 a month. The Approval level means every change waits for your sign-off, so you keep control while the system does the heavy lifting. You can <a href="/b6" style={{ color: '#764ba2', textDecoration: 'underline' }}>see how the agents work</a> before connecting anything.
+                Where Kampaio stands today: the <a href="https://dashboard.kampaio.com/" style={{ color: '#764ba2', textDecoration: 'underline' }}>Kampaio dashboard</a> puts every Google Ads account you manage on one screen, runs 14 automatic campaign checks (spend with no conversions, impressions lost to budget or rank, ROAS below target, CPA above target and more), and lets you change budgets, targets, keywords and geo yourself, each with a preview first and a rollback after. It never changes anything by itself, and it is free during early access, against agencies at $2,000 to $5,000 a month. The specialist agents (Maximus for orchestration, Buzz for bids, Vox for cross-campaign <a href="/blog/google-ads-strategy" style={{ color: '#764ba2', textDecoration: 'underline' }}>strategy</a>, Aegis for risk and others) are in development and do not run on live accounts.
               </p>
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '32px' }}>
                 Software is not a full replacement for every path. An agency that does multi-market coordination or heavy creative production does things software does not, and an owner who wants zero involvement is better served by a retainer. If you are leaning toward managing the account yourself with better tooling, the deeper case is in <a href="/blog/google-ads-without-agency" style={{ color: '#764ba2', textDecoration: 'underline' }}>running Google Ads without an agency</a>. That honesty about where software does not fit is the difference between a comparison and a sales pitch.
@@ -503,10 +503,10 @@ export default function ArticleContent() {
                   fontWeight: '500',
                   opacity: 0.9
                 }}>
-                  If your spend is in the $3K to $20K range, you probably do not need a $3,000 retainer or a six-figure hire to run Google Ads well. Connect your account to Kampaio, watch Maximus run the first optimization cycle, and approve or reject every change. You keep the account, you keep control, and there is no contract. <a href="/pricing" style={{ color: '#764ba2', textDecoration: 'underline' }}>See what each Kampaio level does</a>.
+                  If your spend is in the $3K to $20K range, you probably do not need a $3,000 retainer or a six-figure hire to run Google Ads well. Connect your accounts to the Kampaio dashboard, see what the automatic checks flag, and make every change yourself with a preview first and a rollback after. You keep the account, you keep control, and there is no contract. Free during early access, no card.
                 </p>
                 <a
-                  href="/chat"
+                  href="https://dashboard.kampaio.com/"
                   className="btn"
                   style={{
                     background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
@@ -531,7 +531,7 @@ export default function ArticleContent() {
                     (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
                   }}
                 >
-                  Start with your account
+                  Open the dashboard
                 </a>
               </div>
             </section>
