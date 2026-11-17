@@ -5,24 +5,24 @@ import React from "react";
 /* FAQ content, one source for both the visible section and the FAQPage schema */
 const FAQ_ITEMS: { q: string; a: string }[] = [
   {
-    q: "What if the agents make a bad change?",
-    a: "They start read-only, so at first they only suggest. Aegis, the Risk Agent, reviews every bid and budget change and blocks the risky ones before they apply. Nothing reaches your account without you seeing the exact before and after first.",
-  },
-  {
     q: "Is my Google Ads data safe?",
-    a: "You connect through Google OAuth, read-only by default. You keep full ownership of your account the whole time, and the agents only write once you have granted a higher autonomy level.",
+    a: "You sign in with Google and choose which accounts to connect. They stay in your name the whole time, and the dashboard changes nothing until you confirm a change.",
   },
   {
-    q: "How is this different from a PPC tool I already pay for?",
-    a: "A tool you still operate yourself. Kampaio's agents do the work, bidding, budget, creative, and reporting, and explain every move in plain English while you watch it happen.",
+    q: "What if I make a bad change?",
+    a: "Every change shows a preview before it applies, and every applied change is logged with the numbers before it, so you can roll it back from the dashboard.",
   },
   {
-    q: "How do I start, and what does it cost right now?",
-    a: "Founding access is free and needs no credit card, because billing is not open yet. You begin as co-pilot where you approve every move, then graduate to autopilot when you trust the work. When billing opens you pick a tier or walk away; nothing is charged automatically.",
+    q: "How is this different from Google Ads itself?",
+    a: "All your accounts on one screen, with the problems already found and ranked by 14 automatic checks, instead of clicking through each account and campaign to find them.",
   },
   {
-    q: "Will it work for my account size?",
-    a: "Yes. Start on L1 co-pilot at any budget and raise the autonomy level as results come in. You choose how much the agents handle.",
+    q: "What does it cost?",
+    a: "Early access is free and needs no credit card, because billing is not open yet. When billing opens you choose a plan or walk away; nothing is charged automatically.",
+  },
+  {
+    q: "Where are the AI agents?",
+    a: "In development, and not running on live accounts. The dashboard comes first; the agents will build on the same checks to propose changes for you.",
   },
 ];
 
@@ -33,7 +33,6 @@ const homeJsonLd = {
       "@type": "Organization",
       "@id": "https://www.kampaio.com/#organization",
       name: "Kampaio",
-      alternateName: ["B6", "Kampaio B6"],
       url: "https://www.kampaio.com",
       logo: {
         "@type": "ImageObject",
@@ -48,7 +47,7 @@ const homeJsonLd = {
         "https://github.com/vitali-ppc",
       ],
       description:
-        "Kampaio builds B6, an autonomous AI agent system that manages Google Ads campaigns for SMB and DTC advertisers.",
+        "Kampaio builds a Google Ads dashboard for marketers and owners who run their own accounts: every account on one screen, automatic checks, and changes with a preview and a rollback. AI agents are in development.",
       knowsAbout: [
         "Google Ads",
         "Pay-Per-Click Advertising",
@@ -74,7 +73,7 @@ const homeJsonLd = {
       "@id": "https://www.kampaio.com/#website",
       url: "https://www.kampaio.com",
       name: "Kampaio",
-      description: "AI-Powered Google Ads Management Platform",
+      description: "Google Ads dashboard for marketers and PPC managers",
       publisher: { "@id": "https://www.kampaio.com/#organization" },
       potentialAction: {
         "@type": "SearchAction",
@@ -297,6 +296,7 @@ const STYLES = `
 .kx-foot a:hover{ color:var(--accent); }
 .kx-foot-links a{ margin-left:18px; }
 
+.kx-tiers.two{ grid-template-columns:repeat(2,1fr); max-width:780px; margin-left:auto; margin-right:auto; }
 @keyframes kx-pulse{ 0%,100%{ opacity:1 } 50%{ opacity:.35 } }
 @keyframes kx-rise{ from{ opacity:0; transform:translateY(8px) } to{ opacity:1; transform:none } }
 
@@ -304,7 +304,7 @@ const STYLES = `
 @media (max-width:960px){
   .kx-hero-in{ grid-template-columns:1fr; gap:40px; padding:56px 24px 60px; }
   .kx-bento{ grid-template-columns:1fr 1fr; }
-  .kx-tiers{ grid-template-columns:1fr; max-width:460px; margin:0 auto; }
+  .kx-tiers, .kx-tiers.two{ grid-template-columns:1fr; max-width:460px; margin:0 auto; }
 }
 /* phone */
 @media (max-width:640px){
@@ -334,39 +334,29 @@ const STYLES = `
 // audit thresholds that decide where to look: 10% of impressions lost to budget,
 // and spend past 500 with no conversions in the window.
 const FEED = [
-  { icon: "bid", who: "Buzz · Bidding", what: <>Raised budget <span className="kx-rnum">+15%</span> on Search &middot; FR, losing <span className="kx-rnum">18%</span> of impressions to budget</>, chip: "applied", cls: "ok" },
-  { icon: "shield", who: "Aegis · Risk", what: <>Held tROAS <span className="kx-rnum">+15%</span> on Campaign 3, no conversions this window</>, chip: "held", cls: "hold" },
-  { icon: "bid", who: "Buzz · Bidding", what: <>Enabled <span className="kx-rnum">12</span> paused keywords sitting in live ad groups</>, chip: "applied", cls: "ok" },
-  { icon: "shield", who: "Aegis · Risk", what: <>Flagged 2 campaigns: <span className="kx-rnum">$500</span> spend, zero conversions</>, chip: "flagged", cls: "sent" },
+  { icon: "shield", who: "Audit · Spend, no conversions", what: <><span className="kx-rnum">2</span> campaigns spent <span className="kx-rnum">$500</span> with zero conversions this window</>, chip: "flagged", cls: "sent" },
+  { icon: "chart", who: "Audit · Lost to budget", what: <>Search &middot; FR is losing <span className="kx-rnum">18%</span> of impressions to budget</>, chip: "flagged", cls: "sent" },
+  { icon: "bid", who: "Change · Budget", what: <>Budget <span className="kx-rnum">+15%</span> on Search &middot; FR, previewed before it applied</>, chip: "applied", cls: "ok" },
+  { icon: "search", who: "Search terms · Negatives", what: <><span className="kx-rnum">12</span> negatives ready, shown in a preview first</>, chip: "review", cls: "hold" },
 ];
 
 const TEAM = [
-  { icon: "bid", name: "Buzz", role: "Bidding Agent", desc: "Moves campaign budget and target ROAS by performance. Explains every decision.", status: "next" },
-  { icon: "shield", name: "Aegis", role: "Risk Agent", desc: "Reviews what Buzz decides, blocks the risky moves, and flags what is burning money. Tells you why.", status: "next" },
-  { icon: "stack", name: "Maximus", role: "Orchestrator", desc: "Runs the other agents. Brings you only what actually needs a decision.", status: "coming" },
-  { icon: "target", name: "Vox", role: "Strategy", desc: "Decides which campaigns deserve the budget, and which platform.", status: "coming" },
-  { icon: "spark", name: "Mira", role: "Creative", desc: "Generates ad copy and images. Runs A/B tests.", status: "coming" },
-  { icon: "search", name: "Sage", role: "Research", desc: "Finds new keywords, audiences, and competitors.", status: "coming" },
-  { icon: "chart", name: "Echo", role: "Reporting", desc: "Weekly digest by email or Telegram, in plain English.", status: "coming" },
+  { icon: "bid", name: "Buzz", role: "Bidding Agent", desc: "Will propose budget and target ROAS changes from the same checks, with the reason next to each.", status: "next" },
+  { icon: "shield", name: "Aegis", role: "Risk Agent", desc: "Will review every proposed change and block the risky ones before they reach your account.", status: "next" },
+  { icon: "chart", name: "Echo", role: "Reporting Agent", desc: "Will send a weekly digest by email or Telegram, in plain English.", status: "next" },
 ];
 
 const TIERS = [
   {
-    name: "L1 Co-pilot", price: "Free", period: "early access",
-    desc: "AI suggests; you approve every move.",
-    features: ["Buzz + Aegis", "1 Google Ads account", "Approve every change", "Weekly digest", "Email support"],
-    highlight: true, status: "next",
+    name: "Free", price: "Free", period: "early access",
+    desc: "For one account you run yourself.",
+    features: ["1 Google Ads account", "14 automatic campaign checks", "Search terms and negatives", "Changes with preview and rollback", "Change log"],
+    highlight: true, status: "live",
   },
   {
-    name: "L2 Approval", price: "Free", period: "early access",
-    desc: "AI acts; you approve only the big moves.",
-    features: ["Everything in L1", "Auto-applies small changes", "Risk Agent enforcement", "Real-time alerts", "Priority support"],
-    highlight: false, status: "next",
-  },
-  {
-    name: "L3 Autonomous", price: "Free", period: "early access",
-    desc: "Full autopilot. The agents run it.",
-    features: ["Everything in L2", "Full autonomy", "Creative Agent (ad generation)", "Multi-platform (Meta, TikTok)", "Dedicated onboarding"],
+    name: "Pro", price: "", period: "",
+    desc: "For freelancers and small agencies.",
+    features: ["Up to 5 Google Ads accounts", "Everything in Free", "All accounts on one screen", "Multi-currency totals"],
     highlight: false, status: "next",
   },
 ];
@@ -410,25 +400,25 @@ const Hero: React.FC = () => (
   <section className="kx-hero">
     <div className="kx-hero-in">
       <div>
-        <span className="kx-eyebrow"><span className="kx-dot" aria-hidden />Founding access</span>
-        <p className="kx-pain">ROAS tanked overnight? pMax burning budget? Agency invoice, zero answers?</p>
-        <h1 className="kx-h1">Your PPC agency.<br />In a cabinet.</h1>
+        <span className="kx-eyebrow"><span className="kx-dot" aria-hidden />Early access</span>
+        <p className="kx-pain">ROAS tanked overnight? pMax burning budget? Ten accounts, ten tabs?</p>
+        <h1 className="kx-h1">Every Google Ads account.<br />One screen.</h1>
         <p className="kx-sub">
-          Bids adjusted, risky calls blocked, <strong>every action shown</strong> before
-          it applies. Approve the big ones; the rest runs while you sleep.
+          See what changed, what is wasting money and what to fix first. Change budgets
+          and targets with <strong>a preview before it applies</strong> and a rollback after.
         </p>
         <div className="kx-cta-row">
           <a className="kx-btn kx-btn-primary" href="https://dashboard.kampaio.com/">Start free &rarr;</a>
-          <a className="kx-btn kx-btn-ghost" href="https://dashboard.kampaio.com/">Watch the agents work</a>
+          <a className="kx-btn kx-btn-ghost" href="https://dashboard.kampaio.com/">Open the dashboard</a>
         </div>
 
         {/* Four facts, each one checkable on the product itself. No customer
             counts, no ratings, no badges we have not earned: an unearned trust
             row costs more than an empty one. */}
         <ul className="kx-trust" aria-label="What you are agreeing to">
-          <li>Your Google Ads account, connected by OAuth and still in your name</li>
-          <li>Nothing executes until you approve it</li>
-          <li>Billing is not open yet, so there is nothing to cancel</li>
+          <li>Sign in with Google. Your accounts stay in your name</li>
+          <li>Nothing changes until you confirm it, and every change can be rolled back</li>
+          <li>Free during early access, no card needed</li>
         </ul>
 
         <div className="kx-wedge" role="group" aria-label="Cost comparison">
@@ -445,15 +435,15 @@ const Hero: React.FC = () => (
           <div className="kx-wcell is-b6">
             <div className="kx-wlabel">Kampaio</div>
             <div className="kx-wprice">Free</div>
-            <div className="kx-wnote">early access, it does the work</div>
+            <div className="kx-wnote">early access, every account on one screen</div>
           </div>
         </div>
       </div>
 
       {/* live agent feed — the product's soul: visible, real-time work */}
-      <div className="kx-feed" aria-label="Example of agent activity">
+      <div className="kx-feed" aria-label="Example of what the dashboard shows">
         <div className="kx-feed-top">
-          <div className="kx-feed-title"><span className="kx-ttl-ic" aria-hidden><AgentIcon id="bid" /></span> Agent activity</div>
+          <div className="kx-feed-title"><span className="kx-ttl-ic" aria-hidden><AgentIcon id="bid" /></span> What the dashboard shows</div>
           {/* The rows below are an illustration of the kind of call each agent
               makes, not a feed of live accounts. The badge used to read "live",
               which turned the sample numbers into claims. */}
@@ -479,29 +469,24 @@ const Hero: React.FC = () => (
 const HowItWorks: React.FC = () => (
   <section className="kx-sec alt" id="how">
     <div className="kx-sec-in">
-      <h2 className="kx-h2">From sign-up to autopilot</h2>
-      <p className="kx-sec-sub">Connect, pick how much rope the AI gets, and watch every move it makes. You stay in control of the account the whole time.</p>
+      <h2 className="kx-h2">From sign-in to the first fix</h2>
+      <p className="kx-sec-sub">Three steps, a few minutes. You stay in control of every account the whole time.</p>
       <div className="kx-bento">
         <div className="kx-card" style={{ gridColumn: "span 2" }}>
           <div className="kx-step-n">1</div>
-          <h3>Connect Google Ads</h3>
-          <p>OAuth, read-only at first. The agents see your campaigns; you keep ownership of the account.</p>
+          <h3>Sign in with Google</h3>
+          <p>Connect the Google Ads accounts you manage. You keep ownership of every account.</p>
         </div>
         <div className="kx-card" style={{ gridColumn: "span 2" }}>
           <div className="kx-step-n">2</div>
-          <h3>Pick an autonomy level</h3>
-          <p>Start as co-pilot, graduate to autopilot when you trust the work. Change it anytime.</p>
-          <div className="kx-ladder">
-            <span className="kx-rung"><b>L1</b> suggest <span className="kx-stat s">NEXT</span></span>
-            <span className="kx-rung"><b>L2</b> act on small <span className="kx-stat s">NEXT</span></span>
-            <span className="kx-rung"><b>L3</b> full autopilot <span className="kx-stat s">NEXT</span></span>
-          </div>
+          <h3>Open the audit</h3>
+          <p>14 checks run on every campaign and show what needs attention first: spend with no conversions, ROAS below target, impressions lost to budget, campaigns that stopped.</p>
         </div>
         <div className="kx-card" style={{ gridColumn: "span 2" }}>
           <div className="kx-step-n">3</div>
-          <h3>Watch the agents work</h3>
-          <p>A real-time feed shows what each agent does and why. Nothing applies until you approve it.</p>
-          <div className="kx-mono-tag">every change · shown before it applies</div>
+          <h3>Fix it from the dashboard</h3>
+          <p>Change a budget, a target, geo or keywords. Preview the change, apply it, roll it back if the numbers say so.</p>
+          <div className="kx-mono-tag">every change · preview first · rollback after</div>
         </div>
       </div>
     </div>
@@ -511,8 +496,8 @@ const HowItWorks: React.FC = () => (
 const MeetTheTeam: React.FC = () => (
   <section className="kx-sec" id="team">
     <div className="kx-sec-in">
-      <h2 className="kx-h2">Meet your agency</h2>
-      <p className="kx-sec-sub">Each agent is a specialist with one job. They are in development and not yet running on live accounts, built in the same order you would hire them.</p>
+      <h2 className="kx-h2">What comes next: AI agents</h2>
+      <p className="kx-sec-sub">The dashboard is the product today. Next come agents that use the same checks to propose changes for you. They are in development, and nothing here runs on autopilot yet.</p>
       <div className="kx-grid-auto">
         {TEAM.map((m) => (
           <div key={m.name} className={`kx-agent ${m.status === "live" ? "live" : "soon"}`}>
@@ -534,8 +519,8 @@ const Pricing: React.FC = () => (
   <section className="kx-sec alt" id="pricing">
     <div className="kx-sec-in">
       <h2 className="kx-h2">Pricing</h2>
-      <p className="kx-sec-sub">Three levels. Start as co-pilot, move to autopilot when you&apos;re ready. A fraction of a $2–5K/mo agency retainer.</p>
-      <div className="kx-tiers">
+      <p className="kx-sec-sub">Free during early access. Billing is not open yet, so there is nothing to cancel.</p>
+      <div className="kx-tiers two">
         {TIERS.map((t) => (
           <div key={t.name} className={`kx-tier ${t.highlight ? "hot" : ""}`}>
             {/* The badge says which level exists, not which is popular: nothing is being
@@ -553,12 +538,12 @@ const Pricing: React.FC = () => (
             <p className="td">{t.desc}</p>
             <ul>{t.features.map((f) => <li key={f}>{f}</li>)}</ul>
             <a className={`kx-btn ${t.highlight ? "kx-btn-primary" : "kx-btn-ghost"}`} style={{ display: "flex", width: "100%" }} href="https://dashboard.kampaio.com/">
-              {t.status === "live" ? "Get started" : "Start on L1"}
+              {t.status === "live" ? "Start free" : "Start on Free"}
             </a>
           </div>
         ))}
       </div>
-      <p className="kx-fineprint"><span className="hi">Founding access is free · No credit card · Prices apply once billing opens</span></p>
+      <p className="kx-fineprint"><span className="hi">Early access is free · No credit card · Nothing is charged automatically when billing opens</span></p>
     </div>
   </section>
 );
@@ -567,7 +552,7 @@ const FAQ: React.FC = () => (
   <section className="kx-sec alt" id="faq">
     <div className="kx-sec-in" style={{ maxWidth: 760 }}>
       <h2 className="kx-h2">Common questions</h2>
-      <p className="kx-sec-sub">Real answers on control, safety, and how the agents work.</p>
+      <p className="kx-sec-sub">Real answers on control, safety, and what the dashboard does.</p>
       <div className="kx-faq">
         {FAQ_ITEMS.map((f, i) => (
           <details key={f.q} className="kx-faq-item" {...(i === 0 ? { open: true } : {})}>
@@ -588,16 +573,16 @@ const FAQ: React.FC = () => (
 const CTA: React.FC = () => (
   <section className="kx-sec kx-cta" id="start">
     <div className="kx-sec-in" style={{ maxWidth: 640, textAlign: "center" }}>
-      <h2 className="kx-h2">Ready to fire the agency?</h2>
+      <h2 className="kx-h2">Stop clicking through accounts one by one.</h2>
       <p className="kx-sec-sub" style={{ margin: "0 auto 30px", color: "var(--muted-2)" }}>
-        Founding access is open to <strong style={{ color: "var(--text)" }}>SMB owners</strong> who
-        want their Google Ads run by AI agents, not consultants. Free while we finish the cabinet.
+        Early access is open to <strong style={{ color: "var(--text)" }}>marketers and owners</strong> who
+        run Google Ads themselves. Free while we build the agents on top.
       </p>
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <a className="kx-btn kx-btn-primary" href="https://dashboard.kampaio.com/">Create your account &rarr;</a>
+        <a className="kx-btn kx-btn-primary" href="https://dashboard.kampaio.com/">Start free &rarr;</a>
       </div>
       <p className="kx-fineprint" style={{ marginTop: 18 }}>
-        <span className="hi">No credit card · Buzz and Aegis start on your account today</span>
+        <span className="hi">No credit card · Sign in with Google</span>
       </p>
     </div>
   </section>
@@ -606,9 +591,9 @@ const CTA: React.FC = () => (
 const Footer: React.FC = () => (
   <footer className="kx-foot">
     <div className="kx-foot-in">
-      <div className="kx-logo" style={{ fontSize: 15 }}><span className="kx-dot" aria-hidden />kampaio · B6 Autonomous PPC Cabinet</div>
+      <div className="kx-logo" style={{ fontSize: 15 }}><span className="kx-dot" aria-hidden />kampaio · Google Ads dashboard</div>
       <div className="kx-foot-links">
-        <a href="https://dashboard.kampaio.com/">Live demo</a>
+        <a href="https://dashboard.kampaio.com/">Dashboard</a>
         <a href="/blog">Blog</a>
         <a href="/privacy-policy">Privacy</a>
         <a href="/terms-of-service">Terms</a>

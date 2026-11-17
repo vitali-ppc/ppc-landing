@@ -15,10 +15,10 @@ export const metadata: Metadata = {
   // ever redirects.
   metadataBase: new URL('https://www.kampaio.com'),
   title: {
-    default: 'Kampaio: AI-Powered Google Ads Management',
+    default: 'Kampaio: Google Ads Dashboard',
     template: '%s | Kampaio'
   },
-  description: 'Kampaio runs your Google Ads with a team of AI agents: bidding, risk review, anomaly monitoring and reporting, with every proposed change shown before it executes.',
+  description: 'Kampaio is a Google Ads dashboard: every account on one screen, automatic checks for wasted spend and stalled campaigns, and changes with a preview and a rollback.',
   keywords: 'Google Ads, PPC, Google Ads automation, AI Google Ads management, campaign optimization, PPC agency alternative',
   authors: [{ name: 'Kampaio' }],
   creator: 'Kampaio',
@@ -29,8 +29,8 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://www.kampaio.com',
     siteName: 'Kampaio',
-    title: 'Kampaio: AI-Powered Google Ads Management',
-    description: 'Kampaio runs your Google Ads with a team of AI agents: bidding, risk review, anomaly monitoring and reporting, with every proposed change shown before it executes.',
+    title: 'Kampaio: Google Ads Dashboard',
+    description: 'Kampaio is a Google Ads dashboard: every account on one screen, automatic checks for wasted spend and stalled campaigns, and changes with a preview and a rollback.',
     images: [
       {
         url: '/logo.png',
@@ -42,8 +42,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Kampaio: AI-Powered Google Ads Management',
-    description: 'Kampaio runs your Google Ads with a team of AI agents: bidding, risk review, anomaly monitoring and reporting, with every proposed change shown before it executes.',
+    title: 'Kampaio: Google Ads Dashboard',
+    description: 'Kampaio is a Google Ads dashboard: every account on one screen, automatic checks for wasted spend and stalled campaigns, and changes with a preview and a rollback.',
     images: ['/logo.png'],
   },
   icons: {

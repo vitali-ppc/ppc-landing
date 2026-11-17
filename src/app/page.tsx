@@ -2,14 +2,14 @@ import type { Metadata } from 'next';
 import HomeContent from './HomeContent';
 
 export const metadata: Metadata = {
-  title: 'Kampaio: AI-Powered Google Ads Management Platform',
+  title: 'Kampaio: Google Ads Dashboard for Marketers and PPC Managers',
   description:
-    'AI agents for Google Ads, built for SMBs spending $3-50K/month. In development. Join early access.',
+    'All your Google Ads accounts on one screen. 14 automatic checks flag wasted spend and stalled campaigns. Change budgets and targets with a preview and a rollback.',
   alternates: { canonical: 'https://www.kampaio.com' },
   openGraph: {
-    title: 'Kampaio: AI-Powered Google Ads Platform',
+    title: 'Kampaio: Google Ads Dashboard',
     description:
-      'AI agents for Google Ads, built for SMBs. In development. Join early access.',
+      'All your Google Ads accounts on one screen, with automatic checks and changes you can roll back. Free during early access.',
     url: 'https://www.kampaio.com',
     type: 'website',
     images: [
@@ -17,15 +17,15 @@ export const metadata: Metadata = {
         url: '/og/home.png',
         width: 1200,
         height: 630,
-        alt: 'Kampaio AI-Powered Google Ads Platform',
+        alt: 'Kampaio Google Ads dashboard',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Kampaio: AI-Powered Google Ads Platform',
+    title: 'Kampaio: Google Ads Dashboard',
     description:
-      'AI agents for Google Ads, built for SMBs. In development. Join early access.',
+      'All your Google Ads accounts on one screen, with automatic checks and changes you can roll back. Free during early access.',
     images: ['/og/home.png'],
   },
 };
