@@ -4,22 +4,22 @@ import Footer from '@/components/Footer'
 import ScrollToTop from '@/components/ScrollToTop'
 
 export const metadata = {
-  title: 'Privacy Policy — AI Service Data Protection',
-  description: 'Learn how Kampaio AI service collects, processes, and protects your data. Our privacy policy ensures transparency and compliance with data protection regulations for AI-powered Google Ads analytics.',
-  keywords: 'privacy policy, AI data protection, GDPR, personal data, Kampaio privacy, Google Ads AI, data security',
+  title: 'Privacy Policy',
+  description: 'How the Kampaio Dashboard collects, uses and protects your data, including Google user data received through Google sign-in and the Google Ads API.',
+  keywords: 'privacy policy, Kampaio, Google Ads dashboard, Google API Services User Data Policy, Limited Use, GDPR',
   authors: [{ name: 'Kampaio' }],
   openGraph: {
     url: 'https://kampaio.com/privacy-policy',
-    title: 'Privacy Policy — AI Service Data Protection | Kampaio',
-    description: 'Learn how Kampaio AI service collects, processes, and protects your data. Our privacy policy ensures transparency and compliance with data protection regulations for AI-powered Google Ads analytics.',
+    title: 'Privacy Policy | Kampaio',
+    description: 'How the Kampaio Dashboard collects, uses and protects your data, including Google user data received through Google sign-in and the Google Ads API.',
     images: ['https://kampaio.com/logo.png'],
     siteName: 'Kampaio',
   },
   twitter: {
     card: 'summary_large_image',
     url: 'https://kampaio.com/privacy-policy',
-    title: 'Privacy Policy — AI Service Data Protection | Kampaio',
-    description: 'Learn how Kampaio AI service collects, processes, and protects your data. Our privacy policy ensures transparency and compliance with data protection regulations for AI-powered Google Ads analytics.',
+    title: 'Privacy Policy | Kampaio',
+    description: 'How the Kampaio Dashboard collects, uses and protects your data, including Google user data received through Google sign-in and the Google Ads API.',
     images: ['https://kampaio.com/logo.png']
   },
   alternates: {
@@ -27,7 +27,7 @@ export const metadata = {
   }
 }
 
-// WebPage schema — links legal page to Kampaio Organization + WebSite
+// WebPage schema: links legal page to Kampaio Organization + WebSite
 // entities via @id, completing the Knowledge Graph integration.
 const privacyJsonLd = {
   '@context': 'https://schema.org',
@@ -36,7 +36,7 @@ const privacyJsonLd = {
   name: 'Privacy Policy',
   url: 'https://www.kampaio.com/privacy-policy',
   description:
-    'How Kampaio collects, processes, and protects your data. GDPR-compliant privacy policy for AI-powered Google Ads analytics service.',
+    'How the Kampaio Dashboard collects, uses and protects your data, including Google user data received through Google sign-in and the Google Ads API.',
   isPartOf: { '@id': 'https://www.kampaio.com/#website' },
   about: { '@id': 'https://www.kampaio.com/#organization' },
   publisher: { '@id': 'https://www.kampaio.com/#organization' },
@@ -55,221 +55,122 @@ export default function PrivacyPolicy() {
         <div className="container">
           <div className="content-wrapper">
           <h1>Privacy Policy</h1>
-          <p className="last-updated">Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
-          
+          <p className="last-updated">Last updated: November 17, 2026</p>
+
           <section>
-            <h2>1. Introduction</h2>
             <p>
-              Kampaio ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, process, and safeguard your information when you use our AI-powered Google Ads analytics service. Our intelligent AI assistant analyzes your Google Ads data, generates reports, and provides strategic recommendations while maintaining the highest standards of data protection.
+              Kampaio (&quot;we&quot;, &quot;us&quot;) provides the Kampaio Dashboard at{' '}
+              <a href="https://dashboard.kampaio.com/">https://dashboard.kampaio.com</a>, a tool that shows your
+              Google Ads accounts on one screen, runs automatic checks on your campaigns, and lets you make changes
+              you confirm yourself. This policy explains what data we collect, why, and what you can do about it.
+              It covers the dashboard and our website <a href="https://www.kampaio.com">https://www.kampaio.com</a>.
             </p>
           </section>
 
           <section>
-            <h2>2. Information We Collect</h2>
-            <h3>2.1 Personal Information</h3>
-            <p>We may collect personal information that you voluntarily provide to us, including:</p>
+            <h2>1. What we collect</h2>
+            <h3>When you sign in with Google</h3>
             <ul>
-              <li>Name and contact information (email address, phone number)</li>
-              <li>Company information and business details</li>
-              <li>Google Ads account information (with your explicit consent)</li>
-              <li>Communication preferences and service requirements</li>
-              <li>Information provided through contact forms and support requests</li>
+              <li>Your Google account email address and name (Google <code>email</code> and <code>profile</code> permissions).</li>
+              <li>An OAuth access and refresh token for the Google Ads API (Google <code>adwords</code> permission), so the dashboard can read your Google Ads data and apply the changes you confirm.</li>
             </ul>
-
-            <h3>2.2 Account Authentication Information</h3>
-            <p>When you create an account or use our authentication services, we collect:</p>
+            <h3>When you use the dashboard</h3>
             <ul>
-              <li>Email address for account creation and verification</li>
-              <li>Hashed passwords (we never store plain text passwords)</li>
-              <li>Account verification tokens and reset links</li>
-              <li>Login/logout timestamps and session data</li>
-              <li>IP addresses associated with account access</li>
-              <li>Device information for security purposes</li>
-              <li>Password reset requests and verification data</li>
+              <li>The IDs of the Google Ads accounts you choose to connect, and your plan.</li>
+              <li>Google Ads reporting data for those accounts: campaigns, budgets, bidding targets, metrics such as spend, clicks, conversions and conversion value, search terms, products and geo settings. We keep a temporary cache of this data so pages load quickly and we stay within Google&apos;s API limits.</li>
+              <li>A log of every change you apply through the dashboard: what was changed, the value before and after, and when.</li>
+              <li>Settings you enter, such as profit margins or targets for an account, and display preferences.</li>
+              <li>A session cookie that keeps you signed in for up to 30 days.</li>
             </ul>
-
-            <h3>2.3 Google Ads Data (AI Processing)</h3>
-            <p>With your explicit authorization, our AI service may access and process:</p>
+            <h3>On our website</h3>
             <ul>
-              <li>Campaign performance data and metrics</li>
-              <li>Keyword performance and search terms</li>
-              <li>Ad copy and creative assets</li>
-              <li>Audience and targeting information</li>
-              <li>Bidding strategies and budget data</li>
-              <li>Conversion tracking data</li>
-            </ul>
-
-            <h3>2.4 Automatically Collected Information</h3>
-            <p>When you use our service, we automatically collect certain information, including:</p>
-            <ul>
-              <li>IP address and device information</li>
-              <li>Browser type and version</li>
-              <li>Service usage patterns and analytics</li>
-              <li>AI interaction logs (for service improvement)</li>
-              <li>Cookies and similar technologies</li>
+              <li>The website uses Google Analytics to measure visits (pages viewed, approximate location, device). It does not receive your Google Ads data.</li>
             </ul>
           </section>
 
           <section>
-            <h2>3. How We Use Your Information</h2>
-            <p>We use the collected information for the following purposes:</p>
+            <h2>2. How we use it</h2>
+            <p>We use your data only to provide the dashboard features you use:</p>
             <ul>
-              <li>Providing AI-powered Google Ads analytics and insights</li>
-              <li>Generating personalized reports and recommendations</li>
-              <li>Improving our AI algorithms and service performance</li>
-              <li>Communicating with you about service updates and features</li>
-              <li>Responding to your inquiries and support requests</li>
-              <li>Analyzing service usage to enhance user experience</li>
-              <li>Marketing and promotional activities (with your consent)</li>
-              <li>Legal compliance and dispute resolution</li>
+              <li>to show your accounts, campaigns and metrics;</li>
+              <li>to run the automatic checks and show what needs attention;</li>
+              <li>to apply a change only when you confirm it, after showing you a preview, and to let you roll it back;</li>
+              <li>to keep the change log you see in the dashboard;</li>
+              <li>to keep you signed in and enforce your plan&apos;s limits.</li>
+            </ul>
+            <p>The dashboard never changes your Google Ads accounts on its own or on a schedule.</p>
+          </section>
+
+          <section>
+            <h2>3. Google user data and the Limited Use requirements</h2>
+            <p>
+              Kampaio&apos;s use and transfer to any other app of information received from Google APIs will adhere
+              to the{' '}
+              <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener noreferrer">Google API Services User Data Policy</a>,
+              including the Limited Use requirements. In particular:
+            </p>
+            <ul>
+              <li>we use Google user data only to provide and improve the user-facing features of the dashboard described above;</li>
+              <li>we do not sell it, and we do not use it for advertising, for credit decisions, or to train AI or machine-learning models;</li>
+              <li>we do not transfer it to third parties, except as needed to provide the service (our hosting provider), to comply with the law, or with your explicit consent;</li>
+              <li>no person at Kampaio reads your Google Ads data unless you ask us to for support, or it is needed for security or to comply with the law.</li>
             </ul>
           </section>
 
           <section>
-            <h2>4. AI Data Processing and Machine Learning</h2>
-            <p>
-              Our AI service processes your Google Ads data to provide intelligent insights and recommendations. 
-              This processing includes:
-            </p>
+            <h2>4. Where it is stored and who processes it</h2>
             <ul>
-              <li>Pattern recognition in campaign performance</li>
-              <li>Predictive analytics for optimization opportunities</li>
-              <li>Automated report generation and insights</li>
-              <li>Machine learning model training (using anonymized data)</li>
-              <li>Natural language processing for user interactions</li>
+              <li>The dashboard and its data are hosted on a server in the European Union (Contabo GmbH, data centre in France).</li>
+              <li>Google LLC provides sign-in and the Google Ads API.</li>
+              <li>The website is hosted by Vercel Inc.; Google Analytics is provided by Google LLC.</li>
+              <li>Our email is provided by Zoho Corporation (EU data centre).</li>
             </ul>
-            <p>
-              All AI processing is conducted with appropriate security measures and data anonymization 
-              where possible to protect your privacy.
-            </p>
+            <p>We do not use any other processors for dashboard data.</p>
           </section>
 
           <section>
-            <h2>5. Cookies and Tracking Technologies</h2>
-            <p>
-              We use cookies and similar tracking technologies to enhance your experience with our AI service. 
-              These technologies help us understand how you interact with our platform and improve our AI algorithms.
-            </p>
-            <p>You can control cookie settings through your browser preferences.</p>
-          </section>
-
-          <section>
-            <h2>6. Information Sharing and Disclosure</h2>
-            <p>We do not sell, trade, or otherwise transfer your personal information to third parties, except:</p>
+            <h2>5. How long we keep it</h2>
             <ul>
-              <li>With your explicit consent</li>
-              <li>To trusted service providers who assist us in operating our AI service</li>
-              <li>To Google Ads API (only with your authorization)</li>
-              <li>To comply with legal obligations</li>
-              <li>To protect our rights and safety</li>
-            </ul>
-            <p>
-              <strong>Important:</strong> We never share your Google Ads data with third parties for marketing 
-              or advertising purposes without your explicit consent.
-            </p>
-          </section>
-
-          <section>
-            <h2>7. Account Security and Authentication</h2>
-            <p>
-              We implement robust security measures to protect your account and authentication data:
-            </p>
-            <ul>
-              <li><strong>Password Security:</strong> All passwords are hashed using industry-standard algorithms (bcrypt) and never stored in plain text</li>
-              <li><strong>Email Verification:</strong> New accounts require email verification to prevent unauthorized access</li>
-              <li><strong>Password Reset:</strong> Secure token-based password reset process with time-limited verification links</li>
-              <li><strong>Session Management:</strong> Secure session handling with automatic timeout and logout capabilities</li>
-              <li><strong>Access Logging:</strong> Comprehensive logging of login attempts and account access for security monitoring</li>
-              <li><strong>Rate Limiting:</strong> Protection against brute force attacks and automated account creation</li>
-            </ul>
-            <p>
-              We use secure email delivery services (Resend) for account verification and password reset emails, 
-              ensuring reliable and secure communication for account management.
-            </p>
-          </section>
-
-          <section>
-            <h2>8. Data Security and AI Safety</h2>
-            <p>
-              We implement comprehensive security measures to protect your data, including:
-            </p>
-            <ul>
-              <li>End-to-end encryption for data transmission</li>
-              <li>Secure API authentication and authorization</li>
-              <li>Regular security audits and vulnerability assessments</li>
-              <li>AI model security and bias prevention measures</li>
-              <li>Access controls and user authentication</li>
-              <li>Data backup and disaster recovery procedures</li>
-            </ul>
-            <p>
-              However, no method of transmission over the internet is 100% secure. We continuously 
-              work to improve our security measures.
-            </p>
-          </section>
-
-          <section>
-            <h2>9. Your Rights</h2>
-            <p>Depending on your location, you may have the following rights:</p>
-            <ul>
-              <li>Access to your personal information and AI processing logs</li>
-              <li>Correction of inaccurate information</li>
-              <li>Deletion of your personal information and associated data</li>
-              <li>Restriction of AI processing activities</li>
-              <li>Data portability (export your data)</li>
-              <li>Objection to AI processing</li>
-              <li>Right to explanation of AI decisions (where applicable)</li>
+              <li>Account data (email, name, token, connected account IDs, settings): kept while your account exists.</li>
+              <li>Cached Google Ads reports: refreshed and overwritten as you use the dashboard; deleted with your account.</li>
+              <li>Change log: kept while your account exists, so you can see and roll back past changes; deleted with your account.</li>
+              <li>Session cookie: up to 30 days, or until you sign out.</li>
             </ul>
           </section>
 
           <section>
-            <h2>10. Data Retention</h2>
+            <h2>6. Your choices and rights</h2>
+            <ul>
+              <li><strong>Disconnect Google.</strong> You can revoke Kampaio&apos;s access at any time at <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener noreferrer">https://myaccount.google.com/permissions</a>. The dashboard then can no longer read or change your Google Ads accounts.</li>
+              <li><strong>Delete your data.</strong> Email <a href="mailto:vitalii@kampaio.com">vitalii@kampaio.com</a> from the address you sign in with, and we will delete your account, token, cached data, change log and settings within 30 days.</li>
+              <li><strong>Access or correct your data.</strong> Email us and we will send you what we hold or correct it.</li>
+              <li>If you are in the EU/EEA or UK, you also have the rights given by the GDPR, including the right to complain to your data protection authority.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>7. Security</h2>
             <p>
-              We retain your personal information and Google Ads data only for as long as necessary 
-              to provide our AI service and comply with legal obligations. AI processing logs are 
-              retained for service improvement purposes and are anonymized where possible.
-            </p>
-            <p>
-              <strong>Authentication Data Retention:</strong> Account authentication data is retained 
-              for the duration of your account's existence. Password reset tokens expire automatically 
-              after a limited time period. Login logs are retained for security monitoring purposes 
-              and may be kept for up to 12 months for fraud prevention and account security.
+              Access to the server is restricted to key-based login, traffic to the dashboard is encrypted with HTTPS,
+              and tokens are never shown in the interface or sent to other services.
             </p>
           </section>
 
           <section>
-            <h2>11. Children's Privacy</h2>
-            <p>
-              Our AI service is not intended for children under 13 years of age. We do not knowingly 
-              collect personal information from children under 13.
-            </p>
+            <h2>8. Children</h2>
+            <p>The dashboard is for businesses and is not intended for anyone under 16.</p>
           </section>
 
           <section>
-            <h2>12. International Data Transfers</h2>
-            <p>
-              Your data may be processed in countries other than your own. We ensure that such transfers 
-              comply with applicable data protection laws and implement appropriate safeguards to protect your information.
-            </p>
+            <h2>9. Changes</h2>
+            <p>If we change this policy, we will update the date above and, for significant changes, tell signed-in users in the dashboard.</p>
           </section>
 
           <section>
-            <h2>13. Changes to This Privacy Policy</h2>
-            <p>
-              We may update this Privacy Policy from time to time, especially as our AI capabilities evolve. 
-              We will notify you of any significant changes by posting the new Privacy Policy on this page 
-              and updating the "Last updated" date.
-            </p>
-          </section>
-
-          <section>
-            <h2>14. Contact Us</h2>
-            <p>
-              If you have any questions about this Privacy Policy, our AI data practices, or would like to 
-              exercise your rights, please contact us:
-            </p>
+            <h2>10. Contact</h2>
             <div className="contact-info">
               <p><strong>Email:</strong> <a href="mailto:vitalii@kampaio.com">vitalii@kampaio.com</a></p>
-              <p><strong>Website:</strong> <a href="https://kampaio.com">https://kampaio.com</a></p>
+              <p><strong>Website:</strong> <a href="https://www.kampaio.com">https://www.kampaio.com</a></p>
             </div>
           </section>
         </div>
