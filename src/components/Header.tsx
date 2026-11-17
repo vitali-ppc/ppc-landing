@@ -117,8 +117,8 @@ export default function Header({ variant = 'full' }: HeaderProps) {
               <span style={{ color: '#1e293b', fontWeight: 'bold', fontSize: '20px' }}>Kampaio</span>
             </Link>
           <div className="header__right">
-            <a href="/login" className="header-btn header-btn-login">Login</a>
-            <a href="/chat" className="header-btn header-btn-demo">
+            <a href="https://dashboard.kampaio.com/" className="header-btn header-btn-login">Login</a>
+            <a href="https://dashboard.kampaio.com/" className="header-btn header-btn-demo">
               Get Free
             </a>
           </div>
@@ -246,8 +246,8 @@ export default function Header({ variant = 'full' }: HeaderProps) {
           </div>
           <div className="header__right">
             <GoogleAdsStatus className="header-google-ads-status" />
-            <a href="/login" className="header-btn header-btn-login">Login</a>
-            <a href="/chat" className="header-btn header-btn-demo">
+            <a href="https://dashboard.kampaio.com/" className="header-btn header-btn-login">Login</a>
+            <a href="https://dashboard.kampaio.com/" className="header-btn header-btn-demo">
               Get Free
             </a>
           </div>
@@ -272,8 +272,8 @@ export default function Header({ variant = 'full' }: HeaderProps) {
         </button>
         <div className="mobile-menu-buttons">
           <GoogleAdsStatus className="mobile-google-ads-status" />
-          <a href="/login" className="mobile-btn mobile-btn-login">Login</a>
-          <a href="/chat" className="mobile-btn mobile-btn-demo">
+          <a href="https://dashboard.kampaio.com/" className="mobile-btn mobile-btn-login">Login</a>
+          <a href="https://dashboard.kampaio.com/" className="mobile-btn mobile-btn-demo">
             Get Free
           </a>
         </div>
