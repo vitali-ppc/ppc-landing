@@ -401,9 +401,6 @@ export default function ArticleContent() {
                 <p style={pStyle}>
                   Why it fails. Without that conversion volume AND a robust negative list, broad match spends budget on intent that does not match the offer. Google&apos;s algorithm <a href="/blog/google-ads-optimization" style={linkStyle}>optimizes</a> for your bidding target. If the target is loose or the <a href="/blog/google-ads-conversion-tracking-not-working" style={linkStyle}>conversion tracking is broken</a>, broad match will faithfully spend your money chasing the wrong signal.
                 </p>
-                <p style={pStyle}>
-                  One concrete. On a Goodevas It client in Sprint 5, we moved 4 keywords from phrase to broad with Target ROAS. Result over 30 days: 18% more conversions at the same CPA. It worked because we added 47 negatives before flipping the switch.
-                </p>
               </section>
 
               <section id="phrase">
@@ -661,7 +658,7 @@ export default function ArticleContent() {
               />
 
               <p style={pStyle}>
-                One concrete from production. Sage flagged 47 negative-keyword candidates from one week of Goodevas It search terms. Operator approved 31. CPA dropped 12% in 21 days. No bid was changed. No match type was changed. Just disciplined negatives, run on the schedule.
+                Where this stands: Sage and Aegis are in development, so this flow is a design, not a result. The part that works today is in the Kampaio dashboard: the search terms report for every account, with negatives you add after a preview.
               </p>
             </section>
 

@@ -911,7 +911,7 @@ flowchart LR
               </p>
 
               <MascotQuote mascot="echo">
-                I send a weekly summary: revenue change, what Buzz did, what Vox flagged, what Aegis caught. Three bullets. No PDF. You read it in 90 seconds and know whether last week was a win or a problem.
+                The weekly summary I am being built to send: revenue change, what changed and why, what needs a decision. Three bullets. No PDF. Read in 90 seconds, you know whether last week was a win or a problem. I am in development, so for now that summary is yours to write.
               </MascotQuote>
 
               <p style={pStyle}>

@@ -720,7 +720,7 @@ export default function ArticleContent() {
               </p>
 
               <MascotQuote mascot="buzz">
-                On a Goodevas It client in Sprint 5, I proposed 23 bid changes across 4 campaigns. Each came with a predicted CPC impact and a confidence interval. Aegis blocked 6 of them (top converters, risk of revenue loss). The 17 approved cuts reduced average CPC 18% in 14 days. Conversion volume held flat. No bid was lowered on a keyword in the top 10% by conversion volume.
+                The rule I am being built around: never lower a bid on a keyword in the top 10% by conversion volume, and never propose a change without the predicted CPC impact next to it. A cut that saves on clicks and loses the converters is not a saving.
               </MascotQuote>
             </section>
 
@@ -790,13 +790,13 @@ export default function ArticleContent() {
                 <strong><a href="/b6#buzz" style={linkStyle}>Buzz</a></strong> is the bidding agent. Every night Buzz scans the full keyword inventory: bid headroom, predicted CPC impact for each candidate change, 80%+ confidence interval before proposing. It does not raise bids on losing keywords. It does not cut bids on winning keywords. The proposed changes appear in the operator&apos;s queue with the math attached.
               </p>
               <p style={pStyle}>
-                <strong><a href="/b6#aegis" style={linkStyle}>Aegis</a></strong> is the risk reviewer. Before any Buzz proposal lands, Aegis runs a blocking check. Top 10% of keywords by conversion volume? No cut allowed without operator override. Brand campaign pause? Blocked. Bid change that would crater Smart Bidding learning? Blocked. The Aegis BLOCK on risk score 82/100 we saw in Sprint 5 caught a &quot;logical&quot; bid cut that would have killed a 32% of the account&apos;s revenue.
+                <strong><a href="/b6#aegis" style={linkStyle}>Aegis</a></strong> is the risk reviewer. Before any Buzz proposal lands, Aegis runs a blocking check. Top 10% of keywords by conversion volume? No cut allowed without operator override. Brand campaign pause? Blocked. Bid change that would crater Smart Bidding learning? Blocked. In our one prototype test (May 2026, one live e-commerce account), Aegis blocked both of Buzz&apos;s proposals at risk score 82/100, including a brand-campaign pause proposed before anyone had checked conversion tracking.
               </p>
               <p style={pStyle}>
                 <strong><a href="/b6#echo" style={linkStyle}>Echo</a></strong> is the reporting layer. Weekly digest with the 5 specific keywords that drove CPC inflation in the past 7 days, including the underlying cause (QS slipped, new competitor in auction, broad match query drift). Echo turns &quot;your CPC is up 12% this week&quot; into &quot;your CPC is up 12% because keyword X lost 2 QS points and broad match keyword Y triggered on 23 new junk queries.&quot;
               </p>
               <p style={pStyle}>
-                Concrete result. In Sprint 5 we ran Buzz + Aegis on a real Goodevas It account. Buzz proposed 23 bid changes over two weeks. Aegis blocked 6 of them with hard risk reasons. The 17 approved changes cut average CPC 18% in 14 days while conversion volume held flat. The full math is in our agent transparency view, which logs every proposed action with its predicted impact.
+                Where this stands today: the agents are in development, and that single test run is all the field data we have, so we are not quoting a CPC result for them. What works now is the Kampaio dashboard: it shows every campaign&apos;s CPC, spend and conversions side by side, flags campaigns spending with no conversions, and lets you change a budget or target with a preview and roll it back.
               </p>
               <p style={pStyle}>
                 The pitch is not &quot;AI replaces your judgment.&quot; The pitch is: AI does the per-keyword math every night, you spend your attention on the 5 keywords that actually need an operator decision. See <a href="/pricing" style={linkStyle}>pricing tiers</a> or open the <a href="/chat" style={linkStyle}>free Buzz audit</a> directly.

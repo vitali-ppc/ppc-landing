@@ -153,13 +153,6 @@ export default function ArticleContent() {
     { count: 1, label: 'Urgency', example: '"Ends Sunday Midnight"', color: '#ef4444', tint: '#fef2f2' },
   ];
 
-  // VISUAL 4 data: Sprint 5 test stat cluster (47 headlines, 39 live, 18 min, 4.1% -> 4.7%)
-  const sprint5Stats = [
-    { value: '47', label: 'Headlines Mira generated across 4 ad groups', color: '#1e293b' },
-    { value: '39', label: 'Approved live by Maximus after safety gating', color: '#10b981' },
-    { value: '18 min', label: 'Generation time for the full 47-headline batch', color: '#764ba2' },
-    { value: '+0.6 pp', label: 'CTR lift (4.1% to 4.7%) on 3 of 4 ad groups', color: '#764ba2' },
-  ];
 
   // VISUAL 2 data: ML asset combinations SVG (one ad slot, many candidate combinations)
   const combinationsSvg = `
@@ -540,52 +533,9 @@ export default function ArticleContent() {
                 Maximus gates every Mira proposal through the approval workflow. On the <a href="/blog/10-ai-powered-ppc-optimization-strategies" style={linkStyle}>Co-pilot tier</a>, Maximus queues all variants for human review. On the Approval tier, he auto-pushes variants that pass safety rules (character limits, no banned terms, predicted ad strength &quot;Good&quot; or better) and queues edge cases. On the Autonomous tier, he pushes most variants but blocks: brand campaign creative changes, ads where current CTR sits in the top decile, and any variant that would change pinning policy. See the <a href="/pricing" style={linkStyle}>full B6 pricing tiers</a> for autonomy-level details.
               </p>
 
-              {/* VISUAL 5: Sprint 5 test results StatBlock cluster (4 stats, explicit 4-col -> 2x2 -> 1-col) */}
-              <div style={{
-                background: 'linear-gradient(135deg, #faf5ff 0%, #f5f3ff 100%)',
-                border: '1px solid #c4b5fd',
-                borderRadius: '14px',
-                padding: '28px',
-                marginBottom: '32px',
-              }}>
-                <div style={{ fontSize: '13px', fontWeight: 700, color: '#6d28d9', marginBottom: '20px', textTransform: 'uppercase' as const, letterSpacing: '0.08em' }}>
-                  Sprint 5 test &middot; e-commerce &middot; ~$18K/mo spend &middot; 14 days
-                </div>
-                <div className="b6-stat-grid">
-                  {sprint5Stats.map((s, i) => (
-                    <div key={i} className="b6-stat-cell">
-                      <div style={{ fontSize: '40px', fontWeight: 800, color: s.color, lineHeight: 1 }}>{s.value}</div>
-                      <div style={{ fontSize: '13px', color: '#475569', marginTop: '8px', lineHeight: '1.45' }}>{s.label}</div>
-                    </div>
-                  ))}
-                </div>
-                <div style={{ marginTop: '20px', fontSize: '14px', color: '#475569', lineHeight: '1.6', fontStyle: 'italic' as const }}>
-                  Maximus blocked 8: 3 for character overruns, 5 for the top-decile CTR rule. The 39 approved went live. Average ad strength lifted from &quot;Average&quot; to &quot;Good&quot; on 3 of 4 ad groups within 7 days. The fourth was a brand campaign with mandatory pinning.
-                </div>
-                <style jsx>{`
-                  .b6-stat-grid {
-                    display: grid;
-                    grid-template-columns: repeat(4, 1fr);
-                    gap: 16px;
-                  }
-                  .b6-stat-cell {
-                    background: #ffffff;
-                    border-radius: 10px;
-                    border: 1px solid #ddd6fe;
-                    padding: 18px;
-                  }
-                  @media (max-width: 1100px) {
-                    .b6-stat-grid {
-                      grid-template-columns: repeat(2, 1fr);
-                    }
-                  }
-                  @media (max-width: 520px) {
-                    .b6-stat-grid {
-                      grid-template-columns: 1fr;
-                    }
-                  }
-                `}</style>
-              </div>
+              <p style={pStyle}>
+                Where this stands: Mira and Maximus are in development and have not run on live accounts, so we have no results to quote for them yet. What works today is the Kampaio dashboard, which flags ad groups with every ad paused or no ads at all, so you know where creative work is overdue.
+              </p>
 
               <p style={pStyle}>
                 The frame is not &quot;AI writes your creative&quot;. The frame is: AI generates candidates, the orchestrator enforces your safety policy at machine speed, you spend senior-manager attention on 3 edge cases per week. The bottleneck moves from &quot;writing 15 unique headlines&quot; to &quot;reviewing 3 flagged variants&quot;.

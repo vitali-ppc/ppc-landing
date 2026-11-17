@@ -407,7 +407,7 @@ flowchart TD
               </p>
 
               <MascotQuote mascot="aegis">
-                I flagged 3 campaigns last week that were spending above target CPA by 40%+. In an agency model, this shows up in the monthly report 3 weeks later. I catch it same-day and Maximus pauses the worst ad groups within 6 hours.
+                A campaign running 40% over target CPA shows up in an agency&apos;s monthly report weeks after it started. The check I am being built for runs the same day. Until I ship, the Kampaio dashboard already flags campaigns with CPA above target on every account you connect.
               </MascotQuote>
 
               <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#1e293b', marginBottom: '16px', fontWeight: '600' }}>

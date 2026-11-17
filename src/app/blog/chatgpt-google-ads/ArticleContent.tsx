@@ -544,18 +544,18 @@ export default function ArticleContent() {
                 ChatGPT is free or ChatGPT Plus; purpose-built tools typically run $99 to $499+/month depending on the tool. For a DTC owner running $3-50K/month with no <a href="/blog/google-ads-without-agency" style={{ color: '#764ba2', textDecoration: 'underline' }}>in-house PPC</a> hire, this is where Kampaio fits. It&apos;s built to monitor the live account and apply account-safe changes (pausing an underperforming campaign, applying a recommendation, adding negative keywords) with human oversight on every action, every step visible. Not a ChatGPT replacement. The next layer, for what ChatGPT can&apos;t reach from a chat window. If you want the fuller picture of what an <a href="/blog/google-ads-ai-agent" style={linkStyle}>autonomous AI agent</a> does versus a copilot you&apos;re still driving by hand, that&apos;s a separate, deeper read.
               </p>
               <p style={para}>
-                Optmyzr and Madgicx are recommendation engines starting around $499/month; they surface suggestions for a human to apply. Kampaio applies account-safe actions directly and logs them, on a flat monthly subscription. ChatGPT does neither with your live data. See the full <a href="/pricing" style={linkStyle}>pricing breakdown</a> if you want the plan detail.
+                Optmyzr and Madgicx are recommendation engines starting around $499/month; they surface suggestions for a human to apply. In the Kampaio dashboard you make the change yourself, with a preview before it applies and a log entry after it, across every account you manage. ChatGPT does neither with your live data. See the full <a href="/pricing" style={linkStyle}>pricing breakdown</a> if you want the plan detail.
               </p>
 
               <div style={{ background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)', borderRadius: '16px', padding: '40px', textAlign: 'center', marginTop: '48px', marginBottom: '40px' }}>
                 <h3 style={{ fontSize: '22px', fontWeight: 700, color: '#1e293b', marginBottom: '18px', lineHeight: '1.3' }}>
-                  See it run on a real account, every action visible
+                  See every account on one screen, every change previewed
                 </h3>
                 <p style={{ fontSize: '17px', color: '#64748b', marginBottom: '28px', lineHeight: '1.6', fontWeight: 500, opacity: 0.9 }}>
-                  Free while B6 is in beta. Kampaio monitors the live account and applies account-safe changes with oversight on every step.
+                  Free during early access. The dashboard reads your live accounts, flags what needs attention, and lets you change budgets and targets with a preview and a rollback.
                 </p>
                 <a
-                  href="/chat"
+                  href="https://dashboard.kampaio.com/"
                   className="btn"
                   style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', color: 'white', border: 'none', padding: '16px 32px', borderRadius: '10px', fontSize: '16px', fontWeight: 600, cursor: 'pointer', transition: 'all 0.3s ease', display: 'inline-block', boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)', textDecoration: 'none' }}
                   onMouseEnter={(e) => {

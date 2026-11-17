@@ -376,7 +376,7 @@ pie showData
               </ul>
 
               <MascotQuote mascot="aegis">
-                Aegis caught 47 anomalies last week across 12 accounts. 3 needed action: one tracking outage, one click bombing pattern on a small geo campaign, one Smart Bidding strategy that flipped overnight. 44 were noise the team would have spent 2 hours investigating: weekend seasonality, single-keyword variance, and one Performance Max campaign doing what Performance Max campaigns do. Classification is the work. The math is the easy part.
+                Most deviations on a normal account are noise: weekend seasonality, single-keyword variance, a Performance Max campaign doing what Performance Max campaigns do. The few that need a person are a tracking outage, a click-bombing pattern, a bid strategy that flipped overnight. Classification is the work. The math is the easy part.
               </MascotQuote>
             </section>
 
@@ -559,14 +559,14 @@ sequenceDiagram
               />
 
               <p style={pStyle}>
-                In Sprint 5, on a real Goodevas It client account, Aegis raised a risk score of 82/100 on a proposed <a href="/b6#buzz" style={linkStyle}>Buzz</a> bid action. The action was a &quot;logical&quot; bid cut on the top performer in a brand campaign. Aegis blocked it because two anomalies fired in the same minute: the brand campaign pattern (always severity 1) and a tracking-suspicion flag (conversion rate had drifted in the prior 6 hours). Buzz&apos;s proposed change would have killed a chunk of the account&apos;s revenue while masking the underlying tracking issue. The user got a single notification with the severity classification, the math, and the recommended next action (&quot;verify tracking before reconsidering bid change&quot;). No paging at 2 AM. No 47-alert Slack flood.
+                In May 2026 we ran the prototype once on a live e-commerce account. <a href="/b6#buzz" style={linkStyle}>Buzz</a> proposed two changes; Aegis reviewed both and blocked both at a risk score of 82/100. One would have paused a brand campaign that showed no conversions, and Aegis flagged the more likely cause: broken conversion tracking, not a campaign that stopped working. Its note was the next step to take: verify tracking before touching the campaign. That is one test run, not a track record, and the agents are still in development.
               </p>
               <p style={pStyle}>
                 The other mascots are part of the chain. <a href="/b6#sage" style={linkStyle}>Sage</a> feeds Aegis the keyword-level and audience-level signals that statistical baselines need. Buzz is the agent whose proposals Aegis reviews most often, since bid changes are the most frequent action class. <a href="/b6#echo" style={linkStyle}>Echo</a> writes the incident note in the weekly digest, so the team has a written audit trail of every severity 2 and 3 event without having to scroll Slack.
               </p>
 
               <MascotQuote mascot="buzz">
-                On the Goodevas It account in Sprint 5, I proposed 23 bid changes over two weeks. Aegis blocked 6 of them with hard risk reasons. The 6 included one brand campaign cut (risk score 82) that would have killed 32% of the account&apos;s revenue. The other 17 ran clean. Average CPC dropped 18% in 14 days, conversion volume held flat. Every blocked proposal came with a written reason and a recommended fix. That is the loop.
+                In that test run I proposed two changes and Aegis blocked both, each with a written reason. A change can look logical on the numbers and still be wrong because the numbers are wrong. That is why the gate sits before the change, not after it.
               </MascotQuote>
 
               <p style={pStyle}>

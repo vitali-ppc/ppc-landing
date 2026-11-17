@@ -511,26 +511,26 @@ export default function ArticleContent() {
             <section id="cta">
               <h2 style={h2Style}>Hand Invalid-Traffic Monitoring to Kampaio</h2>
               <p style={pStyle}>
-                Manual monitoring catches problems after they compound. Kampaio&apos;s Aegis <a href="/blog/google-ads-ai-agent" style={linkStyle}>agent</a> runs a weekly risk review: it flags suspicious IP patterns, geo anomalies, and device-cluster irregularities, then queues IP exclusions for your approval before spend accumulates.
+                Manual monitoring catches problems after they compound. The Kampaio dashboard shortens the manual part: every account on one screen, with automatic checks that flag sudden spend spikes, conversions that stop, and spend with no conversions, which are often the first visible sign of invalid traffic. IP-level detection is not in the dashboard; that is planned for Aegis, our risk <a href="/blog/google-ads-ai-agent" style={linkStyle}>agent</a>, which is in development.
               </p>
               <p style={pStyle}>
-                Last week across 12 accounts, Aegis caught 47 anomalies. Three needed action: one tracking outage, one click-bombing pattern on a small geo campaign, one Smart Bidding <a href="/blog/google-ads-strategy" style={linkStyle}>strategy</a> that flipped overnight. Forty-four were noise, filtered without interrupting your week.
+                Most alerts on a normal account are noise. The few that need a person look like a tracking outage, a click-bombing pattern on a small geo campaign, or a Smart Bidding <a href="/blog/google-ads-strategy" style={linkStyle}>strategy</a> that flipped overnight. Separating the two is the job.
               </p>
               <p style={pStyle}>
-                Echo sends a Monday digest with invalid traffic adjustments credited, IPs excluded, and your wasted-spend trend. Buzz identifies recovered budget and reallocates it to top-converting ad groups.
+                Next on the roadmap: a weekly digest from Echo, our reporting agent, and budget reallocation from Buzz, our bidding agent. Both are in development and not running on live accounts yet.
               </p>
               <div style={{ background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)', borderRadius: '16px', padding: '40px', textAlign: 'center', marginTop: '40px', marginBottom: '40px' }}>
                 <h3 style={{ fontSize: '22px', fontWeight: 700, color: '#1e293b', marginBottom: '18px', lineHeight: '1.3' }}>
-                  Let Aegis run the monitoring you have been doing manually
+                  See every account&apos;s spend spikes on one screen
                 </h3>
                 <p style={{ fontSize: '17px', color: '#64748b', marginBottom: '28px', lineHeight: '1.6', fontWeight: 500, opacity: 0.9 }}>
-                  <a href="/b6#aegis" style={linkStyle}>Kampaio&apos;s Aegis agent</a> watches for suspicious IP and geo patterns, queues IP exclusions and invalid-traffic reports for your approval, and shows every proposed action before anything executes. <a href="/pricing" style={linkStyle}>See what each Kampaio level does.</a>
+                  The <a href="https://dashboard.kampaio.com/" style={linkStyle}>Kampaio dashboard</a> flags spend spikes and conversions that stop across all your Google Ads accounts, and every change you make there shows a preview first. Free during early access.
                 </p>
                 <a
-                  href="/chat"
+                  href="https://dashboard.kampaio.com/"
                   style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', color: 'white', border: 'none', padding: '16px 32px', borderRadius: '10px', fontSize: '16px', fontWeight: 600, cursor: 'pointer', display: 'inline-block', boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)', textDecoration: 'none' }}
                 >
-                  Start Your Free Trial
+                  Open the dashboard
                 </a>
               </div>
               <p style={{ fontSize: '14px', color: '#64748b', fontStyle: 'italic', marginBottom: '32px' }}>
