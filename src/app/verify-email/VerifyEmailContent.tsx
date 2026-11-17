@@ -383,7 +383,7 @@ function VerifyEmailInner() {
             fontSize: '14px',
             color: '#64748b'
           }}>
-            Need help? <Link href="mailto:support@kampaio.com" style={{
+            Need help? <Link href="mailto:vitalii@kampaio.com" style={{
               color: '#764ba2',
               textDecoration: 'none',
               fontWeight: '500'

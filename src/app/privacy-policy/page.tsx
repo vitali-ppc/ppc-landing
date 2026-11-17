@@ -268,9 +268,7 @@ export default function PrivacyPolicy() {
               exercise your rights, please contact us:
             </p>
             <div className="contact-info">
-              <p><strong>Privacy Inquiries:</strong> <a href="mailto:privacy@kampaio.com">privacy@kampaio.com</a></p>
-              <p><strong>Account & Authentication Support:</strong> <a href="mailto:support@kampaio.com">support@kampaio.com</a></p>
-              <p><strong>AI Service Support:</strong> <a href="mailto:ai-support@kampaio.com">ai-support@kampaio.com</a></p>
+              <p><strong>Email:</strong> <a href="mailto:vitalii@kampaio.com">vitalii@kampaio.com</a></p>
               <p><strong>Website:</strong> <a href="https://kampaio.com">https://kampaio.com</a></p>
             </div>
           </section>

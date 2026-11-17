@@ -22,7 +22,7 @@ export default function Footer({ showTitle = false, compact = false }: FooterPro
         lineHeight: '1.6'
       }}>
         <div style={{ marginBottom: 4 }}>
-          © Kampaio, 2025. All rights reserved | info@kampaio.com
+          © Kampaio, 2025. All rights reserved | vitalii@kampaio.com
         </div>
         <div>
           <a href="/privacy-policy" style={{ color: 'white', textDecoration: 'underline', marginRight: 12 }}>Privacy Policy</a>
@@ -46,7 +46,7 @@ export default function Footer({ showTitle = false, compact = false }: FooterPro
           </h2>
         )}
         <div>
-          © Kampaio, 2025. All rights reserved | info@kampaio.com | Privacy Policy | Terms of Service
+          © Kampaio, 2025. All rights reserved | vitalii@kampaio.com | Privacy Policy | Terms of Service
         </div>
       </div>
     </footer>

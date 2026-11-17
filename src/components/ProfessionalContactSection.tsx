@@ -87,7 +87,7 @@ export default function ProfessionalContactSection({ title, description }: Profe
               </div>
               <div>
                 <h3>Email</h3>
-                <p>info@kampaio.com</p>
+                <p>vitalii@kampaio.com</p>
               </div>
             </div>
             <div className="professional-contact-item">
