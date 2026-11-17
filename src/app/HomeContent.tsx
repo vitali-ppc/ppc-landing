@@ -399,8 +399,8 @@ const TopBar: React.FC = () => (
         <a className="kx-navlink" href="/blog">Blog</a>
       </nav>
       <div className="kx-bar-cta">
-        <a className="kx-btn kx-btn-ghost kx-btn-sm" href="/auth/login">Sign in</a>
-        <a className="kx-btn kx-btn-primary kx-btn-sm" href="/auth/register">Start free</a>
+        <a className="kx-btn kx-btn-ghost kx-btn-sm" href="https://dashboard.kampaio.com/">Sign in</a>
+        <a className="kx-btn kx-btn-primary kx-btn-sm" href="https://dashboard.kampaio.com/">Start free</a>
       </div>
     </div>
   </header>
@@ -418,8 +418,8 @@ const Hero: React.FC = () => (
           it applies. Approve the big ones; the rest runs while you sleep.
         </p>
         <div className="kx-cta-row">
-          <a className="kx-btn kx-btn-primary" href="/auth/register">Start free &rarr;</a>
-          <a className="kx-btn kx-btn-ghost" href="/b6">Watch the agents work</a>
+          <a className="kx-btn kx-btn-primary" href="https://dashboard.kampaio.com/">Start free &rarr;</a>
+          <a className="kx-btn kx-btn-ghost" href="https://dashboard.kampaio.com/">Watch the agents work</a>
         </div>
 
         {/* Four facts, each one checkable on the product itself. No customer
@@ -552,7 +552,7 @@ const Pricing: React.FC = () => (
             </div>
             <p className="td">{t.desc}</p>
             <ul>{t.features.map((f) => <li key={f}>{f}</li>)}</ul>
-            <a className={`kx-btn ${t.highlight ? "kx-btn-primary" : "kx-btn-ghost"}`} style={{ display: "flex", width: "100%" }} href="/auth/register">
+            <a className={`kx-btn ${t.highlight ? "kx-btn-primary" : "kx-btn-ghost"}`} style={{ display: "flex", width: "100%" }} href="https://dashboard.kampaio.com/">
               {t.status === "live" ? "Get started" : "Start on L1"}
             </a>
           </div>
@@ -594,7 +594,7 @@ const CTA: React.FC = () => (
         want their Google Ads run by AI agents, not consultants. Free while we finish the cabinet.
       </p>
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <a className="kx-btn kx-btn-primary" href="/auth/register">Create your account &rarr;</a>
+        <a className="kx-btn kx-btn-primary" href="https://dashboard.kampaio.com/">Create your account &rarr;</a>
       </div>
       <p className="kx-fineprint" style={{ marginTop: 18 }}>
         <span className="hi">No credit card · Buzz and Aegis start on your account today</span>
@@ -608,7 +608,7 @@ const Footer: React.FC = () => (
     <div className="kx-foot-in">
       <div className="kx-logo" style={{ fontSize: 15 }}><span className="kx-dot" aria-hidden />kampaio · B6 Autonomous PPC Cabinet</div>
       <div className="kx-foot-links">
-        <a href="/b6">Live demo</a>
+        <a href="https://dashboard.kampaio.com/">Live demo</a>
         <a href="/blog">Blog</a>
         <a href="/privacy-policy">Privacy</a>
         <a href="/terms-of-service">Terms</a>
