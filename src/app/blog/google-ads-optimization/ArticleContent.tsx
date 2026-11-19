@@ -621,6 +621,8 @@ export default function ArticleContent() {
           <li style={{ marginBottom: '0.4rem' }}><a href="/blog/target-roas-underperforming-after-google-update" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>Target ROAS Underperforming After a Google Update? The Test</a></li>
           <li style={{ marginBottom: '0.4rem' }}><a href="/blog/google-ads-remarketing" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>Google Ads Remarketing: Lists, Exclusions and PMax</a></li>
           <li style={{ marginBottom: '0.4rem' }}><a href="/blog/maximize-conversion-value" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>Maximize Conversion Value: Which Client Accounts Should Use It</a></li>
+          <li style={{ marginBottom: '0.4rem' }}><a href="/blog/chatgpt-shopping" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>ChatGPT Shopping: Get Your Products Listed and Measure It</a></li>
+          <li style={{ marginBottom: '0.4rem' }}><a href="/blog/google-ads-scripts" style={{ color: 'var(--primary, #764ba2)', textDecoration: 'underline' }}>Google Ads Scripts: Which Ones to Run, and When a Script Is the Wrong Tool</a></li>
         </ul>
       </div>
       {/* cluster-downlinks:END */}
