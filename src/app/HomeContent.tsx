@@ -404,6 +404,10 @@ const Hero: React.FC = () => (
         <p className="kx-pain">ROAS tanked overnight? pMax burning budget? Ten accounts, ten tabs?</p>
         <h1 className="kx-h1">Every Google Ads account.<br />One screen.</h1>
         <p className="kx-sub">
+          <strong>Kampaio</strong> is a Google Ads dashboard: it shows every account you run on one
+          screen, checks what is wasting money, and applies the changes you confirm.
+        </p>
+        <p className="kx-sub">
           See what changed, what is wasting money and what to fix first. Change budgets
           and targets with <strong>a preview before it applies</strong> and a rollback after.
         </p>
