@@ -38,7 +38,7 @@ export default function ArticleContent() {
       },
     },
     datePublished: '2026-06-17T00:00:00.000Z',
-    dateModified: '2026-06-17T00:00:00.000Z',
+    dateModified: '2026-11-26T00:00:00.000Z',
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': 'https://www.kampaio.com/blog/google-ads-optimization',
@@ -56,66 +56,66 @@ export default function ArticleContent() {
     mainEntity: [
       {
         '@type': 'Question',
-        name: 'How can I optimize my Google Ads?',
+        name: "How can I optimize my Google Ads?",
         acceptedAnswer: {
           '@type': 'Answer',
-          text: "Identify the account's current binding constraint using the diagnostic table. Pull the highest-leverage lever against that constraint, wait for sufficient data, measure the lift, and repeat. Prioritizing by constraint impact beats working through a topic-by-topic checklist every time.",
+          text: "Identify the account's current binding constraint using the diagnostic table above. Pull the highest-leverage lever against that constraint, wait for sufficient data, measure the lift, and repeat. Prioritizing by constraint impact beats working through a topic-by-topic checklist every time.",
         },
       },
       {
         '@type': 'Question',
-        name: 'How do I optimize Google Ads for conversions?',
+        name: "How do I optimize Google Ads for conversions?",
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Fix tracking first. Smart Bidding cannot optimize for conversions it cannot measure. Once tracking is clean, choose a bid strategy matched to conversion volume (the commonly cited threshold is roughly 15 conversions per 30 days for Target CPA to learn reliably). Then run Search Terms hygiene: negative keyword gaps are typically the fastest direct lift in conversion efficiency.',
+          text: "Fix tracking first, Smart Bidding cannot optimize for conversions it cannot measure. Once tracking is clean, choose a bid strategy matched to conversion volume (the commonly cited threshold is roughly 15 conversions per 30 days for Target CPA to learn reliably). Then run Search Terms hygiene: negative keyword gaps are typically the fastest direct lift in conversion efficiency.",
         },
       },
       {
         '@type': 'Question',
-        name: 'What is the Google Ads optimization score, and should I follow it?',
+        name: "What is the Google Ads optimization score, and should I follow it?",
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'The Optimization Score measures recommendation acceptance rate, not account health. Review each recommendation before accepting. Act on tracking issues, disapproved ads, and policy warnings. Treat match type expansions to broad, budget increases, and new keyword additions as requiring your own review first.',
+          text: "The Optimization Score measures recommendation acceptance rate, not account health. Review each recommendation before accepting. Act on tracking issues, disapproved ads, and policy warnings. Treat match type expansions to broad, budget increases, and new keyword additions as requiring your own review first. Per Google's own campaign recommendations, the score reflects alignment with Google's suggested settings, not an independent performance audit.",
         },
       },
       {
         '@type': 'Question',
-        name: 'Is there a Google Ads optimization checklist I should follow daily?',
+        name: "Is there a Google Ads optimization checklist I should follow daily?",
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'No. Daily changes disrupt Smart Bidding learning and react to noise rather than real trends. Optimize when you have enough new, clean data, not on a schedule.',
+          text: "No. Daily changes stack inside one conversion cycle, so Smart Bidding never settles and you react to noise rather than real trends. Per Google Ads Help: optimize your Search campaign, the focus should be on measurable signals. Optimize when you have enough new, clean data, not on a schedule.",
         },
       },
       {
         '@type': 'Question',
-        name: 'How often should I optimize my Google Ads campaigns?',
+        name: "How often should I optimize my Google Ads campaigns?",
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Let data volume drive frequency, not the calendar. A campaign generating 100 conversions per week supports weekly reviews. A campaign generating 20 conversions per month needs longer windows. Acting faster than your data supports introduces variance and resets learning cycles.',
+          text: "Let data volume drive frequency, not the calendar. A campaign generating 100 conversions per week supports weekly reviews. A campaign generating 20 conversions per month needs longer windows. Acting faster than your data supports introduces variance and leaves no change enough conversion cycles to be judged.",
         },
       },
       {
         '@type': 'Question',
-        name: 'How do I maximize website visits without sacrificing quality?',
+        name: "How do I maximize website visits without sacrificing quality?",
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Use Maximize Clicks only for campaigns where volume is the explicit goal. For quality-sensitive campaigns, run negative keyword hygiene to filter low-intent queries and use audience bid adjustments to increase bids for high-converting segments rather than broadly lowering CPC minimums.',
+          text: "Use Maximize Clicks only for campaigns where volume is the explicit goal. For quality-sensitive campaigns, run negative keyword hygiene to filter low-intent queries and use audience bid adjustments to increase bids for high-converting segments rather than broadly lowering CPC minimums.",
         },
       },
       {
         '@type': 'Question',
-        name: 'What is the single highest-leverage Google Ads optimization?',
+        name: "What is the single highest-leverage Google Ads optimization?",
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Fix broken or inaccurate conversion tracking. Everything else, bidding, targeting, creative, runs on data conversion tracking produces. One operator reduced CPA 39% by recovering previously unmeasured conversion events (Stape, 2026, citing Transparent Digital Services).',
+          text: "Fix broken or inaccurate conversion tracking. Everything else, bidding, targeting, creative, runs on data conversion tracking produces. One operator reduced CPA 39% by recovering previously unmeasured conversion events (Stape's 2026 analysis, citing Transparent Digital Services).",
         },
       },
       {
         '@type': 'Question',
-        name: 'When should I leave a Google Ads campaign alone?',
+        name: "When should I leave a Google Ads campaign alone?",
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'During the learning phase, during low-volume periods, and when variation is within normal statistical range. Unnecessary intervention resets the learning clock and introduces bid variance, often at higher cost than the problem it was meant to solve.',
+          text: "During the learning phase, during low-volume periods, and when variation is within normal statistical range. Unnecessary intervention stacks changes before the last one can be judged (Google advises 2 conversion cycles or 2 weeks, whichever is longer) and introduces bid variance, often at higher cost than the \"problem\" it was meant to solve.",
         },
       },
     ],
@@ -203,7 +203,7 @@ export default function ArticleContent() {
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '2px' }}>
                   <span style={{ color: '#64748b', fontSize: '16px', fontWeight: 600 }}>By <a href="/author/vitalii-chornyi" style={{ color: 'inherit', textDecoration: 'underline' }}>Vitalii Chornyi</a></span>
                   <span style={{ color: '#64748b', fontSize: '15px' }}>Kampaio</span>
-                  <span style={{ color: '#64748b', fontSize: '15px' }}>June 17, 2026 · 15 min read</span>
+                  <span style={{ color: '#64748b', fontSize: '15px' }}>June 17, 2026 · Updated November 26, 2026 · 15 min read</span>
                 </div>
               </div>
             </div>
@@ -260,7 +260,7 @@ export default function ArticleContent() {
               />
 
               <p style={paragraphStyle}>
-                The problem is that most visible symptoms have more than one plausible cause, and pulling the wrong lever wastes time at best and resets Smart Bidding learning at worst. This article is a diagnostic map: symptom to constraint to lever. Each section covers one optimization pillar at system level and points you to the detailed repair in its spoke. The goal is a repeatable model, not a new list.
+                The problem is that most visible symptoms have more than one plausible cause, and pulling the wrong lever wastes time at best and, when that lever is a bid strategy switch, puts Smart Bidding back into learning at worst. This article is a diagnostic map: symptom to constraint to lever. Each section covers one optimization pillar at system level and points you to the detailed repair in its spoke. The goal is a repeatable model, not a new list.
               </p>
             </section>
 
@@ -339,9 +339,9 @@ export default function ArticleContent() {
                       <td style={{ padding: '12px 14px', borderBottom: '1px solid #e5e7eb', verticalAlign: 'top' }}><a href="/blog/google-ads-conversion-tracking-not-working" style={linkStyle}>when conversion tracking stops working</a></td>
                     </tr>
                     <tr>
-                      <td style={{ padding: '12px 14px', color: '#1e293b', verticalAlign: 'top' }}>Learning phase restarts repeatedly</td>
-                      <td style={{ padding: '12px 14px', color: '#1e293b', verticalAlign: 'top' }}>Too many changes during the learning window</td>
-                      <td style={{ padding: '12px 14px', color: '#1e293b', verticalAlign: 'top' }}>Pause all changes until Smart Bidding reaches sufficient conversion volume</td>
+                      <td style={{ padding: '12px 14px', color: '#1e293b', verticalAlign: 'top' }}>Bid strategy keeps showing Learning</td>
+                      <td style={{ padding: '12px 14px', color: '#1e293b', verticalAlign: 'top' }}>Repeated strategy switches, or campaigns and keywords added to or removed from the strategy</td>
+                      <td style={{ padding: '12px 14px', color: '#1e293b', verticalAlign: 'top' }}>Stop restructuring the strategy and judge it over 2 conversion cycles or 2 weeks, whichever is longer</td>
                       <td style={{ padding: '12px 14px', verticalAlign: 'top' }}>when your campaign won&apos;t spend its full budget</td>
                     </tr>
                   </tbody>
@@ -398,7 +398,7 @@ export default function ArticleContent() {
                 <li style={liStyle}><strong>Manual CPC</strong> stays a valid fallback for low-volume campaigns where Smart Bidding has insufficient data to learn.</li>
               </ul>
               <p style={paragraphStyle}>
-                The learning phase is the most frequently mishandled window in Google Ads. Google displays &quot;Learning&quot; status in the bid strategy column during this period. Duration is data-volume-based, not calendar-based, typically 7-14 days, but the real exit condition is sufficient conversion volume. Making a bid strategy change before the algorithm exits learning resets the clock and buys another period of instability. Most operators know this. Most still do it anyway.
+                The learning phase is the most frequently mishandled window in Google Ads. Google displays &quot;Learning&quot; status in the bid strategy column, and per its help page <a href="https://support.google.com/google-ads/answer/13020501" target="_blank" rel="noopener noreferrer" style={linkStyle}>About Smart Bidding learning</a>, that status never lasts more than 7 days and ads keep serving normally during it. Google rewrote and renamed that page in October 2026, so older advice that every edit &quot;resets learning&quot; predates it. Only three things trigger Learning: a new or reactivated strategy, a change in what the strategy covers (campaigns, ad groups or keywords added or removed), or a significant conversion goal change. Budget, target, creative and targeting edits do not trigger it and apply from the next auction, and switching strategies does not start from scratch when the account has past conversion data. The status is not the finish line, though: Google says performance settles on a new goal within 1 to 2 conversion cycles and advises judging results over 2 conversion cycles or 2 weeks, whichever is longer, allowing for conversion delay. Stack several changes inside one cycle and you never learn what any single change did. Most operators know this. Most still do it anyway.
               </p>
 
               <MascotQuote mascot="buzz">
@@ -449,25 +449,25 @@ export default function ArticleContent() {
                 <strong>Invalid traffic monitoring.</strong> Google filters some invalid clicks automatically, but not all. Unusual click patterns, CTR spikes from specific IP ranges, click volume with no conversion activity, geographic anomalies, are worth monitoring. IP exclusions and geo filters address confirmed sources. The goal is protective monitoring: <a href="/blog/google-ads-invalid-traffic-click-fraud" style={linkStyle}>detect invalid traffic and click fraud</a> before it distorts campaign data.
               </p>
               <p style={paragraphStyle}>
-                <strong>The spend-protection priority:</strong> cutting a budget leak produces the same efficiency gain as finding new revenue, but carries less risk than tightening bid targets. A bad placement exclusion doesn&apos;t disrupt Smart Bidding learning. A dramatic Target CPA cut does. When in doubt about which optimization to run next, the defensive move often has the better risk-adjusted return.
+                <strong>The spend-protection priority:</strong> cutting a budget leak produces the same efficiency gain as finding new revenue, but carries less risk than tightening bid targets. A bad placement exclusion barely moves Smart Bidding. A dramatic Target CPA cut does not trigger Learning either, but it applies from the next auction and can choke volume before you have a full conversion cycle to judge it. When in doubt about which optimization to run next, the defensive move often has the better risk-adjusted return.
               </p>
             </section>
 
             <section id="when-not-to">
               <h2 style={h2Style}>When NOT to Optimize (and What to Ignore)</h2>
               <p style={paragraphStyle}>
-                The most underrated optimization skill is leaving a campaign alone. Acting on insufficient data is not neutral, it actively introduces variance and can reset Smart Bidding learning. The cost of unnecessary intervention is real, and most operators underestimate it.
+                The most underrated optimization skill is leaving a campaign alone. Acting on insufficient data is not neutral, it actively introduces variance, and a bid strategy switch puts the campaign back into learning. The cost of unnecessary intervention is real, and most operators underestimate it.
               </p>
               <p style={{ ...paragraphStyle, fontWeight: 600, marginBottom: '12px' }}>When to wait:</p>
               <ul style={{ paddingLeft: '24px', marginBottom: '24px' }}>
-                <li style={liStyle}><strong>During the learning phase.</strong> A bid strategy change while a campaign is learning restarts the period. Four days of data is not a sufficient sample. The campaign needs to exit learning on its own cadence.</li>
+                <li style={liStyle}><strong>During the learning phase.</strong> Switching bid strategy, or adding and removing campaigns or keywords under it, shows Learning again for up to 7 days. Four days of data is not a sufficient sample either way: Google advises judging over 2 conversion cycles or 2 weeks, whichever is longer.</li>
                 <li style={liStyle}><strong>When data volume is insufficient.</strong> A 20% CPA swing on a campaign with 15 conversions this month is noise. Statistical significance requires enough volume to distinguish a real trend from random variation.</li>
                 <li style={liStyle}><strong>When reacting to non-business metrics.</strong> Impression Share, Ad Strength score, and CTR on informational queries are inputs, not business outputs. Research shows that a higher Ad Strength score does not significantly affect conversion rate (<a href="https://stape.io/blog/improve-google-ads-performance" target="_blank" rel="noopener noreferrer" style={linkStyle}>Stape&apos;s 2026 analysis</a>). Chasing &quot;Excellent&quot; Ad Strength is not an optimization, it&apos;s busywork that looks like optimization.</li>
                 <li style={liStyle}><strong>When auto-applied recommendations are expanding match types or raising budgets.</strong> Review before accepting. Act on alerts about tracking issues, disapproved ads, and policy warnings. Treat match type expansions, budget increases, and new broad-match keyword additions as requiring manual review. The Optimization Score measures recommendation acceptance rate, not account health.</li>
               </ul>
 
               <MascotQuote mascot="aegis">
-                What I am being built to do: hold a request to switch bid strategy after four days of campaign data. Four days is learning phase. Switching resets the learning clock and purchases another 7-14 days of instability. The threshold I am designed around: 7 days minimum, plus sufficient conversion volume. Then you look at the data and decide.
+                What I am being built to do: hold a request to switch bid strategy after four days of campaign data. Four days is not enough to judge anything. A switch shows Learning again for up to 7 days, and Google says performance takes 1 to 2 conversion cycles to settle on a new goal. The threshold I am designed around: 2 conversion cycles or 2 weeks, whichever is longer. Then you look at the data and decide.
               </MascotQuote>
 
               <p style={{ ...paragraphStyle, fontWeight: 600, marginBottom: '12px' }}>Pre-flight checklist before any optimization action:</p>
@@ -514,7 +514,7 @@ export default function ArticleContent() {
               </Steps>
 
               <p style={paragraphStyle}>
-                A 14-point checklist asks you to do 14 things every week. This loop asks you to do one right thing and measure it. Over a quarter, that approach moves an account further, each action is grounded in data, has a clear outcome measurement, and nothing gets reset unnecessarily.
+                A 14-point checklist asks you to do 14 things every week. This loop asks you to do one right thing and measure it. Over a quarter, that approach moves an account further, each action is grounded in data, has a clear outcome measurement, and no change gets judged on half a conversion cycle.
               </p>
             </section>
 
@@ -559,11 +559,11 @@ export default function ArticleContent() {
               </div>
               <div style={{ marginBottom: '24px' }}>
                 <p style={{ ...paragraphStyle, marginBottom: '12px' }}><strong>Is there a Google Ads optimization checklist I should follow daily?</strong></p>
-                <p style={paragraphStyle}>No. Daily changes disrupt Smart Bidding learning and react to noise rather than real trends. Per <a href="https://support.google.com/google-ads/answer/6165592?hl=en" target="_blank" rel="noopener noreferrer" style={linkStyle}>Google Ads Help: optimize your Search campaign</a>, the focus should be on measurable signals. Optimize when you have enough new, clean data, not on a schedule.</p>
+                <p style={paragraphStyle}>No. Daily changes stack inside one conversion cycle, so Smart Bidding never settles and you react to noise rather than real trends. Per <a href="https://support.google.com/google-ads/answer/6165592?hl=en" target="_blank" rel="noopener noreferrer" style={linkStyle}>Google Ads Help: optimize your Search campaign</a>, the focus should be on measurable signals. Optimize when you have enough new, clean data, not on a schedule.</p>
               </div>
               <div style={{ marginBottom: '24px' }}>
                 <p style={{ ...paragraphStyle, marginBottom: '12px' }}><strong>How often should I optimize my Google Ads campaigns?</strong></p>
-                <p style={paragraphStyle}>Let data volume drive frequency, not the calendar. A campaign generating 100 conversions per week supports weekly reviews. A campaign generating 20 conversions per month needs longer windows. Acting faster than your data supports introduces variance and resets learning cycles.</p>
+                <p style={paragraphStyle}>Let data volume drive frequency, not the calendar. A campaign generating 100 conversions per week supports weekly reviews. A campaign generating 20 conversions per month needs longer windows. Acting faster than your data supports introduces variance and leaves no change enough conversion cycles to be judged.</p>
               </div>
               <div style={{ marginBottom: '24px' }}>
                 <p style={{ ...paragraphStyle, marginBottom: '12px' }}><strong>How do I maximize website visits without sacrificing quality?</strong></p>
@@ -575,7 +575,7 @@ export default function ArticleContent() {
               </div>
               <div style={{ marginBottom: '24px' }}>
                 <p style={{ ...paragraphStyle, marginBottom: '12px' }}><strong>When should I leave a Google Ads campaign alone?</strong></p>
-                <p style={paragraphStyle}>During the learning phase, during low-volume periods, and when variation is within normal statistical range. Unnecessary intervention resets the learning clock and introduces bid variance, often at higher cost than the &quot;problem&quot; it was meant to solve.</p>
+                <p style={paragraphStyle}>During the learning phase, during low-volume periods, and when variation is within normal statistical range. Unnecessary intervention stacks changes before the last one can be judged (Google advises 2 conversion cycles or 2 weeks, whichever is longer) and introduces bid variance, often at higher cost than the &quot;problem&quot; it was meant to solve.</p>
               </div>
             </section>
 
